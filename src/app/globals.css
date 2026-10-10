@@ -10,8 +10,17 @@
     --text-primary: #0F172A;
     --text-secondary: #475569;
 
+    /* Semantic text tokens */
+    --text-on-dark: #FFFFFF;
+    --text-on-dark-muted: #F1F5F9;
+    --text-on-light: #0F172A;
+    --text-on-light-muted: #475569;
+    --text-on-amber: #0F172A;
+    --text-on-teal-500: #0F172A;
+
     /* Brand Tokens */
     --brand-navy-900: #0B1B3A;
+    --brand-navy-950: #070F24;
     --brand-blue-600: #2563EB;
     --brand-blue-50: #EFF4FF;
 
@@ -67,10 +76,45 @@
 
 /* Accessibility Invariants: Never allow white text on Amber 500 or Teal 500 */
 .badge-amber,
-.fill-amber {
+.fill-amber,
+.bg-amber-500,
+.bg-service-music-500 {
   color: #0F172A !important;
 }
 
-.fill-teal-500 {
+.fill-teal-500,
+.bg-service-tutor-500 {
   color: #0F172A !important;
+}
+
+/* On Navy 900 or any dark surface, all text MUST be white or Slate 100 */
+.bg-brand-navy-900 h1,
+.bg-brand-navy-900 h2,
+.bg-brand-navy-900 h3,
+.bg-brand-navy-900 h4,
+.bg-brand-navy-900 p,
+.bg-brand-navy-900 span:not([class*="text-"]),
+.bg-brand-navy-950 h1,
+.bg-brand-navy-950 h2,
+.bg-brand-navy-950 h3,
+.bg-brand-navy-950 p,
+.bg-brand-navy-950 span:not([class*="text-"]) {
+  color: #FFFFFF;
+}
+
+/* Semantic utility classes */
+.text-on-dark {
+  color: #FFFFFF !important;
+}
+
+.text-on-dark-muted {
+  color: #F1F5F9 !important;
+}
+
+.text-on-light {
+  color: #0F172A !important;
+}
+
+.text-on-light-muted {
+  color: #475569 !important;
 }

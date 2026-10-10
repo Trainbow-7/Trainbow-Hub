@@ -29,3 +29,15 @@
 - **Context:** Directly exposing AI endpoints to client applications causes prompt leakage, quota abuse, and hallucinations in quantitative subjects like Mathematics.
 - **Decision:** Route all AI interactions through a server-side AI Gateway enforcing student quotas, input/output moderation, Socratic hint-first pedagogical prompts, and programmatic formula evaluation.
 - **Consequences:** Safe, age-appropriate learning assistance with zero client API key exposure and verifiable mathematical accuracy.
+
+## ADR-006: Dedicated Dev Route `/dev/design-system` with Production 404 Guard
+- **Status:** Accepted
+- **Context:** The initial prototype placed internal token swatches, smoke test triggers, and API health badges on the public root `/`, diluting brand trust.
+- **Decision:** Relocate all developer tooling and component swatches to `/dev/design-system`. In production environments (`process.env.NODE_ENV === 'production'`), this route invokes Next.js `notFound()` to return HTTP 404.
+- **Consequences:** Production users encounter a polished, credible education website, while developers retain a living style guide in local and staging environments.
+
+## ADR-007: WCAG 2.2 AA Automated Contrast Guardrails
+- **Status:** Accepted
+- **Context:** Dark surfaces (Navy 900) and vibrant accent fills (Teal 500, Amber 500) risk low-contrast text that violates accessibility and mobile readability under outdoor sunlight.
+- **Decision:** Enforce semantic tokens (`text-on-dark`, `text-on-light`). Establish an invariant forbidding white text on Teal 500 and Amber 500. Embed an automated Vitest contrast calculation suite (`src/test/contrast.test.ts`) that programmatically fails the build if any token pair falls below 4.5:1 for body copy or 3.0:1 for large text.
+- **Consequences:** Accessibility regressions are impossible to merge into main; all text passes WCAG 2.2 AA across desktop and mobile devices.

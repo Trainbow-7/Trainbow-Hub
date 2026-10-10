@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Phase 0 Foundation Smoke Test", () => {
-  test("loads landing page, verifies branding and API health status", async ({ page }) => {
+test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
+  test("loads public landing page (/), verifies education branding and navigation", async ({ page }) => {
     await page.goto("/");
 
     // Verify brand wordmark and tagline in header
@@ -9,20 +9,54 @@ test.describe("Phase 0 Foundation Smoke Test", () => {
     await expect(brandLink).toBeVisible();
     await expect(page.getByRole("banner").getByText("Learn • Connect • Grow")).toBeVisible();
 
-    // Verify hero section
+    const isMobile = page.viewportSize() && page.viewportSize()!.width < 768;
+
+    if (isMobile) {
+      // Mobile Viewport: Open sheet drawer to verify navigation and currency
+      await page.getByRole("button", { name: "Open navigation menu" }).click();
+      const mobileDrawer = page.getByRole("dialog", { name: "Menu" });
+      await expect(mobileDrawer).toBeVisible();
+      await expect(mobileDrawer.getByText(/NGN/i)).toBeVisible();
+      await expect(mobileDrawer.getByRole("link", { name: "Academy" })).toBeVisible();
+      await expect(mobileDrawer.getByRole("link", { name: "AI", exact: true })).toBeVisible();
+      // Close menu
+      await page.getByRole("button", { name: "Close menu" }).click();
+    } else {
+      // Desktop Viewport: Verify direct navbar links and currency badge
+      await expect(page.getByText(/NGN/i).first()).toBeVisible();
+      await expect(page.getByRole("navigation").getByRole("link", { name: "Academy" })).toBeVisible();
+      await expect(page.getByRole("navigation").getByRole("link", { name: "AI", exact: true })).toBeVisible();
+      await expect(page.getByRole("navigation").getByRole("link", { name: "Tutors" })).toBeVisible();
+      await expect(page.getByRole("navigation").getByRole("link", { name: "Music" })).toBeVisible();
+    }
+
+    // Verify hero section and high-contrast heading
     await expect(
-      page.getByRole("heading", { name: /The Resilient Learning Hub Built for/i })
+      page.getByRole("heading", { name: /Learn smarter\.\s+Find the right tutor\.\s+Grow with confidence\./i })
     ).toBeVisible();
 
-    // Verify service pillar cards
-    await expect(page.getByText("Curriculum & Courses")).toBeVisible();
-    await expect(page.getByText("Mathematics Assistant")).toBeVisible();
-    await expect(page.getByText("1-on-1 Marketplace")).toBeVisible();
+    // Verify trust signals
+    await expect(page.getByText("Verified tutors").first()).toBeVisible();
+    await expect(page.getByText("Child-safe by design").first()).toBeVisible();
+    await expect(page.getByText("Secure payments in naira").first()).toBeVisible();
 
-    // Verify health badge
-    await expect(page.getByText(/API Healthy/i)).toBeVisible();
+    // Verify product composition elements
+    await expect(page.getByText("Dr. Tayo Okafor")).toBeVisible();
+    await expect(page.getByText("Trainbow AI Mathematics Helper")).toBeVisible();
 
-    // Verify tabs switching
+    // Ensure NO developer widgets on public home page
+    await expect(page.getByText("Verify Design Tokens Modal")).not.toBeVisible();
+    await expect(page.getByText("Run System Smoke Test")).not.toBeVisible();
+    await expect(page.getByText("API Healthy")).not.toBeVisible();
+  });
+
+  test("loads developer showcase (/dev/design-system) in non-production", async ({ page }) => {
+    await page.goto("/dev/design-system");
+
+    // Verify dev notice
+    await expect(page.getByText(/Internal Developer Showcase/i).first()).toBeVisible();
+
+    // Verify tabs switching in dev showcase
     await page.getByRole("tab", { name: "Form Elements" }).click();
     await expect(page.getByLabel("Student Full Name")).toBeVisible();
 

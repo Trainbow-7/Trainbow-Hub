@@ -75,6 +75,14 @@ const config: Config = {
           dark: "#111A2E",
           card: "var(--card-bg)",
         },
+        textOnDark: {
+          DEFAULT: "#FFFFFF",
+          muted: "#F1F5F9",
+        },
+        textOnLight: {
+          DEFAULT: "#0F172A",
+          muted: "#475569",
+        },
       },
       fontFamily: {
         heading: ["var(--font-heading)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
