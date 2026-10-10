@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.3.0] - 2026-10-10 - Phase C: Identity, RBAC & Guardian Consent Architecture
+#### Added
+- **NDPA 2023 Section 31 Minor Safeguard Engine**: Full underage learner detection (< 18) based on Date of Birth, mandating verifiable parent/guardian consent prior to lesson bookings or interactive tutoring.
+- **Dedicated Guardian Consent Portal**: `/guardian/consent` providing 6-digit OTP verification, 15-minute passcode expiration, rate-limiting brute force protection (max 5 attempts), statutory consent agreements, and instant audit trail generation.
+- **Authentication Pages**:
+  - `/login`: Accessible sign-in form with email/password inputs, show/hide password toggle, and a 1-tap "Quick Demo Sign-In" credential selector for immediate testing of all 5 system roles (`Learner (Adult)`, `Learner (Minor)`, `Parent / Guardian`, `Vetted Tutor`, and `Platform Admin`).
+  - `/register`: Comprehensive 3-role onboarding (`Learner`, `Parent / Guardian`, `Tutor`) with real-time minor age calculation and dynamic NDPA 2023 guardian information panel.
+- **Cryptographic & Session Infrastructure**:
+  - `src/lib/auth/password.ts`: Enterprise-grade password hashing via `scrypt` with 16-byte random salt and constant-time `timingSafeEqual` verification.
+  - `src/lib/auth/session.ts`: Tamper-resistant HMAC-SHA256 session tokens with expiration and HTTP-only, secure, SameSite lax cookie transport.
+- **RESTful Authentication API Routes**:
+  - `POST /api/auth/register`: Zod-validated registration with role assignment, password hashing, minor detection, and guardian OTP dispatch.
+  - `POST /api/auth/login`: Constant-time credential authentication and session cookie generation.
+  - `POST /api/auth/logout`: Safe session invalidation and cookie clearing.
+  - `GET /api/auth/me`: Session introspection returning user record, minor guardianship status, and parent wards.
+  - `POST /api/auth/guardian/consent`: OTP generation and dispatch via SMS/Email adapters with rate-limiting.
+  - `POST /api/auth/guardian/verify-otp`: Constant-time passcode verification and NDPA 2023 Section 31 audit log persistence.
+- **Messaging Adapter**: `src/lib/adapters/messaging.ts` with Termii (SMS) and Resend (Email) production integrations, plus in-memory sandbox dispatch with inspected passcode histories for deterministic local testing.
+- **Database Architecture**:
+  - Production PostgreSQL 16 schema: `prisma/schema.prisma` with models `User`, `Guardianship`, `TutorProfile`, `Session` and SQL migration `scripts/migrations/001_phase_c_identity_and_guardian_schema.sql`.
+  - Resilient in-memory database store (`src/lib/db/index.ts`) pre-seeded with 5 deterministic role accounts and CRUD methods for full offline execution.
+- **Reactive Client Auth Context**: `src/components/auth/AuthProvider.tsx` exposing `useAuth()` hook for live user and guardianship state across client components.
+- **Application Shell Integration**: Updated `Navbar.tsx` displaying user avatar initials, role badge (`Learner`, `Parent`, `Tutor`, `Admin`), pending minor consent alerts, and reactive logout controls on both desktop and mobile drawer views.
+- **Verification & Quality Gates**:
+  - Unit test suite: `src/test/auth.test.ts` (7 tests covering scrypt hashing, HMAC signing/tamper resistance, age calculation, and seed store).
+  - Playwright E2E suite: `e2e/phase-c.spec.ts` (10 tests covering 1-tap demo logins, adult/minor registration, minor guardian consent redirection, and OTP verification across Desktop and Mobile viewports).
+  - Automated axe-core visual and accessibility audit script (`scripts/audit-phase-c.js`) verifying 0 serious/critical violations across `/login`, `/register`, and `/guardian/consent` on 1280px, 768px, and 375px viewports.
+
 ### [0.2.0] - 2026-10-10 - Phase B: Public Website & Catalogue Slice
 #### Added
 - Full public education catalogue: `/academy` (9 subjects directory), `/academy/[subject]` (subject detail with level filters, courses, and verified tutors), `/courses/[slug]` (comprehensive syllabus, lesson breakdown, free previews, verified instructor profiles, and tuition fees).

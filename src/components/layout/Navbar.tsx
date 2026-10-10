@@ -6,7 +6,9 @@ import { usePathname } from "next/navigation";
 import { TrainbowLogo } from "@/components/ui/TrainbowLogo";
 import { Button } from "@/components/ui/Button";
 import { Sheet } from "@/components/ui/Sheet";
-import { Menu, Globe, ArrowRight } from "lucide-react";
+import { Avatar } from "@/components/ui/Avatar";
+import { useAuth } from "@/components/auth/AuthProvider";
+import { Menu, Globe, ArrowRight, LogOut, ShieldAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -21,6 +23,22 @@ const NAV_LINKS = [
 export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const { user, logout, isLoading } = useAuth();
+
+  const getRoleLabel = (role: string) => {
+    switch (role) {
+      case "STUDENT":
+        return "Learner";
+      case "PARENT":
+        return "Parent";
+      case "TUTOR":
+        return "Tutor";
+      case "ADMIN":
+        return "Admin";
+      default:
+        return role;
+    }
+  };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-neutral-slate-200 bg-white/95 backdrop-blur-md">
@@ -28,7 +46,7 @@ export function Navbar() {
         {/* Brand Wordmark & Tagline */}
         <div className="flex items-center gap-8">
           <TrainbowLogo />
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
             {NAV_LINKS.map((link) => {
@@ -55,26 +73,65 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           {/* Currency / Regional Hint */}
           <div
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-neutral-slate-600 bg-neutral-slate-100 rounded-full border border-neutral-slate-200"
+            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-neutral-slate-600 bg-neutral-slate-100 rounded-full border border-neutral-slate-200"
             title="Operating currency: Nigerian Naira (NGN)"
           >
             <Globe className="h-3.5 w-3.5 text-neutral-slate-500" />
             <span>NGN (₦)</span>
           </div>
 
-          {/* Log In (Ghost) */}
-          <Link href="/login" className="hidden sm:inline-flex">
-            <Button variant="ghost" size="sm">
-              Log in
-            </Button>
-          </Link>
+          {!isLoading && user ? (
+            /* Logged-In User Profile Controls */
+            <div className="hidden sm:flex items-center gap-3">
+              {user.isMinor && !user.isVerified && (
+                <Link
+                  href={`/guardian/consent?studentId=${user.id}`}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold hover:bg-amber-200 transition-colors"
+                  title="Guardian verification required under NDPA 2023 Section 31"
+                >
+                  <ShieldAlert className="w-3.5 h-3.5 text-amber-700" />
+                  <span>Verify Guardian</span>
+                </Link>
+              )}
 
-          {/* Get Started (Primary) */}
-          <Link href="/register">
-            <Button variant="primary" size="sm" className="font-semibold shadow-sm">
-              Get started
-            </Button>
-          </Link>
+              <div className="flex items-center gap-2 pl-2 border-l border-neutral-slate-200">
+                <Avatar name={user.fullName} size="sm" />
+                <div className="text-left text-xs leading-tight">
+                  <div data-testid="navbar-user-name" className="font-bold text-neutral-slate-900 truncate max-w-[120px]">
+                    {user.fullName.split(" ")[0]}
+                  </div>
+                  <span data-testid="navbar-user-role" className="text-[10px] uppercase font-semibold text-neutral-slate-500">
+                    {getRoleLabel(user.role)}
+                  </span>
+                </div>
+              </div>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => logout()}
+                className="text-neutral-slate-600 hover:text-red-700 hover:bg-red-50 text-xs font-semibold"
+                aria-label="Sign out of account"
+              >
+                <LogOut className="w-3.5 h-3.5 mr-1" />
+                <span>Log out</span>
+              </Button>
+            </div>
+          ) : (
+            /* Guest Controls */
+            <div className="hidden sm:flex items-center gap-2">
+              <Link href="/login">
+                <Button variant="ghost" size="sm">
+                  Log in
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button variant="primary" size="sm" className="font-semibold shadow-sm">
+                  Get started
+                </Button>
+              </Link>
+            </div>
+          )}
 
           {/* Mobile Hamburger Button */}
           <button
@@ -99,6 +156,32 @@ export function Navbar() {
             <div className="pb-4 border-b border-neutral-slate-200">
               <TrainbowLogo />
             </div>
+
+            {user && (
+              <div className="p-3 bg-neutral-slate-50 border border-neutral-slate-200 rounded-xl space-y-2">
+                <div className="flex items-center gap-3">
+                  <Avatar name={user.fullName} size="md" />
+                  <div>
+                    <p data-testid="mobile-user-name" className="text-sm font-bold text-neutral-slate-900">{user.fullName}</p>
+                    <p className="text-xs text-neutral-slate-500">{user.email}</p>
+                    <span data-testid="mobile-user-role" className="inline-block mt-0.5 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-brand-blue-100 text-brand-blue-800">
+                      {getRoleLabel(user.role)}
+                    </span>
+                  </div>
+                </div>
+
+                {user.isMinor && !user.isVerified && (
+                  <Link
+                    href={`/guardian/consent?studentId=${user.id}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-lg bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-900 hover:bg-amber-100"
+                  >
+                    <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0" />
+                    <span>NDPA Consent Required — Verify Now</span>
+                  </Link>
+                )}
+              </div>
+            )}
 
             <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
               {NAV_LINKS.map((link) => {
@@ -129,25 +212,41 @@ export function Navbar() {
               <span className="font-semibold text-neutral-slate-700">NGN (₦) · Nigeria</span>
             </div>
 
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block w-full"
-            >
-              <Button variant="outline" className="w-full justify-center">
-                Log in
+            {user ? (
+              <Button
+                variant="outline"
+                className="w-full justify-center text-red-700 hover:bg-red-50 hover:border-red-300"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  logout();
+                }}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                <span>Log out</span>
               </Button>
-            </Link>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full"
+                >
+                  <Button variant="outline" className="w-full justify-center">
+                    Log in
+                  </Button>
+                </Link>
 
-            <Link
-              href="/register"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block w-full"
-            >
-              <Button variant="primary" className="w-full justify-center">
-                Get started
-              </Button>
-            </Link>
+                <Link
+                  href="/register"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full"
+                >
+                  <Button variant="primary" className="w-full justify-center">
+                    Get started
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </Sheet>
