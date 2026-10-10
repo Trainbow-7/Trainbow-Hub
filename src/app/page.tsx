@@ -4,7 +4,16 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
+import { Rating } from "@/components/ui/Rating";
+import { Avatar } from "@/components/ui/Avatar";
+import { AIInteractiveDemo } from "@/components/home/AIInteractiveDemo";
+import { HomeFAQ } from "@/components/home/HomeFAQ";
+import {
+  SEED_SUBJECTS,
+  SEED_COURSES,
+  SEED_TUTORS,
+} from "@/lib/data/seed-data";
 import {
   ShieldCheck,
   CheckCircle2,
@@ -17,18 +26,25 @@ import {
   Star,
   Clock,
   Award,
+  Users,
+  Eye,
+  CreditCard,
+  ChevronRight,
 } from "lucide-react";
 
 export default function HomePage() {
+  const activeSubjects = SEED_SUBJECTS.filter((s) => s.status === "active");
+  const featuredCourses = SEED_COURSES.slice(0, 3);
+  const featuredTutors = SEED_TUTORS.slice(0, 3);
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
-      {/* Real Public Navigation Shell */}
+      {/* Navigation Header */}
       <Navbar />
 
-      <main className="flex-1">
-        {/* Section 1: Hero (Navy 900 Gradient with Guaranteed High Contrast) */}
+      <main className="flex-1 space-y-16 sm:space-y-24">
+        {/* 1. Hero Section (Navy 900 Gradient with Guaranteed High Contrast) */}
         <section className="relative overflow-hidden bg-gradient-to-b from-brand-navy-900 via-brand-navy-900 to-brand-navy-950 py-16 sm:py-24 text-white">
-          {/* Subtle Ambient Glow Elements */}
           <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-brand-blue-600/15 blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-service-ai-600/10 blur-3xl pointer-events-none" />
 
@@ -36,25 +52,21 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               {/* Left Column: Value Proposition & CTAs */}
               <div className="lg:col-span-7 space-y-6 text-left">
-                {/* Status / Launch Badge */}
                 <div className="inline-flex items-center gap-2 rounded-full bg-brand-navy-950/80 px-3.5 py-1 text-xs font-semibold text-brand-blue-50 border border-brand-blue-500/30">
                   <span className="flex h-2 w-2 rounded-full bg-brand-blue-500 animate-pulse" />
                   <span>Mathematics Curriculum & Verified Tutors Active</span>
                 </div>
 
-                {/* Primary Heading with strict high contrast */}
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-[1.1] text-white">
                   Learn smarter. <br />
                   Find the right tutor. <br />
                   <span className="text-brand-blue-500">Grow with confidence.</span>
                 </h1>
 
-                {/* Subheading */}
                 <p className="text-base sm:text-lg text-neutral-slate-200 max-w-2xl leading-relaxed">
                   One account for lessons, AI help and verified tutors, built for Nigerian students and the parents who support them.
                 </p>
 
-                {/* Call to Actions */}
                 <div className="pt-2 flex flex-wrap gap-4 items-center">
                   <Link href="/tutors">
                     <Button
@@ -77,7 +89,6 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                {/* Trust Row */}
                 <div className="pt-6 border-t border-brand-navy-950/80 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-neutral-slate-300">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-status-green-500 shrink-0" />
@@ -154,7 +165,6 @@ export default function HomePage() {
                   {/* Composition Card 3: Real-Time Progress Ring Widget */}
                   <div className="rounded-xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-md flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      {/* SVG Progress Ring */}
                       <div className="relative h-12 w-12 flex items-center justify-center">
                         <svg className="h-12 w-12 -rotate-90" viewBox="0 0 36 36">
                           <path
@@ -191,8 +201,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Section 2: Four Services, One Platform */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        {/* 2. Four Services, One Platform */}
+        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900 tracking-tight">
               Four Core Services. One Unified Account.
@@ -314,10 +324,10 @@ export default function HomePage() {
             {/* 4. Music */}
             <Card className="border-t-4 border-t-service-music-500 flex flex-col justify-between hover:shadow-hover transition-all">
               <CardHeader className="space-y-2">
-                <div className="h-10 w-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
+                <div className="h-10 w-10 rounded-lg bg-amber-50 text-amber-900 flex items-center justify-center">
                   <Music className="h-5 w-5" />
                 </div>
-                <Badge variant="neutral" className="w-fit border-amber-300 bg-amber-50 text-amber-900">Music</Badge>
+                <Badge variant="neutral" className="w-fit border-amber-300 bg-amber-50 text-neutral-slate-900 font-semibold">Music</Badge>
                 <CardTitle className="text-lg">Music & Instruments</CardTitle>
                 <CardDescription className="text-xs text-neutral-slate-600">
                   Theory tuition, piano, guitar, and vocal coaching using the same unified account.
@@ -325,15 +335,15 @@ export default function HomePage() {
               </CardHeader>
               <CardContent className="space-y-2 text-xs text-neutral-slate-600">
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-600 shrink-0" />
+                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-700 shrink-0" />
                   <span>Theory & practical tuition</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-600 shrink-0" />
+                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-700 shrink-0" />
                   <span>Shared booking calendar</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-600 shrink-0" />
+                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-700 shrink-0" />
                   <span>Parent progress tracking</span>
                 </div>
               </CardContent>
@@ -349,7 +359,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Section 3: How It Works (Dual Track: Student & Parent) */}
+        {/* 3. How It Works (Dual Track: Student & Parent) */}
         <section className="bg-white border-y border-neutral-slate-200 py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto space-y-12">
             <div className="text-center max-w-2xl mx-auto space-y-2">
@@ -452,9 +462,446 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* 4. Live Catalogue Preview (Subject Chips, 3 Featured Courses, 3 Featured Tutors) */}
+        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Badge variant="brand">Curriculum & Directory</Badge>
+                <span className="text-xs text-neutral-slate-500 font-medium">Seeded Live Catalogue</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
+                Explore Courses & Vetted Nigerian Tutors
+              </h2>
+              <p className="text-sm text-neutral-slate-600 max-w-2xl">
+                Browse curriculum courses and connect with approved tutors ready to schedule 1-on-1 lessons.
+              </p>
+            </div>
+            <Link href="/courses" className="text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-700 flex items-center gap-1 shrink-0">
+              <span>View all courses</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Subject Chips */}
+          <div className="flex flex-wrap items-center gap-2 pt-2">
+            <span className="text-xs font-semibold text-neutral-slate-500 mr-2">Active Subjects:</span>
+            {activeSubjects.map((sub) => (
+              <Link
+                key={sub.id}
+                href={`/academy/${sub.slug}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-neutral-slate-200 hover:border-brand-blue-600 hover:text-brand-blue-600 transition-colors shadow-xs"
+              >
+                <span>{sub.name}</span>
+                {sub.aiEnabled ? (
+                  <span className="h-1.5 w-1.5 rounded-full bg-service-ai-600" title="AI Assistant Active" />
+                ) : null}
+              </Link>
+            ))}
+          </div>
+
+          {/* Featured Courses Grid */}
+          <div className="space-y-4">
+            <h3 className="font-heading font-bold text-lg text-neutral-slate-900">
+              Featured Academy Courses
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {featuredCourses.map((course) => (
+                <Card key={course.id} className="flex flex-col justify-between hover:shadow-hover transition-all">
+                  <CardHeader className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Badge variant="brand">{course.level}</Badge>
+                      <span className="text-xs font-bold text-neutral-slate-900">
+                        ₦{(course.priceMinorUnits / 100).toLocaleString("en-NG")}
+                      </span>
+                    </div>
+                    <CardTitle className="text-base line-clamp-2">
+                      <Link href={`/courses/${course.slug}`} className="hover:text-brand-blue-600 transition-colors">
+                        {course.title}
+                      </Link>
+                    </CardTitle>
+                    <CardDescription className="text-xs text-neutral-slate-600 line-clamp-2">
+                      {course.shortDescription}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3 pt-0">
+                    <div className="flex items-center justify-between text-xs text-neutral-slate-500 border-t border-neutral-slate-100 pt-3">
+                      <span className="flex items-center gap-1">
+                        <BookOpen className="h-3.5 w-3.5 text-neutral-slate-400" />
+                        {course.lessonCount} Lessons
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-3.5 w-3.5 text-neutral-slate-400" />
+                        {course.durationHours} Hours
+                      </span>
+                      <Rating value={course.rating} count={course.reviewCount} />
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-neutral-slate-700">
+                      <Avatar name={course.instructorName} size="sm" />
+                      <span className="font-medium truncate">{course.instructorName}</span>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="pt-0">
+                    <Link href={`/courses/${course.slug}`} className="w-full">
+                      <Button variant="outline" size="sm" className="w-full justify-between">
+                        <span>View Syllabus</span>
+                        <ChevronRight className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Featured Tutors Grid */}
+          <div className="space-y-4 pt-6">
+            <div className="flex items-center justify-between">
+              <h3 className="font-heading font-bold text-lg text-neutral-slate-900">
+                Approved 1-on-1 Tutors
+              </h3>
+              <Link href="/tutors" className="text-xs font-semibold text-brand-blue-600 hover:text-brand-blue-700">
+                Browse all 12 verified tutors →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {featuredTutors.map((tutor) => (
+                <Card key={tutor.id} className="flex flex-col justify-between hover:shadow-hover transition-all">
+                  <CardHeader className="space-y-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <Avatar name={tutor.name} size="lg" />
+                        <div>
+                          <h4 className="font-heading font-bold text-sm text-neutral-slate-900">
+                            <Link href={`/tutors/${tutor.slug}`} className="hover:text-brand-blue-600 transition-colors">
+                              {tutor.name}
+                            </Link>
+                          </h4>
+                          <p className="text-xs text-neutral-slate-500">{tutor.location}</p>
+                        </div>
+                      </div>
+                      <Badge variant="tutor" className="shrink-0 gap-1 text-[10px]">
+                        <ShieldCheck className="h-3 w-3" />
+                        Verified
+                      </Badge>
+                    </div>
+                    <CardDescription className="text-xs text-neutral-slate-600 line-clamp-2">
+                      {tutor.bio}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2 pt-0 text-xs text-neutral-slate-600">
+                    <div className="flex items-center justify-between">
+                      <Rating value={tutor.rating} count={tutor.completedLessons} />
+                      <div className="text-right">
+                        <span className="font-bold text-neutral-slate-900 text-sm">
+                          ₦{(tutor.hourlyRateMinorUnits / 100).toLocaleString("en-NG")}
+                        </span>
+                        <span className="text-neutral-slate-500 text-[10px]">/hr</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1 pt-1">
+                      {tutor.subjects.map((s) => (
+                        <span key={s} className="px-2 py-0.5 rounded bg-neutral-slate-100 text-[10px] font-medium text-neutral-slate-700">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="pt-0">
+                    <Link href={`/tutors/${tutor.slug}`} className="w-full">
+                      <Button variant="tutor" size="sm" className="w-full justify-between">
+                        <span>Check Availability & Book</span>
+                        <ChevronRight className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Interactive AI Preview Widget */}
+        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <Badge variant="ai">Pedagogical Guardrails</Badge>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
+              Experience the Socratic Maths Assistant
+            </h2>
+            <p className="text-sm text-neutral-slate-600">
+              Unlike generic chatbots that give away answers, Trainbow AI guides learners step by step with verified mathematical logic.
+            </p>
+          </div>
+
+          <AIInteractiveDemo />
+        </section>
+
+        {/* 6. Parents and Safeguarding Assurance */}
+        <section className="bg-neutral-slate-100/70 border-y border-neutral-slate-200 py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-6 space-y-5">
+              <Badge variant="tutor" className="gap-1.5">
+                <ShieldCheck className="h-3.5 w-3.5" />
+                Child-Safe By Design
+              </Badge>
+              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900 leading-tight">
+                Designed for Nigerian Parents Who Value Safety Above All Else
+              </h2>
+              <p className="text-sm text-neutral-slate-600 leading-relaxed">
+                We believe online learning must be as safe as an in-person classroom. Under the Nigeria Data Protection Act (NDPA) 2023, every student under 18 is protected by strict platform-level guardrails.
+              </p>
+
+              <div className="space-y-3 pt-2">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-status-green-600 shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-sm font-semibold text-neutral-slate-900">Guardian Verification & Consent</h3>
+                    <p className="text-xs text-neutral-slate-600">Accounts for minors cannot book tutors or authorize payments without parent OTP approval.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-status-green-600 shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-sm font-semibold text-neutral-slate-900">No Private Off-Platform Messaging</h3>
+                    <p className="text-xs text-neutral-slate-600">All student-tutor communication runs through supervised channels with conduct reporting tools.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-status-green-600 shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-sm font-semibold text-neutral-slate-900">Rigorous Identity & Credential Vetting</h3>
+                    <p className="text-xs text-neutral-slate-600">Every educator signs our Safeguarding Code of Conduct before a single lesson can be taught.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-3">
+                <Link href="/legal/safeguarding">
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <span>Read Full Child Safeguarding Policy</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="rounded-2xl border border-neutral-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-5">
+                <h3 className="font-heading font-bold text-base text-neutral-slate-900">
+                  Parent Peace-of-Mind Checklist
+                </h3>
+                <div className="space-y-3 text-xs text-neutral-slate-700">
+                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
+                    <span className="font-medium">Observed Virtual Classrooms</span>
+                    <span className="text-status-green-800 font-bold">Enabled</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
+                    <span className="font-medium">Real-Time Attendance Timestamps</span>
+                    <span className="text-status-green-800 font-bold">Logged to Order</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
+                    <span className="font-medium">Incident Response SLA</span>
+                    <span className="text-brand-blue-600 font-bold">Triaged &lt; 24h</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
+                    <span className="font-medium">Payment Data Security</span>
+                    <span className="text-neutral-slate-900 font-bold">PCI-DSS (Paystack)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Become a Tutor Band */}
+        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="space-y-3 max-w-2xl text-left relative z-10">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-service-tutor-700/60 px-3 py-1 text-xs font-semibold text-white border border-service-tutor-500/40">
+                <Award className="h-3.5 w-3.5" />
+                Join Nigeria&apos;s Elite Educator Network
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-white">
+                Are you an expert educator? Teach on Trainbow HUB.
+              </h2>
+              <p className="text-sm text-neutral-slate-200 leading-relaxed">
+                Set your own rates in naira, teach ambitious students across Nigeria, and earn reliable weekly income with zero scheduling hassle or payment chasing.
+              </p>
+            </div>
+            <Link href="/become-a-tutor" className="shrink-0 relative z-10">
+              <Button variant="primary" size="lg" className="font-semibold text-base px-8 py-3 shadow-lg">
+                Apply to Become a Tutor
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* 8. Transparent Pricing Teaser */}
+        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <Badge variant="brand">Transparent Pricing</Badge>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
+              Simple, Predictable Learning Costs
+            </h2>
+            <p className="text-sm text-neutral-slate-600">
+              Pay only for what you need. No hidden fees or surprise auto-renewals.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Pay per lesson */}
+            <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-hover transition-all">
+              <CardHeader className="space-y-2">
+                <Badge variant="tutor" className="w-fit">1-on-1 Tutoring</Badge>
+                <CardTitle className="text-lg">Pay Per Lesson</CardTitle>
+                <div className="pt-2">
+                  <span className="text-3xl font-extrabold font-heading text-neutral-slate-900">From ₦5,000</span>
+                  <span className="text-xs text-neutral-slate-500 block">/ 60-minute session</span>
+                </div>
+                <CardDescription className="text-xs text-neutral-slate-600 pt-2">
+                  Tailored 1-on-1 coaching with approved educators for WAEC, JAMB, or junior school.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700" />
+                  <span>Choose tutor by rate and qualifications</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700" />
+                  <span>Interactive virtual classroom included</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700" />
+                  <span>100% refund on tutor cancellation</span>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Link href="/tutors" className="w-full">
+                  <Button variant="outline" size="sm" className="w-full">
+                    Find Tutors
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
+
+            {/* AI Assistant Plan */}
+            <Card className="flex flex-col justify-between border-2 border-service-ai-600 bg-purple-50/20 shadow-md relative hover:shadow-hover transition-all">
+              <div className="absolute -top-3 right-4 bg-service-ai-600 text-white px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                Popular
+              </div>
+              <CardHeader className="space-y-2">
+                <Badge variant="ai" className="w-fit">Trainbow AI</Badge>
+                <CardTitle className="text-lg">Socratic AI Pass</CardTitle>
+                <div className="pt-2">
+                  <span className="text-3xl font-extrabold font-heading text-neutral-slate-900">₦3,500</span>
+                  <span className="text-xs text-neutral-slate-500 block">/ month</span>
+                </div>
+                <CardDescription className="text-xs text-neutral-slate-600 pt-2">
+                  Unlimited 24/7 homework assistance, hint-first guidance, and verified math calculations.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600" />
+                  <span>Generous daily question quota</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600" />
+                  <span>WAEC & JAMB step-by-step solver</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600" />
+                  <span>One-click tutor escalation</span>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Link href="/pricing" className="w-full">
+                  <Button variant="ai" size="sm" className="w-full">
+                    Get AI Access
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
+
+            {/* Academy Full Pass */}
+            <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-hover transition-all">
+              <CardHeader className="space-y-2">
+                <Badge variant="brand" className="w-fit">Academy Pass</Badge>
+                <CardTitle className="text-lg">Curriculum Courses</CardTitle>
+                <div className="pt-2">
+                  <span className="text-3xl font-extrabold font-heading text-neutral-slate-900">₦15,000</span>
+                  <span className="text-xs text-neutral-slate-500 block">/ term per subject</span>
+                </div>
+                <CardDescription className="text-xs text-neutral-slate-600 pt-2">
+                  All structured modules, video explanations, past exam questions, and stored quiz attempts.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600" />
+                  <span>All lessons and practice quizzes</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600" />
+                  <span>Resumable progress across devices</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600" />
+                  <span>Parent progress tracking reports</span>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Link href="/academy" className="w-full">
+                  <Button variant="outline" size="sm" className="w-full">
+                    Explore Academy
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          </div>
+        </section>
+
+        {/* 9. FAQ Accordion & Final CTA Band */}
+        <section className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-12">
+          <div className="text-center space-y-2">
+            <Badge variant="neutral">Got Questions?</Badge>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm text-neutral-slate-600">
+              Clear, transparent answers about our curriculum, safety rules, and booking policies.
+            </p>
+          </div>
+
+          <HomeFAQ />
+
+          {/* Final Conversion CTA Band */}
+          <div className="rounded-2xl border border-brand-blue-600/30 bg-gradient-to-r from-brand-navy-900 via-brand-navy-900 to-brand-blue-900 text-white p-8 sm:p-12 text-center space-y-6">
+            <h3 className="text-2xl sm:text-4xl font-extrabold font-heading text-white">
+              Give your child the academic edge they deserve.
+            </h3>
+            <p className="text-sm sm:text-base text-neutral-slate-200 max-w-xl mx-auto leading-relaxed">
+              Join hundreds of Nigerian students excelling in Mathematics and WAEC exams with verified tutors and Socratic AI guidance.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <Link href="/register">
+                <Button variant="primary" size="lg" className="font-semibold text-base px-8 py-3 shadow-lg">
+                  Get Started for Free
+                </Button>
+              </Link>
+              <Link href="/tutors">
+                <Button variant="secondary" size="lg" className="font-semibold text-base px-8 py-3">
+                  Find a Verified Tutor
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* Real Public Footer */}
+      {/* 10. Real Public Footer */}
       <Footer />
     </div>
   );

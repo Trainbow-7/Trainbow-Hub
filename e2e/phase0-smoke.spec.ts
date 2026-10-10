@@ -41,8 +41,8 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
     await expect(page.getByText("Secure payments in naira").first()).toBeVisible();
 
     // Verify product composition elements
-    await expect(page.getByText("Dr. Tayo Okafor")).toBeVisible();
-    await expect(page.getByText("Trainbow AI Mathematics Helper")).toBeVisible();
+    await expect(page.getByText("Dr. Tayo Okafor").first()).toBeVisible();
+    await expect(page.getByText("Trainbow AI Mathematics Helper", { exact: true })).toBeVisible();
 
     // Ensure NO developer widgets on public home page
     await expect(page.getByText("Verify Design Tokens Modal")).not.toBeVisible();

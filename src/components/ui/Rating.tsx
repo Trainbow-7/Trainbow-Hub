@@ -27,7 +27,7 @@ export function Rating({
 
   return (
     <div className={cn("inline-flex items-center gap-1.5", className)}>
-      <div className="flex items-center gap-0.5 text-amber-500" aria-label={`Rated ${value} out of ${max} stars`}>
+      <div className="flex items-center gap-0.5 text-amber-500" role="img" aria-label={`Rated ${value} out of ${max} stars`}>
         {Array.from({ length: max }).map((_, i) => {
           const filled = i < Math.floor(value);
           const half = !filled && i < value;
