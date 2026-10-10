@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Testing & Coverage
+coverage/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Next.js
+.next/
+out/
+
+# Production
+build/
+dist/
+
+# Misc
+.DS_Store
+*.pem
+
+# Local env files
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Prisma generated & SQLite local fallback if any
+prisma/dev.db
+prisma/dev.db-journal
+
+# IDE & OS
+.idea/
+.vscode/
+Thumbs.db

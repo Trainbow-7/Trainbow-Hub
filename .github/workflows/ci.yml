@@ -1,0 +1,58 @@
+name: Trainbow HUB CI Pipeline
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  quality-gate:
+    name: Lint, Typecheck, and Test
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: trainbow_user
+          POSTGRES_PASSWORD: trainbow_secure_password_2026
+          POSTGRES_DB: trainbow_hub_dev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Linter
+        run: npm run lint
+
+      - name: Run TypeScript Check
+        run: npm run type-check
+
+      - name: Run Vitest Unit Tests
+        run: npm run test
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E Smoke Tests
+        run: npm run test:e2e
+        env:
+          DATABASE_URL: postgresql://trainbow_user:trainbow_secure_password_2026@localhost:5432/trainbow_hub_dev?schema=public
+          SESSION_SECRET: test_ci_secret_key_32_chars_long_pipeline_key!

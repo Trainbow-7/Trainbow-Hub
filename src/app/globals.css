@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --page-bg: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --card-border: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+
+    /* Brand Tokens */
+    --brand-navy-900: #0B1B3A;
+    --brand-blue-600: #2563EB;
+    --brand-blue-50: #EFF4FF;
+
+    /* Service Accents */
+    --service-ai-violet: #7C3AED;
+    --service-tutor-teal: #0F766E;
+    --service-tutor-teal-fill: #14B8A6;
+    --service-music-amber: #F59E0B;
+
+    /* Neutrals */
+    --neutral-slate-900: #0F172A;
+    --neutral-slate-600: #475569;
+    --neutral-slate-200: #E2E8F0;
+    --neutral-slate-50: #F8FAFC;
+
+    /* Status */
+    --status-green-600: #16A34A;
+    --status-orange-600: #D97706;
+    --status-red-600: #DC2626;
+  }
+
+  .dark {
+    --page-bg: #070F24;
+    --card-bg: #111A2E;
+    --card-border: #1E293B;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+
+    /* Dark Mode Adjusted Accents */
+    --brand-blue-600: #3B82F6;
+    --service-ai-violet: #8B5CF6;
+    --service-tutor-teal: #14B8A6;
+    --neutral-slate-200: #1E293B;
+  }
+
+  * {
+    border-color: var(--card-border);
+  }
+
+  body {
+    background-color: var(--page-bg);
+    color: var(--text-primary);
+    font-family: var(--font-body), 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+  }
+}
+
+/* Accessibility Invariants: Never allow white text on Amber 500 or Teal 500 */
+.badge-amber,
+.fill-amber {
+  color: #0F172A !important;
+}
+
+.fill-teal-500 {
+  color: #0F172A !important;
+}
