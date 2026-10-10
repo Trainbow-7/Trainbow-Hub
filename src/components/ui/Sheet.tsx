@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
@@ -21,6 +22,12 @@ export function Sheet({
   className,
   title = "Navigation Menu",
 }: SheetProps) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && open) {
@@ -39,13 +46,13 @@ export function Sheet({
     };
   }, [open, onOpenChange]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex">
+  return createPortal(
+    <div className={cn("fixed inset-0 z-50 flex h-full", side === "right" ? "justify-end" : "justify-start")}>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-brand-navy-950/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-brand-navy-950/70 backdrop-blur-sm transition-opacity"
         onClick={() => onOpenChange(false)}
         aria-hidden="true"
       />
@@ -56,12 +63,11 @@ export function Sheet({
         aria-modal="true"
         aria-label={title}
         className={cn(
-          "relative z-50 flex w-full max-w-xs flex-1 flex-col bg-white shadow-2xl transition ease-in-out duration-300",
-          side === "right" ? "ml-auto" : "mr-auto",
+          "relative z-50 flex h-full w-full max-w-xs flex-col bg-white shadow-2xl animate-in slide-in-from-right duration-200",
           className
         )}
       >
-        <div className="flex items-center justify-between border-b border-neutral-slate-200 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-neutral-slate-200 px-6 py-4 shrink-0 bg-white">
           <span className="font-heading font-semibold text-neutral-slate-900 text-sm">
             {title}
           </span>
@@ -75,8 +81,9 @@ export function Sheet({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">{children}</div>
+        <div className="flex-1 overflow-y-auto p-6 bg-white">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
