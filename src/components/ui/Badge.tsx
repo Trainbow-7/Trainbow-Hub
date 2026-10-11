@@ -29,7 +29,7 @@ export function Badge({
     // Music / Highlights: Amber 500 ALWAYS paired with dark Slate 900 text (Accessibility rule!)
     music: "bg-service-music-500 text-neutral-slate-900 font-semibold border-amber-600/20",
     // Status badges
-    success: "bg-green-50 text-status-green-600 border-green-200",
+    success: "bg-green-50 text-status-green-800 font-semibold border-green-200",
     warning: "bg-amber-50 text-status-orange-600 border-amber-200",
     destructive: "bg-red-50 text-status-red-600 border-red-200",
     neutral: "bg-neutral-slate-100 text-neutral-slate-700 border-neutral-slate-200",

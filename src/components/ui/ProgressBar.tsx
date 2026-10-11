@@ -49,6 +49,7 @@ export function ProgressBar({
           sizeClasses[size]
         )}
         role="progressbar"
+        aria-label={label || "Course progress"}
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}

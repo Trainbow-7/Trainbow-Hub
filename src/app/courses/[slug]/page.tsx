@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
 import { SEED_COURSES } from "@/lib/data/seed-data";
+import { CourseEnrollmentAction } from "@/components/academy/CourseEnrollmentAction";
 import {
   BookOpen,
   Clock,
@@ -135,30 +136,40 @@ export default function CourseDetailPage({ params }: CoursePageProps) {
                       </span>
                     </div>
                     <div className="divide-y divide-neutral-slate-100 p-2">
-                      {mod.lessons.map((lesson) => (
-                        <div key={lesson.id} className="flex items-center justify-between py-2.5 px-3 text-xs">
-                          <div className="flex items-center gap-2.5">
-                            {lesson.isFreePreview ? (
-                              <PlayCircle className="h-4 w-4 text-brand-blue-600 shrink-0" />
-                            ) : (
-                              <Lock className="h-4 w-4 text-neutral-slate-400 shrink-0" />
-                            )}
-                            <span className={lesson.isFreePreview ? "font-medium text-neutral-slate-900" : "text-neutral-slate-700"}>
-                              {lesson.title}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <span className="text-[11px] text-neutral-slate-600">{lesson.durationMinutes}m</span>
-                            {lesson.isFreePreview ? (
-                              <span className="rounded bg-brand-blue-50 text-brand-blue-600 px-2 py-0.5 text-[10px] font-bold">
-                                Free Preview
+                      {mod.lessons.map((lesson) => {
+                        const lessonRow = (
+                          <div className="flex items-center justify-between py-2.5 px-3 text-xs">
+                            <div className="flex items-center gap-2.5">
+                              {lesson.isFreePreview ? (
+                                <PlayCircle className="h-4 w-4 text-brand-blue-600 shrink-0" />
+                              ) : (
+                                <Lock className="h-4 w-4 text-neutral-slate-400 shrink-0" />
+                              )}
+                              <span className={lesson.isFreePreview ? "font-medium text-brand-blue-700 hover:underline" : "text-neutral-slate-700"}>
+                                {lesson.title}
                               </span>
-                            ) : (
-                              <span className="text-[10px] text-neutral-slate-600 font-semibold">Locked</span>
-                            )}
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <span className="text-[11px] text-neutral-slate-600">{lesson.durationMinutes}m</span>
+                              {lesson.isFreePreview ? (
+                                <span className="rounded bg-brand-blue-50 text-brand-blue-600 px-2 py-0.5 text-[10px] font-bold">
+                                  Free Preview
+                                </span>
+                              ) : (
+                                <span className="text-[10px] text-neutral-slate-600 font-semibold">Locked</span>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+
+                        return lesson.isFreePreview ? (
+                          <Link key={lesson.id} href={`/learn/${course.slug}/${lesson.id}`} className="block hover:bg-brand-blue-50/50 rounded-md transition-colors">
+                            {lessonRow}
+                          </Link>
+                        ) : (
+                          <div key={lesson.id}>{lessonRow}</div>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
@@ -179,16 +190,11 @@ export default function CourseDetailPage({ params }: CoursePageProps) {
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <Link href="/register" className="block w-full">
-                  <Button variant="primary" size="lg" className="w-full justify-center font-bold text-base shadow-sm">
-                    Enrol in Course
-                  </Button>
-                </Link>
-                <p className="text-[11px] text-neutral-slate-500 text-center">
-                  Instant access on desktop and mobile. 100% money-back guarantee within 7 days.
-                </p>
-              </div>
+              <CourseEnrollmentAction
+                courseSlug={course.slug}
+                priceMinorUnits={course.priceMinorUnits}
+                firstLessonId={course.syllabus[0]?.lessons[0]?.id || "l1"}
+              />
 
               <div className="pt-4 border-t border-neutral-slate-100 space-y-2.5 text-xs text-neutral-slate-600">
                 <div className="flex items-center gap-2">

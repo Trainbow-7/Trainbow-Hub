@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TrainbowLogo } from "@/components/ui/TrainbowLogo";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import { Sheet } from "@/components/ui/Sheet";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/components/auth/AuthProvider";
@@ -42,13 +42,13 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-neutral-slate-200 bg-white/95 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[4.5rem] flex items-center justify-between">
         {/* Brand Wordmark & Tagline */}
         <div className="flex items-center gap-8">
           <TrainbowLogo />
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
               return (
@@ -83,6 +83,34 @@ export function Navbar() {
           {!isLoading && user ? (
             /* Logged-In User Profile Controls */
             <div className="hidden sm:flex items-center gap-3">
+              {user.role === "TUTOR" ? (
+                <Link
+                  href="/dashboard/tutor"
+                  className={cn(
+                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    pathname === "/dashboard/tutor"
+                      ? "bg-brand-blue-600 text-white border-brand-blue-600 shadow-xs"
+                      : "bg-white text-brand-blue-700 border-brand-blue-200 hover:bg-brand-blue-50"
+                  )}
+                  data-testid="navbar-tutor-portal-link"
+                >
+                  Tutor Portal
+                </Link>
+              ) : (
+                <Link
+                  href="/dashboard"
+                  className={cn(
+                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    pathname === "/dashboard"
+                      ? "bg-brand-blue-600 text-white border-brand-blue-600 shadow-xs"
+                      : "bg-white text-brand-blue-700 border-brand-blue-200 hover:bg-brand-blue-50"
+                  )}
+                  data-testid="navbar-dashboard-link"
+                >
+                  My Dashboard
+                </Link>
+              )}
+
               {user.isMinor && !user.isVerified && (
                 <Link
                   href={`/guardian/consent?studentId=${user.id}`}
@@ -94,7 +122,10 @@ export function Navbar() {
                 </Link>
               )}
 
-              <div className="flex items-center gap-2 pl-2 border-l border-neutral-slate-200">
+              <Link
+                href={user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
+                className="flex items-center gap-2 pl-2 border-l border-neutral-slate-200 hover:opacity-85 transition-opacity"
+              >
                 <Avatar name={user.fullName} size="sm" />
                 <div className="text-left text-xs leading-tight">
                   <div data-testid="navbar-user-name" className="font-bold text-neutral-slate-900 truncate max-w-[120px]">
@@ -104,7 +135,7 @@ export function Navbar() {
                     {getRoleLabel(user.role)}
                   </span>
                 </div>
-              </div>
+              </Link>
 
               <Button
                 variant="ghost"
@@ -120,15 +151,11 @@ export function Navbar() {
           ) : (
             /* Guest Controls */
             <div className="hidden sm:flex items-center gap-2">
-              <Link href="/login">
-                <Button variant="ghost" size="sm">
-                  Log in
-                </Button>
+              <Link href="/login" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+                Log in
               </Link>
-              <Link href="/register">
-                <Button variant="primary" size="sm" className="font-semibold shadow-sm">
-                  Get started
-                </Button>
+              <Link href="/register" className={buttonVariants({ variant: "primary", size: "sm", className: "font-semibold shadow-sm" })}>
+                Get started
               </Link>
             </div>
           )}
@@ -137,7 +164,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden rounded-lg p-2 text-neutral-slate-600 hover:bg-neutral-slate-100 hover:text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue-600"
+            className="lg:hidden rounded-lg p-2 text-neutral-slate-600 hover:bg-neutral-slate-100 hover:text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue-600"
             aria-label="Open navigation menu"
           >
             <Menu className="h-6 w-6" />
@@ -169,6 +196,14 @@ export function Navbar() {
                     </span>
                   </div>
                 </div>
+
+                <Link
+                  href={user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full py-2 px-3 text-center text-xs font-bold text-white bg-brand-blue-600 rounded-lg shadow-xs hover:bg-brand-blue-700 transition-colors"
+                >
+                  {user.role === "TUTOR" ? "Open Tutor Portal" : "Open My Dashboard"}
+                </Link>
 
                 {user.isMinor && !user.isVerified && (
                   <Link
@@ -229,21 +264,17 @@ export function Navbar() {
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full"
+                  className={buttonVariants({ variant: "outline", className: "w-full justify-center" })}
                 >
-                  <Button variant="outline" className="w-full justify-center">
-                    Log in
-                  </Button>
+                  Log in
                 </Link>
 
                 <Link
                   href="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full"
+                  className={buttonVariants({ variant: "primary", className: "w-full justify-center" })}
                 >
-                  <Button variant="primary" className="w-full justify-center">
-                    Get started
-                  </Button>
+                  Get started
                 </Link>
               </>
             )}

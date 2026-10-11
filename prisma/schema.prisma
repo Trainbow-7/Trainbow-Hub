@@ -30,6 +30,12 @@ enum TutorStatus {
   SUSPENDED
 }
 
+enum CourseStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+}
+
 model User {
   id           String    @id @default(uuid())
   email        String    @unique
@@ -44,10 +50,14 @@ model User {
   updatedAt    DateTime  @updatedAt @map("updated_at")
 
   // Relationships
-  tutorProfile    TutorProfile?
-  studentGuardians Guardianship[] @relation("StudentGuardianship")
-  guardianStudents Guardianship[] @relation("GuardianGuardianship")
+  tutorProfile     TutorProfile?
+  studentGuardians Guardianship[]    @relation("StudentGuardianship")
+  guardianStudents Guardianship[]    @relation("GuardianGuardianship")
   sessions         Session[]
+  enrollments      Enrollment[]
+  quizAttempts     QuizAttempt[]
+  studyStats       StudyStats?
+  authoredCourses  AuthoringCourse[]
 
   @@map("users")
 }
@@ -113,4 +123,72 @@ model Session {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
+}
+
+model Enrollment {
+  id                   String   @id @default(uuid())
+  userId               String   @map("user_id")
+  courseSlug           String   @map("course_slug")
+  completedLessonIds   String[] @map("completed_lesson_ids")
+  lastAccessedLessonId String   @default("") @map("last_accessed_lesson_id")
+  progressPercentage   Float    @default(0.0) @map("progress_percentage")
+  enrolledAt           DateTime @default(now()) @map("enrolled_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseSlug])
+  @@map("enrollments")
+}
+
+model QuizAttempt {
+  id                  String   @id @default(uuid())
+  userId              String   @map("user_id")
+  courseSlug          String   @map("course_slug")
+  lessonId            String   @map("lesson_id")
+  score               Float
+  totalQuestions      Int      @map("total_questions")
+  correctCount        Int      @map("correct_count")
+  answersJson         String   @map("answers_json")
+  recommendationsJson String   @map("recommendations_json")
+  completedAt         DateTime @default(now()) @map("completed_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("quiz_attempts")
+}
+
+model StudyStats {
+  userId              String   @id @map("user_id")
+  streakDays          Int      @default(1) @map("streak_days")
+  lastActiveDate      DateTime @default(now()) @map("last_active_date")
+  totalMinutesStudied Int      @default(0) @map("total_minutes_studied")
+  lessonsCompleted    Int      @default(0) @map("lessons_completed")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("study_stats")
+}
+
+model AuthoringCourse {
+  id               String       @id @default(uuid())
+  authorId         String       @map("author_id")
+  title            String
+  slug             String       @unique
+  subjectSlug      String       @map("subject_slug")
+  level            String
+  status           CourseStatus @default(DRAFT)
+  version          Int          @default(1)
+  changelog        String?
+  priceMinorUnits  Int          @default(0) @map("price_minor_units")
+  shortDescription String       @map("short_description")
+  fullDescription  String       @map("full_description")
+  syllabusJson     String       @map("syllabus_json")
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@map("authoring_courses")
 }

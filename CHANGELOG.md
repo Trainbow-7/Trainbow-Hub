@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.4.0] - 2026-10-11 - Phase D: Academy & Native Learning Engine
+#### Added
+- **Native Curriculum & Lesson Delivery Engine (LN-01)**:
+  - Standardized WAEC/SSCE curriculum delivery with structured modules, lessons, duration tracking, and free preview designations.
+  - Interactive Lesson Viewer (`/learn/[slug]/[lessonId]`) featuring simulated HD video player stage with playback speed controls (1x, 1.25x, 1.5x), comprehensive theory and mathematical notes, place value positional notation breakdowns, WAEC Chief Examiner marking invariants, and downloadable resources.
+- **Practice Checkpoint Quiz Runner & Mathematical Reasoning (LN-02)**:
+  - Multi-question checkpoint quizzes with instant scoring, pass/fail thresholds, and comprehensive step-by-step mathematical reasoning for every question.
+  - Interactive quiz runner embedded directly in the lesson workspace with real-time feedback banners and question review states.
+- **Cross-Device Learning Progress Persistence (LN-03)**:
+  - Real-time lesson completion tracking via `POST /api/academy/courses/[slug]/lessons/[lessonId]/complete`.
+  - Automatic course progress calculation (`completedLessonIds.length / totalLessons * 100`) and next-lesson pointer advancement.
+  - Dynamic study streak counter with 7-day visual calendar activity indicators and total study minutes accumulation.
+- **Network Disconnection Resilience & Draft Recovery (LN-04)**:
+  - Automatic `localStorage` backup of in-progress quiz answers on every option selection with localized timestamps.
+  - Offline simulation toggle and connection drop detection displaying friendly retry banners without loss of user input.
+  - 1-tap retry submission automatically resubmitting locally cached answers once connectivity is restored.
+- **Targeted Revision Recommendations Engine (LN-05)**:
+  - Automated analysis of incorrect quiz question topic tags to identify learning gaps.
+  - Personalized revision focus cards on the Student Learning Dashboard and quiz result banners directing learners to foundational review materials.
+- **Tutor Course Authoring & Publishing Workflow (LN-06)**:
+  - Dedicated Tutor Authoring Portal (`/dashboard/tutor` and `/authoring`) displaying course inventories, draft and published statuses, pricing, and enrollments.
+  - Full course lifecycle management (`DRAFT` -> `IN_REVIEW` -> `PUBLISHED`) with automatic version bumping and audit changelog entries.
+  - Interactive Student Live Preview modal enabling educators to experience lessons exactly as enrolled learners do before publishing.
+- **Student Learning Dashboard (`/dashboard`)**:
+  - Personalized welcome header with active study streak counter.
+  - Key Performance Indicators (Enrolled Courses, Lessons Completed, Quizzes Taken, Study Minutes).
+  - Prominent "Continue Learning" Hero Card with 1-tap "Resume Lesson" shortcut pointing to the student's current lesson.
+  - Enrolled courses progress grid with visual progress bars and quick syllabus access.
+  - Dynamic "Targeted Revision Focus" recommendations widget.
+- **Database & Data Architecture**:
+  - PostgreSQL 16 migration `scripts/migrations/002_phase_d_academy_and_learning_engine.sql` with models for `enrollments`, `quiz_attempts`, `study_stats`, and `authoring_courses`.
+  - Updated `prisma/schema.prisma` with relational models and regenerated Prisma client.
+  - Resilient in-memory database store (`src/lib/db/index.ts`) pre-seeded with demo student Chioma Adeleke (`usr-std-001`) and vetted tutor Dr. Tayo Okafor (`usr-tut-004`).
+- **RESTful Academy API Routes**:
+  - `GET /api/academy/dashboard`: Aggregated dashboard data including enrollments, study stats, streak days, recent attempts, and revision topics.
+  - `POST /api/academy/enroll`: Course enrollment action with entry lesson initialization.
+  - `GET /api/academy/courses/[slug]/lessons/[lessonId]`: Lesson curriculum data with syllabus navigation and completion state.
+  - `POST /api/academy/courses/[slug]/lessons/[lessonId]/complete`: Mark lesson complete and calculate updated progress.
+  - `POST /api/academy/quiz/submit`: Checkpoint quiz grading with step-by-step reasoning and revision topic generation.
+  - `GET /api/tutor/courses` & `POST /api/tutor/courses`: Tutor course authoring list and lifecycle status updates.
+- **Verification & Quality Gates**:
+  - Unit test suite: `src/test/academy.test.ts` (11 tests covering quiz grading, progress calculator, streak manager, lesson completion, and tutor lifecycle workflow). Vitest suite passing 100% (40/40 tests across 6 files).
+  - Playwright E2E suite: `e2e/phase-d.spec.ts` (14 tests across Chromium desktop and Mobile Chrome viewports covering dashboard, lesson viewer, quiz grading, offline resilience, completion navigation, tutor authoring, and mobile drawer).
+  - Accessibility & visual audit: `scripts/audit-phase-d.js` capturing 9 screenshots across 1280px, 768px, and 375px viewports with axe-core verifying 0 serious or critical violations.
+
+#### Changed
+- Exported `buttonVariants` helper in `src/components/ui/Button.tsx` to eliminate nested interactive elements (`<Link><Button>`) and preserve valid HTML5 semantics.
+- Added explicit `aria-label` to `src/components/ui/ProgressBar.tsx` to satisfy W3C `aria-progressbar-name` requirements.
+- Standardized status green badge copy to `text-status-green-800` (`#166534`) to enforce WCAG 2.2 AA contrast compliance (> 5.5:1).
+- Updated `Navbar.tsx` tablet breakpoint collapse to `hidden lg:flex` and hamburger to `lg:hidden` with `min-h-[4.5rem]` touch target sizing.
+- Added role-aware "My Dashboard" (Student) and "Tutor Portal" (Tutor) links across desktop navbar and mobile sheet drawer.
+
 ### [0.3.0] - 2026-10-10 - Phase C: Identity, RBAC & Guardian Consent Architecture
 #### Added
 - **NDPA 2023 Section 31 Minor Safeguard Engine**: Full underage learner detection (< 18) based on Date of Birth, mandating verifiable parent/guardian consent prior to lesson bookings or interactive tutoring.
