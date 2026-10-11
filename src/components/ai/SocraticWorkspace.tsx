@@ -536,7 +536,7 @@ export function SocraticWorkspace() {
 
           <div className="flex items-center gap-2">
             <Badge
-              variant="secondary"
+              variant="neutral"
               className="text-[10px] py-1 border-status-green-600/40 text-status-green-900 bg-status-green-100 flex items-center gap-1 font-semibold"
             >
               <CheckCircle2 className="h-3 w-3 text-status-green-700" />

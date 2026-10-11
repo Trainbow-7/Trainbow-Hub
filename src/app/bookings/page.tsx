@@ -490,7 +490,7 @@ export default function BookingsPage() {
                 <div key={b.id} className="bg-white rounded-xl border border-neutral-slate-200 p-5 space-y-2">
                   <div className="flex justify-between items-center text-xs">
                     <span className="font-bold text-neutral-slate-900">{b.tutorName} · {b.subject}</span>
-                    <Badge variant="danger">Cancelled (Refund Processed)</Badge>
+                    <Badge variant="destructive">Cancelled (Refund Processed)</Badge>
                   </div>
                   <p className="text-xs text-neutral-slate-600">Reason: {b.cancellationReason || "User requested cancellation"}</p>
                 </div>

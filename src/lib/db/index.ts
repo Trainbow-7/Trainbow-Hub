@@ -10,6 +10,7 @@ export interface UserRecord {
   dateOfBirth?: string; // ISO date string
   isMinor: boolean;
   isVerified: boolean;
+  tutorProfileSlug?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -263,6 +264,72 @@ export interface AIEscalationRecord {
   createdAt: Date;
 }
 
+// ============================================================================
+// Phase G: Online Virtual Classroom & Safeguarding Types
+// ============================================================================
+
+export type ClassroomSessionStatus = "SCHEDULED" | "LIVE" | "COMPLETED" | "CANCELLED" | "EXPIRED";
+export type AttendanceStatus = "ATTENDED" | "PARTIAL" | "MISSED";
+export type SafeguardingSeverity = "LOW" | "MEDIUM" | "HIGH" | "URGENT";
+export type SafeguardingCategory = "INAPPROPRIATE_BEHAVIOR" | "HARASSMENT" | "TECHNICAL_FAILURE" | "SAFETY_CONCERN" | "UNAUTHORIZED_RECORDING";
+export type SafeguardingStatus = "OPEN" | "INVESTIGATING" | "RESOLVED" | "DISMISSED";
+
+export interface ClassroomSessionRecord {
+  id: string;
+  bookingId: string;
+  roomName: string;
+  roomUrl: string;
+  status: ClassroomSessionStatus;
+  recordingEnabled: boolean; // CL-06: default false
+  startsAt: Date;
+  expiresAt: Date;
+  endedAt?: Date;
+  lowBandwidthFallbackUsed: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ClassroomAttendanceRecord {
+  id: string;
+  sessionId: string;
+  bookingId: string;
+  userId: string;
+  role: "STUDENT" | "TUTOR" | "GUARDIAN";
+  joinedAt: Date;
+  leftAt?: Date;
+  durationSeconds: number;
+  status: AttendanceStatus;
+  createdAt: Date;
+}
+
+export interface SafeguardingIncidentRecord {
+  id: string;
+  sessionId?: string;
+  bookingId?: string;
+  reporterId: string;
+  reportedUserId?: string;
+  severity: SafeguardingSeverity;
+  category: SafeguardingCategory;
+  description: string;
+  sessionTimestampSeconds?: number;
+  status: SafeguardingStatus;
+  assignedTo?: string;
+  resolutionNotes?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface TutorReviewRecord {
+  id: string;
+  bookingId: string;
+  studentId: string;
+  tutorSlug: string;
+  rating: number; // 1-5
+  reviewText: string;
+  isPublic: boolean;
+  createdAt: Date;
+}
+
 // In-Memory resilient database engine
 class DatabaseStore {
   users: Map<string, UserRecord> = new Map();
@@ -281,6 +348,10 @@ class DatabaseStore {
   aiQuotas: Map<string, AIQuotaRecord> = new Map();
   aiFeedbacks: Map<string, AIFeedbackRecord> = new Map();
   aiEscalations: Map<string, AIEscalationRecord> = new Map();
+  classroomSessions: Map<string, ClassroomSessionRecord> = new Map();
+  classroomAttendances: Map<string, ClassroomAttendanceRecord> = new Map();
+  safeguardingIncidents: Map<string, SafeguardingIncidentRecord> = new Map();
+  tutorReviews: Map<string, TutorReviewRecord> = new Map();
   private initialized = false;
 
   async reset() {
@@ -307,6 +378,10 @@ class DatabaseStore {
     this.aiQuotas.clear();
     this.aiFeedbacks.clear();
     this.aiEscalations.clear();
+    this.classroomSessions.clear();
+    this.classroomAttendances.clear();
+    this.safeguardingIncidents.clear();
+    this.tutorReviews.clear();
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");
@@ -554,11 +629,27 @@ class DatabaseStore {
       bookingStatus: "CONFIRMED",
       paymentStatus: "VERIFIED",
       paymentReference: "tb_pay_seed_001",
-      meetingLink: "https://meet.trainbowhub.ng/room-bkg-seed-001",
+      meetingLink: "/classroom/bkg-seed-001",
       createdAt: new Date("2026-10-10"),
       updatedAt: new Date("2026-10-10"),
     };
     this.bookings.set(seedBooking.id, seedBooking);
+
+    // Phase G Seed Classroom Session (CL-01, CL-06)
+    const seedSession: ClassroomSessionRecord = {
+      id: "cls-seed-001",
+      bookingId: seedBooking.id,
+      roomName: `trb-cls-${seedBooking.id}`,
+      roomUrl: "https://trainbow-sandbox.daily.co/trb-cls-bkg-seed-001",
+      status: "SCHEDULED",
+      recordingEnabled: false, // CL-06: Strict NDPA default false
+      startsAt: new Date(Date.now() - 10 * 60 * 1000), // starts 10 mins ago
+      expiresAt: new Date(Date.now() + 65 * 60 * 1000), // expires in 65 mins
+      lowBandwidthFallbackUsed: false,
+      createdAt: new Date("2026-10-10"),
+      updatedAt: new Date("2026-10-10"),
+    };
+    this.classroomSessions.set(seedSession.id, seedSession);
 
     // Matching seed payment transaction
     const seedTx: PaymentTransactionRecord = {
@@ -741,6 +832,14 @@ class DatabaseStore {
     await this.init();
     for (const tp of this.tutorProfiles.values()) {
       if (tp.userId === userId) return { ...tp };
+    }
+    return null;
+  }
+
+  async findTutorBySlug(slug: string): Promise<TutorProfileRecord | null> {
+    await this.init();
+    for (const tp of this.tutorProfiles.values()) {
+      if (tp.slug === slug) return { ...tp };
     }
     return null;
   }
@@ -1172,9 +1271,26 @@ class DatabaseStore {
     booking.bookingStatus = "CONFIRMED";
     booking.paymentStatus = "VERIFIED";
     booking.paymentReference = params.paymentReference;
-    booking.meetingLink = `https://meet.trainbowhub.ng/room-${booking.id}`;
+    booking.meetingLink = `/classroom/${booking.id}`;
     booking.updatedAt = now;
     this.bookings.set(booking.id, booking);
+
+    // Phase G: Create or ensure classroom session exists
+    const roomName = `trb-cls-${booking.id}`;
+    const newSession: ClassroomSessionRecord = {
+      id: `cls-${booking.id}`,
+      bookingId: booking.id,
+      roomName,
+      roomUrl: `https://trainbow-sandbox.daily.co/${roomName}`,
+      status: "SCHEDULED",
+      recordingEnabled: false, // CL-06
+      startsAt: now,
+      expiresAt: new Date(now.getTime() + 75 * 60 * 1000),
+      lowBandwidthFallbackUsed: false,
+      createdAt: now,
+      updatedAt: now,
+    };
+    this.classroomSessions.set(newSession.id, newSession);
 
     // Convert any associated slot holds to CONVERTED
     for (const hold of this.slotHolds.values()) {
@@ -1595,7 +1711,232 @@ class DatabaseStore {
     }
     return list.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
+
+  // ============================================================================
+  // Phase G: Virtual Classroom & Safeguarding Methods (CL-01 through CL-06)
+  // ============================================================================
+
+  async findClassroomSessionByBookingId(bookingId: string): Promise<ClassroomSessionRecord | null> {
+    await this.init();
+    for (const session of this.classroomSessions.values()) {
+      if (session.bookingId === bookingId) {
+        return { ...session };
+      }
+    }
+    return null;
+  }
+
+  async findClassroomSessionById(sessionId: string): Promise<ClassroomSessionRecord | null> {
+    await this.init();
+    const session = this.classroomSessions.get(sessionId);
+    return session ? { ...session } : null;
+  }
+
+  async getOrCreateClassroomSession(bookingId: string): Promise<ClassroomSessionRecord | null> {
+    await this.init();
+    const booking = this.bookings.get(bookingId);
+    if (!booking) return null;
+
+    let existing = await this.findClassroomSessionByBookingId(bookingId);
+    if (existing) return existing;
+
+    const roomName = `trb-cls-${booking.id}`;
+    const now = new Date();
+    const newSession: ClassroomSessionRecord = {
+      id: `cls-${booking.id}`,
+      bookingId: booking.id,
+      roomName,
+      roomUrl: `https://trainbow-sandbox.daily.co/${roomName}`,
+      status: booking.bookingStatus === "CONFIRMED" ? "SCHEDULED" : "EXPIRED",
+      recordingEnabled: false, // CL-06: Strict NDPA default false
+      startsAt: now,
+      expiresAt: new Date(now.getTime() + 75 * 60 * 1000),
+      lowBandwidthFallbackUsed: false,
+      createdAt: now,
+      updatedAt: now,
+    };
+    this.classroomSessions.set(newSession.id, newSession);
+    return { ...newSession };
+  }
+
+  async recordAttendanceJoin(params: {
+    sessionId: string;
+    bookingId: string;
+    userId: string;
+    role: "STUDENT" | "TUTOR" | "GUARDIAN";
+  }): Promise<ClassroomAttendanceRecord> {
+    await this.init();
+    const session = this.classroomSessions.get(params.sessionId);
+    if (session && session.status === "SCHEDULED") {
+      session.status = "LIVE";
+      session.updatedAt = new Date();
+      this.classroomSessions.set(session.id, session);
+    }
+
+    const record: ClassroomAttendanceRecord = {
+      id: `att-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      sessionId: params.sessionId,
+      bookingId: params.bookingId,
+      userId: params.userId,
+      role: params.role,
+      joinedAt: new Date(),
+      durationSeconds: 0,
+      status: "ATTENDED",
+      createdAt: new Date(),
+    };
+    this.classroomAttendances.set(record.id, record);
+    return { ...record };
+  }
+
+  async recordAttendanceLeave(attendanceId: string): Promise<ClassroomAttendanceRecord | null> {
+    await this.init();
+    const record = this.classroomAttendances.get(attendanceId);
+    if (!record) return null;
+
+    const now = new Date();
+    record.leftAt = now;
+    record.durationSeconds = Math.max(0, Math.floor((now.getTime() - record.joinedAt.getTime()) / 1000));
+    this.classroomAttendances.set(record.id, record);
+    return { ...record };
+  }
+
+  async findAttendancesBySessionId(sessionId: string): Promise<ClassroomAttendanceRecord[]> {
+    await this.init();
+    const list: ClassroomAttendanceRecord[] = [];
+    for (const a of this.classroomAttendances.values()) {
+      if (a.sessionId === sessionId) {
+        list.push({ ...a });
+      }
+    }
+    return list;
+  }
+
+  async createSafeguardingIncident(params: {
+    sessionId?: string;
+    bookingId?: string;
+    reporterId: string;
+    reportedUserId?: string;
+    severity: SafeguardingSeverity;
+    category: SafeguardingCategory;
+    description: string;
+    sessionTimestampSeconds?: number;
+  }): Promise<SafeguardingIncidentRecord> {
+    await this.init();
+    const incident: SafeguardingIncidentRecord = {
+      id: `inc-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      sessionId: params.sessionId,
+      bookingId: params.bookingId,
+      reporterId: params.reporterId,
+      reportedUserId: params.reportedUserId,
+      severity: params.severity,
+      category: params.category,
+      description: params.description,
+      sessionTimestampSeconds: params.sessionTimestampSeconds,
+      status: "OPEN",
+      assignedTo: "Safeguarding Lead (Grace Danladi)",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.safeguardingIncidents.set(incident.id, incident);
+    return { ...incident };
+  }
+
+  async findSafeguardingIncidents(): Promise<SafeguardingIncidentRecord[]> {
+    await this.init();
+    return Array.from(this.safeguardingIncidents.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async completeSessionAndBooking(bookingId: string, tutorSlug: string): Promise<{ booking: BookingRecord; session: ClassroomSessionRecord }> {
+    await this.init();
+    const booking = this.bookings.get(bookingId);
+    if (!booking) throw new Error("Booking not found");
+
+    const session = await this.getOrCreateClassroomSession(bookingId);
+    if (!session) throw new Error("Classroom session not found");
+
+    const now = new Date();
+    booking.bookingStatus = "COMPLETED";
+    booking.updatedAt = now;
+    this.bookings.set(booking.id, booking);
+
+    session.status = "COMPLETED";
+    session.endedAt = now;
+    session.updatedAt = now;
+    this.classroomSessions.set(session.id, session);
+
+    return { booking: { ...booking }, session: { ...session } };
+  }
+
+  async createTutorReview(params: {
+    bookingId: string;
+    studentId: string;
+    tutorSlug: string;
+    rating: number;
+    reviewText: string;
+  }): Promise<TutorReviewRecord> {
+    await this.init();
+    if (params.rating < 1 || params.rating > 5) {
+      throw new Error("Rating must be between 1 and 5 stars");
+    }
+
+    const review: TutorReviewRecord = {
+      id: `rev-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      bookingId: params.bookingId,
+      studentId: params.studentId,
+      tutorSlug: params.tutorSlug,
+      rating: params.rating,
+      reviewText: params.reviewText,
+      isPublic: true,
+      createdAt: new Date(),
+    };
+    this.tutorReviews.set(review.id, review);
+
+    // Recompute tutor average rating
+    const tutor = Array.from(this.tutorProfiles.values()).find(t => t.slug === params.tutorSlug);
+    if (tutor) {
+      const tutorReviews = Array.from(this.tutorReviews.values()).filter(r => r.tutorSlug === params.tutorSlug);
+      const sum = tutorReviews.reduce((acc, r) => acc + r.rating, 0);
+      tutor.rating = Number((sum / tutorReviews.length).toFixed(1));
+      tutor.completedLessons = (tutor.completedLessons || 0) + 1;
+      this.tutorProfiles.set(tutor.id, tutor);
+    }
+
+    return { ...review };
+  }
+
+  async findReviewByBookingId(bookingId: string): Promise<TutorReviewRecord | null> {
+    await this.init();
+    for (const r of this.tutorReviews.values()) {
+      if (r.bookingId === bookingId) {
+        return { ...r };
+      }
+    }
+    return null;
+  }
+
+  async findReviewsByTutorSlug(tutorSlug: string): Promise<TutorReviewRecord[]> {
+    await this.init();
+    return Array.from(this.tutorReviews.values())
+      .filter(r => r.tutorSlug === tutorSlug)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async revokeClassroomSession(bookingId: string): Promise<boolean> {
+    await this.init();
+    for (const session of this.classroomSessions.values()) {
+      if (session.bookingId === bookingId) {
+        session.status = "CANCELLED";
+        session.updatedAt = new Date();
+        this.classroomSessions.set(session.id, session);
+        return true;
+      }
+    }
+    return false;
+  }
 }
+
 
 const globalForDb = globalThis as unknown as { db?: DatabaseStore };
 export const db = globalForDb.db ?? new DatabaseStore();

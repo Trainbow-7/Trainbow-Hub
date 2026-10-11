@@ -112,6 +112,9 @@ model User {
   aiQuota             AIQuota?
   aiFeedbacks         AIFeedback[]
   aiEscalations       AITutorEscalation[]
+  classroomAttendances ClassroomAttendance[]
+  reportedIncidents   SafeguardingIncident[] @relation("ReportedIncidents")
+  tutorReviews        TutorReview[]
 
   @@map("users")
 }
@@ -286,6 +289,10 @@ model Booking {
   student             User                 @relation(fields: [studentId], references: [id], onDelete: Cascade)
   paymentTransactions PaymentTransaction[]
   ledgerEntries       TutorLedgerEntry[]
+  classroomSessions   ClassroomSession[]
+  attendances         ClassroomAttendance[]
+  tutorReview         TutorReview?
+  safeguardingIncidents SafeguardingIncident[]
 
   @@map("bookings")
 }
@@ -405,3 +412,123 @@ model AITutorEscalation {
 
   @@map("ai_tutor_escalations")
 }
+
+// ==============================================================================
+// Phase G: Online Virtual Classroom & Safeguarding Engine
+// ==============================================================================
+
+enum ClassroomSessionStatus {
+  SCHEDULED
+  LIVE
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}
+
+enum AttendanceStatus {
+  ATTENDED
+  PARTIAL
+  MISSED
+}
+
+enum SafeguardingSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum SafeguardingCategory {
+  INAPPROPRIATE_BEHAVIOR
+  HARASSMENT
+  TECHNICAL_FAILURE
+  SAFETY_CONCERN
+  UNAUTHORIZED_RECORDING
+}
+
+enum SafeguardingStatus {
+  OPEN
+  INVESTIGATING
+  RESOLVED
+  DISMISSED
+}
+
+model ClassroomSession {
+  id                      String                 @id @default(uuid())
+  bookingId               String                 @map("booking_id")
+  roomName                String                 @unique @map("room_name")
+  roomUrl                 String                 @map("room_url")
+  status                  ClassroomSessionStatus @default(SCHEDULED)
+  recordingEnabled        Boolean                @default(false) @map("recording_enabled")
+  startsAt                DateTime               @map("starts_at")
+  expiresAt               DateTime               @map("expires_at")
+  endedAt                 DateTime?              @map("ended_at")
+  lowBandwidthFallbackUsed Boolean               @default(false) @map("low_bandwidth_fallback_used")
+  createdAt               DateTime               @default(now()) @map("created_at")
+  updatedAt               DateTime               @updatedAt @map("updated_at")
+
+  booking      Booking               @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  attendances  ClassroomAttendance[]
+  incidents    SafeguardingIncident[]
+
+  @@map("classroom_sessions")
+}
+
+model ClassroomAttendance {
+  id              String           @id @default(uuid())
+  sessionId       String           @map("session_id")
+  bookingId       String           @map("booking_id")
+  userId          String           @map("user_id")
+  role            String           // STUDENT, TUTOR, GUARDIAN
+  joinedAt        DateTime         @default(now()) @map("joined_at")
+  leftAt          DateTime?        @map("left_at")
+  durationSeconds Int              @default(0) @map("duration_seconds")
+  status          AttendanceStatus @default(ATTENDED)
+  createdAt       DateTime         @default(now()) @map("created_at")
+
+  session ClassroomSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  booking Booking          @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  user    User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("classroom_attendances")
+}
+
+model SafeguardingIncident {
+  id                       String                @id @default(uuid())
+  sessionId                String?               @map("session_id")
+  bookingId                String?               @map("booking_id")
+  reporterId               String                @map("reporter_id")
+  reportedUserId           String?               @map("reported_user_id")
+  severity                 SafeguardingSeverity  @default(HIGH)
+  category                 SafeguardingCategory
+  description              String
+  sessionTimestampSeconds  Int?                  @map("session_timestamp_seconds")
+  status                   SafeguardingStatus    @default(OPEN)
+  assignedTo               String?               @map("assigned_to")
+  resolutionNotes          String?               @map("resolution_notes")
+  createdAt                DateTime              @default(now()) @map("created_at")
+  updatedAt                DateTime              @updatedAt @map("updated_at")
+
+  session  ClassroomSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  booking  Booking?          @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  reporter User              @relation("ReportedIncidents", fields: [reporterId], references: [id], onDelete: Cascade)
+
+  @@map("safeguarding_incidents")
+}
+
+model TutorReview {
+  id         String   @id @default(uuid())
+  bookingId  String   @unique @map("booking_id")
+  studentId  String   @map("student_id")
+  tutorSlug  String   @map("tutor_slug")
+  rating     Int      // 1-5 stars
+  reviewText String   @map("review_text")
+  isPublic   Boolean  @default(true) @map("is_public")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  student User    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("tutor_reviews")
+}
+

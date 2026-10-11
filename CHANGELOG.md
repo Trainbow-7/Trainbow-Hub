@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.7.0] - 2026-10-11 - Phase G: Online Virtual Classroom & Safeguarding Engine (CL-01 through CL-06)
+#### Added
+- **Ephemeral WebRTC Virtual Classrooms (CL-01, ADR-002, ADR-008)**:
+  - Time-bounded virtual classroom sessions dynamically mapped to confirmed bookings (`/classroom/[id]`).
+  - Strict Daily.co provider adapter abstraction (`VideoProvider`) with persistent sandbox singleton (`DailySandboxVideoProvider`) and live integration adapter (`DailyLiveVideoProvider`).
+  - Ephemeral token lifecycles restricting entry to valid participants within a 15-minute grace window.
+  - Live WAT (West Africa Time) timezone synchronized clock display (`data-testid="wat-clock"`).
+  - Multi-participant video stage featuring interactive feeds, student PiP view (`data-testid="student-pip-feed"`), and guardian active observer mode (`data-testid="guardian-observer-banner"`).
+- **Session Revocation & Link Invalidation (CL-02)**:
+  - Immediate meeting link and token invalidation upon booking cancellation, rescheduling, or expiration.
+  - HTTP 410 Gone status returned by classroom session API for revoked sessions.
+  - Dedicated safeguarding alert banner (`data-testid="session-revoked-banner"`) preventing unauthorized or stale room re-entry.
+- **Attendance & Duration Audit Logs (CL-03)**:
+  - Automated session joining and departure tracking (`ClassroomAttendance` schema and repository methods).
+  - Server-calculated participant duration logging (`durationSeconds`), session state transitions (`SCHEDULED` -> `LIVE` -> `COMPLETED`), and non-repudiation audit trails.
+- **Emergency In-Session Conduct & Safeguarding Triage (CL-04)**:
+  - 1-tap emergency reporting button prominently displayed during active sessions (`data-testid="report-conduct-btn"`).
+  - In-session incident report modal (`data-testid="safeguard-modal"`) supporting severity triage (`URGENT`, `HIGH`, `MEDIUM`, `LOW`) and violation categories.
+  - Direct routing to Designated Safeguarding Lead (Grace Danladi) with strict SLA (<24 hours for urgent or high-severity concerns) under NDPA 2023 and Child Rights Act standards.
+- **Network Resilience & 1-Tap Low-Bandwidth Mode (CL-05)**:
+  - 1-tap 2G/3G audio-only fallback mode (`data-testid="low-bandwidth-toggle"`) pausing heavy video streaming to conserve Nigerian mobile data across MTN, Airtel, and Glo networks.
+  - Active low-bandwidth status indicator (`data-testid="low-bandwidth-active-pill"`) and dedicated audio stream panel.
+  - Integrated network troubleshooting modal (`data-testid="fallback-modal"`) with direct hotline (`+234 1 800 TRAINBOW`), WhatsApp bridge, and support email.
+- **Strict Default Off-Recording Policy (CL-06)**:
+  - Invariant enforcement disabling video/audio recording by default (`enable_recording: false`).
+  - Prominent visual safeguard badge (`data-testid="recording-disabled-badge"`) confirming child privacy protection under NDPA 2023.
+- **Post-Lesson Tutor Review & Star Rating Engine**:
+  - Automatic review modal presentation upon lesson completion (`data-testid="review-modal"`).
+  - 1-to-5 star rating selector (`data-testid="rating-star-5"`), feedback submission, and database persistence (`TutorReview` schema).
+  - Dynamic recalculation of tutor's aggregate rating and completed lesson counter.
+- **Interactive Whiteboard & Mathematical Scratchpad**:
+  - Real-time mathematical note editor (`data-testid="whiteboard-notes-area"`), session chat, and WAEC/JAMB exam tip tabs.
+- **Quality Gates & Test Suites**:
+  - PostgreSQL 16 schema migration (`scripts/migrations/005_phase_g_classroom_and_safeguarding.sql`) and Prisma models.
+  - 8 Vitest unit tests in `src/test/classroom.test.ts` (85 passing total across project).
+  - 10 Playwright E2E tests in `e2e/phase-g.spec.ts` covering Desktop Chromium and Mobile Chrome.
+  - Automated accessibility audit (`scripts/audit-phase-g.js`) verifying 0 serious or critical axe-core violations across Desktop (1280px), Tablet (768px), and Mobile (375px) viewports.
+
 ### [0.6.0] - 2026-10-11 - Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Engine
 #### Added
 - **Socratic Pedagogical Assistant Core (AI-01, ADR-005)**:

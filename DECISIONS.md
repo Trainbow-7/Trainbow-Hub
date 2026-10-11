@@ -41,3 +41,10 @@
 - **Context:** Dark surfaces (Navy 900) and vibrant accent fills (Teal 500, Amber 500) risk low-contrast text that violates accessibility and mobile readability under outdoor sunlight.
 - **Decision:** Enforce semantic tokens (`text-on-dark`, `text-on-light`). Establish an invariant forbidding white text on Teal 500 and Amber 500. Embed an automated Vitest contrast calculation suite (`src/test/contrast.test.ts`) that programmatically fails the build if any token pair falls below 4.5:1 for body copy or 3.0:1 for large text.
 - **Consequences:** Accessibility regressions are impossible to merge into main; all text passes WCAG 2.2 AA across desktop and mobile devices.
+
+## ADR-008: Ephemeral WebRTC Video Rooms with Time-Bounded Tokens & Multi-Role Safeguarding Isolation
+- **Status:** Accepted
+- **Context:** Virtual 1-on-1 lessons require resilient video delivery across variable Nigerian networks (MTN, Airtel, Glo), strict minor safeguarding under the Nigeria Data Protection Act (NDPA) 2023, and instant in-session incident reporting.
+- **Decision:** Implement an isolated `VideoProvider` adapter interface (`src/lib/adapters/video.ts`) backed by Daily.co sandbox/production WebRTC engine. Room links and tokens are strictly ephemeral and time-bounded to the booked slot duration plus a 15-minute grace window. Recording is strictly disabled by default (`enable_recording: false`). Sessions are revoked immediately upon cancellation or expiration. In-session emergency conduct reports bypass standard support tickets and route directly to a prioritized safeguarding triage queue.
+- **Consequences:** Minors cannot be recorded without verified consent; unvetted participants cannot join; network drops are gracefully mitigated with 1-tap 2G/3G low-bandwidth voice mode; and high-severity conduct concerns trigger rapid triage within 24 hours.
+
