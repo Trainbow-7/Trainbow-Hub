@@ -25,6 +25,12 @@ import {
   X,
   Play,
   HelpCircle,
+  Calendar,
+  DollarSign,
+  Video,
+  CreditCard,
+  ShieldCheck,
+  ArrowUpRight,
 } from "lucide-react";
 
 interface AuthoringCourse {
@@ -57,6 +63,9 @@ export default function TutorDashboardAuthoringPage() {
   const { user } = useAuth();
   const [courses, setCourses] = React.useState<AuthoringCourse[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [tutorBookings, setTutorBookings] = React.useState<any[]>([]);
+  const [tutorLedger, setTutorLedger] = React.useState<any[]>([]);
+  const [bookingsLoading, setBookingsLoading] = React.useState(true);
 
   // Editor modal state
   const [editingCourse, setEditingCourse] = React.useState<AuthoringCourse | null>(null);
@@ -78,9 +87,26 @@ export default function TutorDashboardAuthoringPage() {
     }
   }, []);
 
+  const fetchBookings = React.useCallback(async () => {
+    try {
+      const tutorSlug = user?.tutorProfileSlug || "dr-tayo-okafor";
+      const res = await fetch(`/api/bookings?tutorSlug=${tutorSlug}`);
+      const json = await res.json();
+      if (json.success) {
+        setTutorBookings(json.bookings || []);
+        setTutorLedger(json.ledgerEntries || []);
+      }
+    } catch (err) {
+      console.error("Failed to load tutor bookings & ledger:", err);
+    } finally {
+      setBookingsLoading(false);
+    }
+  }, [user]);
+
   React.useEffect(() => {
     fetchCourses();
-  }, [fetchCourses]);
+    fetchBookings();
+  }, [fetchCourses, fetchBookings]);
 
   const handleCreateNewDraft = () => {
     const newDraft: AuthoringCourse = {
@@ -321,6 +347,242 @@ export default function TutorDashboardAuthoringPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* 1-on-1 Student Bookings & Escrow Ledger (Phase E) */}
+        <div className="space-y-6 pt-8 border-t border-neutral-slate-200" data-testid="tutor-bookings-ledger-section">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <Badge variant="brand">Phase E Integration</Badge>
+                <Badge variant="success">Paystack Escrow Connected</Badge>
+              </div>
+              <h2 className="font-heading font-bold text-xl sm:text-2xl text-neutral-slate-900">
+                1-on-1 Student Bookings & Financial Ledger
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-slate-600">
+                Real-time learner appointments, interactive virtual classrooms, and immutable escrow ledger entries under PY-04 / BK-05.
+              </p>
+            </div>
+            <Link
+              href="/bookings"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue-700 hover:text-brand-blue-800 bg-brand-blue-50 px-3.5 py-2 rounded-xl border border-brand-blue-200 transition-colors"
+              data-testid="view-student-bookings-hub-btn"
+            >
+              <span>Switch to Student View</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Financial Metrics Cards */}
+          {(() => {
+            const confirmedBookings = tutorBookings.filter(
+              (b) => b.bookingStatus === "CONFIRMED" || b.bookingStatus === "COMPLETED"
+            );
+            const totalGross = confirmedBookings.reduce(
+              (sum, b) => sum + (b.amountMinorUnits || 0),
+              0
+            );
+            const totalCommission = confirmedBookings.reduce(
+              (sum, b) => sum + (b.commissionMinorUnits || 0),
+              0
+            );
+            const totalNet = totalGross - totalCommission;
+
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs">
+                  <div className="flex items-center justify-between text-neutral-slate-500 mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider">Gross Booking Volume</span>
+                    <DollarSign className="w-4 h-4 text-brand-blue-600" />
+                  </div>
+                  <div className="text-2xl font-extrabold font-heading text-neutral-slate-900" data-testid="tutor-gross-volume">
+                    ₦{(totalGross / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
+                  </div>
+                  <span className="text-[11px] text-neutral-slate-500 mt-1 block">
+                    {confirmedBookings.length} confirmed lesson{confirmedBookings.length === 1 ? "" : "s"}
+                  </span>
+                </div>
+
+                <div className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs">
+                  <div className="flex items-center justify-between text-neutral-slate-500 mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider">Platform Fee (15%)</span>
+                    <CreditCard className="w-4 h-4 text-amber-600" />
+                  </div>
+                  <div className="text-2xl font-extrabold font-heading text-neutral-slate-900" data-testid="tutor-platform-fee">
+                    ₦{(totalCommission / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
+                  </div>
+                  <span className="text-[11px] text-neutral-slate-500 mt-1 block">
+                    Automated split under PY-05
+                  </span>
+                </div>
+
+                <div className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs">
+                  <div className="flex items-center justify-between text-neutral-slate-500 mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider">Net Tutor Earnings (85%)</span>
+                    <ShieldCheck className="w-4 h-4 text-status-green-600" />
+                  </div>
+                  <div className="text-2xl font-extrabold font-heading text-status-green-700" data-testid="tutor-net-earnings">
+                    ₦{(totalNet / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
+                  </div>
+                  <span className="text-[11px] text-status-green-700 font-medium mt-1 block">
+                    Escrow secured • Next payout Mon
+                  </span>
+                </div>
+
+                <div className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs">
+                  <div className="flex items-center justify-between text-neutral-slate-500 mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider">Settlement Account</span>
+                    <Badge variant="neutral">Verified</Badge>
+                  </div>
+                  <div className="text-sm font-bold text-neutral-slate-900">
+                    Access Bank Plc
+                  </div>
+                  <span className="text-[11px] font-mono text-neutral-slate-500 mt-1 block">
+                    •••• •••• 4092 (Tayo Okafor)
+                  </span>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Bookings & Ledger Lists Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Student Bookings List */}
+            <div className="lg:col-span-7 bg-white rounded-2xl border border-neutral-slate-200 p-6 shadow-xs space-y-4">
+              <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-3">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-brand-blue-600" />
+                  <h3 className="font-heading font-bold text-base text-neutral-slate-900">
+                    Active Student Bookings
+                  </h3>
+                </div>
+                <span className="text-xs font-semibold text-neutral-slate-500">
+                  {tutorBookings.length} Total Registered
+                </span>
+              </div>
+
+              {bookingsLoading ? (
+                <div className="py-8 text-center text-xs text-neutral-slate-500">
+                  Loading confirmed student appointments...
+                </div>
+              ) : tutorBookings.length === 0 ? (
+                <div className="py-8 text-center space-y-2">
+                  <p className="text-xs text-neutral-slate-500">No student sessions scheduled yet.</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {tutorBookings.map((b) => (
+                    <div
+                      key={b.id}
+                      className="p-4 rounded-xl border border-neutral-slate-200 hover:border-brand-blue-300 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-neutral-slate-50/50"
+                      data-testid={`tutor-booking-row-${b.id}`}
+                    >
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-heading font-bold text-sm text-neutral-slate-900">
+                            {b.subject}
+                          </span>
+                          <Badge
+                            variant={
+                              b.bookingStatus === "CONFIRMED"
+                                ? "success"
+                                : b.bookingStatus === "COMPLETED"
+                                ? "brand"
+                                : "warning"
+                            }
+                          >
+                            {b.bookingStatus}
+                          </Badge>
+                        </div>
+                        <div className="text-xs text-neutral-slate-600 flex items-center gap-2">
+                          <Clock className="w-3.5 h-3.5 text-neutral-slate-400" />
+                          <span>
+                            {b.slotDate} • {b.slotTime} WAT
+                          </span>
+                          <span className="text-neutral-slate-400">|</span>
+                          <span className="font-mono text-[11px] text-neutral-slate-500">
+                            Student: {b.studentId}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 shrink-0">
+                        <a
+                          href={b.meetingLink || "https://meet.google.com/trb-live-classroom"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-blue-600 hover:bg-brand-blue-700 text-white text-xs font-bold shadow-xs transition-colors"
+                          data-testid={`tutor-launch-classroom-${b.id}`}
+                        >
+                          <Video className="w-3.5 h-3.5" />
+                          <span>Launch Classroom</span>
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Immutable Escrow Ledger (PY-04) */}
+            <div className="lg:col-span-5 bg-white rounded-2xl border border-neutral-slate-200 p-6 shadow-xs space-y-4">
+              <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-3">
+                <div className="flex items-center gap-2">
+                  <CreditCard className="w-4 h-4 text-status-green-600" />
+                  <h3 className="font-heading font-bold text-base text-neutral-slate-900">
+                    Escrow Financial Ledger
+                  </h3>
+                </div>
+                <Badge variant="brand">PY-04 Ledger</Badge>
+              </div>
+
+              {bookingsLoading ? (
+                <div className="py-8 text-center text-xs text-neutral-slate-500">
+                  Loading ledger audit records...
+                </div>
+              ) : tutorLedger.length === 0 ? (
+                <div className="py-8 text-center text-xs text-neutral-slate-500">
+                  No financial ledger entries recorded yet.
+                </div>
+              ) : (
+                <div
+                  className="space-y-3 max-h-[380px] overflow-y-auto pr-1"
+                  data-testid="tutor-financial-ledger-table"
+                >
+                  {tutorLedger.map((entry) => {
+                    const isCredit = entry.type === "BOOKING_CREDIT";
+                    return (
+                      <div
+                        key={entry.id}
+                        className="p-3 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50/50 space-y-1.5"
+                        data-testid={`ledger-entry-${entry.id}`}
+                      >
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-semibold text-neutral-slate-800">
+                            {entry.description}
+                          </span>
+                          <span
+                            className={`font-mono font-bold ${
+                              isCredit ? "text-status-green-700" : "text-amber-700"
+                            }`}
+                          >
+                            {isCredit ? "+" : "-"}₦{(entry.amountMinorUnits / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-[11px] text-neutral-slate-500">
+                          <span className="font-mono text-[10px]" data-testid={`ledger-ref-${entry.id}`}>
+                            Ref: {entry.transactionReference}
+                          </span>
+                          <span>{entry.type}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

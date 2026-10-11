@@ -414,6 +414,31 @@ export default function StudentDashboardPage() {
               )}
             </div>
 
+            {/* Scheduled 1-on-1 Tutoring Lessons Card (Phase E) */}
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
+                  <Calendar className="w-4 h-4 text-emerald-700" />
+                  <span>1-on-1 Live Tutoring</span>
+                </div>
+                <Badge variant="success" className="text-[10px]">Active</Badge>
+              </div>
+              <p className="text-xs text-neutral-slate-600 leading-relaxed">
+                Connect live with your verified educator. Manage scheduled slots, join video rooms, or request reschedules.
+              </p>
+              <Link
+                href="/bookings"
+                className={buttonVariants({
+                  variant: "outline",
+                  size: "sm",
+                  className: "text-xs font-bold w-full justify-center min-h-[36px] bg-white text-emerald-800 border-emerald-300 hover:bg-emerald-50",
+                })}
+                data-testid="dashboard-my-bookings-btn"
+              >
+                View My Scheduled Lessons →
+              </Link>
+            </div>
+
             {/* Quick Socratic AI Assistant Banner */}
             <div className="rounded-xl border border-brand-blue-200 bg-brand-blue-50/50 p-5 space-y-3">
               <div className="flex items-center gap-2 text-brand-blue-600 font-bold text-sm">

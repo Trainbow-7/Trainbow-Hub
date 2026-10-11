@@ -36,6 +36,34 @@ enum CourseStatus {
   PUBLISHED
 }
 
+enum BookingStatus {
+  HELD
+  PENDING_PAYMENT
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  EXPIRED
+  NO_SHOW
+  DISPUTED
+}
+
+enum PaymentStatus {
+  INITIATED
+  VERIFIED
+  FAILED
+  ABANDONED
+  REFUND_REQUESTED
+  REFUND_APPROVED
+  REFUNDED
+}
+
+enum LedgerEntryType {
+  BOOKING_CREDIT
+  COMMISSION_DEBIT
+  REFUND_DEBIT
+  PAYOUT
+}
+
 model User {
   id           String    @id @default(uuid())
   email        String    @unique
@@ -50,14 +78,17 @@ model User {
   updatedAt    DateTime  @updatedAt @map("updated_at")
 
   // Relationships
-  tutorProfile     TutorProfile?
-  studentGuardians Guardianship[]    @relation("StudentGuardianship")
-  guardianStudents Guardianship[]    @relation("GuardianGuardianship")
-  sessions         Session[]
-  enrollments      Enrollment[]
-  quizAttempts     QuizAttempt[]
-  studyStats       StudyStats?
-  authoredCourses  AuthoringCourse[]
+  tutorProfile        TutorProfile?
+  studentGuardians    Guardianship[]       @relation("StudentGuardianship")
+  guardianStudents    Guardianship[]       @relation("GuardianGuardianship")
+  sessions            Session[]
+  enrollments         Enrollment[]
+  quizAttempts        QuizAttempt[]
+  studyStats          StudyStats?
+  authoredCourses     AuthoringCourse[]
+  slotHolds           SlotHold[]
+  bookingsAsStudent   Booking[]
+  paymentTransactions PaymentTransaction[]
 
   @@map("users")
 }
@@ -191,4 +222,83 @@ model AuthoringCourse {
   author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@map("authoring_courses")
+}
+
+model SlotHold {
+  id         String   @id @default(uuid())
+  tutorSlug  String   @map("tutor_slug")
+  studentId  String   @map("student_id")
+  slotDate   String   @map("slot_date")
+  slotTime   String   @map("slot_time")
+  expiresAt  DateTime @map("expires_at")
+  status     String   @default("ACTIVE")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("slot_holds")
+}
+
+model Booking {
+  id                      String        @id @default(uuid())
+  studentId               String        @map("student_id")
+  tutorSlug               String        @map("tutor_slug")
+  tutorName               String        @map("tutor_name")
+  subject                 String        @default("Mathematics")
+  slotDate                String        @map("slot_date")
+  slotTime                String        @map("slot_time")
+  amountMinorUnits        Int           @map("amount_minor_units")
+  commissionMinorUnits    Int           @map("commission_minor_units")
+  tutorEarningsMinorUnits Int           @map("tutor_earnings_minor_units")
+  currency                String        @default("NGN")
+  bookingStatus           BookingStatus @default(HELD) @map("booking_status")
+  paymentStatus           PaymentStatus @default(INITIATED) @map("payment_status")
+  paymentReference        String?       @unique @map("payment_reference")
+  meetingLink             String?       @map("meeting_link")
+  cancellationReason      String?       @map("cancellation_reason")
+  rescheduledFromId       String?       @map("rescheduled_from_id")
+  createdAt               DateTime      @default(now()) @map("created_at")
+  updatedAt               DateTime      @updatedAt @map("updated_at")
+
+  student             User                 @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  paymentTransactions PaymentTransaction[]
+  ledgerEntries       TutorLedgerEntry[]
+
+  @@map("bookings")
+}
+
+model PaymentTransaction {
+  id               String        @id @default(uuid())
+  reference        String        @unique
+  bookingId        String        @map("booking_id")
+  studentId        String        @map("student_id")
+  amountMinorUnits Int           @map("amount_minor_units")
+  currency         String        @default("NGN")
+  status           PaymentStatus @default(INITIATED)
+  channel          String        @default("card")
+  paystackResponse String?       @map("paystack_response")
+  verifiedAt       DateTime?     @map("verified_at")
+  idempotencyKey   String        @unique @map("idempotency_key")
+  createdAt        DateTime      @default(now()) @map("created_at")
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  student User    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("payment_transactions")
+}
+
+model TutorLedgerEntry {
+  id                   String          @id @default(uuid())
+  tutorSlug            String          @map("tutor_slug")
+  bookingId            String          @map("booking_id")
+  transactionReference String          @map("transaction_reference")
+  type                 LedgerEntryType
+  amountMinorUnits     Int             @map("amount_minor_units")
+  currency             String          @default("NGN")
+  description          String
+  createdAt            DateTime        @default(now()) @map("created_at")
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@map("tutor_ledger_entries")
 }

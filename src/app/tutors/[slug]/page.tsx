@@ -21,6 +21,7 @@ import {
   AlertCircle,
   FileText,
 } from "lucide-react";
+import { TutorBookingFlow } from "@/components/booking/TutorBookingFlow";
 
 export function generateStaticParams() {
   return SEED_TUTORS.map((t) => ({ slug: t.slug }));
@@ -246,13 +247,15 @@ export default function TutorDetailPage({ params }: TutorDetailPageProps) {
                 </p>
               </div>
 
-              {/* Primary Book CTA */}
+              {/* Primary Interactive Booking CTA (BK-01 .. BK-09) */}
               <div className="space-y-2">
-                <Link href="/login" className="block w-full">
-                  <Button variant="tutor" size="lg" className="w-full justify-center font-bold text-base shadow-sm">
-                    Book a Lesson
-                  </Button>
-                </Link>
+                <TutorBookingFlow
+                  tutorSlug={tutor.slug}
+                  tutorName={tutor.name}
+                  hourlyRateMinorUnits={tutor.hourlyRateMinorUnits}
+                  cancellationPolicy={tutor.cancellationPolicy}
+                  weeklyAvailability={tutor.weeklyAvailability}
+                />
                 <p className="text-[11px] text-neutral-slate-500 text-center">
                   Protected by Trainbow Child Safeguarding & Escrow
                 </p>

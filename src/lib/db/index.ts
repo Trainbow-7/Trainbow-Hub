@@ -104,6 +104,91 @@ export interface AuthoringCourseRecord {
   updatedAt: Date;
 }
 
+export type BookingStatus =
+  | "HELD"
+  | "PENDING_PAYMENT"
+  | "CONFIRMED"
+  | "COMPLETED"
+  | "CANCELLED"
+  | "EXPIRED"
+  | "NO_SHOW"
+  | "DISPUTED";
+
+export type PaymentStatus =
+  | "INITIATED"
+  | "VERIFIED"
+  | "FAILED"
+  | "ABANDONED"
+  | "REFUND_REQUESTED"
+  | "REFUND_APPROVED"
+  | "REFUNDED";
+
+export type LedgerEntryType =
+  | "BOOKING_CREDIT"
+  | "COMMISSION_DEBIT"
+  | "REFUND_DEBIT"
+  | "PAYOUT";
+
+export interface SlotHoldRecord {
+  id: string;
+  tutorSlug: string;
+  studentId: string;
+  slotDate: string;
+  slotTime: string;
+  expiresAt: Date;
+  status: "ACTIVE" | "EXPIRED" | "CONVERTED";
+  createdAt: Date;
+}
+
+export interface BookingRecord {
+  id: string;
+  studentId: string;
+  tutorSlug: string;
+  tutorName: string;
+  subject: string;
+  slotDate: string;
+  slotTime: string;
+  amountMinorUnits: number;
+  commissionMinorUnits: number;
+  tutorEarningsMinorUnits: number;
+  currency: string;
+  bookingStatus: BookingStatus;
+  paymentStatus: PaymentStatus;
+  paymentReference?: string;
+  meetingLink?: string;
+  cancellationReason?: string;
+  rescheduledFromId?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface PaymentTransactionRecord {
+  id: string;
+  reference: string;
+  bookingId: string;
+  studentId: string;
+  amountMinorUnits: number;
+  currency: string;
+  status: PaymentStatus;
+  channel: string;
+  paystackResponse?: any;
+  verifiedAt?: Date;
+  idempotencyKey: string;
+  createdAt: Date;
+}
+
+export interface TutorLedgerEntryRecord {
+  id: string;
+  tutorSlug: string;
+  bookingId: string;
+  transactionReference: string;
+  type: LedgerEntryType;
+  amountMinorUnits: number;
+  currency: string;
+  description: string;
+  createdAt: Date;
+}
+
 // In-Memory resilient database engine
 class DatabaseStore {
   users: Map<string, UserRecord> = new Map();
@@ -113,6 +198,10 @@ class DatabaseStore {
   quizAttempts: Map<string, QuizAttemptRecord> = new Map();
   studyStats: Map<string, StudyStatsRecord> = new Map();
   authoringCourses: Map<string, AuthoringCourseRecord> = new Map();
+  slotHolds: Map<string, SlotHoldRecord> = new Map();
+  bookings: Map<string, BookingRecord> = new Map();
+  paymentTransactions: Map<string, PaymentTransactionRecord> = new Map();
+  tutorLedgerEntries: Map<string, TutorLedgerEntryRecord> = new Map();
   private initialized = false;
 
   async reset() {
@@ -130,6 +219,10 @@ class DatabaseStore {
     this.quizAttempts.clear();
     this.studyStats.clear();
     this.authoringCourses.clear();
+    this.slotHolds.clear();
+    this.bookings.clear();
+    this.paymentTransactions.clear();
+    this.tutorLedgerEntries.clear();
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");
@@ -360,6 +453,70 @@ class DatabaseStore {
       updatedAt: new Date("2026-01-01"),
     };
     this.users.set(adminUser.id, adminUser);
+
+    // Seed initial demo booking: Chioma Adeleke booked Dr. Tayo Okafor (BK-01 .. BK-09)
+    const seedBooking: BookingRecord = {
+      id: "bkg-seed-001",
+      studentId: studentUser.id,
+      tutorSlug: "dr-tayo-okafor",
+      tutorName: "Dr. Tayo Okafor",
+      subject: "Mathematics",
+      slotDate: "2026-10-14",
+      slotTime: "16:00 - 17:00",
+      amountMinorUnits: 750000, // ₦7,500
+      commissionMinorUnits: 112500, // ₦1,125 (15%)
+      tutorEarningsMinorUnits: 637500, // ₦6,375
+      currency: "NGN",
+      bookingStatus: "CONFIRMED",
+      paymentStatus: "VERIFIED",
+      paymentReference: "tb_pay_seed_001",
+      meetingLink: "https://meet.trainbowhub.ng/room-bkg-seed-001",
+      createdAt: new Date("2026-10-10"),
+      updatedAt: new Date("2026-10-10"),
+    };
+    this.bookings.set(seedBooking.id, seedBooking);
+
+    // Matching seed payment transaction
+    const seedTx: PaymentTransactionRecord = {
+      id: "ptx-seed-001",
+      reference: "tb_pay_seed_001",
+      bookingId: seedBooking.id,
+      studentId: studentUser.id,
+      amountMinorUnits: 750000,
+      currency: "NGN",
+      status: "VERIFIED",
+      channel: "card",
+      verifiedAt: new Date("2026-10-10"),
+      idempotencyKey: "idemp_seed_001",
+      createdAt: new Date("2026-10-10"),
+    };
+    this.paymentTransactions.set(seedTx.reference, seedTx);
+
+    // Matching seed tutor ledger entry (PY-04, PY-05)
+    const seedCredit: TutorLedgerEntryRecord = {
+      id: "led-seed-001",
+      tutorSlug: "dr-tayo-okafor",
+      bookingId: seedBooking.id,
+      transactionReference: seedTx.reference,
+      type: "BOOKING_CREDIT",
+      amountMinorUnits: 750000,
+      currency: "NGN",
+      description: "Booking credit for session on 2026-10-14",
+      createdAt: new Date("2026-10-10"),
+    };
+    const seedDebit: TutorLedgerEntryRecord = {
+      id: "led-seed-002",
+      tutorSlug: "dr-tayo-okafor",
+      bookingId: seedBooking.id,
+      transactionReference: seedTx.reference,
+      type: "COMMISSION_DEBIT",
+      amountMinorUnits: 112500,
+      currency: "NGN",
+      description: "Trainbow Platform 15% commission fee",
+      createdAt: new Date("2026-10-10"),
+    };
+    this.tutorLedgerEntries.set(seedCredit.id, seedCredit);
+    this.tutorLedgerEntries.set(seedDebit.id, seedDebit);
   }
 
   // User repository methods
@@ -644,6 +801,447 @@ class DatabaseStore {
       return { ...created };
     }
   }
+
+  // ============================================================================
+  // Phase E: Slot Hold Repository Methods (BK-01, BK-02)
+  // ============================================================================
+
+  async createSlotHold(params: {
+    tutorSlug: string;
+    studentId: string;
+    slotDate: string;
+    slotTime: string;
+    durationMinutes?: number;
+  }): Promise<SlotHoldRecord> {
+    await this.init();
+    const duration = params.durationMinutes ?? 10;
+    const now = new Date();
+
+    // Clean up expired holds for this slot
+    for (const hold of this.slotHolds.values()) {
+      if (
+        hold.tutorSlug === params.tutorSlug &&
+        hold.slotDate === params.slotDate &&
+        hold.slotTime === params.slotTime &&
+        hold.status === "ACTIVE" &&
+        hold.expiresAt.getTime() <= now.getTime()
+      ) {
+        hold.status = "EXPIRED";
+      }
+    }
+
+    // Check for existing confirmed or held booking (concurrency conflict BK-02)
+    for (const b of this.bookings.values()) {
+      if (
+        b.tutorSlug === params.tutorSlug &&
+        b.slotDate === params.slotDate &&
+        b.slotTime === params.slotTime &&
+        (b.bookingStatus === "CONFIRMED" || b.bookingStatus === "HELD")
+      ) {
+        throw new Error("This slot is already booked for another confirmed lesson.");
+      }
+    }
+
+    // Check for another active hold by a different learner (BK-02)
+    for (const hold of this.slotHolds.values()) {
+      if (
+        hold.tutorSlug === params.tutorSlug &&
+        hold.slotDate === params.slotDate &&
+        hold.slotTime === params.slotTime &&
+        hold.status === "ACTIVE" &&
+        hold.expiresAt.getTime() > now.getTime()
+      ) {
+        if (hold.studentId !== params.studentId) {
+          const remainingSec = Math.ceil((hold.expiresAt.getTime() - now.getTime()) / 1000);
+          throw new Error(`Slot is temporarily reserved by another learner (${remainingSec}s remaining).`);
+        } else {
+          // Same student refreshing hold
+          hold.expiresAt = new Date(now.getTime() + duration * 60 * 1000);
+          return { ...hold };
+        }
+      }
+    }
+
+    // Create new hold
+    const id = `hld-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const expiresAt = new Date(now.getTime() + duration * 60 * 1000);
+    const newHold: SlotHoldRecord = {
+      id,
+      tutorSlug: params.tutorSlug,
+      studentId: params.studentId,
+      slotDate: params.slotDate,
+      slotTime: params.slotTime,
+      expiresAt,
+      status: "ACTIVE",
+      createdAt: now,
+    };
+    this.slotHolds.set(id, newHold);
+    return { ...newHold };
+  }
+
+  async findSlotHold(id: string): Promise<SlotHoldRecord | null> {
+    await this.init();
+    const hold = this.slotHolds.get(id);
+    if (!hold) return null;
+
+    if (hold.status === "ACTIVE" && hold.expiresAt.getTime() <= Date.now()) {
+      hold.status = "EXPIRED";
+    }
+    return { ...hold };
+  }
+
+  async releaseSlotHold(id: string): Promise<boolean> {
+    await this.init();
+    const hold = this.slotHolds.get(id);
+    if (hold && hold.status === "ACTIVE") {
+      hold.status = "EXPIRED";
+      return true;
+    }
+    return false;
+  }
+
+  // ============================================================================
+  // Phase E: Booking Repository Methods (BK-01 .. BK-09)
+  // ============================================================================
+
+  async createBooking(data: {
+    studentId: string;
+    tutorSlug: string;
+    tutorName: string;
+    subject?: string;
+    slotDate: string;
+    slotTime: string;
+    amountMinorUnits: number;
+    commissionMinorUnits?: number;
+    tutorEarningsMinorUnits?: number;
+    currency?: string;
+    bookingStatus?: BookingStatus;
+    paymentStatus?: PaymentStatus;
+    paymentReference?: string;
+  }): Promise<BookingRecord> {
+    await this.init();
+    const id = `bkg-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const now = new Date();
+    const commissionMinorUnits = data.commissionMinorUnits ?? Math.round(data.amountMinorUnits * 0.15);
+    const tutorEarningsMinorUnits = data.tutorEarningsMinorUnits ?? (data.amountMinorUnits - commissionMinorUnits);
+
+    const record: BookingRecord = {
+      id,
+      studentId: data.studentId,
+      tutorSlug: data.tutorSlug,
+      tutorName: data.tutorName,
+      subject: data.subject || "Mathematics",
+      slotDate: data.slotDate,
+      slotTime: data.slotTime,
+      amountMinorUnits: data.amountMinorUnits,
+      commissionMinorUnits,
+      tutorEarningsMinorUnits,
+      currency: data.currency || "NGN",
+      bookingStatus: data.bookingStatus || "HELD",
+      paymentStatus: data.paymentStatus || "INITIATED",
+      paymentReference: data.paymentReference,
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    this.bookings.set(id, record);
+    return { ...record };
+  }
+
+  async findBookingById(id: string): Promise<BookingRecord | null> {
+    await this.init();
+    const b = this.bookings.get(id);
+    return b ? { ...b } : null;
+  }
+
+  async findBookingByReference(paymentReference: string): Promise<BookingRecord | null> {
+    await this.init();
+    for (const b of this.bookings.values()) {
+      if (b.paymentReference === paymentReference) {
+        return { ...b };
+      }
+    }
+    return null;
+  }
+
+  async findBookingsByStudentId(studentId: string): Promise<BookingRecord[]> {
+    await this.init();
+    const results: BookingRecord[] = [];
+    for (const b of this.bookings.values()) {
+      if (b.studentId === studentId) {
+        results.push({ ...b });
+      }
+    }
+    return results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async findBookingsByTutorSlug(tutorSlug: string): Promise<BookingRecord[]> {
+    await this.init();
+    const results: BookingRecord[] = [];
+    for (const b of this.bookings.values()) {
+      if (b.tutorSlug === tutorSlug) {
+        results.push({ ...b });
+      }
+    }
+    return results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async updateBooking(id: string, updates: Partial<BookingRecord>): Promise<BookingRecord | null> {
+    await this.init();
+    const existing = this.bookings.get(id);
+    if (!existing) return null;
+
+    const updated: BookingRecord = {
+      ...existing,
+      ...updates,
+      updatedAt: new Date(),
+    };
+    this.bookings.set(id, updated);
+    return { ...updated };
+  }
+
+  /**
+   * Idempotent Payment Confirmation & Ledger Settlement (BK-03, BK-04, PY-02, PY-03, PY-04, PY-05)
+   */
+  async confirmBookingWithPayment(params: {
+    bookingId: string;
+    paymentReference: string;
+    channel?: string;
+    paystackResponse?: any;
+    idempotencyKey?: string;
+  }): Promise<{ booking: BookingRecord; transaction: PaymentTransactionRecord; isReplay: boolean }> {
+    await this.init();
+    const booking = this.bookings.get(params.bookingId);
+    if (!booking) {
+      throw new Error(`Booking ${params.bookingId} not found`);
+    }
+
+    // Idempotency check: if already confirmed and matching reference, return existing record
+    if (booking.bookingStatus === "CONFIRMED" && booking.paymentReference === params.paymentReference) {
+      const existingTx = this.paymentTransactions.get(params.paymentReference);
+      return {
+        booking: { ...booking },
+        transaction: existingTx ?? {
+          id: `ptx-${params.paymentReference}`,
+          reference: params.paymentReference,
+          bookingId: booking.id,
+          studentId: booking.studentId,
+          amountMinorUnits: booking.amountMinorUnits,
+          currency: booking.currency,
+          status: "VERIFIED",
+          channel: params.channel || "card",
+          paystackResponse: params.paystackResponse,
+          verifiedAt: new Date(),
+          idempotencyKey: params.idempotencyKey || `idemp-${params.paymentReference}`,
+          createdAt: booking.createdAt,
+        },
+        isReplay: true,
+      };
+    }
+
+    const now = new Date();
+    const idempotencyKey = params.idempotencyKey || `idemp-${params.paymentReference}`;
+
+    // Update booking
+    booking.bookingStatus = "CONFIRMED";
+    booking.paymentStatus = "VERIFIED";
+    booking.paymentReference = params.paymentReference;
+    booking.meetingLink = `https://meet.trainbowhub.ng/room-${booking.id}`;
+    booking.updatedAt = now;
+    this.bookings.set(booking.id, booking);
+
+    // Convert any associated slot holds to CONVERTED
+    for (const hold of this.slotHolds.values()) {
+      if (
+        hold.tutorSlug === booking.tutorSlug &&
+        hold.slotDate === booking.slotDate &&
+        hold.slotTime === booking.slotTime
+      ) {
+        hold.status = "CONVERTED";
+      }
+    }
+
+    // Record verified transaction
+    const transaction: PaymentTransactionRecord = {
+      id: `ptx-${Date.now()}-${Math.random().toString(36).substring(7)}`,
+      reference: params.paymentReference,
+      bookingId: booking.id,
+      studentId: booking.studentId,
+      amountMinorUnits: booking.amountMinorUnits,
+      currency: booking.currency,
+      status: "VERIFIED",
+      channel: params.channel || "card",
+      paystackResponse: params.paystackResponse,
+      verifiedAt: now,
+      idempotencyKey,
+      createdAt: now,
+    };
+    this.paymentTransactions.set(params.paymentReference, transaction);
+
+    // Record immutable ledger entries (PY-04, PY-05)
+    const creditEntry: TutorLedgerEntryRecord = {
+      id: `led-${Date.now()}-crd`,
+      tutorSlug: booking.tutorSlug,
+      bookingId: booking.id,
+      transactionReference: params.paymentReference,
+      type: "BOOKING_CREDIT",
+      amountMinorUnits: booking.amountMinorUnits,
+      currency: booking.currency,
+      description: `Gross lesson booking credit (${booking.slotDate} ${booking.slotTime})`,
+      createdAt: now,
+    };
+    const commissionEntry: TutorLedgerEntryRecord = {
+      id: `led-${Date.now()}-deb`,
+      tutorSlug: booking.tutorSlug,
+      bookingId: booking.id,
+      transactionReference: params.paymentReference,
+      type: "COMMISSION_DEBIT",
+      amountMinorUnits: booking.commissionMinorUnits,
+      currency: booking.currency,
+      description: `Trainbow platform 15% commission fee`,
+      createdAt: now,
+    };
+    this.tutorLedgerEntries.set(creditEntry.id, creditEntry);
+    this.tutorLedgerEntries.set(commissionEntry.id, commissionEntry);
+
+    return { booking: { ...booking }, transaction, isReplay: false };
+  }
+
+  /**
+    * Reschedule an existing booking with conflict validation (BK-06)
+    */
+  async rescheduleBooking(
+    bookingIdOrParams: string | { bookingId: string; newSlotDate: string; newSlotTime: string },
+    newSlotDate?: string,
+    newSlotTime?: string
+  ): Promise<BookingRecord> {
+    await this.init();
+    const params =
+      typeof bookingIdOrParams === "string"
+        ? { bookingId: bookingIdOrParams, newSlotDate: newSlotDate!, newSlotTime: newSlotTime! }
+        : bookingIdOrParams;
+
+    const booking = this.bookings.get(params.bookingId);
+    if (!booking) {
+      throw new Error("Booking not found");
+    }
+
+    if (booking.bookingStatus !== "CONFIRMED") {
+      throw new Error(`Cannot reschedule booking with status ${booking.bookingStatus}`);
+    }
+
+    const now = new Date();
+
+    // If same slot requested, return current booking
+    if (booking.slotDate === params.newSlotDate && booking.slotTime === params.newSlotTime) {
+      return { ...booking };
+    }
+
+    // Check conflict against existing confirmed bookings for that tutor
+    for (const b of this.bookings.values()) {
+      if (
+        b.id !== params.bookingId &&
+        b.tutorSlug === booking.tutorSlug &&
+        b.slotDate === params.newSlotDate &&
+        b.slotTime === params.newSlotTime &&
+        b.bookingStatus === "CONFIRMED"
+      ) {
+        throw new Error("The requested reschedule slot is already booked.");
+      }
+    }
+
+    // Check conflict against active holds by other learners
+    for (const hold of this.slotHolds.values()) {
+      if (
+        hold.studentId !== booking.studentId &&
+        hold.tutorSlug === booking.tutorSlug &&
+        hold.slotDate === params.newSlotDate &&
+        hold.slotTime === params.newSlotTime &&
+        hold.status === "ACTIVE" &&
+        hold.expiresAt.getTime() > now.getTime()
+      ) {
+        throw new Error("The requested reschedule slot is temporarily reserved by another learner.");
+      }
+    }
+
+    // Apply reschedule
+    booking.rescheduledFromId = `${booking.slotDate} ${booking.slotTime}`;
+    booking.slotDate = params.newSlotDate;
+    booking.slotTime = params.newSlotTime;
+    booking.updatedAt = now;
+    this.bookings.set(booking.id, booking);
+
+    return { ...booking };
+  }
+
+  /**
+    * Cancel booking and record policy-based refund outcome (BK-07, PY-06)
+    */
+  async cancelBooking(
+    bookingIdOrParams: string | { bookingId: string; reason?: string },
+    reason?: string
+  ): Promise<BookingRecord> {
+    await this.init();
+    const params =
+      typeof bookingIdOrParams === "string"
+        ? { bookingId: bookingIdOrParams, reason: reason || "User requested cancellation" }
+        : { bookingId: bookingIdOrParams.bookingId, reason: bookingIdOrParams.reason || "User requested cancellation" };
+
+    const booking = this.bookings.get(params.bookingId);
+    if (!booking) {
+      throw new Error("Booking not found");
+    }
+
+    if (booking.bookingStatus === "CANCELLED" || booking.bookingStatus === "COMPLETED") {
+      throw new Error(`Booking is already ${booking.bookingStatus}`);
+    }
+
+    const now = new Date();
+    booking.bookingStatus = "CANCELLED";
+    booking.paymentStatus = "REFUND_APPROVED";
+    booking.cancellationReason = params.reason;
+    booking.updatedAt = now;
+    this.bookings.set(booking.id, booking);
+
+    // Record refund debit in financial ledger
+    const refundDebit: TutorLedgerEntryRecord = {
+      id: `led-${Date.now()}-ref`,
+      tutorSlug: booking.tutorSlug,
+      bookingId: booking.id,
+      transactionReference: booking.paymentReference || `ref-${booking.id}`,
+      type: "REFUND_DEBIT",
+      amountMinorUnits: booking.tutorEarningsMinorUnits,
+      currency: booking.currency,
+      description: `Refund reversal for cancelled session (${booking.slotDate}): ${params.reason}`,
+      createdAt: now,
+    };
+    this.tutorLedgerEntries.set(refundDebit.id, refundDebit);
+
+    return { ...booking };
+  }
+
+  // ============================================================================
+  // Phase E: Payment Transaction & Ledger Repository Methods
+  // ============================================================================
+
+  async findPaymentTransactionByReference(reference: string): Promise<PaymentTransactionRecord | null> {
+    await this.init();
+    const tx = this.paymentTransactions.get(reference);
+    return tx ? { ...tx } : null;
+  }
+
+  async findLedgerEntriesByTutorSlug(tutorSlug: string): Promise<TutorLedgerEntryRecord[]> {
+    await this.init();
+    const results: TutorLedgerEntryRecord[] = [];
+    for (const entry of this.tutorLedgerEntries.values()) {
+      if (entry.tutorSlug === tutorSlug) {
+        results.push({ ...entry });
+      }
+    }
+    return results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
 }
 
-export const db = new DatabaseStore();
+const globalForDb = globalThis as unknown as { db?: DatabaseStore };
+export const db = globalForDb.db ?? new DatabaseStore();
+if (process.env.NODE_ENV !== "production") globalForDb.db = db;

@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.5.0] - 2026-10-11 - Phase E: 1-on-1 Lesson Booking & Paystack Integration
+#### Added
+- **Temporary Slot Hold Engine (BK-01)**:
+  - 10-minute slot hold reservations during checkout with real-time countdown timer (`data-testid="slot-hold-timer"`).
+  - Automatic expiration release freeing inactive slots for other students.
+  - Interactive day and time window selection in `TutorBookingFlow` component.
+- **Concurrency-Safe Conflict Rejection (BK-02)**:
+  - Atomic validation rejecting simultaneous reservation conflicts for the same tutor slot.
+  - Rejection of hold attempts against confirmed bookings and existing active holds.
+- **Server-Verified Paystack Payment Confirmation (BK-03, PY-01, PY-02)**:
+  - Server-side transaction verification via Paystack adapter (`src/lib/adapters/paystack.ts`); browser redirect alone never confirms a booking.
+  - Paystack NGN checkout integration supporting debit card, bank transfer, and USSD.
+  - Secure HMAC-SHA512 webhook signature verification using timing-safe comparison (`crypto.timingSafeEqual`).
+- **Idempotent Webhook Replay Protection (BK-04, PY-03)**:
+  - Unique idempotency key enforcement preventing duplicate bookings or redundant ledger entries upon replayed Paystack webhooks.
+- **Timezone Invariants & Display Standards (BK-05)**:
+  - Dates and timestamps stored in UTC, formatted and displayed in West Africa Time (`Africa/Lagos` / WAT) across student and tutor portals.
+- **Reschedule Workflow with Conflict Validation (BK-06)**:
+  - In-app rescheduling modal (`data-testid="reschedule-modal"`) enabling learners to choose new session slots.
+  - Conflict detection rejecting occupied slots while recording historical audit trail (`rescheduledFromId`).
+- **Cancellation & Escrow Refund Audit Trail (BK-07, PY-06)**:
+  - Policy-based booking cancellation modal (`data-testid="cancel-booking-modal"`) capturing cancellation reasons.
+  - Automated status transition to `CANCELLED` with policy-aligned refund processing and ledger refund debits (`REFUND_DEBIT`).
+- **Tutor Financial Ledger & 15% Platform Split (PY-04, PY-05)**:
+  - Automated revenue split allocating 85% net earnings to tutors and 15% platform commission to Trainbow HUB under PRD PY-05.
+  - Tamper-proof, immutable financial ledger tracking all credits, debits, and escrow settlements (`TutorLedgerEntry`).
+- **NDPA 2023 Section 31 Minor Safeguard Enforcement**:
+  - Verification gate blocking minor learners (< 18) without verified parental consent from booking paid lessons.
+  - Contextual consent redirect to `/guardian/consent?studentId=...` for seamless parental OTP verification.
+- **Student Booking Management Hub (`/bookings`)**:
+  - Comprehensive dashboard tabbed by Upcoming Sessions, Completed, and Cancelled & Refunds.
+  - Direct 1-tap "Join Virtual Classroom" CTA with meeting link.
+  - KPI stat cards for Upcoming Confirmed, Completed Lessons, and Escrow Protected rate.
+- **Tutor Escrow Ledger & Bookings Portal (`/dashboard/tutor`)**:
+  - Live 1-on-1 Student Bookings table with student IDs, WAT schedule, and "Launch Classroom" buttons.
+  - Financial metric KPI cards for Gross Booking Volume, Platform Fee (15%), and Net Tutor Earnings (85%).
+  - Real-time immutable escrow financial ledger table with reference hashes and credit/debit audit badges.
+- **Database & Architecture Integration**:
+  - PostgreSQL 16 migration `scripts/migrations/003_phase_e_booking_and_payment_ledger.sql`.
+  - Prisma schema models: `SlotHold`, `Booking`, `PaymentTransaction`, `TutorLedgerEntry`.
+  - Process-wide shared singleton on `globalThis` in `src/lib/db/index.ts` and `src/lib/adapters/paystack.ts` ensuring deterministic multi-route state sharing in Next.js.
+- **Verification & Quality Gates**:
+  - Vitest Unit Test Suite: `src/test/booking.test.ts` with 16 comprehensive unit tests covering slot holds, concurrency, NDPA minor safeguard, commission calculation, HMAC signature validation, idempotency, rescheduling, and cancellation. Suite passing 100% (56/56 tests across 7 test files).
+  - Playwright E2E Suite: `e2e/phase-e.spec.ts` with 6 end-to-end tests across Chromium desktop and Mobile Chrome viewports.
+  - Multi-Viewport Accessibility & Visual Audit: `scripts/audit-phase-e.js` capturing 9 screenshots across 1280px, 768px, and 375px viewports with axe-core verifying 0 serious or critical violations.
+
 ### [0.4.0] - 2026-10-11 - Phase D: Academy & Native Learning Engine
 #### Added
 - **Native Curriculum & Lesson Delivery Engine (LN-01)**:
