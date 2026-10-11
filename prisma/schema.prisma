@@ -64,6 +64,25 @@ enum LedgerEntryType {
   PAYOUT
 }
 
+enum AIRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+enum AIHintLevel {
+  HINT_1
+  HINT_2
+  HINT_3
+  FULL_SOLUTION
+}
+
+enum AIFeedbackRating {
+  HELPFUL
+  NOT_HELPFUL
+  REPORTED_ERROR
+}
+
 model User {
   id           String    @id @default(uuid())
   email        String    @unique
@@ -89,6 +108,10 @@ model User {
   slotHolds           SlotHold[]
   bookingsAsStudent   Booking[]
   paymentTransactions PaymentTransaction[]
+  aiConversations     AIConversation[]
+  aiQuota             AIQuota?
+  aiFeedbacks         AIFeedback[]
+  aiEscalations       AITutorEscalation[]
 
   @@map("users")
 }
@@ -301,4 +324,84 @@ model TutorLedgerEntry {
   booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
 
   @@map("tutor_ledger_entries")
+}
+
+model AIConversation {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  title     String
+  subject   String   @default("Mathematics")
+  model     String   @default("gemini-1.5-flash")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user        User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages    AIMessage[]
+  escalations AITutorEscalation[]
+
+  @@map("ai_conversations")
+}
+
+model AIMessage {
+  id                 String      @id @default(uuid())
+  conversationId     String      @map("conversation_id")
+  role               AIRole
+  content            String
+  hintLevel          AIHintLevel @default(HINT_1) @map("hint_level")
+  verifiedMathResult String?     @map("verified_math_result")
+  tokensUsed         Int         @default(0) @map("tokens_used")
+  latencyMs          Int         @default(0) @map("latency_ms")
+  isModerated        Boolean     @default(false) @map("is_moderated")
+  createdAt          DateTime    @default(now()) @map("created_at")
+
+  conversation AIConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  feedbacks    AIFeedback[]
+
+  @@map("ai_messages")
+}
+
+model AIQuota {
+  id               String   @id @default(uuid())
+  userId           String   @unique @map("user_id")
+  plan             String   @default("FREE")
+  queriesUsedToday Int      @default(0) @map("queries_used_today")
+  dailyLimit       Int      @default(10) @map("daily_limit")
+  lastResetDate    String   @map("last_reset_date")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("ai_quotas")
+}
+
+model AIFeedback {
+  id        String           @id @default(uuid())
+  messageId String           @map("message_id")
+  userId    String           @map("user_id")
+  rating    AIFeedbackRating
+  comment   String?
+  createdAt DateTime         @default(now()) @map("created_at")
+
+  message AIMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("ai_feedbacks")
+}
+
+model AITutorEscalation {
+  id                    String   @id @default(uuid())
+  userId                String   @map("user_id")
+  conversationId        String   @map("conversation_id")
+  problemStatement      String   @map("problem_statement")
+  studentAttemptSummary String?  @map("student_attempt_summary")
+  suggestedTutorSlug    String   @default("dr-tayo-okafor") @map("suggested_tutor_slug")
+  status                String   @default("PENDING_BOOKING")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation AIConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@map("ai_tutor_escalations")
 }

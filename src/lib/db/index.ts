@@ -189,6 +189,80 @@ export interface TutorLedgerEntryRecord {
   createdAt: Date;
 }
 
+// ============================================================================
+// Phase F: Socratic AI & Tutor Escalation Types
+// ============================================================================
+
+export type AIRole = "SYSTEM" | "USER" | "ASSISTANT";
+export type AIHintLevel = "HINT_1" | "HINT_2" | "HINT_3" | "FULL_SOLUTION";
+export type AIFeedbackRating = "HELPFUL" | "NOT_HELPFUL" | "REPORT_ERROR";
+
+export interface AIMathVerification {
+  isValid: boolean;
+  equation?: string;
+  method?: string;
+  discriminant?: number;
+  roots?: number[];
+  stepCheck?: string;
+  notes?: string;
+}
+
+export interface AIConversationRecord {
+  id: string;
+  userId: string;
+  title: string;
+  curriculum: string;
+  subject: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface AIMessageRecord {
+  id: string;
+  conversationId: string;
+  role: AIRole;
+  content: string;
+  hintLevel: AIHintLevel;
+  verification?: AIMathVerification;
+  pedagogicalSummary?: string;
+  isEscalated?: boolean;
+  createdAt: Date;
+}
+
+export interface AIQuotaRecord {
+  id: string;
+  userId: string;
+  dateKey: string;
+  queryCount: number;
+  maxQuota: number;
+  resetAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface AIFeedbackRecord {
+  id: string;
+  messageId: string;
+  userId: string;
+  rating: AIFeedbackRating;
+  comments?: string;
+  createdAt: Date;
+}
+
+export interface AIEscalationRecord {
+  id: string;
+  conversationId: string;
+  messageId: string;
+  studentId: string;
+  tutorSlug: string;
+  tutorName: string;
+  problemSnippet: string;
+  studentAttempt: string;
+  suggestedTopic: string;
+  status: "PENDING_BOOKING" | "BOOKED" | "RESOLVED";
+  createdAt: Date;
+}
+
 // In-Memory resilient database engine
 class DatabaseStore {
   users: Map<string, UserRecord> = new Map();
@@ -202,6 +276,11 @@ class DatabaseStore {
   bookings: Map<string, BookingRecord> = new Map();
   paymentTransactions: Map<string, PaymentTransactionRecord> = new Map();
   tutorLedgerEntries: Map<string, TutorLedgerEntryRecord> = new Map();
+  aiConversations: Map<string, AIConversationRecord> = new Map();
+  aiMessages: Map<string, AIMessageRecord> = new Map();
+  aiQuotas: Map<string, AIQuotaRecord> = new Map();
+  aiFeedbacks: Map<string, AIFeedbackRecord> = new Map();
+  aiEscalations: Map<string, AIEscalationRecord> = new Map();
   private initialized = false;
 
   async reset() {
@@ -223,6 +302,11 @@ class DatabaseStore {
     this.bookings.clear();
     this.paymentTransactions.clear();
     this.tutorLedgerEntries.clear();
+    this.aiConversations.clear();
+    this.aiMessages.clear();
+    this.aiQuotas.clear();
+    this.aiFeedbacks.clear();
+    this.aiEscalations.clear();
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");
@@ -517,6 +601,48 @@ class DatabaseStore {
     };
     this.tutorLedgerEntries.set(seedCredit.id, seedCredit);
     this.tutorLedgerEntries.set(seedDebit.id, seedDebit);
+
+    // Phase F: Seed initial Socratic conversation and verified hint for studentUser (AI-01, AI-02, AI-03, AI-04)
+    const seedConv: AIConversationRecord = {
+      id: "conv-seed-001",
+      userId: studentUser.id,
+      title: "Solving 2x² - 5x + 3 = 0 (WAEC SSCE)",
+      curriculum: "WAEC_SSCE",
+      subject: "Mathematics",
+      createdAt: new Date("2026-10-10T14:30:00Z"),
+      updatedAt: new Date("2026-10-10T14:32:00Z"),
+    };
+    this.aiConversations.set(seedConv.id, seedConv);
+
+    const seedMsgUser: AIMessageRecord = {
+      id: "msg-seed-001",
+      conversationId: seedConv.id,
+      role: "USER",
+      content: "How do I solve 2x² - 5x + 3 = 0 by factorisation for my WAEC SSCE exam?",
+      hintLevel: "HINT_1",
+      createdAt: new Date("2026-10-10T14:30:05Z"),
+    };
+    this.aiMessages.set(seedMsgUser.id, seedMsgUser);
+
+    const seedMsgAssistant: AIMessageRecord = {
+      id: "msg-seed-002",
+      conversationId: seedConv.id,
+      role: "ASSISTANT",
+      content: "[AI-Generated Mathematical Guidance — Verified by Trainbow Hub Engine]\n\nLet us tackle this step by step using Socratic reasoning for WAEC SSCE Mathematics.\n\n### Step 1: Identify the standard quadratic form\nThe equation is already in the standard form **ax² + bx + c = 0**, where:\n- **a = 2**\n- **b = -5**\n- **c = 3**\n\n### Concept Clue (Hint 1):\nFor factorisation when **a ≠ 1**, find two numbers **p** and **q** such that:\n1. Their product **p × q = a × c = 2 × 3 = 6**\n2. Their sum **p + q = b = -5**\n\nThink: Which two negative integers multiply to give +6 and add up to -5?",
+      hintLevel: "HINT_1",
+      verification: {
+        isValid: true,
+        equation: "2x² - 5x + 3 = 0",
+        method: "Quadratic Factorisation",
+        discriminant: 1,
+        roots: [1.5, 1],
+        stepCheck: "Discriminant Δ = (-5)² - 4(2)(3) = 25 - 24 = 1 > 0 (Two real distinct roots: x₁ = 1.5, x₂ = 1)",
+        notes: "Programmatically verified by Trainbow Math Engine.",
+      },
+      pedagogicalSummary: "Guide student to find factors p and q multiplying to +6 and adding to -5.",
+      createdAt: new Date("2026-10-10T14:30:08Z"),
+    };
+    this.aiMessages.set(seedMsgAssistant.id, seedMsgAssistant);
   }
 
   // User repository methods
@@ -1239,6 +1365,235 @@ class DatabaseStore {
       }
     }
     return results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  // ============================================================================
+  // Phase F: Socratic AI & Tutor Escalation Repository Methods (AI-01 through AI-12)
+  // ============================================================================
+
+  getQuotaDateKey(): string {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  async getOrCreateUserQuota(userId: string, role?: string): Promise<AIQuotaRecord> {
+    await this.init();
+    const dateKey = this.getQuotaDateKey();
+    const key = `${userId}:${dateKey}`;
+    let quota = this.aiQuotas.get(key);
+    if (!quota) {
+      const isUnlimited = role === "TUTOR" || role === "ADMIN";
+      const isPro = role === "PRO_STUDENT";
+      const maxQuota = isUnlimited ? 999999 : isPro ? 100 : 10;
+
+      const resetAt = new Date();
+      resetAt.setUTCHours(23, 59, 59, 999);
+
+      quota = {
+        id: `qta-${userId}-${dateKey}`,
+        userId,
+        dateKey,
+        queryCount: 0,
+        maxQuota,
+        resetAt,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      this.aiQuotas.set(key, quota);
+    }
+    return { ...quota };
+  }
+
+  async checkAndIncrementQuota(
+    userId: string,
+    role?: string
+  ): Promise<{ allowed: boolean; remaining: number; maxQuota: number; resetAt: Date }> {
+    await this.init();
+    const dateKey = this.getQuotaDateKey();
+    const key = `${userId}:${dateKey}`;
+    const quota = await this.getOrCreateUserQuota(userId, role);
+
+    if (quota.queryCount >= quota.maxQuota) {
+      return {
+        allowed: false,
+        remaining: 0,
+        maxQuota: quota.maxQuota,
+        resetAt: quota.resetAt,
+      };
+    }
+
+    quota.queryCount += 1;
+    quota.updatedAt = new Date();
+    this.aiQuotas.set(key, quota);
+
+    return {
+      allowed: true,
+      remaining: Math.max(0, quota.maxQuota - quota.queryCount),
+      maxQuota: quota.maxQuota,
+      resetAt: quota.resetAt,
+    };
+  }
+
+  async createAIConversation(params: {
+    userId: string;
+    title: string;
+    curriculum?: string;
+    subject?: string;
+  }): Promise<AIConversationRecord> {
+    await this.init();
+    const now = new Date();
+    const record: AIConversationRecord = {
+      id: `conv-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      userId: params.userId,
+      title: params.title.trim() || "Mathematics Socratic Inquiry",
+      curriculum: params.curriculum || "WAEC_SSCE",
+      subject: params.subject || "Mathematics",
+      createdAt: now,
+      updatedAt: now,
+    };
+    this.aiConversations.set(record.id, record);
+    return { ...record };
+  }
+
+  async findAIConversationsByUserId(userId: string): Promise<AIConversationRecord[]> {
+    await this.init();
+    const list: AIConversationRecord[] = [];
+    for (const c of this.aiConversations.values()) {
+      if (c.userId === userId) {
+        list.push({ ...c });
+      }
+    }
+    return list.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+  }
+
+  async findAIConversationById(id: string, userId?: string): Promise<AIConversationRecord | null> {
+    await this.init();
+    const c = this.aiConversations.get(id);
+    if (!c) return null;
+    if (userId && c.userId !== userId) return null;
+    return { ...c };
+  }
+
+  async deleteAIConversation(id: string, userId: string): Promise<boolean> {
+    await this.init();
+    const c = this.aiConversations.get(id);
+    if (!c || c.userId !== userId) return false;
+    this.aiConversations.delete(id);
+    for (const [msgId, msg] of this.aiMessages.entries()) {
+      if (msg.conversationId === id) {
+        this.aiMessages.delete(msgId);
+      }
+    }
+    return true;
+  }
+
+  async createAIMessage(params: {
+    conversationId: string;
+    role: AIRole;
+    content: string;
+    hintLevel: AIHintLevel;
+    verification?: AIMathVerification;
+    pedagogicalSummary?: string;
+  }): Promise<AIMessageRecord> {
+    await this.init();
+    const now = new Date();
+    const record: AIMessageRecord = {
+      id: `msg-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      conversationId: params.conversationId,
+      role: params.role,
+      content: params.content,
+      hintLevel: params.hintLevel,
+      verification: params.verification,
+      pedagogicalSummary: params.pedagogicalSummary,
+      createdAt: now,
+    };
+    this.aiMessages.set(record.id, record);
+
+    const conv = this.aiConversations.get(params.conversationId);
+    if (conv) {
+      conv.updatedAt = now;
+      this.aiConversations.set(conv.id, conv);
+    }
+
+    return { ...record };
+  }
+
+  async findAIMessagesByConversationId(conversationId: string): Promise<AIMessageRecord[]> {
+    await this.init();
+    const list: AIMessageRecord[] = [];
+    for (const m of this.aiMessages.values()) {
+      if (m.conversationId === conversationId) {
+        list.push({ ...m });
+      }
+    }
+    return list.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+  }
+
+  async recordAIFeedback(params: {
+    messageId: string;
+    userId: string;
+    rating: AIFeedbackRating;
+    comments?: string;
+  }): Promise<AIFeedbackRecord> {
+    await this.init();
+    const record: AIFeedbackRecord = {
+      id: `fbk-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      messageId: params.messageId,
+      userId: params.userId,
+      rating: params.rating,
+      comments: params.comments,
+      createdAt: new Date(),
+    };
+    this.aiFeedbacks.set(record.id, record);
+    return { ...record };
+  }
+
+  async createAIEscalation(params: {
+    conversationId: string;
+    messageId: string;
+    studentId: string;
+    tutorSlug?: string;
+    problemSnippet: string;
+    studentAttempt?: string;
+    suggestedTopic?: string;
+  }): Promise<AIEscalationRecord> {
+    await this.init();
+    const tutorSlug = params.tutorSlug || "dr-tayo-okafor";
+    const tutor = this.tutorProfiles.get(tutorSlug);
+    const tutorName = tutor ? tutor.title : "Dr. Tayo Okafor";
+
+    const record: AIEscalationRecord = {
+      id: `esc-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      conversationId: params.conversationId,
+      messageId: params.messageId,
+      studentId: params.studentId,
+      tutorSlug,
+      tutorName,
+      problemSnippet: params.problemSnippet,
+      studentAttempt: params.studentAttempt || "Student requested live tutor breakdown after hints.",
+      suggestedTopic: params.suggestedTopic || "Mathematics Clarification",
+      status: "PENDING_BOOKING",
+      createdAt: new Date(),
+    };
+    this.aiEscalations.set(record.id, record);
+
+    const msg = this.aiMessages.get(params.messageId);
+    if (msg) {
+      msg.isEscalated = true;
+      this.aiMessages.set(msg.id, msg);
+    }
+
+    return { ...record };
+  }
+
+  async findAIEscalationsByStudentId(studentId: string): Promise<AIEscalationRecord[]> {
+    await this.init();
+    const list: AIEscalationRecord[] = [];
+    for (const e of this.aiEscalations.values()) {
+      if (e.studentId === studentId) {
+        list.push({ ...e });
+      }
+    }
+    return list.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 }
 

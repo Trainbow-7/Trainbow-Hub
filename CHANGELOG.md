@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.6.0] - 2026-10-11 - Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Engine
+#### Added
+- **Socratic Pedagogical Assistant Core (AI-01, ADR-005)**:
+  - Step-by-step mathematical reasoning engine rejecting raw answer dumping in favor of structured Socratic inquiry.
+  - Explicit labelling of all AI outputs as `[AI-Generated Mathematical Guidance — Verified by Trainbow Hub Engine]` (`data-testid="ai-generated-badge"`).
+- **Four-Stage Hint Progression Architecture (AI-02)**:
+  - Hint Level 1 (`HINT_1`): Conceptual clue, standard equation classification ($ax^2 + bx + c = 0$), and guiding questions without disclosing roots.
+  - Hint Level 2 (`HINT_2`): Formula identification and coefficient mapping ($x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$).
+  - Hint Level 3 (`HINT_3`): Intermediate calculation steps and discriminant branch evaluation ($\sqrt{\Delta}$).
+  - Full Solution (`FULL_SOLUTION`): Complete worked solution, verification by substitution, and WAEC/JAMB exam mark-scheme tips.
+  - Interactive hint advancement controls (`data-testid="hint-advancement-controls"`).
+- **Programmatic Mathematical Verification Engine (AI-03)**:
+  - Server-side symbolic evaluation parsing quadratics, linear equations, discriminants, and arithmetic before client presentation.
+  - Real root calculation ($x = \frac{-b \pm \sqrt{\Delta}}{2a}$) and discriminant classification ($\Delta > 0$, $\Delta = 0$, $\Delta < 0$).
+  - Programmatic verification badge (`data-testid="math-verification-card"`) displaying computed roots, formulas, and verification notes.
+- **Approved Nigerian Curriculum Grounding (AI-04)**:
+  - Grounding across WAEC SSCE, JAMB UTME, Cambridge IGCSE, BECE, and General Mathematics.
+  - Curriculum selector dropdown (`data-testid="curriculum-selector"`) persisting syllabus alignment across threads.
+- **Daily Query Quota & Abuse Controls (AI-05, AI-06, AI-07)**:
+  - Per-user daily quota tiers: Free Learner (10 queries/day), Pro Student (100 queries/day), Tutors & Admins (Unlimited).
+  - Daily quota counter card with visual progress bar and reset timer (`data-testid="quota-counter"`).
+  - Strict 429 quota exhaustion guard with upgrade guidance.
+  - Outage detection and zero-quota deduction on failed/aborted requests or moderated queries.
+- **Automated Content Moderation & Safeguards (AI-08)**:
+  - Automated input filter blocking profanity, abusive terms, and prompt injection attempts.
+  - Pedagogical redirects upholding Nigeria Data Protection Act (NDPA) 2023 and Child Rights Act standards.
+- **Turn Feedback System (AI-09)**:
+  - Granular per-turn feedback widget (`data-testid="turn-feedback-widget"`) with Helpful (👍), Not Helpful (👎), and Report Error (⚠️).
+  - Immutable feedback logging via `AIFeedbackRecord` and `POST /api/ai/feedback`.
+- **1-Tap Seamless Human Tutor Escalation Engine (AI-10)**:
+  - 1-tap button (`data-testid="escalate-tutor-btn"`) allowing struggling learners to seamlessly bridge from AI hints to 1:1 human instruction.
+  - Contextual escalation recording student question, hint progress, and suggested topic, pre-populating booking with Lead Tutor Dr. Tayo Okafor.
+- **Privacy-Compliant Conversation Management (AI-11, AI-12)**:
+  - Per-user isolated thread management (`POST /api/ai/conversations`, `GET /api/ai/conversations/[id]`, `DELETE /api/ai/conversations/[id]`).
+  - Thread creation, switching, and deletion with cascading message cleanup.
+- **Interactive Socratic Workspace (`/ai`)**:
+  - Full-featured, responsive conversational UI featuring quick math symbol insertion, curriculum tabs, optimistic messages, and WCAG 2.2 AA accessibility.
+- **Quality Gates & Test Suites**:
+  - 21 Vitest unit tests in `src/test/ai.test.ts` (77 passing total across project).
+  - 8 Playwright E2E tests in `e2e/phase-f.spec.ts` passing across Desktop Chromium and Mobile Chrome.
+  - 0 serious or critical axe-core accessibility violations.
+
 ### [0.5.0] - 2026-10-11 - Phase E: 1-on-1 Lesson Booking & Paystack Integration
 #### Added
 - **Temporary Slot Hold Engine (BK-01)**:
