@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.10.0] - 2026-10-12 - Phase J: Full Parent & Guardian Oversight Portal (PP-01 through PP-05)
+#### Added
+- **Consolidated Multi-Child Progress & Assessment Tracking (PP-01, ADR-011)**:
+  - Multi-child guardian dashboard (`/guardian`) aggregating academic courses, syllabus progress %, completed lessons, and last accessed timestamps across verified linked wards.
+  - Diagnostic quiz summaries computing attempt counts, average scores, and curriculum revision topic recommendations (e.g., "Unknown Number Bases & Linear Formulation").
+  - Learning consistency statistics tracking daily study streaks (days), total study time (minutes), and last active dates.
+  - Socratic AI query quota tracker displaying daily plan allocations (queries used today / daily limit).
+- **Unified Attendance, Timetable & 1-Tap Guardian Observer Entry (PP-02)**:
+  - Aggregated multi-ward timetable listing scheduled and completed tutoring sessions.
+  - Live session attendance logging recording participant join/leave times and duration in minutes (`ATTENDED`, `UPCOMING`, `MISSED`).
+  - 1-tap live silent observer entry (`/classroom/[bookingId]?role=GUARDIAN`) allowing verified guardians to enter live WebRTC classroom sessions without disturbing learner flow (`guardian-observer-banner`).
+  - Unified Paystack payment receipts view (`/api/guardian/financials`) auditing booking reference codes, settlement amounts in Nigerian Naira (₦7,500), payment channels, and transaction statuses.
+- **Privacy-First Notifications & Mandatory Generic Lockscreen Previews (PP-03, NDPA 2023)**:
+  - Guardian notification preference configuration (`/api/guardian/notifications`) across Email, SMS, and WhatsApp delivery channels, with configurable digest frequencies (`REALTIME`, `DAILY_DIGEST`, `WEEKLY_SUMMARY`).
+  - Strict NDPA 2023 Section 31 statutory invariant: `genericLockscreenPreviews` is enforced to `true`, guaranteeing lockscreen mobile push notifications render strictly generic text (`Trainbow Hub: New activity update for your ward`), shielding minor names, test scores, and qualitative tutor notes from passersby.
+- **Post-Lesson Qualitative Tutor Progress Notes & Real-Time Revocation (PP-04)**:
+  - Qualitative tutor evaluation records (`tutor_progress_notes`) capturing executive summaries, demonstrated strengths, target areas for improvement, and assigned homework.
+  - Role-protected endpoints (`/api/guardian/notes`) allowing tutors to publish post-lesson feedback and verified guardians to inspect ward progress while returning HTTP 403 Forbidden for unverified third parties.
+  - Self-service immediate guardian access revocation (`/api/guardian/access` DELETE): instantly updates guardianship status to `REVOKED`, shielding ward data across all guardian endpoints in real-time and appending immutable administrative audit logs.
+- **Verified Child Linking Workflow via OTP (PP-05)**:
+  - Two-way student-guardian linking flow (`/api/guardian/access` POST) requiring registered student email and 6-digit verification code (`202610`).
+  - Pre-verification guard preventing unverified third-party surveillance, with self-linking restriction and explicit relationship attribution ("Father", "Mother", "Legal Guardian").
+- **Quality Gates, Tests & Accessibility**:
+  - PostgreSQL migration `008_phase_j_parent_and_guardian_portal.sql` and Prisma schema models (`TutorProgressNote`, `GuardianNotificationPreference`).
+  - 11 Vitest unit tests in `src/test/guardian.test.ts` (122 tests passing project-wide across 12 suites).
+  - 12 Playwright E2E tests in `e2e/phase-j.spec.ts` testing auth, multi-child overview, timetable observer mode, tutor notes, receipts, notification privacy, OTP linking, and instant revocation.
+  - Multi-viewport accessibility audit verifying 0 serious/critical WCAG 2.2 AA violations across Desktop (1280px), Tablet (768px), and Mobile (375px) viewports with artifact visual captures.
+
 ### [0.9.0] - 2026-10-12 - Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject Governance (SB-01 through SB-09)
 #### Added
 - **Dynamic Multi-Subject Registry & Lifecycle (SB-01, ADR-010)**:

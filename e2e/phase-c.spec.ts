@@ -45,14 +45,14 @@ test.describe("Phase C: Identity, RBAC & Guardian Consent Architecture", () => {
       await page.getByRole("button", { name: "Log out" }).click();
       // Reopen menu to verify guest actions
       await page.getByRole("button", { name: "Open navigation menu" }).click();
-      await expect(page.getByRole("button", { name: "Log in" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Log in" }).or(page.getByRole("button", { name: "Log in" }))).toBeVisible();
     } else {
       // Desktop navbar indicator
       await expect(page.locator('[data-testid="navbar-user-name"]')).toHaveText("Chioma");
       await expect(page.locator('[data-testid="navbar-user-role"]')).toHaveText("Learner");
       // Log out
       await page.getByRole("button", { name: "Sign out of account" }).click();
-      await expect(page.getByRole("button", { name: "Log in" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Log in" }).or(page.getByRole("button", { name: "Log in" }))).toBeVisible();
     }
   });
 

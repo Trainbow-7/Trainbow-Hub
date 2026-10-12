@@ -97,6 +97,19 @@ export function Navbar() {
                 >
                   Admin Portal
                 </Link>
+              ) : user.role === "PARENT" ? (
+                <Link
+                  href="/guardian"
+                  className={cn(
+                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    pathname === "/guardian" || pathname?.startsWith("/guardian/")
+                      ? "bg-amber-600 text-white border-amber-600 shadow-xs"
+                      : "bg-white text-amber-900 border-amber-300 hover:bg-amber-50"
+                  )}
+                  data-testid="navbar-parent-portal-link"
+                >
+                  Parent Portal
+                </Link>
               ) : user.role === "TUTOR" ? (
                 <Link
                   href="/dashboard/tutor"
@@ -137,7 +150,7 @@ export function Navbar() {
               )}
 
               <Link
-                href={user.role === "ADMIN" ? "/admin" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
+                href={user.role === "ADMIN" ? "/admin" : user.role === "PARENT" ? "/guardian" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
                 className="flex items-center gap-2 pl-2 border-l border-neutral-slate-200 hover:opacity-85 transition-opacity"
               >
                 <Avatar name={user.fullName} size="sm" />
@@ -212,12 +225,25 @@ export function Navbar() {
                 </div>
 
                 <Link
-                  href={user.role === "ADMIN" ? "/admin" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
+                  href={user.role === "ADMIN" ? "/admin" : user.role === "PARENT" ? "/guardian" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full py-2 px-3 text-center text-xs font-bold text-white bg-brand-blue-600 rounded-lg shadow-xs hover:bg-brand-blue-700 transition-colors"
+                  className={cn(
+                    "block w-full py-2 px-3 text-center text-xs font-bold text-white rounded-lg shadow-xs transition-colors",
+                    user.role === "ADMIN"
+                      ? "bg-purple-700 hover:bg-purple-800"
+                      : user.role === "PARENT"
+                      ? "bg-amber-600 hover:bg-amber-700"
+                      : "bg-brand-blue-600 hover:bg-brand-blue-700"
+                  )}
                   data-testid="mobile-portal-link"
                 >
-                  {user.role === "ADMIN" ? "Open Admin Portal" : user.role === "TUTOR" ? "Open Tutor Portal" : "Open My Dashboard"}
+                  {user.role === "ADMIN"
+                    ? "Open Admin Portal"
+                    : user.role === "PARENT"
+                    ? "Open Parent Portal"
+                    : user.role === "TUTOR"
+                    ? "Open Tutor Portal"
+                    : "Open My Dashboard"}
                 </Link>
 
                 {user.isMinor && !user.isVerified && (

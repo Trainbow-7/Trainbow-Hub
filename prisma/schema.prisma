@@ -120,6 +120,8 @@ model User {
   subjectEvaluations  SubjectAIEvaluation[]
   verifiedQualifications TutorSubjectQualification[] @relation("VerifiedQualifications")
   contentSubjectAssignments ContentManagerSubjectAssignment[]
+  studentProgressNotes       TutorProgressNote[] @relation("StudentProgressNotes")
+  guardianNotificationPreference GuardianNotificationPreference?
 
   @@map("users")
 }
@@ -298,6 +300,7 @@ model Booking {
   attendances         ClassroomAttendance[]
   tutorReview         TutorReview?
   safeguardingIncidents SafeguardingIncident[]
+  tutorProgressNotes    TutorProgressNote[]
 
   @@map("bookings")
 }
@@ -747,5 +750,47 @@ model ContentManagerSubjectAssignment {
   @@unique([userId, subjectSlug])
   @@map("content_manager_subject_assignments")
 }
+
+// ==============================================================================
+// Phase J: Full Parent & Guardian Oversight Portal
+// Requirements: PP-01 through PP-05, NDPA 2023, ADR-011
+// ==============================================================================
+
+model TutorProgressNote {
+  id                   String   @id @default(uuid())
+  bookingId            String   @map("booking_id")
+  tutorSlug            String   @map("tutor_slug")
+  studentId            String   @map("student_id")
+  subject              String
+  summary              String
+  homeworkAssignment   String?  @map("homework_assignment")
+  strengths            String?
+  areasForImprovement  String?  @map("areas_for_improvement")
+  sessionDate          String   @map("session_date")
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  student User    @relation("StudentProgressNotes", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([bookingId])
+  @@map("tutor_progress_notes")
+}
+
+model GuardianNotificationPreference {
+  id                        String   @id @default(uuid())
+  guardianId                String   @unique @map("guardian_id")
+  emailAlerts               Boolean  @default(true) @map("email_alerts")
+  smsAlerts                 Boolean  @default(true) @map("sms_alerts")
+  whatsappAlerts            Boolean  @default(false) @map("whatsapp_alerts")
+  genericLockscreenPreviews Boolean  @default(true) @map("generic_lockscreen_previews") // NDPA 2023
+  digestFrequency           String   @default("REALTIME") @map("digest_frequency")
+  updatedAt                 DateTime @default(now()) @updatedAt @map("updated_at")
+
+  guardian User @relation(fields: [guardianId], references: [id], onDelete: Cascade)
+
+  @@map("guardian_notification_preferences")
+}
+
 
 

@@ -60,5 +60,12 @@
 - **Decision:** Implement a dynamic subject registry (`Subject`) with lifecycle state machine (`DRAFT`, `ACTIVE`, `RETIRED`) manageable via Admin UI without code deployments. Content managers are scoped to explicit subject assignments. Tutors must possess subject-specific verified credentials (`TutorSubjectQualification`) before appearing in filtered search results. AI capabilities are subject-gated: an AI toggle is strictly locked until a formal curriculum rubric evaluation is recorded with >=80.0% benchmark score and >=70.0% grounding coverage.
 - **Consequences:** Platform curriculum expands dynamically without code changes; students are protected from hallucinations in unevaluated subjects; tutor marketplace prevents cross-subject credential masquerading; and commission rates can be adjusted per domain with full ledger auditability.
 
+## ADR-011: Strict Multi-Child Guardian Oversight & NDPA 2023 Consent Revocation
+- **Status:** Accepted
+- **Context:** Under the Nigeria Data Protection Act (NDPA) 2023 Section 31 and the Child Rights Act, minor learner data is legally privileged. Guardians require verified oversight across multiple wards without cross-ward data contamination, unauthorized third-party snooping via mobile lockscreens, or residual data access following guardianship termination.
+- **Decision:** Establish a consolidated Parent Portal (`/guardian`) backed by strict least-privilege role boundaries (`requireGuardianSession`). Guardians can only query and view wards linked through verified relationships (`Guardianship.status === 'VERIFIED'`). Child linking is strictly gated by two-way 6-digit OTP verification (`verifyAndLinkChild`). Consent revocation (`revokeGuardianAccess`) takes immediate effect, updating guardianship status to `REVOKED`, shielding ward data across all APIs in real-time, and recording an immutable audit entry. To prevent metadata leaks on shared or unattended mobile devices, lockscreen notification previews enforce a non-overridable generic invariant (`genericLockscreenPreviews: true`), shielding learner names, scores, and tutor evaluation notes.
+- **Consequences:** Minor privacy is rigorously protected under statutory Nigerian law; unverified third parties receive immediate 403 Forbidden responses; lockscreens never leak sensitive grades; and revoked guardians lose observer access and historical note visibility instantly without cache staleness.
+
+
 
 

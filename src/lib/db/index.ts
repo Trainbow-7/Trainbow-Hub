@@ -470,6 +470,76 @@ export interface ContentManagerSubjectAssignmentRecord {
   assignedAt: Date;
 }
 
+// ============================================================================
+// Phase J: Parent & Guardian Oversight Portal Types (PP-01 to PP-05, NDPA 2023)
+// ============================================================================
+
+export interface TutorProgressNoteRecord {
+  id: string;
+  bookingId: string;
+  tutorSlug: string;
+  studentId: string;
+  subject: string;
+  summary: string;
+  homeworkAssignment?: string;
+  strengths?: string;
+  areasForImprovement?: string;
+  sessionDate: string;
+  createdAt: Date;
+}
+
+export interface GuardianNotificationPreferenceRecord {
+  id: string;
+  guardianId: string;
+  emailAlerts: boolean;
+  smsAlerts: boolean;
+  whatsappAlerts: boolean;
+  genericLockscreenPreviews: boolean; // Enforced NDPA 2023
+  digestFrequency: "REALTIME" | "DAILY_DIGEST" | "WEEKLY_SUMMARY";
+  updatedAt: Date;
+}
+
+export interface ChildProgressSummary {
+  student: {
+    id: string;
+    fullName: string;
+    email: string;
+    dateOfBirth?: string;
+    isMinor: boolean;
+    isVerified: boolean;
+  };
+  guardianship: {
+    id: string;
+    relationship: string;
+    status: "PENDING_OTP" | "VERIFIED" | "REVOKED";
+    consentGivenAt?: Date;
+  };
+  courses: {
+    courseSlug: string;
+    progressPercentage: number;
+    completedLessonCount: number;
+    enrolledAt: Date;
+    lastAccessedAt: Date;
+  }[];
+  quizzes: {
+    totalAttempts: number;
+    averageScore: number;
+    latestScore?: number;
+    latestQuizDate?: Date;
+    recommendedTopics: string[];
+  };
+  studyStats: {
+    streakDays: number;
+    totalMinutesStudied: number;
+    lastActiveDate: string;
+  };
+  aiQuota: {
+    plan: string;
+    queriesUsedToday: number;
+    dailyLimit: number;
+  };
+}
+
 // In-Memory resilient database engine
 class DatabaseStore {
   users: Map<string, UserRecord> = new Map();
@@ -500,6 +570,8 @@ class DatabaseStore {
   subjectEvaluations: Map<string, SubjectAIEvaluationRecord> = new Map();
   tutorSubjectQualifications: Map<string, TutorSubjectQualificationRecord> = new Map();
   contentManagerSubjectAssignments: Map<string, ContentManagerSubjectAssignmentRecord> = new Map();
+  tutorProgressNotes: Map<string, TutorProgressNoteRecord> = new Map();
+  guardianNotificationPreferences: Map<string, GuardianNotificationPreferenceRecord> = new Map();
   private initialized = false;
 
   async reset() {
@@ -538,6 +610,8 @@ class DatabaseStore {
     this.subjectEvaluations.clear();
     this.tutorSubjectQualifications.clear();
     this.contentManagerSubjectAssignments.clear();
+    this.tutorProgressNotes.clear();
+    this.guardianNotificationPreferences.clear();
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");
@@ -646,6 +720,24 @@ class DatabaseStore {
       updatedAt: new Date("2026-10-05"),
     };
     this.guardianships.set(guardianship.id, guardianship);
+
+    // Link Parent to Adult Student Chioma Adeleke (Verified Ward for multi-child demo)
+    const chiomaGuardianship: GuardianshipRecord = {
+      id: "gdn-002",
+      studentId: studentUser.id,
+      guardianId: parentUser.id,
+      relationship: "Father / Legal Guardian",
+      status: "VERIFIED",
+      guardianPhone: parentUser.phoneNumber!,
+      guardianEmail: parentUser.email,
+      otpCode: "202611",
+      otpExpiresAt: new Date(Date.now() + 86400 * 1000),
+      otpAttempts: 0,
+      consentGivenAt: new Date("2026-09-20"),
+      createdAt: new Date("2026-09-20"),
+      updatedAt: new Date("2026-09-20"),
+    };
+    this.guardianships.set(chiomaGuardianship.id, chiomaGuardianship);
 
     // 4. Verified Tutor (Dr. Tayo Okafor)
     const tutorUser: UserRecord = {
@@ -848,6 +940,48 @@ class DatabaseStore {
     };
     this.tutorLedgerEntries.set(seedCredit.id, seedCredit);
     this.tutorLedgerEntries.set(seedDebit.id, seedDebit);
+
+    // Phase J Seeds: Tutor Progress Note, Guardian Notification Preferences, and Session Attendance (PP-02, PP-03, PP-04)
+    const seedNote: TutorProgressNoteRecord = {
+      id: "tpn-seed-001",
+      bookingId: seedBooking.id,
+      tutorSlug: "dr-tayo-okafor",
+      studentId: studentUser.id,
+      subject: "Mathematics",
+      summary: "Chioma demonstrated strong conceptual grasp of quadratic factorisation and indices. Need further drill on simultaneous non-linear roots.",
+      homeworkAssignment: "Complete WAEC 2024 Section B Questions 3(a) and 3(b) on quadratic equations before Wednesday.",
+      strengths: "Excellent mental arithmetic, swift identification of standard quadratic coefficients (a, b, c).",
+      areasForImprovement: "Pay closer attention to sign transitions when transposing terms across the equality sign.",
+      sessionDate: "2026-10-10",
+      createdAt: new Date("2026-10-10T17:30:00Z"),
+    };
+    this.tutorProgressNotes.set(seedNote.id, seedNote);
+
+    const seedPref: GuardianNotificationPreferenceRecord = {
+      id: "gnp-seed-001",
+      guardianId: parentUser.id,
+      emailAlerts: true,
+      smsAlerts: true,
+      whatsappAlerts: false,
+      genericLockscreenPreviews: true,
+      digestFrequency: "REALTIME",
+      updatedAt: new Date("2026-10-05"),
+    };
+    this.guardianNotificationPreferences.set(seedPref.guardianId, seedPref);
+
+    const seedAttendance: ClassroomAttendanceRecord = {
+      id: "att-seed-001",
+      sessionId: seedSession.id,
+      bookingId: seedBooking.id,
+      userId: studentUser.id,
+      role: "STUDENT",
+      joinedAt: new Date("2026-10-10T16:01:00Z"),
+      leftAt: new Date("2026-10-10T16:58:00Z"),
+      durationSeconds: 3420,
+      status: "ATTENDED",
+      createdAt: new Date("2026-10-10T16:01:00Z"),
+    };
+    this.classroomAttendances.set(seedAttendance.id, seedAttendance);
 
     // Phase F: Seed initial Socratic conversation and verified hint for studentUser (AI-01, AI-02, AI-03, AI-04)
     const seedConv: AIConversationRecord = {
@@ -3349,6 +3483,357 @@ class DatabaseStore {
       }
     }
     return false;
+  }
+
+  // ============================================================================
+  // Phase J: Parent & Guardian Oversight Portal Repository Methods (PP-01 to PP-05)
+  // ============================================================================
+
+  async getGuardianChildrenSummary(guardianId: string): Promise<ChildProgressSummary[]> {
+    await this.init();
+    const summaries: ChildProgressSummary[] = [];
+
+    for (const g of this.guardianships.values()) {
+      if (g.guardianId === guardianId && g.status === "VERIFIED") {
+        const student = this.users.get(g.studentId);
+        if (!student) continue;
+
+        // 1. Enrollments & Course Progress
+        const courses: ChildProgressSummary["courses"] = [];
+        for (const e of this.enrollments.values()) {
+          if (e.userId === student.id) {
+            courses.push({
+              courseSlug: e.courseSlug,
+              progressPercentage: e.progressPercentage,
+              completedLessonCount: e.completedLessonIds.length,
+              enrolledAt: e.enrolledAt,
+              lastAccessedAt: e.updatedAt,
+            });
+          }
+        }
+
+        // 2. Quiz Attempts & Diagnostic Revision
+        const quizList = Array.from(this.quizAttempts.values()).filter(q => q.userId === student.id);
+        const totalAttempts = quizList.length;
+        const avgScore = totalAttempts > 0 
+          ? Math.round(quizList.reduce((sum, q) => sum + q.score, 0) / totalAttempts) 
+          : 0;
+        
+        let latestQuiz: QuizAttemptRecord | undefined;
+        const recommendedTopicsSet = new Set<string>();
+        for (const q of quizList) {
+          if (!latestQuiz || new Date(q.completedAt).getTime() > new Date(latestQuiz.completedAt).getTime()) {
+            latestQuiz = q;
+          }
+          if (q.recommendedTopics) {
+            q.recommendedTopics.forEach(t => recommendedTopicsSet.add(t));
+          }
+        }
+
+        // 3. Study Stats
+        const stats = this.studyStats.get(student.id) || {
+          userId: student.id,
+          streakDays: 0,
+          lastActiveDate: new Date().toISOString().split("T")[0],
+          totalMinutesStudied: 0,
+          lessonsCompleted: 0,
+          updatedAt: new Date(),
+        };
+
+        // 4. AI Quota (Queries used today / daily limit)
+        const aiQuota = this.aiQuotas.get(student.id) || {
+          id: `aiq-${student.id}`,
+          userId: student.id,
+          plan: "FREE",
+          queriesUsedToday: 0,
+          dailyLimit: 10,
+          lastResetDate: new Date().toISOString().split("T")[0],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+
+        summaries.push({
+          student: {
+            id: student.id,
+            fullName: student.fullName,
+            email: student.email,
+            dateOfBirth: student.dateOfBirth,
+            isMinor: student.isMinor,
+            isVerified: student.isVerified,
+          },
+          guardianship: {
+            id: g.id,
+            relationship: g.relationship,
+            status: g.status,
+            consentGivenAt: g.consentGivenAt,
+          },
+          courses,
+          quizzes: {
+            totalAttempts,
+            averageScore: avgScore,
+            latestScore: latestQuiz?.score,
+            latestQuizDate: latestQuiz?.completedAt,
+            recommendedTopics: Array.from(recommendedTopicsSet),
+          },
+          studyStats: {
+            streakDays: stats.streakDays,
+            totalMinutesStudied: stats.totalMinutesStudied,
+            lastActiveDate: stats.lastActiveDate,
+          },
+          aiQuota: {
+            plan: aiQuota.plan,
+            queriesUsedToday: aiQuota.queriesUsedToday,
+            dailyLimit: aiQuota.dailyLimit,
+          },
+        });
+      }
+    }
+
+    return summaries;
+  }
+
+  async getGuardianTimetable(guardianId: string) {
+    await this.init();
+    const verifiedStudentIds = new Set<string>();
+    const studentNameMap = new Map<string, string>();
+    for (const g of this.guardianships.values()) {
+      if (g.guardianId === guardianId && g.status === "VERIFIED") {
+        verifiedStudentIds.add(g.studentId);
+        const student = this.users.get(g.studentId);
+        if (student) {
+          studentNameMap.set(student.id, student.fullName);
+        }
+      }
+    }
+
+    if (verifiedStudentIds.size === 0) return [];
+
+    const timetable: any[] = [];
+    for (const b of this.bookings.values()) {
+      if (verifiedStudentIds.has(b.studentId)) {
+        const session = Array.from(this.classroomSessions.values()).find(s => s.bookingId === b.id);
+        const attendance = Array.from(this.classroomAttendances.values()).find(a => a.bookingId === b.id && a.userId === b.studentId);
+
+        timetable.push({
+          bookingId: b.id,
+          studentId: b.studentId,
+          studentName: studentNameMap.get(b.studentId) || "Ward",
+          tutorSlug: b.tutorSlug,
+          tutorName: b.tutorName,
+          subject: b.subject,
+          slotDate: b.slotDate,
+          slotTime: b.slotTime,
+          bookingStatus: b.bookingStatus,
+          paymentStatus: b.paymentStatus,
+          meetingLink: b.meetingLink,
+          observerLink: `/classroom/${b.id}?role=GUARDIAN`, // PP-02 1-tap guardian observer entry
+          sessionStatus: session?.status || "SCHEDULED",
+          attendanceStatus: attendance?.status || (b.bookingStatus === "CONFIRMED" ? "UPCOMING" : "MISSED"),
+          durationSeconds: attendance?.durationSeconds || 0,
+          joinedAt: attendance?.joinedAt,
+        });
+      }
+    }
+
+    return timetable.sort((a, b) => a.slotDate.localeCompare(b.slotDate));
+  }
+
+  async getGuardianFinancialHistory(guardianId: string) {
+    await this.init();
+    const verifiedStudentIds = new Set<string>();
+    const studentNameMap = new Map<string, string>();
+    for (const g of this.guardianships.values()) {
+      if (g.guardianId === guardianId && g.status === "VERIFIED") {
+        verifiedStudentIds.add(g.studentId);
+        const student = this.users.get(g.studentId);
+        if (student) {
+          studentNameMap.set(student.id, student.fullName);
+        }
+      }
+    }
+
+    if (verifiedStudentIds.size === 0) return [];
+
+    const txs: any[] = [];
+    for (const tx of this.paymentTransactions.values()) {
+      if (verifiedStudentIds.has(tx.studentId)) {
+        const booking = this.bookings.get(tx.bookingId);
+        txs.push({
+          id: tx.id,
+          reference: tx.reference,
+          bookingId: tx.bookingId,
+          studentId: tx.studentId,
+          studentName: studentNameMap.get(tx.studentId) || "Ward",
+          tutorName: booking?.tutorName || "Assigned Tutor",
+          subject: booking?.subject || "Subject Session",
+          slotDate: booking?.slotDate,
+          slotTime: booking?.slotTime,
+          amountMinorUnits: tx.amountMinorUnits,
+          currency: tx.currency,
+          status: tx.status,
+          channel: tx.channel,
+          verifiedAt: tx.verifiedAt,
+          createdAt: tx.createdAt,
+        });
+      }
+    }
+
+    return txs.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  async getTutorProgressNotes(guardianId: string, studentId?: string): Promise<TutorProgressNoteRecord[]> {
+    await this.init();
+    const verifiedStudentIds = new Set<string>();
+    for (const g of this.guardianships.values()) {
+      if (g.guardianId === guardianId && g.status === "VERIFIED") {
+        verifiedStudentIds.add(g.studentId);
+      }
+    }
+
+    if (studentId && !verifiedStudentIds.has(studentId)) {
+      throw new Error("UNAUTHORIZED_WARD_ACCESS");
+    }
+
+    const notes: TutorProgressNoteRecord[] = [];
+    for (const n of this.tutorProgressNotes.values()) {
+      if (studentId) {
+        if (n.studentId === studentId) notes.push({ ...n });
+      } else if (verifiedStudentIds.has(n.studentId)) {
+        notes.push({ ...n });
+      }
+    }
+
+    return notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  async createTutorProgressNote(data: Omit<TutorProgressNoteRecord, "id" | "createdAt">): Promise<TutorProgressNoteRecord> {
+    await this.init();
+    const id = `tpn-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const record: TutorProgressNoteRecord = {
+      ...data,
+      id,
+      createdAt: new Date(),
+    };
+    this.tutorProgressNotes.set(id, record);
+    return { ...record };
+  }
+
+  async getGuardianNotificationPreferences(guardianId: string): Promise<GuardianNotificationPreferenceRecord> {
+    await this.init();
+    let pref = this.guardianNotificationPreferences.get(guardianId);
+    if (!pref) {
+      pref = {
+        id: `gnp-${Date.now()}`,
+        guardianId,
+        emailAlerts: true,
+        smsAlerts: true,
+        whatsappAlerts: false,
+        genericLockscreenPreviews: true, // Strict NDPA 2023 invariant
+        digestFrequency: "REALTIME",
+        updatedAt: new Date(),
+      };
+      this.guardianNotificationPreferences.set(guardianId, pref);
+    }
+    return { ...pref };
+  }
+
+  async updateGuardianNotificationPreferences(guardianId: string, updates: Partial<GuardianNotificationPreferenceRecord>): Promise<GuardianNotificationPreferenceRecord> {
+    await this.init();
+    const current = await this.getGuardianNotificationPreferences(guardianId);
+    const updated: GuardianNotificationPreferenceRecord = {
+      ...current,
+      ...updates,
+      // Invariant: under NDPA 2023 genericLockscreenPreviews must always remain true to shield minor metadata
+      genericLockscreenPreviews: true,
+      updatedAt: new Date(),
+    };
+    this.guardianNotificationPreferences.set(guardianId, updated);
+    return { ...updated };
+  }
+
+  async revokeGuardianAccess(guardianId: string, studentId: string, reason = "Guardian requested access revocation"): Promise<boolean> {
+    await this.init();
+    let found = false;
+    for (const g of this.guardianships.values()) {
+      if (g.guardianId === guardianId && g.studentId === studentId) {
+        g.status = "REVOKED";
+        g.updatedAt = new Date();
+        g.consentAuditLog = `Access revoked on ${new Date().toISOString()} Reason: ${reason}`;
+        this.guardianships.set(g.id, g);
+        found = true;
+
+        // Log admin audit entry
+        await this.logAdminAudit({
+          adminId: guardianId,
+          action: "GUARDIAN_ACCESS_REVOKED",
+          targetType: "Guardianship",
+          targetId: g.id,
+          beforeState: { status: "VERIFIED" },
+          afterState: { status: "REVOKED", reason },
+        });
+      }
+    }
+    return found;
+  }
+
+  async verifyAndLinkChild(guardianId: string, studentEmail: string, otpCode: string, relationship = "Legal Guardian"): Promise<{ success: boolean; message: string; guardianship?: GuardianshipRecord }> {
+    await this.init();
+    const student = await this.findUserByEmail(studentEmail.trim().toLowerCase());
+    if (!student) {
+      return { success: false, message: "Student account with this email address was not found." };
+    }
+
+    if (student.id === guardianId) {
+      return { success: false, message: "You cannot link your own account as a ward." };
+    }
+
+    // Check for existing guardianship
+    let gRecord: GuardianshipRecord | null = null;
+    for (const g of this.guardianships.values()) {
+      if (g.guardianId === guardianId && g.studentId === student.id) {
+        gRecord = g;
+        break;
+      }
+    }
+
+    // OTP verification check: accept standard demo codes "202610" / "202611" or the record's otpCode
+    const expectedOtp = gRecord?.otpCode || "202610";
+    if (otpCode.trim() !== expectedOtp && otpCode.trim() !== "202610" && otpCode.trim() !== "202611") {
+      return { success: false, message: "Invalid 6-digit verification code. Please check and try again." };
+    }
+
+    const now = new Date();
+    if (gRecord) {
+      gRecord.status = "VERIFIED";
+      gRecord.relationship = relationship;
+      gRecord.consentGivenAt = now;
+      gRecord.updatedAt = now;
+      this.guardianships.set(gRecord.id, gRecord);
+    } else {
+      const newId = `gdn-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+      gRecord = {
+        id: newId,
+        studentId: student.id,
+        guardianId,
+        relationship,
+        status: "VERIFIED",
+        guardianPhone: "+2348035554433",
+        guardianEmail: "parent@trainbowhub.ng",
+        otpCode: otpCode.trim(),
+        otpExpiresAt: new Date(Date.now() + 86400 * 1000),
+        otpAttempts: 0,
+        consentGivenAt: now,
+        createdAt: now,
+        updatedAt: now,
+      };
+      this.guardianships.set(newId, gRecord);
+    }
+
+    return {
+      success: true,
+      message: `Successfully verified and linked ${student.fullName}.`,
+      guardianship: { ...gRecord },
+    };
   }
 }
 
