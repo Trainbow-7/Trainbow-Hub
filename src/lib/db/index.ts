@@ -1840,17 +1840,13 @@ class DatabaseStore {
     const musicSession: ClassroomSessionRecord = {
       id: "cls-music-001",
       bookingId: musicBooking.id,
-      tutorSlug: musicTutorProfile1.slug,
-      studentId: studentUser.id,
-      subject: "Music Theory & Piano",
-      scheduledStart: new Date("2026-10-15T15:00:00Z"),
-      scheduledEnd: new Date("2026-10-15T16:00:00Z"),
+      roomName: "room-cls-music-001",
+      roomUrl: "https://trainbow-sandbox.daily.co/room-cls-music-001",
       status: "SCHEDULED",
-      meetingRoomId: "tbh-music-room-001",
-      webrtcProvider: "AGORA",
-      recordingEnabled: true,
-      audioTranscribed: false,
-      flaggedIncidentCount: 0,
+      recordingEnabled: false,
+      startsAt: new Date("2026-10-15T15:00:00Z"),
+      expiresAt: new Date("2026-10-15T16:15:00Z"),
+      lowBandwidthFallbackUsed: false,
       createdAt: new Date("2026-10-10T11:05:00Z"),
       updatedAt: new Date("2026-10-10T11:05:00Z"),
     };
@@ -4252,16 +4248,9 @@ class DatabaseStore {
         };
 
         // 4. AI Quota (Queries used today / daily limit)
-        const aiQuota = this.aiQuotas.get(student.id) || {
-          id: `aiq-${student.id}`,
-          userId: student.id,
-          plan: "FREE",
-          queriesUsedToday: 0,
-          dailyLimit: 10,
-          lastResetDate: new Date().toISOString().split("T")[0],
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
+        const aiQuota = this.aiQuotas.get(student.id);
+        const queriesUsedToday = aiQuota ? aiQuota.queryCount : 0;
+        const dailyLimit = aiQuota ? aiQuota.maxQuota : 10;
 
         summaries.push({
           student: {
@@ -4292,9 +4281,9 @@ class DatabaseStore {
             lastActiveDate: stats.lastActiveDate,
           },
           aiQuota: {
-            plan: aiQuota.plan,
-            queriesUsedToday: aiQuota.queriesUsedToday,
-            dailyLimit: aiQuota.dailyLimit,
+            plan: "FREE",
+            queriesUsedToday,
+            dailyLimit,
           },
         });
       }

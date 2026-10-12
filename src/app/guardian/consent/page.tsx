@@ -16,7 +16,7 @@ import {
   FileCheck,
 } from "lucide-react";
 
-export default function GuardianConsentPage() {
+function GuardianConsentContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const studentIdParam = searchParams.get("studentId");
@@ -309,5 +309,13 @@ export default function GuardianConsentPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function GuardianConsentPage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-neutral-slate-50 text-xs text-neutral-slate-500">Loading consent verification...</div>}>
+      <GuardianConsentContent />
+    </React.Suspense>
   );
 }

@@ -14,13 +14,15 @@ export async function POST(req: Request) {
     }
 
     // Persist as a quiz attempt in DB
-    const attempt = db.createQuizAttempt({
-      quizId,
+    const attempt = await db.createQuizAttempt({
       userId: studentId,
+      courseSlug: "mathematics-ss3",
+      lessonId: quizId || "lesson-general-quiz",
       score: typeof score === "number" ? score : 0,
       totalQuestions: typeof totalQuestions === "number" ? totalQuestions : 10,
-      passed: typeof score === "number" && typeof totalQuestions === "number" ? score / totalQuestions >= 0.7 : true,
-      timeSpentSeconds: 120,
+      correctCount: typeof score === "number" ? Math.round((score / 100) * (totalQuestions || 10)) : 0,
+      answers: {},
+      recommendedTopics: [],
     });
 
     return NextResponse.json({

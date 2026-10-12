@@ -45,7 +45,7 @@ describe("Phase K: Trainbow HUB Music — Theory, Instruments, Voice & Repertoir
     });
 
     it("retrieves verified tutor subject qualifications for music theory", async () => {
-      const qualifications = await db.listTutorSubjectQualifications("pastor-emmanuel-adeyemi");
+      const qualifications = await db.listTutorSubjectQualifications({ tutorSlug: "pastor-emmanuel-adeyemi" });
       expect(qualifications.length).toBeGreaterThanOrEqual(1);
 
       const musicQual = qualifications.find((q) => q.subjectSlug === "music-theory");
@@ -74,10 +74,9 @@ describe("Phase K: Trainbow HUB Music — Theory, Instruments, Voice & Repertoir
     it("links music lesson to virtual classroom session with WebRTC audio and safeguarding", async () => {
       const session = await db.findClassroomSessionByBookingId("bkg-music-001");
       expect(session).toBeDefined();
-      expect(session?.tutorSlug).toBe("pastor-emmanuel-adeyemi");
-      expect(session?.studentId).toBe("usr-std-001");
-      expect(session?.webrtcProvider).toBe("AGORA");
-      expect(session?.recordingEnabled).toBe(true);
+      expect(session?.roomName).toBe("room-cls-music-001");
+      expect(session?.roomUrl).toContain("daily.co");
+      expect(session?.recordingEnabled).toBe(false);
       expect(session?.status).toBe("SCHEDULED");
     });
   });

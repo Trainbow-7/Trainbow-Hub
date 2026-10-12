@@ -47,7 +47,7 @@ const DEMO_PRESETS = [
   },
 ];
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get("redirect") || "/";
@@ -254,5 +254,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-neutral-slate-50 text-xs text-neutral-slate-500">Loading sign-in...</div>}>
+      <LoginForm />
+    </React.Suspense>
   );
 }

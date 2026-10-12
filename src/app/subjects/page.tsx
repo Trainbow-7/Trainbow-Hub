@@ -269,7 +269,7 @@ export default function SubjectsCatalogPage() {
               <span>Trainbow Rigorous Subject Launch Gate (SB-06)</span>
             </div>
             <h2 className="text-xl font-black text-neutral-slate-900">
-              Why aren't all subjects AI-enabled immediately?
+              Why aren&apos;t all subjects AI-enabled immediately?
             </h2>
             <p className="text-xs text-neutral-slate-600 leading-relaxed">
               Under our pedagogical governance framework (ADR-010), an AI assistant is never released to Nigerian students

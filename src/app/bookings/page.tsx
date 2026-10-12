@@ -49,7 +49,7 @@ interface BookingItem {
   createdAt: string;
 }
 
-export default function BookingsPage() {
+function BookingsContent() {
   const { user } = useAuth();
   const searchParams = useSearchParams();
   const refParam = searchParams.get("ref");
@@ -664,5 +664,13 @@ export default function BookingsPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function BookingsPage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-neutral-slate-50 text-xs text-neutral-slate-500">Loading bookings...</div>}>
+      <BookingsContent />
+    </React.Suspense>
   );
 }
