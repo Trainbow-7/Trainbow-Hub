@@ -83,7 +83,20 @@ export function Navbar() {
           {!isLoading && user ? (
             /* Logged-In User Profile Controls */
             <div className="hidden sm:flex items-center gap-3">
-              {user.role === "TUTOR" ? (
+              {user.role === "ADMIN" ? (
+                <Link
+                  href="/admin"
+                  className={cn(
+                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    pathname === "/admin" || pathname?.startsWith("/admin/")
+                      ? "bg-purple-700 text-white border-purple-700 shadow-xs"
+                      : "bg-white text-purple-800 border-purple-200 hover:bg-purple-50"
+                  )}
+                  data-testid="navbar-admin-link"
+                >
+                  Admin Portal
+                </Link>
+              ) : user.role === "TUTOR" ? (
                 <Link
                   href="/dashboard/tutor"
                   className={cn(
@@ -123,7 +136,7 @@ export function Navbar() {
               )}
 
               <Link
-                href={user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
+                href={user.role === "ADMIN" ? "/admin" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
                 className="flex items-center gap-2 pl-2 border-l border-neutral-slate-200 hover:opacity-85 transition-opacity"
               >
                 <Avatar name={user.fullName} size="sm" />
@@ -198,11 +211,12 @@ export function Navbar() {
                 </div>
 
                 <Link
-                  href={user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
+                  href={user.role === "ADMIN" ? "/admin" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full py-2 px-3 text-center text-xs font-bold text-white bg-brand-blue-600 rounded-lg shadow-xs hover:bg-brand-blue-700 transition-colors"
+                  data-testid="mobile-portal-link"
                 >
-                  {user.role === "TUTOR" ? "Open Tutor Portal" : "Open My Dashboard"}
+                  {user.role === "ADMIN" ? "Open Admin Portal" : user.role === "TUTOR" ? "Open Tutor Portal" : "Open My Dashboard"}
                 </Link>
 
                 {user.isMinor && !user.isVerified && (

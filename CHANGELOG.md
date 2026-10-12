@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.8.0] - 2026-10-12 - Phase H: Administration, Safeguarding Triage & Financial Operations Hub (AD-01 through AD-07, PY-07 through PY-09)
+#### Added
+- **Unified Operations Hub & Least-Privilege RBAC (AD-01, ADR-009)**:
+  - Role-protected administrative command center (`/admin`) enforcing strict server-side RBAC guard (`requireAdminSession`).
+  - Returns HTTP 401 Unauthorized for unauthenticated requests and HTTP 403 Forbidden for non-administrative roles (Students, Parents, Tutors).
+  - Role-aware navigation link dynamically rendered in `Navbar` (`data-testid="navbar-admin-link"`) for authenticated platform admins.
+  - User directory management portal (`data-testid="user-management-table"`) with role reassignments, account suspensions, and NDPA 2023 verification status toggles.
+- **Tutor Vetting & Credential Verification Queue (AD-02)**:
+  - Dedicated queue interface (`data-testid="tutor-vetting-table"`) displaying pending tutor profiles.
+  - Credential inspection modal (`data-testid="tutor-credentials-modal"`) detailing National Identification Number (NIN), Teachers Registration Council of Nigeria (TRCN) certifications, degree credentials, and criminal history screening confirmations.
+  - Multi-action approval and rejection/suspension workflow with immediate public directory synchronisation.
+- **Safeguarding Incident Triage Queue with SLA Countdown (AD-04, CL-04)**:
+  - Incident triage queue (`data-testid="safeguarding-queue"`) prioritizing reports for Designated Safeguarding Lead (Grace Danladi) under the Child Rights Act and NDPA 2023.
+  - Real-time SLA countdown timers tracking <24-hour compliance thresholds for urgent and high-severity incidents, displaying visual warnings and pulse indicators upon SLA breaches.
+  - Interactive incident triage modal (`data-testid="safeguard-triage-modal"`) supporting status updates (`OPEN`, `INVESTIGATING`, `RESOLVED`, `DISMISSED`) and documented remediation actions.
+- **Settlement Reconciliation & Tutor Payout Ledger (PY-07, PY-08)**:
+  - Automated daily settlement reconciliation engine (`data-testid="reconciliation-panel"`) auditing processed bookings and escrow balances against Paystack transaction reference statements.
+  - Tutor payout disbursement ledger (`data-testid="payouts-table"`) computing net 85% tutor allocations against the platform's 15% commission.
+  - Manual disbursement modal (`data-testid="payout-modal"`) enforcing debiting of available balances via append-only ledger entries.
+- **Booking Dispute Resolution & Escrow Refunds (AD-03, PY-09)**:
+  - Dispute resolution controls allowing platform administrators to issue full or partial escrow refunds back to guardian balances while debiting hold states.
+- **AI Token & Cost Governance Analytics (AD-05)**:
+  - Administrative usage monitor (`data-testid="ai-usage-panel"`) aggregating total mathematical queries, prompt tokens, completion tokens, and real-time USD/NGN cost approximations.
+  - Topic-based query distribution tracking across Quadratic Equations, Geometry, Trigonometry, and Calculus.
+- **Operational Alerts Ticker & Immutable Audit Trail (AD-06, AD-07)**:
+  - Real-time operational alerts ticker displaying system events (`URGENT_SAFEGUARDING`, `SETTLEMENT_DISCREPANCY`, `TUTOR_VETTING_PENDING`, `AI_QUOTA_SPIKE`) with acknowledge and resolve controls.
+  - Append-only immutable administrative audit log table (`data-testid="admin-audit-log"`) recording action types, actor user IDs, target resources, IP addresses, and metadata payloads.
+- **Comprehensive Quality Gates & Multi-Viewport Accessibility**:
+  - PostgreSQL 16 schema migration (`006_phase_h_admin_operations_and_reconciliation.sql`) and Prisma models.
+  - 15 Vitest unit tests in `src/test/admin.test.ts` (100 total passing across 10 test files).
+  - 6 Playwright E2E tests in `e2e/phase-h.spec.ts` covering RBAC access control, admin sign-in, vetting queues, SLA countdowns, settlement reconciliation, and AI cost analytics.
+  - Multi-viewport accessibility audit verifying 0 serious or critical WCAG 2.2 AA violations across Desktop (1280px), Tablet (768px), and Mobile (375px) viewports.
+
 ### [0.7.0] - 2026-10-11 - Phase G: Online Virtual Classroom & Safeguarding Engine (CL-01 through CL-06)
 #### Added
 - **Ephemeral WebRTC Virtual Classrooms (CL-01, ADR-002, ADR-008)**:

@@ -115,6 +115,8 @@ model User {
   classroomAttendances ClassroomAttendance[]
   reportedIncidents   SafeguardingIncident[] @relation("ReportedIncidents")
   tutorReviews        TutorReview[]
+  adminAuditLogs      AdminAuditLog[]
+  tutorPayouts        TutorPayout[]
 
   @@map("users")
 }
@@ -530,5 +532,106 @@ model TutorReview {
   student User    @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   @@map("tutor_reviews")
+}
+
+// ==============================================================================
+// Phase H: Administration, Safeguarding Triage & Financial Operations Models
+// ==============================================================================
+
+enum PayoutStatus {
+  PENDING
+  PROCESSED
+  REJECTED
+}
+
+enum ReconciliationStatus {
+  BALANCED
+  FLAGGED_FOR_REVIEW
+}
+
+enum AlertSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+enum AlertStatus {
+  ACTIVE
+  ACKNOWLEDGED
+  RESOLVED
+}
+
+model AdminAuditLog {
+  id         String   @id @default(uuid())
+  adminId    String   @map("admin_id")
+  action     String
+  targetType String   @map("target_type")
+  targetId   String   @map("target_id")
+  beforeState String? @map("before_state") // JSON string
+  afterState  String? @map("after_state")  // JSON string
+  ipAddress  String?  @map("ip_address")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  admin User @relation(fields: [adminId], references: [id], onDelete: Restrict)
+
+  @@index([targetType, targetId])
+  @@index([adminId])
+  @@map("admin_audit_logs")
+}
+
+model TutorPayout {
+  id                  String       @id @default(uuid())
+  tutorSlug           String       @map("tutor_slug")
+  tutorUserId         String       @map("tutor_user_id")
+  amountMinorUnits    BigInt       @map("amount_minor_units")
+  currency            String       @default("NGN")
+  bankName            String       @map("bank_name")
+  accountNumber       String       @map("account_number")
+  accountName         String       @map("account_name")
+  status              PayoutStatus @default(PENDING)
+  processedByAdminId  String?      @map("processed_by_admin_id")
+  notes               String?
+  reference           String?      @unique
+  createdAt           DateTime     @default(now()) @map("created_at")
+  updatedAt           DateTime     @updatedAt @map("updated_at")
+
+  tutor User @relation(fields: [tutorUserId], references: [id], onDelete: Restrict)
+
+  @@index([tutorSlug])
+  @@index([status])
+  @@map("tutor_payouts")
+}
+
+model ReconciliationReport {
+  id                     String               @id @default(uuid())
+  reportDate             DateTime             @map("report_date")
+  provider               String               @default("PAYSTACK")
+  totalSettledMinorUnits BigInt               @map("total_settled_minor_units")
+  matchedCount           Int                  @default(0) @map("matched_count")
+  unmatchedCount         Int                  @default(0) @map("unmatched_count")
+  discrepancyMinorUnits  BigInt               @default(0) @map("discrepancy_minor_units")
+  status                 ReconciliationStatus @default(BALANCED)
+  reconciledBy           String?              @map("reconciled_by")
+  notes                  String?
+  createdAt              DateTime             @default(now()) @map("created_at")
+
+  @@unique([reportDate, provider])
+  @@map("reconciliation_reports")
+}
+
+model OperationalAlert {
+  id             String        @id @default(uuid())
+  type           String
+  severity       AlertSeverity @default(INFO)
+  title          String
+  message        String
+  status         AlertStatus   @default(ACTIVE)
+  acknowledgedBy String?       @map("acknowledged_by")
+  acknowledgedAt DateTime?     @map("acknowledged_at")
+  resolvedAt     DateTime?     @map("resolved_at")
+  createdAt      DateTime      @default(now()) @map("created_at")
+
+  @@index([status, severity])
+  @@map("operational_alerts")
 }
 

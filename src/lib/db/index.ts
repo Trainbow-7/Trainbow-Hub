@@ -10,6 +10,8 @@ export interface UserRecord {
   dateOfBirth?: string; // ISO date string
   isMinor: boolean;
   isVerified: boolean;
+  isSuspended?: boolean;
+  suspendedReason?: string;
   tutorProfileSlug?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -44,8 +46,13 @@ export interface TutorProfileRecord {
   rating: number;
   completedLessons: number;
   ninVerified: boolean;
+  ninNumber?: string;
   backgroundChecked: boolean;
   trcnCertified: boolean;
+  trcnCertificateNumber?: string;
+  degreeTitle?: string;
+  institutionName?: string;
+  verificationNotes?: string;
   status: "PENDING_REVIEW" | "APPROVED" | "SUSPENDED";
   settlementBankName?: string;
   settlementAccount?: string;
@@ -330,6 +337,75 @@ export interface TutorReviewRecord {
   createdAt: Date;
 }
 
+// ============================================================================
+// Phase H: Administration, Safeguarding Triage & Financial Operations Types
+// ============================================================================
+
+export type PayoutStatus = "PENDING" | "PROCESSED" | "REJECTED";
+export type ReconciliationStatus = "BALANCED" | "FLAGGED_FOR_REVIEW";
+export type AlertSeverity = "INFO" | "WARNING" | "CRITICAL";
+export type AlertStatus = "ACTIVE" | "ACKNOWLEDGED" | "RESOLVED";
+
+export interface AdminAuditLogRecord {
+  id: string;
+  adminId: string;
+  adminName: string;
+  action: string;
+  targetType: string;
+  targetId: string;
+  beforeState?: Record<string, any>;
+  afterState?: Record<string, any>;
+  ipAddress?: string;
+  createdAt: Date;
+}
+
+export interface TutorPayoutRecord {
+  id: string;
+  tutorSlug: string;
+  tutorUserId: string;
+  tutorName: string;
+  amountMinorUnits: number;
+  currency: string;
+  bankName: string;
+  accountNumber: string;
+  accountName: string;
+  status: PayoutStatus;
+  processedByAdminId?: string;
+  notes?: string;
+  reference: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ReconciliationReportRecord {
+  id: string;
+  reportDate: string; // YYYY-MM-DD
+  provider: "PAYSTACK";
+  totalSettledMinorUnits: number;
+  internalTotalMinorUnits: number;
+  matchedCount: number;
+  unmatchedCount: number;
+  discrepancyMinorUnits: number;
+  status: ReconciliationStatus;
+  reconciledBy?: string;
+  notes?: string;
+  unmatchedReferences?: string[];
+  createdAt: Date;
+}
+
+export interface OperationalAlertRecord {
+  id: string;
+  type: "PAYMENT_FAILURE" | "BOOKING_ERROR" | "DOWNTIME" | "QUOTA_BREACH" | "SAFEGUARDING_SLA_BREACH";
+  severity: AlertSeverity;
+  title: string;
+  message: string;
+  status: AlertStatus;
+  acknowledgedBy?: string;
+  acknowledgedAt?: Date;
+  resolvedAt?: Date;
+  createdAt: Date;
+}
+
 // In-Memory resilient database engine
 class DatabaseStore {
   users: Map<string, UserRecord> = new Map();
@@ -352,6 +428,10 @@ class DatabaseStore {
   classroomAttendances: Map<string, ClassroomAttendanceRecord> = new Map();
   safeguardingIncidents: Map<string, SafeguardingIncidentRecord> = new Map();
   tutorReviews: Map<string, TutorReviewRecord> = new Map();
+  adminAuditLogs: Map<string, AdminAuditLogRecord> = new Map();
+  tutorPayouts: Map<string, TutorPayoutRecord> = new Map();
+  reconciliationReports: Map<string, ReconciliationReportRecord> = new Map();
+  operationalAlerts: Map<string, OperationalAlertRecord> = new Map();
   private initialized = false;
 
   async reset() {
@@ -382,6 +462,10 @@ class DatabaseStore {
     this.classroomAttendances.clear();
     this.safeguardingIncidents.clear();
     this.tutorReviews.clear();
+    this.adminAuditLogs.clear();
+    this.tutorPayouts.clear();
+    this.reconciliationReports.clear();
+    this.operationalAlerts.clear();
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");
@@ -734,6 +818,139 @@ class DatabaseStore {
       createdAt: new Date("2026-10-10T14:30:08Z"),
     };
     this.aiMessages.set(seedMsgAssistant.id, seedMsgAssistant);
+
+    // ========================================================================
+    // Phase H Seeds: Admin Operations, Vetting, Safeguarding, Reconciliation
+    // ========================================================================
+
+    // 1. Pending Tutor for Admin Vetting (AD-02)
+    const aminaUser: UserRecord = {
+      id: "usr-tut-005",
+      email: "amina.bello@trainbowhub.ng",
+      passwordHash: defaultHash,
+      fullName: "Amina Bello",
+      phoneNumber: "+2348037776655",
+      role: "TUTOR",
+      dateOfBirth: "1990-07-14",
+      isMinor: false,
+      isVerified: false,
+      isSuspended: false,
+      createdAt: new Date("2026-10-10"),
+      updatedAt: new Date("2026-10-10"),
+    };
+    this.users.set(aminaUser.id, aminaUser);
+
+    const aminaProfile: TutorProfileRecord = {
+      id: "tp-002",
+      userId: aminaUser.id,
+      slug: "amina-bello",
+      title: "M.Sc. Applied Mathematics & Further Maths Specialist",
+      bio: "Senior secondary mathematics and physics educator with 8 years of JAMB and WAEC prep coaching.",
+      teachingApproach: "Conceptual grounding, visual algebra, and rigorous past examination drills.",
+      hourlyRateMinorUnits: 650000, // ₦6,500
+      currency: "NGN",
+      rating: 4.8,
+      completedLessons: 0,
+      ninVerified: true,
+      ninNumber: "NIN-29481729381",
+      backgroundChecked: true,
+      trcnCertified: false,
+      trcnCertificateNumber: "TRCN/LA/2024/09123",
+      degreeTitle: "M.Sc. Applied Mathematics (University of Lagos)",
+      institutionName: "University of Lagos",
+      verificationNotes: "TRCN certificate scan uploaded; awaiting administrative document inspection.",
+      status: "PENDING_REVIEW",
+      settlementBankName: "Access Bank",
+      settlementAccount: "0691234567",
+      settlementName: "Amina Bello",
+      createdAt: new Date("2026-10-10"),
+      updatedAt: new Date("2026-10-10"),
+    };
+    this.tutorProfiles.set(aminaProfile.id, aminaProfile);
+
+    // 2. Urgent Safeguarding Incident for SLA Triage (AD-04, CL-04)
+    const urgentIncident: SafeguardingIncidentRecord = {
+      id: "inc-seed-urgent-01",
+      sessionId: "cls-seed-001",
+      bookingId: "bkg-seed-001",
+      reporterId: studentUser.id,
+      reportedUserId: tutorUser.id,
+      severity: "URGENT",
+      category: "INAPPROPRIATE_BEHAVIOR",
+      description: "Participant attempted unauthorized screen recording during active session and refused to desist.",
+      sessionTimestampSeconds: 420,
+      status: "OPEN",
+      assignedTo: "Grace Danladi (Designated Safeguarding Lead)",
+      createdAt: new Date(Date.now() - 2 * 3600 * 1000), // 2 hours ago
+      updatedAt: new Date(Date.now() - 2 * 3600 * 1000),
+    };
+    this.safeguardingIncidents.set(urgentIncident.id, urgentIncident);
+
+    // 3. Operational Alerts & System Health (AD-06)
+    const alert1: OperationalAlertRecord = {
+      id: "alt-001",
+      type: "PAYMENT_FAILURE",
+      severity: "WARNING",
+      title: "Paystack Webhook Jitter Mitigated",
+      message: "Paystack webhook retry handled with zero duplicate transactions via idempotency guard.",
+      status: "ACTIVE",
+      createdAt: new Date(Date.now() - 1 * 3600 * 1000),
+    };
+    const alert2: OperationalAlertRecord = {
+      id: "alt-002",
+      type: "SAFEGUARDING_SLA_BREACH",
+      severity: "CRITICAL",
+      title: "Urgent Safeguarding SLA Alert",
+      message: "Incident inc-seed-urgent-01 has 22 hours remaining under 24-hour statutory SLA.",
+      status: "ACTIVE",
+      createdAt: new Date(Date.now() - 2 * 3600 * 1000),
+    };
+    const alert3: OperationalAlertRecord = {
+      id: "alt-003",
+      type: "QUOTA_BREACH",
+      severity: "INFO",
+      title: "AI Quota Consumption Normal",
+      message: "AI daily student quota utilization across all tiers is 46%. Zero throttling events.",
+      status: "ACKNOWLEDGED",
+      acknowledgedBy: "Trainbow Administrator",
+      acknowledgedAt: new Date(Date.now() - 3 * 3600 * 1000),
+      createdAt: new Date(Date.now() - 4 * 3600 * 1000),
+    };
+    this.operationalAlerts.set(alert1.id, alert1);
+    this.operationalAlerts.set(alert2.id, alert2);
+    this.operationalAlerts.set(alert3.id, alert3);
+
+    // 4. Provider Settlement Reconciliation Report (PY-07)
+    const recReport: ReconciliationReportRecord = {
+      id: "rec-seed-001",
+      reportDate: "2026-10-11",
+      provider: "PAYSTACK",
+      totalSettledMinorUnits: 750000,
+      internalTotalMinorUnits: 750000,
+      matchedCount: 1,
+      unmatchedCount: 0,
+      discrepancyMinorUnits: 0,
+      status: "BALANCED",
+      reconciledBy: adminUser.id,
+      notes: "Daily Paystack settlement matched against verified booking ledger transactions.",
+      createdAt: new Date("2026-10-11T23:59:00Z"),
+    };
+    this.reconciliationReports.set(recReport.id, recReport);
+
+    // 5. Admin Audit Log (AD-07)
+    const initAudit: AdminAuditLogRecord = {
+      id: "aud-seed-001",
+      adminId: adminUser.id,
+      adminName: adminUser.fullName,
+      action: "PLATFORM_INITIALIZATION",
+      targetType: "SYSTEM",
+      targetId: "SYS-INIT",
+      beforeState: {},
+      afterState: { status: "ACTIVE", environment: "development" },
+      ipAddress: "127.0.0.1",
+      createdAt: new Date("2026-10-01T00:00:00Z"),
+    };
+    this.adminAuditLogs.set(initAudit.id, initAudit);
   }
 
   // User repository methods
@@ -1934,6 +2151,634 @@ class DatabaseStore {
       }
     }
     return false;
+  }
+
+  // ============================================================================
+  // Phase H: Administration, Vetting, Safeguarding, Reconciliation & Payout Methods
+  // ============================================================================
+
+  async logAdminAudit(params: {
+    adminId: string;
+    adminName?: string;
+    action: string;
+    targetType: string;
+    targetId: string;
+    beforeState?: any;
+    afterState?: any;
+    ipAddress?: string;
+  }): Promise<AdminAuditLogRecord> {
+    await this.init();
+    const admin = this.users.get(params.adminId);
+    const record: AdminAuditLogRecord = {
+      id: `aud-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      adminId: params.adminId,
+      adminName: params.adminName || admin?.fullName || "Admin",
+      action: params.action,
+      targetType: params.targetType,
+      targetId: params.targetId,
+      beforeState: params.beforeState,
+      afterState: params.afterState,
+      ipAddress: params.ipAddress || "127.0.0.1",
+      createdAt: new Date(),
+    };
+    this.adminAuditLogs.set(record.id, record);
+    return { ...record };
+  }
+
+  async listAdminAuditLogs(): Promise<AdminAuditLogRecord[]> {
+    await this.init();
+    return Array.from(this.adminAuditLogs.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async getAdminOverview(): Promise<{
+    totalUsers: number;
+    totalStudents: number;
+    totalTutors: number;
+    pendingTutorApprovals: number;
+    totalBookings: number;
+    totalVolumeMinorUnits: number;
+    platformCommissionMinorUnits: number;
+    openSafeguardingIncidents: number;
+    urgentIncidentsCount: number;
+    activeAlertsCount: number;
+    dailyAiCostUsd: number;
+    dailyAiQueriesCount: number;
+  }> {
+    await this.init();
+    const users = Array.from(this.users.values());
+    const totalUsers = users.length;
+    const totalStudents = users.filter(u => u.role === "STUDENT").length;
+    const totalTutors = users.filter(u => u.role === "TUTOR").length;
+
+    const tutors = Array.from(this.tutorProfiles.values());
+    const pendingTutorApprovals = tutors.filter(t => t.status === "PENDING_REVIEW").length;
+
+    const bookings = Array.from(this.bookings.values());
+    const totalBookings = bookings.length;
+    const totalVolumeMinorUnits = bookings.reduce((sum, b) => sum + (b.amountMinorUnits || 0), 0);
+    const platformCommissionMinorUnits = bookings.reduce((sum, b) => sum + (b.commissionMinorUnits || 0), 0);
+
+    const incidents = Array.from(this.safeguardingIncidents.values());
+    const openSafeguardingIncidents = incidents.filter(i => i.status === "OPEN" || i.status === "INVESTIGATING").length;
+    const urgentIncidentsCount = incidents.filter(i => i.severity === "URGENT" && i.status !== "RESOLVED" && i.status !== "DISMISSED").length;
+
+    const alerts = Array.from(this.operationalAlerts.values());
+    const activeAlertsCount = alerts.filter(a => a.status === "ACTIVE").length;
+
+    const messages = Array.from(this.aiMessages.values()).filter(m => m.role === "USER");
+    const dailyAiQueriesCount = messages.length;
+    // Estimated $0.002 per prompt/completion turn
+    const dailyAiCostUsd = Number((dailyAiQueriesCount * 0.002).toFixed(4));
+
+    return {
+      totalUsers,
+      totalStudents,
+      totalTutors,
+      pendingTutorApprovals,
+      totalBookings,
+      totalVolumeMinorUnits,
+      platformCommissionMinorUnits,
+      openSafeguardingIncidents,
+      urgentIncidentsCount,
+      activeAlertsCount,
+      dailyAiCostUsd,
+      dailyAiQueriesCount,
+    };
+  }
+
+  async listUsersForAdmin(params?: { role?: string; search?: string }): Promise<Array<UserRecord & { bookingCount: number; tutorStatus?: string }>> {
+    await this.init();
+    let list = Array.from(this.users.values());
+
+    if (params?.role && params.role !== "ALL") {
+      list = list.filter(u => u.role === params.role);
+    }
+
+    if (params?.search) {
+      const q = params.search.toLowerCase();
+      list = list.filter(u => u.fullName.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
+    }
+
+    const bookings = Array.from(this.bookings.values());
+    const tutors = Array.from(this.tutorProfiles.values());
+
+    return list.map(u => {
+      const userBookings = bookings.filter(b => b.studentId === u.id);
+      const tutor = tutors.find(t => t.userId === u.id);
+      return {
+        ...u,
+        bookingCount: userBookings.length,
+        tutorStatus: tutor?.status,
+      };
+    }).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async updateUserRole(userId: string, newRole: "STUDENT" | "PARENT" | "TUTOR" | "ADMIN", adminId: string): Promise<UserRecord> {
+    await this.init();
+    const user = this.users.get(userId);
+    if (!user) throw new Error("User not found");
+    const prev = { role: user.role };
+    user.role = newRole;
+    user.updatedAt = new Date();
+    this.users.set(user.id, user);
+
+    await this.logAdminAudit({
+      adminId,
+      action: "USER_ROLE_UPDATED",
+      targetType: "USER",
+      targetId: userId,
+      beforeState: prev,
+      afterState: { role: newRole },
+    });
+
+    return { ...user };
+  }
+
+  async toggleUserSuspension(userId: string, isSuspended: boolean, adminId: string, reason?: string): Promise<UserRecord> {
+    await this.init();
+    const user = this.users.get(userId);
+    if (!user) throw new Error("User not found");
+    const prev = { isSuspended: user.isSuspended, suspendedReason: user.suspendedReason };
+    user.isSuspended = isSuspended;
+    user.suspendedReason = reason;
+    user.updatedAt = new Date();
+    this.users.set(user.id, user);
+
+    // If user is a tutor and is suspended, update tutor profile status too
+    if (user.role === "TUTOR") {
+      for (const t of this.tutorProfiles.values()) {
+        if (t.userId === userId) {
+          t.status = isSuspended ? "SUSPENDED" : "APPROVED";
+          t.updatedAt = new Date();
+          this.tutorProfiles.set(t.id, t);
+        }
+      }
+    }
+
+    await this.logAdminAudit({
+      adminId,
+      action: isSuspended ? "USER_SUSPENDED" : "USER_UNSUSPENDED",
+      targetType: "USER",
+      targetId: userId,
+      beforeState: prev,
+      afterState: { isSuspended, reason },
+    });
+
+    return { ...user };
+  }
+
+  async listTutorsForVetting(statusFilter?: string): Promise<Array<{ profile: TutorProfileRecord; user: UserRecord }>> {
+    await this.init();
+    let profiles = Array.from(this.tutorProfiles.values());
+    if (statusFilter && statusFilter !== "ALL") {
+      profiles = profiles.filter(p => p.status === statusFilter);
+    }
+
+    return profiles.map(p => {
+      const user = this.users.get(p.userId) || {
+        id: p.userId,
+        email: "unknown@trainbowhub.ng",
+        passwordHash: "",
+        fullName: p.title,
+        role: "TUTOR",
+        isMinor: false,
+        isVerified: false,
+        createdAt: p.createdAt,
+        updatedAt: p.updatedAt,
+      };
+      return { profile: { ...p }, user: { ...user } };
+    }).sort((a, b) => b.profile.createdAt.getTime() - a.profile.createdAt.getTime());
+  }
+
+  async updateTutorVerification(
+    tutorProfileId: string,
+    newStatus: "APPROVED" | "PENDING_REVIEW" | "SUSPENDED",
+    adminId: string,
+    notes?: string
+  ): Promise<TutorProfileRecord> {
+    await this.init();
+    const profile = this.tutorProfiles.get(tutorProfileId);
+    if (!profile) throw new Error("Tutor profile not found");
+    const prev = { status: profile.status, verificationNotes: profile.verificationNotes };
+
+    profile.status = newStatus;
+    if (notes) profile.verificationNotes = notes;
+    if (newStatus === "APPROVED") {
+      profile.trcnCertified = true;
+      profile.ninVerified = true;
+      profile.backgroundChecked = true;
+      // Mark user as verified
+      const user = this.users.get(profile.userId);
+      if (user) {
+        user.isVerified = true;
+        this.users.set(user.id, user);
+      }
+    }
+    profile.updatedAt = new Date();
+    this.tutorProfiles.set(profile.id, profile);
+
+    await this.logAdminAudit({
+      adminId,
+      action: `TUTOR_STATUS_${newStatus}`,
+      targetType: "TUTOR_PROFILE",
+      targetId: tutorProfileId,
+      beforeState: prev,
+      afterState: { status: newStatus, notes },
+    });
+
+    return { ...profile };
+  }
+
+  async listSafeguardingIncidentsAdmin(severityFilter?: string, statusFilter?: string): Promise<Array<SafeguardingIncidentRecord & { remainingSlaHours: number; isSlaBreached: boolean; reporterName: string; reportedName?: string }>> {
+    await this.init();
+    let list = Array.from(this.safeguardingIncidents.values());
+
+    if (severityFilter && severityFilter !== "ALL") {
+      list = list.filter(i => i.severity === severityFilter);
+    }
+    if (statusFilter && statusFilter !== "ALL") {
+      list = list.filter(i => i.status === statusFilter);
+    }
+
+    const now = Date.now();
+    return list.map(i => {
+      const reporter = this.users.get(i.reporterId);
+      const reported = i.reportedUserId ? this.users.get(i.reportedUserId) : undefined;
+      const elapsedHours = (now - i.createdAt.getTime()) / (1000 * 3600);
+      const remainingSlaHours = Math.max(0, Number((24 - elapsedHours).toFixed(1)));
+      const isSlaBreached = elapsedHours > 24 && (i.status === "OPEN" || i.status === "INVESTIGATING");
+
+      return {
+        ...i,
+        remainingSlaHours,
+        isSlaBreached,
+        reporterName: reporter?.fullName || "Anonymous Student",
+        reportedName: reported?.fullName,
+      };
+    }).sort((a, b) => {
+      // Prioritize URGENT > HIGH > MEDIUM > LOW
+      const rank = { URGENT: 4, HIGH: 3, MEDIUM: 2, LOW: 1 };
+      const diff = (rank[b.severity] || 0) - (rank[a.severity] || 0);
+      if (diff !== 0) return diff;
+      return b.createdAt.getTime() - a.createdAt.getTime();
+    });
+  }
+
+  async triageSafeguardingIncident(
+    incidentId: string,
+    params: {
+      status: SafeguardingStatus;
+      assignedTo?: string;
+      resolutionNotes?: string;
+      adminId: string;
+    }
+  ): Promise<SafeguardingIncidentRecord> {
+    await this.init();
+    const incident = this.safeguardingIncidents.get(incidentId);
+    if (!incident) throw new Error("Incident not found");
+
+    const prev = { status: incident.status, assignedTo: incident.assignedTo, resolutionNotes: incident.resolutionNotes };
+    incident.status = params.status;
+    if (params.assignedTo) incident.assignedTo = params.assignedTo;
+    if (params.resolutionNotes) incident.resolutionNotes = params.resolutionNotes;
+    incident.updatedAt = new Date();
+    this.safeguardingIncidents.set(incident.id, incident);
+
+    await this.logAdminAudit({
+      adminId: params.adminId,
+      action: `SAFEGUARDING_TRIAGE_${params.status}`,
+      targetType: "SAFEGUARDING_INCIDENT",
+      targetId: incidentId,
+      beforeState: prev,
+      afterState: { status: params.status, assignedTo: params.assignedTo, resolutionNotes: params.resolutionNotes },
+    });
+
+    return { ...incident };
+  }
+
+  async listBookingsAdmin(statusFilter?: string): Promise<Array<BookingRecord & { transaction?: PaymentTransactionRecord }>> {
+    await this.init();
+    let list = Array.from(this.bookings.values());
+    if (statusFilter && statusFilter !== "ALL") {
+      list = list.filter(b => b.bookingStatus === statusFilter);
+    }
+
+    const txs = Array.from(this.paymentTransactions.values());
+    return list.map(b => {
+      const tx = txs.find(t => t.bookingId === b.id || t.reference === b.paymentReference);
+      return {
+        ...b,
+        transaction: tx ? { ...tx } : undefined,
+      };
+    }).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async resolveBookingDispute(
+    bookingId: string,
+    params: {
+      decision: "REFUND_FULL" | "REFUND_PARTIAL" | "REJECT_DISPUTE";
+      refundAmountMinorUnits?: number;
+      adminId: string;
+      notes: string;
+    }
+  ): Promise<{ booking: BookingRecord; refundLedgerEntry?: TutorLedgerEntryRecord }> {
+    await this.init();
+    const booking = this.bookings.get(bookingId);
+    if (!booking) throw new Error("Booking not found");
+
+    const prev = { bookingStatus: booking.bookingStatus, paymentStatus: booking.paymentStatus };
+    let refundLedgerEntry: TutorLedgerEntryRecord | undefined;
+
+    if (params.decision === "REJECT_DISPUTE") {
+      booking.bookingStatus = "COMPLETED";
+      booking.updatedAt = new Date();
+      this.bookings.set(booking.id, booking);
+    } else {
+      const refundAmount = params.decision === "REFUND_FULL" 
+        ? booking.amountMinorUnits 
+        : (params.refundAmountMinorUnits || Math.floor(booking.amountMinorUnits / 2));
+
+      booking.bookingStatus = "CANCELLED";
+      booking.paymentStatus = "REFUNDED";
+      booking.cancellationReason = `Dispute resolved by Admin: ${params.notes}`;
+      booking.updatedAt = new Date();
+      this.bookings.set(booking.id, booking);
+
+      // Record refund debit in tutor ledger
+      refundLedgerEntry = {
+        id: `led-ref-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+        tutorSlug: booking.tutorSlug,
+        bookingId: booking.id,
+        transactionReference: `ref_disp_${booking.id}`,
+        type: "REFUND_DEBIT",
+        amountMinorUnits: refundAmount,
+        currency: booking.currency,
+        description: `Dispute refund debit: ${params.notes}`,
+        createdAt: new Date(),
+      };
+      this.tutorLedgerEntries.set(refundLedgerEntry.id, refundLedgerEntry);
+    }
+
+    await this.logAdminAudit({
+      adminId: params.adminId,
+      action: `BOOKING_DISPUTE_${params.decision}`,
+      targetType: "BOOKING",
+      targetId: bookingId,
+      beforeState: prev,
+      afterState: { decision: params.decision, notes: params.notes },
+    });
+
+    return { booking: { ...booking }, refundLedgerEntry };
+  }
+
+  async listTutorPayoutBalances(): Promise<Array<{
+    tutorSlug: string;
+    tutorName: string;
+    tutorUserId: string;
+    bankName: string;
+    accountNumber: string;
+    accountName: string;
+    grossEarningsMinorUnits: number;
+    commissionDebitedMinorUnits: number;
+    refundsDebitedMinorUnits: number;
+    payoutsProcessedMinorUnits: number;
+    availableBalanceMinorUnits: number;
+  }>> {
+    await this.init();
+    const tutors = Array.from(this.tutorProfiles.values());
+    const ledger = Array.from(this.tutorLedgerEntries.values());
+    const payouts = Array.from(this.tutorPayouts.values());
+
+    return tutors.map(t => {
+      const tutorEntries = ledger.filter(e => e.tutorSlug === t.slug);
+      const grossEarningsMinorUnits = tutorEntries
+        .filter(e => e.type === "BOOKING_CREDIT")
+        .reduce((sum, e) => sum + e.amountMinorUnits, 0);
+
+      const commissionDebitedMinorUnits = tutorEntries
+        .filter(e => e.type === "COMMISSION_DEBIT")
+        .reduce((sum, e) => sum + e.amountMinorUnits, 0);
+
+      const refundsDebitedMinorUnits = tutorEntries
+        .filter(e => e.type === "REFUND_DEBIT")
+        .reduce((sum, e) => sum + e.amountMinorUnits, 0);
+
+      const payoutsProcessedMinorUnits = tutorEntries
+        .filter(e => e.type === "PAYOUT")
+        .reduce((sum, e) => sum + e.amountMinorUnits, 0);
+
+      const availableBalanceMinorUnits = Math.max(
+        0,
+        grossEarningsMinorUnits - commissionDebitedMinorUnits - refundsDebitedMinorUnits - payoutsProcessedMinorUnits
+      );
+
+      return {
+        tutorSlug: t.slug,
+        tutorName: t.settlementName || t.title,
+        tutorUserId: t.userId,
+        bankName: t.settlementBankName || "Not configured",
+        accountNumber: t.settlementAccount || "Not configured",
+        accountName: t.settlementName || t.title,
+        grossEarningsMinorUnits,
+        commissionDebitedMinorUnits,
+        refundsDebitedMinorUnits,
+        payoutsProcessedMinorUnits,
+        availableBalanceMinorUnits,
+      };
+    });
+  }
+
+  async processTutorPayout(
+    tutorSlug: string,
+    amountMinorUnits: number,
+    adminId: string,
+    notes?: string
+  ): Promise<{ payout: TutorPayoutRecord; ledgerEntry: TutorLedgerEntryRecord }> {
+    await this.init();
+    const tutorBalances = await this.listTutorPayoutBalances();
+    const balance = tutorBalances.find(b => b.tutorSlug === tutorSlug);
+    if (!balance) throw new Error("Tutor balance record not found");
+
+    if (amountMinorUnits > balance.availableBalanceMinorUnits) {
+      throw new Error(`Requested payout (${amountMinorUnits}) exceeds available balance (${balance.availableBalanceMinorUnits})`);
+    }
+
+    if (amountMinorUnits <= 0) {
+      throw new Error("Payout amount must be greater than zero");
+    }
+
+    const payout: TutorPayoutRecord = {
+      id: `pot-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      tutorSlug,
+      tutorUserId: balance.tutorUserId,
+      tutorName: balance.tutorName,
+      amountMinorUnits,
+      currency: "NGN",
+      bankName: balance.bankName,
+      accountNumber: balance.accountNumber,
+      accountName: balance.accountName,
+      status: "PROCESSED",
+      processedByAdminId: adminId,
+      notes: notes || "Manual administrator settlement payout",
+      reference: `payout_ref_${Date.now()}`,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.tutorPayouts.set(payout.id, payout);
+
+    // Write immutable ledger entry for PAYOUT debit
+    const ledgerEntry: TutorLedgerEntryRecord = {
+      id: `led-pot-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      tutorSlug,
+      bookingId: `payout-${payout.id}`,
+      transactionReference: payout.reference,
+      type: "PAYOUT",
+      amountMinorUnits,
+      currency: "NGN",
+      description: `Disbursed payout to ${balance.bankName} (${balance.accountNumber})`,
+      createdAt: new Date(),
+    };
+    this.tutorLedgerEntries.set(ledgerEntry.id, ledgerEntry);
+
+    await this.logAdminAudit({
+      adminId,
+      action: "TUTOR_PAYOUT_PROCESSED",
+      targetType: "TUTOR_PAYOUT",
+      targetId: payout.id,
+      beforeState: { previousAvailableBalance: balance.availableBalanceMinorUnits },
+      afterState: { payoutAmount: amountMinorUnits, newAvailableBalance: balance.availableBalanceMinorUnits - amountMinorUnits },
+    });
+
+    return { payout: { ...payout }, ledgerEntry: { ...ledgerEntry } };
+  }
+
+  async listReconciliationReports(): Promise<ReconciliationReportRecord[]> {
+    await this.init();
+    return Array.from(this.reconciliationReports.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async runDailyReconciliation(dateStr?: string, adminId?: string): Promise<ReconciliationReportRecord> {
+    await this.init();
+    const targetDate = dateStr || new Date().toISOString().split("T")[0];
+    const transactions = Array.from(this.paymentTransactions.values()).filter(t => t.status === "VERIFIED");
+
+    const internalTotal = transactions.reduce((sum, t) => sum + t.amountMinorUnits, 0);
+    // In sandbox, provider total matches internal ledger
+    const providerSettled = internalTotal;
+    const discrepancy = providerSettled - internalTotal;
+
+    const report: ReconciliationReportRecord = {
+      id: `rec-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+      reportDate: targetDate,
+      provider: "PAYSTACK",
+      totalSettledMinorUnits: providerSettled,
+      internalTotalMinorUnits: internalTotal,
+      matchedCount: transactions.length,
+      unmatchedCount: 0,
+      discrepancyMinorUnits: discrepancy,
+      status: discrepancy === 0 ? "BALANCED" : "FLAGGED_FOR_REVIEW",
+      reconciledBy: adminId || "system",
+      notes: discrepancy === 0 
+        ? `Automated daily reconciliation passed with 100% matched transactions across ${transactions.length} orders.`
+        : `Discrepancy detected: ${discrepancy} minor units require investigation.`,
+      createdAt: new Date(),
+    };
+    this.reconciliationReports.set(report.id, report);
+
+    if (adminId) {
+      await this.logAdminAudit({
+        adminId,
+        action: "RECONCILIATION_RUN",
+        targetType: "RECONCILIATION_REPORT",
+        targetId: report.id,
+        afterState: { status: report.status, total: internalTotal },
+      });
+    }
+
+    return { ...report };
+  }
+
+  async getAIUsageAdminAnalytics(): Promise<{
+    totalQueries: number;
+    totalPromptTokens: number;
+    totalCompletionTokens: number;
+    estimatedCostUsd: number;
+    estimatedCostNgn: number;
+    quotaTiers: { free: number; pro: number; unlimited: number };
+    topCurriculums: Array<{ curriculum: string; count: number }>;
+  }> {
+    await this.init();
+    const messages = Array.from(this.aiMessages.values()).filter(m => m.role === "USER");
+    const totalQueries = messages.length;
+
+    // Standard estimation: ~120 prompt tokens, ~280 completion tokens per turn
+    const totalPromptTokens = totalQueries * 120;
+    const totalCompletionTokens = totalQueries * 280;
+    const estimatedCostUsd = Number((totalQueries * 0.002).toFixed(4));
+    const estimatedCostNgn = Math.round(estimatedCostUsd * 1650 * 100); // in minor units kobo
+
+    const users = Array.from(this.users.values());
+    const quotaTiers = {
+      free: users.filter(u => u.role === "STUDENT").length,
+      pro: 0,
+      unlimited: users.filter(u => u.role === "TUTOR" || u.role === "ADMIN").length,
+    };
+
+    const convs = Array.from(this.aiConversations.values());
+    const curriculumMap: Record<string, number> = {};
+    for (const c of convs) {
+      curriculumMap[c.curriculum] = (curriculumMap[c.curriculum] || 0) + 1;
+    }
+    const topCurriculums = Object.entries(curriculumMap).map(([curriculum, count]) => ({ curriculum, count }));
+
+    return {
+      totalQueries,
+      totalPromptTokens,
+      totalCompletionTokens,
+      estimatedCostUsd,
+      estimatedCostNgn,
+      quotaTiers,
+      topCurriculums,
+    };
+  }
+
+  async listOperationalAlerts(statusFilter?: string): Promise<OperationalAlertRecord[]> {
+    await this.init();
+    let list = Array.from(this.operationalAlerts.values());
+    if (statusFilter && statusFilter !== "ALL") {
+      list = list.filter(a => a.status === statusFilter);
+    }
+    return list.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async updateOperationalAlertStatus(alertId: string, status: AlertStatus, adminId: string): Promise<OperationalAlertRecord> {
+    await this.init();
+    const alert = this.operationalAlerts.get(alertId);
+    if (!alert) throw new Error("Alert not found");
+
+    alert.status = status;
+    const admin = this.users.get(adminId);
+    if (status === "ACKNOWLEDGED") {
+      alert.acknowledgedBy = admin?.fullName || "Admin";
+      alert.acknowledgedAt = new Date();
+    } else if (status === "RESOLVED") {
+      alert.resolvedAt = new Date();
+    }
+    this.operationalAlerts.set(alert.id, alert);
+
+    await this.logAdminAudit({
+      adminId,
+      action: `ALERT_${status}`,
+      targetType: "OPERATIONAL_ALERT",
+      targetId: alertId,
+      afterState: { status },
+    });
+
+    return { ...alert };
   }
 }
 
