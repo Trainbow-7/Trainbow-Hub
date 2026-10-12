@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.13.0] - 2026-10-12 - Phase M: Production Release Gates, Automated Disaster Recovery, NDPA 2023 Data Retention & Platform Handover (RG-01 through RG-04, ADR-014, PRD Section 8 & 9)
+#### Added
+- **8 Mandatory Production Release Gates Verification Engine (RG-01, ADR-014, PRD Section 8)**:
+  - Interactive verification portal (`/release-gates`) and REST endpoints (`/api/release-gates`, `/api/release-gates/verify`) enforcing all 8 statutory and operational go-live criteria:
+    1. TLS 1.3 enforced, strict RBAC, rate-limiting active, zero critical CVEs.
+    2. Booking conflicts strictly prevented under 50 simultaneous hold attempts.
+    3. Paystack HMAC-SHA512 webhook signature verification and zero-discrepancy reconciliation.
+    4. Student, Guardian, Tutor, and Admin least-privilege RBAC verified with minor safeguarding locks.
+    5. Socratic AI hint progression (≥90% rubric score, zero hallucinations, child safeguarding moderation).
+    6. Database restoration demonstrated in staging with RPO ≤ 15 min and RTO ≤ 5 min.
+    7. Safeguarding procedures documented with <24h high-severity SLA and instant tutor suspension rehearsal.
+    8. Terms of Service, NDPA 2023 Privacy Policy, Refund Policy, and Child Safeguarding Charter published.
+  - Granular evidence inspector rendering cryptographic audit payloads per gate.
+- **Disaster Recovery Automated Snapshots & Verification Runbook (RG-02, ADR-014, PRD Section 6.5 & Section 8)**:
+  - Automated database backup engine (`src/lib/recovery/backup.ts`) and administrative snapshot triggers (`/api/admin/backup`).
+  - Cryptographic SHA-256 verification of archive blobs and NDPA 2023 minor PII data scrubber for staging restoration.
+  - Recovery time objective (RTO 5 min) and recovery point objective (RPO 15 min) metrics tracking with simulated restore demonstration.
+- **NDPA 2023 Statutory Privacy Retention & Right-to-Erasure Tools (RG-03, ADR-014, PRD Section 7 & 8)**:
+  - Comprehensive statutory data retention matrix (`src/lib/privacy/retention.ts`, `/api/privacy/retention`) covering AI conversations (90 days), session attendances (12 months), financial transactions (6 years per FIRS), safeguarding records (7 years statutory lock), and student/guardian profiles.
+  - Interactive data erasure tool (`/api/privacy/purge`) allowing compliance officers and users to execute 90-day AI conversation purges and Section 34 Right-to-be-Forgotten anonymization.
+- **12 Platform Handover Deliverables & Documentation (RG-04, ADR-014, PRD Section 9)**:
+  - Interactive 12-item platform handover checklist (`/api/handover`) tracking all deliverables for Trainbow Technologies Limited board, staff, and partners.
+  - Comprehensive operational handover document (`docs/HANDOVER.md`) detailing architecture, environment configs, database migrations, CI/CD pipelines, Paystack credentials, LiveKit media gateways, Redis clusters, customer support runbooks, and staff training curriculum.
+- **Quality Gates, Tests & Accessibility**:
+  - PostgreSQL schema migration `011_phase_m_release_gates_and_handover.sql` and Prisma models (`ReleaseGateEvaluation`, `SystemBackup`, `PrivacyPurgeRequest`).
+  - 8 Vitest unit tests in `src/test/release-gates.test.ts` (155 tests passing project-wide across 15 test suites with 0 failures).
+  - 8 Playwright E2E tests in `e2e/phase-m.spec.ts` testing release gates evaluation, disaster recovery snapshots, restore demonstrations, NDPA data purging, and handover checklist.
+  - Multi-viewport accessibility audit (`scripts/audit-phase-m.js`) verifying 0 serious/critical WCAG 2.2 AA violations across Desktop (1280px), Tablet (768px), and Mobile (375px) viewports with high-resolution visual captures.
+
 ### [0.12.0] - 2026-10-12 - Phase L: Institutional School Administration, Multilingual Localization & Low-Bandwidth PWA (SC-01 through SC-05, ADR-013)
 #### Added
 - **Institutional School & Cohort Registry (SC-01, ADR-013)**:

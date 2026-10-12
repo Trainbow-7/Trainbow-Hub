@@ -897,6 +897,50 @@ model SchoolStudentEnrollment {
   @@map("school_student_enrollments")
 }
 
+// ==============================================================================
+// Phase M: Production Release Gates, System Backups & Privacy Purge (ADR-014)
+// ==============================================================================
 
+model ReleaseGateEvaluation {
+  id              String   @id @default(uuid())
+  gateNumber      Int      @map("gate_number")
+  gateName        String   @map("gate_name")
+  category        String
+  passed          Boolean  @default(false)
+  scorePercentage Float    @default(100.0) @map("score_percentage")
+  evidencePayload String?  @map("evidence_payload")
+  evaluatedBy     String   @default("SYSTEM_AUTOMATION") @map("evaluated_by")
+  evaluatedAt     DateTime @default(now()) @map("evaluated_at")
 
+  @@index([gateNumber])
+  @@map("release_gate_evaluations")
+}
 
+model SystemBackup {
+  id               String    @id @default(uuid())
+  backupType       String    @default("SCHEDULED_DAILY") @map("backup_type")
+  snapshotFilename String    @map("snapshot_filename")
+  recordCounts     String    @map("record_counts") // JSON payload of table counts
+  checksum         String
+  status           String    @default("VERIFIED") // PENDING, VERIFIED, FAILED, RESTORED
+  dataScrubbed     Boolean   @default(true) @map("data_scrubbed")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  restoredAt       DateTime? @map("restored_at")
+
+  @@index([status])
+  @@map("system_backups")
+}
+
+model PrivacyPurgeRequest {
+  id                String   @id @default(uuid())
+  userId            String   @map("user_id")
+  requestedByRole   String   @default("STUDENT") @map("requested_by_role")
+  retentionCategory String   @default("AI_CONVERSATIONS_90D") @map("retention_category")
+  recordsPurged     Int      @default(0) @map("records_purged")
+  status            String   @default("COMPLETED")
+  executedAt        DateTime @default(now()) @map("executed_at")
+  auditNotes        String?  @map("audit_notes")
+
+  @@index([userId])
+  @@map("privacy_purge_requests")
+}

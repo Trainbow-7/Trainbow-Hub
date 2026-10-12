@@ -49,8 +49,8 @@ export function TrainbowLogo({
       {showTagline && (
         <span
           className={cn(
-            "text-[10px] font-medium tracking-wide ml-10 mt-[-2px]",
-            isDarkSurface ? "text-neutral-slate-400" : "text-neutral-slate-500"
+            "text-[10px] font-semibold tracking-wide ml-10 mt-[-2px]",
+            isDarkSurface ? "text-neutral-slate-300" : "text-neutral-slate-700"
           )}
         >
           Learn • Connect • Grow
