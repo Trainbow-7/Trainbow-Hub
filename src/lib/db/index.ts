@@ -406,6 +406,70 @@ export interface OperationalAlertRecord {
   createdAt: Date;
 }
 
+// Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject Governance Types
+export type SubjectStatus = "DRAFT" | "ACTIVE" | "RETIRED";
+export type SubjectAIEvalStatus = "NOT_STARTED" | "IN_EVALUATION" | "PASSED" | "FAILED";
+
+export interface SubjectRecord {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  category: string;
+  levels: string[];
+  deliveryFormats: string[];
+  status: SubjectStatus;
+  icon: string;
+  color: string;
+  pricingTierMinorUnits: number;
+  commissionRatePercent: number; // SB-09
+  aiEnabled: boolean; // SB-05
+  aiEvaluationStatus: SubjectAIEvalStatus; // SB-06
+  aiEvaluationScore?: number;
+  aiEvaluationSignedBy?: string;
+  aiEvaluationSignedAt?: Date;
+  aiGroundingSummary?: string;
+  aiVerificationMethod: string; // SB-07
+  aiSystemPrompt?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface SubjectAIEvaluationRecord {
+  id: string;
+  subjectSlug: string;
+  evaluatorId: string;
+  evaluatorName?: string;
+  rubricScore: number;
+  passed: boolean;
+  unsafeContentBlockedCount: number;
+  groundingCoveragePercent: number;
+  notes?: string;
+  signOffSignature: string;
+  evaluatedAt: Date;
+}
+
+export interface TutorSubjectQualificationRecord {
+  id: string;
+  tutorSlug: string;
+  subjectSlug: string;
+  levels: string[];
+  credentialEvidenceUrl: string;
+  credentialType: string;
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  verifiedByAdminId?: string;
+  verifiedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ContentManagerSubjectAssignmentRecord {
+  id: string;
+  userId: string;
+  subjectSlug: string;
+  assignedAt: Date;
+}
+
 // In-Memory resilient database engine
 class DatabaseStore {
   users: Map<string, UserRecord> = new Map();
@@ -432,6 +496,10 @@ class DatabaseStore {
   tutorPayouts: Map<string, TutorPayoutRecord> = new Map();
   reconciliationReports: Map<string, ReconciliationReportRecord> = new Map();
   operationalAlerts: Map<string, OperationalAlertRecord> = new Map();
+  subjects: Map<string, SubjectRecord> = new Map();
+  subjectEvaluations: Map<string, SubjectAIEvaluationRecord> = new Map();
+  tutorSubjectQualifications: Map<string, TutorSubjectQualificationRecord> = new Map();
+  contentManagerSubjectAssignments: Map<string, ContentManagerSubjectAssignmentRecord> = new Map();
   private initialized = false;
 
   async reset() {
@@ -466,6 +534,10 @@ class DatabaseStore {
     this.tutorPayouts.clear();
     this.reconciliationReports.clear();
     this.operationalAlerts.clear();
+    this.subjects.clear();
+    this.subjectEvaluations.clear();
+    this.tutorSubjectQualifications.clear();
+    this.contentManagerSubjectAssignments.clear();
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");
@@ -951,6 +1023,248 @@ class DatabaseStore {
       createdAt: new Date("2026-10-01T00:00:00Z"),
     };
     this.adminAuditLogs.set(initAudit.id, initAudit);
+
+    // ==============================================================================
+    // Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject Governance (SB-01 to SB-09)
+    // ==============================================================================
+    const mathSub: SubjectRecord = {
+      id: "sub-seed-001",
+      slug: "mathematics",
+      name: "Mathematics",
+      description: "Foundational and advanced numeracy covering Algebra, Calculus, Geometry, Trigonometry and Statistics for WAEC, JAMB and Cambridge IGCSE.",
+      category: "STEM",
+      levels: ["JSS 1-3", "SSS 1-3", "WAEC/JAMB", "Cambridge IGCSE"],
+      deliveryFormats: ["ONE_ON_ONE_ONLINE", "SELF_PACED_ACADEMY"],
+      status: "ACTIVE",
+      icon: "Calculator",
+      color: "purple",
+      pricingTierMinorUnits: 750000, // ₦7,500
+      commissionRatePercent: 15.0,
+      aiEnabled: true,
+      aiEvaluationStatus: "PASSED",
+      aiEvaluationScore: 94.5,
+      aiEvaluationSignedBy: "Grace Danladi & Evaluator Board",
+      aiEvaluationSignedAt: new Date("2026-09-15T10:00:00Z"),
+      aiGroundingSummary: "WAEC Mathematics Syllabus (2024-2026), NERDC Senior Secondary Mathematics Curriculum, and Past Question Solutions.",
+      aiVerificationMethod: "SYMBOLIC_SOLVER",
+      aiSystemPrompt: "You are Trainbow HUB's Socratic Mathematics Assistant for Nigerian learners...",
+      createdAt: new Date("2026-09-01T00:00:00Z"),
+      updatedAt: new Date("2026-09-15T10:00:00Z"),
+    };
+
+    const englishSub: SubjectRecord = {
+      id: "sub-seed-002",
+      slug: "english-language",
+      name: "English Language & Literature",
+      description: "Grammar, Lexis, Structure, Comprehension, Essay Composition and African & Non-African Prose/Poetry for WAEC/JAMB candidates.",
+      category: "Languages",
+      levels: ["JSS 1-3", "SSS 1-3", "WAEC/JAMB"],
+      deliveryFormats: ["ONE_ON_ONE_ONLINE", "SELF_PACED_ACADEMY"],
+      status: "ACTIVE",
+      icon: "BookOpen",
+      color: "teal",
+      pricingTierMinorUnits: 650000, // ₦6,500
+      commissionRatePercent: 15.0,
+      aiEnabled: false, // SB-05: AI in evaluation, not yet enabled
+      aiEvaluationStatus: "IN_EVALUATION",
+      aiEvaluationScore: 78.0,
+      aiGroundingSummary: "NERDC English Curriculum, West African Exam Council Oral & Written Guidelines.",
+      aiVerificationMethod: "GRAMMAR_CHECKER",
+      createdAt: new Date("2026-09-05T00:00:00Z"),
+      updatedAt: new Date("2026-10-01T00:00:00Z"),
+    };
+
+    const physicsSub: SubjectRecord = {
+      id: "sub-seed-003",
+      slug: "physics",
+      name: "Physics",
+      description: "Mechanics, Waves, Optics, Electricity, Magnetism, Thermal Physics and Atomic Models with practical examination preparation.",
+      category: "STEM",
+      levels: ["SSS 1-3", "WAEC/JAMB", "Cambridge IGCSE"],
+      deliveryFormats: ["ONE_ON_ONE_ONLINE", "SELF_PACED_ACADEMY"],
+      status: "ACTIVE",
+      icon: "Atom",
+      color: "blue",
+      pricingTierMinorUnits: 800000, // ₦8,000
+      commissionRatePercent: 15.0,
+      aiEnabled: false, // Evaluation passed, ready for admin toggle
+      aiEvaluationStatus: "PASSED",
+      aiEvaluationScore: 88.0,
+      aiEvaluationSignedBy: "Dr. Tayo Okafor (Lead STEM Evaluator)",
+      aiEvaluationSignedAt: new Date("2026-10-05T12:00:00Z"),
+      aiGroundingSummary: "Ababio Physics & WAEC Practical Physics Manual.",
+      aiVerificationMethod: "SYMBOLIC_SOLVER",
+      createdAt: new Date("2026-09-10T00:00:00Z"),
+      updatedAt: new Date("2026-10-05T12:00:00Z"),
+    };
+
+    const chemSub: SubjectRecord = {
+      id: "sub-seed-004",
+      slug: "chemistry",
+      name: "Chemistry",
+      description: "Physical, Inorganic and Organic Chemistry covering Stoichiometry, Periodic Table trends, and Qualitative/Quantitative Analysis.",
+      category: "STEM",
+      levels: ["SSS 1-3", "WAEC/JAMB"],
+      deliveryFormats: ["ONE_ON_ONE_ONLINE"],
+      status: "ACTIVE",
+      icon: "FlaskConical",
+      color: "emerald",
+      pricingTierMinorUnits: 750000, // ₦7,500
+      commissionRatePercent: 12.5, // SB-09: Custom subject commission rate
+      aiEnabled: false,
+      aiEvaluationStatus: "IN_EVALUATION",
+      aiVerificationMethod: "FACTUAL_RETRIEVAL",
+      createdAt: new Date("2026-09-12T00:00:00Z"),
+      updatedAt: new Date("2026-10-01T00:00:00Z"),
+    };
+
+    const bioSub: SubjectRecord = {
+      id: "sub-seed-005",
+      slug: "biology",
+      name: "Biology",
+      description: "Cell biology, Genetics, Ecology, Physiology and Organismal Diversity for WAEC/JAMB science students.",
+      category: "Sciences",
+      levels: ["SSS 1-3", "WAEC/JAMB"],
+      deliveryFormats: ["ONE_ON_ONE_ONLINE"],
+      status: "DRAFT", // SB-01: Draft subject
+      icon: "Dna",
+      color: "green",
+      pricingTierMinorUnits: 600000,
+      commissionRatePercent: 15.0,
+      aiEnabled: false,
+      aiEvaluationStatus: "NOT_STARTED",
+      aiVerificationMethod: "FACTUAL_RETRIEVAL",
+      createdAt: new Date("2026-10-01T00:00:00Z"),
+      updatedAt: new Date("2026-10-01T00:00:00Z"),
+    };
+
+    const musicSub: SubjectRecord = {
+      id: "sub-seed-006",
+      slug: "music-theory",
+      name: "Music Theory & Fundamentals",
+      description: "Notation, Rhythm, Scales, Harmony, Aural Training and Grade 1-5 ABRSM / MUSON exam preparation.",
+      category: "Arts",
+      levels: ["Beginner", "Intermediate", "Grade 1-5 ABRSM/MUSON"],
+      deliveryFormats: ["ONE_ON_ONE_ONLINE", "HYBRID"],
+      status: "DRAFT", // Phase K Preview
+      icon: "Music",
+      color: "amber",
+      pricingTierMinorUnits: 900000, // ₦9,000
+      commissionRatePercent: 20.0,
+      aiEnabled: false,
+      aiEvaluationStatus: "NOT_STARTED",
+      aiVerificationMethod: "RUBRIC_PARSER",
+      createdAt: new Date("2026-10-08T00:00:00Z"),
+      updatedAt: new Date("2026-10-08T00:00:00Z"),
+    };
+
+    this.subjects.set(mathSub.slug, mathSub);
+    this.subjects.set(englishSub.slug, englishSub);
+    this.subjects.set(physicsSub.slug, physicsSub);
+    this.subjects.set(chemSub.slug, chemSub);
+    this.subjects.set(bioSub.slug, bioSub);
+    this.subjects.set(musicSub.slug, musicSub);
+
+    // Seed Tutor Subject Qualifications (SB-03)
+    const tsq1: TutorSubjectQualificationRecord = {
+      id: "tsq-seed-001",
+      tutorSlug: "dr-tayo-okafor",
+      subjectSlug: "mathematics",
+      levels: ["JSS 1-3", "SSS 1-3", "WAEC/JAMB", "Cambridge IGCSE"],
+      credentialEvidenceUrl: "https://trainbow-storage.s3.af-south-1.amazonaws.com/credentials/tayo-phd-math.pdf",
+      credentialType: "PHD_MATHEMATICS",
+      status: "APPROVED",
+      verifiedByAdminId: adminUser.id,
+      verifiedAt: new Date("2026-09-10T10:00:00Z"),
+      createdAt: new Date("2026-09-08T00:00:00Z"),
+      updatedAt: new Date("2026-09-10T10:00:00Z"),
+    };
+
+    const tsq2: TutorSubjectQualificationRecord = {
+      id: "tsq-seed-002",
+      tutorSlug: "dr-tayo-okafor",
+      subjectSlug: "physics",
+      levels: ["SSS 1-3", "WAEC/JAMB"],
+      credentialEvidenceUrl: "https://trainbow-storage.s3.af-south-1.amazonaws.com/credentials/tayo-trcn-physics.pdf",
+      credentialType: "TRCN_CERTIFICATION",
+      status: "APPROVED",
+      verifiedByAdminId: adminUser.id,
+      verifiedAt: new Date("2026-09-12T10:00:00Z"),
+      createdAt: new Date("2026-09-10T00:00:00Z"),
+      updatedAt: new Date("2026-09-12T10:00:00Z"),
+    };
+
+    const tsq3: TutorSubjectQualificationRecord = {
+      id: "tsq-seed-003",
+      tutorSlug: "tp-002", // Amina Bello
+      subjectSlug: "english-language",
+      levels: ["JSS 1-3", "SSS 1-3"],
+      credentialEvidenceUrl: "https://trainbow-storage.s3.af-south-1.amazonaws.com/credentials/amina-ba-english.pdf",
+      credentialType: "UNIVERSITY_DEGREE",
+      status: "PENDING",
+      createdAt: new Date("2026-10-10T00:00:00Z"),
+      updatedAt: new Date("2026-10-10T00:00:00Z"),
+    };
+
+    this.tutorSubjectQualifications.set(tsq1.id, tsq1);
+    this.tutorSubjectQualifications.set(tsq2.id, tsq2);
+    this.tutorSubjectQualifications.set(tsq3.id, tsq3);
+
+    // Seed Subject AI Evaluations (SB-06)
+    const evalMath: SubjectAIEvaluationRecord = {
+      id: "eval-seed-math-01",
+      subjectSlug: "mathematics",
+      evaluatorId: adminUser.id,
+      evaluatorName: "Grace Danladi",
+      rubricScore: 94.5,
+      passed: true,
+      unsafeContentBlockedCount: 15,
+      groundingCoveragePercent: 96.0,
+      notes: "Socratic hints successfully tested across 120 quadratic, calculus and geometry prompts. Zero halluncinations in formula evaluation.",
+      signOffSignature: "SIG-EVAL-MATH-DANLADI-2026",
+      evaluatedAt: new Date("2026-09-15T10:00:00Z"),
+    };
+
+    const evalPhys: SubjectAIEvaluationRecord = {
+      id: "eval-seed-phys-01",
+      subjectSlug: "physics",
+      evaluatorId: adminUser.id,
+      evaluatorName: "Dr. Tayo Okafor",
+      rubricScore: 88.0,
+      passed: true,
+      unsafeContentBlockedCount: 8,
+      groundingCoveragePercent: 89.5,
+      notes: "Mechanics and kinematic equations verified with symbolic solver. Ready for live toggle.",
+      signOffSignature: "SIG-EVAL-PHYS-OKAFOR-2026",
+      evaluatedAt: new Date("2026-10-05T12:00:00Z"),
+    };
+
+    const evalEng: SubjectAIEvaluationRecord = {
+      id: "eval-seed-eng-01",
+      subjectSlug: "english-language",
+      evaluatorId: adminUser.id,
+      evaluatorName: "Amina Bello",
+      rubricScore: 78.0,
+      passed: false, // Below 80.0% threshold
+      unsafeContentBlockedCount: 12,
+      groundingCoveragePercent: 74.0,
+      notes: "Nigerian English idioms need calibrated grounding before open deployment. Score 78.0% falls short of 80% passing gate.",
+      signOffSignature: "SIG-EVAL-ENG-BELLO-2026",
+      evaluatedAt: new Date("2026-10-01T15:00:00Z"),
+    };
+
+    this.subjectEvaluations.set(evalMath.id, evalMath);
+    this.subjectEvaluations.set(evalPhys.id, evalPhys);
+    this.subjectEvaluations.set(evalEng.id, evalEng);
+
+    // Seed Content Manager Assignment (SB-02)
+    const cma1: ContentManagerSubjectAssignmentRecord = {
+      id: "cma-seed-001",
+      userId: tutorUser.id,
+      subjectSlug: "mathematics",
+      assignedAt: new Date("2026-09-01T00:00:00Z"),
+    };
+    this.contentManagerSubjectAssignments.set(cma1.id, cma1);
   }
 
   // User repository methods
@@ -2779,6 +3093,262 @@ class DatabaseStore {
     });
 
     return { ...alert };
+  }
+
+  // ==============================================================================
+  // Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject Governance (SB-01 to SB-09)
+  // ==============================================================================
+
+  async listSubjects(filter?: { status?: SubjectStatus; category?: string; aiEnabled?: boolean }): Promise<SubjectRecord[]> {
+    await this.init();
+    let list = Array.from(this.subjects.values());
+    if (filter?.status) {
+      list = list.filter(s => s.status === filter.status);
+    }
+    if (filter?.category) {
+      list = list.filter(s => s.category.toLowerCase() === filter.category!.toLowerCase());
+    }
+    if (filter?.aiEnabled !== undefined) {
+      list = list.filter(s => s.aiEnabled === filter.aiEnabled);
+    }
+    return list.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  async getSubjectBySlug(slug: string): Promise<SubjectRecord | null> {
+    await this.init();
+    const sub = this.subjects.get(slug.toLowerCase().trim());
+    return sub ? { ...sub } : null;
+  }
+
+  async createSubject(data: Omit<SubjectRecord, "id" | "createdAt" | "updatedAt">): Promise<SubjectRecord> {
+    await this.init();
+    const slug = data.slug.toLowerCase().trim();
+    if (this.subjects.has(slug)) {
+      throw new Error(`Subject with slug "${slug}" already exists`);
+    }
+    const now = new Date();
+    const newSubject: SubjectRecord = {
+      ...data,
+      id: `sub-${Date.now()}-${Math.random().toString(36).substring(7)}`,
+      slug,
+      createdAt: now,
+      updatedAt: now,
+    };
+    this.subjects.set(slug, newSubject);
+    return { ...newSubject };
+  }
+
+  async updateSubject(slug: string, updates: Partial<SubjectRecord>): Promise<SubjectRecord | null> {
+    await this.init();
+    const sub = this.subjects.get(slug.toLowerCase().trim());
+    if (!sub) return null;
+
+    const updated: SubjectRecord = {
+      ...sub,
+      ...updates,
+      updatedAt: new Date(),
+    };
+    this.subjects.set(slug, updated);
+    return { ...updated };
+  }
+
+  async submitSubjectAIEvaluation(data: Omit<SubjectAIEvaluationRecord, "id" | "evaluatedAt">): Promise<SubjectAIEvaluationRecord> {
+    await this.init();
+    const sub = this.subjects.get(data.subjectSlug.toLowerCase().trim());
+    if (!sub) throw new Error("Subject not found");
+
+    const id = `aieval-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const now = new Date();
+    const evalRecord: SubjectAIEvaluationRecord = {
+      ...data,
+      id,
+      evaluatedAt: now,
+    };
+    this.subjectEvaluations.set(id, evalRecord);
+
+    // Update subject evaluation status based on evaluation outcome
+    sub.aiEvaluationStatus = data.passed ? "PASSED" : "FAILED";
+    sub.aiEvaluationScore = data.rubricScore;
+    sub.aiEvaluationSignedBy = data.signOffSignature;
+    sub.aiEvaluationSignedAt = now;
+    sub.updatedAt = now;
+    this.subjects.set(sub.slug, sub);
+
+    return { ...evalRecord };
+  }
+
+  async listSubjectAIEvaluations(subjectSlug?: string): Promise<SubjectAIEvaluationRecord[]> {
+    await this.init();
+    let evals = Array.from(this.subjectEvaluations.values());
+    if (subjectSlug) {
+      evals = evals.filter(e => e.subjectSlug.toLowerCase() === subjectSlug.toLowerCase().trim());
+    }
+    return evals.sort((a, b) => b.evaluatedAt.getTime() - a.evaluatedAt.getTime());
+  }
+
+  async toggleSubjectAI(subjectSlug: string, enabled: boolean, adminId: string): Promise<{ success: boolean; subject?: SubjectRecord; error?: string }> {
+    await this.init();
+    const sub = this.subjects.get(subjectSlug.toLowerCase().trim());
+    if (!sub) return { success: false, error: "Subject not found" };
+
+    if (enabled) {
+      // Invariant SB-05 & SB-06: Strict Gate. Cannot enable AI if evaluation has not passed with >= 80% score
+      if (sub.aiEvaluationStatus !== "PASSED" || (sub.aiEvaluationScore ?? 0) < 80.0) {
+        return {
+          success: false,
+          error: `Cannot enable AI for ${sub.name}: Pre-release safety and pedagogical evaluation has not passed (requires >= 80% rubric score, current: ${sub.aiEvaluationScore ?? 0}%).`,
+        };
+      }
+    }
+
+    sub.aiEnabled = enabled;
+    sub.updatedAt = new Date();
+    this.subjects.set(sub.slug, sub);
+
+    await this.logAdminAudit({
+      adminId,
+      action: enabled ? "ENABLE_SUBJECT_AI" : "DISABLE_SUBJECT_AI",
+      targetType: "SUBJECT",
+      targetId: sub.slug,
+      afterState: { aiEnabled: enabled, evaluationScore: sub.aiEvaluationScore },
+    });
+
+    return { success: true, subject: { ...sub } };
+  }
+
+  async listTutorSubjectQualifications(filter?: { tutorSlug?: string; subjectSlug?: string; status?: string }): Promise<TutorSubjectQualificationRecord[]> {
+    await this.init();
+    let list = Array.from(this.tutorSubjectQualifications.values());
+    if (filter?.tutorSlug) {
+      list = list.filter(q => q.tutorSlug === filter.tutorSlug);
+    }
+    if (filter?.subjectSlug) {
+      list = list.filter(q => q.subjectSlug.toLowerCase() === filter.subjectSlug!.toLowerCase());
+    }
+    if (filter?.status && filter.status !== "ALL") {
+      list = list.filter(q => q.status === filter.status);
+    }
+    return list;
+  }
+
+  async upsertTutorSubjectQualification(data: Omit<TutorSubjectQualificationRecord, "id" | "createdAt" | "updatedAt">): Promise<TutorSubjectQualificationRecord> {
+    await this.init();
+    const existing = Array.from(this.tutorSubjectQualifications.values()).find(
+      q => q.tutorSlug === data.tutorSlug && q.subjectSlug.toLowerCase() === data.subjectSlug.toLowerCase()
+    );
+
+    const now = new Date();
+    if (existing) {
+      existing.levels = data.levels;
+      existing.credentialEvidenceUrl = data.credentialEvidenceUrl;
+      existing.credentialType = data.credentialType;
+      existing.status = data.status;
+      existing.updatedAt = now;
+      this.tutorSubjectQualifications.set(existing.id, existing);
+      return { ...existing };
+    }
+
+    const id = `tsq-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const record: TutorSubjectQualificationRecord = {
+      ...data,
+      id,
+      createdAt: now,
+      updatedAt: now,
+    };
+    this.tutorSubjectQualifications.set(id, record);
+    return { ...record };
+  }
+
+  async verifyTutorSubjectQualification(id: string, status: "APPROVED" | "REJECTED", adminId: string): Promise<TutorSubjectQualificationRecord | null> {
+    await this.init();
+    const qual = this.tutorSubjectQualifications.get(id);
+    if (!qual) return null;
+
+    qual.status = status;
+    qual.verifiedByAdminId = adminId;
+    qual.verifiedAt = new Date();
+    qual.updatedAt = new Date();
+    this.tutorSubjectQualifications.set(qual.id, qual);
+
+    await this.logAdminAudit({
+      adminId,
+      action: `VERIFY_TUTOR_QUALIFICATION_${status}`,
+      targetType: "TUTOR_QUALIFICATION",
+      targetId: qual.id,
+      afterState: { status, tutorSlug: qual.tutorSlug, subjectSlug: qual.subjectSlug },
+    });
+
+    return { ...qual };
+  }
+
+  async getSubjectAnalytics(slug: string): Promise<{ enrolmentsCount: number; bookingsCount: number; revenueMinorUnits: number; tutorCount: number; aiQueryCount: number }> {
+    await this.init();
+    const s = slug.toLowerCase().trim();
+
+    // 1. Tutors approved for this subject
+    const approvedTutors = Array.from(this.tutorSubjectQualifications.values()).filter(
+      q => q.subjectSlug.toLowerCase() === s && q.status === "APPROVED"
+    );
+
+    // 2. Bookings for this subject
+    const bookings = Array.from(this.bookings.values()).filter(
+      b => b.subject.toLowerCase() === s || (s === "mathematics" && (b.subject.toLowerCase().includes("math") || !b.subject))
+    );
+
+    // 3. Enrolments for courses under this subject
+    const coursesUnderSubject = Array.from(this.authoringCourses.values()).filter(
+      c => c.subjectSlug.toLowerCase() === s
+    );
+    const courseSlugs = new Set(coursesUnderSubject.map(c => c.slug));
+    if (s === "mathematics") courseSlugs.add("sss3-algebra-calculus");
+
+    const enrolments = Array.from(this.enrollments.values()).filter(
+      e => courseSlugs.has(e.courseSlug)
+    );
+
+    // 4. Revenue calculated from bookings
+    const revenueMinorUnits = bookings.reduce((sum, b) => sum + (b.paymentStatus === "VERIFIED" ? b.amountMinorUnits : 0), 0);
+
+    // 5. AI queries for this subject
+    let aiQueryCount = 0;
+    if (s === "mathematics") {
+      aiQueryCount = Array.from(this.aiMessages.values()).filter(m => m.role === "USER").length;
+    }
+
+    return {
+      enrolmentsCount: enrolments.length,
+      bookingsCount: bookings.length,
+      revenueMinorUnits,
+      tutorCount: approvedTutors.length,
+      aiQueryCount,
+    };
+  }
+
+  async assignContentManagerToSubject(userId: string, subjectSlug: string): Promise<ContentManagerSubjectAssignmentRecord> {
+    await this.init();
+    const id = `cma-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const record: ContentManagerSubjectAssignmentRecord = {
+      id,
+      userId,
+      subjectSlug: subjectSlug.toLowerCase().trim(),
+      assignedAt: new Date(),
+    };
+    this.contentManagerSubjectAssignments.set(id, record);
+    return { ...record };
+  }
+
+  async isContentManagerAssignedToSubject(userId: string, subjectSlug: string): Promise<boolean> {
+    await this.init();
+    const user = this.users.get(userId);
+    if (user?.role === "ADMIN") return true;
+
+    const s = subjectSlug.toLowerCase().trim();
+    for (const a of this.contentManagerSubjectAssignments.values()) {
+      if (a.userId === userId && a.subjectSlug.toLowerCase() === s) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 

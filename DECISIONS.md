@@ -54,4 +54,11 @@
 - **Decision:** Establish a unified, least-privilege administrative operations center (`/admin`) guarded by server-side role validation (`requireAdminSession`). All administrative state changes (tutor approvals/suspensions, incident escalations, refund debits, role modifications) are immutably logged to an append-only `AdminAuditLog` table capturing action type, actor ID, target entity, IP address, and payload parameters. Safeguarding triage adheres to strict <24-hour SLA timers routed to the Designated Safeguarding Lead. Financial payouts strictly debit verified 85% net tutor balances through immutable ledger transactions.
 - **Consequences:** Non-administrative accounts receive immediate 403 Forbidden responses; administrative actions are strictly non-repudiable; child safeguarding SLAs are prominently surfaced with automated countdowns; and financial operations prevent fraudulent disbursements or double-refund discrepancies.
 
+## ADR-010: Dynamic Multi-Subject Registry & Gated AI Curriculum Rollout
+- **Status:** Accepted
+- **Context:** Hardcoding subjects into application schemas or codebases prevents timely curriculum expansion (e.g. English Language, Physics, Chemistry, Music Theory) and risks leaking untested AI answers in non-Mathematics domains where symbolic accuracy solvers are unsuitable. Furthermore, Nigerian tutoring economics require flexible, per-subject tutor approvals and commission tier overrides.
+- **Decision:** Implement a dynamic subject registry (`Subject`) with lifecycle state machine (`DRAFT`, `ACTIVE`, `RETIRED`) manageable via Admin UI without code deployments. Content managers are scoped to explicit subject assignments. Tutors must possess subject-specific verified credentials (`TutorSubjectQualification`) before appearing in filtered search results. AI capabilities are subject-gated: an AI toggle is strictly locked until a formal curriculum rubric evaluation is recorded with >=80.0% benchmark score and >=70.0% grounding coverage.
+- **Consequences:** Platform curriculum expands dynamically without code changes; students are protected from hallucinations in unevaluated subjects; tutor marketplace prevents cross-subject credential masquerading; and commission rates can be adjusted per domain with full ledger auditability.
+
+
 

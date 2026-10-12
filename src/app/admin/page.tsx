@@ -33,6 +33,9 @@ import {
   Calendar,
   LogOut,
   Info,
+  Layers,
+  BookOpen,
+  Plus,
 } from "lucide-react";
 
 export type AdminTab =
@@ -41,6 +44,7 @@ export type AdminTab =
   | "safeguarding"
   | "finance"
   | "ai"
+  | "subjects"
   | "users"
   | "audit";
 
@@ -80,6 +84,31 @@ export default function AdminPortalPage() {
   const [usersList, setUsersList] = useState<any[]>([]);
   const [auditLogs, setAuditLogs] = useState<any[]>([]);
   const [alerts, setAlerts] = useState<any[]>([]);
+
+  // Phase I Subjects & Governance State
+  const [subjectsList, setSubjectsList] = useState<any[]>([]);
+  const [tutorQualificationsList, setTutorQualificationsList] = useState<any[]>([]);
+  const [newSubjectModalOpen, setNewSubjectModalOpen] = useState(false);
+  const [evalModalSubject, setEvalModalSubject] = useState<any | null>(null);
+  const [newSubjectForm, setNewSubjectForm] = useState({
+    name: "",
+    slug: "",
+    description: "",
+    category: "STEM",
+    levels: "JSS 1-3, SSS 1-3, WAEC/JAMB",
+    pricingTierMinorUnits: 750000,
+    commissionRatePercent: 15.0,
+    icon: "BookOpen",
+    color: "purple",
+    aiVerificationMethod: "FACTUAL_RETRIEVAL",
+  });
+  const [evalForm, setEvalForm] = useState({
+    rubricScore: "90",
+    unsafeContentBlockedCount: "10",
+    groundingCoveragePercent: "95",
+    notes: "Pedagogical alignment verified against national curriculum benchmarks.",
+    signOffSignature: "Grace Danladi & Evaluator Board",
+  });
 
   // Selection states for modals
   const [selectedTutor, setSelectedTutor] = useState<any>(null);
@@ -223,6 +252,30 @@ export default function AdminPortalPage() {
     }
   }, []);
 
+  const fetchSubjects = useCallback(async () => {
+    try {
+      const res = await fetch("/api/subjects?all=true");
+      if (res.ok) {
+        const data = await res.json();
+        setSubjectsList(data.subjects || []);
+      }
+    } catch (err) {
+      console.error("Failed to fetch subjects", err);
+    }
+  }, []);
+
+  const fetchQualifications = useCallback(async () => {
+    try {
+      const res = await fetch("/api/tutors/dr-tayo-okafor/subjects");
+      if (res.ok) {
+        const data = await res.json();
+        setTutorQualificationsList(data.qualifications || []);
+      }
+    } catch (err) {
+      console.error("Failed to fetch qualifications", err);
+    }
+  }, []);
+
   const refreshAll = useCallback(async () => {
     setLoading(true);
     await Promise.all([
@@ -234,9 +287,11 @@ export default function AdminPortalPage() {
       fetchUsers(),
       fetchAuditLogs(),
       fetchAlerts(),
+      fetchSubjects(),
+      fetchQualifications(),
     ]);
     setLoading(false);
-  }, [fetchOverview, fetchTutors, fetchSafeguarding, fetchFinance, fetchAi, fetchUsers, fetchAuditLogs, fetchAlerts]);
+  }, [fetchOverview, fetchTutors, fetchSafeguarding, fetchFinance, fetchAi, fetchUsers, fetchAuditLogs, fetchAlerts, fetchSubjects, fetchQualifications]);
 
   useEffect(() => {
     if (user && user.role === "ADMIN") {
@@ -407,6 +462,149 @@ export default function AdminPortalPage() {
     }
   };
 
+  // Phase I Action Handlers
+  const handleCreateSubject = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const levelsArray = newSubjectForm.levels.split(",").map((s) => s.trim()).filter(Boolean);
+      const res = await fetch("/api/subjects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...newSubjectForm,
+          levels: levelsArray,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setNotice({ message: `Subject "${data.subject.name}" registered successfully in DRAFT status.`, type: "success" });
+        setNewSubjectModalOpen(false);
+        setNewSubjectForm({
+          name: "",
+          slug: "",
+          description: "",
+          category: "STEM",
+          levels: "JSS 1-3, SSS 1-3, WAEC/JAMB",
+          pricingTierMinorUnits: 750000,
+          commissionRatePercent: 15.0,
+          icon: "BookOpen",
+          color: "purple",
+          aiVerificationMethod: "FACTUAL_RETRIEVAL",
+        });
+        await refreshAll();
+      } else {
+        setNotice({ message: data.error || "Failed to create subject", type: "error" });
+      }
+    } catch (err: any) {
+      setNotice({ message: err.message, type: "error" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleToggleSubjectAI = async (slug: string, currentEnabled: boolean) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/subjects/${slug}/ai/toggle`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ enabled: !currentEnabled }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setNotice({ message: data.message, type: "success" });
+        await refreshAll();
+      } else {
+        setNotice({ message: data.error || "AI Gate: Cannot enable AI without approved evaluation", type: "error" });
+      }
+    } catch (err: any) {
+      setNotice({ message: err.message, type: "error" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmitEvaluation = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!evalModalSubject) return;
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/subjects/${evalModalSubject.slug}/ai/evaluate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          rubricScore: Number(evalForm.rubricScore),
+          unsafeContentBlockedCount: Number(evalForm.unsafeContentBlockedCount),
+          groundingCoveragePercent: Number(evalForm.groundingCoveragePercent),
+          notes: evalForm.notes,
+          signOffSignature: evalForm.signOffSignature,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setNotice({
+          message: data.subjectStatus === "PASSED"
+            ? `Evaluation PASSED (${data.evaluation.rubricScore}%). AI gate unlocked for ${evalModalSubject.name}!`
+            : `Evaluation FAILED (${data.evaluation.rubricScore}% < 80% threshold). Safety gate remains locked.`,
+          type: data.subjectStatus === "PASSED" ? "success" : "error",
+        });
+        setEvalModalSubject(null);
+        await refreshAll();
+      } else {
+        setNotice({ message: data.error || "Evaluation submission failed", type: "error" });
+      }
+    } catch (err: any) {
+      setNotice({ message: err.message, type: "error" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleUpdateSubjectStatus = async (slug: string, newStatus: string) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/subjects/${slug}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      if (res.ok) {
+        setNotice({ message: `Subject status updated to ${newStatus}.`, type: "success" });
+        await refreshAll();
+      } else {
+        const err = await res.json();
+        setNotice({ message: err.error || "Status update failed", type: "error" });
+      }
+    } catch (err: any) {
+      setNotice({ message: err.message, type: "error" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyTutorQualification = async (qualificationId: string, status: "APPROVED" | "REJECTED") => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/tutors/dr-tayo-okafor/subjects`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ qualificationId, status }),
+      });
+      if (res.ok) {
+        setNotice({ message: `Tutor subject qualification marked as ${status}.`, type: "success" });
+        await refreshAll();
+      } else {
+        const err = await res.json();
+        setNotice({ message: err.error || "Verification failed", type: "error" });
+      }
+    } catch (err: any) {
+      setNotice({ message: err.message, type: "error" });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Auth Protection Screens
   if (authLoading) {
     return (
@@ -546,6 +744,7 @@ export default function AdminPortalPage() {
               { id: "safeguarding", label: `Safeguarding SLA (${overview?.openSafeguardingIncidents || 0})`, icon: ShieldAlert },
               { id: "finance", label: "Reconciliation & Payouts", icon: DollarSign },
               { id: "ai", label: "AI Usage & Governance", icon: Bot },
+              { id: "subjects", label: `Subjects & AI Gates (${subjectsList.length})`, icon: Layers },
               { id: "users", label: "User Access", icon: Users },
               { id: "audit", label: "Immutable Audit Log", icon: FileText },
             ].map((tab) => {
@@ -1418,7 +1617,463 @@ export default function AdminPortalPage() {
         )}
 
         {/* ==================================================================== */}
-        {/* TAB 6: USER MANAGEMENT & ACCESS CONTROL (AD-01) */}
+        {/* TAB 6: MULTI-SUBJECT REGISTRY & AI GATES (SB-01 to SB-09) */}
+        {/* ==================================================================== */}
+        {activeTab === "subjects" && (
+          <div className="space-y-6">
+            {/* Header with Register Button */}
+            <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-xs">
+              <div>
+                <h2 className="text-base font-bold text-neutral-slate-900">Multi-Subject Academic Registry (SB-01, SB-05, SB-09)</h2>
+                <p className="text-xs text-neutral-slate-600 mt-0.5">
+                  Dynamic curriculum administration, commission overrides, and pre-release AI safety evaluation gates.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  data-testid="add-subject-btn"
+                  onClick={() => setNewSubjectModalOpen(true)}
+                  className="bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs"
+                >
+                  <Plus className="w-3.5 h-3.5 mr-1" />
+                  Register New Subject
+                </Button>
+              </div>
+            </div>
+
+            {/* Subjects Table */}
+            <div className="bg-white rounded-2xl border border-neutral-slate-200 shadow-xs overflow-hidden">
+              <div className="p-4 border-b border-neutral-slate-100 flex items-center justify-between">
+                <h3 className="font-bold text-sm text-neutral-slate-900">Configured Academic Subjects</h3>
+                <span className="text-xs text-neutral-slate-500 font-mono">{subjectsList.length} subjects registered</span>
+              </div>
+              <table className="w-full text-left text-xs" data-testid="subjects-table">
+                <thead className="bg-neutral-slate-50 text-neutral-slate-600 font-bold border-b border-neutral-slate-200">
+                  <tr>
+                    <th className="py-3 px-4">Subject &amp; Category</th>
+                    <th className="py-3 px-4">Curriculum Tracks</th>
+                    <th className="py-3 px-4">Pricing &amp; Commission</th>
+                    <th className="py-3 px-4">AI Socratic Status (SB-05)</th>
+                    <th className="py-3 px-4">Safety Evaluation Gate (SB-06)</th>
+                    <th className="py-3 px-4">Lifecycle Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-neutral-slate-100">
+                  {subjectsList.map((s) => (
+                    <tr key={s.slug} className="hover:bg-neutral-slate-50/70" data-testid={`subject-row-${s.slug}`}>
+                      <td className="py-3.5 px-4">
+                        <div className="font-bold text-neutral-slate-900">{s.name}</div>
+                        <div className="text-[11px] text-neutral-slate-600 font-mono">{s.slug} · {s.category}</div>
+                      </td>
+                      <td className="py-3.5 px-4 max-w-xs">
+                        <div className="flex flex-wrap gap-1">
+                          {s.levels?.slice(0, 2).map((l: string) => (
+                            <span key={l} className="bg-neutral-slate-100 text-neutral-slate-700 px-1.5 py-0.5 rounded text-[10px]">
+                              {l}
+                            </span>
+                          ))}
+                          {s.levels?.length > 2 && (
+                            <span className="text-[10px] text-neutral-slate-500">+{s.levels.length - 2}</span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <div className="font-semibold text-neutral-slate-900">
+                          ₦{(s.pricingTierMinorUnits / 100).toLocaleString()}/hr
+                        </div>
+                        <div className="text-[11px] text-purple-700 font-mono font-bold">
+                          {s.commissionRatePercent}% Comm. Override
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                              s.aiEnabled
+                                ? "bg-purple-100 text-purple-900 border border-purple-300"
+                                : "bg-neutral-slate-100 text-neutral-slate-600 border border-neutral-slate-200"
+                            }`}
+                          >
+                            {s.aiEnabled ? "ACTIVE" : "DISABLED"}
+                          </span>
+                          <button
+                            data-testid={`toggle-ai-btn-${s.slug}`}
+                            onClick={() => handleToggleSubjectAI(s.slug, s.aiEnabled)}
+                            className={`px-2 py-1 rounded text-[10px] font-bold transition-colors ${
+                              s.aiEnabled
+                                ? "bg-red-50 text-red-700 hover:bg-red-100 border border-red-200"
+                                : "bg-purple-50 text-purple-700 hover:bg-purple-100 border border-purple-200"
+                            }`}
+                          >
+                            {s.aiEnabled ? "Deactivate" : "Activate"}
+                          </button>
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-1.5">
+                            <span
+                              className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                s.aiEvaluationStatus === "PASSED"
+                                  ? "bg-emerald-100 text-emerald-800"
+                                  : s.aiEvaluationStatus === "IN_EVALUATION"
+                                  ? "bg-amber-100 text-amber-800"
+                                  : "bg-neutral-slate-100 text-neutral-slate-600"
+                              }`}
+                            >
+                              {s.aiEvaluationStatus} ({s.aiEvaluationScore ? `${s.aiEvaluationScore}%` : "No score"})
+                            </span>
+                          </div>
+                          <button
+                            data-testid={`eval-subject-btn-${s.slug}`}
+                            onClick={() => {
+                              setEvalModalSubject(s);
+                              setEvalForm({
+                                rubricScore: s.aiEvaluationScore ? String(s.aiEvaluationScore) : "85",
+                                unsafeContentBlockedCount: "10",
+                                groundingCoveragePercent: "90",
+                                notes: `Pedagogical evaluation for ${s.name}`,
+                                signOffSignature: "Admin Evaluator Board",
+                              });
+                            }}
+                            className="text-[10px] text-brand-purple-700 hover:underline font-bold block"
+                          >
+                            Audit Rubric / Evaluate Gate →
+                          </button>
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <select
+                          aria-label={`Change lifecycle status for ${s.name}`}
+                          value={s.status}
+                          onChange={(e) => handleUpdateSubjectStatus(s.slug, e.target.value)}
+                          className={`text-xs font-bold rounded-lg px-2 py-1 border ${
+                            s.status === "ACTIVE"
+                              ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                              : s.status === "DRAFT"
+                              ? "bg-amber-50 text-amber-800 border-amber-300"
+                              : "bg-neutral-slate-100 text-neutral-slate-600 border-neutral-slate-300"
+                          }`}
+                        >
+                          <option value="DRAFT">DRAFT (Hidden)</option>
+                          <option value="ACTIVE">ACTIVE (Public)</option>
+                          <option value="RETIRED">RETIRED</option>
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Multi-Subject Tutor Qualifications (SB-03) */}
+            <div className="bg-white rounded-2xl border border-neutral-slate-200 shadow-xs overflow-hidden">
+              <div className="p-4 border-b border-neutral-slate-100">
+                <h3 className="font-bold text-sm text-neutral-slate-900">
+                  Multi-Subject Tutor Qualifications Queue (SB-03)
+                </h3>
+                <p className="text-xs text-neutral-slate-600 mt-0.5">
+                  Tutors must be verified and approved per subject before offering lessons in that curriculum.
+                </p>
+              </div>
+
+              <table className="w-full text-left text-xs" data-testid="tutor-subject-qualifications-table">
+                <thead className="bg-neutral-slate-50 text-neutral-slate-600 font-bold border-b border-neutral-slate-200">
+                  <tr>
+                    <th className="py-3 px-4">Tutor Identifier</th>
+                    <th className="py-3 px-4">Subject Curriculum</th>
+                    <th className="py-3 px-4">Approved Levels</th>
+                    <th className="py-3 px-4">Credential Evidence</th>
+                    <th className="py-3 px-4">Status &amp; Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-neutral-slate-100">
+                  {tutorQualificationsList.map((q) => (
+                    <tr key={q.id} className="hover:bg-neutral-slate-50/70" data-testid={`qual-row-${q.id}`}>
+                      <td className="py-3 px-4 font-bold text-neutral-slate-900">{q.tutorSlug}</td>
+                      <td className="py-3 px-4">
+                        <span className="font-semibold text-purple-800 uppercase">{q.subjectSlug}</span>
+                      </td>
+                      <td className="py-3 px-4 font-mono text-neutral-slate-600">
+                        {q.levels?.join(", ")}
+                      </td>
+                      <td className="py-3 px-4">
+                        <span className="text-[11px] text-neutral-slate-700 font-medium">{q.credentialType}</span>
+                        <div className="text-[10px] text-neutral-slate-500 font-mono truncate max-w-xs">{q.credentialEvidenceUrl}</div>
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                              q.status === "APPROVED"
+                                ? "bg-emerald-100 text-emerald-800"
+                                : q.status === "PENDING"
+                                ? "bg-amber-100 text-amber-800"
+                                : "bg-red-100 text-red-800"
+                            }`}
+                          >
+                            {q.status}
+                          </span>
+                          {q.status !== "APPROVED" && (
+                            <Button
+                              size="sm"
+                              data-testid={`approve-qual-btn-${q.id}`}
+                              onClick={() => handleVerifyTutorQualification(q.id, "APPROVED")}
+                              className="text-[10px] bg-emerald-700 hover:bg-emerald-800 text-white h-7 px-2"
+                            >
+                              Approve
+                            </Button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Modal: Register New Subject */}
+            {newSubjectModalOpen && (
+              <div
+                className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs"
+                data-testid="add-subject-modal"
+              >
+                <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-neutral-slate-200 space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
+                    <div className="flex items-center gap-2">
+                      <BookOpen className="w-5 h-5 text-purple-700" />
+                      <h3 className="font-bold text-sm text-neutral-slate-900">Register New Academic Subject (SB-01)</h3>
+                    </div>
+                    <button
+                      aria-label="Close modal"
+                      onClick={() => setNewSubjectModalOpen(false)}
+                      className="text-neutral-slate-500 hover:text-neutral-900"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  <form onSubmit={handleCreateSubject} className="space-y-3 text-xs">
+                    <div>
+                      <label htmlFor="new-sub-name" className="block font-bold text-neutral-slate-700 mb-1">Subject Name</label>
+                      <input
+                        id="new-sub-name"
+                        type="text"
+                        required
+                        value={newSubjectForm.name}
+                        onChange={(e) => setNewSubjectForm({ ...newSubjectForm, name: e.target.value })}
+                        placeholder="e.g. Further Mathematics"
+                        className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label htmlFor="new-sub-slug" className="block font-bold text-neutral-slate-700 mb-1">Slug</label>
+                        <input
+                          id="new-sub-slug"
+                          type="text"
+                          required
+                          value={newSubjectForm.slug}
+                          onChange={(e) => setNewSubjectForm({ ...newSubjectForm, slug: e.target.value })}
+                          placeholder="e.g. further-mathematics"
+                          className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="new-sub-category" className="block font-bold text-neutral-slate-700 mb-1">Category</label>
+                        <select
+                          id="new-sub-category"
+                          aria-label="Subject Category"
+                          value={newSubjectForm.category}
+                          onChange={(e) => setNewSubjectForm({ ...newSubjectForm, category: e.target.value })}
+                          className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                        >
+                          <option value="STEM">STEM</option>
+                          <option value="Languages">Languages</option>
+                          <option value="Sciences">Sciences</option>
+                          <option value="Arts">Arts</option>
+                          <option value="Commercial">Commercial</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="new-sub-desc" className="block font-bold text-neutral-slate-700 mb-1">Description</label>
+                      <textarea
+                        id="new-sub-desc"
+                        rows={2}
+                        required
+                        value={newSubjectForm.description}
+                        onChange={(e) => setNewSubjectForm({ ...newSubjectForm, description: e.target.value })}
+                        placeholder="Curriculum overview and examination mapping..."
+                        className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label htmlFor="new-sub-pricing" className="block font-bold text-neutral-slate-700 mb-1">Base Lesson Rate (Kobo)</label>
+                        <input
+                          id="new-sub-pricing"
+                          type="number"
+                          value={newSubjectForm.pricingTierMinorUnits}
+                          onChange={(e) => setNewSubjectForm({ ...newSubjectForm, pricingTierMinorUnits: Number(e.target.value) })}
+                          className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="new-sub-commission" className="block font-bold text-neutral-slate-700 mb-1">Commission % (SB-09)</label>
+                        <input
+                          id="new-sub-commission"
+                          type="number"
+                          step="0.5"
+                          value={newSubjectForm.commissionRatePercent}
+                          onChange={(e) => setNewSubjectForm({ ...newSubjectForm, commissionRatePercent: Number(e.target.value) })}
+                          className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex justify-end gap-2">
+                      <Button type="button" variant="outline" size="sm" onClick={() => setNewSubjectModalOpen(false)}>
+                        Cancel
+                      </Button>
+                      <Button type="submit" size="sm" className="bg-purple-700 hover:bg-purple-800 text-white font-bold">
+                        Create Subject
+                      </Button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+
+            {/* Modal: AI Rubric Evaluation & Rollout Gate */}
+            {evalModalSubject && (
+              <div
+                className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 backdrop-blur-xs"
+                data-testid="ai-eval-modal"
+              >
+                <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-neutral-slate-200 space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
+                    <div className="flex items-center gap-2">
+                      <Bot className="w-5 h-5 text-purple-700" />
+                      <h3 className="font-bold text-sm text-neutral-slate-900">
+                        AI Safety &amp; Rubric Gate: {evalModalSubject.name} (SB-06)
+                      </h3>
+                    </div>
+                    <button
+                      aria-label="Close modal"
+                      onClick={() => setEvalModalSubject(null)}
+                      className="text-neutral-slate-500 hover:text-neutral-900"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  <div className="p-3 bg-purple-50 rounded-xl border border-purple-200 text-xs space-y-1">
+                    <p className="font-bold text-purple-950">Statutory Release Gate Invariant</p>
+                    <p className="text-purple-900">
+                      AI Socratic tutoring can ONLY be enabled when the evaluated rubric score is ≥80.0% and
+                      grounding coverage is ≥70.0%. Submissions below this mark will leave the live toggle locked.
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleSubmitEvaluation} className="space-y-3 text-xs">
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label htmlFor="eval-score" className="block font-bold text-neutral-slate-700 mb-1">Rubric Score (0-100%)</label>
+                        <input
+                          id="eval-score"
+                          type="number"
+                          step="0.5"
+                          min="0"
+                          max="100"
+                          required
+                          value={evalForm.rubricScore}
+                          onChange={(e) => setEvalForm({ ...evalForm, rubricScore: e.target.value })}
+                          className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                          data-testid="eval-rubric-score-input"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="eval-grounding" className="block font-bold text-neutral-slate-700 mb-1">Grounding Coverage (%)</label>
+                        <input
+                          id="eval-grounding"
+                          type="number"
+                          step="0.5"
+                          min="0"
+                          max="100"
+                          required
+                          value={evalForm.groundingCoveragePercent}
+                          onChange={(e) => setEvalForm({ ...evalForm, groundingCoveragePercent: e.target.value })}
+                          className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="eval-blocked" className="block font-bold text-neutral-slate-700 mb-1">Unsafe Content Test Cases Blocked</label>
+                      <input
+                        id="eval-blocked"
+                        type="number"
+                        min="0"
+                        required
+                        value={evalForm.unsafeContentBlockedCount}
+                        onChange={(e) => setEvalForm({ ...evalForm, unsafeContentBlockedCount: e.target.value })}
+                        className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="eval-notes" className="block font-bold text-neutral-slate-700 mb-1">Evaluator Audit Findings</label>
+                      <textarea
+                        id="eval-notes"
+                        rows={2}
+                        value={evalForm.notes}
+                        onChange={(e) => setEvalForm({ ...evalForm, notes: e.target.value })}
+                        className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="eval-sig" className="block font-bold text-neutral-slate-700 mb-1">Sign-Off Signature</label>
+                      <input
+                        id="eval-sig"
+                        type="text"
+                        required
+                        value={evalForm.signOffSignature}
+                        onChange={(e) => setEvalForm({ ...evalForm, signOffSignature: e.target.value })}
+                        placeholder="Formal signatory identifier..."
+                        className="w-full rounded-lg border border-neutral-slate-300 p-2 font-medium font-mono"
+                        data-testid="eval-signature-input"
+                      />
+                    </div>
+
+                    <div className="pt-2 flex justify-end gap-2">
+                      <Button type="button" variant="outline" size="sm" onClick={() => setEvalModalSubject(null)}>
+                        Cancel
+                      </Button>
+                      <Button
+                        type="submit"
+                        size="sm"
+                        data-testid="submit-eval-btn"
+                        className="bg-purple-700 hover:bg-purple-800 text-white font-bold"
+                      >
+                        Submit Formal Evaluation
+                      </Button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ==================================================================== */}
+        {/* TAB 7: USER MANAGEMENT & ACCESS CONTROL (AD-01) */}
         {/* ==================================================================== */}
         {activeTab === "users" && (
           <div className="space-y-4">

@@ -117,6 +117,9 @@ model User {
   tutorReviews        TutorReview[]
   adminAuditLogs      AdminAuditLog[]
   tutorPayouts        TutorPayout[]
+  subjectEvaluations  SubjectAIEvaluation[]
+  verifiedQualifications TutorSubjectQualification[] @relation("VerifiedQualifications")
+  contentSubjectAssignments ContentManagerSubjectAssignment[]
 
   @@map("users")
 }
@@ -634,4 +637,115 @@ model OperationalAlert {
   @@index([status, severity])
   @@map("operational_alerts")
 }
+
+// ==============================================================================
+// Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject Governance
+// Requirements: SB-01 through SB-09, ADR-010
+// ==============================================================================
+
+enum SubjectStatus {
+  DRAFT
+  ACTIVE
+  RETIRED
+}
+
+enum SubjectDeliveryFormat {
+  ONE_ON_ONE_ONLINE
+  SELF_PACED_ACADEMY
+  HYBRID
+}
+
+enum SubjectAIEvalStatus {
+  NOT_STARTED
+  IN_EVALUATION
+  PASSED
+  FAILED
+}
+
+model Subject {
+  id                    String                @id @default(uuid())
+  slug                  String                @unique
+  name                  String
+  description           String
+  category              String                @default("General")
+  levels                String[]              @default(["JSS 1-3", "SSS 1-3", "WAEC/JAMB"])
+  deliveryFormats       String[]              @default(["ONE_ON_ONE_ONLINE", "SELF_PACED_ACADEMY"]) @map("delivery_formats")
+  status                SubjectStatus         @default(DRAFT)
+  icon                  String                @default("BookOpen")
+  color                 String                @default("purple")
+  pricingTierMinorUnits Int                   @default(500000) @map("pricing_tier_minor_units")
+  commissionRatePercent Float                 @default(15.00) @map("commission_rate_percent")
+  aiEnabled             Boolean               @default(false) @map("ai_enabled")
+  aiEvaluationStatus    SubjectAIEvalStatus   @default(NOT_STARTED) @map("ai_evaluation_status")
+  aiEvaluationScore     Float?                @map("ai_evaluation_score")
+  aiEvaluationSignedBy  String?               @map("ai_evaluation_signed_by")
+  aiEvaluationSignedAt  DateTime?             @map("ai_evaluation_signed_at")
+  aiGroundingSummary    String?               @map("ai_grounding_summary")
+  aiVerificationMethod  String                @default("SYMBOLIC_SOLVER") @map("ai_verification_method")
+  aiSystemPrompt        String?               @map("ai_system_prompt")
+  createdAt             DateTime              @default(now()) @map("created_at")
+  updatedAt             DateTime              @updatedAt @map("updated_at")
+
+  evaluations           SubjectAIEvaluation[]
+  tutorQualifications   TutorSubjectQualification[]
+  contentAssignments    ContentManagerSubjectAssignment[]
+
+  @@index([status])
+  @@index([category])
+  @@map("subjects")
+}
+
+model SubjectAIEvaluation {
+  id                        String   @id @default(uuid())
+  subjectSlug               String   @map("subject_slug")
+  evaluatorId               String   @map("evaluator_id")
+  rubricScore               Float    @map("rubric_score")
+  passed                    Boolean  @default(false)
+  unsafeContentBlockedCount Int      @default(0) @map("unsafe_content_blocked_count")
+  groundingCoveragePercent  Float    @default(0.0) @map("grounding_coverage_percent")
+  notes                     String?
+  signOffSignature          String   @map("sign_off_signature")
+  evaluatedAt               DateTime @default(now()) @map("evaluated_at")
+
+  subject   Subject @relation(fields: [subjectSlug], references: [slug], onDelete: Cascade)
+  evaluator User    @relation(fields: [evaluatorId], references: [id], onDelete: Restrict)
+
+  @@index([subjectSlug])
+  @@map("subject_ai_evaluations")
+}
+
+model TutorSubjectQualification {
+  id                    String    @id @default(uuid())
+  tutorSlug             String    @map("tutor_slug")
+  subjectSlug           String    @map("subject_slug")
+  levels                String[]  @default(["JSS 1-3", "SSS 1-3"])
+  credentialEvidenceUrl String    @map("credential_evidence_url")
+  credentialType        String    @default("UNIVERSITY_DEGREE") @map("credential_type")
+  status                String    @default("PENDING")
+  verifiedByAdminId     String?   @map("verified_by_admin_id")
+  verifiedAt            DateTime? @map("verified_at")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  subject  Subject @relation(fields: [subjectSlug], references: [slug], onDelete: Cascade)
+  verifier User?   @relation("VerifiedQualifications", fields: [verifiedByAdminId], references: [id], onDelete: SetNull)
+
+  @@unique([tutorSlug, subjectSlug])
+  @@index([subjectSlug, status])
+  @@map("tutor_subject_qualifications")
+}
+
+model ContentManagerSubjectAssignment {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  subjectSlug String   @map("subject_slug")
+  assignedAt  DateTime @default(now()) @map("assigned_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectSlug], references: [slug], onDelete: Cascade)
+
+  @@unique([userId, subjectSlug])
+  @@map("content_manager_subject_assignments")
+}
+
 

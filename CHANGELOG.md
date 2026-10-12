@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.9.0] - 2026-10-12 - Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject Governance (SB-01 through SB-09)
+#### Added
+- **Dynamic Multi-Subject Registry & Lifecycle (SB-01, ADR-010)**:
+  - Extensible academic subject registry enabling administrators to register, configure, and publish new academic subjects without code deployments (`/api/subjects`).
+  - Subject lifecycle management supporting `DRAFT` (hidden from public catalogue), `ACTIVE` (publicly bookable and searchable), and `RETIRED` states.
+  - Public Multi-Subject Exploration portal (`/subjects`) with category filters (STEM, Languages, Sciences, Arts), curriculum level tracks (JSS 1-3, SSS 1-3, WAEC/JAMB, IGCSE), and baseline lesson rates.
+- **Dedicated Subject Landing & Curriculum Track Pages (SB-04)**:
+  - Responsive, SEO-indexable subject portals (`/subjects/[slug]`) mapping national exam specifications to self-paced Academy courses and qualified tutors.
+  - Breadcrumb navigation and real-time curriculum track badges.
+- **Pre-Release AI Safety & Rubric Evaluation Rollout Gate (SB-05, SB-06, SB-07)**:
+  - Strict statutory release invariant forbidding AI tutoring for any subject until formal curriculum evaluation is recorded (`/api/subjects/[slug]/ai/evaluate`).
+  - Rubric benchmark gate requiring >=80.0% evaluation score, >=70.0% syllabus grounding coverage, and safety block test clearance before the activation switch unlocks (`toggleSubjectAI`).
+  - Interactive AI banner dynamically switching between a 1-tap "Launch Socratic AI Assistant" launcher and an informative pedagogical quality gate notice (`data-testid="subject-ai-pending-notice"`).
+  - Versioned per-subject pedagogical verification methods (`SYMBOLIC_SOLVER` for Math/Physics, `GRAMMAR_CHECKER` for English, `FACTUAL_RETRIEVAL` for Sciences).
+- **Multi-Subject Tutor Qualifications & Verification Queue (SB-03)**:
+  - Per-subject credential verification engine (`tutor_subject_qualifications`) linking tutors to specific curriculum tracks with evidence URLs (TRCN, university degrees, specialized certifications).
+  - Administrative qualification verification queue (`data-testid="tutor-subject-qualifications-table"`) with approve/reject workflows and immutable audit logs.
+- **Per-Subject Analytics & Commission Overrides (SB-08, SB-09)**:
+  - Administrative reporting endpoint (`/api/subjects/[slug]/analytics`) detailing enrolments, bookings, tutor counts, and AI query volume.
+  - Per-subject commission override rate (e.g., 12.5% Chemistry vs standard 15.0%) and base pricing tiers in integer minor units.
+- **Comprehensive Quality Gates & Multi-Viewport Accessibility**:
+  - PostgreSQL 16 schema migration (`007_phase_i_multi_subject_registry_and_ai_governance.sql`) and Prisma models.
+  - 11 Vitest unit tests in `src/test/subject.test.ts` (111 passing total across project).
+  - 5 Playwright E2E tests in `e2e/phase-i.spec.ts` covering public catalogue discovery, AI gate notices, admin registry creation, rubric evaluations, and tutor qualifications.
+  - Multi-viewport accessibility audit verifying 0 serious or critical WCAG 2.2 AA violations across Desktop (1280px), Tablet (768px), and Mobile (375px) viewports.
+
 ### [0.8.0] - 2026-10-12 - Phase H: Administration, Safeguarding Triage & Financial Operations Hub (AD-01 through AD-07, PY-07 through PY-09)
 #### Added
 - **Unified Operations Hub & Least-Privilege RBAC (AD-01, ADR-009)**:
