@@ -123,6 +123,7 @@ model User {
   studentProgressNotes       TutorProgressNote[] @relation("StudentProgressNotes")
   guardianNotificationPreference GuardianNotificationPreference?
   musicPracticeLogs          MusicPracticeLog[]
+  schoolEnrollments          SchoolStudentEnrollment[]
 
   @@map("users")
 }
@@ -834,6 +835,68 @@ model MusicLicensedMaterial {
   @@index([licenseType])
   @@map("music_licensed_materials")
 }
+
+// ==============================================================================
+// Phase L: Institutional School Administration, Multi-Tenant Cohorts & PWA
+// Requirements: SC-01 through SC-05, ADR-013
+// ==============================================================================
+
+model School {
+  id           String   @id @default(uuid())
+  name         String
+  code         String   @unique
+  state        String
+  address      String
+  contactEmail String   @map("contact_email")
+  contactPhone String   @map("contact_phone")
+  seatCapacity Int      @default(100) @map("seat_capacity")
+  seatsUsed    Int      @default(0) @map("seats_used")
+  status       String   @default("ACTIVE") // ACTIVE, PENDING_VERIFICATION, SUSPENDED
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  cohorts     SchoolCohort[]
+  enrollments SchoolStudentEnrollment[]
+
+  @@index([code])
+  @@index([state])
+  @@map("schools")
+}
+
+model SchoolCohort {
+  id           String   @id @default(uuid())
+  schoolId     String   @map("school_id")
+  name         String
+  gradeLevel   String   @map("grade_level")
+  academicYear String   @default("2026/2027") @map("academic_year")
+  studentCount Int      @default(0) @map("student_count")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  school      School                    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  enrollments SchoolStudentEnrollment[]
+
+  @@index([schoolId])
+  @@map("school_cohorts")
+}
+
+model SchoolStudentEnrollment {
+  id                String   @id @default(uuid())
+  schoolId          String   @map("school_id")
+  cohortId          String   @map("cohort_id")
+  studentId         String   @map("student_id")
+  studentExternalId String?  @map("student_external_id")
+  status            String   @default("ACTIVE")
+  enrolledAt        DateTime @default(now()) @map("enrolled_at")
+
+  school  School       @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  cohort  SchoolCohort @relation(fields: [cohortId], references: [id], onDelete: Cascade)
+  student User         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([schoolId, studentId])
+  @@index([cohortId])
+  @@map("school_student_enrollments")
+}
+
 
 
 

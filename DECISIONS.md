@@ -77,6 +77,16 @@
   5. *Dynamic Curriculum Authoring*: Content managers and vetted music faculty author Grade 1–8 syllabi, aural dictation exercises, and sheet music directly through the platform without requiring software deployments (Requirement MU-05).
 - **Consequences:** Eliminates customer friction and scheduling collisions; enforces copyright compliance for examination bodies; ensures safeguarding parity for minor instrument learners; and provides an extensible foundation for Trainbow's creative arts division.
 
+## ADR-013: Institutional Multi-Tenant School Administration, Multilingual Localization & Offline PWA Architecture
+- **Status:** Accepted
+- **Context:** Nigerian secondary education operates in complex institutional and regional environments. Schools (Federal Unity Colleges, state public schools, and private academies) need multi-seat license administration, cohort analytics, and bulk roster onboarding without forcing students into disconnected platform silos. Furthermore, pedagogical accessibility requires localization across Nigeria's major languages (English, Yorùbá, Hausa, Igbo, Nigerian Pidgin), while intermittent 2G/3G connectivity in sub-urban and rural areas necessitates offline resiliency.
+- **Decision:** Architect Phase L institutional, linguistic, and offline infrastructure natively into Trainbow HUB:
+  1. *Multi-Tenant Institutional Administration*: Model `School`, `SchoolCohort`, and `SchoolStudentEnrollment` entities in the unified database schema. Support institutional licensing quotas (`seatCapacity`, `seatsUsed`), academic streams, teacher allocations, and CSV/JSON bulk roster onboarding with instant license deduction.
+  2. *Regional Multilingual Localization*: Establish a comprehensive 5-language localization dictionary across English (`en`), Yorùbá (`yo`), Harshen Hausa (`ha`), Asụsụ Igbo (`ig`), and Naijá Pidgin (`pcm`). Provide immediate UI switching via reactive `LanguageSwitcher` and synchronized localStorage persistence without page reloads.
+  3. *Progressive Web App (PWA)*: Provide a standards-compliant Web App Manifest (`manifest.ts`) configured for standalone installation, custom brand icons, orientation locking, and native shortcuts.
+  4. *Low-Bandwidth 2G Data Saver & Offline Queue*: Implement Data Saver mode optimizing DOM animations, CSS rendering, and asset payloads. Quiz attempts completed offline are preserved in local browser storage and flushed automatically or manually to `/api/academy/quiz/sync` once online network connectivity is detected.
+- **Consequences:** Institutional schools seamlessly adopt Trainbow HUB without bespoke deployments; learners from diverse linguistic backgrounds achieve superior comprehension; and rural learners maintain study momentum through network volatility.
+
 
 
 

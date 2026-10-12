@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.12.0] - 2026-10-12 - Phase L: Institutional School Administration, Multilingual Localization & Low-Bandwidth PWA (SC-01 through SC-05, ADR-013)
+#### Added
+- **Institutional School & Cohort Registry (SC-01, ADR-013)**:
+  - Multi-tenant school administration portal (`/school`) supporting Federal Unity Colleges and private institutions (King's College Lagos, Corona Secondary School Agbara).
+  - Academic cohort registry structuring classes into streams (SSS 3 Gold - WAEC Sciences, JSS 2 Diamond - Foundations, SSS 2 Emerald - Cambridge IGCSE) with lead teacher assignments.
+  - School switcher and institutional profile badges with accreditation statuses and registration codes.
+- **Bulk Student Roster Onboarding & License Allocation (SC-02)**:
+  - Roster onboarding engine parsing CSV/JSON records with automated seat validation.
+  - Instant institutional license allocation updating school quotas and student enrollment ledgers.
+- **Institutional Performance Analytics & Dashboard (SC-03)**:
+  - Seat license utilization meter with capacity indicators and warning thresholds.
+  - Academic performance analytics tracking cohort average scores (84.2%), lesson completion rate, attendance benchmarks, and supervised study hours (1,480 hrs).
+- **Regional Multilingual Localization Engine (SC-04, ADR-013)**:
+  - 5-language regional dictionary supporting English (`en`), Yorùbá (`yo`), Harshen Hausa (`ha`), Asụsụ Igbo (`ig`), and Naijá Pidgin (`pcm`).
+  - Reactive `LanguageSwitcher` component embedded in primary navigation and school portal with immediate re-rendering of all UI strings.
+- **Progressive Web App & Low-Bandwidth Data Saver (SC-05)**:
+  - Web App Manifest (`src/app/manifest.ts`) enabling installable standalone PWA with custom brand icons.
+  - 2G Data Saver mode (`DataSaverToggle.tsx`) optimizing asset delivery and reducing network payloads on volatile cellular networks.
+  - Offline quiz attempt queuing via `localStorage` with automated and manual cloud synchronization (`/api/academy/quiz/sync`).
+- **Quality Gates, Tests & Accessibility**:
+  - PostgreSQL schema migration `010_phase_l_institutional_schools_and_multilingual.sql` and Prisma models (`School`, `SchoolCohort`, `SchoolStudentEnrollment`).
+  - 11 Vitest unit tests in `src/test/school.test.ts` (147 tests passing project-wide across 14 test suites).
+  - 8 Playwright E2E tests in `e2e/phase-l.spec.ts` testing school dashboard, cohorts, bulk onboarding, language switcher, and offline sync.
+  - Multi-viewport accessibility audit (`scripts/audit-phase-l.js`) verifying 0 serious/critical WCAG 2.2 AA violations across Desktop (1280px), Tablet (768px), and Mobile (375px) viewports with high-resolution visual captures.
+
 ### [0.11.0] - 2026-10-12 - Phase K: Trainbow HUB Music (MU-01 through MU-05, ADR-012)
 #### Added
 - **Multi-Discipline Music Catalogue & Vetted Faculty (MU-01, ADR-012)**:

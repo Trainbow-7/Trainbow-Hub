@@ -10,6 +10,8 @@ import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Menu, Globe, ArrowRight, LogOut, ShieldAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { DataSaverToggle } from "@/components/ui/DataSaverToggle";
 
 const NAV_LINKS = [
   { href: "/academy", label: "Academy" },
@@ -17,6 +19,7 @@ const NAV_LINKS = [
   { href: "/ai", label: "AI" },
   { href: "/tutors", label: "Tutors" },
   { href: "/music", label: "Music" },
+  { href: "/school", label: "Schools" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
@@ -72,6 +75,16 @@ export function Navbar() {
 
         {/* Right Action Elements */}
         <div className="flex items-center gap-3">
+          {/* Data Saver Mode */}
+          <div className="hidden xl:flex">
+            <DataSaverToggle />
+          </div>
+
+          {/* Regional Language Switcher */}
+          <div className="hidden md:flex">
+            <LanguageSwitcher />
+          </div>
+
           {/* Currency / Regional Hint */}
           <div
             className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-neutral-slate-600 bg-neutral-slate-100 rounded-full border border-neutral-slate-200"
@@ -283,6 +296,16 @@ export function Navbar() {
           </div>
 
           <div className="pt-6 border-t border-neutral-slate-200 space-y-3">
+            <div className="flex items-center justify-between py-1">
+              <span className="text-xs text-neutral-slate-500 font-medium">Data Saver</span>
+              <DataSaverToggle />
+            </div>
+
+            <div className="flex items-center justify-between py-1">
+              <span className="text-xs text-neutral-slate-500 font-medium">Language</span>
+              <LanguageSwitcher />
+            </div>
+
             <div className="flex items-center justify-between text-xs text-neutral-slate-500 py-1">
               <span>Currency & Locale</span>
               <span className="font-semibold text-neutral-slate-700">NGN (₦) · Nigeria</span>
