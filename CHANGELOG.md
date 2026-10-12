@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [0.11.0] - 2026-10-12 - Phase K: Trainbow HUB Music (MU-01 through MU-05, ADR-012)
+#### Added
+- **Multi-Discipline Music Catalogue & Vetted Faculty (MU-01, ADR-012)**:
+  - Interactive Music Division Portal (`/music`) featuring instrument and theory tracks (Piano, Voice/Vocal Coaching, Classical Violin, Acoustic Guitar, Drums/African Percussion, Music Theory).
+  - Vetted music instructor profiles with verified credentials (ABRSM London Examiners, MUSON Lagos Fellows, Royal Schools of Music Diplomas) and verified NIN / TRCN background clearance.
+  - Strict ADR-012 unified account invariant: learners, guardians, and instructors share the exact same user identity, timetable scheduler, and Paystack Naira wallet without secondary or disparate logins.
+- **Multi-Format Sessions & Unified Booking Calendar (MU-02)**:
+  - Multi-format lesson booking supporting both Online (high-fidelity WebRTC stereo audio stream with live safeguarding recording) and Physical In-Person Studio lessons in verified Lagos and Abuja music studios.
+  - Interactive quick booking modal with instant confirmation, synced to student and guardian calendars.
+- **Music Practice Logs & Interactive Digital Metronome (MU-03)**:
+  - Web Audio API-powered digital metronome with BPM slider (40–240 BPM), tempo markings (Largo, Moderato, Presto), visual accent beat pulses, and tap-tempo controls.
+  - Student rehearsal practice logger capturing instrument, duration (minutes), pieces/scales rehearsed, tempo (BPM), and qualitative technique reflections (finger touch, intonation, breath support).
+  - Practice history ledger synced in real-time, providing transparency across student and guardian oversight records.
+- **Licensed Repertoire & Intellectual Property Governance (MU-04)**:
+  - Repertoire browser managing licensed sheet music, examination pieces, and pedagogical literature.
+  - Strict copyright metadata tracking license categories (`ABRSM_LICENSED`, `MUSON_CURRICULUM`, `PUBLIC_DOMAIN`, `TRAINBOW_ORIGINAL`, `COPYRIGHT_COMMISSIONED`), license registration numbers, publishers, and legally binding copyright notices.
+  - Repertoire filter engine by instrument and license type, with interactive audio sample previews and authorized score view actions.
+- **Extensible Music Curriculum & Course Syllabus Authoring (MU-05)**:
+  - Published comprehensive music theory course (`abrsm-muson-music-theory-mastery`, ₦20,000) structured across Module 1 (Stave Notation, Time Signatures & Scales) and Module 2 (Intervals, Chords, Cadences & Aural Perception).
+  - Extensible authoring without code deployments: music content managers and faculty publish courses, grade syllabi, aural specimens, and score repertoire end-to-end.
+- **Quality Gates, Tests & Multi-Viewport Accessibility**:
+  - PostgreSQL schema migration `009_phase_k_music_tuition_and_repertoire.sql` and Prisma models (`MusicPracticeLog`, `MusicLicensedMaterial`).
+  - 14 Vitest unit tests in `src/test/music.test.ts` (136 tests passing project-wide across 13 test suites).
+  - 10 Playwright E2E tests in `e2e/phase-k.spec.ts` testing catalogue tracks, instructor booking modal, repertoire browser, practice logger, and metronome.
+  - Multi-viewport accessibility audit (`scripts/audit-phase-k.js`) verifying 0 serious/critical WCAG 2.2 AA violations across Desktop (1280px), Tablet (768px), and Mobile (375px) viewports with high-resolution visual captures.
+
 ### [0.10.0] - 2026-10-12 - Phase J: Full Parent & Guardian Oversight Portal (PP-01 through PP-05)
 #### Added
 - **Consolidated Multi-Child Progress & Assessment Tracking (PP-01, ADR-011)**:

@@ -122,6 +122,7 @@ model User {
   contentSubjectAssignments ContentManagerSubjectAssignment[]
   studentProgressNotes       TutorProgressNote[] @relation("StudentProgressNotes")
   guardianNotificationPreference GuardianNotificationPreference?
+  musicPracticeLogs          MusicPracticeLog[]
 
   @@map("users")
 }
@@ -790,6 +791,48 @@ model GuardianNotificationPreference {
   guardian User @relation(fields: [guardianId], references: [id], onDelete: Cascade)
 
   @@map("guardian_notification_preferences")
+}
+
+// ==============================================================================
+// Phase K: Trainbow HUB Music (Theory, Instruments, Voice & Repertoire)
+// Requirements: MU-01 through MU-05, ADR-012
+// ==============================================================================
+
+model MusicPracticeLog {
+  id              String   @id @default(uuid())
+  studentId       String   @map("student_id")
+  instrument      String
+  durationMinutes Int      @map("duration_minutes")
+  piecesPracticed String   @map("pieces_practiced")
+  tempoBpm        Int?     @map("tempo_bpm")
+  notes           String?
+  practicedAt     DateTime @default(now()) @map("practiced_at")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@map("music_practice_logs")
+}
+
+model MusicLicensedMaterial {
+  id             String   @id @default(uuid())
+  title          String
+  composer       String
+  instrument     String
+  licenseType    String   @map("license_type") // ABRSM_LICENSED, MUSON_CURRICULUM, PUBLIC_DOMAIN, TRAINBOW_ORIGINAL, COPYRIGHT_COMMISSIONED
+  licenseNumber  String   @map("license_number")
+  publisher      String
+  copyrightNotice String  @map("copyright_notice")
+  scorePdfUrl    String   @map("score_pdf_url")
+  audioSampleUrl String?  @map("audio_sample_url")
+  gradeLevel     String   @map("grade_level")
+  isLicensed     Boolean  @default(true) @map("is_licensed")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([instrument])
+  @@index([licenseType])
+  @@map("music_licensed_materials")
 }
 
 

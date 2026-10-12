@@ -499,6 +499,59 @@ export interface GuardianNotificationPreferenceRecord {
   updatedAt: Date;
 }
 
+// ============================================================================
+// Phase K: Music Tuition, Repertoire & Licensing Types (MU-01 to MU-05, ADR-012)
+// ============================================================================
+
+export type MusicLicenseType =
+  | "ABRSM_LICENSED"
+  | "MUSON_CURRICULUM"
+  | "PUBLIC_DOMAIN"
+  | "TRAINBOW_ORIGINAL"
+  | "COPYRIGHT_COMMISSIONED";
+
+export interface MusicPracticeLogRecord {
+  id: string;
+  studentId: string;
+  instrument: string;
+  durationMinutes: number;
+  piecesPracticed: string;
+  tempoBpm?: number;
+  notes?: string;
+  practicedAt: Date;
+  createdAt: Date;
+}
+
+export interface MusicLicensedMaterialRecord {
+  id: string;
+  title: string;
+  composer: string;
+  instrument: string;
+  licenseType: MusicLicenseType;
+  licenseNumber: string;
+  publisher: string;
+  copyrightNotice: string;
+  scorePdfUrl: string;
+  audioSampleUrl?: string;
+  gradeLevel: string;
+  isLicensed: boolean;
+  createdAt: Date;
+}
+
+export interface MusicOverviewData {
+  totalPracticeMinutes: number;
+  totalPracticeSessions: number;
+  uniquePiecesPracticed: number;
+  licensedMaterialsCount: number;
+  tutorsCount: number;
+  recentPracticeLogs: MusicPracticeLogRecord[];
+  licensedMaterials: MusicLicensedMaterialRecord[];
+  featuredTutors: {
+    tutor: UserRecord;
+    profile: TutorProfileRecord;
+  }[];
+}
+
 export interface ChildProgressSummary {
   student: {
     id: string;
@@ -572,6 +625,8 @@ class DatabaseStore {
   contentManagerSubjectAssignments: Map<string, ContentManagerSubjectAssignmentRecord> = new Map();
   tutorProgressNotes: Map<string, TutorProgressNoteRecord> = new Map();
   guardianNotificationPreferences: Map<string, GuardianNotificationPreferenceRecord> = new Map();
+  musicPracticeLogs: Map<string, MusicPracticeLogRecord> = new Map();
+  musicLicensedMaterials: Map<string, MusicLicensedMaterialRecord> = new Map();
   private initialized = false;
 
   async reset() {
@@ -612,6 +667,8 @@ class DatabaseStore {
     this.contentManagerSubjectAssignments.clear();
     this.tutorProgressNotes.clear();
     this.guardianNotificationPreferences.clear();
+    this.musicPracticeLogs.clear();
+    this.musicLicensedMaterials.clear();
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");
@@ -1399,6 +1456,291 @@ class DatabaseStore {
       assignedAt: new Date("2026-09-01T00:00:00Z"),
     };
     this.contentManagerSubjectAssignments.set(cma1.id, cma1);
+
+    // ============================================================================
+    // Phase K Seeds: Music Faculty, Repertoire & Practice Logs (MU-01 to MU-05)
+    // ============================================================================
+
+    // 1. Music Tutors (MU-01)
+    const musicTutorUser1: UserRecord = {
+      id: "usr-tut-music-006",
+      email: "music.tutor@trainbowhub.ng",
+      passwordHash: defaultHash,
+      fullName: "Pastor Emmanuel Adeyemi",
+      phoneNumber: "+2348031234567",
+      role: "TUTOR",
+      dateOfBirth: "1982-04-14",
+      isMinor: false,
+      isVerified: true,
+      tutorProfileSlug: "pastor-emmanuel-adeyemi",
+      createdAt: new Date("2026-08-01"),
+      updatedAt: new Date("2026-08-01"),
+    };
+    this.users.set(musicTutorUser1.id, musicTutorUser1);
+
+    const musicTutorProfile1: TutorProfileRecord = {
+      id: "tp-music-003",
+      userId: musicTutorUser1.id,
+      slug: "pastor-emmanuel-adeyemi",
+      title: "Concert Pianist, MUSON Fellow & ABRSM Examiner",
+      bio: "Renowned classical and gospel pianist, choral director, and certified ABRSM / MUSON music theory examiner with 18 years teaching experience.",
+      teachingApproach: "Kodály ear training, classical finger dexterity, tone production, and ABRSM exam repertoire perfection.",
+      hourlyRateMinorUnits: 1200000, // ₦12,000
+      currency: "NGN",
+      rating: 5.0,
+      completedLessons: 89,
+      ninVerified: true,
+      backgroundChecked: true,
+      trcnCertified: true,
+      status: "APPROVED",
+      settlementBankName: "Zenith Bank",
+      settlementAccount: "2019884721",
+      settlementName: "Pastor Emmanuel Adeyemi",
+      createdAt: new Date("2026-08-01"),
+      updatedAt: new Date("2026-08-01"),
+    };
+    this.tutorProfiles.set(musicTutorProfile1.id, musicTutorProfile1);
+
+    const musicTutorUser2: UserRecord = {
+      id: "usr-tut-music-007",
+      email: "folashade.music@trainbowhub.ng",
+      passwordHash: defaultHash,
+      fullName: "Lady Folashade Balogun",
+      phoneNumber: "+2348057778899",
+      role: "TUTOR",
+      dateOfBirth: "1988-09-27",
+      isMinor: false,
+      isVerified: true,
+      tutorProfileSlug: "lady-folashade-balogun",
+      createdAt: new Date("2026-08-15"),
+      updatedAt: new Date("2026-08-15"),
+    };
+    this.users.set(musicTutorUser2.id, musicTutorUser2);
+
+    const musicTutorProfile2: TutorProfileRecord = {
+      id: "tp-music-004",
+      userId: musicTutorUser2.id,
+      slug: "lady-folashade-balogun",
+      title: "Operatic Vocal Coach & Lead Classical Violinist",
+      bio: "Soprano soloist and classical violinist with Royal Schools of Music Diploma. Specializes in breath control, vocal resonance, and ABRSM violin grades 1-8.",
+      teachingApproach: "Bel Canto diaphragmatic vocal technique, bow arm balance, intonation mastery, and stage performance confidence.",
+      hourlyRateMinorUnits: 1000000, // ₦10,000
+      currency: "NGN",
+      rating: 4.9,
+      completedLessons: 64,
+      ninVerified: true,
+      backgroundChecked: true,
+      trcnCertified: true,
+      status: "APPROVED",
+      settlementBankName: "Access Bank",
+      settlementAccount: "0788392011",
+      settlementName: "Lady Folashade Balogun",
+      createdAt: new Date("2026-08-15"),
+      updatedAt: new Date("2026-08-15"),
+    };
+    this.tutorProfiles.set(musicTutorProfile2.id, musicTutorProfile2);
+
+    // 2. Music Course (MU-01, MU-05)
+    const musicCourse: AuthoringCourseRecord = {
+      id: "ac-music-001",
+      authorId: musicTutorUser1.id,
+      title: "ABRSM & MUSON Music Theory Mastery (Grades 1-5)",
+      slug: "abrsm-muson-music-theory-mastery",
+      subjectSlug: "music-theory",
+      level: "Grade 1-5 ABRSM/MUSON",
+      status: "PUBLISHED",
+      version: 1,
+      changelog: "Comprehensive ABRSM and MUSON Grade 1-5 theory curriculum with interactive stave drills and ear training.",
+      priceMinorUnits: 2000000, // ₦20,000
+      shortDescription: "Complete syllabus coverage for ABRSM & MUSON Grade 1-5 Music Theory, stave notation, key signatures, and aural training.",
+      fullDescription: "From time signatures and transposition to harmonic cadence and score analysis. Certified music curriculum with interactive sheet music and listening exercises.",
+      syllabus: [
+        {
+          id: "mus-m1",
+          title: "Module 1: Stave Notation, Time Signatures & Major/Minor Scales",
+          lessons: [
+            { id: "mus-l1", title: "Treble & Bass Clefs and Pitch Recognition", durationMinutes: 45, isFreePreview: true },
+            { id: "mus-l2", title: "Rhythm, Simple and Compound Time Signatures", durationMinutes: 45, isFreePreview: false },
+            { id: "mus-l3", title: "Major and Natural/Harmonic Minor Scales & Key Signatures", durationMinutes: 50, isFreePreview: true },
+          ],
+        },
+        {
+          id: "mus-m2",
+          title: "Module 2: Intervals, Chords, Cadences & Aural Perception",
+          lessons: [
+            { id: "mus-l4", title: "Recognizing Melodic & Harmonic Intervals", durationMinutes: 40, isFreePreview: false },
+            { id: "mus-l5", title: "Tonic Triads, Inversions & Cadence Identification", durationMinutes: 55, isFreePreview: false },
+            { id: "mus-l6", title: "Sight Singing & Rhythmic Dictation for ABRSM Aural Tests", durationMinutes: 50, isFreePreview: false },
+          ],
+        },
+      ],
+      createdAt: new Date("2026-09-01"),
+      updatedAt: new Date("2026-10-01"),
+    };
+    this.authoringCourses.set(musicCourse.slug, musicCourse);
+
+    // 3. Tutor Subject Qualifications for Music (SB-03 / MU-01)
+    const tsqMusic1: TutorSubjectQualificationRecord = {
+      id: "tsq-music-001",
+      tutorSlug: "pastor-emmanuel-adeyemi",
+      subjectSlug: "music-theory",
+      levels: ["Beginner", "Intermediate", "Grade 1-5 ABRSM/MUSON", "Grade 6-8 Advanced"],
+      credentialEvidenceUrl: "https://trainbow-storage.s3.af-south-1.amazonaws.com/credentials/emmanuel-muson-fellow.pdf",
+      credentialType: "MUSON_FELLOW_ABRSM_DIPLOMA",
+      status: "APPROVED",
+      verifiedByAdminId: adminUser.id,
+      verifiedAt: new Date("2026-08-05T10:00:00Z"),
+      createdAt: new Date("2026-08-01T00:00:00Z"),
+      updatedAt: new Date("2026-08-05T10:00:00Z"),
+    };
+    const tsqMusic2: TutorSubjectQualificationRecord = {
+      id: "tsq-music-002",
+      tutorSlug: "lady-folashade-balogun",
+      subjectSlug: "music-theory",
+      levels: ["Beginner", "Grade 1-5 ABRSM/MUSON"],
+      credentialEvidenceUrl: "https://trainbow-storage.s3.af-south-1.amazonaws.com/credentials/folashade-rsm-diploma.pdf",
+      credentialType: "RSM_DIPLOMA_VOCAL",
+      status: "APPROVED",
+      verifiedByAdminId: adminUser.id,
+      verifiedAt: new Date("2026-08-20T10:00:00Z"),
+      createdAt: new Date("2026-08-15T00:00:00Z"),
+      updatedAt: new Date("2026-08-20T10:00:00Z"),
+    };
+    this.tutorSubjectQualifications.set(tsqMusic1.id, tsqMusic1);
+    this.tutorSubjectQualifications.set(tsqMusic2.id, tsqMusic2);
+
+    // 4. Seed Licensed Materials (MU-04)
+    const mat1: MusicLicensedMaterialRecord = {
+      id: "mat-seed-001",
+      title: "Minuet in G major, BWV Anh. 114",
+      composer: "Christian Petzold / J.S. Bach",
+      instrument: "Piano",
+      licenseType: "PUBLIC_DOMAIN",
+      licenseNumber: "PD-PETZOLD-1725",
+      publisher: "Notenbüchlein für Anna Magdalena Bach",
+      copyrightNotice: "Public Domain worldwide. Dedicated for open pedagogical instruction.",
+      scorePdfUrl: "/scores/bach-minuet-g.pdf",
+      audioSampleUrl: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a17830.mp3?filename=piano-classical-9812.mp3",
+      gradeLevel: "Grade 2 ABRSM",
+      isLicensed: true,
+      createdAt: new Date("2026-08-10T00:00:00Z"),
+    };
+    const mat2: MusicLicensedMaterialRecord = {
+      id: "mat-seed-002",
+      title: "ABRSM Grade 3 Sight Reading & Aural Specimen Tests",
+      composer: "Associated Board of the Royal Schools of Music",
+      instrument: "Theory & Aural",
+      licenseType: "ABRSM_LICENSED",
+      licenseNumber: "ABRSM-LIC-2026-NG-8841",
+      publisher: "ABRSM Publishing Ltd (London)",
+      copyrightNotice: "© 2026 Associated Board of the Royal Schools of Music. Licensed to Trainbow HUB Nigeria under Academic Institutional License.",
+      scorePdfUrl: "/scores/abrsm-grade3-specimen.pdf",
+      audioSampleUrl: "https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939a8c278.mp3?filename=classical-melody-1234.mp3",
+      gradeLevel: "Grade 3 ABRSM",
+      isLicensed: true,
+      createdAt: new Date("2026-08-12T00:00:00Z"),
+    };
+    const mat3: MusicLicensedMaterialRecord = {
+      id: "mat-seed-003",
+      title: "African Pianism: Yoruba Folk Themes & Polyrhythmic Studies",
+      composer: "Akin Euba / Trainbow Faculty Commission",
+      instrument: "Piano",
+      licenseType: "TRAINBOW_ORIGINAL",
+      licenseNumber: "TBH-MUS-2026-ORIG-001",
+      publisher: "Trainbow Academy Press",
+      copyrightNotice: "© 2026 Trainbow Technologies Ltd. All rights reserved. Authorized for registered Trainbow music learners.",
+      scorePdfUrl: "/scores/african-pianism-vol1.pdf",
+      audioSampleUrl: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=african-rhythm-piano-3142.mp3",
+      gradeLevel: "Grade 4 MUSON",
+      isLicensed: true,
+      createdAt: new Date("2026-08-15T00:00:00Z"),
+    };
+    const mat4: MusicLicensedMaterialRecord = {
+      id: "mat-seed-004",
+      title: "MUSON Diploma Vocal Solos: Sacred & Art Song Anthems",
+      composer: "Musical Society of Nigeria Academic Board",
+      instrument: "Voice",
+      licenseType: "MUSON_CURRICULUM",
+      licenseNumber: "MUSON-SYL-2026-VC-019",
+      publisher: "Musical Society of Nigeria (Onikan, Lagos)",
+      copyrightNotice: "© 2026 Musical Society of Nigeria (MUSON). Official curriculum distribution partner: Trainbow HUB.",
+      scorePdfUrl: "/scores/muson-vocal-anthems.pdf",
+      audioSampleUrl: "https://cdn.pixabay.com/download/audio/2021/08/04/audio_33a391f24d.mp3?filename=vocal-operatic-sample-123.mp3",
+      gradeLevel: "Grade 4-5 MUSON",
+      isLicensed: true,
+      createdAt: new Date("2026-08-18T00:00:00Z"),
+    };
+    this.musicLicensedMaterials.set(mat1.id, mat1);
+    this.musicLicensedMaterials.set(mat2.id, mat2);
+    this.musicLicensedMaterials.set(mat3.id, mat3);
+    this.musicLicensedMaterials.set(mat4.id, mat4);
+
+    // 5. Seed Practice Logs for Chioma (MU-03)
+    const mpl1: MusicPracticeLogRecord = {
+      id: "mpl-seed-001",
+      studentId: studentUser.id,
+      instrument: "Piano",
+      durationMinutes: 45,
+      piecesPracticed: "Bach Minuet in G major (bars 1-16), Czerny Op. 599 No. 12",
+      tempoBpm: 84,
+      notes: "Worked on right hand phrasing and clean thumb transitions on arpeggiated sixteenth notes.",
+      practicedAt: new Date("2026-10-11T16:30:00Z"),
+      createdAt: new Date("2026-10-11T17:15:00Z"),
+    };
+    const mpl2: MusicPracticeLogRecord = {
+      id: "mpl-seed-002",
+      studentId: studentUser.id,
+      instrument: "Voice",
+      durationMinutes: 30,
+      piecesPracticed: "Vocal arpeggios in Eb major, 'Caro Mio Ben' vocalise",
+      tempoBpm: 72,
+      notes: "Worked on diaphragmatic support and soft palate elevation on high G.",
+      practicedAt: new Date("2026-10-12T09:00:00Z"),
+      createdAt: new Date("2026-10-12T09:30:00Z"),
+    };
+    this.musicPracticeLogs.set(mpl1.id, mpl1);
+    this.musicPracticeLogs.set(mpl2.id, mpl2);
+
+    // 6. Seed Music Booking (MU-02)
+    const musicBooking: BookingRecord = {
+      id: "bkg-music-001",
+      studentId: studentUser.id,
+      tutorSlug: musicTutorProfile1.slug,
+      tutorName: musicTutorUser1.fullName,
+      subject: "Music Theory & Piano",
+      slotDate: "2026-10-15",
+      slotTime: "15:00 - 16:00",
+      amountMinorUnits: 1200000,
+      commissionMinorUnits: 240000,
+      tutorEarningsMinorUnits: 960000,
+      currency: "NGN",
+      bookingStatus: "CONFIRMED",
+      paymentStatus: "VERIFIED",
+      paymentReference: "PAY-MUS-2026-001",
+      meetingLink: "https://trainbowhub.ng/classroom/cls-music-001",
+      createdAt: new Date("2026-10-10T11:00:00Z"),
+      updatedAt: new Date("2026-10-10T11:05:00Z"),
+    };
+    this.bookings.set(musicBooking.id, musicBooking);
+
+    const musicSession: ClassroomSessionRecord = {
+      id: "cls-music-001",
+      bookingId: musicBooking.id,
+      tutorSlug: musicTutorProfile1.slug,
+      studentId: studentUser.id,
+      subject: "Music Theory & Piano",
+      scheduledStart: new Date("2026-10-15T15:00:00Z"),
+      scheduledEnd: new Date("2026-10-15T16:00:00Z"),
+      status: "SCHEDULED",
+      meetingRoomId: "tbh-music-room-001",
+      webrtcProvider: "AGORA",
+      recordingEnabled: true,
+      audioTranscribed: false,
+      flaggedIncidentCount: 0,
+      createdAt: new Date("2026-10-10T11:05:00Z"),
+      updatedAt: new Date("2026-10-10T11:05:00Z"),
+    };
+    this.classroomSessions.set(musicSession.id, musicSession);
   }
 
   // User repository methods
@@ -1650,6 +1992,21 @@ class DatabaseStore {
     await this.init();
     const ac = this.authoringCourses.get(slug);
     return ac ? { ...ac } : null;
+  }
+
+  async listAuthoringCourses(filters?: {
+    subjectSlug?: string;
+    status?: "DRAFT" | "IN_REVIEW" | "PUBLISHED";
+  }): Promise<AuthoringCourseRecord[]> {
+    await this.init();
+    let results: AuthoringCourseRecord[] = [];
+    for (const ac of this.authoringCourses.values()) {
+      let matches = true;
+      if (filters?.subjectSlug && ac.subjectSlug !== filters.subjectSlug) matches = false;
+      if (filters?.status && ac.status !== filters.status) matches = false;
+      if (matches) results.push({ ...ac });
+    }
+    return results;
   }
 
   async createOrUpdateAuthoringCourse(data: {
@@ -3833,6 +4190,124 @@ class DatabaseStore {
       success: true,
       message: `Successfully verified and linked ${student.fullName}.`,
       guardianship: { ...gRecord },
+    };
+  }
+
+  // ============================================================================
+  // Phase K: Music Tuition & Repertoire Repository Methods (MU-01 to MU-05)
+  // ============================================================================
+
+  async listMusicLicensedMaterials(filters?: {
+    instrument?: string;
+    licenseType?: MusicLicenseType;
+    search?: string;
+  }): Promise<MusicLicensedMaterialRecord[]> {
+    await this.init();
+    let results: MusicLicensedMaterialRecord[] = [];
+    for (const mat of this.musicLicensedMaterials.values()) {
+      let matches = true;
+      if (filters?.instrument && !mat.instrument.toLowerCase().includes(filters.instrument.toLowerCase())) {
+        matches = false;
+      }
+      if (filters?.licenseType && mat.licenseType !== filters.licenseType) {
+        matches = false;
+      }
+      if (filters?.search) {
+        const q = filters.search.toLowerCase();
+        const matchTitle = mat.title.toLowerCase().includes(q);
+        const matchComposer = mat.composer.toLowerCase().includes(q);
+        const matchPublisher = mat.publisher.toLowerCase().includes(q);
+        if (!matchTitle && !matchComposer && !matchPublisher) {
+          matches = false;
+        }
+      }
+      if (matches) {
+        results.push({ ...mat });
+      }
+    }
+    return results.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  async getMusicLicensedMaterial(id: string): Promise<MusicLicensedMaterialRecord | null> {
+    await this.init();
+    const item = this.musicLicensedMaterials.get(id);
+    return item ? { ...item } : null;
+  }
+
+  async createMusicLicensedMaterial(
+    data: Omit<MusicLicensedMaterialRecord, "id" | "createdAt">
+  ): Promise<MusicLicensedMaterialRecord> {
+    await this.init();
+    const id = `mat-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const record: MusicLicensedMaterialRecord = {
+      ...data,
+      id,
+      createdAt: new Date(),
+    };
+    this.musicLicensedMaterials.set(id, record);
+    return { ...record };
+  }
+
+  async getStudentPracticeLogs(studentId: string): Promise<MusicPracticeLogRecord[]> {
+    await this.init();
+    const logs: MusicPracticeLogRecord[] = [];
+    for (const l of this.musicPracticeLogs.values()) {
+      if (l.studentId === studentId) {
+        logs.push({ ...l });
+      }
+    }
+    return logs.sort((a, b) => new Date(b.practicedAt).getTime() - new Date(a.practicedAt).getTime());
+  }
+
+  async createMusicPracticeLog(
+    data: Omit<MusicPracticeLogRecord, "id" | "createdAt">
+  ): Promise<MusicPracticeLogRecord> {
+    await this.init();
+    const id = `mpl-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const record: MusicPracticeLogRecord = {
+      ...data,
+      id,
+      createdAt: new Date(),
+    };
+    this.musicPracticeLogs.set(id, record);
+    return { ...record };
+  }
+
+  async listMusicTutors(): Promise<{ tutor: UserRecord; profile: TutorProfileRecord }[]> {
+    await this.init();
+    const tutors: { tutor: UserRecord; profile: TutorProfileRecord }[] = [];
+    const musicTutorIds = new Set(["usr-tut-music-006", "usr-tut-music-007"]);
+
+    for (const tp of this.tutorProfiles.values()) {
+      if (musicTutorIds.has(tp.userId) || tp.title.toLowerCase().includes("music") || tp.title.toLowerCase().includes("pianist") || tp.title.toLowerCase().includes("vocal")) {
+        const user = this.users.get(tp.userId);
+        if (user) {
+          tutors.push({ tutor: { ...user }, profile: { ...tp } });
+        }
+      }
+    }
+    return tutors;
+  }
+
+  async getMusicOverview(studentId?: string): Promise<MusicOverviewData> {
+    await this.init();
+    const sid = studentId || "usr-std-001";
+    const logs = await this.getStudentPracticeLogs(sid);
+    const materials = await this.listMusicLicensedMaterials();
+    const tutors = await this.listMusicTutors();
+
+    const totalMinutes = logs.reduce((sum, l) => sum + (l.durationMinutes || 0), 0);
+    const uniquePieces = new Set(logs.map((l) => l.piecesPracticed)).size;
+
+    return {
+      totalPracticeMinutes: totalMinutes,
+      totalPracticeSessions: logs.length,
+      uniquePiecesPracticed: uniquePieces,
+      licensedMaterialsCount: materials.length,
+      tutorsCount: tutors.length,
+      recentPracticeLogs: logs.slice(0, 5),
+      licensedMaterials: materials,
+      featuredTutors: tutors,
     };
   }
 }
