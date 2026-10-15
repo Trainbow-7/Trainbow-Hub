@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import {
   BookOpen,
   CheckCircle2,
@@ -464,6 +465,7 @@ export default function StudentDashboardPage() {
       </main>
 
       <Footer />
+      <MobileBottomNav role="STUDENT" />
     </div>
   );
 }

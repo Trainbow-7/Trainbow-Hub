@@ -158,3 +158,22 @@
   5. *Pricing (`/pricing`)*: Modernized 3-tier card layout with prominent "Most Popular" badge on Socratic AI pass, transparent Naira prices (`₦5,000`, `₦3,500`, `₦15,000`), clear feature checklists, and 44px buttons.
   6. *About & FAQ (`/about`, `/faq`)*: Applied fluid heading scale, 44px search input with soft shadows, 36px+ category filter pills, and accessible animated accordion drawers.
 - **Consequences:** Provides a seamless, trustworthy experience across all public informational pages; guarantees 44px tap targets on mobile; and preserves 100% passing status across all 155 unit tests and Playwright smoke tests.
+
+## ADR-020: Authentication & Authenticated Portal Shells Polish (Login, Register, Dashboard, Guardian, Tutor)
+- **Status:** Accepted
+- **Context:** Authentication and dashboard portals required cohesive visual polish, mobile ergonomic navigation (bottom tab bar on viewports <1024px), 44px minimum tap targets on all form inputs and buttons, and clear plain-English NDPA 2023 safeguarding guidance.
+- **Decision:**
+  1. *Authentication (`/login`, `/register`)*:
+     - Form cards upgraded with `shadow-soft`, 16px radius, and high-contrast labels.
+     - Enforced 44px height on all text and password inputs with accessible toggle buttons.
+     - Plain-English NDPA 2023 safeguarding notices highlighting verified parental consent for minors under 18 years.
+     - Preserved quick 1-tap demo sign-in presets across all 5 roles.
+  2. *Adaptive App Shell & Mobile Bottom Nav (`MobileBottomNav.tsx`)*:
+     - Built a fixed bottom navigation bar below 1024px with 48px min-height tap targets, live route highlight, and role-specific shortcuts (Student, Parent, Tutor).
+     - Standardized persistent `Navbar` and `Footer` chrome across `/dashboard`, `/guardian`, and `/dashboard/tutor`.
+  3. *Portal Dashboards*:
+     - Learner Dashboard (`/dashboard`): Retained streak counter, weekday progress pills, course enrollment cards with progress bars, and scheduled lessons shortcuts.
+     - Guardian Portal (`/guardian`): Added unified navigation shell, clear NDPA compliance badges, and responsive tabs for wards, timetable, tutor progress notes, receipts, and notification preferences.
+     - Tutor Dashboard (`/dashboard/tutor`): Maintained curriculum course authoring, video preview modal, and schedule management with 44px action buttons.
+- **Consequences:** Provides effortless mobile navigation for learners and parents; guarantees 44px tap targets; and preserves 100% test compatibility across all 155 unit tests and Playwright suites.
+

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { Navbar } from "@/components/layout/Navbar";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Button } from "@/components/ui/Button";
 import {
@@ -233,9 +235,11 @@ export default function GuardianPortalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-slate-50 text-neutral-slate-900 pb-16">
+    <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900 pb-16">
+      <Navbar />
+
       {/* Top Banner & Title Bar */}
-      <div className="bg-white border-b border-neutral-slate-200 shadow-xs">
+      <div className="bg-white border-b border-neutral-slate-200 shadow-soft">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
@@ -1128,6 +1132,8 @@ export default function GuardianPortalPage() {
           </div>
         )}
       </main>
+
+      <MobileBottomNav role="PARENT" />
     </div>
   );
 }

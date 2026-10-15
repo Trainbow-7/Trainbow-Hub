@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Input } from "@/components/ui/Input";
@@ -790,6 +791,7 @@ export default function TutorDashboardAuthoringPage() {
       </main>
 
       <Footer />
+      <MobileBottomNav role="TUTOR" />
     </div>
   );
 }

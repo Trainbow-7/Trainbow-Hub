@@ -138,7 +138,7 @@ function LoginForm() {
         </div>
 
         {/* Main Sign-In Card */}
-        <div className="bg-white py-8 px-6 shadow-sm border border-neutral-slate-200 rounded-2xl sm:px-10">
+        <div className="bg-white py-8 px-6 shadow-soft border border-neutral-slate-200 rounded-2xl sm:px-10">
           <form className="space-y-5" onSubmit={handleSubmit}>
             {errorMsg && (
               <div
@@ -170,7 +170,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. chioma@trainbowhub.ng"
-                  className="pl-10 text-sm"
+                  className="pl-10 text-sm h-11"
                 />
               </div>
             </div>
@@ -200,12 +200,12 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="pl-10 pr-10 text-sm"
+                  className="pl-10 pr-10 text-sm h-11"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-neutral-slate-400 hover:text-neutral-slate-600 focus:outline-none"
+                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-neutral-slate-400 hover:text-neutral-slate-600 focus:outline-none min-w-[44px] min-h-[44px] justify-center"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -217,7 +217,7 @@ function LoginForm() {
               type="submit"
               variant="primary"
               disabled={isLoading}
-              className="w-full justify-center py-2.5 text-base font-semibold shadow-sm"
+              className="w-full justify-center h-11 text-base font-semibold shadow-soft"
             >
               {isLoading ? "Signing in..." : "Sign in"}
             </Button>
@@ -225,7 +225,7 @@ function LoginForm() {
 
           {/* NDPA 2023 Safeguard Notice */}
           <div className="mt-6 pt-5 border-t border-neutral-slate-100 flex items-start gap-2 text-xs text-neutral-slate-500">
-            <ShieldCheck className="w-4 h-4 text-brand-teal-600 shrink-0 mt-0.5" />
+            <ShieldCheck className="w-4 h-4 text-service-tutor-700 shrink-0 mt-0.5" />
             <p>
               Under <span className="font-semibold text-neutral-slate-700">NDPA 2023 Section 31</span>,
               learners under 18 years operate under verified parental consent before booking sessions.
@@ -237,7 +237,7 @@ function LoginForm() {
             <span>Don&apos;t have an account yet? </span>
             <Link
               href="/register"
-              className="font-semibold text-brand-blue-600 hover:text-brand-blue-700 hover:underline"
+              className="font-semibold text-brand-blue-600 hover:text-brand-blue-700 hover:underline min-h-[44px] inline-flex items-center"
             >
               Create an account
             </Link>

@@ -201,7 +201,7 @@ export default function RegisterPage() {
       </div>
 
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-xl">
-        <div className="bg-white py-8 px-6 shadow-sm border border-neutral-slate-200 rounded-2xl sm:px-10">
+        <div className="bg-white py-8 px-6 shadow-soft border border-neutral-slate-200 rounded-2xl sm:px-10">
           <form className="space-y-5" onSubmit={handleSubmit}>
             {errorMsg && (
               <div
