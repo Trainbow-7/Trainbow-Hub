@@ -16,6 +16,33 @@ enum UserRole {
   PARENT
   TUTOR
   ADMIN
+  MATCHING_COORDINATOR
+}
+
+enum RequestStatus {
+  RECEIVED
+  MATCHING
+  TUTOR_PROPOSED
+  AWAITING_APPROVAL
+  AWAITING_PAYMENT
+  CONFIRMED
+  ACTIVE
+  CLOSED
+  CANCELLED
+}
+
+enum ProposalStatus {
+  PENDING_APPROVAL
+  APPROVED
+  DECLINED
+  EXPIRED
+}
+
+enum RosterAvailability {
+  AVAILABLE_NOW
+  LIMITED
+  BUSY
+  PAUSED
 }
 
 enum GuardianshipStatus {
@@ -124,6 +151,10 @@ model User {
   guardianNotificationPreference GuardianNotificationPreference?
   musicPracticeLogs          MusicPracticeLog[]
   schoolEnrollments          SchoolStudentEnrollment[]
+  tutorRequests              TutorRequest[]
+  coordinatedProposals       MatchProposal[]
+  requestEvents              RequestEvent[]
+  coordinatorAssignment      CoordinatorAssignment?
 
   @@map("users")
 }
@@ -166,6 +197,10 @@ model TutorProfile {
   backgroundChecked    Boolean     @default(false) @map("background_checked")
   trcnCertified        Boolean     @default(false) @map("trcn_certified")
   status               TutorStatus @default(PENDING_REVIEW)
+  rosterStatus         RosterAvailability @default(AVAILABLE_NOW) @map("roster_status")
+  lastAvailabilityConfirmedAt DateTime?   @map("last_availability_confirmed_at")
+  publicListing        Boolean     @default(false) @map("public_listing")
+  internalNotes        String?     @map("internal_notes")
   settlementBankName   String?     @map("settlement_bank_name")
   settlementAccount    String?     @map("settlement_account")
   settlementName       String?     @map("settlement_name")
@@ -173,6 +208,7 @@ model TutorProfile {
   updatedAt            DateTime    @updatedAt @map("updated_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  matchProposals MatchProposal[]
 
   @@map("tutor_profiles")
 }
@@ -292,10 +328,14 @@ model Booking {
   meetingLink             String?       @map("meeting_link")
   cancellationReason      String?       @map("cancellation_reason")
   rescheduledFromId       String?       @map("rescheduled_from_id")
+  requestId               String?       @map("request_id")
+  proposalId              String?       @map("proposal_id")
   createdAt               DateTime      @default(now()) @map("created_at")
   updatedAt               DateTime      @updatedAt @map("updated_at")
 
   student             User                 @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  tutorRequest        TutorRequest?        @relation(fields: [requestId], references: [id], onDelete: SetNull)
+  matchProposal       MatchProposal?       @relation(fields: [proposalId], references: [id], onDelete: SetNull)
   paymentTransactions PaymentTransaction[]
   ledgerEntries       TutorLedgerEntry[]
   classroomSessions   ClassroomSession[]
@@ -944,3 +984,119 @@ model PrivacyPurgeRequest {
   @@index([userId])
   @@map("privacy_purge_requests")
 }
+
+// ==============================================================================
+// Phase N: Director Concierge Tutor Matching Models (CM-01 to CM-08)
+// ==============================================================================
+
+model TutorRequest {
+  id                    String        @id @default(uuid())
+  referenceCode         String        @unique @map("reference_code")
+  studentId             String        @map("student_id")
+  subject               String
+  level                 String
+  examGoal              String?       @map("exam_goal") // WAEC, JAMB, Cambridge IGCSE, etc.
+  topicsNeedingHelp     String        @map("topics_needing_help")
+  preferredDays         String[]      @map("preferred_days")
+  preferredTimes        String[]      @map("preferred_times")
+  timezone              String        @default("Africa/Lagos")
+  lessonFormat          String        @default("ONLINE") @map("lesson_format") // ONLINE, IN_PERSON, EITHER
+  locationState         String?       @map("location_state")
+  locationArea          String?       @map("location_area")
+  language              String        @default("English")
+  budgetRangeMin        Int           @default(500000) @map("budget_range_min") // in Kobo
+  budgetRangeMax        Int           @default(1500000) @map("budget_range_max")
+  urgency               String        @default("FLEXIBLE") // THIS_WEEK, WITHIN_48_HOURS, FLEXIBLE
+  extraNotes            String?       @map("extra_notes")
+  status                RequestStatus @default(RECEIVED)
+  assignedCoordinatorId String?       @map("assigned_coordinator_id")
+  createdAt             DateTime      @default(now()) @map("created_at")
+  updatedAt             DateTime      @updatedAt @map("updated_at")
+
+  student   User            @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  proposals MatchProposal[]
+  events    RequestEvent[]
+  bookings  Booking[]
+
+  @@index([studentId])
+  @@index([status])
+  @@index([referenceCode])
+  @@map("tutor_requests")
+}
+
+model MatchProposal {
+  id                    String         @id @default(uuid())
+  requestId             String         @map("request_id")
+  tutorProfileId        String         @map("tutor_profile_id")
+  coordinatorId         String         @map("coordinator_id")
+  proposedSlotDate      String         @map("proposed_slot_date")
+  proposedSlotTime      String         @map("proposed_slot_time")
+  quoteAmountMinorUnits Int            @map("quote_amount_minor_units") // in Kobo
+  cancellationTerms     String         @map("cancellation_terms")
+  messageToFamily       String         @map("message_to_family")
+  status                ProposalStatus @default(PENDING_APPROVAL)
+  familyFeedback        String?        @map("family_feedback")
+  expiresAt             DateTime?      @map("expires_at")
+  createdAt             DateTime       @default(now()) @map("created_at")
+  updatedAt             DateTime       @updatedAt @map("updated_at")
+
+  request      TutorRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  tutorProfile TutorProfile @relation(fields: [tutorProfileId], references: [id], onDelete: Cascade)
+  coordinator  User         @relation(fields: [coordinatorId], references: [id], onDelete: Cascade)
+  bookings     Booking[]
+
+  @@index([requestId])
+  @@index([tutorProfileId])
+  @@map("match_proposals")
+}
+
+model RequestEvent {
+  id        String   @id @default(uuid())
+  requestId String   @map("request_id")
+  actorId   String   @map("actor_id")
+  fromStatus String? @map("from_status")
+  toStatus  String   @map("to_status")
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  request TutorRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  actor   User         @relation(fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([requestId])
+  @@map("request_events")
+}
+
+model CoordinatorAssignment {
+  id                  String   @id @default(uuid())
+  userId              String   @unique @map("user_id")
+  isLead              Boolean  @default(false) @map("is_lead") // Mr Oyedeji S.T
+  isDelegate          Boolean  @default(false) @map("is_delegate")
+  isOutOfOffice       Boolean  @default(false) @map("is_out_of_office")
+  backupCoordinatorId String?  @map("backup_coordinator_id")
+  mfaEnabled          Boolean  @default(true) @map("mfa_enabled")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("coordinator_assignments")
+}
+
+model MatchingSetting {
+  id                  String   @id @default(uuid())
+  key                 String   @unique
+  directorName        String   @default("Mr Oyedeji S.T") @map("director_name")
+  directorTitle       String   @default("Director, Trainbow HUB") @map("director_title")
+  emailChannel        String?  @map("email_channel")
+  phoneChannel        String?  @map("phone_channel")
+  whatsappChannel     String?  @map("whatsapp_channel")
+  targetResponseHours Int      @default(24) @map("target_response_hours")
+  urgentResponseHours Int      @default(4) @map("urgent_response_hours")
+  workingHoursText    String   @default("Mon-Sat 8:00 AM - 6:00 PM WAT") @map("working_hours_text")
+  outOfOfficeActive   Boolean  @default(false) @map("out_of_office_active")
+  outOfOfficeMessage  String?  @map("out_of_office_message")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  @@map("matching_settings")
+}
+

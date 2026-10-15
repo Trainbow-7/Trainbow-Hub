@@ -9,7 +9,7 @@ export interface SessionUser {
   id: string;
   email: string;
   fullName: string;
-  role: "STUDENT" | "PARENT" | "TUTOR" | "ADMIN";
+  role: "STUDENT" | "PARENT" | "TUTOR" | "ADMIN" | "MATCHING_COORDINATOR";
   isMinor: boolean;
   isVerified: boolean;
   tutorProfileSlug?: string;

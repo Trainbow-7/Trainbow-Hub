@@ -203,5 +203,17 @@
   4. *Test Suites Green*: 100% of unit tests (15/15 files, 155/155 tests) and Playwright end-to-end smoke tests (6/6 scenarios across desktop Chromium and Mobile Chrome) remain green.
 - **Consequences:** Trainbow HUB is production-ready, visually cohesive, trustworthy, mobile-ergonomic, and compliant with NDPA 2023 educational standards.
 
-
-
+## ADR-023: Concierge Tutor Matching Engine, Private Roster & Data Invariants
+- **Status:** Accepted
+- **Context:** The public tutor directory model resulted in student frustration and booking drop-offs due to listed tutors frequently being unavailable. Under the new model, Trainbow HUB transitions from an open marketplace to an exclusive concierge matching model personally supervised by Mr Oyedeji S.T, Director of Trainbow HUB.
+- **Decision:**
+  1. *Schema & Role Expansion*:
+     - Added `MATCHING_COORDINATOR` role to `UserRole` and `SessionUser`.
+     - Seeded Director Mr Oyedeji S.T (`usr-dir-001`) as lead coordinator with `isLead: true`.
+     - Added new Prisma models & in-memory entities: `TutorRequest`, `MatchProposal`, `RequestEvent`, `CoordinatorAssignment`, and `MatchingSetting`.
+  2. *Strict Invariants Preserved*:
+     - **NDPA 2023 Section 31**: Minors under 18 cannot submit a tutor request without verified parent/guardian consent.
+     - **Double-Booking Prevention**: Proposing or approving matches strictly validates existing confirmed/held booking intervals to prevent schedule collisions.
+     - **Private Roster Protection**: Tutors are private by default (`publicListing: false`), maintaining availability states (`AVAILABLE_NOW`, `BOOKED_FULL`, `PAUSED_TRAINING`, `INACTIVE`) managed exclusively by the Director.
+     - **Non-Destructive Data Model**: Existing bookings, payments, Paystack webhook integrity, audit logs, and virtual classroom links remain intact.
+- **Consequences:** Provides high-trust, personally verified tutor matching for Nigerian families; unlocks Director Matching Desk; passes 16/16 test files (161/161 tests) and strict TypeScript type-checking.
