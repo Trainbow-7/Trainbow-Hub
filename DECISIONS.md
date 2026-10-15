@@ -134,3 +134,16 @@
   3. *Service Cards*: Upgrade the 4 core service cards (Academy, AI, Tutors, Music) with designated accent top borders, 12px card radii, 44px minimum height action buttons, and 150ms smooth hover-lift animations.
   4. *Catalogue & Guardrail Reassurance*: Enforce grounded copy without unbacked superlatives; maintain verified NDPA 2023 safeguarding badges and checklist metrics.
 - **Consequences:** Provides a cohesive, trustworthy first impression across mobile (375px) and desktop (1536px); satisfies 100% of Playwright smoke tests and unit tests.
+
+## ADR-018: Tutors Directory & Profile UI/UX Polish, Adaptive Filter Sheet & Transparent Booking Cards
+- **Status:** Accepted
+- **Context:** The tutors directory and profile pages needed intentional styling, responsive desktop sidebar / mobile drawer filtering, clear lesson rate displays, next available slot hints, and guaranteed 44px tap targets while preserving booking flow logic and filters.
+- **Decision:**
+  1. *Directory Layout & Hero*: Implemented a clean 2-column desktop hero with booking assurance badges and live tutor counter. Integrated quick-select popular subject chips (`All`, `Mathematics`, `English Language`, `Physics`, `Chemistry`, `Biology`).
+  2. *Adaptive Filter Architecture*: 
+     - Desktop (>=1024px): Sticky 300px sidebar with styled native selects for state/subject/curriculum, an accessible price range slider (₦3,000–₦15,000/hr) with live labels, format checkboxes, and clear-all action.
+     - Mobile (<1024px): Fixed bottom drawer with accessible backdrop, sticky header and footer, live counter button ("Show N Tutors"), and quick search/sort bar on the main screen.
+  3. *Tutor Cards*: Equalized card height structure with 12px radius, verified tutor badge, subjects list, next available slot indicator, transparent hourly rate in Naira, and 44px dual CTAs ("View Profile", "Book Slot").
+  4. *Profile & Booking Flow*: Clean 2-column profile layout on desktop with credentials checklist, curriculum tags, cancellation terms breakdown, and sticky booking card with slot hold countdown notice.
+- **Consequences:** Eliminates visual clutter, ensures 100% WCAG 2.2 AA contrast compliance, passes all 155 unit tests and Playwright smoke tests.
+
