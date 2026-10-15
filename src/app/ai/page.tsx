@@ -55,9 +55,9 @@ export default function AIPage() {
                   Open AI Workspace <ArrowRight className="h-4 w-4 ml-1.5" />
                 </Button>
               </a>
-              <Link href="/tutors">
+              <Link href="/request-tutor">
                 <Button variant="secondary" className="h-11 font-semibold text-sm px-6">
-                  Meet Human Tutors
+                  Request a Tutor Match
                 </Button>
               </Link>
             </div>

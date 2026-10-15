@@ -179,10 +179,10 @@ export function AIInteractiveDemo() {
         {/* Human Tutor Escalation CTA */}
         <div className="flex items-center gap-2 text-xs">
           <span className="text-neutral-slate-500 hidden sm:inline">Still need 1-on-1 coaching?</span>
-          <Link href="/tutors">
+          <Link href="/request-tutor">
             <Button variant="tutor" size="sm" className="gap-1.5 text-xs">
               <GraduationCap className="h-3.5 w-3.5" />
-              <span>Escalate to a Vetted Tutor</span>
+              <span>Request a Tutor Match</span>
             </Button>
           </Link>
         </div>

@@ -59,7 +59,7 @@ export default function AboutPage() {
               2. Connect
             </h3>
             <p className="text-xs text-neutral-slate-600 leading-relaxed">
-              Connecting students with thoroughly vetted Nigerian tutors for tailored 1-on-1 virtual or in-person sessions, with verified guardian oversight.
+              Every learner is personally matched by Mr Oyedeji S.T, Director of Trainbow HUB, with a verified tutor from our private roster who is available right now, backed by guardian consent and review.
             </p>
           </div>
 

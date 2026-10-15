@@ -167,8 +167,8 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
                 Available for 1-on-1 online lessons or in-person sessions.
               </p>
             </div>
-            <Link href="/tutors" className="text-xs font-semibold text-brand-blue-600 hover:text-brand-blue-700">
-              Browse full directory →
+            <Link href="/request-tutor" className="text-xs font-semibold text-brand-blue-600 hover:text-brand-blue-700">
+              Request a tutor match →
             </Link>
           </div>
 

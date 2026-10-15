@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { db } from "@/lib/db";
+import { db, UserRecord, RosterAvailabilityType } from "@/lib/db";
 
 describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
   beforeEach(async () => {
@@ -7,14 +7,13 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
   });
 
   it("REQ-01: blocks tutor request creation for minors without verified guardian consent (NDPA 2023 Section 31)", async () => {
-    // usr-stu-002 is a minor by default seed without verified guardianship initially or create unverified minor
-    const minorUser = {
+    const minorUser: UserRecord = {
       id: "usr-minor-test-01",
       email: "minor@example.com",
+      passwordHash: "salt:hash123",
       fullName: "Minor Student",
-      role: "STUDENT" as const,
+      role: "STUDENT",
       isMinor: true,
-      guardianConsent: false,
       isVerified: true,
       isSuspended: false,
       createdAt: new Date(),
@@ -28,7 +27,7 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
         subject: "Mathematics",
         level: "Senior Secondary (SS2)",
         examGoal: "WAEC",
-        topicsNeedingHelp: ["Calculus", "Probability"],
+        topicsNeedingHelp: "Calculus, Probability",
         preferredDays: ["Monday", "Wednesday"],
         preferredTimes: ["16:00 - 18:00"],
         lessonFormat: "ONLINE",
@@ -38,14 +37,14 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
   });
 
   it("REQ-02: creates tutor request with unique reference code, sets status to RECEIVED, and logs event", async () => {
-    const adultStudentId = "usr-stu-001"; // adult student
+    const adultStudentId = "usr-std-001"; // adult student
 
     const req = await db.createTutorRequest({
       studentId: adultStudentId,
       subject: "Further Mathematics",
       level: "A-Level / Cambridge",
       examGoal: "CAMBRIDGE_IGCSE",
-      topicsNeedingHelp: ["Integration by parts", "Vectors"],
+      topicsNeedingHelp: "Integration by parts, Vectors",
       preferredDays: ["Tuesday", "Thursday"],
       preferredTimes: ["17:00 - 19:00"],
       lessonFormat: "ONLINE",
@@ -64,7 +63,7 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
   });
 
   it("REQ-03: Director/Coordinator generates match proposal and updates request to TUTOR_PROPOSED", async () => {
-    const adultStudentId = "usr-stu-001";
+    const adultStudentId = "usr-std-001";
     const coordinator = Array.from(db.users.values()).find((u) => u.role === "MATCHING_COORDINATOR");
     expect(coordinator).toBeDefined();
 
@@ -76,7 +75,7 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
       subject: "Physics",
       level: "Senior Secondary (SS3)",
       examGoal: "WAEC",
-      topicsNeedingHelp: ["Electromagnetism"],
+      topicsNeedingHelp: "Electromagnetism",
       preferredDays: ["Saturday"],
       preferredTimes: ["10:00 - 12:00"],
       lessonFormat: "ONLINE",
@@ -117,7 +116,7 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
       subject: "Chemistry",
       level: "UTME / JAMB",
       examGoal: "JAMB",
-      topicsNeedingHelp: ["Organic Chemistry"],
+      topicsNeedingHelp: "Organic Chemistry",
       preferredDays: ["Friday"],
       preferredTimes: ["15:00 - 17:00"],
       lessonFormat: "ONLINE",
@@ -161,7 +160,7 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
       subject: "Biology",
       level: "SSCE",
       examGoal: "WAEC",
-      topicsNeedingHelp: ["Genetics"],
+      topicsNeedingHelp: "Genetics",
       preferredDays: ["Wednesday"],
       preferredTimes: ["14:00 - 16:00"],
       lessonFormat: "ONLINE",
@@ -198,11 +197,11 @@ describe("Phase N: Concierge Tutor Matching Engine Unit Tests", () => {
   it("REQ-06: Director updates tutor roster status and private roster lists tutors with publicListing: false", async () => {
     const tutorProfile = Array.from(db.tutorProfiles.values())[0];
 
-    const updatedProfile = await db.updateTutorRosterStatus(tutorProfile.slug, "ACTIVE");
-    expect(updatedProfile.rosterStatus).toBe("ACTIVE");
+    const updatedProfile = await db.updateTutorRosterStatus(tutorProfile.slug, "AVAILABLE_NOW");
+    expect(updatedProfile.rosterStatus).toBe("AVAILABLE_NOW");
     expect(updatedProfile.publicListing).toBe(false);
 
-    const privateRoster = await db.listPrivateRosterTutors({ rosterStatus: "ACTIVE" });
+    const privateRoster = await db.listPrivateRosterTutors({ rosterStatus: "AVAILABLE_NOW" });
     expect(privateRoster.length).toBeGreaterThan(0);
     expect(privateRoster.every((t) => t.profile.publicListing === false)).toBe(true);
   });

@@ -1,9 +1,9 @@
 import { MetadataRoute } from "next";
-import { SEED_SUBJECTS, SEED_COURSES, SEED_TUTORS } from "@/lib/data/seed-data";
+import { SEED_SUBJECTS, SEED_COURSES } from "@/lib/data/seed-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://trainbowhub.ng";
-  const lastModified = new Date("2026-10-10");
+  const lastModified = new Date("2026-10-15");
 
   // Core static routes
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -26,10 +26,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/tutors`,
+      url: `${baseUrl}/request-tutor`,
       lastModified,
-      changeFrequency: "daily",
-      priority: 0.9,
+      changeFrequency: "weekly",
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/music`,
@@ -121,13 +121,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Tutor routes
-  const tutorRoutes: MetadataRoute.Sitemap = SEED_TUTORS.map((t) => ({
-    url: `${baseUrl}/tutors/${t.slug}`,
-    lastModified,
-    changeFrequency: "daily" as const,
-    priority: 0.8,
-  }));
-
-  return [...staticRoutes, ...subjectRoutes, ...courseRoutes, ...tutorRoutes];
+  return [...staticRoutes, ...subjectRoutes, ...courseRoutes];
 }

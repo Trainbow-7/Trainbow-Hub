@@ -63,8 +63,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/tutors" className="hover:text-service-tutor-700 transition-colors">
-                  Find a Tutor (1-on-1 Lessons)
+                <Link href="/request-tutor" className="hover:text-service-tutor-700 transition-colors">
+                  Concierge Tutor Matching (1-on-1 Lessons)
                 </Link>
               </li>
               <li>

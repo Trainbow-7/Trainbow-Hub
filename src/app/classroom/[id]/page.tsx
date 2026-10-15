@@ -368,9 +368,9 @@ export default function ClassroomPage() {
                 Return to Bookings Hub
               </Button>
             </Link>
-            <Link href="/tutors">
+            <Link href="/request-tutor">
               <Button variant="outline" className="w-full text-white border-neutral-slate-700">
-                Browse Verified Tutors
+                Request a Tutor Match
               </Button>
             </Link>
           </div>

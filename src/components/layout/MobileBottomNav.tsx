@@ -16,13 +16,13 @@ export function MobileBottomNav({ role = "STUDENT" }: MobileBottomNavProps) {
   const studentNavItems = [
     { label: "Dashboard", href: "/dashboard", icon: BookOpen },
     { label: "AI Practice", href: "/ai", icon: Sparkles },
-    { label: "Find Tutor", href: "/tutors", icon: Users },
+    { label: "Get Tutor", href: "/request-tutor", icon: Users },
     { label: "Bookings", href: "/bookings", icon: Calendar },
   ];
 
   const parentNavItems = [
     { label: "Overview", href: "/guardian", icon: BookOpen },
-    { label: "Tutors", href: "/tutors", icon: Users },
+    { label: "Get Tutor", href: "/request-tutor", icon: Users },
     { label: "Bookings", href: "/bookings", icon: Calendar },
     { label: "Consent", href: "/guardian/consent", icon: ShieldAlert },
   ];

@@ -199,7 +199,7 @@ function BookingsContent() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="/tutors"
+              href="/request-tutor"
               className={buttonVariants({
                 variant: "primary",
                 size: "sm",
@@ -207,7 +207,7 @@ function BookingsContent() {
               })}
             >
               <Calendar className="w-4 h-4" />
-              <span>Book Another Tutor</span>
+              <span>Request a Tutor</span>
             </Link>
           </div>
         </div>
@@ -336,18 +336,18 @@ function BookingsContent() {
               <div className="space-y-1">
                 <h3 className="font-heading font-bold text-lg text-neutral-slate-900">No Upcoming Sessions</h3>
                 <p className="text-xs text-neutral-slate-500 max-w-sm mx-auto">
-                  You do not have any active tutoring appointments booked. Find verified educators in our directory.
+                  You do not have any active tutoring appointments booked. Get personally matched with a vetted tutor.
                 </p>
               </div>
               <Link
-                href="/tutors"
+                href="/request-tutor"
                 className={buttonVariants({
                   variant: "primary",
                   size: "sm",
                   className: "text-xs font-bold mt-2",
                 })}
               >
-                Find a Vetted Tutor
+                Request a Tutor Match
               </Link>
             </div>
           ) : (

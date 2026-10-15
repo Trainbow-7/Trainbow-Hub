@@ -68,13 +68,13 @@ export default function HomePage() {
                 </p>
 
                 <div className="pt-2 flex flex-wrap gap-4 items-center">
-                  <Link href="/tutors">
+                  <Link href="/request-tutor">
                     <Button
                       variant="primary"
                       size="lg"
                       className="font-semibold text-base shadow-lg shadow-brand-blue-600/25 px-6 py-3"
                     >
-                      Find a tutor
+                      Request a tutor
                     </Button>
                   </Link>
 
@@ -312,9 +312,9 @@ export default function HomePage() {
                 </div>
               </CardContent>
               <div className="p-6 pt-0">
-                <Link href="/tutors" className="block w-full">
+                <Link href="/request-tutor" className="block w-full">
                   <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
-                    <span>Find a Tutor</span>
+                    <span>Request a Match</span>
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
@@ -572,69 +572,46 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Featured Tutors Grid */}
+          {/* Concierge Tutor Matching Feature Spotlight */}
           <div className="space-y-4 pt-6">
-            <div className="flex items-center justify-between">
-              <h3 className="font-heading font-bold text-lg text-neutral-slate-900">
-                Approved 1-on-1 Tutors
-              </h3>
-              <Link href="/tutors" className="text-xs font-semibold text-brand-blue-600 hover:text-brand-blue-700">
-                Browse all 12 verified tutors →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredTutors.map((tutor) => (
-                <Card key={tutor.id} className="flex flex-col justify-between hover:shadow-hover transition-all">
-                  <CardHeader className="space-y-3">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <Avatar name={tutor.name} size="lg" />
-                        <div>
-                          <h4 className="font-heading font-bold text-sm text-neutral-slate-900">
-                            <Link href={`/tutors/${tutor.slug}`} className="hover:text-brand-blue-600 transition-colors">
-                              {tutor.name}
-                            </Link>
-                          </h4>
-                          <p className="text-xs text-neutral-slate-500">{tutor.location}</p>
-                        </div>
-                      </div>
-                      <Badge variant="tutor" className="shrink-0 gap-1 text-[10px]">
-                        <ShieldCheck className="h-3 w-3" />
-                        Verified
-                      </Badge>
+            <div className="rounded-2xl border border-service-tutor-200 bg-gradient-to-br from-white to-purple-50/40 p-6 sm:p-8 shadow-sm">
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                <div className="space-y-3 max-w-2xl">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-service-tutor-100 text-service-tutor-900 px-3 py-1 text-xs font-semibold">
+                    <ShieldCheck className="h-4 w-4 text-service-tutor-700" />
+                    <span>Personal Concierge Matching · Zero Guesswork</span>
+                  </div>
+                  <h3 className="font-heading font-bold text-2xl text-neutral-slate-900">
+                    Handpicked 1-on-1 Tutors, Personally Matched for Your Child
+                  </h3>
+                  <p className="text-sm text-neutral-slate-600 leading-relaxed">
+                    No searching unverified directories or dealing with unavailable tutors. Every tutoring need is personally reviewed by <strong className="text-neutral-slate-900">Mr Oyedeji S.T</strong>, Director of Trainbow HUB, who matches your child with a vetted tutor available right now.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs text-neutral-slate-700">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
+                      <span>Private vetted roster</span>
                     </div>
-                    <CardDescription className="text-xs text-neutral-slate-600 line-clamp-2">
-                      {tutor.bio}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-2 pt-0 text-xs text-neutral-slate-600">
-                    <div className="flex items-center justify-between">
-                      <Rating value={tutor.rating} count={tutor.completedLessons} />
-                      <div className="text-right">
-                        <span className="font-bold text-neutral-slate-900 text-sm">
-                          ₦{(tutor.hourlyRateMinorUnits / 100).toLocaleString("en-NG")}
-                        </span>
-                        <span className="text-neutral-slate-500 text-[10px]">/hr</span>
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
+                      <span>Guaranteed real-time availability</span>
                     </div>
-                    <div className="flex flex-wrap gap-1 pt-1">
-                      {tutor.subjects.map((s) => (
-                        <span key={s} className="px-2 py-0.5 rounded bg-neutral-slate-100 text-[10px] font-medium text-neutral-slate-700">
-                          {s}
-                        </span>
-                      ))}
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
+                      <span>Parent match approval</span>
                     </div>
-                  </CardContent>
-                  <CardFooter className="pt-0">
-                    <Link href={`/tutors/${tutor.slug}`} className="w-full">
-                      <Button variant="tutor" size="sm" className="w-full justify-between">
-                        <span>Check Availability & Book</span>
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
+                  </div>
+                </div>
+
+                <div className="shrink-0 w-full sm:w-auto">
+                  <Link href="/request-tutor" className="block w-full">
+                    <Button variant="primary" size="lg" className="w-full sm:w-auto font-semibold px-6 py-3 shadow-md">
+                      <span>Request a Tutor Match</span>
+                      <ArrowRight className="h-4 w-4 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -795,9 +772,9 @@ export default function HomePage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Link href="/tutors" className="w-full">
+                <Link href="/request-tutor" className="w-full">
                   <Button variant="outline" size="sm" className="w-full">
-                    Find Tutors
+                    Request a Match
                   </Button>
                 </Link>
               </CardFooter>
@@ -908,9 +885,9 @@ export default function HomePage() {
                   Get Started for Free
                 </Button>
               </Link>
-              <Link href="/tutors">
+              <Link href="/request-tutor">
                 <Button variant="secondary" size="lg" className="font-semibold text-base px-8 py-3">
-                  Find a Verified Tutor
+                  Request a Tutor Match
                 </Button>
               </Link>
             </div>

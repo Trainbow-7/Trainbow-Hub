@@ -149,8 +149,8 @@ export default function SubjectsCatalogPage() {
               Approved curricula ready for immediate self-paced study or 1-on-1 virtual tutor booking.
             </p>
           </div>
-          <Link href="/tutors" className="text-xs font-bold text-brand-purple-700 hover:underline flex items-center gap-1">
-            Browse All Verified Tutors <ArrowRight className="w-3.5 h-3.5" />
+          <Link href="/request-tutor" className="text-xs font-bold text-brand-purple-700 hover:underline flex items-center gap-1">
+            Request a Tutor Match <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 

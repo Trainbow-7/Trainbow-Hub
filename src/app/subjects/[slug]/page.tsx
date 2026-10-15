@@ -269,8 +269,8 @@ export default function SubjectDetailPage() {
                 Every tutor is identity-checked (NIN), TRCN certified, and approved for this specific curriculum.
               </p>
             </div>
-            <Link href="/tutors" className="text-xs font-bold text-brand-purple-700 hover:underline">
-              View All Tutors
+            <Link href="/request-tutor" className="text-xs font-bold text-brand-purple-700 hover:underline">
+              Request a Tutor Match
             </Link>
           </div>
 

@@ -43,28 +43,28 @@ export default function PricingPage() {
           {/* Plan 1: 1-on-1 Tutoring */}
           <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-150">
             <CardHeader className="space-y-2">
-              <Badge variant="tutor" className="w-fit">1-on-1 Lessons</Badge>
-              <CardTitle className="text-xl">Hourly Tutoring</CardTitle>
+              <Badge variant="tutor" className="w-fit">Concierge Matching</Badge>
+              <CardTitle className="text-xl">1-on-1 Tutoring</CardTitle>
               <div className="pt-2">
                 <span className="text-3xl font-extrabold font-heading text-neutral-slate-900">From ₦5,000</span>
                 <span className="text-xs text-neutral-slate-500 block">/ 60-minute lesson</span>
               </div>
               <CardDescription className="text-xs text-neutral-slate-600 pt-2">
-                Personalized instruction from verified Nigerian educators for WAEC, JAMB, or junior secondary school.
+                Personally matched by Mr Oyedeji S.T, Director of Trainbow HUB, with verified tutors available right now.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 text-xs text-neutral-slate-700">
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-service-tutor-700 shrink-0 mt-0.5" />
-                <span>Choose tutors by experience, qualification, and hourly rate</span>
+                <span>Zero guesswork: hand-selected matching based on student goals</span>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-service-tutor-700 shrink-0 mt-0.5" />
-                <span>10-minute temporary slot hold during checkout</span>
+                <span>Review match rationale and approve before payment</span>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-service-tutor-700 shrink-0 mt-0.5" />
-                <span>Free reschedule up to 4 hours before the session</span>
+                <span>Private roster with guaranteed real-time availability</span>
               </div>
               <div className="flex items-start gap-2">
                 <CheckCircle2 className="h-4 w-4 text-service-tutor-700 shrink-0 mt-0.5" />
@@ -72,9 +72,9 @@ export default function PricingPage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Link href="/tutors" className="w-full">
+              <Link href="/request-tutor" className="w-full">
                 <Button variant="outline" className="w-full justify-center h-11">
-                  Browse Tutors Directory
+                  Request a Tutor Match
                 </Button>
               </Link>
             </CardFooter>

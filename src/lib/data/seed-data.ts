@@ -810,20 +810,20 @@ export const SEED_FAQS: FAQItem[] = [
   {
     id: "faq-2",
     category: "Tutors & Booking",
-    question: "How are tutors vetted and verified before they can teach?",
-    answer: "Every tutor must submit government-issued identification, verified academic degrees, and professional credentials. We conduct background screening, verify teaching experience, and require each tutor to sign our strict Child Safeguarding Code of Conduct. Unapproved tutors never appear on the platform.",
+    question: "How does tutor matching work, and why is there no public marketplace?",
+    answer: "To guarantee reliable availability and trust, Trainbow HUB uses a concierge matching model instead of a public directory. Every tutor request is reviewed directly by Mr Oyedeji S.T, Director of Trainbow HUB. The Director personally selects an experienced, background-vetted tutor from our private roster who is available right now, and sends you a tailored proposal for your approval.",
   },
   {
     id: "faq-3",
     category: "Parents & Safety",
     question: "How do you protect students under 18?",
-    answer: "Safeguarding is built into our architecture. Students under 18 must have an account linked to a verified guardian via OTP before booking lessons or contacting tutors. Minors cannot message tutors privately; all sessions run in monitored virtual classrooms with a visible conduct-reporting tool, and guardians can join as observers anytime.",
+    answer: "Safeguarding is built into our architecture. Under-18 students must have verified parent/guardian consent under NDPA 2023 Section 31 before any tutor match proposal can be processed or booked. Minors cannot message tutors privately; all sessions run in monitored virtual classrooms with a visible conduct-reporting tool, and guardians can join as observers anytime.",
   },
   {
     id: "faq-4",
     category: "AI Assistant",
     question: "How does the Trainbow AI Mathematics Helper work?",
-    answer: "Trainbow AI operates on a Socratic pedagogy: it delivers hints first to guide students toward the solution rather than giving away the answer. All formulas and solutions are programmatically verified for mathematical correctness before display. If a student is still stuck, they can escalate to an approved human tutor with one tap.",
+    answer: "Trainbow AI operates on a Socratic pedagogy: it delivers hints first to guide students toward the solution rather than giving away the answer. All formulas and solutions are programmatically verified for mathematical correctness before display. If a student is still stuck, they can request a personal tutor match with one tap.",
   },
   {
     id: "faq-5",
@@ -834,8 +834,8 @@ export const SEED_FAQS: FAQItem[] = [
   {
     id: "faq-6",
     category: "Tutors & Booking",
-    question: "What happens if I need to cancel or reschedule a tutoring session?",
-    answer: "You can reschedule up to 4 hours before a session without penalty, subject to tutor availability. Cancellations made more than 24 hours before the lesson receive a 100% refund (minus standard processing fees). Cancellations between 12 and 24 hours receive a 50% refund. If a tutor cancels, the learner always receives a 100% refund.",
+    question: "What happens if I need to cancel, reschedule, or decline a tutor match?",
+    answer: "When Mr Oyedeji S.T sends you a tutor proposal, you can accept or decline with your feedback. If declined, the Director immediately matches you with an alternative tutor from the private roster. For confirmed sessions, cancellations made more than 24 hours in advance receive a 100% refund. If a tutor cancels, the learner always receives a 100% refund.",
   },
   {
     id: "faq-7",

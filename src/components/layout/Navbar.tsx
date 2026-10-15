@@ -14,7 +14,7 @@ import { UtilityPopover } from "./UtilityPopover";
 
 const PRIMARY_NAV_LINKS = [
   { href: "/ai", label: "AI" },
-  { href: "/tutors", label: "Tutors" },
+  { href: "/request-tutor", label: "Get a tutor" },
   { href: "/music", label: "Music" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
