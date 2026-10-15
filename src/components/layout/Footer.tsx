@@ -77,6 +77,11 @@ export function Footer() {
                   Pricing & AI Plans
                 </Link>
               </li>
+              <li>
+                <Link href="/school" className="hover:text-brand-blue-600 transition-colors">
+                  For Schools & Institutions
+                </Link>
+              </li>
             </ul>
           </div>
 

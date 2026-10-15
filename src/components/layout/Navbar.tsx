@@ -8,25 +8,36 @@ import { Button, buttonVariants } from "@/components/ui/Button";
 import { Sheet } from "@/components/ui/Sheet";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { Menu, Globe, ArrowRight, LogOut, ShieldAlert } from "lucide-react";
+import { Menu, ArrowRight, LogOut, ShieldAlert, ChevronDown, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
-import { DataSaverToggle } from "@/components/ui/DataSaverToggle";
+import { UtilityPopover } from "./UtilityPopover";
 
-const NAV_LINKS = [
-  { href: "/academy", label: "Academy" },
-  { href: "/subjects", label: "Subjects" },
+const PRIMARY_NAV_LINKS = [
   { href: "/ai", label: "AI" },
   { href: "/tutors", label: "Tutors" },
   { href: "/music", label: "Music" },
-  { href: "/school", label: "Schools" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
+];
+
+const ACADEMY_SUB_LINKS = [
+  {
+    href: "/academy",
+    title: "Academy Overview",
+    desc: "Syllabus courses for WAEC, JAMB & Cambridge IGCSE",
+  },
+  {
+    href: "/subjects",
+    title: "Subjects Directory",
+    desc: "Mathematics, English, Physics, Chemistry, Biology",
+  },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [academyMenuOpen, setAcademyMenuOpen] = React.useState(false);
+  const academyDropdownRef = React.useRef<HTMLDivElement>(null);
   const { user, logout, isLoading } = useAuth();
 
   const getRoleLabel = (role: string) => {
@@ -44,23 +55,108 @@ export function Navbar() {
     }
   };
 
+  // Close academy dropdown on outside click
+  React.useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (academyDropdownRef.current && !academyDropdownRef.current.contains(e.target as Node)) {
+        setAcademyMenuOpen(false);
+      }
+    }
+    if (academyMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [academyMenuOpen]);
+
+  const isAcademyActive =
+    pathname === "/academy" ||
+    pathname?.startsWith("/academy/") ||
+    pathname === "/subjects" ||
+    pathname?.startsWith("/subjects/");
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-neutral-slate-200 bg-white/95 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[4.5rem] flex items-center justify-between">
+    <header className="sticky top-0 z-40 w-full border-b border-neutral-slate-200/80 bg-white/95 backdrop-blur-md transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 min-h-[4.25rem] flex items-center justify-between">
         {/* Brand Wordmark & Tagline */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6 lg:gap-8">
           <TrainbowLogo />
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation (>=1024px) */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
-            {NAV_LINKS.map((link) => {
+            {/* Academy with Dropdown Menu */}
+            <div className="relative inline-flex items-center" ref={academyDropdownRef}>
+              <div
+                className={cn(
+                  "inline-flex items-center rounded-control transition-colors",
+                  isAcademyActive
+                    ? "bg-brand-blue-50 text-brand-blue-600 font-semibold"
+                    : "hover:bg-neutral-slate-100 text-neutral-slate-600 hover:text-neutral-slate-900"
+                )}
+              >
+                <Link
+                  href="/academy"
+                  className="px-3 py-2 text-sm font-medium"
+                >
+                  Academy
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setAcademyMenuOpen(!academyMenuOpen)}
+                  aria-expanded={academyMenuOpen}
+                  aria-haspopup="menu"
+                  aria-label="Toggle Academy menu"
+                  className="pr-2.5 pl-0.5 py-2 hover:text-brand-blue-600 focus-visible:outline-none"
+                >
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 transition-transform duration-150",
+                      academyMenuOpen && "rotate-180 text-brand-blue-600"
+                    )}
+                  />
+                </button>
+              </div>
+
+              {academyMenuOpen && (
+                <div
+                  role="menu"
+                  className="absolute left-0 top-full mt-2 w-72 rounded-panel bg-white p-2 shadow-floating border border-neutral-slate-200 z-50 animate-in fade-in zoom-in-95 duration-150"
+                >
+                  {ACADEMY_SUB_LINKS.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setAcademyMenuOpen(false)}
+                      className={cn(
+                        "flex items-start gap-3 p-3 rounded-control transition-colors text-left",
+                        pathname === item.href || pathname?.startsWith(`${item.href}/`)
+                          ? "bg-brand-blue-50"
+                          : "hover:bg-neutral-slate-50"
+                      )}
+                    >
+                      <div className="h-8 w-8 rounded-md bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <BookOpen className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-neutral-slate-900">{item.title}</p>
+                        <p className="text-[11px] text-neutral-slate-500 leading-snug">{item.desc}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Direct Core Nav Links */}
+            {PRIMARY_NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "px-3.5 py-2 text-sm font-medium rounded-md transition-colors",
+                    "px-3 py-2 text-sm font-medium rounded-control transition-colors",
                     isActive
                       ? "text-brand-blue-600 bg-brand-blue-50 font-semibold"
                       : "text-neutral-slate-600 hover:text-neutral-slate-900 hover:bg-neutral-slate-100"
@@ -75,33 +171,19 @@ export function Navbar() {
 
         {/* Right Action Elements */}
         <div className="flex items-center gap-3">
-          {/* Data Saver Mode */}
-          <div className="hidden xl:flex">
-            <DataSaverToggle />
-          </div>
-
-          {/* Regional Language Switcher */}
-          <div className="hidden md:flex">
-            <LanguageSwitcher />
-          </div>
-
-          {/* Currency / Regional Hint */}
-          <div
-            className="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-neutral-slate-600 bg-neutral-slate-100 rounded-full border border-neutral-slate-200"
-            title="Operating currency: Nigerian Naira (NGN)"
-          >
-            <Globe className="h-3.5 w-3.5 text-neutral-slate-500" />
-            <span>NGN (₦)</span>
+          {/* Combined Utility Popover (Data Saver + Language + Currency) */}
+          <div className="hidden lg:flex items-center">
+            <UtilityPopover />
           </div>
 
           {!isLoading && user ? (
             /* Logged-In User Profile Controls */
-            <div className="hidden sm:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-3">
               {user.role === "ADMIN" ? (
                 <Link
                   href="/admin"
                   className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
                     pathname === "/admin" || pathname?.startsWith("/admin/")
                       ? "bg-purple-700 text-white border-purple-700 shadow-xs"
                       : "bg-white text-purple-800 border-purple-200 hover:bg-purple-50"
@@ -114,7 +196,7 @@ export function Navbar() {
                 <Link
                   href="/guardian"
                   className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
                     pathname === "/guardian" || pathname?.startsWith("/guardian/")
                       ? "bg-amber-600 text-white border-amber-600 shadow-xs"
                       : "bg-white text-amber-900 border-amber-300 hover:bg-amber-50"
@@ -127,7 +209,7 @@ export function Navbar() {
                 <Link
                   href="/dashboard/tutor"
                   className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
                     pathname === "/dashboard/tutor"
                       ? "bg-brand-blue-600 text-white border-brand-blue-600 shadow-xs"
                       : "bg-white text-brand-blue-700 border-brand-blue-200 hover:bg-brand-blue-50"
@@ -140,7 +222,7 @@ export function Navbar() {
                 <Link
                   href="/dashboard"
                   className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-lg border transition-colors",
+                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
                     pathname === "/dashboard"
                       ? "bg-brand-blue-600 text-white border-brand-blue-600 shadow-xs"
                       : "bg-white text-brand-blue-700 border-brand-blue-200 hover:bg-brand-blue-50"
@@ -189,22 +271,52 @@ export function Navbar() {
               </Button>
             </div>
           ) : (
-            /* Guest Controls */
-            <div className="hidden sm:flex items-center gap-2">
-              <Link href="/login" className={buttonVariants({ variant: "ghost", size: "sm" })}>
+            /* Guest Controls: Never wrap, 44px height */
+            <div className="hidden lg:flex items-center gap-2">
+              <Link
+                href="/login"
+                className={buttonVariants({
+                  variant: "ghost",
+                  size: "md",
+                  className: "whitespace-nowrap font-medium text-neutral-slate-700 hover:text-neutral-slate-900",
+                })}
+              >
                 Log in
               </Link>
-              <Link href="/register" className={buttonVariants({ variant: "primary", size: "sm", className: "font-semibold shadow-sm" })}>
+              <Link
+                href="/register"
+                className={buttonVariants({
+                  variant: "primary",
+                  size: "md",
+                  className: "whitespace-nowrap font-semibold shadow-sm",
+                })}
+              >
                 Get started
               </Link>
             </div>
           )}
 
-          {/* Mobile Hamburger Button */}
+          {/* Quick CTA on Tablet & Mobile before Hamburger */}
+          {!user && (
+            <div className="lg:hidden flex items-center">
+              <Link
+                href="/register"
+                className={buttonVariants({
+                  variant: "primary",
+                  size: "sm",
+                  className: "whitespace-nowrap font-semibold text-xs px-3 shadow-sm",
+                })}
+              >
+                Get started
+              </Link>
+            </div>
+          )}
+
+          {/* Mobile Menu Trigger (<1024px) */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden rounded-lg p-2 text-neutral-slate-600 hover:bg-neutral-slate-100 hover:text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue-600"
+            className="lg:hidden rounded-control p-2.5 text-neutral-slate-600 hover:bg-neutral-slate-100 hover:text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue-600 transition-colors"
             aria-label="Open navigation menu"
           >
             <Menu className="h-6 w-6" />
@@ -212,20 +324,20 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Sheet */}
+      {/* Full-Height Mobile Navigation Sheet */}
       <Sheet
         open={mobileMenuOpen}
         onOpenChange={setMobileMenuOpen}
         title="Menu"
       >
-        <div className="flex flex-col h-full justify-between gap-6">
+        <div className="flex flex-col h-full justify-between gap-6 py-2">
           <div className="space-y-4">
             <div className="pb-4 border-b border-neutral-slate-200">
               <TrainbowLogo />
             </div>
 
             {user && (
-              <div className="p-3 bg-neutral-slate-50 border border-neutral-slate-200 rounded-xl space-y-2">
+              <div className="p-3 bg-neutral-slate-50 border border-neutral-slate-200 rounded-card space-y-2">
                 <div className="flex items-center gap-3">
                   <Avatar name={user.fullName} size="md" />
                   <div>
@@ -241,7 +353,7 @@ export function Navbar() {
                   href={user.role === "ADMIN" ? "/admin" : user.role === "PARENT" ? "/guardian" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "block w-full py-2 px-3 text-center text-xs font-bold text-white rounded-lg shadow-xs transition-colors",
+                    "block w-full py-2.5 px-3 text-center text-xs font-bold text-white rounded-control shadow-xs transition-colors",
                     user.role === "ADMIN"
                       ? "bg-purple-700 hover:bg-purple-800"
                       : user.role === "PARENT"
@@ -263,7 +375,7 @@ export function Navbar() {
                   <Link
                     href={`/guardian/consent?studentId=${user.id}`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 p-2 rounded-lg bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-900 hover:bg-amber-100"
+                    className="flex items-center gap-2 p-2 rounded-control bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-900 hover:bg-amber-100"
                   >
                     <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0" />
                     <span>NDPA Consent Required — Verify Now</span>
@@ -272,8 +384,35 @@ export function Navbar() {
               </div>
             )}
 
+            {/* Mobile Nav Links */}
             <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
-              {NAV_LINKS.map((link) => {
+              <Link
+                href="/academy"
+                onClick={() => setMobileMenuOpen(false)}
+                className={cn(
+                  "flex items-center justify-between px-3.5 py-3 text-base rounded-control font-medium transition-colors",
+                  pathname === "/academy" || pathname?.startsWith("/academy/")
+                    ? "text-brand-blue-600 bg-brand-blue-50 font-semibold"
+                    : "text-neutral-slate-700 hover:bg-neutral-slate-100 hover:text-neutral-slate-900"
+                )}
+              >
+                <span>Academy</span>
+                <ArrowRight className="h-4 w-4 text-neutral-slate-400" />
+              </Link>
+              <Link
+                href="/subjects"
+                onClick={() => setMobileMenuOpen(false)}
+                className={cn(
+                  "flex items-center justify-between px-3.5 py-3 text-base rounded-control font-medium transition-colors",
+                  pathname === "/subjects" || pathname?.startsWith("/subjects/")
+                    ? "text-brand-blue-600 bg-brand-blue-50 font-semibold"
+                    : "text-neutral-slate-700 hover:bg-neutral-slate-100 hover:text-neutral-slate-900"
+                )}
+              >
+                <span>Subjects</span>
+                <ArrowRight className="h-4 w-4 text-neutral-slate-400" />
+              </Link>
+              {PRIMARY_NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
                 return (
                   <Link
@@ -281,7 +420,7 @@ export function Navbar() {
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      "flex items-center justify-between px-3.5 py-2.5 text-base rounded-md font-medium transition-colors",
+                      "flex items-center justify-between px-3.5 py-3 text-base rounded-control font-medium transition-colors",
                       isActive
                         ? "text-brand-blue-600 bg-brand-blue-50 font-semibold"
                         : "text-neutral-slate-700 hover:bg-neutral-slate-100 hover:text-neutral-slate-900"
@@ -295,26 +434,16 @@ export function Navbar() {
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-neutral-slate-200 space-y-3">
-            <div className="flex items-center justify-between py-1">
-              <span className="text-xs text-neutral-slate-500 font-medium">Data Saver</span>
-              <DataSaverToggle />
-            </div>
-
-            <div className="flex items-center justify-between py-1">
-              <span className="text-xs text-neutral-slate-500 font-medium">Language</span>
-              <LanguageSwitcher />
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-neutral-slate-500 py-1">
-              <span>Currency & Locale</span>
-              <span className="font-semibold text-neutral-slate-700">NGN (₦) · Nigeria</span>
+          {/* Mobile Bottom Preferences */}
+          <div className="pt-4 border-t border-neutral-slate-200 space-y-3">
+            <div className="py-1">
+              <UtilityPopover />
             </div>
 
             {user ? (
               <Button
                 variant="outline"
-                className="w-full justify-center text-red-700 hover:bg-red-50 hover:border-red-300"
+                className="w-full justify-center text-red-700 hover:bg-red-50 hover:border-red-300 min-h-[44px]"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   logout();
@@ -324,11 +453,11 @@ export function Navbar() {
                 <span>Log out</span>
               </Button>
             ) : (
-              <>
+              <div className="space-y-2">
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={buttonVariants({ variant: "outline", className: "w-full justify-center" })}
+                  className={buttonVariants({ variant: "outline", size: "md", className: "w-full justify-center" })}
                 >
                   Log in
                 </Link>
@@ -336,11 +465,11 @@ export function Navbar() {
                 <Link
                   href="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={buttonVariants({ variant: "primary", className: "w-full justify-center" })}
+                  className={buttonVariants({ variant: "primary", size: "md", className: "w-full justify-center" })}
                 >
                   Get started
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>

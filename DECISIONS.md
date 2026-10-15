@@ -114,3 +114,13 @@
      - `Card`: Upgrade to 12px radius, soft elevation, and 150ms hover lift.
      - `States`: Introduce `Skeleton` and `SkeletonCard` loading states alongside refined `EmptyState` and `ErrorState`.
 - **Consequences:** The UI foundation provides an intentional, polished baseline for subsequent page redesigns, guarantees 44px touch targets on mobile, and ensures 100% test compatibility across all 155 test suites and WCAG 2.2 AA contrast rules.
+
+## ADR-016: Streamlined Primary Navigation, Consolidated Utility Popover & Full-Height Mobile Drawer
+- **Status:** Accepted
+- **Context:** The previous header was overly crowded with 8 separate top-level links plus isolated controls for Data Saver, Language select, currency indicator, Log in, and Get started. On small laptops (1024px–1280px), controls wrapped onto multiple lines, creating visual tension and clutter.
+- **Decision:**
+  1. *Streamlined Primary Navigation*: Reduce top-level items to 6 essential categories: **Academy** (with direct overview and dropdown for **Subjects**), **AI**, **Tutors**, **Music**, **Pricing**, and **About**. Relocate **Schools** strictly to the Footer under Services ("For Schools & Institutions").
+  2. *Consolidated Utility Popover*: Combine Data Saver mode, regional language selection, and currency indicator into a single compact `Globe` popover (`UtilityPopover.tsx`). The popover provides an explicit one-line explanation for Data Saver (*"Loads fewer images and animations"*), live toggle, instant language selection with native names, and clear WAT (UTC+1) timezone display.
+  3. *Zero Wrap & 44px Controls*: Enforce `whitespace-nowrap` and 44px minimum touch targets on `Log in` (ghost) and `Get started` (primary).
+  4. *Responsive Sheet Drawer*: Below 1024px, collapse navigation to a clean wordmark, compact Get Started CTA, and accessible hamburger button opening a full-height sheet with clear section hierarchy and tap-friendly touch targets.
+- **Consequences:** Eliminates header wrapping across all viewports from 375px to 1536px; reduces cognitive load for students and parents; and maintains 100% compliance with Playwright smoke tests and unit test suites.
