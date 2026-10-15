@@ -19,18 +19,19 @@ export default function AboutPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
         {/* Hero Header */}
-        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-14 relative overflow-hidden">
+        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-14 relative overflow-hidden shadow-soft">
+          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-brand-blue-500/10 blur-3xl pointer-events-none" />
           <div className="max-w-3xl space-y-5 relative z-10">
             <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/40">
-              Our Vision & Mission
+              Our Vision &amp; Mission
             </Badge>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight">
               Empowering Nigerian Learners to <br />
-              <span className="text-brand-blue-500">Learn, Connect & Grow.</span>
+              <span className="text-brand-blue-400">Learn, Connect &amp; Grow.</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
               Trainbow HUB was created to solve a persistent challenge for Nigerian families: fragmented learning apps, unvetted private tutors, and rote memorization that fails students during high-stakes WAEC and JAMB examinations.
             </p>
           </div>
@@ -38,7 +39,7 @@ export default function AboutPage() {
 
         {/* 3 Core Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 space-y-3">
+          <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 space-y-3 shadow-soft hover:-translate-y-0.5 transition-all duration-150">
             <div className="h-10 w-10 rounded-lg bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
               <BookOpen className="h-5 w-5" />
             </div>

@@ -147,3 +147,14 @@
   4. *Profile & Booking Flow*: Clean 2-column profile layout on desktop with credentials checklist, curriculum tags, cancellation terms breakdown, and sticky booking card with slot hold countdown notice.
 - **Consequences:** Eliminates visual clutter, ensures 100% WCAG 2.2 AA contrast compliance, passes all 155 unit tests and Playwright smoke tests.
 
+## ADR-019: Academic Core & Service Pages Polish (Academy, Subjects, AI, Music, Pricing, About, FAQ)
+- **Status:** Accepted
+- **Context:** The informational, curriculum, and service pages required consistent application of design tokens (fluid typography, soft elevation, 44px minimum tap targets, full navigation chrome, and grounded Nigerian educational context).
+- **Decision:**
+  1. *Academy (`/academy`)*: Enforce fluid display typography, 12px radii, verified curriculum progress badges ("100% Verified"), and 44px "Explore Syllabus" action buttons.
+  2. *Subjects Catalog (`/subjects`)*: Add persistent `Navbar` and `Footer` layout shell, fluid hero styling, high-contrast category filter buttons, and verified launch gate reassurance callouts.
+  3. *AI Assistant (`/ai`)*: Hero upgraded with fluid typography, purple-accented backdrop blur, 44px direct-action buttons ("Open AI Workspace", "Meet Human Tutors"), and Socratic 3-principle breakdown.
+  4. *Music Division (`/music`)*: Retain ABRSM/MUSON curriculum badges, single sign-on invariant indicators, interactive metronome, and practice logging with 44px controls.
+  5. *Pricing (`/pricing`)*: Modernized 3-tier card layout with prominent "Most Popular" badge on Socratic AI pass, transparent Naira prices (`₦5,000`, `₦3,500`, `₦15,000`), clear feature checklists, and 44px buttons.
+  6. *About & FAQ (`/about`, `/faq`)*: Applied fluid heading scale, 44px search input with soft shadows, 36px+ category filter pills, and accessible animated accordion drawers.
+- **Consequences:** Provides a seamless, trustworthy experience across all public informational pages; guarantees 44px tap targets on mobile; and preserves 100% passing status across all 155 unit tests and Playwright smoke tests.

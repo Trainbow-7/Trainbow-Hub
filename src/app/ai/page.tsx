@@ -31,18 +31,19 @@ export default function AIPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
         {/* Hero Section */}
-        <div className="rounded-2xl bg-gradient-to-r from-brand-navy-900 via-brand-navy-900 to-purple-950 text-white p-8 sm:p-14 relative overflow-hidden">
+        <div className="rounded-2xl bg-gradient-to-r from-brand-navy-900 via-brand-navy-900 to-purple-950 text-white p-8 sm:p-14 relative overflow-hidden shadow-soft">
+          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
           <div className="max-w-3xl space-y-5 relative z-10">
             <Badge variant="ai" className="bg-service-ai-600/30 text-purple-200 border-service-ai-500/40">
               Socratic Pedagogical Assistant
             </Badge>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight">
               Trainbow HUB AI: <br />
-              <span className="text-service-ai-500">Learn How to Think,</span> Not Just the Answer.
+              <span className="text-service-ai-400">Learn How to Think,</span> Not Just the Answer.
             </h1>
 
-            <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
               Generic chatbots simply spit out final numbers, depriving students of the problem-solving journey.
               Trainbow AI uses a pedagogical hint-first approach built specifically for approved Nigerian Mathematics
               curricula (WAEC SSCE, JAMB UTME, Cambridge IGCSE, BECE).
@@ -50,13 +51,13 @@ export default function AIPage() {
 
             <div className="pt-2 flex flex-wrap gap-4 items-center">
               <a href="#workspace">
-                <Button variant="ai" size="lg" className="font-semibold text-base shadow-lg px-6 py-3">
+                <Button variant="ai" className="h-11 font-semibold text-sm shadow-soft px-6">
                   Open AI Workspace <ArrowRight className="h-4 w-4 ml-1.5" />
                 </Button>
               </a>
-              <Link href="/tutors/dr-tayo-okafor">
-                <Button variant="secondary" size="lg" className="font-semibold text-base px-6 py-3">
-                  Meet Lead Math Tutor
+              <Link href="/tutors">
+                <Button variant="secondary" className="h-11 font-semibold text-sm px-6">
+                  Meet Human Tutors
                 </Button>
               </Link>
             </div>

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import {
   BookOpen,
   Calculator,
@@ -84,19 +86,21 @@ export default function SubjectsCatalogPage() {
   });
 
   return (
-    <div className="min-h-screen bg-neutral-slate-50 text-neutral-slate-900 pb-16">
+    <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
+      <Navbar />
+
       {/* Hero Section */}
-      <section className="bg-neutral-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-neutral-slate-800">
+      <section className="bg-brand-navy-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-neutral-slate-800 shadow-soft">
         <div className="max-w-6xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple-900/60 border border-brand-purple-500/40 text-brand-purple-300 text-xs font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple-900/60 border border-brand-purple-500/40 text-brand-purple-200 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Phase I: Multi-Subject Academic Registry</span>
+            <span>Academic Curriculum Registry</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+          <h1 className="text-display font-black tracking-tight leading-tight">
             Explore All Subjects &amp; Curricula
           </h1>
-          <p className="text-neutral-slate-300 text-base sm:text-lg max-w-2xl">
+          <p className="text-body-lg text-neutral-slate-200 max-w-2xl">
             From foundational Mathematics to English, Physics, and Chemistry. Every subject is
             aligned to WAEC, JAMB, and Cambridge standards with verified human tutors and rigorously evaluated AI guidance.
           </p>
@@ -262,23 +266,25 @@ export default function SubjectsCatalogPage() {
         )}
 
         {/* Quality Standard Callout */}
-        <div className="mt-16 bg-white rounded-2xl border border-neutral-slate-200 p-8 shadow-xs">
+        <div className="mt-16 mb-12 bg-white rounded-2xl border border-neutral-slate-200 p-8 shadow-soft">
           <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-bold border border-teal-200">
-              <ShieldCheck className="w-4 h-4 text-teal-600" />
-              <span>Trainbow Rigorous Subject Launch Gate (SB-06)</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-service-tutor-700 text-xs font-bold border border-teal-200">
+              <ShieldCheck className="w-4 h-4 text-service-tutor-700" />
+              <span>Trainbow Rigorous Subject Launch Gate</span>
             </div>
             <h2 className="text-xl font-black text-neutral-slate-900">
               Why aren&apos;t all subjects AI-enabled immediately?
             </h2>
             <p className="text-xs text-neutral-slate-600 leading-relaxed">
-              Under our pedagogical governance framework (ADR-010), an AI assistant is never released to Nigerian students
-              as a generic, unverified model. Each subject must first pass a formal curriculum grounding evaluation,
+              Under our pedagogical governance framework, an AI assistant is never released to Nigerian students
+              as a generic, unverified model. Each subject must first pass formal curriculum grounding,
               symbolic or rubric accuracy tests exceeding 80%, and minor child safety filters before being toggled live.
             </p>
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

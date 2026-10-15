@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
 import { SEED_SUBJECTS, SEED_COURSES } from "@/lib/data/seed-data";
-import { BookOpen, Clock, ChevronRight, CheckCircle2, Sparkles, Filter } from "lucide-react";
+import { BookOpen, Clock, ChevronRight, CheckCircle2, Sparkles, GraduationCap, Award } from "lucide-react";
 
 export const metadata = {
   title: "Academy — Trainbow HUB",
@@ -24,16 +24,25 @@ export default function AcademyPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
         {/* Header Hero */}
-        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 relative overflow-hidden">
+        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 relative overflow-hidden shadow-soft">
+          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-brand-blue-500/10 blur-3xl pointer-events-none" />
           <div className="max-w-3xl space-y-4 relative z-10">
-            <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/30">
-              Trainbow HUB Academy
-            </Badge>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight">
-              Curriculum-Aligned Courses & Revision Mastery
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/40">
+                Trainbow HUB Academy
+              </Badge>
+              <span className="text-xs text-neutral-slate-300 flex items-center gap-1.5">
+                <GraduationCap className="h-4 w-4 text-brand-blue-400" />
+                WAEC • JAMB • Cambridge IGCSE
+              </span>
+            </div>
+
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight">
+              Curriculum-Aligned Courses &amp; Revision Mastery
             </h1>
-            <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
-              Structured modules designed by top Nigerian educators and examiners. Master key concepts for WAEC, JAMB UTME, and secondary school checkpoints with step-by-step video lessons and practice quizzes.
+
+            <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
+              Structured modules designed by top Nigerian educators and examiners. Master key concepts with step-by-step video lessons, verified practice quizzes, and interactive progress tracking.
             </p>
           </div>
         </div>
@@ -41,10 +50,10 @@ export default function AcademyPage() {
         {/* Subjects Browser Strip */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold font-heading text-neutral-slate-900">
+            <h2 className="text-h2 font-bold font-heading text-neutral-slate-900">
               Browse by Subject
             </h2>
-            <span className="text-xs text-neutral-slate-500">{activeSubjects.length} Active Subjects</span>
+            <span className="text-caption text-neutral-slate-500">{activeSubjects.length} Active Subjects</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -52,11 +61,11 @@ export default function AcademyPage() {
               <Link
                 key={sub.id}
                 href={`/academy/${sub.slug}`}
-                className="group p-4 rounded-xl border border-neutral-slate-200 bg-white hover:border-brand-blue-600 hover:shadow-hover transition-all flex flex-col justify-between gap-3"
+                className="group p-4 rounded-xl border border-neutral-slate-200 bg-white hover:border-brand-blue-600 hover:shadow-soft transition-all duration-150 flex flex-col justify-between gap-3 min-h-[140px]"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-neutral-slate-500">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-slate-500">
                       {sub.category}
                     </span>
                     {sub.aiEnabled && (
@@ -74,7 +83,7 @@ export default function AcademyPage() {
                   </p>
                 </div>
                 <div className="flex items-center justify-between pt-2 border-t border-neutral-slate-100 text-[11px] text-neutral-slate-600">
-                  <span>{sub.courseCount} Courses</span>
+                  <span className="font-medium">{sub.courseCount} Courses</span>
                   <ChevronRight className="h-3.5 w-3.5 text-neutral-slate-400 group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </Link>
@@ -86,22 +95,22 @@ export default function AcademyPage() {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-bold font-heading text-neutral-slate-900">
+              <h2 className="text-h2 font-bold font-heading text-neutral-slate-900">
                 All Available Courses ({SEED_COURSES.length})
               </h2>
-              <p className="text-xs text-neutral-slate-600">
-                Mathematics curriculum is complete and launch-ready across all grade levels.
+              <p className="text-caption text-neutral-slate-600">
+                Mathematics curriculum is complete and launch-ready across secondary and exam levels.
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SEED_COURSES.map((course) => (
-              <Card key={course.id} className="flex flex-col justify-between hover:shadow-hover transition-all">
+              <Card key={course.id} className="flex flex-col justify-between hover:shadow-soft hover:-translate-y-0.5 transition-all duration-150">
                 <CardHeader className="space-y-2">
                   <div className="flex items-center justify-between">
                     <Badge variant="brand">{course.level}</Badge>
-                    <span className="text-xs font-bold text-neutral-slate-900">
+                    <span className="text-sm font-extrabold text-neutral-slate-900 font-heading">
                       ₦{(course.priceMinorUnits / 100).toLocaleString("en-NG")}
                     </span>
                   </div>
@@ -115,6 +124,17 @@ export default function AcademyPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3 pt-0">
+                  {/* Progress Preview Bar */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-[11px] text-neutral-slate-500">
+                      <span>Curriculum coverage</span>
+                      <span className="font-medium text-neutral-slate-700">100% Verified</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-neutral-slate-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-brand-blue-600 rounded-full w-full" />
+                    </div>
+                  </div>
+
                   <div className="flex items-center justify-between text-xs text-neutral-slate-500 border-t border-neutral-slate-100 pt-3">
                     <span className="flex items-center gap-1">
                       <BookOpen className="h-3.5 w-3.5 text-neutral-slate-400" />
@@ -136,7 +156,7 @@ export default function AcademyPage() {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <Link href={`/courses/${course.slug}`} className="w-full">
-                    <Button variant="primary" size="sm" className="w-full justify-between">
+                    <Button variant="primary" className="w-full justify-between h-11">
                       <span>Explore Syllabus</span>
                       <ChevronRight className="h-4 w-4" />
                     </Button>

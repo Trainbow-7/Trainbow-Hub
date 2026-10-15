@@ -28,20 +28,20 @@ export default function PricingPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <Badge variant="brand">Simple & Predictable</Badge>
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-neutral-slate-900 tracking-tight">
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <Badge variant="brand">Simple &amp; Predictable</Badge>
+          <h1 className="text-display font-extrabold font-heading text-neutral-slate-900 tracking-tight">
             Clear Pricing. Zero Hidden Fees.
           </h1>
-          <p className="text-sm sm:text-base text-neutral-slate-600 leading-relaxed">
-            All prices are in Nigerian Naira (NGN). Pay per tutoring lesson or unlock continuous AI mathematics guidance with flexible monthly subscriptions.
+          <p className="text-body-lg text-neutral-slate-600 leading-relaxed">
+            All prices are in Nigerian Naira (₦). Pay per tutoring lesson or unlock continuous AI mathematics guidance with flexible monthly subscriptions.
           </p>
         </div>
 
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
           {/* Plan 1: 1-on-1 Tutoring */}
-          <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-hover transition-all">
+          <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-150">
             <CardHeader className="space-y-2">
               <Badge variant="tutor" className="w-fit">1-on-1 Lessons</Badge>
               <CardTitle className="text-xl">Hourly Tutoring</CardTitle>
@@ -73,7 +73,7 @@ export default function PricingPage() {
             </CardContent>
             <CardFooter>
               <Link href="/tutors" className="w-full">
-                <Button variant="outline" size="sm" className="w-full justify-center">
+                <Button variant="outline" className="w-full justify-center h-11">
                   Browse Tutors Directory
                 </Button>
               </Link>
@@ -81,8 +81,8 @@ export default function PricingPage() {
           </Card>
 
           {/* Plan 2: Socratic AI Plan (Featured) */}
-          <Card className="flex flex-col justify-between border-2 border-service-ai-600 bg-purple-50/20 shadow-xl relative hover:shadow-hover transition-all">
-            <div className="absolute -top-3 right-6 bg-service-ai-600 text-white px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+          <Card className="flex flex-col justify-between border-2 border-service-ai-600 bg-purple-50/20 shadow-soft relative hover:shadow-floating hover:-translate-y-0.5 transition-all duration-150">
+            <div className="absolute -top-3 right-6 bg-service-ai-600 text-white px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-xs">
               Most Popular
             </div>
             <CardHeader className="space-y-2">
@@ -116,7 +116,7 @@ export default function PricingPage() {
             </CardContent>
             <CardFooter>
               <Link href="/register" className="w-full">
-                <Button variant="ai" size="sm" className="w-full justify-center">
+                <Button variant="ai" className="w-full justify-center h-11 shadow-soft">
                   Subscribe to AI Pass
                 </Button>
               </Link>
@@ -124,7 +124,7 @@ export default function PricingPage() {
           </Card>
 
           {/* Plan 3: Academy Full Course Pass */}
-          <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-hover transition-all">
+          <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-150">
             <CardHeader className="space-y-2">
               <Badge variant="brand" className="w-fit">Academy Pass</Badge>
               <CardTitle className="text-xl">Curriculum Courses</CardTitle>
@@ -156,7 +156,7 @@ export default function PricingPage() {
             </CardContent>
             <CardFooter>
               <Link href="/academy" className="w-full">
-                <Button variant="outline" size="sm" className="w-full justify-center">
+                <Button variant="outline" className="w-full justify-center h-11">
                   Explore Courses
                 </Button>
               </Link>
