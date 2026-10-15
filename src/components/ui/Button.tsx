@@ -25,7 +25,7 @@ export function buttonVariants({
   className?: string;
 } = {}) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium rounded-md transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
+    "inline-flex items-center justify-center font-medium rounded-control transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] select-none";
 
   const variantStyles = {
     primary:
@@ -33,7 +33,7 @@ export function buttonVariants({
     secondary:
       "bg-brand-blue-50 text-brand-blue-600 hover:bg-brand-blue-100 focus-visible:ring-brand-blue-600",
     outline:
-      "border border-neutral-slate-200 bg-white text-neutral-slate-900 hover:bg-neutral-slate-50 focus-visible:ring-brand-blue-600",
+      "border border-neutral-slate-200 bg-white text-neutral-slate-900 hover:bg-neutral-slate-50 hover:border-neutral-slate-300 focus-visible:ring-brand-blue-600 shadow-sm",
     ghost:
       "text-neutral-slate-600 hover:bg-neutral-slate-100 hover:text-neutral-slate-900 focus-visible:ring-neutral-slate-400",
     ai: "bg-service-ai-600 text-white hover:bg-service-ai-700 focus-visible:ring-service-ai-600 shadow-sm",
@@ -44,9 +44,9 @@ export function buttonVariants({
   };
 
   const sizeStyles = {
-    sm: "h-8 px-3 text-xs gap-1.5",
-    md: "h-10 px-4 text-sm gap-2",
-    lg: "h-12 px-6 text-base gap-2.5",
+    sm: "min-h-[36px] px-3.5 py-1.5 text-xs gap-1.5",
+    md: "min-h-[44px] px-4 py-2 text-sm gap-2",
+    lg: "min-h-[48px] px-6 py-2.5 text-base gap-2.5",
   };
 
   return cn(baseStyles, variantStyles[variant], sizeStyles[size], className);

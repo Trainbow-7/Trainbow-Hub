@@ -96,3 +96,21 @@
   3. *NDPA 2023 Statutory Data Retention & Erasure*: Implement a comprehensive statutory retention matrix (`src/lib/privacy/retention.ts`, `/api/privacy/retention`) governing AI conversation logs (90 days maximum under NDPA Sec 31), session attendance logs (12 months), financial transaction ledgers (6 years per FIRS statutory accounting), safeguarding incident records (7 years statutory lock for child protection investigations), and user profile records. Provide an administrative and self-service privacy erasure tool (`/api/privacy/purge`) to execute automated 90-day AI conversation prunings and Section 34 Right-to-be-Forgotten anonymizations.
   4. *12 Platform Handover Deliverables*: Compile and verify all 12 operational handover deliverables specified in PRD Section 9 (`/api/handover`, `docs/HANDOVER.md`), including source repository, architectural specs, database migration scripts, environment secret configurations, Paystack keys, LiveKit gateways, Redis clustering, staff operational training curriculum, and disaster recovery runbooks.
 - **Consequences:** The platform guarantees complete statutory compliance with the Nigeria Data Protection Act 2023 and Child Rights Act; operational readiness is backed by non-repudiable audit evidence; disaster recovery guarantees zero data loss beyond 15 minutes and service restoration within 5 minutes; and Trainbow Technologies Limited leadership possesses complete, self-sufficient handover documentation.
+
+## ADR-015: Design System Foundation, Fluid Clamp Typography & 3-Tier Elevation System
+- **Status:** Accepted
+- **Context:** The application required front-end UI/UX polish to feel like a modern, trustworthy, premium online learning hub across desktop and mobile devices. Previous components had inconsistent border radii, ad-hoc button heights, unstyled native select controls, and lacked fluid typography clamp scales and systematic elevation levels.
+- **Decision:**
+  1. *Fluid Typography Scale*: Establish a clamp-based typographic scale (`display`, `h1`, `h2`, `h3`, `body-lg`, `body`, `small`, `caption`) in `tailwind.config.ts`. Set headings to Plus Jakarta Sans with maximum tight tracking limited to `-0.02em`, and body to Inter with relaxed line heights.
+  2. *Strict 3-Tier Elevation*: Consolidate all drop-shadows into three explicit semantic levels: `elevation-border` (flat), `elevation-soft` (calm card depth and hover lift), and `elevation-floating` (popovers, sheets, and modals).
+  3. *Border Radii Hierarchy*: Standardize corner radii to `8px` for controls/inputs/buttons, `12px` for cards, and `16px` for large panels.
+  4. *Micro-Motion & Accessibility Guards*: Standardize hover lift and interactive feedback to 150ms cubic-bezier transitions. Add global CSS rules to automatically disable animations when `prefers-reduced-motion` is active or when the user enables `data-data-saver="true"`.
+  5. *Core Component Polish*:
+     - `Button`: Enforce 44px minimum tap targets on medium/large sizes, 8px radius, loading state spinner, and distinct service accent variants (`ai`, `tutor`, `primary`, `secondary`, `outline`, `ghost`, `destructive`).
+     - `Input`: Standardize to 44px height, 8px radius, accessible focus rings, and clear error link anchors.
+     - `Select`: Style custom chevron indicator, 44px height, 8px radius, replacing browser defaults while preserving accessibility.
+     - `Slider`: Build custom accessible range slider with dual track gradient and live formatted Naira labels.
+     - `Chip`: Build selectable and removable filter tags with active counter badges and keyboard support.
+     - `Card`: Upgrade to 12px radius, soft elevation, and 150ms hover lift.
+     - `States`: Introduce `Skeleton` and `SkeletonCard` loading states alongside refined `EmptyState` and `ErrorState`.
+- **Consequences:** The UI foundation provides an intentional, polished baseline for subsequent page redesigns, guarantees 44px touch targets on mobile, and ensures 100% test compatibility across all 155 test suites and WCAG 2.2 AA contrast rules.
