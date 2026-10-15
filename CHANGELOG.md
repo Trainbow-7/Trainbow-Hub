@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+ 
+- ### [0.14.0] - 2026-10-15 - Phase N: Concierge Tutor Matching, Director Desk & Private Roster (ADR-023, PRD Section 12)
+#### Added
+- **Concierge Tutor Matching & Private Roster System (Phase N, ADR-023, PRD Section 12)**:
+  - Strategic transition from open tutor marketplace to Director-led concierge matching personally managed by Mr Oyedeji S.T.
+  - Complete elimination of public tutor browsing, public ratings/reviews, and self-service calendar slot holds.
+  - Permanent 301 redirects from `/tutors` and `/tutors/[slug]` to `/request-tutor` with `X-Robots-Tag: noindex, nofollow` headers and sitemap removal.
+  - 5-step interactive `/request-tutor` multi-step wizard with mandatory NDPA 2023 under-18 guardian consent validation, priority urgency handling, and unique reference codes (`TR-XXXXXX`).
+  - Real-time `TutorRequestTracker` component embedded in family and student dashboards (`/dashboard`, `/guardian`).
+  - Executive **Director Matching Desk** (`/admin/matching`) with queue counters, SLA urgency filters (<4h urgent, <24h standard), private roster matching, formal proposal generation, and coordinator delegation.
+  - **Private Tutor Roster** management view (`/admin/roster`) with TRCN and NIN verification badges and availability states (`AVAILABLE_NOW`, `LIMITED`, `BUSY`, `PAUSED`).
+  - **Proposal Review & Decision Portal** (`/request-tutor/[reference]`) allowing parents and learners to review Director rationale, matched tutor credentials, agreed lesson rates, approve with Paystack checkout link generation, or decline with feedback.
+  - Reduced **Tutor Portal** (`/dashboard/tutor`) with concierge governance notice, one-click weekly availability confirmation ("Confirm I'm available this week"), active session calendar, and virtual classroom launcher.
+- **Data Model & Quality Assurance**:
+  - Added Prisma and in-memory schema models: `TutorRequest`, `MatchProposal`, `RequestEvent`, `CoordinatorAssignment`, and `MatchingSetting`.
+  - Added role `MATCHING_COORDINATOR` with least-privilege administrative access.
+  - 6 new automated Vitest unit tests in `src/test/concierge-matching.test.ts` (161 tests passing across 16 test files).
+  - Multi-viewport Playwright visual audit across 375px (mobile), 768px (tablet), and 1280px (desktop) for all concierge pages.
 
 ### [0.13.0] - 2026-10-12 - Phase M: Production Release Gates, Automated Disaster Recovery, NDPA 2023 Data Retention & Platform Handover (RG-01 through RG-04, ADR-014, PRD Section 8 & 9)
 #### Added

@@ -34,35 +34,23 @@ test.describe("Phase B: Public Website, Catalogue & Legal Slice", () => {
     await expect(page.getByText(/Architectural Safeguards for Nigerian Students/i)).toBeVisible();
   });
 
-  test("loads /tutors directory and tests filtering", async ({ page }) => {
+  test("verifies /tutors redirects to /request-tutor with concierge matching", async ({ page }) => {
     await page.goto("/tutors");
-    await expect(page.getByRole("heading", { name: /Connect with Nigeria's Top 1-on-1 Tutors/i })).toBeVisible();
-    await expect(page.getByPlaceholder(/Search by tutor name, subject/i)).toBeVisible();
-    await expect(page.getByText("Dr. Tayo Okafor").first()).toBeVisible();
-    await expect(page.getByText("Engr. Chinedu Eze").first()).toBeVisible();
-
-    // Type in search query
-    const searchInput = page.getByPlaceholder(/Search by tutor name, subject/i);
-    await searchInput.fill("Chinedu");
-    await expect(page.getByText("Engr. Chinedu Eze").first()).toBeVisible();
-    await expect(page.getByText("Dr. Tayo Okafor")).not.toBeVisible();
+    await expect(page).toHaveURL(/.*\/request-tutor/);
+    await expect(page.getByRole("heading", { name: /Get matched with a verified tutor/i })).toBeVisible();
+    await expect(page.getByText(/Mr Oyedeji S.T/i).first()).toBeVisible();
   });
 
-  test("loads tutor profile page (/tutors/dr-tayo-okafor)", async ({ page }) => {
+  test("verifies tutor profile route (/tutors/dr-tayo-okafor) redirects to /request-tutor", async ({ page }) => {
     await page.goto("/tutors/dr-tayo-okafor");
-    await expect(page.getByRole("heading", { name: "Dr. Tayo Okafor" })).toBeVisible();
-    await expect(page.getByText(/Ph\.D\. in Pure Mathematics/i)).toBeVisible();
-    await expect(page.getByText(/Available Weekly Windows/i)).toBeVisible();
-    await expect(page.getByText(/Slots are held for 10 minutes/i)).toBeVisible();
-    await expect(page.getByText(/Cancellation & Rescheduling Policy/i)).toBeVisible();
-    await expect(page.getByRole("button", { name: /Book a Lesson/i })).toBeVisible();
+    await expect(page).toHaveURL(/.*\/request-tutor/);
+    await expect(page.getByRole("heading", { name: /Get matched with a verified tutor/i })).toBeVisible();
   });
 
   test("loads /music and verifies music tuition overview", async ({ page }) => {
     await page.goto("/music");
-    await expect(page.getByRole("heading", { name: /Master the Craft of Music\./i })).toBeVisible();
-    await expect(page.getByText("Piano & Keyboard").first()).toBeVisible();
-    await expect(page.getByText("Acoustic & Bass Guitar").first()).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Master Instrument, Theory & Voice/i })).toBeVisible();
+    await expect(page.getByText("ABRSM & MUSON Curriculum Accredited").first()).toBeVisible();
   });
 
   test("loads /pricing and verifies clear pricing tiers and refund policy breakdown", async ({ page }) => {
@@ -116,7 +104,7 @@ test.describe("Phase B: Public Website, Catalogue & Legal Slice", () => {
     const sitemapText = await sitemapRes.text();
     expect(sitemapText).toContain("trainbowhub.ng");
     expect(sitemapText).toContain("/academy");
-    expect(sitemapText).toContain("/tutors");
+    expect(sitemapText).toContain("/request-tutor");
     expect(sitemapText).toContain("/legal/safeguarding");
   });
 });

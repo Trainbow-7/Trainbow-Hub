@@ -1276,3 +1276,31 @@ exposing anyone else's data or money records.
 Trainbow HUB — Product Requirements Document (v1.1, Reﬁned)
 Page 28 of 28
 
+<!-- Section 12: Business Model Evolution -->
+## 12. Strategic Evolution: Concierge Tutor Matching & Private Roster Model (Phase N / ADR-023)
+
+### 12.1 Strategic Rationale & Why This Changed
+Under the initial public marketplace model, self-service slot holds resulted in high friction and trust erosion due to unverified tutor availability at the point of booking. To establish institutional trust, regulatory compliance (NDPA 2023), and guaranteed pedagogical outcomes, Trainbow HUB replaced the public marketplace with an executive **Concierge Matching Model** personally directed by **Mr Oyedeji S.T, Director of Trainbow HUB**.
+
+### 12.2 Core Invariants & Architecture Changes
+1. **Zero Public Directory & Marketplace Elimination**:
+   - Complete removal of public browse, tutor search, subject filter chips, rating stars, and self-service calendar slot holds.
+   - Permanent 301 redirects from `/tutors` and `/tutors/[slug]` to `/request-tutor` with `noindex, nofollow` headers and sitemap removal.
+2. **Multi-Step Tutor Matching Request Wizard (`/request-tutor`)**:
+   - 5-step structured request flow capturing Learner Profile, Academic Curriculum Goals (WAEC, JAMB, Cambridge IGCSE, etc.), Delivery Format (Online vs In-Person), Schedule Preferences, and Budget Range.
+   - Statutory NDPA 2023 under-18 guardian consent requirement enforced server-side before request submission.
+   - Unique reference code (`TR-XXXXXX`) generated for end-to-end audit tracking.
+3. **Director Matching Desk (`/admin/matching`)**:
+   - Executive administrative queue with priority SLA sorting (Urgent <4h, Standard <24h).
+   - Roster inspector filtering TRCN-vetted, background-checked, active educators.
+   - Formal proposal generation dispatching rate, schedule slot, and Director match rationale.
+   - Delegation support for designated Matching Coordinators with out-of-office automated rerouting.
+4. **Family Proposal Review & Paystack Checkout (`/request-tutor/[reference]`)**:
+   - Personalized proposal presentation highlighting Director endorsement and credentials.
+   - One-click approval creating booking with double-booking exclusion constraints and Paystack payment initiation.
+   - Decline feedback loop routing request back to Director queue for alternative matching.
+5. **Private Roster & Tutor Portal (`/admin/roster` & `/dashboard/tutor`)**:
+   - Roster availability states (`AVAILABLE_NOW`, `LIMITED`, `BUSY`, `PAUSED`).
+   - One-click weekly availability confirmation for tutors without exposing public profile pages.
+   - Retention of virtual classroom launching, session appointments, and immutable PY-04 escrow financial ledger.
+
