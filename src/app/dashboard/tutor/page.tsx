@@ -104,10 +104,55 @@ export default function TutorDashboardAuthoringPage() {
     }
   }, [user]);
 
+  const [rosterStatus, setRosterStatus] = React.useState<string>("AVAILABLE_NOW");
+  const [updatingAvailability, setUpdatingAvailability] = React.useState(false);
+  const [availabilityMessage, setAvailabilityMessage] = React.useState<string | null>(null);
+
+  const fetchAvailability = React.useCallback(async () => {
+    try {
+      const tutorSlug = user?.tutorProfileSlug || "dr-tayo-okafor";
+      const res = await fetch(`/api/tutor/availability?tutorSlug=${tutorSlug}`);
+      const json = await res.json();
+      if (json.success && json.profile) {
+        setRosterStatus(json.profile.rosterStatus || "AVAILABLE_NOW");
+      }
+    } catch (err) {
+      console.error("Failed to load tutor availability:", err);
+    }
+  }, [user]);
+
+  const handleUpdateAvailability = async (newStatus: string) => {
+    setUpdatingAvailability(true);
+    setAvailabilityMessage(null);
+    try {
+      const tutorSlug = user?.tutorProfileSlug || "dr-tayo-okafor";
+      const res = await fetch("/api/tutor/availability", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tutorSlug, rosterStatus: newStatus }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setRosterStatus(newStatus);
+        setAvailabilityMessage(
+          newStatus === "AVAILABLE_NOW"
+            ? "Your availability is confirmed! Director Oyedeji S.T has you active for instant student matches."
+            : `Availability updated to ${newStatus.replace(/_/g, " ")}.`
+        );
+        setTimeout(() => setAvailabilityMessage(null), 6000);
+      }
+    } catch (err) {
+      console.error("Failed to update availability:", err);
+    } finally {
+      setUpdatingAvailability(false);
+    }
+  };
+
   React.useEffect(() => {
     fetchCourses();
     fetchBookings();
-  }, [fetchCourses, fetchBookings]);
+    fetchAvailability();
+  }, [fetchCourses, fetchBookings, fetchAvailability]);
 
   const handleCreateNewDraft = () => {
     const newDraft: AuthoringCourse = {
@@ -221,6 +266,106 @@ export default function TutorDashboardAuthoringPage() {
               <PlusCircle className="w-4 h-4" />
               <span>Create New Course Draft</span>
             </Button>
+          </div>
+        </div>
+
+        {/* Concierge Matching Governance Banner */}
+        <div
+          className="rounded-2xl border border-brand-blue-200 bg-gradient-to-r from-brand-blue-50/80 via-white to-brand-navy-50/50 p-6 shadow-xs space-y-4"
+          data-testid="concierge-model-notice-banner"
+        >
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex items-center gap-2">
+                <Badge variant="brand" className="bg-brand-blue-700 text-white font-bold">
+                  Direct Concierge Matching Model
+                </Badge>
+                <Badge variant="neutral">Private Roster Active</Badge>
+              </div>
+              <h2 className="text-xl font-extrabold font-heading text-neutral-slate-900">
+                Personalized Tutoring Coordination
+              </h2>
+              <p className="text-xs sm:text-sm text-neutral-slate-700 leading-relaxed">
+                Trainbow HUB does not list tutors on an uncurated public marketplace. Every tutoring inquiry is reviewed personally by <strong>Mr Oyedeji S.T (Director of Trainbow HUB)</strong>, who matches families directly with qualified, verified educators from our private roster.
+              </p>
+              <div className="text-xs text-neutral-slate-600 flex flex-wrap items-center gap-y-1 gap-x-4 pt-1">
+                <span>🛡️ TRCN & NIN Identity Verified</span>
+                <span>📋 Concierge Proposal System</span>
+                <span>🔒 Secure Escrow Sessions</span>
+              </div>
+            </div>
+
+            {/* Availability Confirmation Card */}
+            <div
+              className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs shrink-0 w-full md:w-80 space-y-3"
+              data-testid="tutor-availability-control-card"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-neutral-slate-900">Weekly Availability</span>
+                <Badge
+                  variant={
+                    rosterStatus === "AVAILABLE_NOW"
+                      ? "success"
+                      : rosterStatus === "LIMITED"
+                      ? "warning"
+                      : "neutral"
+                  }
+                  data-testid="current-roster-status-badge"
+                >
+                  {rosterStatus.replace(/_/g, " ")}
+                </Badge>
+              </div>
+
+              <p className="text-[11px] text-neutral-slate-500 leading-snug">
+                Keep your status updated so the Director knows whether to match incoming students with your schedule this week.
+              </p>
+
+              <div className="space-y-2 pt-1">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => handleUpdateAvailability("AVAILABLE_NOW")}
+                  disabled={updatingAvailability || rosterStatus === "AVAILABLE_NOW"}
+                  className="w-full text-xs font-bold gap-1.5 shadow-xs"
+                  data-testid="confirm-available-now-btn"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Confirm I&apos;m Available This Week</span>
+                </Button>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleUpdateAvailability("LIMITED")}
+                    disabled={updatingAvailability || rosterStatus === "LIMITED"}
+                    className="text-[11px] font-semibold py-1.5 px-2"
+                    data-testid="set-limited-btn"
+                  >
+                    Limited Slots
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleUpdateAvailability("BUSY")}
+                    disabled={updatingAvailability || rosterStatus === "BUSY"}
+                    className="text-[11px] font-semibold py-1.5 px-2"
+                    data-testid="set-busy-btn"
+                  >
+                    Fully Booked
+                  </Button>
+                </div>
+              </div>
+
+              {availabilityMessage && (
+                <div
+                  className="p-2.5 rounded-lg bg-status-green-600/10 border border-status-green-600 text-status-green-900 text-[11px] font-bold animate-fadeIn"
+                  data-testid="availability-toast-msg"
+                >
+                  {availabilityMessage}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
