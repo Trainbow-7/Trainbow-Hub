@@ -124,3 +124,13 @@
   3. *Zero Wrap & 44px Controls*: Enforce `whitespace-nowrap` and 44px minimum touch targets on `Log in` (ghost) and `Get started` (primary).
   4. *Responsive Sheet Drawer*: Below 1024px, collapse navigation to a clean wordmark, compact Get Started CTA, and accessible hamburger button opening a full-height sheet with clear section hierarchy and tap-friendly touch targets.
 - **Consequences:** Eliminates header wrapping across all viewports from 375px to 1536px; reduces cognitive load for students and parents; and maintains 100% compliance with Playwright smoke tests and unit test suites.
+
+## ADR-017: Home Page Polish, Connected Horizontal Steppers & Responsive Section Rhythm
+- **Status:** Accepted
+- **Context:** The public landing page required UI/UX polish to present a credible, premium online learning platform with balanced section rhythms, 44px tap targets, distinct service accents, and clear visual workflows.
+- **Decision:**
+  1. *Hero & Product Composition*: Retain high-contrast Navy 900 gradient hero while framing verified educator credentials, Socratic AI hint steps, and syllabus progress rings with subtle backdrop blur.
+  2. *Connected Horizontal Stepper*: Redesign the dual-track "How Trainbow HUB Works" section into a connected horizontal stepper on desktop with numbered pill nodes, subtle horizontal connector lines, and mobile vertical card layouts with 24px gutters.
+  3. *Service Cards*: Upgrade the 4 core service cards (Academy, AI, Tutors, Music) with designated accent top borders, 12px card radii, 44px minimum height action buttons, and 150ms smooth hover-lift animations.
+  4. *Catalogue & Guardrail Reassurance*: Enforce grounded copy without unbacked superlatives; maintain verified NDPA 2023 safeguarding badges and checklist metrics.
+- **Consequences:** Provides a cohesive, trustworthy first impression across mobile (375px) and desktop (1536px); satisfies 100% of Playwright smoke tests and unit tests.

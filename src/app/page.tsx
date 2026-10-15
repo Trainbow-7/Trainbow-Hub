@@ -214,9 +214,9 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* 1. Academy */}
-            <Card className="border-t-4 border-t-brand-blue-600 flex flex-col justify-between hover:shadow-hover transition-all">
+            <Card className="rounded-card border-t-4 border-t-brand-blue-600 flex flex-col justify-between hover-lift">
               <CardHeader className="space-y-2">
-                <div className="h-10 w-10 rounded-lg bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
+                <div className="h-11 w-11 rounded-control bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
                   <BookOpen className="h-5 w-5" />
                 </div>
                 <Badge variant="brand" className="w-fit">Academy</Badge>
@@ -241,18 +241,18 @@ export default function HomePage() {
               </CardContent>
               <div className="p-6 pt-0">
                 <Link href="/academy" className="block w-full">
-                  <Button variant="outline" size="sm" className="w-full justify-between">
+                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
                     <span>Explore Academy</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </div>
             </Card>
 
             {/* 2. AI Assistant */}
-            <Card className="border-t-4 border-t-service-ai-600 flex flex-col justify-between hover:shadow-hover transition-all">
+            <Card className="rounded-card border-t-4 border-t-service-ai-600 flex flex-col justify-between hover-lift">
               <CardHeader className="space-y-2">
-                <div className="h-10 w-10 rounded-lg bg-purple-50 text-service-ai-600 flex items-center justify-center">
+                <div className="h-11 w-11 rounded-control bg-purple-50 text-service-ai-600 flex items-center justify-center">
                   <Sparkles className="h-5 w-5" />
                 </div>
                 <Badge variant="ai" className="w-fit">Trainbow AI</Badge>
@@ -277,18 +277,18 @@ export default function HomePage() {
               </CardContent>
               <div className="p-6 pt-0">
                 <Link href="/ai" className="block w-full">
-                  <Button variant="outline" size="sm" className="w-full justify-between">
+                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
                     <span>Try AI Assistant</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </div>
             </Card>
 
             {/* 3. Tutors Marketplace */}
-            <Card className="border-t-4 border-t-service-tutor-700 flex flex-col justify-between hover:shadow-hover transition-all">
+            <Card className="rounded-card border-t-4 border-t-service-tutor-700 flex flex-col justify-between hover-lift">
               <CardHeader className="space-y-2">
-                <div className="h-10 w-10 rounded-lg bg-teal-50 text-service-tutor-700 flex items-center justify-center">
+                <div className="h-11 w-11 rounded-control bg-teal-50 text-service-tutor-700 flex items-center justify-center">
                   <GraduationCap className="h-5 w-5" />
                 </div>
                 <Badge variant="tutor" className="w-fit">Tutors</Badge>
@@ -313,18 +313,18 @@ export default function HomePage() {
               </CardContent>
               <div className="p-6 pt-0">
                 <Link href="/tutors" className="block w-full">
-                  <Button variant="outline" size="sm" className="w-full justify-between">
+                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
                     <span>Find a Tutor</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </div>
             </Card>
 
             {/* 4. Music */}
-            <Card className="border-t-4 border-t-service-music-500 flex flex-col justify-between hover:shadow-hover transition-all">
+            <Card className="rounded-card border-t-4 border-t-service-music-500 flex flex-col justify-between hover-lift">
               <CardHeader className="space-y-2">
-                <div className="h-10 w-10 rounded-lg bg-amber-50 text-amber-900 flex items-center justify-center">
+                <div className="h-11 w-11 rounded-control bg-amber-50 text-amber-900 flex items-center justify-center">
                   <Music className="h-5 w-5" />
                 </div>
                 <Badge variant="neutral" className="w-fit border-amber-300 bg-amber-50 text-neutral-slate-900 font-semibold">Music</Badge>
@@ -349,9 +349,9 @@ export default function HomePage() {
               </CardContent>
               <div className="p-6 pt-0">
                 <Link href="/music" className="block w-full">
-                  <Button variant="outline" size="sm" className="w-full justify-between">
+                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
                     <span>Discover Music</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </div>
@@ -359,102 +359,119 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 3. How It Works (Dual Track: Student & Parent) */}
-        <section className="bg-white border-y border-neutral-slate-200 py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto space-y-12">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
+        {/* 3. How It Works (Connected Horizontal Stepper) */}
+        <section className="bg-white border-y border-neutral-slate-200 py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto space-y-16">
+            <div className="text-center max-w-2xl mx-auto space-y-3">
+              <Badge variant="neutral">Clear, Safe Workflow</Badge>
+              <h2 className="text-h2 font-extrabold font-heading text-neutral-slate-900 tracking-tight">
                 How Trainbow HUB Works
               </h2>
-              <p className="text-sm text-neutral-slate-600">
-                Designed for learner autonomy and complete parental peace of mind.
+              <p className="text-body text-neutral-slate-600 leading-relaxed">
+                Designed for student autonomy, verified progress, and complete parental peace of mind.
               </p>
             </div>
 
-            {/* Student Track */}
-            <div className="rounded-xl border border-neutral-slate-200 bg-neutral-slate-50 p-6 sm:p-8">
-              <div className="flex items-center gap-2 mb-6">
-                <Badge variant="brand">For Students</Badge>
-                <h3 className="font-heading font-bold text-neutral-slate-900 text-base">
-                  Your Path to Academic Excellence
-                </h3>
+            {/* Student Track - Connected Stepper */}
+            <div className="rounded-panel border border-neutral-slate-200 bg-neutral-slate-50/70 p-6 sm:p-10 shadow-soft">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-neutral-slate-200/80">
+                <div className="flex items-center gap-2.5">
+                  <Badge variant="brand">For Students</Badge>
+                  <h3 className="font-heading font-bold text-neutral-slate-900 text-base sm:text-lg">
+                    Your Path to Academic Excellence
+                  </h3>
+                </div>
+                <span className="text-xs font-medium text-neutral-slate-500">Autonomous & Syllabus-Aligned</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <div className="h-8 w-8 rounded-full bg-brand-blue-600 text-white font-bold flex items-center justify-center text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                {/* Horizontal connector line on desktop */}
+                <div className="hidden md:block absolute top-6 left-[16%] right-[16%] h-0.5 bg-neutral-slate-200 -z-0" />
+
+                <div className="space-y-3 relative z-10 text-left bg-neutral-slate-50/70 sm:bg-transparent">
+                  <div className="h-12 w-12 rounded-full bg-brand-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
                     1
                   </div>
-                  <h4 className="font-heading font-semibold text-neutral-slate-900 text-sm">
+                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
                     Learn with Syllabus Courses
                   </h4>
-                  <p className="text-xs text-neutral-slate-600 leading-relaxed">
+                  <p className="text-small text-neutral-slate-600 leading-relaxed">
                     Watch bite-sized video lessons and solve practice quizzes built specifically for WAEC and JAMB.
                   </p>
                 </div>
-                <div className="space-y-2">
-                  <div className="h-8 w-8 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-xs">
+
+                <div className="space-y-3 relative z-10 text-left bg-neutral-slate-50/70 sm:bg-transparent">
+                  <div className="h-12 w-12 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
                     2
                   </div>
-                  <h4 className="font-heading font-semibold text-neutral-slate-900 text-sm">
+                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
                     Get Instant AI Hints
                   </h4>
-                  <p className="text-xs text-neutral-slate-600 leading-relaxed">
+                  <p className="text-small text-neutral-slate-600 leading-relaxed">
                     Stuck on an equation? Trainbow AI breaks down the logic step by step instead of just giving away the final number.
                   </p>
                 </div>
-                <div className="space-y-2">
-                  <div className="h-8 w-8 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-xs">
+
+                <div className="space-y-3 relative z-10 text-left bg-neutral-slate-50/70 sm:bg-transparent">
+                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
                     3
                   </div>
-                  <h4 className="font-heading font-semibold text-neutral-slate-900 text-sm">
+                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
                     Book an Expert Tutor
                   </h4>
-                  <p className="text-xs text-neutral-slate-600 leading-relaxed">
+                  <p className="text-small text-neutral-slate-600 leading-relaxed">
                     Schedule 1-on-1 virtual sessions with vetted Nigerian tutors when you need deep, personalized guidance.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Parent Track */}
-            <div className="rounded-xl border border-teal-200 bg-teal-50/50 p-6 sm:p-8">
-              <div className="flex items-center gap-2 mb-6">
-                <Badge variant="tutor">For Parents & Guardians</Badge>
-                <h3 className="font-heading font-bold text-neutral-slate-900 text-base">
-                  Full Oversight & Child Safeguarding
-                </h3>
+            {/* Parent Track - Connected Stepper */}
+            <div className="rounded-panel border border-teal-200/80 bg-teal-50/40 p-6 sm:p-10 shadow-soft">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-teal-200/60">
+                <div className="flex items-center gap-2.5">
+                  <Badge variant="tutor">For Parents & Guardians</Badge>
+                  <h3 className="font-heading font-bold text-neutral-slate-900 text-base sm:text-lg">
+                    Full Oversight & Child Safeguarding
+                  </h3>
+                </div>
+                <span className="text-xs font-semibold text-service-tutor-700">Strict NDPA 2023 Consent</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <div className="h-8 w-8 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                {/* Horizontal connector line on desktop */}
+                <div className="hidden md:block absolute top-6 left-[16%] right-[16%] h-0.5 bg-teal-200 -z-0" />
+
+                <div className="space-y-3 relative z-10 text-left">
+                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
                     1
                   </div>
-                  <h4 className="font-heading font-semibold text-neutral-slate-900 text-sm">
+                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
                     Link Your Child
                   </h4>
-                  <p className="text-xs text-neutral-slate-600 leading-relaxed">
+                  <p className="text-small text-neutral-slate-600 leading-relaxed">
                     Verify consent via OTP. Under-18 accounts cannot book sessions or message tutors without parent verification.
                   </p>
                 </div>
-                <div className="space-y-2">
-                  <div className="h-8 w-8 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-xs">
+
+                <div className="space-y-3 relative z-10 text-left">
+                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
                     2
                   </div>
-                  <h4 className="font-heading font-semibold text-neutral-slate-900 text-sm">
+                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
                     Approve and Pay in Naira
                   </h4>
-                  <p className="text-xs text-neutral-slate-600 leading-relaxed">
+                  <p className="text-small text-neutral-slate-600 leading-relaxed">
                     Review tutor credentials, lesson rates, and approve checkout through trusted Paystack payments.
                   </p>
                 </div>
-                <div className="space-y-2">
-                  <div className="h-8 w-8 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-xs">
+
+                <div className="space-y-3 relative z-10 text-left">
+                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
                     3
                   </div>
-                  <h4 className="font-heading font-semibold text-neutral-slate-900 text-sm">
+                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
                     Follow Attendance & Progress
                   </h4>
-                  <p className="text-xs text-neutral-slate-600 leading-relaxed">
+                  <p className="text-small text-neutral-slate-600 leading-relaxed">
                     Receive lesson completion alerts, view quiz score trends, and join virtual classrooms as an observer.
                   </p>
                 </div>
