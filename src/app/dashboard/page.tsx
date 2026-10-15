@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
+import { TutorRequestTracker } from "@/components/matching/TutorRequestTracker";
 import {
   BookOpen,
   CheckCircle2,
@@ -414,6 +415,9 @@ export default function StudentDashboardPage() {
                 </div>
               )}
             </div>
+
+            {/* Concierge Tutor Request Tracker (Phase N) */}
+            <TutorRequestTracker />
 
             {/* Scheduled 1-on-1 Tutoring Lessons Card (Phase E) */}
             <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 space-y-3">

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { TutorRequestTracker } from "@/components/matching/TutorRequestTracker";
 import { Button } from "@/components/ui/Button";
 import {
   ShieldCheck,
@@ -433,6 +434,9 @@ export default function GuardianPortalPage() {
                 <span>Link Additional Ward</span>
               </Button>
             </div>
+
+            {/* Concierge Matching Desk Requests for Wards */}
+            <TutorRequestTracker />
 
             {children.length === 0 ? (
               <div className="bg-white rounded-xl border border-neutral-slate-200 p-8 text-center">
