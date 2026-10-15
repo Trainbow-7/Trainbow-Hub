@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   const amount = searchParams.get("amount");
 
   if (!reference) {
-    return NextResponse.redirect(new URL("/tutors", req.url));
+    return NextResponse.redirect(new URL("/request-tutor", req.url));
   }
 
   // Pre-approve reference in sandbox store
