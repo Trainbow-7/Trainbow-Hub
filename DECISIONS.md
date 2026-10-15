@@ -177,3 +177,20 @@
      - Tutor Dashboard (`/dashboard/tutor`): Maintained curriculum course authoring, video preview modal, and schedule management with 44px action buttons.
 - **Consequences:** Provides effortless mobile navigation for learners and parents; guarantees 44px tap targets; and preserves 100% test compatibility across all 155 unit tests and Playwright suites.
 
+## ADR-021: Booking Flow Stepper, Slot Hold Countdown & Escrow Checkout Polish
+- **Status:** Accepted
+- **Context:** The tutor booking dialog and scheduled lessons hub required clear step-by-step progress, transparent pricing breakdowns in Naira, accessible 10-minute slot hold countdown timers, and mobile ergonomic navigation.
+- **Decision:**
+  1. *3-Step Interactive Booking Dialog (`TutorBookingFlow.tsx`)*:
+     - Step 1 (Slot Selection): 2-column day & slot picker with clear WAT timezone indication, 44px buttons, and 1-tap slot selection.
+     - Step 2 (Slot Hold & Review): 10-minute live countdown timer with pulsing urgency icon, transparent price breakdown (gross fee + 15% inclusive platform commission), and 44px action buttons.
+     - Step 3 (Paystack Checkout): Secure PCI-DSS badge, 256-bit SSL encryption reassurance, and instant simulated checkout verification.
+  2. *Success & Confirmation Screen*:
+     - Visual checkmark banner with booking ID, date/time in WAT, total settled in `₦`, and one-tap link to join virtual classroom.
+  3. *Scheduled Lessons Dashboard (`/bookings`)*:
+     - Integrated `MobileBottomNav` for quick 1-tap navigation on phones.
+     - Responsive KPI counters (Upcoming Confirmed, Completed, Cancelled).
+     - Direct rescheduling and cancellation modals with reason selection and escrow refund reassurance.
+- **Consequences:** Eliminates checkout confusion, guarantees transparent escrow protection, maintains 44px minimum tap targets, and passes all 155 unit tests and Playwright suites.
+
+

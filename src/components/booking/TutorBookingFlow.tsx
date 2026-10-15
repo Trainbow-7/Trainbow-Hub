@@ -251,9 +251,8 @@ export function TutorBookingFlow({
       {/* Primary Trigger Button in Tutor Profile Sidebar */}
       <Button
         variant="tutor"
-        size="lg"
         onClick={handleOpenModal}
-        className="w-full justify-center font-bold text-base shadow-sm gap-2"
+        className="w-full justify-center font-bold text-sm shadow-soft gap-2 h-11"
         data-testid="open-booking-modal-btn"
       >
         <Calendar className="w-5 h-5" />
@@ -423,10 +422,9 @@ export function TutorBookingFlow({
                 <div className="space-y-3">
                   <Button
                     variant="primary"
-                    size="lg"
                     onClick={handleSimulatePaymentCompletion}
                     disabled={isVerifying}
-                    className="w-full justify-center font-bold text-sm shadow-sm gap-2"
+                    className="w-full justify-center font-bold text-sm shadow-soft gap-2 h-11"
                     data-testid="simulate-paystack-success-btn"
                   >
                     {isVerifying ? (
@@ -437,7 +435,7 @@ export function TutorBookingFlow({
                     ) : (
                       <>
                         <Lock className="w-4 h-4" />
-                        <span>Confirm & Complete Payment ({formattedGrossRate})</span>
+                        <span>Confirm &amp; Complete Payment ({formattedGrossRate})</span>
                       </>
                     )}
                   </Button>
@@ -577,10 +575,9 @@ export function TutorBookingFlow({
                 {/* Submit Hold Reservation */}
                 <Button
                   variant="primary"
-                  size="lg"
                   onClick={handleRequestHold}
                   disabled={isHolding || !selectedSlot}
-                  className="w-full justify-center font-bold text-sm shadow-sm gap-2"
+                  className="w-full justify-center font-bold text-sm shadow-soft gap-2 h-11"
                   data-testid="reserve-slot-hold-btn"
                 >
                   {isHolding ? (

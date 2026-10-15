@@ -9,6 +9,7 @@ import { Button, buttonVariants } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import {
   Calendar,
   Clock,
@@ -663,6 +664,7 @@ function BookingsContent() {
       </main>
 
       <Footer />
+      <MobileBottomNav role="STUDENT" />
     </div>
   );
 }
