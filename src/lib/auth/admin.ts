@@ -17,10 +17,10 @@ export async function requireAdminSession(): Promise<{ user: SessionUser } | { r
     };
   }
 
-  if (user.role !== "ADMIN") {
+  if (user.role !== "ADMIN" && user.role !== "MATCHING_COORDINATOR") {
     return {
       response: NextResponse.json(
-        { error: "Forbidden: Administrative privilege required (AD-01)" },
+        { error: "Forbidden: Administrative or Matching Coordinator privilege required" },
         { status: 403 }
       ),
     };
