@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import "./globals.css";
+import "katex/dist/katex.min.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import katex from "katex";
 import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
 
@@ -12,6 +13,38 @@ interface FormattedMathContentProps {
     discriminant?: number;
     roots?: number[];
   };
+}
+
+/**
+ * KaTeX Math Renderer:
+ * Renders LaTeX formulas into publication-grade, perfectly formatted mathematical notation.
+ * If KaTeX fails to parse, gracefully falls back to clean readable text.
+ */
+function KatexFormula({ formula, displayMode = false }: { formula: string; displayMode?: boolean }) {
+  const containerRef = React.useRef<HTMLSpanElement | null>(null);
+
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+    try {
+      // Clean up common duplicate delta escapes or raw symbols
+      const cleanFormula = formula
+        .replace(/\\Delta\s*=\s*Δ/g, "\\Delta")
+        .replace(/Δ/g, "\\Delta ")
+        .trim();
+
+      katex.render(cleanFormula, containerRef.current, {
+        displayMode,
+        throwOnError: false,
+        strict: false,
+      });
+    } catch {
+      if (containerRef.current) {
+        containerRef.current.innerText = formula;
+      }
+    }
+  }, [formula, displayMode]);
+
+  return <span ref={containerRef} className={displayMode ? "katex-display-wrapper inline-block" : "inline-block align-middle mx-1"} />;
 }
 
 /**
@@ -83,7 +116,7 @@ function DiagramBlock({ code, type }: { code: string; type?: string }) {
         <div className="flex flex-col items-center justify-center p-3 w-full">
           <svg viewBox="0 0 320 80" className="w-full max-w-md h-20">
             {/* Axis */}
-            <line x1="20" y1="40" x2="300" y2="40" stroke="#334155" strokeWidth="2" markerEnd="url(#arrow)" />
+            <line x1="20" y1="40" x2="300" y2="40" stroke="#334155" strokeWidth="2" />
             {/* Ticks & Points */}
             <line x1="60" y1="35" x2="60" y2="45" stroke="#64748B" strokeWidth="1.5" />
             <line x1="110" y1="35" x2="110" y2="45" stroke="#64748B" strokeWidth="1.5" />
@@ -103,7 +136,7 @@ function DiagramBlock({ code, type }: { code: string; type?: string }) {
       );
     }
 
-    // Default: Parabola / Quadratic Curve Plot or General Coordinate Diagram
+    // Default: Parabola / Quadratic Curve Plot
     return (
       <div className="flex flex-col items-center justify-center p-3">
         <svg viewBox="0 0 260 160" className="w-64 h-40 max-w-full drop-shadow-sm">
@@ -167,10 +200,9 @@ function DiagramBlock({ code, type }: { code: string; type?: string }) {
 
 /**
  * Format mathematical text fragments:
- * - Replaces LaTeX-style $$formula$$ with styled block formulas
- * - Replaces $inline$ with styled inline math chips
- * - Replaces **bold** text
- * - Replaces *italic* text
+ * - Renders block equations ($$...$$) with KaTeX typography
+ * - Renders inline mathematical terms ($...$) with KaTeX typography
+ * - Parses Markdown bold and italics
  */
 function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
   // Check if line is a display equation $$...$$
@@ -180,15 +212,14 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
     return (
       <div
         key={keyPrefix}
-        className="my-3 py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-navy-950 via-brand-navy-900 to-purple-950 text-white font-mono text-center text-sm md:text-base tracking-wide border border-brand-navy-900/60 shadow-sm overflow-x-auto"
+        className="my-3 py-3 px-5 rounded-2xl bg-white border border-purple-200/90 text-neutral-slate-900 shadow-sm overflow-x-auto flex items-center justify-center"
       >
-        <span className="select-all">{math}</span>
+        <KatexFormula formula={math} displayMode={true} />
       </div>
     );
   }
 
   // Tokenize line by inline math ($...$) and bold (**...**)
-  // Regex to split while preserving tokens:
   const parts = line.split(/(\$\$[^\$]+\$\$|\$[^\$]+\$|\*\*[^\*]+\*\*|\*[^\*]+\*)/g);
 
   return (
@@ -202,9 +233,9 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
           return (
             <span
               key={subKey}
-              className="inline-block mx-1.5 px-3 py-1 rounded-lg bg-brand-navy-900 text-white font-mono text-xs md:text-sm font-semibold shadow-xs"
+              className="inline-block my-1 px-3 py-1.5 rounded-xl bg-purple-50 text-purple-950 border border-purple-200 shadow-2xs"
             >
-              {formula}
+              <KatexFormula formula={formula} displayMode={false} />
             </span>
           );
         }
@@ -215,9 +246,9 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
           return (
             <span
               key={subKey}
-              className="inline-block mx-0.5 px-2 py-0.5 rounded-md bg-purple-50 text-purple-900 font-mono text-xs font-semibold border border-purple-200/80 shadow-2xs"
+              className="inline-block mx-0.5 px-1.5 py-0.5 rounded-md bg-purple-50/90 text-purple-950 font-medium border border-purple-200/80 align-baseline"
             >
-              {formula}
+              <KatexFormula formula={formula} displayMode={false} />
             </span>
           );
         }
@@ -249,7 +280,6 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
 }
 
 export function FormattedMathContent({ content, className, verification }: FormattedMathContentProps) {
-  // Check if diagram block exists in content or should be automatically inferred from math context
   const lines = content.split("\n");
   const renderedElements: React.ReactNode[] = [];
 
