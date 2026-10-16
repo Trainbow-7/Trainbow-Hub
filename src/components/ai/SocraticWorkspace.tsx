@@ -23,11 +23,14 @@ import {
   ExternalLink,
   RefreshCw,
   BookOpen,
+  Spline,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
 import { AIHintLevel, AIMathVerification } from "@/lib/db";
+import { FormattedMathContent } from "./FormattedMathContent";
+import { MathDrawingCanvas } from "./MathDrawingCanvas";
 
 interface Message {
   id: string;
@@ -105,6 +108,7 @@ export function SocraticWorkspace() {
     bookingUrl: string;
   } | null>(null);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [showDrawingBoard, setShowDrawingBoard] = React.useState(false);
 
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
@@ -543,6 +547,17 @@ export function SocraticWorkspace() {
               Formula Verifier Active
             </Badge>
 
+            <Button
+              variant={showDrawingBoard ? "ai" : "outline"}
+              size="sm"
+              onClick={() => setShowDrawingBoard(!showDrawingBoard)}
+              className="text-xs h-7 gap-1 border-service-ai-600 text-service-ai-700 hover:bg-purple-50"
+              title="Open Mathematical Diagram & Geometry Board"
+            >
+              <Spline className="h-3 w-3" />
+              {showDrawingBoard ? "Hide Diagram Board" : "Draw Diagram"}
+            </Button>
+
             <Link href="/tutors/dr-tayo-okafor">
               <Button
                 variant="outline"
@@ -555,6 +570,13 @@ export function SocraticWorkspace() {
             </Link>
           </div>
         </header>
+
+        {/* Interactive Diagram Board Panel */}
+        {showDrawingBoard && (
+          <div className="mx-4 sm:mx-6 mt-4 animate-in fade-in slide-in-from-top-2 duration-200">
+            <MathDrawingCanvas onClose={() => setShowDrawingBoard(false)} />
+          </div>
+        )}
 
         {/* Escalation Success Banner */}
         {escalationSuccess && (
@@ -731,9 +753,12 @@ export function SocraticWorkspace() {
                         )}
                       </div>
 
-                      {/* Content Body */}
-                      <div className="prose prose-sm max-w-none text-neutral-slate-800 leading-relaxed space-y-2 whitespace-pre-wrap font-sans">
-                        {msg.content}
+                      {/* Content Body with Rich Mathematical & Diagram Rendering */}
+                      <div className="text-neutral-slate-800 leading-relaxed font-sans">
+                        <FormattedMathContent
+                          content={msg.content}
+                          verification={msg.verification}
+                        />
                       </div>
 
                       {/* Programmatic Verification Badge (AI-03) */}
