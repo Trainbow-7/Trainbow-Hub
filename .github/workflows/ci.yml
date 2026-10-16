@@ -11,21 +11,6 @@ jobs:
     name: Lint, Typecheck, and Test
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_USER: trainbow_user
-          POSTGRES_PASSWORD: trainbow_secure_password_2026
-          POSTGRES_DB: trainbow_hub_dev
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -48,11 +33,13 @@ jobs:
       - name: Run Vitest Unit Tests
         run: npm run test
 
+      - name: Build Next.js Application
+        run: npm run build
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
       - name: Run E2E Smoke Tests
         run: npm run test:e2e
         env:
-          DATABASE_URL: postgresql://trainbow_user:trainbow_secure_password_2026@localhost:5432/trainbow_hub_dev?schema=public
           SESSION_SECRET: test_ci_secret_key_32_chars_long_pipeline_key!
