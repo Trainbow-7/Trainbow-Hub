@@ -346,6 +346,8 @@ export interface AIMessageRecord {
   verification?: AIMathVerification;
   pedagogicalSummary?: string;
   isEscalated?: boolean;
+  attachments?: any[];
+  usedAttachmentIds?: string[];
   createdAt: Date;
 }
 
@@ -3154,6 +3156,8 @@ class DatabaseStore {
     hintLevel: AIHintLevel;
     verification?: AIMathVerification;
     pedagogicalSummary?: string;
+    attachments?: any[];
+    usedAttachmentIds?: string[];
   }): Promise<AIMessageRecord> {
     await this.init();
     const now = new Date();
@@ -3165,6 +3169,8 @@ class DatabaseStore {
       hintLevel: params.hintLevel,
       verification: params.verification,
       pedagogicalSummary: params.pedagogicalSummary,
+      attachments: params.attachments,
+      usedAttachmentIds: params.usedAttachmentIds,
       createdAt: now,
     };
     this.aiMessages.set(record.id, record);

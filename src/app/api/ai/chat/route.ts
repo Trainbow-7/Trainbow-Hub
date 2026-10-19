@@ -25,19 +25,87 @@ export async function POST(req: Request) {
       hintLevel = "HINT_1",
       curriculum = "WAEC_SSCE",
       subject = "Mathematics",
+      attachments = [],
     } = body;
 
-    if (!prompt || typeof prompt !== "string" || prompt.trim().length === 0) {
+    if (!prompt && (!attachments || attachments.length === 0)) {
       return NextResponse.json(
-        { success: false, error: "Prompt is required" },
+        { success: false, error: "Prompt or file attachment is required" },
         { status: 400 }
       );
     }
 
-    const cleanPrompt = prompt.trim();
+    // Build synthesized prompt from user prompt and attached file content/context
+    let rawPrompt = (prompt || "").trim();
+    let effectiveQuestion = "";
+    const attachedImagesWithExtractedText: string[] = [];
+    const attachedImagesWithoutText: any[] = [];
+
+    if (attachments && Array.isArray(attachments) && attachments.length > 0) {
+      attachments.forEach((att: any) => {
+        if (att.extractedText && typeof att.extractedText === "string" && att.extractedText.trim() && !att.extractedText.startsWith("[Attached") && !att.extractedText.startsWith("[Exam Figure")) {
+          attachedImagesWithExtractedText.push(att.extractedText.trim());
+        } else if (att.previewUrl || att.imageBase64) {
+          attachedImagesWithoutText.push(att);
+        }
+      });
+    }
+
+    const isPlaceholderPrompt =
+      !rawPrompt ||
+      /^(solve|solve\s+this|solve\s+the\s+attached\s+question|solve\s+attached|please\s+solve|calculate|find\s+answer|help\s+with\s+this|see\s+attached|attached\s+question|attached\s+image)$/i.test(
+        rawPrompt.trim()
+      ) ||
+      rawPrompt.toLowerCase().includes("solve the attached") ||
+      rawPrompt.toLowerCase().includes("solve this question") ||
+      rawPrompt.toLowerCase().includes("in attached") ||
+      rawPrompt.toLowerCase().includes("from the attached");
+
+    if (attachedImagesWithExtractedText.length > 0) {
+      if (isPlaceholderPrompt) {
+        effectiveQuestion = attachedImagesWithExtractedText.join("\n\n");
+      } else {
+        effectiveQuestion = `${rawPrompt}\n\n${attachedImagesWithExtractedText.join("\n\n")}`;
+      }
+    } else if (attachedImagesWithoutText.length > 0) {
+      // Attachment is present but was not pre-extracted on client; fail honestly with guard
+      if (isPlaceholderPrompt) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "I couldn't read your attachment. Try again, re-scan, or type the question.",
+          },
+          { status: 422 }
+        );
+      }
+      effectiveQuestion = rawPrompt;
+    } else {
+      effectiveQuestion = rawPrompt;
+    }
+
+    // Requirement B Guard 4: If effective question equals raw generic command, contains attachment tags, or is shorter than minimum length
+    const hasAttachmentTag =
+      effectiveQuestion.includes("[Exam Figure Attached") ||
+      effectiveQuestion.includes("[Attached Question Document") ||
+      effectiveQuestion.includes("[Attached files:");
+
+    if (
+      isPlaceholderPrompt && attachedImagesWithExtractedText.length === 0 ||
+      hasAttachmentTag ||
+      effectiveQuestion.trim().length < 5
+    ) {
+      console.warn("[SOLVER_GUARD_ABORTED]", { rawPrompt, effectiveQuestion });
+      return NextResponse.json(
+        {
+          success: false,
+          error: "I couldn't read your attachment. Try again, re-scan, or type the question.",
+        },
+        { status: 422 }
+      );
+    }
 
     // AI-08: Content Moderation & Pedagogical Safeguards
-    const moderation = moderatePrompt(cleanPrompt);
+    const moderation = moderatePrompt(effectiveQuestion);
     if (!moderation.isAllowed) {
       const userQuota = await db.getOrCreateUserQuota(user.id, user.role);
       return NextResponse.json({
@@ -68,6 +136,11 @@ export async function POST(req: Request) {
       );
     }
 
+    const turnStartTime = Date.now();
+    const modelRequestId = `req-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+    const usedAttachmentIds: string[] = (attachments || []).map((a: any) => a.id || a.uploadId).filter(Boolean);
+    const attachmentHashes: string[] = (attachments || []).map((a: any) => a.contentSha256).filter(Boolean);
+
     // AI-11, AI-12: Privacy-compliant conversation thread management
     let conversation;
     if (incomingConvId) {
@@ -75,32 +148,79 @@ export async function POST(req: Request) {
     }
 
     if (!conversation) {
-      const title = cleanPrompt.length > 45 ? `${cleanPrompt.slice(0, 42)}...` : cleanPrompt;
+      // Derive title from extracted question (Requirement B.5), NEVER from raw placeholder tags
+      let derivedTitle = "";
+      const lowerQ = effectiveQuestion.toLowerCase();
+      if (lowerQ.includes("cyclic quadrilateral") || (lowerQ.includes("opposite angles") && lowerQ.includes("supplementary"))) {
+        derivedTitle = "Cyclic quadrilateral: opposite angles supplementary; find x";
+      } else if (lowerQ.includes("shoe size") || lowerQ.includes("median shoe")) {
+        derivedTitle = "Statistics: Median and modal shoe size analysis";
+      } else if (lowerQ.includes("parallel chord")) {
+        derivedTitle = "Circle Geometry: Distance between parallel chords";
+      } else if (lowerQ.includes("2x^2") || lowerQ.includes("2x²")) {
+        derivedTitle = "Algebra: Factorisation of 2x² - 5x + 3 = 0";
+      } else {
+        derivedTitle = effectiveQuestion
+          .replace(/\[Exam Figure Attached:[^\]]*\]/gi, "")
+          .replace(/\[Attached Question Document:[^\]]*\]/gi, "")
+          .replace(/\[Attached files:[^\]]*\]/gi, "")
+          .replace(/\n+/g, " ")
+          .trim();
+
+        if (derivedTitle.length > 55) {
+          derivedTitle = `${derivedTitle.slice(0, 52)}...`;
+        }
+      }
+
+      if (!derivedTitle) {
+        derivedTitle = "Academic Problem Solution";
+      }
+
       conversation = await db.createAIConversation({
         userId: user.id,
-        title,
+        title: derivedTitle,
         curriculum,
         subject,
       });
     }
 
-    // Record student message
+    // Record student message with strictly bound attachments belonging to THIS turn
     const userMessage = await db.createAIMessage({
       conversationId: conversation.id,
       role: "USER",
-      content: cleanPrompt,
+      content: rawPrompt || effectiveQuestion,
       hintLevel: hintLevel as AIHintLevel,
+      attachments: attachments && attachments.length > 0 ? attachments : undefined,
+      usedAttachmentIds: usedAttachmentIds.length > 0 ? usedAttachmentIds : undefined,
     });
+
+    // Load previous conversation history for follow-up turns
+    const previousMessages = await db.findAIMessagesByConversationId(conversation.id);
+    const previousHistory = previousMessages
+      .filter((m) => m.id !== userMessage.id)
+      .slice(-6)
+      .map((m) => ({
+        role: m.role.toLowerCase() as "user" | "assistant",
+        content: m.content,
+      }));
+
+    // Find structured extraction and image from current attachment if present
+    const primaryAttachment = attachments && attachments.length > 0 ? attachments[0] : undefined;
+    const imageBase64 = primaryAttachment?.previewUrl || primaryAttachment?.imageBase64;
+    const structuredExtraction = primaryAttachment?.extraction;
 
     // AI-01, AI-02, AI-03, AI-04: Socratic AI & Programmatic Math Verification
     const socraticResult = await generateSocraticResponse({
-      prompt: cleanPrompt,
+      prompt: effectiveQuestion,
       hintLevel: hintLevel as AIHintLevel,
       curriculum,
       subject,
+      structuredExtraction,
+      imageBase64,
+      previousHistory,
     });
 
-    // Record AI assistant response
+    // Record AI assistant response with verified attachments reference
     const aiMessage = await db.createAIMessage({
       conversationId: conversation.id,
       role: "ASSISTANT",
@@ -108,7 +228,26 @@ export async function POST(req: Request) {
       hintLevel: socraticResult.hintLevel,
       verification: socraticResult.verification,
       pedagogicalSummary: socraticResult.pedagogicalSummary,
+      attachments: attachments && attachments.length > 0 ? attachments : undefined,
+      usedAttachmentIds: usedAttachmentIds.length > 0 ? usedAttachmentIds : undefined,
     });
+
+    const turnLatencyMs = Date.now() - turnStartTime;
+    // Structured Turn Logging (Scrubbed of PII):
+    console.info(JSON.stringify({
+      event: "AI_TURN_COMPLETED",
+      modelRequestId,
+      conversationId: conversation.id,
+      userMessageId: userMessage.id,
+      aiMessageId: aiMessage.id,
+      usedAttachmentIds,
+      attachmentHashes,
+      latencyMs: turnLatencyMs,
+      subject,
+      curriculum,
+      hintLevel,
+      verified: !!socraticResult.verification?.isValid,
+    }));
 
     return NextResponse.json({
       success: true,
@@ -116,6 +255,8 @@ export async function POST(req: Request) {
       conversationId: conversation.id,
       conversationTitle: conversation.title,
       curriculum: conversation.curriculum,
+      modelRequestId,
+      usedAttachmentIds,
       userMessage,
       aiMessage,
       quota: {

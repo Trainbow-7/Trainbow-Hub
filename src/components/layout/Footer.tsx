@@ -59,7 +59,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/ai" className="hover:text-service-ai-600 transition-colors">
-                  Trainbow AI (Maths Assistant)
+                  Trainbow AI
                 </Link>
               </li>
               <li>
@@ -152,11 +152,11 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-2">
             <Phone className="h-4 w-4 text-brand-blue-600 shrink-0" />
-            <span>Assistance: +234 (0) 800-TRAINBOW</span>
+            <span>Assistance: +2348035472186</span>
           </div>
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4 text-brand-blue-600 shrink-0" />
-            <span>Lagos, Nigeria · Operating in West Africa Time (WAT)</span>
+            <span>Abeokuta, Ogun State Nigeria · Operating in West Africa Time (WAT)</span>
           </div>
         </div>
 

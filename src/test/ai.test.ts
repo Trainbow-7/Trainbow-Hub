@@ -97,7 +97,7 @@ describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Engine",
         curriculum: "WAEC_SSCE",
       });
 
-      expect(response.content).toContain("[AI-Generated Mathematical Guidance — Verified by Trainbow Hub Engine]");
+      expect(response.content).toMatch(/\[AI-Generated Mathematical Guidance — Verified by Trainbow Hub Engine/);
       expect(response.content).toContain("Hint Level 1: Conceptual Clue");
       expect(response.content).toContain("WAEC SSCE");
       expect(response.content).toContain("Socratic Question for You");

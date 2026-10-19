@@ -15,6 +15,12 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en-NG",
     icons: [
       {
+        src: "/trainbow-logo.png",
+        sizes: "1024x1024",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
         src: "/icon-192.svg",
         sizes: "192x192",
         type: "image/svg+xml",

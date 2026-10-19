@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Trainbow HUB — Learn • Connect • Grow",
+  title: "Trainbow HUB — Learn • Build • Grow",
   description:
     "Mobile-first online learning hub for Nigeria. Expert 1-on-1 tutoring, Socratic AI Mathematics Assistant, and curriculum-aligned courses for WAEC, JAMB, and Cambridge IGCSE.",
   keywords: [
@@ -38,13 +38,26 @@ export const metadata: Metadata = {
     "vetted Nigerian tutors",
   ],
   authors: [{ name: "Trainbow HUB Team" }],
+  icons: {
+    icon: "/trainbow-logo.png",
+    shortcut: "/trainbow-logo.png",
+    apple: "/trainbow-logo.png",
+  },
   openGraph: {
-    title: "Trainbow HUB — Learn • Connect • Grow",
+    title: "Trainbow HUB — Learn • Build • Grow",
     description: "Mobile-first online learning hub connecting Nigerian students, parents, and verified tutors.",
     url: "https://trainbowhub.ng",
     siteName: "Trainbow HUB",
     locale: "en_NG",
     type: "website",
+    images: [
+      {
+        url: "/trainbow-logo.png",
+        width: 1024,
+        height: 1024,
+        alt: "Trainbow Hub Official Logo",
+      },
+    ],
   },
 };
 

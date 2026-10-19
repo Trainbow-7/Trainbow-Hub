@@ -5,7 +5,6 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { SocraticWorkspace } from "@/components/ai/SocraticWorkspace";
-import { AIInteractiveDemo } from "@/components/home/AIInteractiveDemo";
 import {
   Sparkles,
   Lightbulb,
@@ -35,24 +34,22 @@ export default function AIPage() {
           <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
           <div className="max-w-3xl space-y-5 relative z-10">
             <Badge variant="ai" className="bg-service-ai-600/30 text-purple-200 border-service-ai-500/40">
-              Socratic Pedagogical Assistant
+              Omni-Academic Intelligent Solver &amp; Tutor
             </Badge>
 
             <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight">
               Trainbow HUB AI: <br />
-              <span className="text-service-ai-400">Learn How to Think,</span> Not Just the Answer.
+              <span className="text-service-ai-400">Master Any Subject,</span> Step by Step.
             </h1>
 
             <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
-              Generic chatbots simply spit out final numbers, depriving students of the problem-solving journey.
-              Trainbow AI uses a pedagogical hint-first approach built specifically for approved Nigerian Mathematics
-              curricula (WAEC SSCE, JAMB UTME, Cambridge IGCSE, BECE).
+              Generic chatbots guess or provide shallow answers. Trainbow AI is a super-intelligent academic reasoning engine built specifically for Nigerian &amp; international curricula (WAEC SSCE, JAMB UTME, Cambridge IGCSE, BECE). Ask, attach photos, or type any complex problem across Mathematics, Sciences, Arts, and Commercial subjects for verified, step-by-step solutions with examiner insights.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-4 items-center">
               <a href="#workspace">
                 <Button variant="ai" className="h-11 font-semibold text-sm shadow-soft px-6">
-                  Open AI Workspace <ArrowRight className="h-4 w-4 ml-1.5" />
+                  Open Academic AI Workspace <ArrowRight className="h-4 w-4 ml-1.5" />
                 </Button>
               </a>
               <Link href="/request-tutor">
@@ -64,25 +61,24 @@ export default function AIPage() {
           </div>
         </div>
 
-        {/* Live Socratic Assistant Workspace Section (Phase F Core Engine) */}
+        {/* Live Academic AI Workspace Section */}
         <section id="workspace" className="space-y-4 scroll-mt-24">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <Badge variant="ai" className="text-xs">
-                  Active Assistant
+                  Active Intelligence Engine
                 </Badge>
                 <span className="text-xs text-neutral-slate-600 font-medium">
-                  WAEC SSCE • JAMB UTME • Cambridge IGCSE
+                  WAEC SSCE • JAMB UTME • Cambridge IGCSE • BECE
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-                Live Socratic Mathematics Workspace
+                Live Academic AI Intelligence Workspace
               </h2>
             </div>
             <p className="text-xs text-neutral-slate-600 max-w-md">
-              Ask any mathematical question. Every hint preserves step-by-step reasoning and evaluates formulas on the
-              server before displaying to you.
+              Ask, type, or attach any academic problem or exam photo. The AI extracts question data instantly, computes verified solutions, and breaks down concepts with curriculum precision.
             </p>
           </div>
 
@@ -129,20 +125,6 @@ export default function AIPage() {
               approved human tutor for an in-depth lesson.
             </p>
           </div>
-        </div>
-
-        {/* Teaser Question Preview */}
-        <div className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-              Interactive Teaser Previews
-            </h2>
-            <p className="text-sm text-neutral-slate-600">
-              Test pre-computed Nigerian curriculum questions and inspect the pedagogical hint stages.
-            </p>
-          </div>
-
-          <AIInteractiveDemo />
         </div>
 
         {/* Safety & Quota Specifications */}

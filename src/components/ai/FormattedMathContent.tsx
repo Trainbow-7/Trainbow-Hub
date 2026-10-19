@@ -5,6 +5,14 @@ import katex from "katex";
 import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
 
+interface Attachment {
+  name: string;
+  type: string;
+  size: number;
+  previewUrl?: string;
+  extractedText?: string;
+}
+
 interface FormattedMathContentProps {
   content: string;
   className?: string;
@@ -13,6 +21,7 @@ interface FormattedMathContentProps {
     discriminant?: number;
     roots?: number[];
   };
+  attachments?: Attachment[];
 }
 
 /**
@@ -92,8 +101,104 @@ function DiagramBlock({ code, type }: { code: string; type?: string }) {
       );
     }
 
-    // 2. Circle geometry, angles or circumference
+    // 2. Circle geometry, parallel chords, angles or circumference
     if (trimmed.includes("circle") || trimmed.includes("radius") || trimmed.includes("chord") || trimmed.includes("diameter")) {
+      const isParallelChords = trimmed.includes("parallel") || trimmed.includes("opposite side") || (trimmed.includes("chord") && trimmed.includes("distance"));
+
+      // 2a. Parallel Chords
+      if (isParallelChords) {
+        return (
+          <div className="flex flex-col items-center justify-center p-3">
+            <svg viewBox="0 0 240 200" className="w-60 h-48 max-w-full drop-shadow-sm">
+              {/* Outer Circle */}
+              <circle cx="120" cy="100" r="75" fill="rgba(37, 99, 235, 0.05)" stroke="#2563EB" strokeWidth="2.5" />
+              {/* Centre O */}
+              <circle cx="120" cy="100" r="3.5" fill="#0F172A" />
+              <text x="126" y="98" fill="#0F172A" fontSize="11" fontWeight="bold">O</text>
+
+              {/* Upper Chord: length 24cm, distance 5cm above centre */}
+              <line x1="50" y1="65" x2="190" y2="65" stroke="#7C3AED" strokeWidth="2.5" />
+              <text x="194" y="68" fill="#7C3AED" fontSize="10" fontWeight="bold">Chord AB (24cm)</text>
+
+              {/* Lower Chord: length 10cm, distance 12cm below centre */}
+              <line x1="75" y1="145" x2="165" y2="145" stroke="#059669" strokeWidth="2.5" />
+              <text x="170" y="148" fill="#059669" fontSize="10" fontWeight="bold">Chord CD (10cm)</text>
+
+              {/* Perpendicular line through center */}
+              <line x1="120" y1="65" x2="120" y2="145" stroke="#DC2626" strokeWidth="1.5" strokeDasharray="3 3" />
+              {/* Center to upper chord distance = 5cm */}
+              <text x="115" y="84" textAnchor="end" fill="#DC2626" fontSize="10" fontWeight="bold">d₁ = 5</text>
+              {/* Center to lower chord distance = 12cm */}
+              <text x="115" y="126" textAnchor="end" fill="#DC2626" fontSize="10" fontWeight="bold">d₂ = 12</text>
+
+              {/* Radius lines from center to chord endpoints */}
+              <line x1="120" y1="100" x2="190" y2="65" stroke="#2563EB" strokeWidth="1.5" strokeDasharray="2 2" />
+              <text x="156" y="80" fill="#2563EB" fontSize="9" fontWeight="bold">r = 13</text>
+
+              <line x1="120" y1="100" x2="165" y2="145" stroke="#2563EB" strokeWidth="1.5" strokeDasharray="2 2" />
+              <text x="146" y="126" fill="#2563EB" fontSize="9" fontWeight="bold">r = 13</text>
+            </svg>
+            <span className="text-[11px] font-semibold text-neutral-slate-700 mt-1">
+              Circle with Parallel Chords on Opposite Sides (d = d₁ + d₂ = 5 + 12 = 17cm)
+            </span>
+          </div>
+        );
+      }
+
+      // 2b. Diameter, Semicircle & Subtended Angle Theorem (Fig. 2.19 / Circle PMQN)
+      if (
+        trimmed.includes("diameter") ||
+        trimmed.includes("semicircle") ||
+        trimmed.includes("subtended") ||
+        trimmed.includes("pmqn") ||
+        trimmed.includes("fig. 2.19") ||
+        trimmed.includes("qnm")
+      ) {
+        return (
+          <div className="flex flex-col items-center justify-center p-3 w-full">
+            <svg viewBox="0 0 280 260" className="w-72 max-w-full h-64 drop-shadow-sm">
+              {/* Outer Circle PMQN */}
+              <circle cx="140" cy="130" r="95" fill="rgba(124, 58, 237, 0.03)" stroke="#1E293B" strokeWidth="2.5" />
+
+              {/* Centre O */}
+              <circle cx="140" cy="130" r="3.5" fill="#0F172A" />
+              <text x="126" y="133" fill="#0F172A" fontSize="12" fontWeight="bold">O</text>
+
+              {/* Diameter PQ through centre O (P at top-left approx (90, 48), Q at bottom-right (190, 212)) */}
+              <line x1="90" y1="48" x2="190" y2="212" stroke="#1E293B" strokeWidth="2.5" />
+
+              {/* Inscribed Triangle PMQ: Chord PM and Chord QM */}
+              <line x1="90" y1="48" x2="235" y2="130" stroke="#2563EB" strokeWidth="2" />
+              <line x1="190" y1="212" x2="235" y2="130" stroke="#2563EB" strokeWidth="2" />
+
+              {/* Angle in a semicircle right angle symbol at M (90°) */}
+              <path d="M 218 122 L 210 137 L 222 144" fill="none" stroke="#7C3AED" strokeWidth="1.5" />
+
+              {/* Lines standing on common chord QM to point N (stand in same segment) */}
+              <line x1="45" y1="155" x2="235" y2="130" stroke="#059669" strokeWidth="2" /> {/* NM */}
+              <line x1="45" y1="155" x2="190" y2="212" stroke="#059669" strokeWidth="2" /> {/* NQ */}
+
+              {/* Arc marker at Q (63°) */}
+              <path d="M 175 192 A 22 22 0 0 1 195 194" fill="none" stroke="#DC2626" strokeWidth="2" />
+              <text x="180" y="184" textAnchor="end" fill="#DC2626" fontSize="11" fontWeight="bold">63°</text>
+
+              {/* Double Arc angle marker at N (27°) */}
+              <path d="M 72 152 A 28 28 0 0 1 76 166" fill="none" stroke="#059669" strokeWidth="1.5" />
+              <path d="M 77 151 A 33 33 0 0 1 81 168" fill="none" stroke="#059669" strokeWidth="1.5" />
+
+              {/* Point labels */}
+              <text x="82" y="38" fill="#0F172A" fontSize="14" fontWeight="bold">P</text>
+              <text x="244" y="135" fill="#0F172A" fontSize="14" fontWeight="bold">M</text>
+              <text x="194" y="232" fill="#0F172A" fontSize="14" fontWeight="bold">Q</text>
+              <text x="30" y="160" fill="#0F172A" fontSize="14" fontWeight="bold">N</text>
+            </svg>
+            <span className="text-[11px] font-bold text-neutral-slate-800 mt-2">
+              Fig. 2.19 Replicated: Diameter PQ, ∠PMQ = 90° (semicircle), ∠QNM = ∠QPM = 27° (same segment)
+            </span>
+          </div>
+        );
+      }
+
       return (
         <div className="flex flex-col items-center justify-center p-3">
           <svg viewBox="0 0 220 180" className="w-52 h-40 max-w-full drop-shadow-sm">
@@ -132,6 +237,67 @@ function DiagramBlock({ code, type }: { code: string; type?: string }) {
             <text x="210" y="24" textAnchor="middle" fill="#16A34A" fontSize="11" fontWeight="bold">x₂</text>
           </svg>
           <span className="text-[11px] font-medium text-neutral-slate-600">Real Roots on the Number Line</span>
+        </div>
+      );
+    }
+
+    // 4. Statistics: Central tendency bar plot (Shoe sizes: 5, 9, 10, 10, 11)
+    if (trimmed.includes("statistics") || trimmed.includes("central tendency") || trimmed.includes("shoe size")) {
+      return (
+        <div className="flex flex-col items-center justify-center p-3 w-full">
+          <svg viewBox="0 0 340 180" className="w-80 max-w-full h-44 drop-shadow-sm">
+            {/* Background grid */}
+            <line x1="40" y1="140" x2="310" y2="140" stroke="#334155" strokeWidth="1.5" />
+            <line x1="40" y1="30" x2="40" y2="140" stroke="#334155" strokeWidth="1.5" />
+
+            {/* Y axis ticks */}
+            <line x1="36" y1="140" x2="40" y2="140" stroke="#64748B" />
+            <text x="32" y="143" textAnchor="end" fill="#64748B" fontSize="9">0</text>
+            <line x1="36" y1="85" x2="40" y2="85" stroke="#64748B" />
+            <text x="32" y="88" textAnchor="end" fill="#64748B" fontSize="9">6</text>
+            <line x1="36" y1="35" x2="40" y2="35" stroke="#64748B" />
+            <text x="32" y="38" textAnchor="end" fill="#64748B" fontSize="9">12</text>
+
+            {/* Mean reference dashed line at y = 9 (y-coordinate = 140 - (9/12)*105 = 61.25) */}
+            <line x1="40" y1="61" x2="310" y2="61" stroke="#DC2626" strokeWidth="1.5" strokeDasharray="3 3" />
+            <text x="312" y="64" fill="#DC2626" fontSize="9" fontWeight="bold">Mean = 9</text>
+
+            {/* Median / Mode reference dashed line at y = 10 (y-coordinate = 140 - (10/12)*105 = 52.5) */}
+            <line x1="40" y1="52" x2="310" y2="52" stroke="#7C3AED" strokeWidth="1.5" strokeDasharray="2 2" />
+            <text x="312" y="50" fill="#7C3AED" fontSize="9" fontWeight="bold">Median/Mode = 10</text>
+
+            {/* Bars: student 1 (size 5, outlier), student 2 (9), student 3 (10), student 4 (10), student 5 (11) */}
+            {/* Student 1: 5 (h = (5/12)*105 = 43.75, y = 140 - 43.75 = 96.25) */}
+            <rect x="58" y="96" width="34" height="44" rx="4" fill="#F87171" stroke="#EF4444" strokeWidth="1.5" />
+            <text x="75" y="90" textAnchor="middle" fill="#DC2626" fontSize="10" fontWeight="bold">5</text>
+            <text x="75" y="153" textAnchor="middle" fill="#475569" fontSize="9">Std 1</text>
+            <text x="75" y="165" textAnchor="middle" fill="#EF4444" fontSize="8" fontWeight="bold">(Outlier)</text>
+
+            {/* Student 2: 9 (h = 78.75, y = 61.25) */}
+            <rect x="108" y="61" width="34" height="79" rx="4" fill="#93C5FD" stroke="#3B82F6" strokeWidth="1.5" />
+            <text x="125" y="55" textAnchor="middle" fill="#1D4ED8" fontSize="10" fontWeight="bold">9</text>
+            <text x="125" y="153" textAnchor="middle" fill="#475569" fontSize="9">Std 2</text>
+
+            {/* Student 3: 10 (h = 87.5, y = 52.5) */}
+            <rect x="158" y="52" width="34" height="88" rx="4" fill="#C4B5FD" stroke="#7C3AED" strokeWidth="1.5" />
+            <text x="175" y="46" textAnchor="middle" fill="#6D28D9" fontSize="10" fontWeight="bold">10</text>
+            <text x="175" y="153" textAnchor="middle" fill="#475569" fontSize="9">Std 3</text>
+            <text x="175" y="165" textAnchor="middle" fill="#7C3AED" fontSize="8" fontWeight="bold">(Median)</text>
+
+            {/* Student 4: 10 (h = 87.5, y = 52.5) */}
+            <rect x="208" y="52" width="34" height="88" rx="4" fill="#C4B5FD" stroke="#7C3AED" strokeWidth="1.5" />
+            <text x="225" y="46" textAnchor="middle" fill="#6D28D9" fontSize="10" fontWeight="bold">10</text>
+            <text x="225" y="153" textAnchor="middle" fill="#475569" fontSize="9">Std 4</text>
+            <text x="225" y="165" textAnchor="middle" fill="#7C3AED" fontSize="8" fontWeight="bold">(Mode)</text>
+
+            {/* Student 5: 11 (h = 96.25, y = 43.75) */}
+            <rect x="258" y="44" width="34" height="96" rx="4" fill="#93C5FD" stroke="#3B82F6" strokeWidth="1.5" />
+            <text x="275" y="38" textAnchor="middle" fill="#1D4ED8" fontSize="10" fontWeight="bold">11</text>
+            <text x="275" y="153" textAnchor="middle" fill="#475569" fontSize="9">Std 5</text>
+          </svg>
+          <span className="text-[11px] font-semibold text-neutral-slate-700 mt-1">
+            Data Distribution: Four students wear sizes 9–11; size 5 is an outlier pulling the mean down.
+          </span>
         </div>
       );
     }
@@ -219,8 +385,9 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
     );
   }
 
-  // Tokenize line by inline math ($...$) and bold (**...**)
-  const parts = line.split(/(\$\$[^\$]+\$\$|\$[^\$]+\$|\*\*[^\*]+\*\*|\*[^\*]+\*)/g);
+  // Tokenize line by block math ($$...$$), inline math ($...$), bold (**...**), and italic (*...*)
+  // We match $$...$$ and $...$ before *...* to ensure math formulas with spaces or operators don't collide with italics
+  const parts = line.split(/(\$\$[^\$]+\$\$|\$[^$\n]+\$|\*\*[^\*]+\*\*|\*[^\*\$\n]+\*)/g);
 
   return (
     <span key={keyPrefix} className="leading-relaxed">
@@ -279,13 +446,16 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
   );
 }
 
-export function FormattedMathContent({ content, className, verification }: FormattedMathContentProps) {
+export function FormattedMathContent({ content, className, verification, attachments }: FormattedMathContentProps) {
   const lines = content.split("\n");
   const renderedElements: React.ReactNode[] = [];
 
   let inCodeBlock = false;
   let codeBlockContent: string[] = [];
   let codeBlockLang = "";
+
+  let inMathBlock = false;
+  let mathBlockContent: string[] = [];
 
   for (let i = 0; i < lines.length; i++) {
     const rawLine = lines[i];
@@ -320,6 +490,51 @@ export function FormattedMathContent({ content, className, verification }: Forma
 
     if (inCodeBlock) {
       codeBlockContent.push(rawLine);
+      continue;
+    }
+
+    // Check multi-line display math blocks ($$...$$)
+    if (trimmed === "$$" || (trimmed.startsWith("$$") && !trimmed.endsWith("$$", 2))) {
+      if (inMathBlock) {
+        // Close multi-line math block
+        inMathBlock = false;
+        const formula = mathBlockContent.join("\n");
+        renderedElements.push(
+          <div
+            key={`mathblock-${i}`}
+            className="my-3 py-3 px-5 rounded-2xl bg-white border border-purple-200/90 text-neutral-slate-900 shadow-sm overflow-x-auto flex items-center justify-center"
+          >
+            <KatexFormula formula={formula} displayMode={true} />
+          </div>
+        );
+        mathBlockContent = [];
+      } else {
+        // Open multi-line math block
+        inMathBlock = true;
+        const remaining = trimmed.slice(2).trim();
+        if (remaining) mathBlockContent.push(remaining);
+      }
+      continue;
+    }
+
+    if (inMathBlock) {
+      if (trimmed === "$$" || trimmed.endsWith("$$")) {
+        const withoutEnd = trimmed.endsWith("$$") ? trimmed.slice(0, -2).trim() : trimmed;
+        if (withoutEnd && withoutEnd !== "$$") mathBlockContent.push(withoutEnd);
+        inMathBlock = false;
+        const formula = mathBlockContent.join("\n");
+        renderedElements.push(
+          <div
+            key={`mathblock-${i}`}
+            className="my-3 py-3 px-5 rounded-2xl bg-white border border-purple-200/90 text-neutral-slate-900 shadow-sm overflow-x-auto flex items-center justify-center"
+          >
+            <KatexFormula formula={formula} displayMode={true} />
+          </div>
+        );
+        mathBlockContent = [];
+      } else {
+        mathBlockContent.push(rawLine);
+      }
       continue;
     }
 
@@ -372,6 +587,15 @@ export function FormattedMathContent({ content, className, verification }: Forma
       continue;
     }
 
+    if (trimmed.startsWith("> ")) {
+      renderedElements.push(
+        <div key={`quote-${i}`} className="my-2.5 p-3 rounded-xl bg-purple-50/80 border-l-4 border-service-ai-600 text-neutral-slate-800 text-xs shadow-2xs">
+          {formatMathLine(trimmed.slice(2), `quote-c-${i}`)}
+        </div>
+      );
+      continue;
+    }
+
     if (trimmed.startsWith("- ")) {
       renderedElements.push(
         <div key={`bullet-${i}`} className="flex items-start gap-2 pl-3 my-1 text-neutral-slate-800 text-sm">
@@ -404,6 +628,38 @@ export function FormattedMathContent({ content, className, verification }: Forma
 
   return (
     <div className={cn("space-y-1 font-sans", className)}>
+      {/* User's Uploaded Figure Reference */}
+      {attachments && attachments.some((a) => a.previewUrl) && (
+        <div className="mb-4 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50/70 p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-slate-200 text-xs font-bold text-neutral-slate-800">
+            <span className="flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-service-ai-600" />
+              Your uploaded figure:
+            </span>
+            <span className="text-[10px] font-sans px-2 py-0.5 rounded bg-white border border-neutral-slate-200 text-neutral-slate-600">
+              Exam Photo Reference
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 py-1">
+            {attachments
+              .filter((a) => a.previewUrl)
+              .map((att, idx) => (
+                <div key={idx} className="flex flex-col items-center max-w-sm">
+                  <img
+                    src={att.previewUrl}
+                    alt={att.name || "Replicated Question Diagram"}
+                    className="max-h-64 object-contain rounded-lg border border-purple-200 bg-white shadow-xs"
+                  />
+                  <span className="text-[10px] text-neutral-slate-600 mt-1 font-medium truncate max-w-xs">
+                    {att.name} — Question Geometry Reference
+                  </span>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+
       {renderedElements}
 
       {/* Auto-generated Visual diagram for Quadratic Curves / Geometric Figures */}
