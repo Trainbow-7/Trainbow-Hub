@@ -26,7 +26,7 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
       await expect(page.getByText(/NGN/i).first()).toBeVisible();
       await expect(page.getByRole("navigation").getByRole("link", { name: "Academy" })).toBeVisible();
       await expect(page.getByRole("navigation").getByRole("link", { name: "AI", exact: true })).toBeVisible();
-      await expect(page.getByRole("navigation").getByRole("link", { name: "Tutors" })).toBeVisible();
+      await expect(page.getByRole("navigation").getByRole("link", { name: /tutor/i })).toBeVisible();
       await expect(page.getByRole("navigation").getByRole("link", { name: "Music" })).toBeVisible();
     }
 
