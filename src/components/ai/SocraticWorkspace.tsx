@@ -29,6 +29,8 @@ import {
   FileText,
   X,
   Pencil,
+  Maximize2,
+  Minimize2,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -151,6 +153,29 @@ export function SocraticWorkspace() {
   const [isEditingExtractedText, setIsEditingExtractedText] = React.useState(false);
   const [adminSkipConfirmation, setAdminSkipConfirmation] = React.useState(false);
   const [previewModalAttachment, setPreviewModalAttachment] = React.useState<Attachment | null>(null);
+  const [isMaximized, setIsMaximized] = React.useState(false);
+
+  // Allow pressing Escape to exit maximized focus mode
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMaximized) {
+        setIsMaximized(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMaximized]);
+
+  // Lock body scroll when maximized
+  React.useEffect(() => {
+    if (isMaximized) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isMaximized]);
 
   const activeAbortControllerRef = React.useRef<AbortController | null>(null);
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
@@ -607,7 +632,14 @@ export function SocraticWorkspace() {
   };
 
   return (
-    <div className="rounded-2xl border border-neutral-slate-200 bg-white shadow-xl overflow-hidden flex flex-col md:flex-row min-h-[720px]">
+    <div
+      className={cn(
+        "rounded-2xl border border-neutral-slate-200 bg-white shadow-xl overflow-hidden flex flex-col md:flex-row transition-all duration-300",
+        isMaximized
+          ? "fixed inset-0 z-50 rounded-none border-0 w-screen h-screen min-h-screen"
+          : "min-h-[720px]"
+      )}
+    >
       {/* Sidebar: Conversation Thread History & Quota Counter */}
       <aside className="w-full md:w-80 border-b md:border-b-0 md:border-r border-neutral-slate-200 bg-neutral-slate-50/70 p-4 flex flex-col justify-between shrink-0">
         <div className="space-y-4">
@@ -821,6 +853,32 @@ export function SocraticWorkspace() {
                 Live Tutor
               </Button>
             </Link>
+
+            <Button
+              variant={isMaximized ? "ai" : "outline"}
+              size="sm"
+              onClick={() => setIsMaximized(!isMaximized)}
+              className={cn(
+                "text-xs h-7 gap-1.5 transition-all shadow-xs",
+                isMaximized
+                  ? "bg-purple-600 hover:bg-purple-700 text-white font-semibold"
+                  : "border-neutral-slate-300 text-neutral-slate-700 hover:bg-neutral-slate-100"
+              )}
+              title={isMaximized ? "Exit Focus Mode (Esc)" : "Maximize Workspace for Focused Study"}
+              data-testid="toggle-maximize-workspace-btn"
+            >
+              {isMaximized ? (
+                <>
+                  <Minimize2 className="h-3.5 w-3.5" />
+                  <span>Exit Focus</span>
+                </>
+              ) : (
+                <>
+                  <Maximize2 className="h-3.5 w-3.5 text-service-ai-600" />
+                  <span>Maximize Focus</span>
+                </>
+              )}
+            </Button>
           </div>
         </header>
 
