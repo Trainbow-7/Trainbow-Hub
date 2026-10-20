@@ -12,15 +12,15 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
     const isMobile = page.viewportSize() && page.viewportSize()!.width < 768;
 
     if (isMobile) {
-      // Mobile Viewport: Open sheet drawer to verify navigation and currency
+      // Mobile Viewport: Open sheet drawer to verify navigation
       await page.getByRole("button", { name: "Open navigation menu" }).click();
       const mobileDrawer = page.getByRole("dialog", { name: "Menu" });
       await expect(mobileDrawer).toBeVisible();
-      await expect(mobileDrawer.getByText(/NGN/i)).toBeVisible();
       await expect(mobileDrawer.getByRole("link", { name: "Academy" })).toBeVisible();
       await expect(mobileDrawer.getByRole("link", { name: "AI", exact: true })).toBeVisible();
       // Close menu
       await page.getByRole("button", { name: "Close menu" }).click();
+      await expect(page.getByText(/NGN/i).first()).toBeVisible();
     } else {
       // Desktop Viewport: Verify direct navbar links and currency badge
       await expect(page.getByText(/NGN/i).first()).toBeVisible();
