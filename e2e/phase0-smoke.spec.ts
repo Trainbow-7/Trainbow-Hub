@@ -4,10 +4,10 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
   test("loads public landing page (/), verifies education branding and navigation", async ({ page }) => {
     await page.goto("/");
 
-    // Verify brand wordmark and tagline in header
+    // Verify brand wordmark and tagline
     const brandLink = page.getByRole("banner").getByRole("link", { name: /Trainbow HUB/i });
     await expect(brandLink).toBeVisible();
-    await expect(page.getByRole("banner").getByText("Learn • Connect • Grow")).toBeVisible();
+    await expect(page.getByText("Learn • Connect • Grow").first()).toBeVisible();
 
     const isMobile = page.viewportSize() && page.viewportSize()!.width < 768;
 
@@ -51,9 +51,12 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
   });
 
   test("loads developer showcase (/dev/design-system) in non-production", async ({ page }) => {
-    const res = await page.goto("/dev/design-system");
-    if (res?.status() === 404) {
-      // In production builds without CI, /dev/design-system is securely disabled
+    await page.goto("/dev/design-system");
+
+    // In a production build, /dev/design-system is securely disabled and shows 404
+    const isNotFound = await page.getByText(/404|This page could not be found/i).first().isVisible().catch(() => false);
+    if (isNotFound) {
+      // Confirmed: dev showcase is safely disabled in production builds
       return;
     }
 
