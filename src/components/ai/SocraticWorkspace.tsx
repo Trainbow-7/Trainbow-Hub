@@ -39,7 +39,7 @@ import { AIHintLevel, AIMathVerification } from "@/lib/db";
 import { FormattedMathContent } from "./FormattedMathContent";
 import { MathDrawingCanvas } from "./MathDrawingCanvas";
 import { normalizeMathInText } from "@/lib/ai/math-formatter";
-
+import { useAuth } from "@/components/auth/AuthProvider";
 import { computeClientSha256, generateClientUploadId } from "@/lib/ai/client-hash";
 
 interface Attachment {
@@ -113,6 +113,7 @@ const MATH_SYMBOLS = ["x²", "√", "±", "π", "θ", "Δ", "÷", "≤", "≥", 
 
 export function SocraticWorkspace() {
   const router = useRouter();
+  const { user } = useAuth();
 
   const [conversations, setConversations] = React.useState<Conversation[]>([]);
   const [activeConversationId, setActiveConversationId] = React.useState<string | null>(null);
@@ -327,11 +328,16 @@ export function SocraticWorkspace() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
-  // Load conversations and quota on mount
+  // Keep workspace clean on every visit or login/logout: load quota & list, but never auto-select previous questions
   React.useEffect(() => {
+    setActiveConversationId(null);
+    setMessages([]);
+    setPrompt("");
+    setAttachedFiles([]);
+    setErrorMessage(null);
     loadQuota();
-    loadConversations(true);
-  }, []);
+    loadConversations(false);
+  }, [user?.id]);
 
   const loadQuota = async () => {
     try {
