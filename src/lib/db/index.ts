@@ -3046,7 +3046,7 @@ class DatabaseStore {
     if (!quota) {
       const isUnlimited = role === "TUTOR" || role === "ADMIN";
       const isPro = role === "PRO_STUDENT";
-      const maxQuota = isUnlimited ? 999999 : isPro ? 100 : 10;
+      const maxQuota = isUnlimited ? 999999 : isPro ? 100 : 5;
 
       const resetAt = new Date();
       resetAt.setUTCHours(23, 59, 59, 999);
@@ -4429,7 +4429,7 @@ class DatabaseStore {
         // 4. AI Quota (Queries used today / daily limit)
         const aiQuota = this.aiQuotas.get(student.id);
         const queriesUsedToday = aiQuota ? aiQuota.queryCount : 0;
-        const dailyLimit = aiQuota ? aiQuota.maxQuota : 10;
+        const dailyLimit = aiQuota ? aiQuota.maxQuota : 5;
 
         summaries.push({
           student: {

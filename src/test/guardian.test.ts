@@ -35,7 +35,7 @@ describe("Phase J: Parent & Guardian Oversight Portal Unit Tests (PP-01 to PP-05
 
       // Verify AI quota consumption
       expect(chiomaSummary?.aiQuota.plan).toBe("FREE");
-      expect(chiomaSummary?.aiQuota.dailyLimit).toBe(10);
+      expect(chiomaSummary?.aiQuota.dailyLimit).toBe(5);
     });
 
     it("shields unverified and pending OTP wards from summary view", async () => {

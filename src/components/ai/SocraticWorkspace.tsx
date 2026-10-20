@@ -118,8 +118,8 @@ export function SocraticWorkspace() {
   const [activeConversationId, setActiveConversationId] = React.useState<string | null>(null);
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [quota, setQuota] = React.useState<QuotaState>({
-    remaining: 10,
-    maxQuota: 10,
+    remaining: 5,
+    maxQuota: 5,
     queryCount: 0,
   });
 
@@ -796,7 +796,7 @@ export function SocraticWorkspace() {
 
           <p className="text-[10px] text-neutral-slate-600 mt-1.5 leading-tight">
             {quota.remaining > 0
-              ? "Free tier: 10 queries/day. Failed queries never deduct your balance."
+              ? "Free tier: 5 queries/day. Failed queries never deduct your balance."
               : "Daily quota exhausted. Resets midnight WAT or upgrade to Pro."}
           </p>
         </div>

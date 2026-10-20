@@ -146,35 +146,35 @@ describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Engine",
   // 4. Per-User Quota Engine (AI-05, AI-06, AI-07)
   // ==========================================================================
   describe("Per-User Daily Quota Engine (AI-05, AI-06, AI-07)", () => {
-    it("initializes a free student with 10 daily queries", async () => {
+    it("initializes a free student with 5 daily queries", async () => {
       const quota = await db.getOrCreateUserQuota("usr-std-001", "STUDENT");
       expect(quota.queryCount).toBe(0);
-      expect(quota.maxQuota).toBe(10);
+      expect(quota.maxQuota).toBe(5);
     });
 
     it("increments quota count on each query and calculates remaining quota", async () => {
       const result1 = await db.checkAndIncrementQuota("usr-std-001", "STUDENT");
       expect(result1.allowed).toBe(true);
-      expect(result1.remaining).toBe(9);
+      expect(result1.remaining).toBe(4);
 
       const result2 = await db.checkAndIncrementQuota("usr-std-001", "STUDENT");
       expect(result2.allowed).toBe(true);
-      expect(result2.remaining).toBe(8);
+      expect(result2.remaining).toBe(3);
     });
 
-    it("strictly blocks queries once daily limit of 10 is reached", async () => {
+    it("strictly blocks queries once daily limit of 5 is reached", async () => {
       const studentId = "usr-quota-test";
-      // Exhaust 10 queries
-      for (let i = 0; i < 10; i++) {
+      // Exhaust 5 queries
+      for (let i = 0; i < 5; i++) {
         const res = await db.checkAndIncrementQuota(studentId, "STUDENT");
         expect(res.allowed).toBe(true);
       }
 
-      // 11th query must be rejected
+      // 6th query must be rejected
       const rejected = await db.checkAndIncrementQuota(studentId, "STUDENT");
       expect(rejected.allowed).toBe(false);
       expect(rejected.remaining).toBe(0);
-      expect(rejected.maxQuota).toBe(10);
+      expect(rejected.maxQuota).toBe(5);
     });
 
     it("allocates 100 queries for Pro Students and unlimited for Tutors", async () => {
