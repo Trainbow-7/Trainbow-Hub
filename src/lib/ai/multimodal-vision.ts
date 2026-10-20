@@ -2,12 +2,13 @@ import {
   StructuredExtraction,
   StructuredExtractionSchema,
 } from "./extraction-schema";
+import { normalizeMathInText } from "./math-formatter";
 
 const SYSTEM_INSTRUCTION = `You are a high-precision academic OCR and STEM vision extraction engine for Trainbow HUB, an educational platform tailored to approved Nigerian (WAEC SSCE, NECO, JAMB UTME) and British (Cambridge IGCSE) curricula.
 
 Your task is to examine the provided photo of an exam question or textbook page, and extract:
-1. "question_text": The complete, exact question text verbatim as printed in the image. Include part letters (a, b, etc.) and references to figures (e.g. "In Fig. 2.35, calculate the value of x...").
-2. "sub_questions": Array of explicit sub-tasks or sub-parts (e.g. ["Prove that the opposite angles of a cyclic quadrilateral are supplementary.", "In Fig. 2.35, calculate the value of x, giving a reason for each step in your answer."]).
+1. "question_text": The complete, exact question text verbatim as printed in the image. Format all mathematical expressions, equations, formulas, fractions, and symbols using standard LaTeX notation enclosed in dollar signs (e.g. "Solve the equation $\\frac{1}{3a - 1} = \\frac{2}{a + 1} - \\frac{3}{8}$." or "$$\\frac{1}{3a - 1} = \\frac{2}{a + 1} - \\frac{3}{8}$$"). Include part letters (a, b, etc.) and references to figures (e.g. "In Fig. 2.35, calculate the value of x...").
+2. "sub_questions": Array of explicit sub-tasks or sub-parts, with mathematics formatted in LaTeX enclosed in dollar signs (e.g. ["Prove that the opposite angles of a cyclic quadrilateral are supplementary.", "In Fig. 2.35, calculate the value of x, giving a reason for each step in your answer."]).
 3. "given_values": Array of key-value pairs of explicitly given numbers, angle degrees, lengths, or geometric definitions.
 4. "figure_description": Concise description of any geometric diagram, graph, or circuit shown.
 5. "diagram_elements": Structured geometry specification:
@@ -27,6 +28,7 @@ Your task is to examine the provided photo of an exam question or textbook page,
 
 CRITICAL INSTRUCTIONS:
 - TRANSCRIBE EXACTLY WHAT IS PRINTED IN THE IMAGE.
+- FORMAT MATHEMATICS IN CLEAN LATEX ENCLOSED IN DOLLAR SIGNS.
 - NEVER FABRICATE, GUESS, OR RETURN A CANNED QUESTION.
 - Return ONLY valid JSON conforming to the schema above, with no markdown code fence and no surrounding conversation.`;
 
@@ -107,7 +109,7 @@ export async function callGeminiVision(
 
   const parseResult = StructuredExtractionSchema.safeParse(parsed);
   if (parseResult.success) {
-    return parseResult.data;
+    return normalizeExtraction(parseResult.data);
   }
 
   // Fallback: If Zod failed on secondary fields, extract the core question text and return valid schema
@@ -115,7 +117,7 @@ export async function callGeminiVision(
   const fallbackQuestion =
     parsed?.question_text || parsed?.question || parsed?.text || cleaned || "";
 
-  return {
+  return normalizeExtraction({
     question_text: typeof fallbackQuestion === "string" ? fallbackQuestion : JSON.stringify(fallbackQuestion),
     sub_questions: Array.isArray(parsed?.sub_questions) ? parsed.sub_questions : [],
     given_values: [],
@@ -126,7 +128,7 @@ export async function callGeminiVision(
     legibility: "clear",
     confidence: 90,
     ambiguities: [],
-  };
+  });
 }
 
 /**
@@ -198,14 +200,14 @@ export async function callOpenAIVision(
 
   const parseResult = StructuredExtractionSchema.safeParse(parsed);
   if (parseResult.success) {
-    return parseResult.data;
+    return normalizeExtraction(parseResult.data);
   }
 
   console.warn("[OPENAI_VISION_SCHEMA_SOFT_FALLBACK]", parseResult.error.issues);
   const fallbackQuestion =
     parsed?.question_text || parsed?.question || parsed?.text || cleaned || "";
 
-  return {
+  return normalizeExtraction({
     question_text: typeof fallbackQuestion === "string" ? fallbackQuestion : JSON.stringify(fallbackQuestion),
     sub_questions: Array.isArray(parsed?.sub_questions) ? parsed.sub_questions : [],
     given_values: [],
@@ -216,5 +218,15 @@ export async function callOpenAIVision(
     legibility: "clear",
     confidence: 90,
     ambiguities: [],
+  });
+}
+
+function normalizeExtraction(data: StructuredExtraction): StructuredExtraction {
+  return {
+    ...data,
+    question_text: normalizeMathInText(data.question_text),
+    sub_questions: Array.isArray(data.sub_questions)
+      ? data.sub_questions.map(normalizeMathInText)
+      : [],
   };
 }

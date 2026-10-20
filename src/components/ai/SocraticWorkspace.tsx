@@ -28,6 +28,7 @@ import {
   Image as ImageIcon,
   FileText,
   X,
+  Pencil,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -35,6 +36,7 @@ import { cn } from "@/lib/utils";
 import { AIHintLevel, AIMathVerification } from "@/lib/db";
 import { FormattedMathContent } from "./FormattedMathContent";
 import { MathDrawingCanvas } from "./MathDrawingCanvas";
+import { normalizeMathInText } from "@/lib/ai/math-formatter";
 
 import { computeClientSha256, generateClientUploadId } from "@/lib/ai/client-hash";
 
@@ -131,6 +133,7 @@ export function SocraticWorkspace() {
     tutorName: string;
     bookingUrl: string;
   } | null>(null);
+  const [reportedMessageIds, setReportedMessageIds] = React.useState<Set<string>>(new Set());
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const [showDrawingBoard, setShowDrawingBoard] = React.useState(false);
   const [attachedFiles, setAttachedFiles] = React.useState<Attachment[]>([]);
@@ -145,6 +148,7 @@ export function SocraticWorkspace() {
     diagramElements?: any;
     isMock?: boolean;
   } | null>(null);
+  const [isEditingExtractedText, setIsEditingExtractedText] = React.useState(false);
   const [adminSkipConfirmation, setAdminSkipConfirmation] = React.useState(false);
   const [previewModalAttachment, setPreviewModalAttachment] = React.useState<Attachment | null>(null);
 
@@ -205,16 +209,18 @@ export function SocraticWorkspace() {
               const visionData = await res.json().catch(() => ({}));
               if (res.ok && visionData.success && visionData.extraction) {
                 const subQs: string[] = visionData.extraction.sub_questions || [];
+                const formattedQText = normalizeMathInText(visionData.extraction.question_text);
+                const formattedSubQs = subQs.map(normalizeMathInText);
                 setPendingConfirmationAttachment({
                   attachment: newAttachment,
-                  extractedQuestionText: visionData.extraction.question_text,
-                  subQuestions: subQs,
-                  selectedSubQuestions: subQs.length > 0 ? [...subQs] : undefined,
+                  extractedQuestionText: formattedQText,
+                  subQuestions: formattedSubQs,
+                  selectedSubQuestions: formattedSubQs.length > 0 ? [...formattedSubQs] : undefined,
                   confidence: visionData.extraction.confidence || 98,
-                  redrawnSvg: visionData.redrawnSvg,
                   diagramElements: visionData.extraction.diagram_elements,
                   isMock: Boolean(visionData.isMock),
                 });
+                setIsEditingExtractedText(false);
                 setIsReadingFile(false);
                 return;
               } else {
@@ -568,6 +574,28 @@ export function SocraticWorkspace() {
       console.error("Escalation error", err);
     } finally {
       setEscalatingMessageId(null);
+    }
+  };
+
+  const handleReportWrongAnswer = async (msg: Message) => {
+    try {
+      const lastUserMsg = [...messages].reverse().find((m) => m.role === "USER");
+      const res = await fetch("/api/ai/report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          conversationId: activeConversationId,
+          messageId: msg.id,
+          questionText: lastUserMsg?.content || "Extracted Exam Question",
+          solutionContent: msg.content,
+          userComment: "User flagged mathematical calculation error",
+        }),
+      });
+      if (res.ok) {
+        setReportedMessageIds((prev) => new Set(prev).add(msg.id));
+      }
+    } catch (err) {
+      console.error("Report wrong answer error", err);
     }
   };
 
@@ -952,13 +980,16 @@ export function SocraticWorkspace() {
                         </div>
                       )}
 
-                      <p className="text-sm font-medium leading-relaxed whitespace-pre-wrap">
-                        {msg.content
-                          .replace(/\[Exam Figure Attached:[^\]]*\]/gi, "")
-                          .replace(/\[Attached Question Document:[^\]]*\]/gi, "")
-                          .replace(/\[Attached files:[^\]]*\]/gi, "")
-                          .trim()}
-                      </p>
+                      <div className="text-sm font-medium leading-relaxed text-white">
+                        <FormattedMathContent
+                          content={msg.content
+                            .replace(/\[Exam Figure Attached:[^\]]*\]/gi, "")
+                            .replace(/\[Attached Question Document:[^\]]*\]/gi, "")
+                            .replace(/\[Attached files:[^\]]*\]/gi, "")
+                            .trim()}
+                          isUserMessage={true}
+                        />
+                      </div>
                     </div>
                     <div className="h-8 w-8 rounded-full bg-brand-navy-900 text-white font-bold flex items-center justify-center text-xs shrink-0 mt-1">
                       S
@@ -1217,6 +1248,21 @@ export function SocraticWorkspace() {
                             ? "Escalating..."
                             : "Escalate to Human Tutor"}
                         </Button>
+
+                        {/* Report Wrong Answer Button */}
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => handleReportWrongAnswer(msg)}
+                          className="text-xs h-7 px-2 text-rose-700 hover:bg-rose-50 hover:text-rose-800 font-medium"
+                          data-testid="report-wrong-answer-btn"
+                          title="Report this solution to academic review queue"
+                        >
+                          <AlertCircle className="h-3.5 w-3.5 mr-1 text-rose-600" />
+                          {reportedMessageIds.has(msg.id)
+                            ? "Reported to Review Queue"
+                            : "Report wrong answer"}
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -1315,7 +1361,7 @@ export function SocraticWorkspace() {
                       ✓
                     </span>
                     <span className="text-xs font-bold text-neutral-slate-900">
-                      Confirm Question &amp; Figure Extraction
+                      Confirm Question Extraction
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -1333,44 +1379,27 @@ export function SocraticWorkspace() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center bg-white p-3 rounded-xl border border-purple-200">
-                  {/* Original Attached Image */}
-                  <div className="flex flex-col items-center">
-                    <span className="text-[10px] font-bold text-neutral-slate-600 mb-1">
+                {/* Original Uploaded Exam Photo (Clean Centered Preview) */}
+                <div className="bg-white p-3 rounded-xl border border-purple-200 flex flex-col items-center">
+                  <div className="flex items-center justify-between w-full mb-1.5 px-1">
+                    <span className="text-[10px] font-bold text-neutral-slate-600">
                       Original Uploaded Exam Photo
                     </span>
-                    {pendingConfirmationAttachment.attachment.previewUrl ? (
-                      <img
-                        src={pendingConfirmationAttachment.attachment.previewUrl}
-                        alt={pendingConfirmationAttachment.attachment.name}
-                        className="max-h-36 object-contain rounded-lg border border-neutral-slate-200 bg-neutral-slate-50"
-                      />
-                    ) : (
-                      <div className="h-28 w-full flex items-center justify-center text-xs text-neutral-slate-400">
-                        No image preview
-                      </div>
-                    )}
-                  </div>
-
-                  {/* AI Reconstructed "Redraw This Figure" Vector SVG */}
-                  <div className="flex flex-col items-center">
-                    <span className="text-[10px] font-bold text-service-ai-700 mb-1 flex items-center gap-1">
-                      <span className="h-1.5 w-1.5 rounded-full bg-service-ai-600 animate-pulse" />
-                      &quot;Redraw this figure&quot; (Clean Vector Geometry)
+                    <span className="text-[10px] text-purple-700 font-mono">
+                      {pendingConfirmationAttachment.attachment.name}
                     </span>
-                    {pendingConfirmationAttachment.redrawnSvg ? (
-                      <div
-                        className="max-h-36 w-full flex items-center justify-center rounded-lg border border-purple-200 bg-purple-50/30 overflow-hidden"
-                        dangerouslySetInnerHTML={{
-                          __html: pendingConfirmationAttachment.redrawnSvg,
-                        }}
-                      />
-                    ) : (
-                      <div className="h-28 w-full flex items-center justify-center text-xs text-neutral-slate-400">
-                        Analyzing geometry...
-                      </div>
-                    )}
                   </div>
+                  {pendingConfirmationAttachment.attachment.previewUrl ? (
+                    <img
+                      src={pendingConfirmationAttachment.attachment.previewUrl}
+                      alt={pendingConfirmationAttachment.attachment.name}
+                      className="max-h-44 object-contain rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 shadow-xs"
+                    />
+                  ) : (
+                    <div className="h-24 w-full flex items-center justify-center text-xs text-neutral-slate-400">
+                      No image preview
+                    </div>
+                  )}
                 </div>
 
                 {/* Multi-Part Question Breakdown & Selector (Stage 5) */}
@@ -1437,24 +1466,49 @@ export function SocraticWorkspace() {
                     </div>
                   )}
 
-                <div className="space-y-1">
+                {/* Extracted Question with Formatted Mathematical Notation & In-Place Editor */}
+                <div className="space-y-2">
                   <div className="flex items-center justify-between text-[11px] font-semibold text-neutral-slate-700">
-                    <span>Extracted Question Text (Review / Edit):</span>
-                    <span className="text-[10px] text-purple-700 font-mono">
-                      {pendingConfirmationAttachment.attachment.name}
+                    <span className="flex items-center gap-1 text-purple-950 font-bold">
+                      <Sparkles className="h-3.5 w-3.5 text-service-ai-600" />
+                      Extracted Question (Formatted Math):
                     </span>
+                    <button
+                      type="button"
+                      onClick={() => setIsEditingExtractedText((prev) => !prev)}
+                      className="text-[11px] text-service-ai-700 hover:text-service-ai-900 font-medium flex items-center gap-1 hover:underline"
+                    >
+                      <Pencil className="h-3 w-3" />
+                      {isEditingExtractedText ? "Hide Text Editor" : "Edit LaTeX / Text"}
+                    </button>
                   </div>
-                  <textarea
-                    value={pendingConfirmationAttachment.extractedQuestionText}
-                    onChange={(e) =>
-                      setPendingConfirmationAttachment((prev) =>
-                        prev ? { ...prev, extractedQuestionText: e.target.value } : null
-                      )
-                    }
-                    rows={2}
-                    className="w-full text-xs text-neutral-slate-800 bg-white border border-neutral-slate-200 rounded-lg p-2 focus:ring-1 focus:ring-service-ai-600 focus:outline-hidden"
-                    placeholder="Verify or edit the extracted question text before AI solves..."
-                  />
+
+                  {/* Formatted Mathematical Notation Preview */}
+                  <div className="p-3 bg-white rounded-xl border border-purple-200 text-xs shadow-xs text-neutral-slate-900 leading-relaxed min-h-[3.5rem]">
+                    <FormattedMathContent
+                      content={pendingConfirmationAttachment.extractedQuestionText}
+                    />
+                  </div>
+
+                  {/* In-Place Textarea Editor */}
+                  {isEditingExtractedText && (
+                    <div className="space-y-1 pt-1">
+                      <span className="text-[10px] text-neutral-slate-500 font-medium">
+                        Raw Text &amp; LaTeX Editor:
+                      </span>
+                      <textarea
+                        value={pendingConfirmationAttachment.extractedQuestionText}
+                        onChange={(e) =>
+                          setPendingConfirmationAttachment((prev) =>
+                            prev ? { ...prev, extractedQuestionText: e.target.value } : null
+                          )
+                        }
+                        rows={3}
+                        className="w-full text-xs font-mono text-neutral-slate-800 bg-white border border-neutral-slate-300 rounded-lg p-2.5 focus:ring-1 focus:ring-service-ai-600 focus:outline-hidden"
+                        placeholder="Verify or edit the extracted question text before AI solves..."
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-purple-100">
@@ -1482,6 +1536,7 @@ export function SocraticWorkspace() {
                         setAttachedFiles((prev) => [...prev, confirmedAttachment]);
                         setPrompt((prev) => (prev.trim() ? prev : finalPromptText));
                         setPendingConfirmationAttachment(null);
+                        setIsEditingExtractedText(false);
                       }}
                       className="h-7 text-xs font-semibold px-3"
                     >
@@ -1494,21 +1549,12 @@ export function SocraticWorkspace() {
                       size="sm"
                       variant="outline"
                       onClick={() => {
-                        // Put in edit mode by focusing the prompt
-                        setPrompt(pendingConfirmationAttachment.extractedQuestionText);
-                        setAttachedFiles((prev) => [
-                          ...prev,
-                          {
-                            ...pendingConfirmationAttachment.attachment,
-                            extractedText: pendingConfirmationAttachment.extractedQuestionText,
-                          },
-                        ]);
-                        setPendingConfirmationAttachment(null);
-                        textareaRef.current?.focus();
+                        setIsEditingExtractedText((prev) => !prev);
                       }}
                       className="h-7 text-xs font-semibold px-2.5"
                     >
-                      Edit
+                      <Pencil className="h-3 w-3 mr-1" />
+                      {isEditingExtractedText ? "Done Editing" : "Edit"}
                     </Button>
                   </div>
 
@@ -1534,6 +1580,7 @@ export function SocraticWorkspace() {
                       onClick={() => {
                         // Wrong image - cancel and discard
                         setPendingConfirmationAttachment(null);
+                        setIsEditingExtractedText(false);
                         if (fileInputRef.current) fileInputRef.current.value = "";
                       }}
                       className="h-7 text-xs text-status-red-600 hover:bg-status-red-50 px-2"

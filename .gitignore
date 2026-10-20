@@ -44,3 +44,6 @@ prisma/dev.db-journal
 .idea/
 .vscode/
 Thumbs.db
+
+# Test & Stage Screenshots
+*_screenshots/

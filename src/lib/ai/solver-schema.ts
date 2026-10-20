@@ -26,6 +26,13 @@ export type SolverStep = z.infer<typeof SolverStepSchema>;
 export type SolverOutput = z.infer<typeof SolverOutputSchema>;
 
 export const BANNED_FILLER_PHRASES = [
+  "identify core concepts",
+  "deduce and explain",
+  "analysis and verified solution provided",
+  "ensure your answers directly address the command words",
+  "command words",
+  "define the key terms and relations specified in",
+  "work through the required derivation, analysis, or proof systematically",
   "analyze question requirements",
   "apply curriculum framework",
   "complete curriculum-grounded academic answer provided",
@@ -35,6 +42,8 @@ export const BANNED_FILLER_PHRASES = [
   "carefully define the core terms and concepts",
   "apply the authoritative rules, theorems",
   "synthesize and conclude",
+  "deterministic analytical engine",
+  "canned response",
 ];
 
 export interface QualityGateResult {

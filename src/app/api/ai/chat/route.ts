@@ -259,6 +259,9 @@ export async function POST(req: Request) {
       usedAttachmentIds,
       userMessage,
       aiMessage,
+      errorCategory: (socraticResult as any).errorCategory,
+      canRetry: (socraticResult as any).canRetry,
+      canAskTutor: (socraticResult as any).canAskTutor,
       quota: {
         remaining: quotaCheck.remaining,
         maxQuota: quotaCheck.maxQuota,

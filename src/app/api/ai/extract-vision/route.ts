@@ -10,6 +10,7 @@ import { callGeminiVision, callOpenAIVision } from "@/lib/ai/multimodal-vision";
 import { checkStuckOutput } from "@/lib/ai/stuck-output-detector";
 import { crossCheckDiagramWithText } from "@/lib/ai/ocr-cross-check";
 import { computeSha256Hex } from "@/lib/ai/attachment-hash";
+import { normalizeMathInText } from "@/lib/ai/math-formatter";
 
 export const dynamic = "force-dynamic";
 
@@ -131,6 +132,12 @@ export async function POST(req: Request) {
         },
         { status: 422 }
       );
+    }
+
+    // Normalize mathematical notation in extracted question text and sub-questions
+    extraction.question_text = normalizeMathInText(extraction.question_text);
+    if (Array.isArray(extraction.sub_questions)) {
+      extraction.sub_questions = extraction.sub_questions.map(normalizeMathInText);
     }
 
     // OCR Cross-Check: Check diagram elements against question text

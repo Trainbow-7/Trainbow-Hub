@@ -4,6 +4,7 @@ import * as React from "react";
 import katex from "katex";
 import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
+import { normalizeMathInText } from "@/lib/ai/math-formatter";
 
 interface Attachment {
   name: string;
@@ -16,6 +17,7 @@ interface Attachment {
 interface FormattedMathContentProps {
   content: string;
   className?: string;
+  isUserMessage?: boolean;
   verification?: {
     equation?: string;
     discriminant?: number;
@@ -36,10 +38,15 @@ function KatexFormula({ formula, displayMode = false }: { formula: string; displ
     if (!containerRef.current) return;
     try {
       // Clean up common duplicate delta escapes or raw symbols
-      const cleanFormula = formula
+      let cleanFormula = formula
         .replace(/\\Delta\s*=\s*Δ/g, "\\Delta")
         .replace(/Δ/g, "\\Delta ")
         .trim();
+
+      // Ensure inline fractions render with clear, readable typography
+      if (!displayMode && cleanFormula.includes("\\frac") && !cleanFormula.includes("\\displaystyle")) {
+        cleanFormula = `\\displaystyle ${cleanFormula}`;
+      }
 
       katex.render(cleanFormula, containerRef.current, {
         displayMode,
@@ -370,15 +377,23 @@ function DiagramBlock({ code, type }: { code: string; type?: string }) {
  * - Renders inline mathematical terms ($...$) with KaTeX typography
  * - Parses Markdown bold and italics
  */
-function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
+function formatMathLine(line: string, keyPrefix: string, isUserMessage: boolean = false): React.ReactNode {
+  // Ensure un-delimited LaTeX expressions are cleanly wrapped in $...$ or $$...$$
+  const normalized = normalizeMathInText(line);
+
   // Check if line is a display equation $$...$$
-  const blockMathMatch = line.trim().match(/^\$\$(.+)\$\$$/);
+  const blockMathMatch = normalized.trim().match(/^\$\$(.+)\$\$$/);
   if (blockMathMatch) {
     const math = blockMathMatch[1];
     return (
       <div
         key={keyPrefix}
-        className="my-3 py-3 px-5 rounded-2xl bg-white border border-purple-200/90 text-neutral-slate-900 shadow-sm overflow-x-auto flex items-center justify-center"
+        className={cn(
+          "my-2.5 py-2.5 px-4 rounded-xl shadow-xs overflow-x-auto flex items-center justify-center",
+          isUserMessage
+            ? "bg-white/15 border border-white/25 text-white"
+            : "bg-white border border-purple-200/90 text-neutral-slate-900"
+        )}
       >
         <KatexFormula formula={math} displayMode={true} />
       </div>
@@ -387,7 +402,7 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
 
   // Tokenize line by block math ($$...$$), inline math ($...$), bold (**...**), and italic (*...*)
   // We match $$...$$ and $...$ before *...* to ensure math formulas with spaces or operators don't collide with italics
-  const parts = line.split(/(\$\$[^\$]+\$\$|\$[^$\n]+\$|\*\*[^\*]+\*\*|\*[^\*\$\n]+\*)/g);
+  const parts = normalized.split(/(\$\$[^\$]+\$\$|\$[^$\n]+\$|\*\*[^\*]+\*\*|\*[^\*\$\n]+\*)/g);
 
   return (
     <span key={keyPrefix} className="leading-relaxed">
@@ -400,7 +415,12 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
           return (
             <span
               key={subKey}
-              className="inline-block my-1 px-3 py-1.5 rounded-xl bg-purple-50 text-purple-950 border border-purple-200 shadow-2xs"
+              className={cn(
+                "inline-block my-1 px-3 py-1.5 rounded-xl shadow-2xs",
+                isUserMessage
+                  ? "bg-white/15 text-white border border-white/25"
+                  : "bg-purple-50 text-purple-950 border border-purple-200"
+              )}
             >
               <KatexFormula formula={formula} displayMode={false} />
             </span>
@@ -413,7 +433,12 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
           return (
             <span
               key={subKey}
-              className="inline-block mx-0.5 px-1.5 py-0.5 rounded-md bg-purple-50/90 text-purple-950 font-medium border border-purple-200/80 align-baseline"
+              className={cn(
+                "inline-block mx-0.5 px-1.5 py-0.5 rounded-md font-medium align-baseline",
+                isUserMessage
+                  ? "bg-white/20 text-white border border-white/30"
+                  : "bg-purple-50/90 text-purple-950 border border-purple-200/80"
+              )}
             >
               <KatexFormula formula={formula} displayMode={false} />
             </span>
@@ -424,7 +449,10 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
         if (part.startsWith("**") && part.endsWith("**")) {
           const boldText = part.slice(2, -2);
           return (
-            <strong key={subKey} className="font-bold text-neutral-slate-900">
+            <strong
+              key={subKey}
+              className={cn("font-bold", isUserMessage ? "text-white" : "text-neutral-slate-900")}
+            >
               {boldText}
             </strong>
           );
@@ -434,7 +462,10 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
         if (part.startsWith("*") && part.endsWith("*")) {
           const italicText = part.slice(1, -1);
           return (
-            <em key={subKey} className="italic text-neutral-slate-800">
+            <em
+              key={subKey}
+              className={cn("italic", isUserMessage ? "text-blue-100" : "text-neutral-slate-800")}
+            >
               {italicText}
             </em>
           );
@@ -446,7 +477,7 @@ function formatMathLine(line: string, keyPrefix: string): React.ReactNode {
   );
 }
 
-export function FormattedMathContent({ content, className, verification, attachments }: FormattedMathContentProps) {
+export function FormattedMathContent({ content, className, isUserMessage = false, verification, attachments }: FormattedMathContentProps) {
   const lines = content.split("\n");
   const renderedElements: React.ReactNode[] = [];
 
@@ -502,7 +533,12 @@ export function FormattedMathContent({ content, className, verification, attachm
         renderedElements.push(
           <div
             key={`mathblock-${i}`}
-            className="my-3 py-3 px-5 rounded-2xl bg-white border border-purple-200/90 text-neutral-slate-900 shadow-sm overflow-x-auto flex items-center justify-center"
+            className={cn(
+              "my-3 py-3 px-5 rounded-2xl shadow-sm overflow-x-auto flex items-center justify-center",
+              isUserMessage
+                ? "bg-white/10 border border-white/20 text-white"
+                : "bg-white border border-purple-200/90 text-neutral-slate-900"
+            )}
           >
             <KatexFormula formula={formula} displayMode={true} />
           </div>
@@ -526,7 +562,12 @@ export function FormattedMathContent({ content, className, verification, attachm
         renderedElements.push(
           <div
             key={`mathblock-${i}`}
-            className="my-3 py-3 px-5 rounded-2xl bg-white border border-purple-200/90 text-neutral-slate-900 shadow-sm overflow-x-auto flex items-center justify-center"
+            className={cn(
+              "my-3 py-3 px-5 rounded-2xl shadow-sm overflow-x-auto flex items-center justify-center",
+              isUserMessage
+                ? "bg-white/10 border border-white/20 text-white"
+                : "bg-white border border-purple-200/90 text-neutral-slate-900"
+            )}
           >
             <KatexFormula formula={formula} displayMode={true} />
           </div>
@@ -547,8 +588,16 @@ export function FormattedMathContent({ content, className, verification, attachm
     // Check for Header Level 3 or 4: ### or ####
     if (trimmed.startsWith("### ")) {
       renderedElements.push(
-        <h3 key={`h3-${i}`} className="text-base font-bold font-heading text-neutral-slate-900 pt-3 pb-1 flex items-center gap-2 border-b border-neutral-slate-100">
-          {formatMathLine(trimmed.slice(4), `h3-content-${i}`)}
+        <h3
+          key={`h3-${i}`}
+          className={cn(
+            "text-base font-bold font-heading pt-3 pb-1 flex items-center gap-2 border-b",
+            isUserMessage
+              ? "text-white border-white/20"
+              : "text-neutral-slate-900 border-neutral-slate-100"
+          )}
+        >
+          {formatMathLine(trimmed.slice(4), `h3-content-${i}`, isUserMessage)}
         </h3>
       );
       continue;
@@ -556,8 +605,14 @@ export function FormattedMathContent({ content, className, verification, attachm
 
     if (trimmed.startsWith("#### ")) {
       renderedElements.push(
-        <h4 key={`h4-${i}`} className="text-sm font-bold font-heading text-neutral-slate-900 pt-2 pb-0.5">
-          {formatMathLine(trimmed.slice(5), `h4-content-${i}`)}
+        <h4
+          key={`h4-${i}`}
+          className={cn(
+            "text-sm font-bold font-heading pt-2 pb-0.5",
+            isUserMessage ? "text-white" : "text-neutral-slate-900"
+          )}
+        >
+          {formatMathLine(trimmed.slice(5), `h4-content-${i}`, isUserMessage)}
         </h4>
       );
       continue;
@@ -565,7 +620,12 @@ export function FormattedMathContent({ content, className, verification, attachm
 
     // Check for Horizontal Rule: ---
     if (trimmed === "---") {
-      renderedElements.push(<hr key={`hr-${i}`} className="my-4 border-neutral-slate-200" />);
+      renderedElements.push(
+        <hr
+          key={`hr-${i}`}
+          className={cn("my-4", isUserMessage ? "border-white/20" : "border-neutral-slate-200")}
+        />
+      );
       continue;
     }
 
@@ -575,12 +635,23 @@ export function FormattedMathContent({ content, className, verification, attachm
       const num = numberedMatch[1];
       const listContent = numberedMatch[2];
       renderedElements.push(
-        <div key={`li-${i}`} className="flex items-start gap-2.5 pl-1 my-1.5 text-neutral-slate-800 text-sm">
-          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-purple-100 text-purple-900 font-bold text-xs shrink-0 mt-0.5">
+        <div
+          key={`li-${i}`}
+          className={cn(
+            "flex items-start gap-2.5 pl-1 my-1.5 text-sm",
+            isUserMessage ? "text-white" : "text-neutral-slate-800"
+          )}
+        >
+          <span
+            className={cn(
+              "flex items-center justify-center w-5 h-5 rounded-full font-bold text-xs shrink-0 mt-0.5",
+              isUserMessage ? "bg-white/20 text-white" : "bg-purple-100 text-purple-900"
+            )}
+          >
             {num}
           </span>
           <div className="flex-1">
-            {formatMathLine(listContent, `li-num-${i}`)}
+            {formatMathLine(listContent, `li-num-${i}`, isUserMessage)}
           </div>
         </div>
       );
@@ -589,8 +660,16 @@ export function FormattedMathContent({ content, className, verification, attachm
 
     if (trimmed.startsWith("> ")) {
       renderedElements.push(
-        <div key={`quote-${i}`} className="my-2.5 p-3 rounded-xl bg-purple-50/80 border-l-4 border-service-ai-600 text-neutral-slate-800 text-xs shadow-2xs">
-          {formatMathLine(trimmed.slice(2), `quote-c-${i}`)}
+        <div
+          key={`quote-${i}`}
+          className={cn(
+            "my-2.5 p-3 rounded-xl border-l-4 text-xs shadow-2xs",
+            isUserMessage
+              ? "bg-white/10 border-white text-white"
+              : "bg-purple-50/80 border-service-ai-600 text-neutral-slate-800"
+          )}
+        >
+          {formatMathLine(trimmed.slice(2), `quote-c-${i}`, isUserMessage)}
         </div>
       );
       continue;
@@ -598,10 +677,21 @@ export function FormattedMathContent({ content, className, verification, attachm
 
     if (trimmed.startsWith("- ")) {
       renderedElements.push(
-        <div key={`bullet-${i}`} className="flex items-start gap-2 pl-3 my-1 text-neutral-slate-800 text-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-service-ai-600 shrink-0 mt-2" />
+        <div
+          key={`bullet-${i}`}
+          className={cn(
+            "flex items-start gap-2 pl-3 my-1 text-sm",
+            isUserMessage ? "text-white" : "text-neutral-slate-800"
+          )}
+        >
+          <span
+            className={cn(
+              "w-1.5 h-1.5 rounded-full shrink-0 mt-2",
+              isUserMessage ? "bg-white" : "bg-service-ai-600"
+            )}
+          />
           <div className="flex-1">
-            {formatMathLine(trimmed.slice(2), `bullet-c-${i}`)}
+            {formatMathLine(trimmed.slice(2), `bullet-c-${i}`, isUserMessage)}
           </div>
         </div>
       );
@@ -610,15 +700,21 @@ export function FormattedMathContent({ content, className, verification, attachm
 
     // Regular line / Paragraph
     renderedElements.push(
-      <p key={`p-${i}`} className="text-sm text-neutral-slate-800 leading-relaxed my-1">
-        {formatMathLine(trimmed, `p-c-${i}`)}
+      <p
+        key={`p-${i}`}
+        className={cn(
+          "text-sm leading-relaxed my-1",
+          isUserMessage ? "text-white" : "text-neutral-slate-800"
+        )}
+      >
+        {formatMathLine(trimmed, `p-c-${i}`, isUserMessage)}
       </p>
     );
   }
 
   // Auto-append visual diagram when mathematical problem contains quadratic parabola or geometry
   const hasDiagramExplicit = content.includes("```diagram") || content.includes("```mermaid");
-  const isParabolaApplicable = !hasDiagramExplicit && (
+  const isParabolaApplicable = !isUserMessage && !hasDiagramExplicit && (
     content.toLowerCase().includes("quadratic") ||
     content.toLowerCase().includes("discriminant") ||
     content.toLowerCase().includes("difference of two squares") ||

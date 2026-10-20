@@ -139,6 +139,7 @@ model User {
   aiQuota             AIQuota?
   aiFeedbacks         AIFeedback[]
   aiEscalations       AITutorEscalation[]
+  solutionReports     AISolutionReport[]
   classroomAttendances ClassroomAttendance[]
   reportedIncidents   SafeguardingIncident[] @relation("ReportedIncidents")
   tutorReviews        TutorReview[]
@@ -462,6 +463,65 @@ model AITutorEscalation {
 
   @@map("ai_tutor_escalations")
 }
+
+model AISolutionReport {
+  id              String   @id @default(uuid())
+  userId          String?  @map("user_id")
+  conversationId  String?  @map("conversation_id")
+  messageId       String?  @map("message_id")
+  questionText    String   @map("question_text")
+  extractionData  Json?    @map("extraction_data")
+  solutionContent String   @map("solution_content")
+  userComment     String?  @map("user_comment")
+  status          String   @default("PENDING_REVIEW") // PENDING_REVIEW, REVIEWED, PROMOTED_TO_EVAL, DISMISSED
+  promotedToEval  Boolean  @default(false) @map("promoted_to_eval")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@map("ai_solution_reports")
+}
+
+model KnowledgeDocument {
+  id          String   @id @default(uuid())
+  title       String
+  subject     String
+  level       String   @default("WAEC/JAMB")
+  sourceType  String   @default("APPROVED_TEACHING_NOTE") // LESSON_NOTE, SYLLABUS, STUDY_GUIDE
+  sourceUrl   String?  @map("source_url")
+  metadata    Json?
+  chunkCount  Int      @default(0) @map("chunk_count")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  chunks KnowledgeChunk[]
+
+  @@index([subject])
+  @@index([level])
+  @@map("knowledge_documents")
+}
+
+model KnowledgeChunk {
+  id          String   @id @default(uuid())
+  documentId  String   @map("document_id")
+  chunkIndex  Int      @map("chunk_index")
+  content     String
+  subject     String
+  level       String   @default("WAEC/JAMB")
+  tokenCount  Int      @default(0) @map("token_count")
+  embedding   String?  // JSON stringified float[] or vector string
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  document KnowledgeDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@index([documentId])
+  @@index([subject])
+  @@map("knowledge_chunks")
+}
+
 
 // ==============================================================================
 // Phase G: Online Virtual Classroom & Safeguarding Engine
