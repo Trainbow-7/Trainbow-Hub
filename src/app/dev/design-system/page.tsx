@@ -516,7 +516,7 @@ function DesignSystemContent() {
 }
 
 export default function DevDesignSystemPage() {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && !process.env.CI) {
     notFound();
   }
 
