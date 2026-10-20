@@ -12,7 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:e2e:smoke": "playwright test e2e/phase0-smoke.spec.ts",
+    "test:e2e:smoke": "playwright test e2e/phase0-smoke.spec.ts --project=chromium",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "verify:live-ai": "tsx scripts/verify-live-ai.ts",
