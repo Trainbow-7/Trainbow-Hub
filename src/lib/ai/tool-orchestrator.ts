@@ -88,7 +88,7 @@ function postGemini(apiKey: string, modelName: string, contents: any[], tools?: 
         "Content-Type": "application/json",
         "Content-Length": Buffer.byteLength(payload),
       },
-      timeout: 15000,
+      timeout: 35000,
     };
 
     const req = https.request(options, (res) => {
@@ -114,7 +114,7 @@ function postGemini(apiKey: string, modelName: string, contents: any[], tools?: 
 
     req.on("timeout", () => {
       req.destroy();
-      reject(new Error("[GEMINI_TIMEOUT] Request timed out after 15000ms"));
+      reject(new Error("[GEMINI_TIMEOUT] Request timed out after 35000ms"));
     });
 
     req.on("error", (err) => reject(new Error(`[GEMINI_NETWORK_ERROR] ${err.message}`)));
@@ -170,10 +170,14 @@ export async function orchestrateSolution(options: OrchestratorOptions): Promise
     { role: "user", parts: userParts },
   ];
 
-  const models = [
-    process.env.AI_REASONING_MODEL || "gemini-3.5-flash",
-    process.env.AI_FAST_MODEL || "gemini-3.5-flash-lite",
-  ];
+  const models = Array.from(
+    new Set([
+      process.env.AI_REASONING_MODEL || "gemini-3.5-flash-lite",
+      "gemini-3.5-flash-lite",
+      "gemini-3.6-flash",
+      process.env.AI_FAST_MODEL || "gemini-3.5-flash-lite",
+    ])
+  );
 
   async function callWithFallback(currentContents: any[]) {
     let lastErr: any;
