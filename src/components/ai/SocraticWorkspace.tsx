@@ -961,34 +961,6 @@ export function SocraticWorkspace() {
                 </p>
               </div>
 
-              <div className="pt-2 text-left space-y-2">
-                <span className="text-[11px] font-bold text-neutral-slate-600 uppercase tracking-wider block text-center">
-                  Try a curriculum sample question:
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {SAMPLE_QUESTIONS.map((item, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => {
-                        setSelectedCurriculum(item.curriculum);
-                        if (item.subject) setSelectedSubject(item.subject);
-                        setPrompt(item.query);
-                        handleSubmit(item.query, "FULL_SOLUTION");
-                      }}
-                      className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 hover:bg-purple-50/50 hover:border-service-ai-600/40 text-left transition-all group"
-                      data-testid={`sample-prompt-${idx}`}
-                    >
-                      <span className="text-[10px] font-bold text-service-ai-600 block mb-0.5">
-                        {item.topic}
-                      </span>
-                      <p className="text-xs text-neutral-slate-800 line-clamp-2 group-hover:text-service-ai-700">
-                        {item.query}
-                      </p>
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           ) : (
             /* Render Conversation Messages */
