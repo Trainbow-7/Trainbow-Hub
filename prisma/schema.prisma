@@ -1160,3 +1160,119 @@ model MatchingSetting {
   @@map("matching_settings")
 }
 
+// -----------------------------------------------------------------------------
+// Real Video Learning & Provenance Models (Additive Migration)
+// -----------------------------------------------------------------------------
+
+enum VideoStatus {
+  CANDIDATE
+  APPROVED
+  REJECTED
+  BROKEN
+}
+
+enum VideoProvider {
+  YOUTUBE
+  VIMEO
+  SELF_HOSTED
+}
+
+enum ReportReason {
+  BROKEN
+  WRONG_TOPIC
+  POOR_QUALITY
+  INAPPROPRIATE
+  OTHER
+}
+
+model LessonVideo {
+  id               String        @id @default(uuid())
+  lessonId         String        @map("lesson_id")
+  courseSlug       String        @default("waec-ssce-mathematics-mastery") @map("course_slug")
+  provider         VideoProvider @default(YOUTUBE)
+  providerVideoId  String        @map("provider_video_id")
+  title            String
+  channelId        String        @map("channel_id")
+  channelName      String        @map("channel_name")
+  durationSeconds  Int           @map("duration_seconds")
+  language         String        @default("en")
+  thumbnailUrl     String?       @map("thumbnail_url")
+  embeddable       Boolean       @default(true)
+  status           VideoStatus   @default(CANDIDATE)
+  relevanceScore   Float         @default(0.0) @map("relevance_score")
+  relevanceReasons String[]      @default([]) @map("relevance_reasons")
+  startSeconds     Int?          @map("start_seconds")
+  endSeconds       Int?          @map("end_seconds")
+  isPrimary        Boolean       @default(false) @map("is_primary")
+  reviewerId       String?       @map("reviewer_id")
+  reviewedAt       DateTime?     @map("reviewed_at")
+  notes            String?
+  lastCheckedAt    DateTime?     @map("last_checked_at")
+  failureCount     Int           @default(0) @map("failure_count")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
+
+  reports          VideoReport[]
+
+  @@index([lessonId])
+  @@index([providerVideoId])
+  @@index([status])
+  @@map("lesson_videos")
+}
+
+model ChannelAllowlist {
+  id        String   @id @default(uuid())
+  channelId String   @unique @map("channel_id")
+  name      String
+  notes     String?
+  addedBy   String?  @map("added_by")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("channel_allowlist")
+}
+
+model ChannelBlocklist {
+  id        String   @id @default(uuid())
+  channelId String   @unique @map("channel_id")
+  name      String
+  notes     String?
+  addedBy   String?  @map("added_by")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("channel_blocklist")
+}
+
+model VideoProgress {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  lessonId        String   @map("lesson_id")
+  videoId         String   @map("video_id")
+  positionSeconds Int      @default(0) @map("position_seconds")
+  percentWatched  Float    @default(0.0) @map("percent_watched")
+  completedAt     DateTime? @map("completed_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, lessonId, videoId])
+  @@index([userId, lessonId])
+  @@map("video_progress")
+}
+
+model VideoReport {
+  id            String       @id @default(uuid())
+  userId        String       @map("user_id")
+  lessonVideoId String       @map("lesson_video_id")
+  reason        ReportReason
+  details       String?
+  status        String       @default("OPEN")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  resolvedAt    DateTime?    @map("resolved_at")
+
+  lessonVideo   LessonVideo  @relation(fields: [lessonVideoId], references: [id], onDelete: Cascade)
+
+  @@index([lessonVideoId])
+  @@index([status])
+  @@map("video_reports")
+}
+

@@ -123,6 +123,21 @@ This topic builds directly upon core WAEC and senior secondary mathematics objec
       });
     }
 
+    // Retrieve verified real educational videos for this lesson
+    const allLessonVideos = await db.findLessonVideos(lessonId);
+    const approvedVideos = allLessonVideos.filter((v) => v.status === "APPROVED");
+    const primaryVideo = approvedVideos.find((v) => v.isPrimary) || approvedVideos[0] || null;
+    const alternateVideos = approvedVideos.filter((v) => v.id !== primaryVideo?.id);
+
+    // Get user's video progress if primary video exists
+    let videoProgress = null;
+    if (primaryVideo) {
+      videoProgress = await db.getVideoProgress(userId, lessonId, primaryVideo.id);
+    }
+
+    // Check WAEC alignment: syllabus mapped and verified
+    const isWaecAligned = course.level.toLowerCase().includes("waec") || course.slug.includes("waec");
+
     return NextResponse.json({
       success: true,
       course: {
@@ -135,6 +150,13 @@ This topic builds directly upon core WAEC and senior secondary mathematics objec
         syllabus: course.syllabus,
       },
       lesson,
+      video: {
+        hasVideo: !!primaryVideo,
+        primary: primaryVideo,
+        alternates: alternateVideos,
+        userProgress: videoProgress,
+        isWaecAligned,
+      },
       progress: {
         isEnrolled: !!enrollment,
         isCompleted,

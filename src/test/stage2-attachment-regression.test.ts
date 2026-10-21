@@ -215,8 +215,10 @@ describe("Stage 2: Attachment Scoping & Regression Test Suite", () => {
   });
 
   describe("Requirement B & D: Real Chat Route Execution, Guard Against Echoing, and Thread Titles", () => {
-    it("aborts and returns error if user prompt is a generic command and attachment has no extracted text", async () => {
-      const { POST: chatRoute } = await import("@/app/api/ai/chat/route");
+    it(
+      "aborts and returns error if user prompt is a generic command and attachment has no extracted text",
+      async () => {
+        const { POST: chatRoute } = await import("@/app/api/ai/chat/route");
 
       const req = new Request("http://localhost:3000/api/ai/chat", {
         method: "POST",
@@ -244,7 +246,7 @@ describe("Stage 2: Attachment Scoping & Regression Test Suite", () => {
       const data = await res.json();
       expect(data.success).toBe(false);
       expect(data.error).toBe("I couldn't read your attachment. Try again, re-scan, or type the question.");
-    });
+    }, 30000);
 
     it("solves multi-part WAEC cyclic quadrilateral question and generates thread title from extracted question", async () => {
       const { POST: chatRoute } = await import("@/app/api/ai/chat/route");

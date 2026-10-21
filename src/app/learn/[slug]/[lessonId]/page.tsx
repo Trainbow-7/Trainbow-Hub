@@ -14,9 +14,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Play,
-  Pause,
-  RotateCcw,
-  Volume2,
   FileText,
   HelpCircle,
   Download,
@@ -31,6 +28,7 @@ import {
   Layers,
   Award,
 } from "lucide-react";
+import { RealVideoPlayer, LessonVideoData } from "@/components/video/RealVideoPlayer";
 
 interface LessonPayload {
   success: boolean;
@@ -81,6 +79,17 @@ interface LessonPayload {
         topic: string;
       }>;
     };
+  };
+  video?: {
+    hasVideo: boolean;
+    primary: LessonVideoData | null;
+    alternates: LessonVideoData[];
+    userProgress?: {
+      positionSeconds: number;
+      percentWatched: number;
+      completedAt?: string;
+    } | null;
+    isWaecAligned: boolean;
   };
   progress: {
     isEnrolled: boolean;
@@ -253,7 +262,7 @@ export default function InteractiveLessonPage({
         <main className="flex-1 flex items-center justify-center p-8">
           <div className="flex items-center gap-3 text-neutral-slate-600 font-semibold text-sm">
             <RefreshCw className="w-5 h-5 animate-spin text-brand-blue-600" />
-            <span>Loading lesson curriculum...</span>
+            <h1 className="text-sm font-semibold">Loading lesson curriculum...</h1>
           </div>
         </main>
         <Footer />
@@ -268,7 +277,7 @@ export default function InteractiveLessonPage({
       <Navbar />
 
       {/* Lesson Header Navigation Bar */}
-      <div className="sticky top-18 z-30 bg-white border-b border-neutral-slate-200 shadow-xs">
+      <nav className="sticky top-18 z-30 bg-white border-b border-neutral-slate-200 shadow-xs" aria-label="Lesson Subnavigation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <Link href="/dashboard">
@@ -278,7 +287,7 @@ export default function InteractiveLessonPage({
               </Button>
             </Link>
 
-            <span className="text-neutral-slate-300">|</span>
+            <span className="text-neutral-slate-300" aria-hidden="true">|</span>
 
             <div>
               <div className="flex items-center gap-2 text-[11px] text-neutral-slate-600">
@@ -314,7 +323,7 @@ export default function InteractiveLessonPage({
             </Button>
           </div>
         </div>
-      </div>
+      </nav>
 
       {/* Main Workspace: 2-Column Responsive View */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -324,9 +333,9 @@ export default function InteractiveLessonPage({
             <div className="p-4 bg-neutral-slate-100/70 border-b border-neutral-slate-200 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Layers className="w-4 h-4 text-brand-blue-600" />
-                <h3 className="font-heading font-bold text-xs uppercase tracking-wider text-neutral-slate-800">
+                <h2 className="font-heading font-bold text-xs uppercase tracking-wider text-neutral-slate-800">
                   Course Syllabus
-                </h3>
+                </h2>
               </div>
               <span className="text-[11px] text-neutral-slate-600 font-semibold">
                 {course.syllabus.length} Modules
@@ -376,81 +385,33 @@ export default function InteractiveLessonPage({
 
           {/* Right Column: Video Stage & Interactive Workspace */}
           <div className="lg:col-span-8 space-y-6">
-            {/* Interactive Video Lecture Player Simulator */}
-            <div className="rounded-2xl bg-brand-navy-900 text-white overflow-hidden shadow-lg border border-neutral-slate-800">
-              <div className="relative aspect-video bg-gradient-to-tr from-brand-navy-900 via-slate-900 to-brand-blue-900 flex flex-col justify-between p-6">
-                {/* Overlay Top Bar */}
-                <div className="flex items-center justify-between z-10">
-                  <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider">
-                      HD 1080p
-                    </span>
-                    <span className="text-xs text-blue-200 truncate max-w-xs">{lesson.videoTitle}</span>
-                  </div>
-                  <Badge variant="brand" className="bg-white/10 text-white border-white/20">
-                    WAEC Aligned
-                  </Badge>
-                </div>
-
-                {/* Center Big Play Trigger */}
-                <div className="flex items-center justify-center z-10">
-                  <button
-                    type="button"
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className="w-16 h-16 rounded-full bg-brand-blue-600 text-white flex items-center justify-center shadow-xl hover:scale-105 transition-transform focus:outline-hidden focus:ring-4 focus:ring-blue-400"
-                    aria-label={isPlaying ? "Pause Video" : "Play Video"}
-                  >
-                    {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7 ml-1" />}
-                  </button>
-                </div>
-
-                {/* Bottom Controls Bar */}
-                <div className="space-y-2 z-10 bg-gradient-to-t from-brand-navy-900/90 to-transparent pt-4">
-                  {/* Progress scrubber */}
-                  <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer">
-                    <div className="h-full bg-brand-blue-500 rounded-full w-1/3" />
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs text-blue-100">
-                    <div className="flex items-center gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setIsPlaying(!isPlaying)}
-                        className="hover:text-white"
-                        aria-label={isPlaying ? "Pause" : "Play"}
-                      >
-                        {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setSimulatedProgressSec(0)}
-                        className="hover:text-white"
-                        aria-label="Restart Video"
-                      >
-                        <RotateCcw className="w-4 h-4" />
-                      </button>
-                      <span className="text-[11px] font-mono text-neutral-300">12:45 / {lesson.durationMinutes}:00</span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      {/* Playback speed toggle */}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const nextSpeed = playbackSpeed === "1x" ? "1.25x" : playbackSpeed === "1.25x" ? "1.5x" : "1x";
-                          setPlaybackSpeed(nextSpeed);
-                        }}
-                        className="px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-[11px] font-bold"
-                        title="Toggle playback speed"
-                      >
-                        {playbackSpeed}
-                      </button>
-                      <Volume2 className="w-4 h-4 hover:text-white cursor-pointer" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Real Educational Video Player (Click-to-Play, youtube-nocookie, Attributions, Alternates) */}
+            <RealVideoPlayer
+              primaryVideo={data?.video?.primary || null}
+              alternates={data?.video?.alternates || []}
+              lessonTitle={lesson.title}
+              isWaecAligned={data?.video?.isWaecAligned || false}
+              initialPositionSeconds={data?.video?.userProgress?.positionSeconds || 0}
+              slug={slug}
+              lessonId={lessonId}
+              onRequestTutor={() => router.push(`/request-tutor?topic=${encodeURIComponent(lesson.title)}`)}
+              onProgressUpdate={(posSec, pct) => {
+                fetch(`/api/academy/courses/${slug}/lessons/${lessonId}/video-progress`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    videoId: data?.video?.primary?.id,
+                    positionSeconds: posSec,
+                    percentWatched: pct,
+                  }),
+                }).catch(() => {});
+              }}
+              onLessonAutoCompleted={() => {
+                setIsCompletedLocal(true);
+                // Refresh lesson progress
+                fetchLesson();
+              }}
+            />
 
             {/* Content Tabs Navigation */}
             <div className="border-b border-neutral-slate-200 flex items-center gap-6 text-sm font-semibold">
@@ -505,10 +466,10 @@ export default function InteractiveLessonPage({
               <div className="bg-white rounded-xl border border-neutral-slate-200 p-6 sm:p-8 space-y-6">
                 {/* Objectives */}
                 <div className="p-4 rounded-xl bg-blue-50/60 border border-brand-blue-100 space-y-2.5">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-brand-blue-700 flex items-center gap-1.5">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-brand-blue-700 flex items-center gap-1.5">
                     <Check className="w-4 h-4" />
                     Key Learning Objectives
-                  </h4>
+                  </h3>
                   <ul className="space-y-1.5 text-xs text-neutral-slate-700">
                     {lesson.keyObjectives.map((obj, idx) => (
                       <li key={idx} className="flex items-start gap-2">

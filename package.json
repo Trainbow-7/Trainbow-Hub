@@ -18,7 +18,8 @@
     "verify:live-ai": "tsx scripts/verify-live-ai.ts",
     "tools:test": "tsx scripts/test-tools.ts",
     "eval:solver": "tsx scripts/eval-solver.ts",
-    "ingest:docs": "tsx scripts/ingest-docs.ts"
+    "ingest:docs": "tsx scripts/ingest-docs.ts",
+    "videos:check": "tsx scripts/check-videos.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.21.1",
