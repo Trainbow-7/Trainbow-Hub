@@ -63,9 +63,10 @@ MANDATORY RULES:
 3. NEVER guess or approximate roots. Always use tools to verify.
 4. FORBIDDEN: Never generate generic filler text (e.g. "Identify Core Concepts", "Deduce and Explain", "Analysis and verified solution provided", "Analyze Question Requirements", "Apply Curriculum Framework").
 5. Show clear mathematical working with equations written in LaTeX format ($...$ or $$...$$).
-6. State domain restrictions where relevant (e.g. denominators cannot equal zero).
-7. Cite the governing theorem or algebraic rule for each step.
-8. If asked for hints, provide only the requested hint level without revealing the final answer.`;
+6. Always state the final answer with correct, standard SI units (e.g. 1.0 µF, 50 m/s, 12 V, 250 N, 3.5 kg) rather than raw escaped strings or dollar signs. For multiple choice options, write clean, readable answers (e.g. "Therefore, the correct option is A: 1.0 µF" or "A. 1.0 µF").
+7. State domain restrictions where relevant (e.g. denominators cannot equal zero).
+8. Cite the governing theorem or algebraic rule for each step.
+9. If asked for hints, provide only the requested hint level without revealing the final answer.`;
 
 function postGemini(apiKey: string, modelName: string, contents: any[], tools?: any[]): Promise<any> {
   return new Promise((resolve, reject) => {
@@ -410,9 +411,9 @@ function formatOrchestratorOutput(
   // Verification badge header
   const verificationHeader = verification.isValid
     ? `[AI-Generated Mathematical Guidance — Verified by Trainbow Hub Engine (${verification.method})]`
-    : `[AI-Generated Academic Guidance — Not Independently Verified]`;
+    : "";
 
-  let renderedContent = `${verificationHeader}\n\n`;
+  let renderedContent = verificationHeader ? `${verificationHeader}\n\n` : "";
 
   // Render based on Hint-First Mode
   if (hintLevel === "HINT_1") {
@@ -441,22 +442,13 @@ function formatOrchestratorOutput(
     // FULL_SOLUTION
     renderedContent += modelText;
 
-    // Add verification card
-    renderedContent += `\n\n---\n\n`;
+    // Add verification card only when independently verified
     if (verification.isValid) {
+      renderedContent += `\n\n---\n\n`;
       renderedContent += `✅ **Verified Solution (Confidence: ${verification.confidence}%):**\n`;
       renderedContent += `*How I checked:* ${verification.stepCheck}\n`;
       renderedContent += `*Check Method:* ${verification.method}\n`;
-    } else {
-      renderedContent += `⚠️ **Not independently verified:**\n`;
-      renderedContent += `*How I checked:* ${verification.stepCheck}\n`;
-      renderedContent += `If you would like a certified human teacher to review this solution, you can click **Ask a Tutor** below.\n`;
     }
-
-    // Add 2 similar practice questions with verified answers
-    renderedContent += `\n\n### 📝 Similar Practice Questions\n`;
-    renderedContent += `1. **Solve for $x$:** $\\frac{1}{2x - 1} = \\frac{3}{x + 2} - \\frac{1}{4}$\n   *Verified Answer:* $x = 2$ or $x = 5/5$\n`;
-    renderedContent += `2. **Solve for $y$:** $2y^2 - 5y + 3 = 0$\n   *Verified Answer:* $y = 1$ or $y = 3/2$\n`;
   }
 
   return {

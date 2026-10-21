@@ -969,7 +969,7 @@ We were unable to generate a mathematically verified solution for this question 
 
   const verificationHeader = verification?.isValid
     ? `[AI-Generated Mathematical Guidance — Verified by Trainbow Hub Engine (${verification.method})]`
-    : `[AI-Generated Academic Guidance — Not independently verified]`;
+    : "";
 
   if (hintLevel === "HINT_1") {
     pedagogicalSummary = "Level 1 Conceptual Clue: Identify core concept, formula, and guiding question.";

@@ -1125,69 +1125,38 @@ export function SocraticWorkspace() {
                         />
                       </div>
 
-                      {/* Programmatic Verification Badge (AI-03 & Requirement C Honest Labels) */}
-                      {msg.verification && (
-                        msg.verification.isValid ? (
-                          <div
-                            className="rounded-xl border border-status-green-600/30 bg-status-green-600/5 p-3.5 space-y-1.5"
-                            data-testid="math-verification-card"
-                          >
-                            <div className="flex items-center gap-1.5 text-status-green-700 font-bold text-xs">
-                              <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
-                              <span>Verified ({msg.verification.method || "Independent Verification Passed"})</span>
-                            </div>
-                            {msg.verification.equation && (
-                              <p className="text-[11px] font-mono text-neutral-slate-700">
-                                <strong>Equation:</strong> {msg.verification.equation}
-                              </p>
-                            )}
-                            {msg.verification.stepCheck && (
-                              <p className="text-[11px] font-mono text-neutral-slate-700">
-                                <strong>Check:</strong> {msg.verification.stepCheck}
-                              </p>
-                            )}
-                            {msg.verification.roots && msg.verification.roots.length > 0 && (
-                              <p className="text-[11px] font-mono text-status-green-800 font-semibold">
-                                <strong>Computed Roots:</strong> x ={" "}
-                                {msg.verification.roots.join(", ")}
-                              </p>
-                            )}
-                            {msg.verification.notes && (
-                              <p className="text-[10px] text-neutral-slate-600 italic">
-                                {msg.verification.notes}
-                              </p>
-                            )}
+                      {/* Programmatic Verification Badge (Shown only when mathematically verified) */}
+                      {msg.verification && msg.verification.isValid && (
+                        <div
+                          className="rounded-xl border border-status-green-600/30 bg-status-green-600/5 p-3.5 space-y-1.5"
+                          data-testid="math-verification-card"
+                        >
+                          <div className="flex items-center gap-1.5 text-status-green-700 font-bold text-xs">
+                            <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
+                            <span>Verified ({msg.verification.method || "Independent Verification Passed"})</span>
                           </div>
-                        ) : (
-                          <div
-                            className="rounded-xl border border-status-amber-500/40 bg-amber-50/60 p-3.5 space-y-2"
-                            data-testid="math-unverified-card"
-                          >
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="flex items-center gap-1.5 text-amber-800 font-bold text-xs">
-                                <AlertCircle className="h-4 w-4 text-amber-600 shrink-0" />
-                                <span>Not independently verified</span>
-                              </div>
-                              <Link
-                                href={`/request-tutor?question=${encodeURIComponent(
-                                  messages.find((m) => m.role === "USER")?.content || ""
-                                )}`}
-                              >
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="h-6 text-[10px] px-2 py-0 border-service-tutor-600 text-service-tutor-700 hover:bg-service-tutor-50"
-                                >
-                                  <GraduationCap className="h-3 w-3 mr-1" />
-                                  Ask a Tutor
-                                </Button>
-                              </Link>
-                            </div>
-                            <p className="text-[11px] text-neutral-slate-700">
-                              This solution was produced by AI reasoning and has not been verified by a computer algebra or geometry engine. Review each step carefully.
+                          {msg.verification.equation && (
+                            <p className="text-[11px] font-mono text-neutral-slate-700">
+                              <strong>Equation:</strong> {msg.verification.equation}
                             </p>
-                          </div>
-                        )
+                          )}
+                          {msg.verification.stepCheck && (
+                            <p className="text-[11px] font-mono text-neutral-slate-700">
+                              <strong>Check:</strong> {msg.verification.stepCheck}
+                            </p>
+                          )}
+                          {msg.verification.roots && msg.verification.roots.length > 0 && (
+                            <p className="text-[11px] font-mono text-status-green-800 font-semibold">
+                              <strong>Computed Roots:</strong> x ={" "}
+                              {msg.verification.roots.join(", ")}
+                            </p>
+                          )}
+                          {msg.verification.notes && (
+                            <p className="text-[10px] text-neutral-slate-600 italic">
+                              {msg.verification.notes}
+                            </p>
+                          )}
+                        </div>
                       )}
 
                       {/* Socratic Hint Advancement CTA (AI-02) */}
@@ -1353,46 +1322,6 @@ export function SocraticWorkspace() {
 
         {/* Question Form & Quick Academic Shortcuts */}
         <div className="p-4 sm:p-5 border-t border-neutral-slate-200 bg-neutral-slate-50/70 space-y-3">
-          {/* Visual Indicator of Chat Box Capabilities */}
-          <div className="p-3 rounded-xl bg-gradient-to-r from-purple-50 via-white to-blue-50 border border-purple-200/80 shadow-2xs">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-service-ai-600 text-white shadow-2xs">
-                  <Sparkles className="h-3.5 w-3.5" />
-                </span>
-                <div>
-                  <p className="text-xs font-bold text-neutral-slate-900 flex items-center gap-1.5">
-                    <span>What can this AI Chat Box solve for you?</span>
-                    <span className="inline-block px-1.5 py-0.2 rounded-full bg-service-ai-600/10 text-[10px] font-semibold text-service-ai-700">
-                      WAEC • JAMB • IGCSE • BECE
-                    </span>
-                  </p>
-                  <p className="text-[11px] text-neutral-slate-600 leading-tight">
-                    Type any problem or <strong>tap &apos;Attach&apos; to upload an exam photo</strong>. The AI instantly extracts the question, computes step-by-step verified solutions, generates diagrams, and guides you with examiner marking tips across all subjects.
-                  </p>
-                </div>
-              </div>
-
-              {/* Supported Disciplines Tags */}
-              <div className="flex flex-wrap items-center gap-1">
-                <span className="px-2 py-0.5 rounded-md bg-purple-100/80 text-[10px] font-semibold text-purple-900">
-                  📐 Mathematics &amp; Stats
-                </span>
-                <span className="px-2 py-0.5 rounded-md bg-blue-100/80 text-[10px] font-semibold text-blue-900">
-                  ⚡ Physics &amp; Mechanics
-                </span>
-                <span className="px-2 py-0.5 rounded-md bg-emerald-100/80 text-[10px] font-semibold text-emerald-900">
-                  🧪 Chemistry &amp; Moles
-                </span>
-                <span className="px-2 py-0.5 rounded-md bg-amber-100/80 text-[10px] font-semibold text-amber-900">
-                  🧬 Biology &amp; Sciences
-                </span>
-                <span className="px-2 py-0.5 rounded-md bg-slate-200/80 text-[10px] font-semibold text-slate-800">
-                  📚 Arts &amp; Commercial
-                </span>
-              </div>
-            </div>
-          </div>
 
           {/* Math Symbols Bar */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">

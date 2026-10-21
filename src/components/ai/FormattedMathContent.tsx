@@ -434,10 +434,10 @@ function formatMathLine(line: string, keyPrefix: string, isUserMessage: boolean 
             <span
               key={subKey}
               className={cn(
-                "inline-block mx-0.5 px-1.5 py-0.5 rounded-md font-medium align-baseline",
+                "inline-block mx-0.5 px-1 py-0.5 rounded font-medium align-baseline",
                 isUserMessage
-                  ? "bg-white/20 text-white border border-white/30"
-                  : "bg-purple-50/90 text-purple-950 border border-purple-200/80"
+                  ? "bg-white/10 text-white"
+                  : "bg-purple-50/70 text-purple-950"
               )}
             >
               <KatexFormula formula={formula} displayMode={false} />
@@ -447,7 +447,39 @@ function formatMathLine(line: string, keyPrefix: string, isUserMessage: boolean 
 
         // Bold text: **...**
         if (part.startsWith("**") && part.endsWith("**")) {
-          const boldText = part.slice(2, -2);
+          let boldText = part.slice(2, -2);
+          
+          // If bold text contains LaTeX or math with dollar signs (e.g. "**A. $1.0\;\mu\text{F}$**"),
+          // format or extract nicely rather than printing raw dollar signs
+          if (boldText.includes("$")) {
+            const innerParts = boldText.split(/(\$[^\$]+\$)/g);
+            return (
+              <strong
+                key={subKey}
+                className={cn("font-bold", isUserMessage ? "text-white" : "text-neutral-slate-900")}
+              >
+                {innerParts.map((ip, iIdx) => {
+                  if (ip.startsWith("$") && ip.endsWith("$")) {
+                    return <KatexFormula key={iIdx} formula={ip.slice(1, -1)} displayMode={false} />;
+                  }
+                  return <span key={iIdx}>{ip}</span>;
+                })}
+              </strong>
+            );
+          }
+
+          // If bold text has raw LaTeX backslashes without dollar delimiters (e.g. "A. 1.0\;\mu\text{F}")
+          if (boldText.includes("\\mu") || boldText.includes("\\text") || boldText.includes("\\frac")) {
+            return (
+              <strong
+                key={subKey}
+                className={cn("font-bold", isUserMessage ? "text-white" : "text-neutral-slate-900")}
+              >
+                <KatexFormula formula={boldText} displayMode={false} />
+              </strong>
+            );
+          }
+
           return (
             <strong
               key={subKey}
