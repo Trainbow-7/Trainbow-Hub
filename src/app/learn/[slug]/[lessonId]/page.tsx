@@ -29,6 +29,7 @@ import {
   Award,
 } from "lucide-react";
 import { RealVideoPlayer, LessonVideoData } from "@/components/video/RealVideoPlayer";
+import { FormattedMathContent } from "@/components/ai/FormattedMathContent";
 
 interface LessonPayload {
   success: boolean;
@@ -137,6 +138,9 @@ export default function InteractiveLessonPage({
   // Local storage cache key for draft resilience (LN-04)
   const draftStorageKey = `trainbow_quiz_draft_${slug}_${lessonId}`;
 
+  const syllabusContainerRef = React.useRef<HTMLDivElement | null>(null);
+  const activeLessonRef = React.useRef<HTMLAnchorElement | null>(null);
+
   // Fetch lesson data
   const fetchLesson = React.useCallback(async () => {
     try {
@@ -156,6 +160,18 @@ export default function InteractiveLessonPage({
   React.useEffect(() => {
     fetchLesson();
   }, [fetchLesson]);
+
+  // Maintain position in syllabus navigation without jump to top
+  React.useEffect(() => {
+    if (activeLessonRef.current && syllabusContainerRef.current) {
+      // Smoothly bring the active selected lesson into view within the syllabus list
+      activeLessonRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
+    }
+  }, [lessonId, data]);
 
   // Restore quiz draft from localStorage (LN-04)
   React.useEffect(() => {
@@ -342,7 +358,10 @@ export default function InteractiveLessonPage({
               </span>
             </div>
 
-            <div className="divide-y divide-neutral-slate-100 max-h-[600px] overflow-y-auto">
+            <div
+              ref={syllabusContainerRef}
+              className="divide-y divide-neutral-slate-100 max-h-[600px] overflow-y-auto scroll-smooth"
+            >
               {course.syllabus.map((mod) => (
                 <div key={mod.id} className="p-2 space-y-1">
                   <span className="px-2.5 py-1 text-[11px] font-bold text-neutral-slate-600 uppercase tracking-wide block">
@@ -356,10 +375,12 @@ export default function InteractiveLessonPage({
                       return (
                         <Link
                           key={l.id}
+                          ref={isActive ? activeLessonRef : undefined}
                           href={`/learn/${slug}/${l.id}`}
+                          scroll={false}
                           className={`flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-colors ${
                             isActive
-                              ? "bg-brand-blue-50 text-brand-blue-700 font-bold border border-brand-blue-200"
+                              ? "bg-brand-blue-50 text-brand-blue-700 font-bold border border-brand-blue-200 shadow-2xs"
                               : "text-neutral-slate-700 hover:bg-neutral-slate-100"
                           }`}
                         >
@@ -481,8 +502,8 @@ export default function InteractiveLessonPage({
                 </div>
 
                 {/* Formatted Notes Body */}
-                <div className="prose prose-slate max-w-none text-sm text-neutral-slate-700 leading-relaxed space-y-4">
-                  <div className="whitespace-pre-line font-sans">{lesson.markdownNotes}</div>
+                <div className="text-sm text-neutral-slate-700 leading-relaxed">
+                  <FormattedMathContent content={lesson.markdownNotes || ""} />
                 </div>
 
                 {/* WAEC Alert Banner */}

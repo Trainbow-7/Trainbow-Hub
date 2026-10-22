@@ -620,6 +620,42 @@ export function FormattedMathContent({ content, className, isUserMessage = false
       continue;
     }
 
+    // Check for Header Level 1: #
+    if (trimmed.startsWith("# ")) {
+      renderedElements.push(
+        <h1
+          key={`h1-${i}`}
+          className={cn(
+            "text-xl sm:text-2xl font-bold font-heading pt-4 pb-2 border-b",
+            isUserMessage
+              ? "text-white border-white/20"
+              : "text-neutral-slate-900 border-neutral-slate-200"
+          )}
+        >
+          {formatMathLine(trimmed.slice(2), `h1-content-${i}`, isUserMessage)}
+        </h1>
+      );
+      continue;
+    }
+
+    // Check for Header Level 2: ##
+    if (trimmed.startsWith("## ")) {
+      renderedElements.push(
+        <h2
+          key={`h2-${i}`}
+          className={cn(
+            "text-lg sm:text-xl font-bold font-heading pt-4 pb-1.5 border-b",
+            isUserMessage
+              ? "text-white border-white/20"
+              : "text-neutral-slate-900 border-neutral-slate-100"
+          )}
+        >
+          {formatMathLine(trimmed.slice(3), `h2-content-${i}`, isUserMessage)}
+        </h2>
+      );
+      continue;
+    }
+
     // Check for Header Level 3 or 4: ### or ####
     if (trimmed.startsWith("### ")) {
       renderedElements.push(
