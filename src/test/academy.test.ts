@@ -93,7 +93,7 @@ describe("Phase D: Academy & Learning Engine Unit Tests", () => {
       expect(res.enrollment.completedLessonIds).toContain("l1");
       expect(res.enrollment.completedLessonIds).toContain("l2");
       expect(res.enrollment.completedLessonIds.length).toBe(2);
-      expect(res.enrollment.progressPercentage).toBeGreaterThan(11);
+      expect(res.enrollment.progressPercentage).toBeGreaterThan(3);
       expect(res.nextLessonId).toBe("l3");
       expect(res.studyStats.lessonsCompleted).toBe(2);
     });

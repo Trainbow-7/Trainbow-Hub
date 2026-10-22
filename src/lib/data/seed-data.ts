@@ -217,43 +217,115 @@ export const SEED_COURSES: CourseItem[] = [
     subjectSlug: "mathematics",
     subjectName: "Mathematics",
     level: "WAEC Prep (SS 1-3)",
-    instructorName: "Dr. Tayo Okafor",
+    instructorName: "Mr Oyedeji S.T",
     instructorTitle: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant",
-    instructorAvatar: "TO",
-    priceMinorUnits: 2500000, // ₦25,000 or included with subscription
+    instructorAvatar: "OS",
+    priceMinorUnits: 4000000, // ₦40,000 or included with subscription
     currency: "NGN",
     rating: 4.9,
     reviewCount: 84,
-    lessonCount: 48,
-    durationHours: 36,
+    lessonCount: 33,
+    durationHours: 26,
     shortDescription: "Complete syllabus coverage for West African Senior School Certificate Examination (WASSCE) Mathematics with worked past papers.",
     fullDescription: "Master every component of the WAEC General Mathematics curriculum. This intensive course covers General Mathematics Papers 1 (Objectives) and 2 (Theory), with special focus on quadratic functions, circle theorems, trigonometry, statistics, and 3D vectors.",
     syllabus: [
       {
         id: "m1",
-        title: "Module 1: Number Bases, Modular Arithmetic & Logarithms",
+        title: "Module 1: Number & Numeration",
         lessons: [
-          { id: "l1", title: "Conversion of Number Bases (Fractions & Decimals)", durationMinutes: 45, isFreePreview: true },
-          { id: "l2", title: "Modular Arithmetic & Cyclic Algebra", durationMinutes: 40, isFreePreview: false },
-          { id: "l3", title: "Indices & Logarithmic Laws with WAEC Past Problems", durationMinutes: 50, isFreePreview: true },
+          { id: "l1", title: "Fractions & Decimals Operations", durationMinutes: 45, isFreePreview: true },
+          { id: "l2", title: "Percentages & Percentage Change", durationMinutes: 40, isFreePreview: false },
+          { id: "l3", title: "Ratio & Proportional Sharing", durationMinutes: 45, isFreePreview: true },
         ],
       },
       {
         id: "m2",
-        title: "Module 2: Quadratic Equations & Simultaneous Non-Linear Equations",
+        title: "Module 2: Commercial Arithmetic",
         lessons: [
-          { id: "l4", title: "Completing the Square & The Quadratic Formula", durationMinutes: 55, isFreePreview: false },
-          { id: "l5", title: "Simultaneous Linear and Quadratic Equations", durationMinutes: 60, isFreePreview: false },
-          { id: "l6", title: "Graphing Quadratic Curves & Finding Roots", durationMinutes: 50, isFreePreview: false },
+          { id: "l4", title: "Profit, Loss & Percentage Margins", durationMinutes: 45, isFreePreview: false },
+          { id: "l5", title: "Discount & Commercial Markups", durationMinutes: 40, isFreePreview: false },
+          { id: "l6", title: "Simple & Compound Interest Calculations", durationMinutes: 50, isFreePreview: false },
         ],
       },
       {
         id: "m3",
-        title: "Module 3: Geometry & Circle Theorems",
+        title: "Module 3: Algebra",
         lessons: [
-          { id: "l7", title: "Angle Subtended by an Arc at the Center vs Circumference", durationMinutes: 50, isFreePreview: false },
-          { id: "l8", title: "Cyclic Quadrilaterals & Tangent Theorems", durationMinutes: 55, isFreePreview: false },
-          { id: "l9", title: "WAEC Step-by-Step Geometric Proofs", durationMinutes: 60, isFreePreview: false },
+          { id: "l7", title: "Linear Equations & Word Problems", durationMinutes: 50, isFreePreview: false },
+          { id: "l8", title: "Linear Inequalities & Number Line Graphs", durationMinutes: 45, isFreePreview: false },
+          { id: "l9", title: "Simultaneous Equations & Direct/Inverse Variation", durationMinutes: 55, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m4",
+        title: "Module 4: Indices & Logarithms",
+        lessons: [
+          { id: "l10", title: "Laws of Indices & Fractional Powers", durationMinutes: 45, isFreePreview: false },
+          { id: "l11", title: "Laws of Logarithms & Base Change", durationMinutes: 50, isFreePreview: false },
+          { id: "l12", title: "Logarithmic Calculations & WAEC Exam Problems", durationMinutes: 55, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m5",
+        title: "Module 5: Geometry",
+        lessons: [
+          { id: "l13", title: "Angles & Triangle Properties", durationMinutes: 45, isFreePreview: false },
+          { id: "l14", title: "Polygons & Interior/Exterior Angles", durationMinutes: 45, isFreePreview: false },
+          { id: "l15", title: "Circles Theorems & Geometric Constructions", durationMinutes: 60, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m6",
+        title: "Module 6: Mensuration",
+        lessons: [
+          { id: "l16", title: "Perimeter & Area of Plane Shapes", durationMinutes: 45, isFreePreview: false },
+          { id: "l17", title: "Surface Area of Prisms, Cylinders & Cones", durationMinutes: 50, isFreePreview: false },
+          { id: "l18", title: "Volume of Composite Solids & Spheres", durationMinutes: 55, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m7",
+        title: "Module 7: Statistics",
+        lessons: [
+          { id: "l19", title: "Mean, Median & Mode of Grouped Data", durationMinutes: 50, isFreePreview: false },
+          { id: "l20", title: "Frequency Tables & Histograms", durationMinutes: 45, isFreePreview: false },
+          { id: "l21", title: "Cumulative Frequency Curves (Ogive) & Percentiles", durationMinutes: 55, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m8",
+        title: "Module 8: Probability",
+        lessons: [
+          { id: "l22", title: "Simple Probability & Sample Spaces", durationMinutes: 40, isFreePreview: false },
+          { id: "l23", title: "Addition & Multiplication Rules of Probability", durationMinutes: 45, isFreePreview: false },
+          { id: "l24", title: "Tree Diagrams & Mutually Exclusive Events", durationMinutes: 50, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m9",
+        title: "Module 9: Coordinate Geometry",
+        lessons: [
+          { id: "l25", title: "Cartesian Graphs, Midpoint & Distance Formula", durationMinutes: 45, isFreePreview: false },
+          { id: "l26", title: "Gradient of Straight Lines & Collinearity", durationMinutes: 45, isFreePreview: false },
+          { id: "l27", title: "Equations of Straight Lines (Parallel & Perpendicular)", durationMinutes: 50, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m10",
+        title: "Module 10: Trigonometry",
+        lessons: [
+          { id: "l28", title: "Sine, Cosine & Tangent Ratios (SOH CAH TOA)", durationMinutes: 45, isFreePreview: false },
+          { id: "l29", title: "Angles of Elevation & Depression", durationMinutes: 50, isFreePreview: false },
+          { id: "l30", title: "Bearings & Sine/Cosine Rules for Triangles", durationMinutes: 60, isFreePreview: false },
+        ],
+      },
+      {
+        id: "m11",
+        title: "Module 11: Vectors & Transformations",
+        lessons: [
+          { id: "l31", title: "Vector Representation, Addition & Scalar Multiplication", durationMinutes: 45, isFreePreview: false },
+          { id: "l32", title: "Reflections & Rotations on the Coordinate Plane", durationMinutes: 50, isFreePreview: false },
+          { id: "l33", title: "Translations, Enlargement & Scale Factors", durationMinutes: 55, isFreePreview: false },
         ],
       },
     ],
