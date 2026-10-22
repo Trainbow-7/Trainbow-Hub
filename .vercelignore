@@ -1,5 +1,4 @@
 tools-service/
-content/
 scripts/
 docker-compose.yml
 Dockerfile
