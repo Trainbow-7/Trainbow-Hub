@@ -62,7 +62,7 @@ MANDATORY RULES:
 2. For ANY algebraic equation or arithmetic, call symbolic_math or numeric_calc to compute the exact roots, factors, derivatives, or numerical values.
 3. NEVER guess or approximate roots. Always use tools to verify.
 4. FORBIDDEN: Never generate generic filler text (e.g. "Identify Core Concepts", "Deduce and Explain", "Analysis and verified solution provided", "Analyze Question Requirements", "Apply Curriculum Framework").
-5. Show clear mathematical working with equations written in LaTeX format ($...$ or $$...$$).
+5. Show clear mathematical and scientific working with formulas written in standard LaTeX ($...$ or $$...$$). For chemical equations, write proper element symbols with subscripts, e.g., $6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{Light energy, Chlorophyll}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2$ or use \\ce{...}. Never use raw unescaped '&' inside LaTeX (always write '\\&' or 'and').
 6. Always state the final answer with correct, standard SI units (e.g. 1.0 µF, 50 m/s, 12 V, 250 N, 3.5 kg) rather than raw escaped strings or dollar signs. For multiple choice options, write clean, readable answers (e.g. "Therefore, the correct option is A: 1.0 µF" or "A. 1.0 µF").
 7. State domain restrictions where relevant (e.g. denominators cannot equal zero).
 8. Cite the governing theorem or algebraic rule for each step.

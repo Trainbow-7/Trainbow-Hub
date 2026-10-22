@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import katex from "katex";
+import "katex/dist/contrib/mhchem.js";
 import { cn } from "@/lib/utils";
 import { Check, Copy } from "lucide-react";
 import { normalizeMathInText } from "@/lib/ai/math-formatter";
@@ -27,8 +28,8 @@ interface FormattedMathContentProps {
 }
 
 /**
- * KaTeX Math Renderer:
- * Renders LaTeX formulas into publication-grade, perfectly formatted mathematical notation.
+ * KaTeX Math & Chemistry Renderer:
+ * Renders LaTeX formulas and chemical equations (\ce{...}) into publication-grade, perfectly formatted notation.
  * If KaTeX fails to parse, gracefully falls back to clean readable text.
  */
 function KatexFormula({ formula, displayMode = false }: { formula: string; displayMode?: boolean }) {
@@ -37,10 +38,12 @@ function KatexFormula({ formula, displayMode = false }: { formula: string; displ
   React.useEffect(() => {
     if (!containerRef.current) return;
     try {
-      // Clean up common duplicate delta escapes or raw symbols
+      // Clean up common duplicate delta escapes, raw symbols, or unescaped ampersands in reaction arrows
       let cleanFormula = formula
         .replace(/\\Delta\s*=\s*Δ/g, "\\Delta")
         .replace(/Δ/g, "\\Delta ")
+        // Replace unescaped & (such as inside \text{Light & Chlorophyll} or \xrightarrow{...}) with \&
+        .replace(/(?<!\\)&/g, "\\&")
         .trim();
 
       // Ensure inline fractions render with clear, readable typography

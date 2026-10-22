@@ -616,15 +616,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 5. Interactive AI Preview Widget */}
+        {/* 5. Trainbow AI Overview Section */}
         <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <Badge variant="ai">Pedagogical Guardrails</Badge>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-              Experience the Socratic Maths Assistant
+              How Trainbow AI Works
             </h2>
             <p className="text-sm text-neutral-slate-600">
-              Unlike generic chatbots that give away answers, Trainbow AI guides learners step by step with verified mathematical logic.
+              Unlike generic chatbots that simply give away answers, Trainbow AI empowers learners through guided reasoning and curriculum-verified logic.
             </p>
           </div>
 
