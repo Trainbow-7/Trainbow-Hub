@@ -36,13 +36,14 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
     ).toBeVisible();
 
     // Verify trust signals
-    await expect(page.getByText("Verified tutors").first()).toBeVisible();
-    await expect(page.getByText("Child-safe by design").first()).toBeVisible();
-    await expect(page.getByText("Secure payments in naira").first()).toBeVisible();
+    await expect(page.getByText(/100% Verified Tutors/i).first()).toBeVisible();
+    await expect(page.getByText(/Child-Safe by Design/i).first()).toBeVisible();
+    await expect(page.getByText(/Escrow Protected in Naira/i).first()).toBeVisible();
 
-    // Verify product composition elements
-    await expect(page.getByText("Dr. Tayo Okafor").first()).toBeVisible();
-    await expect(page.getByText("Trainbow AI Mathematics Helper", { exact: true })).toBeVisible();
+    // Verify product highlight cards
+    await expect(page.getByText(/Vetted 1-on-1 Educators/i).first()).toBeVisible();
+    await expect(page.getByText(/24\/7 Socratic AI Tutor/i).first()).toBeVisible();
+    await expect(page.getByText(/Exam Mastery & Real Progress/i).first()).toBeVisible();
 
     // Ensure NO developer widgets on public home page
     await expect(page.getByText("Verify Design Tokens Modal")).not.toBeVisible();
