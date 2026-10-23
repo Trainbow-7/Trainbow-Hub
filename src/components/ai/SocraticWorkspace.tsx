@@ -111,6 +111,47 @@ const SAMPLE_QUESTIONS = [
 
 const MATH_SYMBOLS = ["x²", "√", "±", "π", "θ", "Δ", "÷", "≤", "≥", "="];
 
+function getSubjectThinkingMessage(subject: string, promptText?: string): string {
+  // If user prompt mentions specific topics or subject keywords, give an accurate targeted message
+  const lowerPrompt = (promptText || "").toLowerCase();
+  const lowerSub = (subject || "").toLowerCase();
+
+  if (lowerSub.includes("physic") || /\b(velocity|acceleration|force|gravity|friction|kinematics|ohm|resistor|voltage|current|circuit|wavelength|refraction|optics|energy|momentum|thermodynamics)\b/.test(lowerPrompt)) {
+    return "Analyzing physical principles, verifying units & calculating equations of motion...";
+  }
+  if (lowerSub.includes("chem") || /\b(stoichiometry|mole|molar|periodic|reaction|oxidation|reduction|acid|base|titration|enthalpy|isomer|alkane|caco3|hydrocarbon|valency)\b/.test(lowerPrompt)) {
+    return "Balancing chemical equations, verifying stoichiometry & molecular relationships...";
+  }
+  if (lowerSub.includes("bio") || /\b(photosynthesis|mitosis|meiosis|genetics|dna|chromosome|ecology|osmoregulation|digestion|respiration|circulation|enzyme|cell)\b/.test(lowerPrompt)) {
+    return "Evaluating biological mechanisms, physiological pathways & curriculum criteria...";
+  }
+  if (lowerSub.includes("eng") || lowerSub.includes("lit") || /\b(metaphor|simile|grammatical|concord|clause|sonnet|soliloquy|comprehension|summary|idiom|syntax|poetry|prose)\b/.test(lowerPrompt)) {
+    return "Analyzing linguistic structure, textual context & pedagogical composition...";
+  }
+  if (lowerSub.includes("econ") || lowerSub.includes("comm") || /\b(inflation|elasticity|gdp|monopoly|equilibrium|market|demand|supply|fiscal|monetary|trade|tariff)\b/.test(lowerPrompt)) {
+    return "Evaluating economic models, supply-demand dynamics & analytical principles...";
+  }
+  if (lowerSub.includes("geo") || /\b(topography|mapwork|contour|climate|erosion|sedimentary|faulting|longitude|latitude|scale)\b/.test(lowerPrompt)) {
+    return "Analyzing geographical patterns, spatial coordinates & topographical data...";
+  }
+  if (lowerSub.includes("music") || /\b(treble|bass|clef|chord|cadence|harmony|interval|tempo|scale|arpeggio|stave)\b/.test(lowerPrompt)) {
+    return "Transcribing music theory, harmonic intervals & structural counterpoint...";
+  }
+  if (lowerSub.includes("account") || /\b(ledger|balance sheet|trial balance|depreciation|credit|debit|journal)\b/.test(lowerPrompt)) {
+    return "Reconciling accounting ledgers, financial entries & balance equations...";
+  }
+  if (lowerSub.includes("math") || /\b(quadratic|integral|derivative|algebra|triangle|circle|chord|matrix|polynomial|probability|hypotenuse|logarithm|trigonometry)\b/.test(lowerPrompt)) {
+    return "Applying Socratic pedagogical reasoning & verifying mathematical formula...";
+  }
+
+  // Fallback tailored to the selected subject
+  if (subject && subject !== "General") {
+    return `Applying Socratic reasoning & analyzing ${subject} curriculum concepts...`;
+  }
+
+  return "Applying Socratic pedagogical reasoning & validating academic solution...";
+}
+
 export function SocraticWorkspace() {
   const router = useRouter();
   const { user } = useAuth();
@@ -1278,13 +1319,18 @@ export function SocraticWorkspace() {
 
           {/* Loading Indicator */}
           {loading && (
-            <div className="flex items-start gap-3">
-              <div className="h-8 w-8 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-xs shrink-0 animate-pulse">
+            <div className="flex items-start gap-3" data-testid="ai-thinking-indicator">
+              <div className="h-8 w-8 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-xs shrink-0 animate-pulse shadow-xs">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <div className="rounded-2xl rounded-tl-xs border border-purple-200 bg-purple-50/50 p-4 text-xs text-service-ai-700 flex items-center gap-2">
-                <RefreshCw className="h-4 w-4 animate-spin text-service-ai-600" />
-                <span>Applying Socratic pedagogical reasoning &amp; verifying formula...</span>
+              <div className="rounded-2xl rounded-tl-xs border border-purple-200 bg-purple-50/50 p-4 text-xs text-service-ai-700 flex items-center gap-2.5 shadow-2xs">
+                <RefreshCw className="h-4 w-4 animate-spin text-service-ai-600 shrink-0" />
+                <span className="font-medium">
+                  {(() => {
+                    const lastUserMsg = [...messages].reverse().find((m) => m.role === "USER");
+                    return getSubjectThinkingMessage(selectedSubject, lastUserMsg?.content);
+                  })()}
+                </span>
               </div>
             </div>
           )}

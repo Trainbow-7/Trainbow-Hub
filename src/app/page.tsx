@@ -31,6 +31,16 @@ import {
   CreditCard,
   ChevronRight,
 } from "lucide-react";
+import {
+  CheckBadgeIcon,
+  ShieldCheckIcon,
+  LockClosedIcon,
+  SparklesIcon,
+  AcademicCapIcon,
+  TrophyIcon,
+  ArrowRightIcon,
+  BookOpenIcon,
+} from "@heroicons/react/24/solid";
 
 export default function HomePage() {
   const activeSubjects = SEED_SUBJECTS.filter((s) => s.status === "active");
@@ -49,153 +59,109 @@ export default function HomePage() {
           <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-service-ai-600/10 blur-3xl pointer-events-none" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              {/* Left Column: Value Proposition & CTAs */}
-              <div className="lg:col-span-7 space-y-6 text-left">
-                <div className="inline-flex items-center gap-2 rounded-full bg-brand-navy-950/80 px-3.5 py-1 text-xs font-semibold text-brand-blue-50 border border-brand-blue-500/30">
-                  <span className="flex h-2 w-2 rounded-full bg-brand-blue-500 animate-pulse" />
-                  <span>Mathematics Curriculum & Verified Tutors Active</span>
-                </div>
-
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-[1.1] text-white">
-                  Learn smarter. <br />
-                  Find the right tutor. <br />
-                  <span className="text-brand-blue-500">Grow with confidence.</span>
-                </h1>
-
-                <p className="text-base sm:text-lg text-neutral-slate-200 max-w-2xl leading-relaxed">
-                  One account for lessons, AI help and verified tutors, built for Nigerian students and the parents who support them.
-                </p>
-
-                <div className="pt-2 flex flex-wrap gap-4 items-center">
-                  <Link href="/request-tutor">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="font-semibold text-base shadow-lg shadow-brand-blue-600/25 px-6 py-3"
-                    >
-                      Request a tutor
-                    </Button>
-                  </Link>
-
-                  <Link href="/ai">
-                    <Button
-                      variant="ai"
-                      size="lg"
-                      className="font-semibold text-base px-6 py-3"
-                    >
-                      Try the AI maths helper
-                    </Button>
-                  </Link>
-                </div>
-
-                <div className="pt-6 border-t border-brand-navy-950/80 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-neutral-slate-300">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-status-green-500 shrink-0" />
-                    <span>Verified tutors</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="h-4 w-4 text-brand-blue-500 shrink-0" />
-                    <span>Child-safe by design</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Lock className="h-4 w-4 text-status-green-500 shrink-0" />
-                    <span>Secure payments in naira</span>
-                  </div>
-                </div>
+            {/* Centered Brand & Value Pitch */}
+            <div className="max-w-4xl mx-auto text-center space-y-7">
+              <div className="inline-flex items-center gap-2 rounded-full bg-brand-navy-950/90 px-4 py-1.5 text-xs font-semibold text-brand-blue-100 border border-brand-blue-500/30 shadow-inner">
+                <span className="flex h-2 w-2 rounded-full bg-brand-blue-400 animate-pulse" />
+                <span>WAEC · JAMB · IGCSE Mathematics Curriculum & Verified Educators Active</span>
               </div>
 
-              {/* Right Column: High-Fidelity SVG/CSS Product Composition */}
-              <div className="lg:col-span-5 relative">
-                <div className="relative mx-auto max-w-md space-y-4">
-                  {/* Composition Card 1: Verified Tutor Card */}
-                  <div className="rounded-xl border border-white/10 bg-white/10 p-4 backdrop-blur-md shadow-2xl transition hover:border-white/20">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="h-11 w-11 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-inner ring-2 ring-service-tutor-500/50">
-                          TO
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-1.5">
-                            <h2 className="font-heading text-sm font-bold text-white">Dr. Tayo Okafor</h2>
-                            <span className="inline-flex items-center gap-0.5 rounded bg-service-tutor-700/80 px-1.5 py-0.5 text-[10px] font-semibold text-white">
-                              <ShieldCheck className="h-2.5 w-2.5" />
-                              Verified
-                            </span>
-                          </div>
-                          <p className="text-xs text-neutral-slate-300">Senior Secondary & WAEC Mathematics</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-xs font-bold text-white">₦7,500</div>
-                        <span className="text-[10px] text-neutral-slate-300">/ 60 min</span>
-                      </div>
-                    </div>
-                    <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-2.5 text-[11px] text-neutral-slate-300">
-                      <span className="flex items-center gap-1 text-amber-400 font-semibold">
-                        <Star className="h-3 w-3 fill-amber-400" />
-                        5.0 (42 lessons)
-                      </span>
-                      <span className="text-brand-blue-200">Next Slot: Today, 4:00 PM</span>
-                    </div>
-                  </div>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-heading leading-[1.08] text-white">
+                Learn smarter. <br className="hidden sm:inline" />
+                Find the right tutor. <br />
+                <span className="bg-gradient-to-r from-brand-blue-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+                  Grow with confidence.
+                </span>
+              </h1>
 
-                  {/* Composition Card 2: AI Socratic Chat Bubble */}
-                  <div className="rounded-xl border border-service-ai-600/30 bg-service-ai-600/20 p-4 backdrop-blur-md shadow-2xl space-y-2">
-                    <div className="flex items-center justify-between text-xs font-semibold text-white">
-                      <span className="flex items-center gap-1.5">
-                        <Sparkles className="h-3.5 w-3.5 text-service-ai-500" />
-                        Trainbow AI Mathematics Helper
-                      </span>
-                      <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-neutral-slate-200 font-mono">
-                        Hint-First
-                      </span>
-                    </div>
-                    <div className="rounded-lg bg-brand-navy-950/80 p-3 text-xs text-neutral-slate-200 space-y-1.5 border border-white/5">
-                      <p className="font-medium text-white text-[11px]">
-                        <strong>Student:</strong> How do I solve 2x² + 5x - 3 = 0?
-                      </p>
-                      <div className="pt-1 border-t border-white/10 text-[11px] text-brand-blue-50 leading-relaxed">
-                        <p className="text-brand-blue-200 font-semibold">💡 Socratic Step 1:</p>
-                        <p>Identify the quadratic coefficients: a = 2, b = 5, c = -3. Now calculate the discriminant (b² - 4ac) before using the formula.</p>
-                      </div>
-                    </div>
-                  </div>
+              <p className="text-base sm:text-xl text-neutral-slate-200 max-w-2xl mx-auto leading-relaxed font-normal">
+                One unified account for structured curriculum lessons, 24/7 Socratic AI guidance, and verified 1-on-1 tutors—built specifically for Nigerian students and their families.
+              </p>
 
-                  {/* Composition Card 3: Real-Time Progress Ring Widget */}
-                  <div className="rounded-xl border border-white/10 bg-white/10 p-3.5 backdrop-blur-md flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="relative h-12 w-12 flex items-center justify-center">
-                        <svg className="h-12 w-12 -rotate-90" viewBox="0 0 36 36">
-                          <path
-                            className="text-white/10"
-                            strokeWidth="3.5"
-                            stroke="currentColor"
-                            fill="none"
-                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                          />
-                          <path
-                            className="text-brand-blue-500"
-                            strokeDasharray="85, 100"
-                            strokeWidth="3.5"
-                            strokeLinecap="round"
-                            stroke="currentColor"
-                            fill="none"
-                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                          />
-                        </svg>
-                        <span className="absolute text-[11px] font-bold text-white">85%</span>
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white">WAEC Mastery Track</div>
-                        <p className="text-[11px] text-neutral-slate-300">Algebra & Geometry Modules Completed</p>
-                      </div>
-                    </div>
-                    <span className="rounded-full bg-status-green-600/30 text-green-300 border border-green-500/30 px-2 py-0.5 text-[10px] font-semibold">
-                      On Track
-                    </span>
-                  </div>
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap gap-4 items-center justify-center">
+                <Link href="/request-tutor">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="font-semibold text-base shadow-xl shadow-brand-blue-600/30 px-8 py-3.5 hover:scale-[1.02] transition-transform"
+                  >
+                    Request a tutor
+                    <ArrowRightIcon className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+
+                <Link href="/ai">
+                  <Button
+                    variant="ai"
+                    size="lg"
+                    className="font-semibold text-base px-8 py-3.5 hover:scale-[1.02] transition-transform"
+                  >
+                    <SparklesIcon className="mr-2 h-4 w-4 text-purple-200" />
+                    Try the AI maths helper
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Security & Trust Badges */}
+              <div className="pt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-neutral-slate-300">
+                <div className="flex items-center gap-2">
+                  <CheckBadgeIcon className="h-5 w-5 text-emerald-400 shrink-0" />
+                  <span className="font-medium text-white/90">100% Verified Tutors</span>
                 </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheckIcon className="h-5 w-5 text-brand-blue-400 shrink-0" />
+                  <span className="font-medium text-white/90">Child-Safe by Design</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <LockClosedIcon className="h-5 w-5 text-emerald-400 shrink-0" />
+                  <span className="font-medium text-white/90">Escrow Protected in Naira (₦)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Platform Highlights & Capabilities Grid */}
+            <div className="mt-14 pt-10 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-5">
+              {/* Pillar 1: Verified Tutors */}
+              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-md hover:bg-white/[0.09] hover:border-brand-blue-400/40 transition-all duration-300 text-left group">
+                <div className="h-11 w-11 rounded-xl bg-teal-500/15 border border-teal-400/30 text-teal-300 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-inner">
+                  <AcademicCapIcon className="h-6 w-6" />
+                </div>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <h3 className="font-heading text-base font-bold text-white">Vetted 1-on-1 Educators</h3>
+                  <span className="rounded bg-teal-500/20 text-teal-300 text-[10px] font-semibold px-2 py-0.5">Verified</span>
+                </div>
+                <p className="text-xs sm:text-sm text-neutral-slate-300 leading-relaxed">
+                  Rigorous background, identity, and subject assessments. Book transparently with automated scheduling and lesson recordings.
+                </p>
+              </div>
+
+              {/* Pillar 2: Socratic AI */}
+              <div className="rounded-2xl border border-purple-500/20 bg-purple-950/20 p-6 backdrop-blur-md hover:bg-purple-950/30 hover:border-purple-400/40 transition-all duration-300 text-left group">
+                <div className="h-11 w-11 rounded-xl bg-purple-500/20 border border-purple-400/30 text-purple-300 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-inner">
+                  <SparklesIcon className="h-6 w-6" />
+                </div>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <h3 className="font-heading text-base font-bold text-white">24/7 Socratic AI Tutor</h3>
+                  <span className="rounded bg-purple-500/25 text-purple-200 text-[10px] font-semibold px-2 py-0.5 font-mono">Hint-First</span>
+                </div>
+                <p className="text-xs sm:text-sm text-neutral-slate-300 leading-relaxed">
+                  Guides students step-by-step through tough algebra, geometry, and exam problems without spoiling the answer. Instant escalation to humans when needed.
+                </p>
+              </div>
+
+              {/* Pillar 3: Curriculum Mastery & Progress */}
+              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-md hover:bg-white/[0.09] hover:border-brand-blue-400/40 transition-all duration-300 text-left group">
+                <div className="h-11 w-11 rounded-xl bg-brand-blue-500/20 border border-brand-blue-400/30 text-brand-blue-300 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-inner">
+                  <TrophyIcon className="h-6 w-6" />
+                </div>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <h3 className="font-heading text-base font-bold text-white">Exam Mastery & Real Progress</h3>
+                  <span className="rounded bg-brand-blue-500/20 text-brand-blue-200 text-[10px] font-semibold px-2 py-0.5">NERDC Aligned</span>
+                </div>
+                <p className="text-xs sm:text-sm text-neutral-slate-300 leading-relaxed">
+                  Clear diagnostic benchmarks for WAEC, JAMB & IGCSE with verifiable parental oversight, attendance records, and shared analytics.
+                </p>
               </div>
             </div>
           </div>
