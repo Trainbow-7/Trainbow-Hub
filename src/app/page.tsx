@@ -42,6 +42,8 @@ import {
   BookOpenIcon,
 } from "@heroicons/react/24/solid";
 
+import { HeroPreview } from "@/components/home/HeroPreview";
+
 export default function HomePage() {
   const activeSubjects = SEED_SUBJECTS.filter((s) => s.status === "active");
   const featuredCourses = SEED_COURSES.slice(0, 3);
@@ -53,70 +55,99 @@ export default function HomePage() {
       <Navbar />
 
       <main className="flex-1 space-y-16 sm:space-y-24">
-        {/* 1. Hero Section (Navy 900 Gradient with Guaranteed High Contrast) */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-brand-navy-900 via-brand-navy-900 to-brand-navy-950 py-16 sm:py-24 text-white">
-          <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-brand-blue-600/15 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-service-ai-600/10 blur-3xl pointer-events-none" />
+        {/* 1. Hero Section (Split Layout with Product Preview on Right) */}
+        <section className="relative overflow-hidden bg-[#0B1226] py-12 sm:py-16 lg:py-20 text-white">
+          {/* Soft ambient background glow */}
+          <div
+            className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] rounded-full pointer-events-none opacity-30 blur-[120px]"
+            style={{
+              background: "radial-gradient(ellipse at center, rgba(37,99,235,0.45) 0%, rgba(99,102,241,0.2) 50%, transparent 70%)",
+            }}
+          />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Centered Brand & Value Pitch */}
-            <div className="max-w-4xl mx-auto text-center space-y-7">
-              <div className="inline-flex items-center gap-2 rounded-full bg-brand-navy-950/90 px-4 py-1.5 text-xs font-semibold text-brand-blue-100 border border-brand-blue-500/30 shadow-inner">
-                <span className="flex h-2 w-2 rounded-full bg-brand-blue-400 animate-pulse" />
-                <span>WAEC · JAMB · IGCSE Mathematics Curriculum & Verified Educators Active</span>
+            {/* Split Grid: Left 55%, Right 45% on desktop (>=1024px), single column stacked (<1024px) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              {/* LEFT COLUMN: 55% on desktop (col-span-7), Left-aligned */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left motion-safe:animate-hero-fade">
+                {/* Badge pill */}
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#111A2E]/90 px-4 py-1.5 text-[13px] sm:text-[14px] font-semibold text-sky-200 border border-sky-400/30 shadow-inner backdrop-blur-sm">
+                  <span className="flex h-2 w-2 rounded-full bg-sky-400 animate-pulse" />
+                  <span>WAEC · JAMB · IGCSE aligned</span>
+                </div>
+
+                {/* H1 Headline (2 lines): Learn smarter. Find the right tutor. */}
+                <h1
+                  className="mt-5 sm:mt-6 font-heading font-[800] text-left text-white"
+                  style={{
+                    fontSize: "clamp(2.35rem, 4.8vw, 3.75rem)",
+                    lineHeight: 1.08,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Learn smarter.{" "}
+                  <br className="hidden sm:inline" />
+                  Find the{" "}
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #7DD3FC 0%, #818CF8 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    right tutor
+                  </span>
+                  .
+                </h1>
+
+                {/* Subheadline (18-20px, #CBD5E1, max-width 540px) */}
+                <p className="mt-4 sm:mt-5 text-[18px] sm:text-[19px] lg:text-[20px] leading-relaxed text-[#CBD5E1] max-w-[540px] font-normal">
+                  Structured lessons, 24/7 AI guidance that helps students work out answers themselves, and verified 1-on-1 tutors, built for Nigerian students and their families.
+                </p>
+
+                {/* CTAs side by side on tablet/desktop, stack full-width on mobile */}
+                <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row gap-3.5 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
+                  <Link href="/request-tutor" className="w-full sm:w-auto">
+                    <button
+                      type="button"
+                      className="w-full sm:w-auto min-h-[44px] h-[52px] px-7 sm:px-8 rounded-[12px] bg-[#2563EB] text-white font-semibold text-base inline-flex items-center justify-center gap-2 shadow-lg shadow-blue-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1226] active:translate-y-0"
+                    >
+                      <span>Request a tutor</span>
+                      <ArrowRightIcon className="h-4 w-4" />
+                    </button>
+                  </Link>
+
+                  <Link href="/ai" className="w-full sm:w-auto">
+                    <button
+                      type="button"
+                      className="w-full sm:w-auto min-h-[44px] h-[52px] px-7 sm:px-8 rounded-[12px] bg-transparent border border-white/25 text-white font-semibold text-base inline-flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1226] active:translate-y-0"
+                    >
+                      <SparklesIcon className="h-4 w-4 text-purple-300" />
+                      <span>Try the AI maths helper</span>
+                    </button>
+                  </Link>
+                </div>
+
+                {/* Trust Row below CTAs, left-aligned, wraps on small screens */}
+                <div className="mt-8 sm:mt-9 flex flex-wrap items-center justify-start gap-x-6 sm:gap-x-8 gap-y-2.5 text-[14px] sm:text-[15px] text-[#E2E8F0]">
+                  <div className="flex items-center gap-2">
+                    <CheckBadgeIcon className="h-5 w-5 text-emerald-400 shrink-0" />
+                    <span className="font-medium text-[#E2E8F0]">100% Verified Tutors</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ShieldCheckIcon className="h-5 w-5 text-sky-400 shrink-0" />
+                    <span className="font-medium text-[#E2E8F0]">Child-Safe by Design</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <LockClosedIcon className="h-5 w-5 text-emerald-400 shrink-0" />
+                    <span className="font-medium text-[#E2E8F0]">Escrow Protected in Naira (₦)</span>
+                  </div>
+                </div>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-heading leading-[1.08] text-white">
-                Learn smarter. <br className="hidden sm:inline" />
-                Find the right tutor. <br />
-                <span className="bg-gradient-to-r from-brand-blue-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
-                  Grow with confidence.
-                </span>
-              </h1>
-
-              <p className="text-base sm:text-xl text-neutral-slate-200 max-w-2xl mx-auto leading-relaxed font-normal">
-                One unified account for structured curriculum lessons, 24/7 Socratic AI guidance, and verified 1-on-1 tutors—built specifically for Nigerian students and their families.
-              </p>
-
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap gap-4 items-center justify-center">
-                <Link href="/request-tutor">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    className="font-semibold text-base shadow-xl shadow-brand-blue-600/30 px-8 py-3.5 hover:scale-[1.02] transition-transform"
-                  >
-                    Request a tutor
-                    <ArrowRightIcon className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-
-                <Link href="/ai">
-                  <Button
-                    variant="ai"
-                    size="lg"
-                    className="font-semibold text-base px-8 py-3.5 hover:scale-[1.02] transition-transform"
-                  >
-                    <SparklesIcon className="mr-2 h-4 w-4 text-purple-200" />
-                    Try the AI maths helper
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Security & Trust Badges */}
-              <div className="pt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-neutral-slate-300">
-                <div className="flex items-center gap-2">
-                  <CheckBadgeIcon className="h-5 w-5 text-emerald-400 shrink-0" />
-                  <span className="font-medium text-white/90">100% Verified Tutors</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheckIcon className="h-5 w-5 text-brand-blue-400 shrink-0" />
-                  <span className="font-medium text-white/90">Child-Safe by Design</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <LockClosedIcon className="h-5 w-5 text-emerald-400 shrink-0" />
-                  <span className="font-medium text-white/90">Escrow Protected in Naira (₦)</span>
-                </div>
+              {/* RIGHT COLUMN: 45% on desktop (col-span-5), Product Preview */}
+              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-4 lg:mt-0 motion-safe:animate-hero-fade">
+                <HeroPreview />
               </div>
             </div>
 

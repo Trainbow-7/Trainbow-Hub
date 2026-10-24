@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { SUPPORTED_LOCALES, LocaleCode } from "@/lib/i18n";
 import { isDataSaverEnabled, toggleDataSaver } from "@/lib/offline/sync";
 
-export function UtilityPopover() {
+export function UtilityPopover({ isDark = false }: { isDark?: boolean }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [currentLocale, setCurrentLocale] = React.useState<LocaleCode>("en");
   const [dataSaver, setDataSaver] = React.useState<boolean>(false);
@@ -83,19 +83,23 @@ export function UtilityPopover() {
         aria-label="Settings, language, and regional preferences"
         className={cn(
           "inline-flex items-center gap-2 h-10 px-3 rounded-control text-xs font-semibold border transition-all duration-150 ease-out select-none",
-          isOpen
-            ? "border-brand-blue-600 bg-brand-blue-50 text-brand-blue-700 shadow-sm"
-            : "border-neutral-slate-200 bg-white text-neutral-slate-700 hover:bg-neutral-slate-50 hover:border-neutral-slate-300"
+          isDark
+            ? isOpen
+              ? "border-sky-400 bg-[#1E293B] text-sky-200 shadow-sm"
+              : "border-white/15 bg-white/5 text-slate-200 hover:bg-white/10 hover:border-white/30"
+            : isOpen
+              ? "border-brand-blue-600 bg-brand-blue-50 text-brand-blue-700 shadow-sm"
+              : "border-neutral-slate-200 bg-white text-neutral-slate-700 hover:bg-neutral-slate-50 hover:border-neutral-slate-300"
         )}
       >
-        <Globe className="h-4 w-4 text-brand-blue-600 shrink-0" />
-        <span className="hidden sm:inline font-medium text-neutral-slate-800">
+        <Globe className={cn("h-4 w-4 shrink-0", isDark ? "text-sky-400" : "text-brand-blue-600")} />
+        <span className={cn("hidden sm:inline font-medium", isDark ? "text-slate-100" : "text-neutral-slate-800")}>
           {activeLocale.name.split(" ")[0]}
         </span>
-        <span className="text-neutral-slate-300 font-normal">|</span>
-        <span className="text-neutral-slate-600 font-bold">₦ NGN</span>
+        <span className={isDark ? "text-white/30 font-normal" : "text-neutral-slate-300 font-normal"}>|</span>
+        <span className={cn("font-bold", isDark ? "text-slate-200" : "text-neutral-slate-600")}>₦ NGN</span>
         {dataSaver && (
-          <span className="h-2 w-2 rounded-full bg-service-tutor-700" title="Data Saver active" />
+          <span className="h-2 w-2 rounded-full bg-service-tutor-500" title="Data Saver active" />
         )}
       </button>
 

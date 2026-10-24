@@ -15,7 +15,6 @@ import { UtilityPopover } from "./UtilityPopover";
 const PRIMARY_NAV_LINKS = [
   { href: "/ai", label: "AI" },
   { href: "/request-tutor", label: "Get a tutor" },
-  { href: "/music", label: "Music" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
@@ -37,7 +36,9 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [academyMenuOpen, setAcademyMenuOpen] = React.useState(false);
+  const [userMenuOpen, setUserMenuOpen] = React.useState(false);
   const academyDropdownRef = React.useRef<HTMLDivElement>(null);
+  const userDropdownRef = React.useRef<HTMLDivElement>(null);
   const { user, logout, isLoading } = useAuth();
 
   const getRoleLabel = (role: string) => {
@@ -55,20 +56,23 @@ export function Navbar() {
     }
   };
 
-  // Close academy dropdown on outside click
+  // Close dropdowns on outside click
   React.useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (academyDropdownRef.current && !academyDropdownRef.current.contains(e.target as Node)) {
         setAcademyMenuOpen(false);
       }
+      if (userDropdownRef.current && !userDropdownRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
     }
-    if (academyMenuOpen) {
+    if (academyMenuOpen || userMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [academyMenuOpen]);
+  }, [academyMenuOpen, userMenuOpen]);
 
   const isAcademyActive =
     pathname === "/academy" ||
@@ -77,11 +81,11 @@ export function Navbar() {
     pathname?.startsWith("/subjects/");
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-neutral-slate-200/80 bg-white/95 backdrop-blur-md transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#0B1226]/95 backdrop-blur-md transition-all text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 min-h-[4.25rem] flex items-center justify-between">
         {/* Brand Wordmark & Tagline */}
         <div className="flex items-center gap-6 lg:gap-8">
-          <TrainbowLogo />
+          <TrainbowLogo isDarkSurface={true} />
 
           {/* Desktop Navigation (>=1024px) */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
@@ -91,8 +95,8 @@ export function Navbar() {
                 className={cn(
                   "inline-flex items-center rounded-control transition-colors",
                   isAcademyActive
-                    ? "bg-brand-blue-50 text-brand-blue-600 font-semibold"
-                    : "hover:bg-neutral-slate-100 text-neutral-slate-600 hover:text-neutral-slate-900"
+                    ? "bg-white/10 text-sky-300 font-semibold"
+                    : "hover:bg-white/[0.06] text-slate-200 hover:text-white"
                 )}
               >
                 <Link
@@ -107,12 +111,12 @@ export function Navbar() {
                   aria-expanded={academyMenuOpen}
                   aria-haspopup="menu"
                   aria-label="Toggle Academy menu"
-                  className="pr-2.5 pl-0.5 py-2 hover:text-brand-blue-600 focus-visible:outline-none"
+                  className="pr-2.5 pl-0.5 py-2 hover:text-sky-300 focus-visible:outline-none"
                 >
                   <ChevronDown
                     className={cn(
                       "h-3.5 w-3.5 transition-transform duration-150",
-                      academyMenuOpen && "rotate-180 text-brand-blue-600"
+                      academyMenuOpen && "rotate-180 text-sky-300"
                     )}
                   />
                 </button>
@@ -121,7 +125,7 @@ export function Navbar() {
               {academyMenuOpen && (
                 <div
                   role="menu"
-                  className="absolute left-0 top-full mt-2 w-72 rounded-panel bg-white p-2 shadow-floating border border-neutral-slate-200 z-50 animate-in fade-in zoom-in-95 duration-150"
+                  className="absolute left-0 top-full mt-2 w-72 rounded-panel bg-[#111A2E] p-2 shadow-floating border border-white/10 z-50 animate-in fade-in zoom-in-95 duration-150"
                 >
                   {ACADEMY_SUB_LINKS.map((item) => (
                     <Link
@@ -131,16 +135,16 @@ export function Navbar() {
                       className={cn(
                         "flex items-start gap-3 p-3 rounded-control transition-colors text-left",
                         pathname === item.href || pathname?.startsWith(`${item.href}/`)
-                          ? "bg-brand-blue-50"
-                          : "hover:bg-neutral-slate-50"
+                          ? "bg-white/10 text-sky-200"
+                          : "hover:bg-white/[0.06] text-slate-200 hover:text-white"
                       )}
                     >
-                      <div className="h-8 w-8 rounded-md bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="h-8 w-8 rounded-md bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 mt-0.5">
                         <BookOpen className="h-4 w-4" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-neutral-slate-900">{item.title}</p>
-                        <p className="text-[11px] text-neutral-slate-500 leading-snug">{item.desc}</p>
+                        <p className="text-xs font-bold text-white">{item.title}</p>
+                        <p className="text-[11px] text-slate-400 leading-snug">{item.desc}</p>
                       </div>
                     </Link>
                   ))}
@@ -148,7 +152,7 @@ export function Navbar() {
               )}
             </div>
 
-            {/* Direct Core Nav Links */}
+            {/* Direct Core Nav Links (AI, Get a tutor, Pricing, About) */}
             {PRIMARY_NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
               return (
@@ -158,8 +162,8 @@ export function Navbar() {
                   className={cn(
                     "px-3 py-2 text-sm font-medium rounded-control transition-colors",
                     isActive
-                      ? "text-brand-blue-600 bg-brand-blue-50 font-semibold"
-                      : "text-neutral-slate-600 hover:text-neutral-slate-900 hover:bg-neutral-slate-100"
+                      ? "text-sky-300 bg-white/10 font-semibold"
+                      : "text-slate-200 hover:text-white hover:bg-white/[0.06]"
                   )}
                 >
                   {link.label}
@@ -173,123 +177,133 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           {/* Combined Utility Popover (Data Saver + Language + Currency) */}
           <div className="hidden lg:flex items-center">
-            <UtilityPopover />
+            <UtilityPopover isDark={true} />
           </div>
 
           {!isLoading && user ? (
-            /* Logged-In User Profile Controls */
-            <div className="hidden lg:flex items-center gap-3">
-              {user.role === "ADMIN" ? (
-                <Link
-                  href="/admin"
-                  className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
-                    pathname === "/admin" || pathname?.startsWith("/admin/")
-                      ? "bg-purple-700 text-white border-purple-700 shadow-xs"
-                      : "bg-white text-purple-800 border-purple-200 hover:bg-purple-50"
-                  )}
-                  data-testid="navbar-admin-link"
-                >
-                  Admin Portal
-                </Link>
-              ) : user.role === "PARENT" ? (
-                <Link
-                  href="/guardian"
-                  className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
-                    pathname === "/guardian" || pathname?.startsWith("/guardian/")
-                      ? "bg-amber-600 text-white border-amber-600 shadow-xs"
-                      : "bg-white text-amber-900 border-amber-300 hover:bg-amber-50"
-                  )}
-                  data-testid="navbar-parent-portal-link"
-                >
-                  Parent Portal
-                </Link>
-              ) : user.role === "TUTOR" ? (
-                <Link
-                  href="/dashboard/tutor"
-                  className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
-                    pathname === "/dashboard/tutor"
-                      ? "bg-brand-blue-600 text-white border-brand-blue-600 shadow-xs"
-                      : "bg-white text-brand-blue-700 border-brand-blue-200 hover:bg-brand-blue-50"
-                  )}
-                  data-testid="navbar-tutor-portal-link"
-                >
-                  Tutor Portal
-                </Link>
-              ) : (
-                <Link
-                  href="/dashboard"
-                  className={cn(
-                    "px-3 py-1.5 text-xs font-bold rounded-control border transition-colors",
-                    pathname === "/dashboard"
-                      ? "bg-brand-blue-600 text-white border-brand-blue-600 shadow-xs"
-                      : "bg-white text-brand-blue-700 border-brand-blue-200 hover:bg-brand-blue-50"
-                  )}
-                  data-testid="navbar-dashboard-link"
-                >
-                  My Dashboard
-                </Link>
-              )}
-
+            /* Logged-In User Profile: Single Avatar Dropdown */
+            <div className="hidden lg:flex items-center gap-3" ref={userDropdownRef}>
               {user.isMinor && !user.isVerified && (
                 <Link
                   href={`/guardian/consent?studentId=${user.id}`}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-xs font-semibold hover:bg-amber-200 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-200 border border-amber-400/40 text-xs font-semibold hover:bg-amber-500/30 transition-colors"
                   title="Guardian verification required under NDPA 2023 Section 31"
                 >
-                  <ShieldAlert className="w-3.5 h-3.5 text-amber-700" />
+                  <ShieldAlert className="w-3.5 h-3.5 text-amber-300" />
                   <span>Verify Guardian</span>
                 </Link>
               )}
 
-              <Link
-                href={user.role === "ADMIN" ? "/admin" : user.role === "PARENT" ? "/guardian" : user.role === "TUTOR" ? "/dashboard/tutor" : "/dashboard"}
-                className="flex items-center gap-2 pl-2 border-l border-neutral-slate-200 hover:opacity-85 transition-opacity"
-              >
-                <Avatar name={user.fullName} size="sm" />
-                <div className="text-left text-xs leading-tight">
-                  <div data-testid="navbar-user-name" className="font-bold text-neutral-slate-900 truncate max-w-[120px]">
-                    {user.fullName.split(" ")[0]}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  aria-expanded={userMenuOpen}
+                  aria-haspopup="menu"
+                  aria-label="User account menu"
+                  className="flex items-center gap-2 pl-2 p-1.5 rounded-control hover:bg-white/[0.06] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+                >
+                  <Avatar name={user.fullName} size="sm" />
+                  <div className="text-left text-xs leading-tight">
+                    <div data-testid="navbar-user-name" className="font-bold text-white truncate max-w-[120px]">
+                      {user.fullName.split(" ")[0]}
+                    </div>
+                    <span data-testid="navbar-user-role" className="text-[10px] uppercase font-semibold text-slate-400">
+                      {getRoleLabel(user.role)}
+                    </span>
                   </div>
-                  <span data-testid="navbar-user-role" className="text-[10px] uppercase font-semibold text-neutral-slate-500">
-                    {getRoleLabel(user.role)}
-                  </span>
-                </div>
-              </Link>
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 text-slate-400 transition-transform duration-150",
+                      userMenuOpen && "rotate-180 text-sky-300"
+                    )}
+                  />
+                </button>
 
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => logout()}
-                className="text-neutral-slate-600 hover:text-red-700 hover:bg-red-50 text-xs font-semibold"
-                aria-label="Sign out of account"
-              >
-                <LogOut className="w-3.5 h-3.5 mr-1" />
-                <span>Log out</span>
-              </Button>
+                {userMenuOpen && (
+                  <div
+                    role="menu"
+                    className="absolute right-0 top-full mt-2 w-56 rounded-panel bg-[#111A2E] p-1.5 shadow-floating border border-white/10 z-50 animate-in fade-in zoom-in-95 duration-150"
+                  >
+                    {/* User Summary */}
+                    <div className="px-3 py-2 border-b border-white/10 mb-1">
+                      <p className="text-xs font-bold text-white truncate">{user.fullName}</p>
+                      <p className="text-[11px] text-slate-400 truncate">{user.email}</p>
+                    </div>
+
+                    {/* Role-specific Profile Link */}
+                    {user.role === "PARENT" ? (
+                      <Link
+                        href="/guardian"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
+                        data-testid="navbar-parent-portal-link"
+                      >
+                        Profile & Parent Portal
+                      </Link>
+                    ) : user.role === "TUTOR" ? (
+                      <Link
+                        href="/dashboard/tutor"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
+                        data-testid="navbar-tutor-portal-link"
+                      >
+                        Profile & Tutor Portal
+                      </Link>
+                    ) : (
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
+                        data-testid="navbar-dashboard-link"
+                      >
+                        Profile & Dashboard
+                      </Link>
+                    )}
+
+                    {/* Admin Portal - Show Admin Portal ONLY for admin users */}
+                    {user.role === "ADMIN" && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-2 px-3 py-2 text-xs font-bold rounded-control text-purple-300 hover:text-purple-100 hover:bg-purple-900/30 transition-colors"
+                        data-testid="navbar-admin-link"
+                      >
+                        Admin Portal
+                      </Link>
+                    )}
+
+                    <div className="my-1 border-t border-white/10" />
+
+                    {/* Log out */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        logout();
+                      }}
+                      className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors text-left"
+                      aria-label="Sign out of account"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      <span>Log out</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             /* Guest Controls: Never wrap, 44px height */
             <div className="hidden lg:flex items-center gap-2">
               <Link
                 href="/login"
-                className={buttonVariants({
-                  variant: "ghost",
-                  size: "md",
-                  className: "whitespace-nowrap font-medium text-neutral-slate-700 hover:text-neutral-slate-900",
-                })}
+                className="whitespace-nowrap font-medium text-slate-200 hover:text-white hover:bg-white/[0.06] px-4 py-2 min-h-[44px] inline-flex items-center justify-center rounded-control text-sm transition-colors"
               >
                 Log in
               </Link>
               <Link
                 href="/register"
-                className={buttonVariants({
-                  variant: "primary",
-                  size: "md",
-                  className: "whitespace-nowrap font-semibold shadow-sm",
-                })}
+                className="whitespace-nowrap font-semibold bg-[#2563EB] text-white hover:bg-[#1D4ED8] px-4 py-2 min-h-[44px] inline-flex items-center justify-center rounded-control text-sm shadow-sm transition-colors"
               >
                 Get started
               </Link>
@@ -301,11 +315,7 @@ export function Navbar() {
             <div className="lg:hidden flex items-center">
               <Link
                 href="/register"
-                className={buttonVariants({
-                  variant: "primary",
-                  size: "sm",
-                  className: "whitespace-nowrap font-semibold text-xs px-3 shadow-sm",
-                })}
+                className="whitespace-nowrap font-semibold text-xs px-3 min-h-[36px] inline-flex items-center justify-center rounded-control bg-[#2563EB] text-white shadow-sm"
               >
                 Get started
               </Link>
@@ -316,7 +326,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden rounded-control p-2.5 text-neutral-slate-600 hover:bg-neutral-slate-100 hover:text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-blue-600 transition-colors"
+            className="lg:hidden rounded-control p-2.5 text-slate-300 hover:bg-white/[0.08] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-400 transition-colors"
             aria-label="Open navigation menu"
           >
             <Menu className="h-6 w-6" />
