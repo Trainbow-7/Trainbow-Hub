@@ -1,7 +1,9 @@
-import * as https from "https";
-import { toolsProvider, GEMINI_TOOL_DECLARATIONS, ToolCallAudit } from "./tools";
-import { BANNED_FILLER_PHRASES, validateSolutionQuality, SolverOutput } from "./solver-schema";
+import { toolsProvider, ToolCallAudit } from "./tools";
+import { BANNED_FILLER_PHRASES } from "./solver-schema";
 import { StructuredExtraction } from "./extraction-schema";
+import { ProviderRegistry, IAIProviderAdapter, ProviderCallResult } from "./providers";
+import { CostTracker } from "./cost-tracker";
+import { classifyQuestion } from "./difficulty-classifier";
 
 export interface OrchestratorOptions {
   questionText: string;
@@ -11,6 +13,7 @@ export interface OrchestratorOptions {
   subject?: string;
   hintLevel?: "HINT_1" | "HINT_2" | "HINT_3" | "FULL_SOLUTION";
   previousHistory?: { role: "user" | "assistant"; content: string }[];
+  studentId?: string;
 }
 
 export interface VerificationResult {
@@ -19,11 +22,6 @@ export interface VerificationResult {
   stepCheck: string;
   notes: string;
   confidence: number;
-}
-
-export interface PracticeQuestion {
-  question: string;
-  verifiedAnswer: string;
 }
 
 export interface OrchestratorOutput {
@@ -41,9 +39,6 @@ export interface OrchestratorOutput {
     toolEvidence?: string;
   }>;
   finalAnswer: string;
-  restrictions?: string;
-  commonMistakes?: string;
-  practiceQuestions?: PracticeQuestion[];
   examinerTips?: string;
   verification: VerificationResult;
   toolAudits: ToolCallAudit[];
@@ -53,9 +48,11 @@ export interface OrchestratorOutput {
   errorCategory?: string;
   canRetry?: boolean;
   canAskTutor?: boolean;
+  modelUsed?: string;
+  costNGN?: number;
 }
 
-const SYSTEM_INSTRUCTION = `You are the master Academic Reasoning Solver for Trainbow HUB, specialized in WAEC SSCE, NECO, JAMB UTME, and Cambridge IGCSE.
+const SYSTEM_INSTRUCTION = `You are the master Academic Reasoning Solver for Trainbow HUB, specialized in WAEC SSCE, NECO, JAMB UTME, Cambridge IGCSE, and BECE.
 
 MANDATORY RULES:
 1. You have access to powerful computational tools (symbolic_math, numeric_calc, geometry_check, statistics, chemistry_tools, unit_tools, code_exec, retrieve_syllabus, draw_diagram).
@@ -63,87 +60,48 @@ MANDATORY RULES:
 3. NEVER guess or approximate roots. Always use tools to verify.
 4. FORBIDDEN: Never generate generic filler text (e.g. "Identify Core Concepts", "Deduce and Explain", "Analysis and verified solution provided", "Analyze Question Requirements", "Apply Curriculum Framework").
 5. Show clear mathematical and scientific working with formulas written in standard LaTeX ($...$ or $$...$$). For chemical equations, write proper element symbols with subscripts, e.g., $6\\text{CO}_2 + 6\\text{H}_2\\text{O} \\xrightarrow{\\text{Light energy, Chlorophyll}} \\text{C}_6\\text{H}_{12}\\text{O}_6 + 6\\text{O}_2$ or use \\ce{...}. Never use raw unescaped '&' inside LaTeX (always write '\\&' or 'and').
-6. Always state the final answer with correct, standard SI units (e.g. 1.0 µF, 50 m/s, 12 V, 250 N, 3.5 kg) rather than raw escaped strings or dollar signs. For multiple choice options, write clean, readable answers (e.g. "Therefore, the correct option is A: 1.0 µF" or "A. 1.0 µF").
+6. Always state the final answer clearly with correct standard SI units or degrees. For multiple choice options, write clean, readable answers (e.g. "Therefore, the correct option is A: 1.0 µF" or "A. 1.0 µF").
 7. State domain restrictions where relevant (e.g. denominators cannot equal zero).
 8. Cite the governing theorem or algebraic rule for each step.
 9. If asked for hints, provide only the requested hint level without revealing the final answer.`;
 
-function postGemini(apiKey: string, modelName: string, contents: any[], tools?: any[]): Promise<any> {
-  return new Promise((resolve, reject) => {
-    const payload = JSON.stringify({
-      contents,
-      tools: tools ? tools : undefined,
-      generationConfig: {
-        temperature: 0.1,
-      },
-      system_instruction: {
-        parts: [{ text: SYSTEM_INSTRUCTION }],
-      },
-    });
-
-    const options: https.RequestOptions = {
-      hostname: "generativelanguage.googleapis.com",
-      path: `/v1beta/models/${modelName}:generateContent?key=${apiKey}`,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Content-Length": Buffer.byteLength(payload),
-      },
-      timeout: 35000,
-    };
-
-    const req = https.request(options, (res) => {
-      let data = "";
-      res.on("data", (chunk) => (data += chunk));
-      res.on("end", () => {
-        if (res.statusCode && res.statusCode >= 400) {
-          let errCategory = "PROVIDER_ERROR";
-          if (res.statusCode === 401 || res.statusCode === 403) errCategory = "AUTHENTICATION_FAILED";
-          else if (res.statusCode === 404) errCategory = "MODEL_NOT_FOUND";
-          else if (res.statusCode === 429) errCategory = "QUOTA_EXCEEDED";
-
-          reject(new Error(`[GEMINI_${errCategory}] HTTP ${res.statusCode}: ${data.slice(0, 300)}`));
-        } else {
-          try {
-            resolve(JSON.parse(data));
-          } catch (e) {
-            reject(new Error(`Failed to parse Gemini response: ${data.slice(0, 200)}`));
-          }
-        }
-      });
-    });
-
-    req.on("timeout", () => {
-      req.destroy();
-      reject(new Error("[GEMINI_TIMEOUT] Request timed out after 35000ms"));
-    });
-
-    req.on("error", (err) => reject(new Error(`[GEMINI_NETWORK_ERROR] ${err.message}`)));
-    req.write(payload);
-    req.end();
-  });
-}
-
 /**
- * Main Tool-Augmented Orchestrator
+ * Main Multi-Provider Tool-Augmented Orchestrator
  */
 export async function orchestrateSolution(options: OrchestratorOptions): Promise<OrchestratorOutput> {
-  const apiKey = process.env.GEMINI_API_KEY || process.env.AI_API_KEY || "";
-  const modelName = process.env.AI_REASONING_MODEL || process.env.AI_MODEL || "gemini-3.5-flash";
+  const config = ProviderRegistry.getActiveProviderConfig();
   const hintLevel = options.hintLevel || "FULL_SOLUTION";
 
-  if (!apiKey || apiKey.startsWith("mock_")) {
+  // Check budget cap
+  if (CostTracker.isBudgetExceeded()) {
     return createErrorOutput(
       options,
-      "AUTHENTICATION_FAILED",
-      "AI Service Credentials not configured. Please contact administration."
+      "BUDGET_EXCEEDED",
+      "The monthly AI intelligence compute quota has been reached. Please contact your administrator or connect directly with an expert human teacher using Ask a Tutor."
     );
   }
 
-  const toolAudits: ToolCallAudit[] = [];
-  const tools = [{ function_declarations: GEMINI_TOOL_DECLARATIONS }];
+  // Question classification & adaptive routing
+  const classification = classifyQuestion(options.questionText, options.subject);
+  const activeModel =
+    config.routing === "adaptive" && classification.difficulty === "easy"
+      ? config.fastModel
+      : config.reasoningModel;
 
-  // Build initial prompt context
+  const reasoningEffort =
+    config.routing === "adaptive"
+      ? classification.recommendedEffort
+      : config.reasoningEffort;
+
+  const providersToTry = [config.primaryProvider];
+  if (config.secondaryProvider) {
+    providersToTry.push(config.secondaryProvider);
+  }
+
+  let finalModelResult: ProviderCallResult | null = null;
+  let lastError: any = null;
+
+  // Build prompt context
   let userPrompt = `Curriculum: ${options.curriculum || "WAEC SSCE"}\nSubject: ${options.subject || "Mathematics"}\n\nQuestion:\n${options.questionText}`;
 
   if (options.structuredExtraction) {
@@ -153,124 +111,79 @@ export async function orchestrateSolution(options: OrchestratorOptions): Promise
     }
   }
 
-  const userParts: any[] = [{ text: userPrompt }];
+  if (classification.requiresDecomposition) {
+    userPrompt += `\n\n[Instruction: This problem has multiple parts. Solve each part in exact sequence, clearly carrying results forward.]`;
+  }
 
-  if (options.imageBase64 && options.imageBase64.startsWith("data:")) {
-    const match = options.imageBase64.match(/^data:([^;]+);base64,(.+)$/);
-    if (match) {
-      userParts.push({
-        inline_data: {
-          mime_type: match[1],
-          data: match[2],
+  // Cross-provider fallback chain
+  for (const providerName of providersToTry) {
+    let adapter: IAIProviderAdapter;
+    try {
+      adapter = ProviderRegistry.getAdapter(providerName);
+    } catch {
+      continue;
+    }
+
+    let key = "";
+    if (providerName === "gemini") key = process.env.GEMINI_API_KEY || "";
+    else if (providerName === "openai") key = process.env.OPENAI_API_KEY || "";
+    else if (providerName === "anthropic") key = process.env.ANTHROPIC_API_KEY || "";
+
+    if (!key || key.startsWith("mock_")) {
+      continue;
+    }
+
+    try {
+      const startTime = Date.now();
+      const res = await adapter.generateReasoningSolution({
+        systemInstruction: SYSTEM_INSTRUCTION,
+        userPrompt,
+        imageBase64: options.imageBase64,
+        model: activeModel,
+        apiKey: key,
+        reasoningEffort,
+        timeoutMs: config.timeoutSeconds * 1000,
+        onToolCall: async (name, args) => {
+          return await toolsProvider.executeTool(name, args);
         },
       });
+
+      const elapsedMs = Date.now() - startTime;
+
+      // Record cost
+      CostTracker.recordTurn({
+        provider: providerName,
+        model: activeModel,
+        studentId: options.studentId,
+        subject: options.subject,
+        promptTokens: res.usage?.promptTokens || 500,
+        completionTokens: res.usage?.completionTokens || 800,
+        thinkingTokens: res.usage?.thinkingTokens || 0,
+        toolCallsCount: res.toolAudits?.length || 0,
+        latencyMs: elapsedMs,
+      });
+
+      finalModelResult = res;
+      break;
+    } catch (err: any) {
+      lastError = err;
+      console.warn(`[AI_PROVIDER_FAILOVER] Provider ${providerName} failed: ${err.message}. Trying next provider...`);
     }
   }
 
-  const contents: any[] = [
-    { role: "user", parts: userParts },
-  ];
-
-  const models = Array.from(
-    new Set([
-      process.env.AI_REASONING_MODEL || "gemini-3.5-flash-lite",
-      "gemini-3.5-flash-lite",
-      "gemini-3.6-flash",
-      process.env.AI_FAST_MODEL || "gemini-3.5-flash-lite",
-    ])
-  );
-
-  async function callWithFallback(currentContents: any[]) {
-    let lastErr: any;
-    for (const m of models) {
-      try {
-        return await postGemini(apiKey, m, currentContents, tools);
-      } catch (err: any) {
-        lastErr = err;
-        console.warn(`[MODEL_CHAIN_FAILOVER] Model ${m} failed (${err.message}). Trying fallback in chain...`);
-        await new Promise((r) => setTimeout(r, 600));
-      }
-    }
-    throw lastErr;
+  if (!finalModelResult) {
+    return createErrorOutput(
+      options,
+      "PROVIDER_UNAVAILABLE",
+      lastError ? lastError.message : "No configured AI provider could be contacted."
+    );
   }
 
-  let turn = 0;
-  const MAX_TURNS = 8;
-  let finalModelText = "";
-
-  try {
-    while (turn < MAX_TURNS) {
-      turn++;
-      const res = await callWithFallback(contents);
-      const candidate = res.candidates?.[0];
-      if (!candidate || !candidate.content || !candidate.content.parts) {
-        throw new Error("No candidate returned from reasoning model");
-      }
-
-      const parts = candidate.content.parts;
-      // Append model turn to conversation history
-      contents.push({ role: "model", parts });
-
-      // Check if candidate made any function calls
-      const functionCalls = parts.filter((p: any) => p.functionCall);
-
-      if (functionCalls.length === 0) {
-        // Model provided final text answer
-        finalModelText = parts.map((p: any) => p.text || "").join("\n").trim();
-        break;
-      }
-
-      // Execute each function call
-      for (const fcPart of functionCalls) {
-        const fc = fcPart.functionCall;
-        const callStartTime = Date.now();
-        let toolOutput: any;
-
-        try {
-          toolOutput = await toolsProvider.executeTool(fc.name, fc.args || {});
-        } catch (execErr: any) {
-          toolOutput = { success: false, error: execErr.message };
-        }
-
-        const callDuration = Date.now() - callStartTime;
-        toolAudits.push({
-          toolName: fc.name,
-          input: fc.args,
-          output: toolOutput.data || toolOutput.error,
-          durationMs: callDuration,
-          timestamp: new Date().toISOString(),
-          engineUsed: toolOutput.engineUsed || "node_cas",
-        });
-
-        // Gemini expects role: "user" with functionResponse part
-        contents.push({
-          role: "user",
-          parts: [
-            {
-              functionResponse: {
-                name: fc.name,
-                response: toolOutput,
-              },
-            },
-          ],
-        });
-      }
-    }
-  } catch (err: any) {
-    console.error("[ORCHESTRATOR_PROVIDER_ERROR]", err.message);
-    const errCat = err.message.includes("AUTHENTICATION_FAILED")
-      ? "AUTHENTICATION_FAILED"
-      : err.message.includes("QUOTA_EXCEEDED")
-      ? "QUOTA_EXCEEDED"
-      : err.message.includes("TIMEOUT")
-      ? "TIMEOUT"
-      : "PROVIDER_UNAVAILABLE";
-
-    return createErrorOutput(options, errCat, err.message);
-  }
+  const modelText = finalModelResult.rawText;
+  const toolAudits = (finalModelResult.toolAudits as ToolCallAudit[]) || [];
 
   // Quality check for banned filler phrases
-  const lowerText = finalModelText.toLowerCase();
+  const lowerText = modelText.toLowerCase();
   for (const banned of BANNED_FILLER_PHRASES) {
     if (lowerText.includes(banned.toLowerCase())) {
       console.error("[ORCHESTRATOR_QUALITY_GATE_VIOLATION]", `Banned phrase: "${banned}"`);
@@ -282,25 +195,24 @@ export async function orchestrateSolution(options: OrchestratorOptions): Promise
     }
   }
 
-  // Verification step: Run programmatic CAS substitution check or geometry verifier
-  const verification = await verifySolutionAgainstTools(options.questionText, finalModelText, toolAudits);
+  // Verification cascade
+  const verification = await runVerificationCascade(options.questionText, modelText, toolAudits, config);
 
-  // Parse structured elements from model output
-  return formatOrchestratorOutput(options, finalModelText, verification, toolAudits, hintLevel);
+  return formatOrchestratorOutput(options, modelText, verification, toolAudits, hintLevel);
 }
 
 /**
- * Programmatic Verification
+ * 4-Step Verification Cascade
  */
-async function verifySolutionAgainstTools(
+async function runVerificationCascade(
   questionText: string,
   modelText: string,
-  toolAudits: ToolCallAudit[]
+  toolAudits: ToolCallAudit[],
+  config: any
 ): Promise<VerificationResult> {
   const lower = questionText.toLowerCase();
 
-  // 1. Equation / Algebra Check via CAS substitution
-  // Check if symbolic_math was called or question contains an equation
+  // (1) CAS programmatic substitution or geometry theorem verifier
   const mathAudit = toolAudits.find((a) => a.toolName === "symbolic_math");
   if (mathAudit && mathAudit.output?.roots && mathAudit.output?.roots.length > 0) {
     const roots = mathAudit.output.roots;
@@ -314,7 +226,7 @@ async function verifySolutionAgainstTools(
     };
   }
 
-  // Fallback: check if text has roots like a = 3 or a = 7/9
+  // Substitute and check for rational equation fixture
   if (lower.includes("3a-1") || lower.includes("example 13") || lower.includes("1/(3a-1)")) {
     const subCheck = await toolsProvider.executeTool("symbolic_math", {
       action: "substitute_and_check",
@@ -334,7 +246,7 @@ async function verifySolutionAgainstTools(
     }
   }
 
-  // 2. Geometry Check via Geometry Verifier
+  // (2) Geometry theorem verifier
   const geomAudit = toolAudits.find((a) => a.toolName === "geometry_check");
   if (geomAudit && geomAudit.output?.isValid) {
     return {
@@ -359,7 +271,40 @@ async function verifySolutionAgainstTools(
     };
   }
 
-  // 3. Not independently verified fallback
+  // (3) Independent Checker Model (if configured with secondary provider / model)
+  if (config.secondaryProvider && config.apiKey) {
+    try {
+      const checkerAdapter = ProviderRegistry.getAdapter(config.secondaryProvider);
+      const checkRes = await checkerAdapter.checkSolutionWithModel({
+        questionText,
+        proposedSolution: modelText,
+        model: config.fastModel,
+        apiKey: config.apiKey,
+      });
+
+      if (checkRes.agrees) {
+        return {
+          isValid: true,
+          method: `Cross-Model Dual Check (${config.secondaryProvider})`,
+          stepCheck: checkRes.reasons,
+          notes: "Independently verified by secondary model review.",
+          confidence: 95,
+        };
+      } else {
+        return {
+          isValid: false,
+          method: "Cross-Model Disagreement",
+          stepCheck: `Secondary model flagged discrepancy: ${checkRes.reasons}`,
+          notes: "Verification unresolved; flagged for human tutor review.",
+          confidence: 50,
+        };
+      }
+    } catch (e: any) {
+      console.warn("[CHECKER_MODEL_ERROR]", e.message);
+    }
+  }
+
+  // (4) Unresolved / Not independently verified
   return {
     isValid: false,
     method: "None",
@@ -382,19 +327,16 @@ function formatOrchestratorOutput(
   const subject = options.subject || "Mathematics";
   const curriculum = options.curriculum || "WAEC SSCE";
 
-  // Extract Final Answer
   let finalAnswer = "";
   const faMatch = modelText.match(/### Final Answer\s*([\s\S]+?)(?:\n###|$)/i) ||
                   modelText.match(/Final Answer:\s*([\s\S]+?)(?:\n\n|$)/i);
   if (faMatch) {
     finalAnswer = faMatch[1].trim();
   } else {
-    // Take last non-empty line
     const lines = modelText.split("\n").map(l => l.trim()).filter(Boolean);
     finalAnswer = lines[lines.length - 1] || "Solution completed.";
   }
 
-  // Build steps from markdown headers or bullet points
   const rawSteps = modelText.split(/(?:###\s*Step\s*\d+:?|\*\*Step\s*\d+:?\*\*)/i).filter(s => s.trim().length > 10);
   const steps = rawSteps.map((s, idx) => {
     const lines = s.trim().split("\n");
@@ -408,14 +350,12 @@ function formatOrchestratorOutput(
     };
   });
 
-  // Verification badge header
   const verificationHeader = verification.isValid
     ? `[AI-Generated Mathematical Guidance — Verified by Trainbow Hub Engine (${verification.method})]`
     : "";
 
   let renderedContent = verificationHeader ? `${verificationHeader}\n\n` : "";
 
-  // Render based on Hint-First Mode
   if (hintLevel === "HINT_1") {
     renderedContent += `**Curriculum Topic:** ${subject} (${curriculum})\n\n`;
     renderedContent += `### Hint 1: Core Governing Concept\n`;
@@ -439,10 +379,8 @@ function formatOrchestratorOutput(
       renderedContent += `Simplify into standard form $ax^2 + bx + c = 0$ and factorize or use the quadratic formula.\n\n`;
     }
   } else {
-    // FULL_SOLUTION
     renderedContent += modelText;
 
-    // Add verification card only when independently verified
     if (verification.isValid) {
       renderedContent += `\n\n---\n\n`;
       renderedContent += `✅ **Verified Solution (Confidence: ${verification.confidence}%):**\n`;
@@ -494,7 +432,7 @@ We were unable to generate a mathematically verified solution for this question 
       isValid: false,
       method: "None",
       stepCheck: "Verification failed due to model or quality gate error.",
-      notes: "Error condition triggered.",
+      notes: errorDetail,
       confidence: 0,
     },
     toolAudits: [],

@@ -872,8 +872,15 @@ export async function generateSocraticResponse(
   } = options;
 
   // 1. Live Tool-Augmented Orchestrator for Real AI Providers
-  const apiKey = process.env.GEMINI_API_KEY || process.env.AI_API_KEY || "";
-  const provider = process.env.AI_PROVIDER || "gemini";
+  const provider = (process.env.AI_PROVIDER || "gemini").toLowerCase();
+  const apiKey =
+    provider === "gemini"
+      ? process.env.GEMINI_API_KEY
+      : provider === "openai"
+      ? process.env.OPENAI_API_KEY
+      : provider === "anthropic"
+      ? process.env.ANTHROPIC_API_KEY
+      : process.env.AI_API_KEY || "";
 
   if (apiKey && !apiKey.startsWith("mock_") && provider !== "sandbox") {
     try {

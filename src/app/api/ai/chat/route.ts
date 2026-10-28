@@ -4,6 +4,7 @@ import { db, AIHintLevel } from "@/lib/db";
 import { moderatePrompt, generateSocraticResponse } from "@/lib/adapters/ai";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60; // Support extended reasoning and multi-turn tool verification
 
 export async function POST(req: Request) {
   try {
