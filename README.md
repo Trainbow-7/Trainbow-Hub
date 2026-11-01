@@ -8,7 +8,7 @@
 ## Overview
 
 Trainbow HUB brings students, parents, tutors, and interactive learning content together into a unified platform. Built as a high-performance modular monolith, it delivers:
-- **Academy:** Comprehensive syllabus-aligned courses, interactive step-by-step quizzes, and persistent cross-device progress.
+- **Academy:** Comprehensive syllabus-aligned courses (consolidated Course Catalogue taught by Mr Oyedeji S.T with verified curriculum topics and masterclasses), interactive step-by-step quizzes, and persistent cross-device progress.
 - **Trainbow AI Assistant:** A pedagogical, hint-first Mathematics assistant with safety guardrails, programmatic formula verification, and seamless human tutor escalation.
 - **Tutor Marketplace:** Vetted educators, subject-specific credentialing, dynamic availability scheduling, and double-booking prevention.
 - **Trust & Safeguarding:** Mandatory parental consent for minors (<18), encrypted audit logs, append-only financial ledgers, and zero direct unmonitored communication between minors and tutors.
