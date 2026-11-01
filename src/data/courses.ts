@@ -1,6 +1,6 @@
 import { PRIMARY_INSTRUCTOR } from "./instructor";
 import { TrackId, EXAM_TRACKS, SUBJECT_PRICES, formatNaira } from "./pricing";
-import { TopicVideo, RECOVERED_MATHEMATICS_VIDEOS, getTopicVideo } from "./videos";
+import { TopicVideo, RECOVERED_MATHEMATICS_VIDEOS, getTopicVideo, getTopicVideoBySubject } from "./videos";
 
 export type DepartmentId = "core" | "science" | "commercial" | "arts";
 
@@ -445,9 +445,9 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Lexis & Grammatical Structures",
         durationMinutes: 180,
         topics: [
-          { name: "Parts of Speech & Functions", subtopics: ["Nouns, pronouns, verbs, tenses and aspect", "Prepositional usage"] },
-          { name: "Concord Rules", subtopics: ["Proximity rule", "Notional concord", "Compound subjects"] },
-          { name: "Clauses & Sentences", subtopics: ["Noun clauses, adjectival clauses, adverbial clauses", "Conditional sentences"] },
+          { name: "Parts of Speech & Functions", subtopics: ["Nouns, pronouns, verbs, tenses and aspect", "Prepositional usage"], video: getTopicVideoBySubject("english-language", "Parts of Speech & Functions") },
+          { name: "Concord Rules", subtopics: ["Proximity rule", "Notional concord", "Compound subjects"], video: getTopicVideoBySubject("english-language", "Concord Rules") },
+          { name: "Clauses & Sentences", subtopics: ["Noun clauses, adjectival clauses, adverbial clauses", "Conditional sentences"], video: getTopicVideoBySubject("english-language", "Clauses & Sentences") },
         ],
       },
       {
@@ -455,8 +455,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Comprehension & Summary Writing",
         durationMinutes: 200,
         topics: [
-          { name: "Reading for Stated & Implied Meanings", subtopics: ["Inference", "Tone and mood", "Figures of speech in context"] },
-          { name: "Examiner-Approved Summary Technique", subtopics: ["Sentence brevity", "Eliminating examples and metaphors"] },
+          { name: "Reading for Stated & Implied Meanings", subtopics: ["Inference", "Tone and mood", "Figures of speech in context"], video: getTopicVideoBySubject("english-language", "Reading for Stated & Implied Meanings") },
+          { name: "Examiner-Approved Summary Technique", subtopics: ["Sentence brevity", "Eliminating examples and metaphors"], video: getTopicVideoBySubject("english-language", "Examiner-Approved Summary Technique") },
         ],
       },
       {
@@ -464,8 +464,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 3: Continuous Writing & Essay Composition",
         durationMinutes: 180,
         topics: [
-          { name: "Formal & Informal Correspondence", subtopics: ["Salutation, body structure, formal sign-off"] },
-          { name: "Argumentative & Expository Essays", subtopics: ["Thesis formulation, paragraph coherence, counterarguments"] },
+          { name: "Formal & Informal Correspondence", subtopics: ["Salutation, body structure, formal sign-off"], video: getTopicVideoBySubject("english-language", "Formal & Informal Correspondence") },
+          { name: "Argumentative & Expository Essays", subtopics: ["Thesis formulation, paragraph coherence, counterarguments"], video: getTopicVideoBySubject("english-language", "Argumentative & Expository Essays") },
         ],
       },
       {
@@ -473,9 +473,9 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 4: Oral English (Test of Orals)",
         durationMinutes: 160,
         topics: [
-          { name: "Vowels & Diphthongs", subtopics: ["Short vs long vowels", "Phonetic transcriptions"] },
-          { name: "Consonants & Clusters", subtopics: ["Plosives, fricatives, nasals", "Silent letters"] },
-          { name: "Stress & Intonation", subtopics: ["Word stress patterns", "Sentence intonation (rising vs falling)"] },
+          { name: "Vowels & Diphthongs", subtopics: ["Short vs long vowels", "Phonetic transcriptions"], video: getTopicVideoBySubject("english-language", "Vowels & Diphthongs") },
+          { name: "Consonants & Clusters", subtopics: ["Plosives, fricatives, nasals", "Silent letters"], video: getTopicVideoBySubject("english-language", "Consonants & Clusters") },
+          { name: "Stress & Intonation", subtopics: ["Word stress patterns", "Sentence intonation (rising vs falling)"], video: getTopicVideoBySubject("english-language", "Stress & Intonation") },
         ],
       },
     ],
@@ -517,8 +517,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Citizenship, Rights & Values",
         durationMinutes: 150,
         topics: [
-          { name: "National Ethics & Integrity", subtopics: ["Self-reliance", "Civic duties", "Orderliness in society"] },
-          { name: "Human Rights", subtopics: ["UDHR classifications", "Limitations of human rights"] },
+          { name: "National Ethics & Integrity", subtopics: ["Self-reliance", "Civic duties", "Orderliness in society"], video: getTopicVideoBySubject("civic-education", "National Ethics & Integrity") },
+          { name: "Human Rights", subtopics: ["UDHR classifications", "Limitations of human rights"], video: getTopicVideoBySubject("civic-education", "Human Rights") },
         ],
       },
       {
@@ -526,8 +526,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Democracy & Constitutional Governance",
         durationMinutes: 160,
         topics: [
-          { name: "Rule of Law", subtopics: ["Principles of justice", "Independent judiciary"] },
-          { name: "Democratic Institutions", subtopics: ["INEC and electoral processes", "Civil society oversight"] },
+          { name: "Rule of Law", subtopics: ["Principles of justice", "Independent judiciary"], video: getTopicVideoBySubject("civic-education", "Rule of Law") },
+          { name: "Democratic Institutions", subtopics: ["INEC and electoral processes", "Civil society oversight"], video: getTopicVideoBySubject("civic-education", "Democratic Institutions") },
         ],
       },
     ],
@@ -568,8 +568,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Matter, Energy & Systems",
         durationMinutes: 160,
         topics: [
-          { name: "Living & Non-Living Systems", subtopics: ["Cells, tissues, classification of organisms"] },
-          { name: "Energy & Work", subtopics: ["Work done, mechanical advantage of levers and pulleys"] },
+          { name: "Living & Non-Living Systems", subtopics: ["Cells, tissues, classification of organisms"], video: getTopicVideoBySubject("basic-science-ict", "Living & Non-Living Systems") },
+          { name: "Energy & Work", subtopics: ["Work done, mechanical advantage of levers and pulleys"], video: getTopicVideoBySubject("basic-science-ict", "Energy & Work") },
         ],
       },
       {
@@ -577,8 +577,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: ICT & Computational Thinking",
         durationMinutes: 160,
         topics: [
-          { name: "Computer Architecture", subtopics: ["CPU, ALU, RAM vs ROM, peripherals"] },
-          { name: "Data Processing & Algorithms", subtopics: ["Flowcharts, pseudocode, basic spreadsheet formulas"] },
+          { name: "Computer Architecture", subtopics: ["CPU, ALU, RAM vs ROM, peripherals"], video: getTopicVideoBySubject("basic-science-ict", "Computer Architecture") },
+          { name: "Data Processing & Algorithms", subtopics: ["Flowcharts, pseudocode, basic spreadsheet formulas"], video: getTopicVideoBySubject("basic-science-ict", "Data Processing & Algorithms") },
         ],
       },
     ],
@@ -629,9 +629,9 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Mechanics & Dynamics",
         durationMinutes: 220,
         topics: [
-          { name: "Kinematics & Projectiles", subtopics: ["Uniform acceleration formulas", "Trajectory equations", "Time of flight and range"] },
-          { name: "Dynamics & Friction", subtopics: ["Newton's three laws", "Coefficient of static vs dynamic friction"] },
-          { name: "Equilibrium of Forces", subtopics: ["Lami's theorem", "Moments and couples", "Centers of gravity"] },
+          { name: "Kinematics & Projectiles", subtopics: ["Uniform acceleration formulas", "Trajectory equations", "Time of flight and range"], video: getTopicVideoBySubject("physics", "Kinematics & Projectiles") },
+          { name: "Dynamics & Friction", subtopics: ["Newton's three laws", "Coefficient of static vs dynamic friction"], video: getTopicVideoBySubject("physics", "Dynamics & Friction") },
+          { name: "Equilibrium of Forces", subtopics: ["Lami's theorem", "Moments and couples", "Centers of gravity"], video: getTopicVideoBySubject("physics", "Equilibrium of Forces") },
         ],
       },
       {
@@ -639,8 +639,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Thermal & Wave Physics",
         durationMinutes: 200,
         topics: [
-          { name: "Heat Transfer & Gas Laws", subtopics: ["Specific heat capacity", "Latent heat", "Boyle's and Charles' laws"] },
-          { name: "Waves & Optics", subtopics: ["Refraction at curved surfaces", "Snell's law", "Sound harmonics and resonance"] },
+          { name: "Heat Transfer & Gas Laws", subtopics: ["Specific heat capacity", "Latent heat", "Boyle's and Charles' laws"], video: getTopicVideoBySubject("physics", "Heat Transfer & Gas Laws") },
+          { name: "Waves & Optics", subtopics: ["Refraction at curved surfaces", "Snell's law", "Sound harmonics and resonance"], video: getTopicVideoBySubject("physics", "Waves & Optics") },
         ],
       },
       {
@@ -648,8 +648,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 3: Electricity & Electromagnetism",
         durationMinutes: 220,
         topics: [
-          { name: "Electrostatics & Current Electricity", subtopics: ["Coulomb's law", "Resistor and capacitor networks", "Internal resistance"] },
-          { name: "Magnetic Fields & Induction", subtopics: ["Faraday's and Lenz's laws", "AC generators and transformers"] },
+          { name: "Electrostatics & Current Electricity", subtopics: ["Coulomb's law", "Resistor and capacitor networks", "Internal resistance"], video: getTopicVideoBySubject("physics", "Electrostatics & Current Electricity") },
+          { name: "Magnetic Fields & Induction", subtopics: ["Faraday's and Lenz's laws", "AC generators and transformers"], video: getTopicVideoBySubject("physics", "Magnetic Fields & Induction") },
         ],
       },
       {
@@ -657,8 +657,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 4: Atomic & Nuclear Physics",
         durationMinutes: 180,
         topics: [
-          { name: "Quantum Nature of Light", subtopics: ["Photoelectric effect", "Einstein's photoelectric equation", "X-rays"] },
-          { name: "Radioactivity", subtopics: ["Alpha, beta, gamma decay", "Half-life decay equations", "Nuclear binding energy"] },
+          { name: "Quantum Nature of Light", subtopics: ["Photoelectric effect", "Einstein's photoelectric equation", "X-rays"], video: getTopicVideoBySubject("physics", "Quantum Nature of Light") },
+          { name: "Radioactivity", subtopics: ["Alpha, beta, gamma decay", "Half-life decay equations", "Nuclear binding energy"], video: getTopicVideoBySubject("physics", "Radioactivity") },
         ],
       },
     ],
@@ -704,9 +704,9 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Atomic Structure & Chemical Bonding",
         durationMinutes: 200,
         topics: [
-          { name: "Atomic Models & Electronic Configuration", subtopics: ["s, p, d, f orbitals", "Hund's rule", "Pauli exclusion principle"] },
-          { name: "Periodic Trends", subtopics: ["Electronegativity", "Ionization energy", "Atomic and ionic radius"] },
-          { name: "Chemical Bonds", subtopics: ["Electrovalent, covalent, coordinate, and metallic bonding"] },
+          { name: "Atomic Models & Electronic Configuration", subtopics: ["s, p, d, f orbitals", "Hund's rule", "Pauli exclusion principle"], video: getTopicVideoBySubject("chemistry", "Atomic Models & Electronic Configuration") },
+          { name: "Periodic Trends", subtopics: ["Electronegativity", "Ionization energy", "Atomic and ionic radius"], video: getTopicVideoBySubject("chemistry", "Periodic Trends") },
+          { name: "Chemical Bonds", subtopics: ["Electrovalent, covalent, coordinate, and metallic bonding"], video: getTopicVideoBySubject("chemistry", "Chemical Bonds") },
         ],
       },
       {
@@ -714,8 +714,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Stoichiometry & Chemical Energetics",
         durationMinutes: 210,
         topics: [
-          { name: "The Mole & Volumetric Calculations", subtopics: ["Molarity, standard solutions, percentage purity"] },
-          { name: "Thermodynamics & Rates of Reaction", subtopics: ["Enthalpy changes", "Activation energy", "Catalysts"] },
+          { name: "The Mole & Volumetric Calculations", subtopics: ["Molarity, standard solutions, percentage purity"], video: getTopicVideoBySubject("chemistry", "The Mole & Volumetric Calculations") },
+          { name: "Thermodynamics & Rates of Reaction", subtopics: ["Enthalpy changes", "Activation energy", "Catalysts"], video: getTopicVideoBySubject("chemistry", "Thermodynamics & Rates of Reaction") },
         ],
       },
       {
@@ -723,8 +723,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 3: Organic Chemistry & Polymers",
         durationMinutes: 230,
         topics: [
-          { name: "Hydrocarbons", subtopics: ["Fractional distillation of petroleum", "Alkanes, alkenes, alkynes"] },
-          { name: "Oxygenated Compounds", subtopics: ["Alkanols, alkanoic acids, esters, fats and oils", "Saponification"] },
+          { name: "Hydrocarbons", subtopics: ["Fractional distillation of petroleum", "Alkanes, alkenes, alkynes"], video: getTopicVideoBySubject("chemistry", "Hydrocarbons") },
+          { name: "Oxygenated Compounds", subtopics: ["Alkanols, alkanoic acids, esters, fats and oils", "Saponification"], video: getTopicVideoBySubject("chemistry", "Oxygenated Compounds") },
         ],
       },
     ],
@@ -767,8 +767,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Cell Physiology & Organisation of Life",
         durationMinutes: 180,
         topics: [
-          { name: "Cellular Structure", subtopics: ["Organelle functions", "Plant vs animal cell differences", "Microscopy"] },
-          { name: "Transport Mechanisms", subtopics: ["Osmosis, diffusion, plasmolysis, turgidity"] },
+          { name: "Cellular Structure", subtopics: ["Organelle functions", "Plant vs animal cell differences", "Microscopy"], video: getTopicVideoBySubject("biology", "Cellular Structure") },
+          { name: "Transport Mechanisms", subtopics: ["Osmosis, diffusion, plasmolysis, turgidity"], video: getTopicVideoBySubject("biology", "Transport Mechanisms") },
         ],
       },
       {
@@ -776,8 +776,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Genetics, Heredity & Evolution",
         durationMinutes: 200,
         topics: [
-          { name: "Mendelian Genetics", subtopics: ["Punnett squares, genotype vs phenotype, test crosses"] },
-          { name: "Chromosomes & DNA", subtopics: ["Replication, mutations, sickle cell anaemia trait"] },
+          { name: "Mendelian Genetics", subtopics: ["Punnett squares, genotype vs phenotype, test crosses"], video: getTopicVideoBySubject("biology", "Mendelian Genetics") },
+          { name: "Chromosomes & DNA", subtopics: ["Replication, mutations, sickle cell anaemia trait"], video: getTopicVideoBySubject("biology", "Chromosomes & DNA") },
         ],
       },
     ],
@@ -819,8 +819,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Pure Mathematics & Advanced Calculus",
         durationMinutes: 240,
         topics: [
-          { name: "Advanced Differentiation", subtopics: ["Chain, product, quotient rules", "Implicit differentiation"] },
-          { name: "Advanced Integration", subtopics: ["Integration by parts", "Definite integral applications to volumes of revolution"] },
+          { name: "Advanced Differentiation", subtopics: ["Chain, product, quotient rules", "Implicit differentiation"], video: getTopicVideoBySubject("further-mathematics", "Advanced Differentiation") },
+          { name: "Advanced Integration", subtopics: ["Integration by parts", "Definite integral applications to volumes of revolution"], video: getTopicVideoBySubject("further-mathematics", "Advanced Integration") },
         ],
       },
       {
@@ -828,8 +828,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Mechanics & Statistics",
         durationMinutes: 220,
         topics: [
-          { name: "Dynamics & Momentum", subtopics: ["Impulse, elastic and inelastic collisions"] },
-          { name: "Statistical Distributions", subtopics: ["Binomial probabilities", "Normal distribution curves"] },
+          { name: "Dynamics & Momentum", subtopics: ["Impulse, elastic and inelastic collisions"], video: getTopicVideoBySubject("further-mathematics", "Dynamics & Momentum") },
+          { name: "Statistical Distributions", subtopics: ["Binomial probabilities", "Normal distribution curves"], video: getTopicVideoBySubject("further-mathematics", "Statistical Distributions") },
         ],
       },
     ],
@@ -868,8 +868,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Soil Science & Agronomy",
         durationMinutes: 170,
         topics: [
-          { name: "Soil Chemistry & Physics", subtopics: ["Soil texture, profile, nutrient cycles"] },
-          { name: "Crop Pathology", subtopics: ["Fungal, bacterial, and viral diseases of crops"] },
+          { name: "Soil Chemistry & Physics", subtopics: ["Soil texture, profile, nutrient cycles"], video: getTopicVideoBySubject("agricultural-science", "Soil Chemistry & Physics") },
+          { name: "Crop Pathology", subtopics: ["Fungal, bacterial, and viral diseases of crops"], video: getTopicVideoBySubject("agricultural-science", "Crop Pathology") },
         ],
       },
     ],
@@ -917,8 +917,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Principles of Double Entry & Ledgers",
         durationMinutes: 190,
         topics: [
-          { name: "Books of Original Entry", subtopics: ["Sales, purchases, returns journals, cash books"] },
-          { name: "Trial Balance & Errors", subtopics: ["Errors affecting vs not affecting trial balance agreement"] },
+          { name: "Books of Original Entry", subtopics: ["Sales, purchases, returns journals, cash books"], video: getTopicVideoBySubject("financial-accounting", "Books of Original Entry") },
+          { name: "Trial Balance & Errors", subtopics: ["Errors affecting vs not affecting trial balance agreement"], video: getTopicVideoBySubject("financial-accounting", "Trial Balance & Errors") },
         ],
       },
       {
@@ -926,8 +926,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Final Accounts & Specialized Accounts",
         durationMinutes: 210,
         topics: [
-          { name: "Trading, Profit & Loss Accounts", subtopics: ["Depreciation methods", "Provision for doubtful debts"] },
-          { name: "Partnership & Company Statements", subtopics: ["Capital and current accounts", "Appropriation accounts"] },
+          { name: "Trading, Profit & Loss Accounts", subtopics: ["Depreciation methods", "Provision for doubtful debts"], video: getTopicVideoBySubject("financial-accounting", "Trading, Profit & Loss Accounts") },
+          { name: "Partnership & Company Statements", subtopics: ["Capital and current accounts", "Appropriation accounts"], video: getTopicVideoBySubject("financial-accounting", "Partnership & Company Statements") },
         ],
       },
     ],
@@ -967,8 +967,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Foundations of Trade & Aids to Trade",
         durationMinutes: 180,
         topics: [
-          { name: "Commercial Enterprises", subtopics: ["Types of business entities", "Privatization and commercialization"] },
-          { name: "Financial Intermediation", subtopics: ["Central Bank functions", "Commercial banking instruments"] },
+          { name: "Commercial Enterprises", subtopics: ["Types of business entities", "Privatization and commercialization"], video: getTopicVideoBySubject("commerce", "Commercial Enterprises") },
+          { name: "Financial Intermediation", subtopics: ["Central Bank functions", "Commercial banking instruments"], video: getTopicVideoBySubject("commerce", "Financial Intermediation") },
         ],
       },
     ],
@@ -1010,8 +1010,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Microeconomic Foundations",
         durationMinutes: 200,
         topics: [
-          { name: "Demand & Supply Analysis", subtopics: ["Equilibrium price determination", "Tax and subsidy effects"] },
-          { name: "Consumer & Production Theory", subtopics: ["Utility maximization", "Diminishing returns"] },
+          { name: "Demand & Supply Analysis", subtopics: ["Equilibrium price determination", "Tax and subsidy effects"], video: getTopicVideoBySubject("economics", "Demand & Supply Analysis") },
+          { name: "Consumer & Production Theory", subtopics: ["Utility maximization", "Diminishing returns"], video: getTopicVideoBySubject("economics", "Consumer & Production Theory") },
         ],
       },
       {
@@ -1019,8 +1019,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Macroeconomics & Public Finance",
         durationMinutes: 210,
         topics: [
-          { name: "National Income & Money", subtopics: ["Circular flow of income", "Quantity theory of money"] },
-          { name: "Fiscal & Monetary Policy", subtopics: ["Government budgets", "Treasury bills and reserve ratios"] },
+          { name: "National Income & Money", subtopics: ["Circular flow of income", "Quantity theory of money"], video: getTopicVideoBySubject("economics", "National Income & Money") },
+          { name: "Fiscal & Monetary Policy", subtopics: ["Government budgets", "Treasury bills and reserve ratios"], video: getTopicVideoBySubject("economics", "Fiscal & Monetary Policy") },
         ],
       },
     ],
@@ -1058,8 +1058,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: The Modern Office Environment",
         durationMinutes: 160,
         topics: [
-          { name: "Office Departments & Layouts", subtopics: ["Open plan vs closed offices", "Clerical staff roles"] },
-          { name: "Information Management", subtopics: ["Indexing, electronic filing, data confidentiality"] },
+          { name: "Office Departments & Layouts", subtopics: ["Open plan vs closed offices", "Clerical staff roles"], video: getTopicVideoBySubject("business-studies-office-practice", "Office Departments & Layouts") },
+          { name: "Information Management", subtopics: ["Indexing, electronic filing, data confidentiality"], video: getTopicVideoBySubject("business-studies-office-practice", "Information Management") },
         ],
       },
     ],
@@ -1103,8 +1103,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Drama & Dramatic Techniques",
         durationMinutes: 190,
         topics: [
-          { name: "African Prescribed Drama", subtopics: ["Thematic concerns", "Stagecraft and character analysis"] },
-          { name: "Non-African Drama", subtopics: ["Tragic structure", "Soliloquy and dramatic irony"] },
+          { name: "African Prescribed Drama", subtopics: ["Thematic concerns", "Stagecraft and character analysis"], video: getTopicVideoBySubject("literature-in-english", "African Prescribed Drama") },
+          { name: "Non-African Drama", subtopics: ["Tragic structure", "Soliloquy and dramatic irony"], video: getTopicVideoBySubject("literature-in-english", "Non-African Drama") },
         ],
       },
       {
@@ -1112,8 +1112,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Poetry & Literary Devices",
         durationMinutes: 190,
         topics: [
-          { name: "African Poetry Anthology", subtopics: ["Rhyme schemes, imagery, socio-political commentary"] },
-          { name: "Non-African Poetry", subtopics: ["Sonnets, odes, elegies, stylistic evaluation"] },
+          { name: "African Poetry Anthology", subtopics: ["Rhyme schemes, imagery, socio-political commentary"], video: getTopicVideoBySubject("literature-in-english", "African Poetry Anthology") },
+          { name: "Non-African Poetry", subtopics: ["Sonnets, odes, elegies, stylistic evaluation"], video: getTopicVideoBySubject("literature-in-english", "Non-African Poetry") },
         ],
       },
     ],
@@ -1153,8 +1153,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Political Theories & Systems",
         durationMinutes: 180,
         topics: [
-          { name: "Basic Political Concepts", subtopics: ["Statehood, sovereignty, citizenship, political socialization"] },
-          { name: "Government Structures", subtopics: ["Unitary, federal, confederal", "Parliamentary vs presidential"] },
+          { name: "Basic Political Concepts", subtopics: ["Statehood, sovereignty, citizenship, political socialization"], video: getTopicVideoBySubject("government", "Basic Political Concepts") },
+          { name: "Government Structures", subtopics: ["Unitary, federal, confederal", "Parliamentary vs presidential"], video: getTopicVideoBySubject("government", "Government Structures") },
         ],
       },
       {
@@ -1162,8 +1162,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Nigerian Political History & Foreign Policy",
         durationMinutes: 200,
         topics: [
-          { name: "Colonial & Constitutional Milestones", subtopics: ["Richards, Macpherson, Lyttelton constitutions"] },
-          { name: "Regional & Global Organizations", subtopics: ["ECOWAS, Commonwealth, African Union"] },
+          { name: "Colonial & Constitutional Milestones", subtopics: ["Richards, Macpherson, Lyttelton constitutions"], video: getTopicVideoBySubject("government", "Colonial & Constitutional Milestones") },
+          { name: "Regional & Global Organizations", subtopics: ["ECOWAS, Commonwealth, African Union"], video: getTopicVideoBySubject("government", "Regional & Global Organizations") },
         ],
       },
     ],
@@ -1201,8 +1201,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Sacred History & Doctrine",
         durationMinutes: 160,
         topics: [
-          { name: "Foundational Texts & Context", subtopics: ["Historical settings of the revelations"] },
-          { name: "Moral Teachings & Society", subtopics: ["Honesty, justice, peace-building, forgiveness"] },
+          { name: "Foundational Texts & Context", subtopics: ["Historical settings of the revelations"], video: getTopicVideoBySubject("crk-irk", "Foundational Texts & Context") },
+          { name: "Moral Teachings & Society", subtopics: ["Honesty, justice, peace-building, forgiveness"], video: getTopicVideoBySubject("crk-irk", "Moral Teachings & Society") },
         ],
       },
     ],
@@ -1240,8 +1240,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Ancient West African Civilizations",
         durationMinutes: 170,
         topics: [
-          { name: "Sudanic & Forest Empires", subtopics: ["Ghana, Mali, Songhai, Benin, Oyo"] },
-          { name: "Trade Networks", subtopics: ["Trans-Saharan trade and cultural exchange"] },
+          { name: "Sudanic & Forest Empires", subtopics: ["Ghana, Mali, Songhai, Benin, Oyo"], video: getTopicVideoBySubject("history", "Sudanic & Forest Empires") },
+          { name: "Trade Networks", subtopics: ["Trans-Saharan trade and cultural exchange"], video: getTopicVideoBySubject("history", "Trade Networks") },
         ],
       },
     ],
@@ -1282,8 +1282,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Map Reading & Practical Geography",
         durationMinutes: 190,
         topics: [
-          { name: "Topographical Maps", subtopics: ["Grid references, scale conversions, measuring straight and curved distances"] },
-          { name: "Contour Interpretation", subtopics: ["Spurs, valleys, ridges, knolls, vertical interval"] },
+          { name: "Topographical Maps", subtopics: ["Grid references, scale conversions, measuring straight and curved distances"], video: getTopicVideoBySubject("geography", "Topographical Maps") },
+          { name: "Contour Interpretation", subtopics: ["Spurs, valleys, ridges, knolls, vertical interval"], video: getTopicVideoBySubject("geography", "Contour Interpretation") },
         ],
       },
       {
@@ -1291,8 +1291,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 2: Physical & Human Geography",
         durationMinutes: 190,
         topics: [
-          { name: "Geomorphology", subtopics: ["Weathering, river erosion and deposition, desert landforms"] },
-          { name: "Human Settlements & Resources", subtopics: ["Rural-urban migration, mineral resources of Nigeria"] },
+          { name: "Geomorphology", subtopics: ["Weathering, river erosion and deposition, desert landforms"], video: getTopicVideoBySubject("geography", "Geomorphology") },
+          { name: "Human Settlements & Resources", subtopics: ["Rural-urban migration, mineral resources of Nigeria"], video: getTopicVideoBySubject("geography", "Human Settlements & Resources") },
         ],
       },
     ],
