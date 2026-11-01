@@ -2,17 +2,17 @@ import * as React from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
-import { Rating } from "@/components/ui/Rating";
-import { Avatar } from "@/components/ui/Avatar";
-import { SEED_SUBJECTS, SEED_COURSES } from "@/lib/data/seed-data";
-import { BookOpen, Clock, ChevronRight, CheckCircle2, Sparkles, GraduationCap, Award } from "lucide-react";
+import { SEED_SUBJECTS } from "@/lib/data/seed-data";
+import { CourseCatalogueCard } from "@/components/academy/CourseCatalogueCard";
+import { PRIMARY_INSTRUCTOR } from "@/data/instructor";
+import { CATALOGUE_SUBJECTS } from "@/data/courses";
+import { ChevronRight, Sparkles, GraduationCap } from "lucide-react";
 
 export const metadata = {
-  title: "Academy — Trainbow HUB",
-  description: "Curriculum-aligned courses and step-by-step assessments for WAEC, JAMB, and Cambridge IGCSE.",
+  title: `Course Catalogue — Taught by ${PRIMARY_INSTRUCTOR.name} — Trainbow HUB`,
+  description:
+    "Curriculum-aligned courses and step-by-step exam syllabi for WAEC, JAMB, and Cambridge IGCSE, directed by Mr Oyedeji S.T.",
 };
 
 export default function AcademyPage() {
@@ -33,7 +33,7 @@ export default function AcademyPage() {
               </Badge>
               <span className="text-xs text-neutral-slate-300 flex items-center gap-1.5">
                 <GraduationCap className="h-4 w-4 text-brand-blue-400" />
-                WAEC • JAMB • Cambridge IGCSE
+                WAEC • JAMB • Cambridge IGCSE • BECE • NCEE
               </span>
             </div>
 
@@ -42,7 +42,9 @@ export default function AcademyPage() {
             </h1>
 
             <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
-              Structured modules designed by top Nigerian educators and examiners. Master key concepts with step-by-step video lessons, verified practice quizzes, and interactive progress tracking.
+              Structured modules designed and directed by veteran WAEC Chief Examiner Consultant{" "}
+              <strong className="text-white font-semibold">{PRIMARY_INSTRUCTOR.name}</strong>. Master key exam
+              concepts with verified curriculum coverage, step-by-step marking rubrics, and dynamic bundle tuition.
             </p>
           </div>
         </div>
@@ -51,9 +53,9 @@ export default function AcademyPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-h2 font-bold font-heading text-neutral-slate-900">
-              Browse by Subject
+              Browse by Subject Area
             </h2>
-            <span className="text-caption text-neutral-slate-500">{activeSubjects.length} Active Subjects</span>
+            <span className="text-caption text-neutral-slate-500">{activeSubjects.length} Active Areas</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -91,80 +93,20 @@ export default function AcademyPage() {
           </div>
         </div>
 
-        {/* Courses Catalogue Grid */}
+        {/* Consolidated Course Catalogue Card */}
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-h2 font-bold font-heading text-neutral-slate-900">
-                All Available Courses ({SEED_COURSES.length})
+                Course Catalogue — Taught by {PRIMARY_INSTRUCTOR.name}
               </h2>
               <p className="text-caption text-neutral-slate-600">
-                Mathematics curriculum is complete and launch-ready across secondary and exam levels.
+                {CATALOGUE_SUBJECTS.length} verified subjects across Core, Science, Commercial, and Arts departments aligned to WAEC, JAMB, BECE, NCEE, and Cambridge IGCSE standards.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SEED_COURSES.map((course) => (
-              <Card key={course.id} className="flex flex-col justify-between hover:shadow-soft hover:-translate-y-0.5 transition-all duration-150">
-                <CardHeader className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Badge variant="brand">{course.level}</Badge>
-                    <span className="text-sm font-extrabold text-neutral-slate-900 font-heading">
-                      ₦{(course.priceMinorUnits / 100).toLocaleString("en-NG")}
-                    </span>
-                  </div>
-                  <CardTitle className="text-base line-clamp-2">
-                    <Link href={`/courses/${course.slug}`} className="hover:text-brand-blue-600 transition-colors">
-                      {course.title}
-                    </Link>
-                  </CardTitle>
-                  <CardDescription className="text-xs text-neutral-slate-600 line-clamp-2">
-                    {course.shortDescription}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3 pt-0">
-                  {/* Progress Preview Bar */}
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between text-[11px] text-neutral-slate-500">
-                      <span>Curriculum coverage</span>
-                      <span className="font-medium text-neutral-slate-700">100% Verified</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-neutral-slate-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-brand-blue-600 rounded-full w-full" />
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs text-neutral-slate-500 border-t border-neutral-slate-100 pt-3">
-                    <span className="flex items-center gap-1">
-                      <BookOpen className="h-3.5 w-3.5 text-neutral-slate-400" />
-                      {course.lessonCount} Lessons
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-3.5 w-3.5 text-neutral-slate-400" />
-                      {course.durationHours} Hours
-                    </span>
-                    <Rating value={course.rating} count={course.reviewCount} />
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-neutral-slate-700">
-                    <Avatar name={course.instructorName} size="sm" />
-                    <div className="truncate">
-                      <p className="font-semibold text-neutral-slate-900 truncate">{course.instructorName}</p>
-                      <p className="text-[10px] text-neutral-slate-500 truncate">{course.instructorTitle}</p>
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter className="pt-0">
-                  <Link href={`/courses/${course.slug}`} className="w-full">
-                    <Button variant="primary" className="w-full justify-between h-11">
-                      <span>Explore Syllabus</span>
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+          <CourseCatalogueCard />
         </div>
       </main>
 
