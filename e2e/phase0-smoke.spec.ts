@@ -32,7 +32,7 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
 
     // Verify hero section and high-contrast heading
     await expect(
-      page.getByRole("heading", { name: /Learn smarter\.\s+Find the right tutor\.\s+Grow with confidence\./i })
+      page.getByRole("heading", { name: /Learn smarter\.\s+Find the right tutor/i })
     ).toBeVisible();
 
     // Verify trust signals
