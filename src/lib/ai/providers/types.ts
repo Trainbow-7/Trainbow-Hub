@@ -1,4 +1,4 @@
-import { SolverOutput } from "./solver-schema";
+import { SolverOutput } from "../solver-schema";
 
 export type AIProviderName = "gemini" | "openai" | "anthropic" | "sandbox";
 

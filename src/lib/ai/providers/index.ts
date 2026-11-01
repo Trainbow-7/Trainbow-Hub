@@ -10,7 +10,7 @@ export * from "./openai";
 export * from "./anthropic";
 
 export class ProviderRegistry {
-  private static adapters: Map<AIProviderName, IAIProviderAdapter> = new Map([
+  private static adapters: Map<AIProviderName, IAIProviderAdapter> = new Map<AIProviderName, IAIProviderAdapter>([
     ["gemini", new GeminiProviderAdapter()],
     ["openai", new OpenAIProviderAdapter()],
     ["anthropic", new AnthropicProviderAdapter()],

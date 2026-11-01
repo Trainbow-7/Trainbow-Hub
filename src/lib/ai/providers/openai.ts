@@ -74,6 +74,7 @@ export class OpenAIProviderAdapter implements IAIProviderAdapter {
       }
 
       for (const tc of assistantMsg.tool_calls) {
+        if (tc.type !== "function" || !tc.function) continue;
         const fnName = tc.function.name;
         let fnArgs = {};
         try {

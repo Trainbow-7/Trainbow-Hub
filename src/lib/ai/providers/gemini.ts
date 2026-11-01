@@ -74,6 +74,7 @@ export class GeminiProviderAdapter implements IAIProviderAdapter {
 
       for (const fcPart of functionCalls) {
         const fc = fcPart.functionCall;
+        if (!fc || !fc.name) continue;
         const callStartTime = Date.now();
         let toolOutput: any;
 
