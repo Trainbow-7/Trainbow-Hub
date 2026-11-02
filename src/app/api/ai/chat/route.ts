@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/session";
 import { db, AIHintLevel } from "@/lib/db";
 import { moderatePrompt, generateSocraticResponse } from "@/lib/adapters/ai";
+import { callGeminiVision, callOpenAIVision } from "@/lib/ai/multimodal-vision";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60; // Support extended reasoning and multi-turn tool verification
@@ -61,6 +62,48 @@ export async function POST(req: Request) {
       rawPrompt.toLowerCase().includes("solve this question") ||
       rawPrompt.toLowerCase().includes("in attached") ||
       rawPrompt.toLowerCase().includes("from the attached");
+    // Auto-extract vision if attachment is present without extracted text
+    if (attachedImagesWithoutText.length > 0) {
+      const isUsableKey = (k?: string) =>
+        Boolean(k && k.trim().length >= 15 && !k.startsWith("mock_") && !k.startsWith("your_") && !k.includes("your_api_key"));
+
+      const geminiKey = [process.env.GEMINI_API_KEY, process.env.AI_API_KEY].find(isUsableKey) || "";
+      const openAIKey = isUsableKey(process.env.OPENAI_API_KEY) ? process.env.OPENAI_API_KEY : "";
+      const provider = (process.env.AI_PROVIDER || "gemini").toLowerCase();
+
+      if (provider !== "sandbox" && (geminiKey || openAIKey)) {
+        for (const att of attachedImagesWithoutText) {
+          const img = att.previewUrl || att.imageBase64;
+          if (!img) continue;
+          try {
+            let extracted;
+            if (provider === "openai" && openAIKey) {
+              extracted = await callOpenAIVision(img, openAIKey, rawPrompt);
+            } else if (geminiKey) {
+              try {
+                extracted = await callGeminiVision(img, geminiKey, rawPrompt);
+              } catch (gErr) {
+                if (openAIKey) {
+                  extracted = await callOpenAIVision(img, openAIKey, rawPrompt);
+                } else {
+                  throw gErr;
+                }
+              }
+            } else if (openAIKey) {
+              extracted = await callOpenAIVision(img, openAIKey, rawPrompt);
+            }
+
+            if (extracted?.question_text && extracted.question_text.trim()) {
+              const text = extracted.question_text.trim();
+              att.extractedText = text;
+              attachedImagesWithExtractedText.push(text);
+            }
+          } catch (visionErr) {
+            console.warn("[CHAT_ROUTE_AUTO_VISION_EXTRACTION_FAILED]", visionErr);
+          }
+        }
+      }
+    }
 
     if (attachedImagesWithExtractedText.length > 0) {
       if (isPlaceholderPrompt) {
@@ -68,18 +111,6 @@ export async function POST(req: Request) {
       } else {
         effectiveQuestion = `${rawPrompt}\n\n${attachedImagesWithExtractedText.join("\n\n")}`;
       }
-    } else if (attachedImagesWithoutText.length > 0) {
-      // Attachment is present but was not pre-extracted on client; fail honestly with guard
-      if (isPlaceholderPrompt) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: "I couldn't read your attachment. Try again, re-scan, or type the question.",
-          },
-          { status: 422 }
-        );
-      }
-      effectiveQuestion = rawPrompt;
     } else {
       effectiveQuestion = rawPrompt;
     }

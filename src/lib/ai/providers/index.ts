@@ -39,27 +39,34 @@ export class ProviderRegistry {
     const primaryProvider = (process.env.AI_PROVIDER || "gemini").toLowerCase() as AIProviderName;
     const secondaryProvider = (process.env.AI_SECONDARY_PROVIDER || "").toLowerCase() as AIProviderName | undefined;
 
+    const isUsableKey = (k?: string) =>
+      Boolean(k && k.trim().length >= 15 && !k.startsWith("mock_") && !k.startsWith("your_") && !k.includes("your_api_key"));
+
     let apiKey = "";
-    if (primaryProvider === "gemini") apiKey = process.env.GEMINI_API_KEY || "";
-    else if (primaryProvider === "openai") apiKey = process.env.OPENAI_API_KEY || "";
-    else if (primaryProvider === "anthropic") apiKey = process.env.ANTHROPIC_API_KEY || "";
+    if (primaryProvider === "gemini") {
+      apiKey = [process.env.GEMINI_API_KEY, process.env.AI_API_KEY].find(isUsableKey) || process.env.GEMINI_API_KEY || "";
+    } else if (primaryProvider === "openai") {
+      apiKey = process.env.OPENAI_API_KEY || "";
+    } else if (primaryProvider === "anthropic") {
+      apiKey = process.env.ANTHROPIC_API_KEY || "";
+    }
 
     const defaultReasoningModel: Record<AIProviderName, string> = {
-      gemini: "gemini-2.5-pro",
+      gemini: "gemini-3.5-flash",
       openai: "o3-mini",
       anthropic: "claude-3-7-sonnet-20250219",
       sandbox: "sandbox-model",
     };
 
     const defaultVisionModel: Record<AIProviderName, string> = {
-      gemini: "gemini-2.5-pro",
+      gemini: "gemini-3.5-flash-lite",
       openai: "gpt-4o",
       anthropic: "claude-3-7-sonnet-20250219",
       sandbox: "sandbox-vision",
     };
 
     const defaultFastModel: Record<AIProviderName, string> = {
-      gemini: "gemini-2.5-flash",
+      gemini: "gemini-3.5-flash-lite",
       openai: "gpt-4o-mini",
       anthropic: "claude-3-5-haiku-20241022",
       sandbox: "sandbox-fast",

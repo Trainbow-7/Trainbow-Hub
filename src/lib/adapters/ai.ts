@@ -873,16 +873,19 @@ export async function generateSocraticResponse(
 
   // 1. Live Tool-Augmented Orchestrator for Real AI Providers
   const provider = (process.env.AI_PROVIDER || "gemini").toLowerCase();
+  const isUsableKey = (k?: string) =>
+    Boolean(k && k.trim().length >= 15 && !k.startsWith("mock_") && !k.startsWith("your_") && !k.includes("your_api_key"));
+
   const apiKey =
     provider === "gemini"
-      ? process.env.GEMINI_API_KEY
+      ? [process.env.GEMINI_API_KEY, process.env.AI_API_KEY].find(isUsableKey) || ""
       : provider === "openai"
-      ? process.env.OPENAI_API_KEY
+      ? isUsableKey(process.env.OPENAI_API_KEY) ? process.env.OPENAI_API_KEY! : ""
       : provider === "anthropic"
-      ? process.env.ANTHROPIC_API_KEY
-      : process.env.AI_API_KEY || "";
+      ? isUsableKey(process.env.ANTHROPIC_API_KEY) ? process.env.ANTHROPIC_API_KEY! : ""
+      : isUsableKey(process.env.AI_API_KEY) ? process.env.AI_API_KEY! : "";
 
-  if (apiKey && !apiKey.startsWith("mock_") && provider !== "sandbox") {
+  if (apiKey && provider !== "sandbox") {
     try {
       const orchOutput = await orchestrateSolution({
         questionText: prompt,
@@ -909,27 +912,8 @@ export async function generateSocraticResponse(
         subject: orchOutput.detectedSubject || subject,
       };
     } catch (orchErr: any) {
-      console.error("[ORCHESTRATOR_EXECUTION_ERROR]", orchErr);
-      return {
-        content: `[AI-Generated Academic Guidance — Solver Error]
-
-### ⚠️ Solution Temporarily Unavailable
-We were unable to generate a mathematically verified solution for this question at this moment.
-
-**Error Category:** \`PROVIDER_UNAVAILABLE\`
-*Note for Learner:* Trainbow HUB strictly prohibits unverified or generic filler responses. You can click **Retry** to re-attempt the AI solve with another model, or connect directly with an expert human teacher using **Ask a Tutor**.`,
-        hintLevel,
-        verification: {
-          isValid: false,
-          method: "None",
-          stepCheck: "Verification failed due to provider error.",
-          notes: "Live reasoning unavailable.",
-        },
-        pedagogicalSummary: "The live model was unable to complete the solution.",
-        isAiGenerated: false,
-        curriculum,
-        subject,
-      };
+      console.warn("[ORCHESTRATOR_FALLBACK_TO_DETERMINISTIC_SOLVER]", orchErr?.message);
+      // Fall through to deterministic verifier engine so student always gets verified working!
     }
   }
 

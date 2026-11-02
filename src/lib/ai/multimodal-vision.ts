@@ -33,15 +33,27 @@ CRITICAL INSTRUCTIONS:
 - Return ONLY valid JSON conforming to the schema above, with no markdown code fence and no surrounding conversation.`;
 
 /**
- * Calls Google Gemini Vision API (models: gemini-1.5-flash or gemini-2.0-flash)
+ * Calls Google Gemini Vision API with multi-model failover (e.g. gemini-3.5-flash-lite, gemini-3.5-flash)
  */
 export async function callGeminiVision(
   imageBase64: string,
   apiKey: string,
   typedPrompt?: string
 ): Promise<StructuredExtraction> {
-  const model = process.env.AI_MODEL || "gemini-flash-latest";
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+  if (!apiKey || apiKey.startsWith("mock_") || apiKey.startsWith("your_") || apiKey.includes("your_api_key")) {
+    throw new Error("Invalid or placeholder Gemini API key configured.");
+  }
+
+  const primaryModel = process.env.AI_VISION_MODEL || process.env.AI_MODEL || "gemini-3.5-flash-lite";
+  const candidateModels = Array.from(
+    new Set([
+      primaryModel,
+      "gemini-3.5-flash-lite",
+      "gemini-3.5-flash",
+      "gemini-flash-lite-latest",
+      "gemini-flash-latest",
+    ])
+  );
 
   // Parse MIME type and raw base64 data
   let mimeType = "image/jpeg";
@@ -80,22 +92,60 @@ export async function callGeminiVision(
     },
   };
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(requestBody),
-  });
+  let response: Response | null = null;
+  let lastError: Error | null = null;
 
-  if (!response.ok) {
-    const errorText = await response.text().catch(() => "");
-    throw new Error(
-      `Gemini Vision API error (HTTP ${response.status}): ${errorText.substring(0, 300)}`
-    );
+  for (const model of candidateModels) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (res.ok) {
+        response = res;
+        break;
+      }
+
+      const errorText = await res.text().catch(() => "");
+      const isRecoverable =
+        res.status === 404 ||
+        res.status === 503 ||
+        res.status === 429 ||
+        errorText.includes("spikes in demand") ||
+        errorText.includes("no longer available") ||
+        errorText.includes("RESOURCE_EXHAUSTED");
+
+      if (isRecoverable && model !== candidateModels[candidateModels.length - 1]) {
+        console.warn(`[GEMINI_VISION_FAILOVER] Model ${model} returned HTTP ${res.status}. Trying next candidate model...`);
+        lastError = new Error(`Gemini Vision API error (HTTP ${res.status}): ${errorText.substring(0, 300)}`);
+        continue;
+      }
+
+      throw new Error(`Gemini Vision API error (HTTP ${res.status}): ${errorText.substring(0, 300)}`);
+    } catch (fetchErr: any) {
+      lastError = fetchErr;
+      if (candidateModels.indexOf(model) < candidateModels.length - 1) {
+        console.warn(`[GEMINI_VISION_RETRY] Failed calling ${model}: ${fetchErr.message}. Trying next candidate model...`);
+        continue;
+      }
+      throw fetchErr;
+    }
+  }
+
+  if (!response) {
+    throw lastError || new Error("All Gemini vision candidate models failed to return content.");
   }
 
   const json = await response.json();
+  const rawParts = json?.candidates?.[0]?.content?.parts || [];
+  const textParts = rawParts.filter((p: any) => typeof p.text === "string" && !p.thought);
   const textOutput =
-    json?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+    textParts.map((p: any) => p.text).join("\n").trim() ||
+    rawParts.map((p: any) => p.text || "").join("\n").trim() ||
+    "{}";
 
   // Clean possible markdown code fences if model enclosed JSON
   const cleaned = textOutput.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();

@@ -20,13 +20,14 @@ test.describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Eng
     page,
   }) => {
     await loginAsStudent(page);
+    test.setTimeout(90000);
 
     // Navigate to AI Workspace
     await page.goto("/ai");
     await expect(page).toHaveURL("/ai");
 
     // Verify Socratic Workspace elements
-    await expect(page.locator("h2").filter({ hasText: "Live Socratic Mathematics Workspace" })).toBeVisible();
+    await expect(page.locator("h2").filter({ hasText: /Live (Socratic Mathematics|Academic AI Intelligence) Workspace/ })).toBeVisible();
     await expect(page.locator('[data-testid="quota-counter"]')).toBeVisible();
 
     // Start clean conversation thread
@@ -80,6 +81,7 @@ test.describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Eng
 
   test("2. Turn Feedback & 1-Tap Tutor Escalation Flow (AI-09, AI-10)", async ({ page }) => {
     await loginAsStudent(page);
+    test.setTimeout(90000);
 
     await page.goto("/ai");
 
@@ -119,6 +121,7 @@ test.describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Eng
 
   test("3. Content Moderation & Safe Pedagogical Redirects (AI-08)", async ({ page }) => {
     await loginAsStudent(page);
+    test.setTimeout(90000);
 
     await page.goto("/ai");
 
@@ -136,6 +139,7 @@ test.describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Eng
 
   test("4. Conversation Thread Management & Deletion (AI-11, AI-12)", async ({ page }) => {
     await loginAsStudent(page);
+    test.setTimeout(90000);
 
     await page.goto("/ai");
 

@@ -52,17 +52,22 @@ export async function POST(req: Request) {
       computeSha256Hex(imageBase64 || typedPrompt || fileName);
 
     const isProduction = process.env.NODE_ENV === "production";
-    const provider = process.env.AI_PROVIDER || "sandbox";
-    const geminiKey = process.env.GEMINI_API_KEY || process.env.AI_API_KEY || "";
-    const openAIKey = process.env.OPENAI_API_KEY || "";
+    const provider = (process.env.AI_PROVIDER || "sandbox").toLowerCase();
 
-    const apiKey =
-      provider === "openai" ? openAIKey : geminiKey || openAIKey;
+    const isUsableApiKey = (key?: string): boolean => {
+      if (!key) return false;
+      const trimmed = key.trim();
+      if (trimmed.length < 15) return false;
+      if (trimmed.startsWith("mock_") || trimmed.startsWith("your_") || trimmed.includes("your_api_key")) return false;
+      return true;
+    };
+
+    const geminiKey = [process.env.GEMINI_API_KEY, process.env.AI_API_KEY].find(isUsableApiKey) || "";
+    const openAIKey = isUsableApiKey(process.env.OPENAI_API_KEY) ? process.env.OPENAI_API_KEY! : "";
 
     const isMock =
       provider === "sandbox" ||
-      !apiKey ||
-      apiKey.startsWith("mock_");
+      (!isUsableApiKey(geminiKey) && !isUsableApiKey(openAIKey));
 
     // In production, reject sandbox mock extraction completely
     if (isProduction && isMock) {
@@ -89,13 +94,22 @@ export async function POST(req: Request) {
       );
     }
 
-    // Call Real Multimodal Vision Provider
+    // Call Real Multimodal Vision Provider with secondary failover
     let extraction: StructuredExtraction;
     try {
       if (provider === "openai" && openAIKey) {
         extraction = await callOpenAIVision(imageBase64, openAIKey, typedPrompt);
       } else if (geminiKey) {
-        extraction = await callGeminiVision(imageBase64, geminiKey, typedPrompt);
+        try {
+          extraction = await callGeminiVision(imageBase64, geminiKey, typedPrompt);
+        } catch (geminiErr) {
+          if (openAIKey) {
+            console.warn("[VISION_GEMINI_FAILED_TRYING_OPENAI]", geminiErr);
+            extraction = await callOpenAIVision(imageBase64, openAIKey, typedPrompt);
+          } else {
+            throw geminiErr;
+          }
+        }
       } else if (openAIKey) {
         extraction = await callOpenAIVision(imageBase64, openAIKey, typedPrompt);
       } else {

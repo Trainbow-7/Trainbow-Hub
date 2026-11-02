@@ -46,11 +46,50 @@ export class GeminiProviderAdapter implements IAIProviderAdapter {
         };
       }
 
-      const response = await ai.models.generateContent({
-        model: params.model,
-        contents,
-        config,
-      });
+      const candidateModels = Array.from(
+        new Set([
+          params.model,
+          "gemini-3.5-flash",
+          "gemini-3.5-flash-lite",
+          "gemini-flash-lite-latest",
+        ])
+      );
+
+      let response: any = null;
+      let lastErr: any = null;
+      for (const m of candidateModels) {
+        try {
+          const res = await ai.models.generateContent({
+            model: m,
+            contents,
+            config,
+          });
+          if (res?.candidates?.[0]?.content?.parts) {
+            response = res;
+            break;
+          }
+        } catch (callErr: any) {
+          lastErr = callErr;
+          const msg = (callErr?.message || "").toLowerCase();
+          if (
+            msg.includes("503") ||
+            msg.includes("404") ||
+            msg.includes("demand") ||
+            msg.includes("not found") ||
+            msg.includes("no longer available")
+          ) {
+            console.warn(
+              `[GEMINI_REASONING_FAILOVER] Model ${m} returned error. Trying fallback model...`
+            );
+            continue;
+          }
+          throw callErr;
+        }
+      }
+
+      if (!response) {
+        throw lastErr || new Error("No candidate returned from Gemini API");
+      }
 
       if (response.usageMetadata) {
         usageTotals.promptTokens += response.usageMetadata.promptTokenCount || 0;
