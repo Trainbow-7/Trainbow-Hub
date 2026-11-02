@@ -50,7 +50,7 @@ describe("Landing Page & Brand Copy Requirements", () => {
 
   it("fails if banned marketing or unverifiable claims appear on the landing page", () => {
     const pagePath = path.join(rootDir, "src/app/page.tsx");
-    const visualPath = path.join(rootDir, "src/components/home/HeroHubVisual.tsx");
+    const visualPath = path.join(rootDir, "src/components/home/HubOrbit.tsx");
     const combinedContent = fs.readFileSync(pagePath, "utf8") + "\n" + fs.readFileSync(visualPath, "utf8");
 
     const bannedPatterns = [
@@ -76,12 +76,12 @@ describe("Landing Page & Brand Copy Requirements", () => {
 
   it("verifies AI chat example has moved from landing page to /ai page", () => {
     const landingContent = fs.readFileSync(path.join(rootDir, "src/app/page.tsx"), "utf8");
-    const hubContent = fs.readFileSync(path.join(rootDir, "src/components/home/HeroHubVisual.tsx"), "utf8");
+    const visualContent = fs.readFileSync(path.join(rootDir, "src/components/home/HubOrbit.tsx"), "utf8");
     const aiPageContent = fs.readFileSync(path.join(rootDir, "src/app/ai/page.tsx"), "utf8");
 
     // Must NOT be on the landing page
     expect(landingContent).not.toContain("How do I solve");
-    expect(hubContent).not.toContain("How do I solve");
+    expect(visualContent).not.toContain("How do I solve");
 
     // MUST be on the /ai page, clearly labeled as Example
     expect(aiPageContent).toContain("How do I solve");
@@ -101,10 +101,8 @@ describe("Landing Page & Brand Copy Requirements", () => {
 
   it("verifies total visible copy between header and footer is 170 words or fewer", () => {
     const pagePath = path.join(rootDir, "src/app/page.tsx");
-    const visualPath = path.join(rootDir, "src/components/home/HeroHubVisual.tsx");
 
     const pageContent = fs.readFileSync(pagePath, "utf8");
-    const visualContent = fs.readFileSync(visualPath, "utf8");
 
     // Extract content inside <main>...</main>
     const mainMatch = pageContent.match(/<main[^>]*>([\s\S]*?)<\/main>/);
@@ -123,20 +121,23 @@ describe("Landing Page & Brand Copy Requirements", () => {
 
     const pageWords = cleanJsxText(mainMatch![1]).split(/\s+/).filter(Boolean);
 
-    // Extract rendered strings from SERVICES array and JSX in HeroHubVisual
-    const visualMatch = visualContent.match(/return\s*\([\s\S]*?\n\s*\);/);
-    expect(visualMatch).toBeTruthy();
-    const visualJsxWords = cleanJsxText(visualMatch![0]).split(/\s+/).filter(Boolean);
-
-    // Service card labels in visual: Academy, Lessons and quizzes, AI, Instant study help, Tutors, Matched to you, Music, Theory and instruments
-    const serviceCardWords = [
+    // Visible words in Hub visual:
+    // "One account" (2), "Four ways to learn" (4)
+    // 4 service cards:
+    // - Academy: Lessons and quizzes (4)
+    // - AI: Instant study help (4)
+    // - Music: Theory and instruments (4)
+    // - Tutors: Matched to you (4)
+    const hubVisualWords = [
+      "One", "account",
+      "Four", "ways", "to", "learn",
       "Academy", "Lessons", "and", "quizzes",
       "AI", "Instant", "study", "help",
-      "Tutors", "Matched", "to", "you",
-      "Music", "Theory", "and", "instruments"
+      "Music", "Theory", "and", "instruments",
+      "Tutors", "Matched", "to", "you"
     ];
 
-    const totalWords = pageWords.length + visualJsxWords.length + serviceCardWords.length;
+    const totalWords = pageWords.length + hubVisualWords.length;
     console.log(`Landing page total visible words: ${totalWords} (Budget: 170 words max)`);
 
     expect(totalWords).toBeLessThanOrEqual(170);
