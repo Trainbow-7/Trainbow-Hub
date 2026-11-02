@@ -57,7 +57,7 @@ describe("Phase J: Parent & Guardian Oversight Portal Unit Tests (PP-01 to PP-05
       const mathSession = timetable.find(t => t.subject === "Mathematics");
       expect(mathSession).toBeDefined();
       expect(mathSession?.studentName).toBe("Chioma Adeleke");
-      expect(mathSession?.tutorName).toBe("Dr. Tayo Okafor");
+      expect(mathSession?.tutorName).toBe("Lead STEM Tutor");
       expect(mathSession?.observerLink).toBe(`/classroom/${mathSession?.bookingId}?role=GUARDIAN`);
       expect(mathSession?.attendanceStatus).toBe("ATTENDED");
       expect(mathSession?.durationSeconds).toBe(3420);
@@ -107,7 +107,7 @@ describe("Phase J: Parent & Guardian Oversight Portal Unit Tests (PP-01 to PP-05
       expect(notes.length).toBeGreaterThanOrEqual(1);
       const note = notes[0];
       expect(note.subject).toBe("Mathematics");
-      expect(note.tutorSlug).toBe("dr-tayo-okafor");
+      expect(note.tutorSlug).toBe("lead-stem-tutor");
       expect(note.summary).toContain("Chioma demonstrated strong conceptual grasp");
       expect(note.homeworkAssignment).toContain("WAEC 2024 Section B Questions");
       expect(note.strengths).toBeDefined();

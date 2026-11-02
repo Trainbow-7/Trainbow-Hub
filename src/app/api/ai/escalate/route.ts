@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const {
       conversationId,
       messageId,
-      tutorSlug = "dr-tayo-okafor",
+      tutorSlug = "lead-stem-tutor",
       problemSnippet,
       studentAttempt,
       suggestedTopic = "Mathematics Clarification",

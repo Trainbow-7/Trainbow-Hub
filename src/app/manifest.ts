@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
+import { BRAND } from "@/lib/brand";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Trainbow HUB — Learn • Connect • Grow",
-    short_name: "Trainbow HUB",
-    description:
-      "Mobile-first online learning hub for Nigeria. Expert 1-on-1 tutoring, Socratic AI Mathematics Assistant, and curriculum-aligned courses for WAEC, JAMB, and Cambridge IGCSE.",
+    name: `${BRAND.name} — ${BRAND.tagline}`,
+    short_name: BRAND.name,
+    description: BRAND.description,
     start_url: "/",
     display: "standalone",
     background_color: "#0B1B3A",
@@ -49,14 +49,8 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         name: "Music Academy",
         short_name: "Music",
-        description: "Music theory, instrument tuition and repertoire",
+        description: "Music theory, piano, and vocal coaching",
         url: "/music",
-      },
-      {
-        name: "Student Dashboard",
-        short_name: "Dashboard",
-        description: "View lessons, bookings, and practice progress",
-        url: "/dashboard",
       },
     ],
   };

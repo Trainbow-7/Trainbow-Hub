@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS ai_tutor_escalations (
     conversation_id VARCHAR(64) NOT NULL REFERENCES ai_conversations(id) ON DELETE CASCADE,
     problem_statement TEXT NOT NULL,
     student_attempt_summary TEXT,
-    suggested_tutor_slug VARCHAR(128) NOT NULL DEFAULT 'dr-tayo-okafor',
+    suggested_tutor_slug VARCHAR(128) NOT NULL DEFAULT 'lead-stem-tutor',
     status VARCHAR(32) NOT NULL DEFAULT 'PENDING_BOOKING', -- PENDING_BOOKING, BOOKED, RESOLVED
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()

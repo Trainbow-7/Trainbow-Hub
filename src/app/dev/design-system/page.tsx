@@ -327,7 +327,7 @@ function DesignSystemContent() {
                       <div className="font-semibold">Mathematics (WAEC Prep)</div>
                       <div className="text-xs text-neutral-slate-500">1-on-1 Virtual Lesson</div>
                     </TableCell>
-                    <TableCell>Dr. T. Okafor</TableCell>
+                    <TableCell>Lead STEM Tutor</TableCell>
                     <TableCell className="font-semibold">₦7,500.00</TableCell>
                     <TableCell>
                       <Badge variant="success">Confirmed</Badge>

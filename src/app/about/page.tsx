@@ -9,7 +9,7 @@ import { ShieldCheck, Heart, Award, Users, BookOpen, Sparkles, ArrowRight } from
 
 export const metadata = {
   title: "About Us — Trainbow HUB",
-  description: "Learn • Connect • Grow. Nigeria's mobile-first online learning hub connecting learners, parents, and verified tutors.",
+  description: "Learn • Build • Grow. Nigeria's mobile-first online learning hub connecting learners, parents, and verified tutors.",
 };
 
 export default function AboutPage() {

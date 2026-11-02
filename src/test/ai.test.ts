@@ -257,20 +257,20 @@ describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Engine",
       expect(feedback.comments).toBe("Clear explanation of finding factors p and q!");
     });
 
-    it("creates an escalation linking problem attempt to Dr. Tayo Okafor", async () => {
+    it("creates an escalation linking problem attempt to Lead STEM Tutor", async () => {
       const escalation = await db.createAIEscalation({
         conversationId: "conv-seed-001",
         messageId: "msg-seed-002",
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
+        tutorSlug: "lead-stem-tutor",
         problemSnippet: "2x² - 5x + 3 = 0",
         studentAttempt: "Student reached Hint 3 but struggled with negative factors",
         suggestedTopic: "Quadratic Factorisation with a > 1",
       });
 
       expect(escalation.id).toBeDefined();
-      expect(escalation.tutorSlug).toBe("dr-tayo-okafor");
-      expect(escalation.tutorName).toBe("Dr. Tayo Okafor");
+      expect(escalation.tutorSlug).toBe("lead-stem-tutor");
+      expect(escalation.tutorName).toBe("Lead STEM Tutor");
       expect(escalation.status).toBe("PENDING_BOOKING");
 
       // Verify student's escalations query

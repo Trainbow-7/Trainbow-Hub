@@ -147,7 +147,7 @@ describe("Phase H: Administration, Safeguarding Triage & Financial Operations Hu
   describe("PY-08: Tutor Ledger Payouts & Commission Splits", () => {
     it("computes accurate 85% net tutor available balance from append-only ledger", async () => {
       const balances = await db.listTutorPayoutBalances();
-      const drTayo = balances.find(b => b.tutorSlug === "dr-tayo-okafor");
+      const drTayo = balances.find(b => b.tutorSlug === "lead-stem-tutor");
       expect(drTayo).toBeDefined();
 
       // Seed booking: ₦7,500 (750,000 kobo)
@@ -161,14 +161,14 @@ describe("Phase H: Administration, Safeguarding Triage & Financial Operations Hu
 
     it("rejects tutor payout exceeding available balance", async () => {
       await expect(
-        db.processTutorPayout("dr-tayo-okafor", 999999999, adminId)
+        db.processTutorPayout("lead-stem-tutor", 999999999, adminId)
       ).rejects.toThrow(/exceeds available balance/i);
     });
 
     it("processes valid tutor payout and appends PAYOUT ledger debit", async () => {
       const payoutAmount = 500000; // ₦5,000
       const { payout, ledgerEntry } = await db.processTutorPayout(
-        "dr-tayo-okafor",
+        "lead-stem-tutor",
         payoutAmount,
         adminId,
         "Settlement via NIP transfer"
@@ -181,7 +181,7 @@ describe("Phase H: Administration, Safeguarding Triage & Financial Operations Hu
 
       // Verify new available balance decreased by ₦5,000
       const balances = await db.listTutorPayoutBalances();
-      const drTayo = balances.find(b => b.tutorSlug === "dr-tayo-okafor");
+      const drTayo = balances.find(b => b.tutorSlug === "lead-stem-tutor");
       expect(drTayo?.payoutsProcessedMinorUnits).toBe(payoutAmount);
       expect(drTayo?.availableBalanceMinorUnits).toBe(637500 - payoutAmount);
     });

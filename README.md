@@ -1,6 +1,6 @@
 # Trainbow HUB
 
-> **Learn • Connect • Grow**  
+> **Learn • Build • Grow**  
 > A mobile-first, resilient online learning hub engineered for Nigeria (WAEC, JAMB, Cambridge IGCSE) and built for international scale.
 
 ---

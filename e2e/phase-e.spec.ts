@@ -28,12 +28,12 @@ test.describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration E2E", () =>
   }) => {
     await loginAsStudent(page);
 
-    // Navigate to Dr. Tayo Okafor's Tutor Profile
-    await page.goto("/tutors/dr-tayo-okafor");
-    await expect(page).toHaveURL("/tutors/dr-tayo-okafor");
+    // Navigate to Lead STEM Tutor's Tutor Profile
+    await page.goto("/tutors/lead-stem-tutor");
+    await expect(page).toHaveURL("/tutors/lead-stem-tutor");
 
     // Verify Tutor Profile elements & Hourly Rate
-    await expect(page.locator("h1")).toContainText("Dr. Tayo Okafor");
+    await expect(page.locator("h1")).toContainText("Lead STEM Tutor");
     await expect(page.locator("body")).toContainText("₦7,500");
 
     // Open Booking Flow Modal
@@ -43,7 +43,7 @@ test.describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration E2E", () =>
 
     // Verify Booking Modal is visible
     await expect(page.locator("#booking-modal-title")).toBeVisible();
-    await expect(page.locator("#booking-modal-title")).toContainText("Dr. Tayo Okafor");
+    await expect(page.locator("#booking-modal-title")).toContainText("Lead STEM Tutor");
 
     // Click Reserve Slot to trigger 10-minute hold (BK-01)
     const holdBtn = page.locator('[data-testid="reserve-slot-hold-btn"]');
@@ -68,7 +68,7 @@ test.describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration E2E", () =>
     const confirmationScreen = page.locator('[data-testid="booking-confirmation-screen"]');
     await expect(confirmationScreen).toBeVisible({ timeout: 15000 });
     await expect(confirmationScreen).toContainText("Lesson Confirmed!");
-    await expect(confirmationScreen).toContainText("Dr. Tayo Okafor");
+    await expect(confirmationScreen).toContainText("Lead STEM Tutor");
 
     // Click CTA to navigate to bookings hub
     const viewBookingsLink = page.getByRole("link", { name: "View My Bookings Dashboard" });
@@ -83,7 +83,7 @@ test.describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration E2E", () =>
     await loginAsStudent(page);
 
     // Complete booking flow first
-    await page.goto("/tutors/dr-tayo-okafor");
+    await page.goto("/tutors/lead-stem-tutor");
     await page.locator('[data-testid="open-booking-modal-btn"]').click();
     await page.locator('[data-testid="reserve-slot-hold-btn"]').click();
     await page.locator('[data-testid="paystack-checkout-btn"]').click();
@@ -100,7 +100,7 @@ test.describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration E2E", () =>
     // Verify Active Upcoming Booking card
     const upcomingList = page.locator('[data-testid="upcoming-bookings-list"]');
     await expect(upcomingList).toBeVisible();
-    await expect(upcomingList).toContainText("Dr. Tayo Okafor");
+    await expect(upcomingList).toContainText("Lead STEM Tutor");
     await expect(upcomingList).toContainText("Confirmed ✓");
 
     // Verify Join Classroom CTA exists
@@ -127,7 +127,7 @@ test.describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration E2E", () =>
 
     // Verify Reschedule Modal closes and session remains active
     await expect(page.locator("#reschedule-modal-title")).not.toBeVisible({ timeout: 10000 });
-    await expect(upcomingList).toContainText("Dr. Tayo Okafor");
+    await expect(upcomingList).toContainText("Lead STEM Tutor");
 
     // Test Cancellation Workflow (BK-07)
     const cancelOpenBtn = page.locator('[data-testid^="cancel-btn-"]').first();
@@ -160,14 +160,14 @@ test.describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration E2E", () =>
   }) => {
     // 1. Create a confirmed student booking first
     await loginAsStudent(page);
-    await page.goto("/tutors/dr-tayo-okafor");
+    await page.goto("/tutors/lead-stem-tutor");
     await page.locator('[data-testid="open-booking-modal-btn"]').click();
     await page.locator('[data-testid="reserve-slot-hold-btn"]').click();
     await page.locator('[data-testid="paystack-checkout-btn"]').click();
     await page.locator('[data-testid="simulate-paystack-success-btn"]').click();
     await expect(page.locator('[data-testid="booking-confirmation-screen"]')).toBeVisible({ timeout: 15000 });
 
-    // 2. Log in as Vetted Tutor (Dr. Tayo Okafor)
+    // 2. Log in as Vetted Tutor (Lead STEM Tutor)
     await loginAsTutor(page);
 
     // Navigate to Tutor Portal

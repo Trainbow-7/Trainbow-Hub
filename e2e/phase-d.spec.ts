@@ -170,7 +170,7 @@ test.describe("Phase D: Academy & Native Learning Engine E2E", () => {
     page,
     isMobile,
   }) => {
-    // Sign in as Dr. Tayo Okafor (Vetted Tutor)
+    // Sign in as Lead STEM Tutor (Vetted Tutor)
     await loginAsTutor(page);
 
     // Verify Tutor Portal link in Navbar

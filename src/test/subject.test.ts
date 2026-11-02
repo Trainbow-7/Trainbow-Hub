@@ -107,7 +107,7 @@ describe("Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject Gover
   // ==============================================================================
   describe("3. Multi-Subject Tutor Qualifications (SB-03)", () => {
     it("retrieves approved qualifications for a multi-subject tutor", async () => {
-      const quals = await db.listTutorSubjectQualifications({ tutorSlug: "dr-tayo-okafor" });
+      const quals = await db.listTutorSubjectQualifications({ tutorSlug: "lead-stem-tutor" });
       expect(quals.length).toBeGreaterThanOrEqual(2);
 
       const subjects = quals.filter((q) => q.status === "APPROVED").map((q) => q.subjectSlug);

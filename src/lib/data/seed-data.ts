@@ -528,8 +528,8 @@ export const SEED_COURSES: CourseItem[] = [
 export const SEED_TUTORS: TutorItem[] = [
   {
     id: "tut-01",
-    slug: "dr-tayo-okafor",
-    name: "Dr. Tayo Okafor",
+    slug: "lead-stem-tutor",
+    name: "Lead STEM Tutor",
     title: "Ph.D. in Pure Mathematics, University of Lagos",
     avatarText: "TO",
     location: "Yaba, Lagos",

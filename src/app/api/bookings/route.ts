@@ -22,7 +22,7 @@ export async function GET(req: Request) {
     let ledgerEntries: any[] = [];
 
     if (user.role === "TUTOR" || tutorSlugParam) {
-      const tutorSlug = tutorSlugParam || user.tutorProfileSlug || "dr-tayo-okafor";
+      const tutorSlug = tutorSlugParam || user.tutorProfileSlug || "lead-stem-tutor";
       bookings = await db.findBookingsByTutorSlug(tutorSlug);
       ledgerEntries = await db.findLedgerEntriesByTutorSlug(tutorSlug);
     } else {

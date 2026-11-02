@@ -35,7 +35,7 @@ const DEMO_PRESETS = [
     role: "Vetted Tutor",
     email: "tutor@trainbowhub.ng",
     password: "Trainbow2026!",
-    badge: "Dr. Tayo Okafor",
+    badge: "Lead STEM Tutor",
     color: "bg-emerald-50 text-emerald-800 border-emerald-200",
   },
   {

@@ -7,7 +7,7 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
     // Verify brand wordmark and tagline
     const brandLink = page.getByRole("banner").getByRole("link", { name: /Trainbow HUB/i });
     await expect(brandLink).toBeVisible();
-    await expect(page.getByText("Learn • Connect • Grow").first()).toBeVisible();
+    await expect(page.getByText("Learn • Build • Grow").first()).toBeVisible();
 
     const isMobile = page.viewportSize() && page.viewportSize()!.width < 768;
 
@@ -35,15 +35,14 @@ test.describe("Phase A: Reset & Public Platform Smoke Test", () => {
       page.getByRole("heading", { name: /Learn smarter\.\s+Find the right tutor/i })
     ).toBeVisible();
 
-    // Verify trust signals
-    await expect(page.getByText(/100% Verified Tutors/i).first()).toBeVisible();
-    await expect(page.getByText(/Child-Safe by Design/i).first()).toBeVisible();
-    await expect(page.getByText(/Escrow Protected in Naira/i).first()).toBeVisible();
+    // Verify truthful trust signals
+    await expect(page.getByText(/Child-safe by design/i).first()).toBeVisible();
+    await expect(page.getByText(/Tutors matched by our Director/i).first()).toBeVisible();
+    await expect(page.getByText(/Pay in naira/i).first()).toBeVisible();
 
-    // Verify product highlight cards
-    await expect(page.getByText(/Vetted 1-on-1 Educators/i).first()).toBeVisible();
-    await expect(page.getByText(/24\/7 Socratic AI Tutor/i).first()).toBeVisible();
-    await expect(page.getByText(/Exam Mastery & Real Progress/i).first()).toBeVisible();
+    // Verify consolidated section cards
+    await expect(page.getByText(/Everything in one place/i).first()).toBeVisible();
+    await expect(page.getByText(/How it works/i).first()).toBeVisible();
 
     // Ensure NO developer widgets on public home page
     await expect(page.getByText("Verify Design Tokens Modal")).not.toBeVisible();

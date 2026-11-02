@@ -2,6 +2,7 @@ import * as React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { BRAND } from "@/lib/brand";
 
 interface TrainbowLogoProps {
   className?: string;
@@ -16,10 +17,8 @@ export function TrainbowLogo({
   showTagline = true,
   isDarkSurface = false,
   size = "md",
-  variant = "full",
 }: TrainbowLogoProps) {
   // Dimensions for the official logo
-  // Logo is 1:1 square artwork featuring TH emblem, 'Trainbow Hub', and 'Learn • Build • Grow'
   const sizeMap = {
     sm: { height: 36, width: 36, textClass: "text-base", subClass: "text-[10px]" },
     md: { height: 48, width: 48, textClass: "text-lg", subClass: "text-xs" },
@@ -75,11 +74,10 @@ export function TrainbowLogo({
               isDarkSurface ? "text-neutral-slate-300" : "text-neutral-slate-600"
             )}
           >
-            Learn • Build • Grow
+            {BRAND.tagline}
           </span>
         )}
       </div>
     </Link>
   );
 }
-

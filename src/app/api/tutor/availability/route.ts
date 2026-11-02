@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     const tutorSlug = searchParams.get("tutorSlug");
 
     // In dev mode allow test fallback if session not established
-    const targetSlug = tutorSlug || session?.tutorProfileSlug || "dr-tayo-okafor";
+    const targetSlug = tutorSlug || session?.tutorProfileSlug || "lead-stem-tutor";
     const profile = db.tutorProfiles.get(targetSlug);
 
     if (!profile) {
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { tutorSlug, rosterStatus } = body;
 
-    const targetSlug = tutorSlug || session?.tutorProfileSlug || "dr-tayo-okafor";
+    const targetSlug = tutorSlug || session?.tutorProfileSlug || "lead-stem-tutor";
 
     if (!rosterStatus) {
       return NextResponse.json(

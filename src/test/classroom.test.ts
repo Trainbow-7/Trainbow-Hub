@@ -27,7 +27,7 @@ describe("Phase G: Online Virtual Classroom & Safeguarding Engine (CL-01 to CL-0
       const tutorToken = await videoProvider.generateToken({
         roomName: room.name,
         userId: "usr-tut-004",
-        userName: "Dr. Tayo Okafor",
+        userName: "Lead STEM Tutor",
         role: "TUTOR",
         bookingId: booking!.id,
       });
@@ -157,7 +157,7 @@ describe("Phase G: Online Virtual Classroom & Safeguarding Engine (CL-01 to CL-0
   describe("Lesson Completion & Post-Session Tutor Rating Engine", () => {
     it("transitions session to COMPLETED and permits student review submission", async () => {
       // 1. Tutor concludes lesson
-      const completionResult = await db.completeSessionAndBooking("bkg-seed-001", "dr-tayo-okafor");
+      const completionResult = await db.completeSessionAndBooking("bkg-seed-001", "lead-stem-tutor");
       expect(completionResult.booking.bookingStatus).toBe("COMPLETED");
       expect(completionResult.session.status).toBe("COMPLETED");
       expect(completionResult.session.endedAt).toBeInstanceOf(Date);
@@ -166,17 +166,17 @@ describe("Phase G: Online Virtual Classroom & Safeguarding Engine (CL-01 to CL-0
       const review = await db.createTutorReview({
         bookingId: "bkg-seed-001",
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
+        tutorSlug: "lead-stem-tutor",
         rating: 5,
         reviewText: "Dr. Tayo explained quadratic equations using real-life examples. Very patient!",
       });
 
       expect(review.id).toMatch(/^rev-/);
       expect(review.rating).toBe(5);
-      expect(review.tutorSlug).toBe("dr-tayo-okafor");
+      expect(review.tutorSlug).toBe("lead-stem-tutor");
 
       // 3. Verify tutor profile rating is updated
-      const tutor = await db.findTutorBySlug("dr-tayo-okafor");
+      const tutor = await db.findTutorBySlug("lead-stem-tutor");
       expect(tutor).toBeDefined();
       expect(tutor!.rating).toBe(5);
 
@@ -190,7 +190,7 @@ describe("Phase G: Online Virtual Classroom & Safeguarding Engine (CL-01 to CL-0
         db.createTutorReview({
           bookingId: "bkg-seed-001",
           studentId: "usr-std-001",
-          tutorSlug: "dr-tayo-okafor",
+          tutorSlug: "lead-stem-tutor",
           rating: 6,
           reviewText: "Invalid rating test",
         })

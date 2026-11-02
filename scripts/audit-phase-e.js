@@ -12,7 +12,7 @@ const VIEWPORTS = [
 ];
 
 const PAGES_TO_AUDIT = [
-  { route: "/tutors/dr-tayo-okafor", name: "phase_e_tutor_booking_profile" },
+  { route: "/tutors/lead-stem-tutor", name: "phase_e_tutor_booking_profile" },
   { route: "/bookings", name: "phase_e_student_bookings_hub" },
   { route: "/dashboard/tutor", name: "phase_e_tutor_escrow_ledger" },
 ];

@@ -104,6 +104,6 @@ describe("Resilient Database Engine (DatabaseStore)", () => {
 
     const tutorProfile = await db.findTutorProfileByUserId(tutor!.id);
     expect(tutorProfile).not.toBeNull();
-    expect(tutorProfile?.slug).toBe("dr-tayo-okafor");
+    expect(tutorProfile?.slug).toBe("lead-stem-tutor");
   });
 });

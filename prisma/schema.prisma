@@ -453,7 +453,7 @@ model AITutorEscalation {
   conversationId        String   @map("conversation_id")
   problemStatement      String   @map("problem_statement")
   studentAttemptSummary String?  @map("student_attempt_summary")
-  suggestedTutorSlug    String   @default("dr-tayo-okafor") @map("suggested_tutor_slug")
+  suggestedTutorSlug    String   @default("lead-stem-tutor") @map("suggested_tutor_slug")
   status                String   @default("PENDING_BOOKING")
   createdAt             DateTime @default(now()) @map("created_at")
   updatedAt             DateTime @updatedAt @map("updated_at")

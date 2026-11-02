@@ -55,7 +55,7 @@ test.describe("Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject 
 
     // Verify approved tutors and courses for Mathematics
     await expect(page.locator('[data-testid="subject-tutors-list"]')).toBeVisible();
-    await expect(page.locator('[data-testid="subject-tutor-card-dr-tayo-okafor"]')).toBeVisible();
+    await expect(page.locator('[data-testid="subject-tutor-card-lead-stem-tutor"]')).toBeVisible();
     await expect(page.locator('[data-testid="subject-courses-list"]')).toBeVisible();
   });
 
@@ -131,6 +131,6 @@ test.describe("Phase I: Multi-Subject Registry, Dynamic Curriculum & AI Subject 
     // Verify Tutor Qualifications Table
     const qualTable = page.locator('[data-testid="tutor-subject-qualifications-table"]');
     await expect(qualTable).toBeVisible();
-    await expect(qualTable.getByText("dr-tayo-okafor").first()).toBeVisible();
+    await expect(qualTable.getByText("lead-stem-tutor").first()).toBeVisible();
   });
 });

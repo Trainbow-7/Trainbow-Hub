@@ -18,7 +18,7 @@ async function runAudit() {
     { name: "course_detail", url: "http://localhost:3000/courses/waec-ssce-mathematics-mastery" },
     { name: "ai", url: "http://localhost:3000/ai" },
     { name: "tutors", url: "http://localhost:3000/tutors" },
-    { name: "tutor_profile", url: "http://localhost:3000/tutors/dr-tayo-okafor" },
+    { name: "tutor_profile", url: "http://localhost:3000/tutors/lead-stem-tutor" },
     { name: "pricing", url: "http://localhost:3000/pricing" },
     { name: "safeguarding", url: "http://localhost:3000/legal/safeguarding" },
   ];

@@ -1,3 +1,4 @@
+import { BRAND } from "@/lib/brand";
 export type LocaleCode = "en" | "yo" | "ha" | "ig" | "pcm";
 
 export interface TranslationDictionary {
@@ -56,7 +57,7 @@ export const SUPPORTED_LOCALES: { code: LocaleCode; name: string; nativeName: st
 export const TRANSLATIONS: Record<LocaleCode, TranslationDictionary> = {
   en: {
     appName: "Trainbow HUB",
-    tagline: "Learn • Connect • Grow",
+    tagline: BRAND.tagline,
     nav: {
       academy: "Academy",
       subjects: "Subjects",
@@ -232,7 +233,7 @@ export const TRANSLATIONS: Record<LocaleCode, TranslationDictionary> = {
   },
   pcm: {
     appName: "Trainbow HUB",
-    tagline: "Learn • Connect • Grow",
+    tagline: BRAND.tagline,
     nav: {
       academy: "Academy",
       subjects: "Subjects",

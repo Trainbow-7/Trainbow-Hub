@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { AuthProvider } from "@/components/auth/AuthProvider";
+import { BRAND } from "@/lib/brand";
 import "./globals.css";
 import "katex/dist/katex.min.css";
 
@@ -26,49 +27,87 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Trainbow HUB — Learn • Build • Grow",
-  description:
-    "Mobile-first online learning hub for Nigeria. Expert 1-on-1 tutoring, Socratic AI Mathematics Assistant, and curriculum-aligned courses for WAEC, JAMB, and Cambridge IGCSE.",
+  metadataBase: new URL(BRAND.url),
+  title: {
+    default: `${BRAND.name} — ${BRAND.tagline}`,
+    template: `%s | ${BRAND.name}`,
+  },
+  description: BRAND.description,
   keywords: [
     "Trainbow HUB",
     "online tutoring Nigeria",
     "WAEC mathematics",
     "JAMB UTME prep",
-    "AI learning assistant",
-    "vetted Nigerian tutors",
+    "Cambridge IGCSE",
+    "AI maths helper",
+    "vetted tutors Nigeria",
   ],
-  authors: [{ name: "Trainbow HUB Team" }],
+  authors: [{ name: `${BRAND.name} Team` }],
   icons: {
     icon: "/trainbow-logo.png",
     shortcut: "/trainbow-logo.png",
     apple: "/trainbow-logo.png",
   },
   openGraph: {
-    title: "Trainbow HUB — Learn • Build • Grow",
-    description: "Mobile-first online learning hub connecting Nigerian students, parents, and verified tutors.",
-    url: "https://trainbowhub.ng",
-    siteName: "Trainbow HUB",
-    locale: "en_NG",
+    title: `${BRAND.name} — ${BRAND.tagline}`,
+    description: BRAND.description,
+    url: BRAND.url,
+    siteName: BRAND.name,
+    locale: BRAND.locale,
     type: "website",
     images: [
       {
         url: "/trainbow-logo.png",
         width: 1024,
         height: 1024,
-        alt: "Trainbow Hub Official Logo",
+        alt: `${BRAND.name} Official Logo`,
       },
     ],
   },
+  twitter: {
+    card: "summary",
+    title: `${BRAND.name} — ${BRAND.tagline}`,
+    description: BRAND.description,
+    images: ["/trainbow-logo.png"],
+  },
 };
-
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: BRAND.name,
+    url: BRAND.url,
+    logo: `${BRAND.url}/trainbow-logo.png`,
+    slogan: BRAND.tagline,
+    description: BRAND.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Abeokuta",
+      addressRegion: "Ogun State",
+      addressCountry: "NG",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: BRAND.supportPhone,
+      contactType: "customer service",
+      email: BRAND.supportEmail,
+      areaServed: "NG",
+    },
+  };
+
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col antialiased bg-neutral-slate-50 text-neutral-slate-900 selection:bg-brand-blue-50 selection:text-brand-blue-600">
         <AuthProvider>{children}</AuthProvider>
       </body>

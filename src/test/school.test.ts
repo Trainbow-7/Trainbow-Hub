@@ -1,3 +1,4 @@
+import { BRAND } from "../lib/brand";
 import { describe, it, expect, beforeEach } from "vitest";
 import { db } from "@/lib/db";
 import {
@@ -73,7 +74,7 @@ describe("Phase L: Institutional School Administration & Localization (SC-01 to 
           email: "babatunde.r@kingscollege.ng",
         },
         {
-          fullName: "Chinedu Okafor",
+          fullName: "Chinedu Adeleke",
           email: "chinedu.o@kingscollege.ng",
         },
       ];
@@ -86,7 +87,7 @@ describe("Phase L: Institutional School Administration & Localization (SC-01 to 
 
       const enrolledList = await db.listSchoolStudents("sch-seed-001");
       expect(enrolledList.some((s) => s.student.fullName === "Babatunde Raji")).toBe(true);
-      expect(enrolledList.some((s) => s.student.fullName === "Chinedu Okafor")).toBe(true);
+      expect(enrolledList.some((s) => s.student.fullName === "Chinedu Adeleke")).toBe(true);
     });
 
     it("should track cohort student counts when students are enrolled", async () => {
@@ -148,7 +149,7 @@ describe("Phase L: Institutional School Administration & Localization (SC-01 to 
 
     it("should fallback cleanly to English if unknown locale provided", () => {
       const fallback = getDictionary("fr" as any);
-      expect(fallback.tagline).toBe("Learn • Connect • Grow");
+      expect(fallback.tagline).toBe(BRAND.tagline);
     });
   });
 

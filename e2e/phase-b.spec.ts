@@ -20,7 +20,7 @@ test.describe("Phase B: Public Website, Catalogue & Legal Slice", () => {
   test("loads course details page (/courses/waec-ssce-mathematics-mastery)", async ({ page }) => {
     await page.goto("/courses/waec-ssce-mathematics-mastery");
     await expect(page.getByRole("heading", { name: /WAEC & SSCE Comprehensive Mathematics Mastery/i })).toBeVisible();
-    await expect(page.getByText(/Dr\. Tayo Okafor/i).first()).toBeVisible();
+    await expect(page.getByText(/Lead STEM Tutor/i).first()).toBeVisible();
     await expect(page.getByText(/Course Syllabus/i).first()).toBeVisible();
     await expect(page.getByText(/Free Preview/i).first()).toBeVisible();
     await expect(page.getByText(/Enrol in Course/i)).toBeVisible();
@@ -41,8 +41,8 @@ test.describe("Phase B: Public Website, Catalogue & Legal Slice", () => {
     await expect(page.getByText(/Mr Oyedeji S.T/i).first()).toBeVisible();
   });
 
-  test("verifies tutor profile route (/tutors/dr-tayo-okafor) redirects to /request-tutor", async ({ page }) => {
-    await page.goto("/tutors/dr-tayo-okafor");
+  test("verifies tutor profile route (/tutors/lead-stem-tutor) redirects to /request-tutor", async ({ page }) => {
+    await page.goto("/tutors/lead-stem-tutor");
     await expect(page).toHaveURL(/.*\/request-tutor/);
     await expect(page.getByRole("heading", { name: /Get matched with a verified tutor/i })).toBeVisible();
   });

@@ -127,7 +127,7 @@ test.describe("Phase C: Identity, RBAC & Guardian Consent Architecture", () => {
     await expect(page.getByRole("button", { name: "Explore Academy Courses" })).toBeVisible();
   });
 
-  test("Tutor sign-in displays verified tutor role and Dr. Tayo Okafor profile", async ({ page, isMobile }) => {
+  test("Tutor sign-in displays verified tutor role and Lead STEM Tutor profile", async ({ page, isMobile }) => {
     await page.goto("/login");
 
     // Click Tutor preset
@@ -139,7 +139,7 @@ test.describe("Phase C: Identity, RBAC & Guardian Consent Architecture", () => {
 
     if (isMobile) {
       await page.getByRole("button", { name: "Open navigation menu" }).click();
-      await expect(page.locator('[data-testid="mobile-user-name"]')).toContainText("Dr. Tayo Okafor");
+      await expect(page.locator('[data-testid="mobile-user-name"]')).toContainText("Lead STEM Tutor");
       await expect(page.locator('[data-testid="mobile-user-role"]')).toHaveText("Tutor");
     } else {
       await expect(page.locator('[data-testid="navbar-user-name"]')).toHaveText("Dr.");

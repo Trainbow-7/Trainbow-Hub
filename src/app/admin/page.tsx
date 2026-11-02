@@ -266,7 +266,7 @@ export default function AdminPortalPage() {
 
   const fetchQualifications = useCallback(async () => {
     try {
-      const res = await fetch("/api/tutors/dr-tayo-okafor/subjects");
+      const res = await fetch("/api/tutors/lead-stem-tutor/subjects");
       if (res.ok) {
         const data = await res.json();
         setTutorQualificationsList(data.qualifications || []);
@@ -586,7 +586,7 @@ export default function AdminPortalPage() {
   const handleVerifyTutorQualification = async (qualificationId: string, status: "APPROVED" | "REJECTED") => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/tutors/dr-tayo-okafor/subjects`, {
+      const res = await fetch(`/api/tutors/lead-stem-tutor/subjects`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ qualificationId, status }),

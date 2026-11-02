@@ -2,86 +2,59 @@ import * as React from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
-import { Rating } from "@/components/ui/Rating";
-import { Avatar } from "@/components/ui/Avatar";
-import { AIInteractiveDemo } from "@/components/home/AIInteractiveDemo";
-import { HomeFAQ } from "@/components/home/HomeFAQ";
+import { HeroHubVisual } from "@/components/home/HeroHubVisual";
+import { SEED_SUBJECTS } from "@/lib/data/seed-data";
 import {
-  SEED_SUBJECTS,
-  SEED_COURSES,
-  SEED_TUTORS,
-} from "@/lib/data/seed-data";
-import {
-  ShieldCheck,
-  CheckCircle2,
-  Lock,
-  Sparkles,
   BookOpen,
+  Sparkles,
   GraduationCap,
   Music,
   ArrowRight,
-  Star,
-  Clock,
-  Award,
-  Users,
-  Eye,
+  ShieldCheck,
+  UserCheck,
   CreditCard,
-  ChevronRight,
 } from "lucide-react";
-import {
-  CheckBadgeIcon,
-  ShieldCheckIcon,
-  LockClosedIcon,
-  SparklesIcon,
-  AcademicCapIcon,
-  TrophyIcon,
-  ArrowRightIcon,
-  BookOpenIcon,
-} from "@heroicons/react/24/solid";
-
-import { HeroPreview } from "@/components/home/HeroPreview";
 
 export default function HomePage() {
-  const activeSubjects = SEED_SUBJECTS.filter((s) => s.status === "active");
-  const featuredCourses = SEED_COURSES.slice(0, 3);
-  const featuredTutors = SEED_TUTORS.slice(0, 3);
+  // Determine AI CTA label dynamically based on active AI-enabled subjects
+  const activeAiSubjects = SEED_SUBJECTS.filter(
+    (subject) => subject.status === "active" && subject.aiEnabled
+  );
+  const aiHelperLabel =
+    activeAiSubjects.length > 1 ? "Try the AI helper" : "Try the AI maths helper";
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
-      {/* Navigation Header */}
       <Navbar />
 
-      <main className="flex-1 space-y-16 sm:space-y-24">
-        {/* 1. Hero Section (Split Layout with Product Preview on Right) */}
-        <section className="relative overflow-hidden bg-[#0B1226] py-12 sm:py-16 lg:py-20 text-white">
-          {/* Soft ambient background glow */}
+      <main className="flex-1">
+        {/* 1. HERO SECTION */}
+        <section className="relative overflow-hidden bg-[#0B1226] text-white py-12 sm:py-16 lg:py-24">
+          {/* Subtle ambient light */}
           <div
-            className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[480px] rounded-full pointer-events-none opacity-30 blur-[120px]"
+            aria-hidden="true"
+            className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none opacity-25 blur-[120px]"
             style={{
-              background: "radial-gradient(ellipse at center, rgba(37,99,235,0.45) 0%, rgba(99,102,241,0.2) 50%, transparent 70%)",
+              background:
+                "radial-gradient(ellipse at center, rgba(37,99,235,0.45) 0%, rgba(99,102,241,0.2) 50%, transparent 70%)",
             }}
           />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Split Grid: Left 55%, Right 45% on desktop (>=1024px), single column stacked (<1024px) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* LEFT COLUMN: 55% on desktop (col-span-7), Left-aligned */}
-              <div className="lg:col-span-7 flex flex-col items-start text-left motion-safe:animate-hero-fade">
-                {/* Badge pill */}
-                <div className="inline-flex items-center gap-2 rounded-full bg-[#111A2E]/90 px-4 py-1.5 text-[13px] sm:text-[14px] font-semibold text-sky-200 border border-sky-400/30 shadow-inner backdrop-blur-sm">
-                  <span className="flex h-2 w-2 rounded-full bg-sky-400 animate-pulse" />
-                  <span>WAEC · JAMB · IGCSE aligned</span>
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left">
+                {/* Audience Statement Badge */}
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/[0.07] px-3.5 py-1.5 text-xs sm:text-sm font-medium text-sky-200 border border-sky-400/20 backdrop-blur-sm">
+                  <span>Built for WAEC, JAMB and IGCSE students</span>
                 </div>
 
-                {/* H1 Headline (2 lines): Learn smarter. Find the right tutor. */}
+                {/* Main Headline */}
                 <h1
-                  className="mt-5 sm:mt-6 font-heading font-[800] text-left text-white"
+                  className="mt-4 sm:mt-5 font-heading font-extrabold text-white text-left tracking-tight"
                   style={{
-                    fontSize: "clamp(2.35rem, 4.8vw, 3.75rem)",
-                    lineHeight: 1.08,
+                    fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)",
+                    lineHeight: 1.1,
                     letterSpacing: "-0.02em",
                   }}
                 >
@@ -100,799 +73,208 @@ export default function HomePage() {
                   .
                 </h1>
 
-                {/* Subheadline (18-20px, #CBD5E1, max-width 540px) */}
-                <p className="mt-4 sm:mt-5 text-[18px] sm:text-[19px] lg:text-[20px] leading-relaxed text-[#CBD5E1] max-w-[540px] font-normal">
-                  Structured lessons, 24/7 AI guidance that helps students work out answers themselves, and verified 1-on-1 tutors, built for Nigerian students and their families.
+                {/* Supporting Sentence (20 words or fewer) */}
+                <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-[520px] font-normal leading-relaxed">
+                  Structured lessons, AI help and tutors matched to you, built for Nigerian students and their families.
                 </p>
 
-                {/* CTAs side by side on tablet/desktop, stack full-width on mobile */}
-                <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row gap-3.5 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
+                {/* Action Buttons */}
+                <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto">
                   <Link href="/request-tutor" className="w-full sm:w-auto">
-                    <button
-                      type="button"
-                      className="w-full sm:w-auto min-h-[44px] h-[52px] px-7 sm:px-8 rounded-[12px] bg-[#2563EB] text-white font-semibold text-base inline-flex items-center justify-center gap-2 shadow-lg shadow-blue-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1D4ED8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1226] active:translate-y-0"
-                    >
+                    <span className="w-full sm:w-auto min-h-[44px] h-[48px] px-6 rounded-xl bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-semibold text-sm sm:text-base inline-flex items-center justify-center gap-2 shadow-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1226]">
                       <span>Request a tutor</span>
-                      <ArrowRightIcon className="h-4 w-4" />
-                    </button>
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
                   </Link>
 
                   <Link href="/ai" className="w-full sm:w-auto">
-                    <button
-                      type="button"
-                      className="w-full sm:w-auto min-h-[44px] h-[52px] px-7 sm:px-8 rounded-[12px] bg-transparent border border-white/25 text-white font-semibold text-base inline-flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1226] active:translate-y-0"
-                    >
-                      <SparklesIcon className="h-4 w-4 text-purple-300" />
-                      <span>Try the AI maths helper</span>
-                    </button>
+                    <span className="w-full sm:w-auto min-h-[44px] h-[48px] px-6 rounded-xl bg-transparent border border-white/25 hover:bg-white/[0.08] hover:border-white/40 text-white font-semibold text-sm sm:text-base inline-flex items-center justify-center gap-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1226]">
+                      <Sparkles className="h-4 w-4 text-purple-300" />
+                      <span>{aiHelperLabel}</span>
+                    </span>
                   </Link>
                 </div>
 
-                {/* Trust Row below CTAs, left-aligned, wraps on small screens */}
-                <div className="mt-8 sm:mt-9 flex flex-wrap items-center justify-start gap-x-6 sm:gap-x-8 gap-y-2.5 text-[14px] sm:text-[15px] text-[#E2E8F0]">
-                  <div className="flex items-center gap-2">
-                    <CheckBadgeIcon className="h-5 w-5 text-emerald-400 shrink-0" />
-                    <span className="font-medium text-[#E2E8F0]">100% Verified Tutors</span>
+                {/* Trust Row (3 items, all true by design) */}
+                <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-300">
+                  <div className="inline-flex items-center gap-1.5">
+                    <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Child-safe by design</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <ShieldCheckIcon className="h-5 w-5 text-sky-400 shrink-0" />
-                    <span className="font-medium text-[#E2E8F0]">Child-Safe by Design</span>
+                  <div className="inline-flex items-center gap-1.5">
+                    <UserCheck className="h-4 w-4 text-sky-400 shrink-0" />
+                    <span>Tutors matched by our Director</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <LockClosedIcon className="h-5 w-5 text-emerald-400 shrink-0" />
-                    <span className="font-medium text-[#E2E8F0]">Escrow Protected in Naira (₦)</span>
+                  <div className="inline-flex items-center gap-1.5">
+                    <CreditCard className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>Pay in naira</span>
                   </div>
                 </div>
               </div>
 
-              {/* RIGHT COLUMN: 45% on desktop (col-span-5), Product Preview */}
-              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-4 lg:mt-0 motion-safe:animate-hero-fade">
-                <HeroPreview />
-              </div>
-            </div>
-
-            {/* Platform Highlights & Capabilities Grid */}
-            <div className="mt-14 pt-10 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-5">
-              {/* Pillar 1: Verified Tutors */}
-              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-md hover:bg-white/[0.09] hover:border-brand-blue-400/40 transition-all duration-300 text-left group">
-                <div className="h-11 w-11 rounded-xl bg-teal-500/15 border border-teal-400/30 text-teal-300 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-inner">
-                  <AcademicCapIcon className="h-6 w-6" />
-                </div>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <h3 className="font-heading text-base font-bold text-white">Vetted 1-on-1 Educators</h3>
-                  <span className="rounded bg-teal-500/20 text-teal-300 text-[10px] font-semibold px-2 py-0.5">Verified</span>
-                </div>
-                <p className="text-xs sm:text-sm text-neutral-slate-300 leading-relaxed">
-                  Rigorous background, identity, and subject assessments. Book transparently with automated scheduling and lesson recordings.
-                </p>
-              </div>
-
-              {/* Pillar 2: Socratic AI */}
-              <div className="rounded-2xl border border-purple-500/20 bg-purple-950/20 p-6 backdrop-blur-md hover:bg-purple-950/30 hover:border-purple-400/40 transition-all duration-300 text-left group">
-                <div className="h-11 w-11 rounded-xl bg-purple-500/20 border border-purple-400/30 text-purple-300 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-inner">
-                  <SparklesIcon className="h-6 w-6" />
-                </div>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <h3 className="font-heading text-base font-bold text-white">24/7 Socratic AI Tutor</h3>
-                  <span className="rounded bg-purple-500/25 text-purple-200 text-[10px] font-semibold px-2 py-0.5 font-mono">Hint-First</span>
-                </div>
-                <p className="text-xs sm:text-sm text-neutral-slate-300 leading-relaxed">
-                  Guides students step-by-step through tough algebra, geometry, and exam problems without spoiling the answer. Instant escalation to humans when needed.
-                </p>
-              </div>
-
-              {/* Pillar 3: Curriculum Mastery & Progress */}
-              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-md hover:bg-white/[0.09] hover:border-brand-blue-400/40 transition-all duration-300 text-left group">
-                <div className="h-11 w-11 rounded-xl bg-brand-blue-500/20 border border-brand-blue-400/30 text-brand-blue-300 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-inner">
-                  <TrophyIcon className="h-6 w-6" />
-                </div>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <h3 className="font-heading text-base font-bold text-white">Exam Mastery & Real Progress</h3>
-                  <span className="rounded bg-brand-blue-500/20 text-brand-blue-200 text-[10px] font-semibold px-2 py-0.5">NERDC Aligned</span>
-                </div>
-                <p className="text-xs sm:text-sm text-neutral-slate-300 leading-relaxed">
-                  Clear diagnostic benchmarks for WAEC, JAMB & IGCSE with verifiable parental oversight, attendance records, and shared analytics.
-                </p>
+              {/* Right Column: Hero Hub Visual */}
+              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-4 lg:mt-0">
+                <HeroHubVisual />
               </div>
             </div>
           </div>
         </section>
 
-        {/* 2. Four Services, One Platform */}
-        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900 tracking-tight">
-              Four Core Services. One Unified Account.
+        {/* 2. EVERYTHING IN ONE PLACE */}
+        <section className="py-12 sm:py-16 lg:py-24 bg-white border-b border-neutral-slate-200">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-neutral-slate-900 tracking-tight text-center mb-8 sm:mb-12">
+              Everything in one place
             </h2>
-            <p className="text-sm sm:text-base text-neutral-slate-600 leading-relaxed">
-              Every learner gets access to curriculum lessons, AI guidance, verified tutors, and music tuition through one shared calendar, wallet, and progress record.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* 1. Academy */}
-            <Card className="rounded-card border-t-4 border-t-brand-blue-600 flex flex-col justify-between hover-lift">
-              <CardHeader className="space-y-2">
-                <div className="h-11 w-11 rounded-control bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
-                  <BookOpen className="h-5 w-5" />
-                </div>
-                <Badge variant="brand" className="w-fit">Academy</Badge>
-                <CardTitle className="text-lg">Structured Courses</CardTitle>
-                <CardDescription className="text-xs text-neutral-slate-600">
-                  Curriculum-aligned video lessons, step-by-step quizzes, and revision tracking.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600 shrink-0" />
-                  <span>Mathematics launch-ready</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600 shrink-0" />
-                  <span>WAEC, JAMB & IGCSE tracks</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600 shrink-0" />
-                  <span>Resumable progress across devices</span>
-                </div>
-              </CardContent>
-              <div className="p-6 pt-0">
-                <Link href="/academy" className="block w-full">
-                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
-                    <span>Explore Academy</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-
-            {/* 2. AI Assistant */}
-            <Card className="rounded-card border-t-4 border-t-service-ai-600 flex flex-col justify-between hover-lift">
-              <CardHeader className="space-y-2">
-                <div className="h-11 w-11 rounded-control bg-purple-50 text-service-ai-600 flex items-center justify-center">
-                  <Sparkles className="h-5 w-5" />
-                </div>
-                <Badge variant="ai" className="w-fit">Trainbow AI</Badge>
-                <CardTitle className="text-lg">Socratic AI Assistant</CardTitle>
-                <CardDescription className="text-xs text-neutral-slate-600">
-                  Step-by-step Mathematics guidance that guides students to the answer without giving it away.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600 shrink-0" />
-                  <span>Hint-first pedagogy</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600 shrink-0" />
-                  <span>Programmatically verified formulas</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600 shrink-0" />
-                  <span>One-click tutor escalation</span>
-                </div>
-              </CardContent>
-              <div className="p-6 pt-0">
-                <Link href="/ai" className="block w-full">
-                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
-                    <span>Try AI Assistant</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-
-            {/* 3. Tutors Marketplace */}
-            <Card className="rounded-card border-t-4 border-t-service-tutor-700 flex flex-col justify-between hover-lift">
-              <CardHeader className="space-y-2">
-                <div className="h-11 w-11 rounded-control bg-teal-50 text-service-tutor-700 flex items-center justify-center">
-                  <GraduationCap className="h-5 w-5" />
-                </div>
-                <Badge variant="tutor" className="w-fit">Tutors</Badge>
-                <CardTitle className="text-lg">Verified 1-on-1 Tutors</CardTitle>
-                <CardDescription className="text-xs text-neutral-slate-600">
-                  Book vetted educators for tailored online lessons or in-person sessions across Nigeria.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700 shrink-0" />
-                  <span>ID & credential background checks</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700 shrink-0" />
-                  <span>10-minute safe slot reservation</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700 shrink-0" />
-                  <span>Secure in-app virtual classroom</span>
-                </div>
-              </CardContent>
-              <div className="p-6 pt-0">
-                <Link href="/request-tutor" className="block w-full">
-                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
-                    <span>Request a Match</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-
-            {/* 4. Music */}
-            <Card className="rounded-card border-t-4 border-t-service-music-500 flex flex-col justify-between hover-lift">
-              <CardHeader className="space-y-2">
-                <div className="h-11 w-11 rounded-control bg-amber-50 text-amber-900 flex items-center justify-center">
-                  <Music className="h-5 w-5" />
-                </div>
-                <Badge variant="neutral" className="w-fit border-amber-300 bg-amber-50 text-neutral-slate-900 font-semibold">Music</Badge>
-                <CardTitle className="text-lg">Music & Instruments</CardTitle>
-                <CardDescription className="text-xs text-neutral-slate-600">
-                  Theory tuition, piano, guitar, and vocal coaching using the same unified account.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-700 shrink-0" />
-                  <span>Theory & practical tuition</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-700 shrink-0" />
-                  <span>Shared booking calendar</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-700 shrink-0" />
-                  <span>Parent progress tracking</span>
-                </div>
-              </CardContent>
-              <div className="p-6 pt-0">
-                <Link href="/music" className="block w-full">
-                  <Button variant="outline" size="md" className="w-full justify-between min-h-[44px]">
-                    <span>Discover Music</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-          </div>
-        </section>
-
-        {/* 3. How It Works (Connected Horizontal Stepper) */}
-        <section className="bg-white border-y border-neutral-slate-200 py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto space-y-16">
-            <div className="text-center max-w-2xl mx-auto space-y-3">
-              <Badge variant="neutral">Clear, Safe Workflow</Badge>
-              <h2 className="text-h2 font-extrabold font-heading text-neutral-slate-900 tracking-tight">
-                How Trainbow HUB Works
-              </h2>
-              <p className="text-body text-neutral-slate-600 leading-relaxed">
-                Designed for student autonomy, verified progress, and complete parental peace of mind.
-              </p>
-            </div>
-
-            {/* Student Track - Connected Stepper */}
-            <div className="rounded-panel border border-neutral-slate-200 bg-neutral-slate-50/70 p-6 sm:p-10 shadow-soft">
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-neutral-slate-200/80">
-                <div className="flex items-center gap-2.5">
-                  <Badge variant="brand">For Students</Badge>
-                  <h3 className="font-heading font-bold text-neutral-slate-900 text-base sm:text-lg">
-                    Your Path to Academic Excellence
-                  </h3>
-                </div>
-                <span className="text-xs font-medium text-neutral-slate-500">Autonomous & Syllabus-Aligned</span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                {/* Horizontal connector line on desktop */}
-                <div className="hidden md:block absolute top-6 left-[16%] right-[16%] h-0.5 bg-neutral-slate-200 -z-0" />
-
-                <div className="space-y-3 relative z-10 text-left bg-neutral-slate-50/70 sm:bg-transparent">
-                  <div className="h-12 w-12 rounded-full bg-brand-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
-                    1
-                  </div>
-                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
-                    Learn with Syllabus Courses
-                  </h4>
-                  <p className="text-small text-neutral-slate-600 leading-relaxed">
-                    Watch bite-sized video lessons and solve practice quizzes built specifically for WAEC and JAMB.
-                  </p>
-                </div>
-
-                <div className="space-y-3 relative z-10 text-left bg-neutral-slate-50/70 sm:bg-transparent">
-                  <div className="h-12 w-12 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
-                    2
-                  </div>
-                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
-                    Get Instant AI Hints
-                  </h4>
-                  <p className="text-small text-neutral-slate-600 leading-relaxed">
-                    Stuck on an equation? Trainbow AI breaks down the logic step by step instead of just giving away the final number.
-                  </p>
-                </div>
-
-                <div className="space-y-3 relative z-10 text-left bg-neutral-slate-50/70 sm:bg-transparent">
-                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
-                    3
-                  </div>
-                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
-                    Book an Expert Tutor
-                  </h4>
-                  <p className="text-small text-neutral-slate-600 leading-relaxed">
-                    Schedule 1-on-1 virtual sessions with vetted Nigerian tutors when you need deep, personalized guidance.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Parent Track - Connected Stepper */}
-            <div className="rounded-panel border border-teal-200/80 bg-teal-50/40 p-6 sm:p-10 shadow-soft">
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-teal-200/60">
-                <div className="flex items-center gap-2.5">
-                  <Badge variant="tutor">For Parents & Guardians</Badge>
-                  <h3 className="font-heading font-bold text-neutral-slate-900 text-base sm:text-lg">
-                    Full Oversight & Child Safeguarding
-                  </h3>
-                </div>
-                <span className="text-xs font-semibold text-service-tutor-700">Strict NDPA 2023 Consent</span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                {/* Horizontal connector line on desktop */}
-                <div className="hidden md:block absolute top-6 left-[16%] right-[16%] h-0.5 bg-teal-200 -z-0" />
-
-                <div className="space-y-3 relative z-10 text-left">
-                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
-                    1
-                  </div>
-                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
-                    Link Your Child
-                  </h4>
-                  <p className="text-small text-neutral-slate-600 leading-relaxed">
-                    Verify consent via OTP. Under-18 accounts cannot book sessions or message tutors without parent verification.
-                  </p>
-                </div>
-
-                <div className="space-y-3 relative z-10 text-left">
-                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
-                    2
-                  </div>
-                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
-                    Approve and Pay in Naira
-                  </h4>
-                  <p className="text-small text-neutral-slate-600 leading-relaxed">
-                    Review tutor credentials, lesson rates, and approve checkout through trusted Paystack payments.
-                  </p>
-                </div>
-
-                <div className="space-y-3 relative z-10 text-left">
-                  <div className="h-12 w-12 rounded-full bg-service-tutor-700 text-white font-bold flex items-center justify-center text-sm shadow-md ring-4 ring-white">
-                    3
-                  </div>
-                  <h4 className="font-heading font-bold text-neutral-slate-900 text-base">
-                    Follow Attendance & Progress
-                  </h4>
-                  <p className="text-small text-neutral-slate-600 leading-relaxed">
-                    Receive lesson completion alerts, view quiz score trends, and join virtual classrooms as an observer.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. Live Catalogue Preview (Subject Chips, 3 Featured Courses, 3 Featured Tutors) */}
-        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Badge variant="brand">Curriculum & Directory</Badge>
-                <span className="text-xs text-neutral-slate-500 font-medium">Seeded Live Catalogue</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-                Explore Courses & Vetted Nigerian Tutors
-              </h2>
-              <p className="text-sm text-neutral-slate-600 max-w-2xl">
-                Browse curriculum courses and connect with approved tutors ready to schedule 1-on-1 lessons.
-              </p>
-            </div>
-            <Link href="/courses" className="text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-700 flex items-center gap-1 shrink-0">
-              <span>View all courses</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          {/* Subject Chips */}
-          <div className="flex flex-wrap items-center gap-2 pt-2">
-            <span className="text-xs font-semibold text-neutral-slate-500 mr-2">Active Subjects:</span>
-            {activeSubjects.map((sub) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {/* Academy Card */}
               <Link
-                key={sub.id}
-                href={`/academy/${sub.slug}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-neutral-slate-200 hover:border-brand-blue-600 hover:text-brand-blue-600 transition-colors shadow-xs"
+                href="/academy"
+                className="group rounded-2xl border border-neutral-slate-200 bg-neutral-slate-50/50 p-5 sm:p-6 flex flex-col justify-between hover:bg-white hover:border-brand-blue-500 hover:shadow-md transition-all duration-150"
               >
-                <span>{sub.name}</span>
-                {sub.aiEnabled ? (
-                  <span className="h-1.5 w-1.5 rounded-full bg-service-ai-600" title="AI Assistant Active" />
-                ) : null}
-              </Link>
-            ))}
-          </div>
-
-          {/* Featured Courses Grid */}
-          <div className="space-y-4">
-            <h3 className="font-heading font-bold text-lg text-neutral-slate-900">
-              Featured Academy Courses
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredCourses.map((course) => (
-                <Card key={course.id} className="flex flex-col justify-between hover:shadow-hover transition-all">
-                  <CardHeader className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="brand">{course.level}</Badge>
-                      <span className="text-xs font-bold text-neutral-slate-900">
-                        ₦{(course.priceMinorUnits / 100).toLocaleString("en-NG")}
-                      </span>
-                    </div>
-                    <CardTitle className="text-base line-clamp-2">
-                      <Link href={`/courses/${course.slug}`} className="hover:text-brand-blue-600 transition-colors">
-                        {course.title}
-                      </Link>
-                    </CardTitle>
-                    <CardDescription className="text-xs text-neutral-slate-600 line-clamp-2">
-                      {course.shortDescription}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3 pt-0">
-                    <div className="flex items-center justify-between text-xs text-neutral-slate-500 border-t border-neutral-slate-100 pt-3">
-                      <span className="flex items-center gap-1">
-                        <BookOpen className="h-3.5 w-3.5 text-neutral-slate-400" />
-                        {course.lessonCount} Lessons
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5 text-neutral-slate-400" />
-                        {course.durationHours} Hours
-                      </span>
-                      <Rating value={course.rating} count={course.reviewCount} />
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-slate-700">
-                      <Avatar name={course.instructorName} size="sm" />
-                      <span className="font-medium truncate">{course.instructorName}</span>
-                    </div>
-                  </CardContent>
-                  <CardFooter className="pt-0">
-                    <Link href={`/courses/${course.slug}`} className="w-full">
-                      <Button variant="outline" size="sm" className="w-full justify-between">
-                        <span>View Syllabus</span>
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Concierge Tutor Matching Feature Spotlight */}
-          <div className="space-y-4 pt-6">
-            <div className="rounded-2xl border border-service-tutor-200 bg-gradient-to-br from-white to-purple-50/40 p-6 sm:p-8 shadow-sm">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                <div className="space-y-3 max-w-2xl">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-service-tutor-100 text-service-tutor-900 px-3 py-1 text-xs font-semibold">
-                    <ShieldCheck className="h-4 w-4 text-service-tutor-700" />
-                    <span>Personal Concierge Matching · Zero Guesswork</span>
+                <div>
+                  <div className="h-10 w-10 rounded-xl bg-blue-50 text-brand-blue-600 flex items-center justify-center mb-4">
+                    <BookOpen className="h-5 w-5" />
                   </div>
-                  <h3 className="font-heading font-bold text-2xl text-neutral-slate-900">
-                    Handpicked 1-on-1 Tutors, Personally Matched for Your Child
+                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                    Academy
                   </h3>
-                  <p className="text-sm text-neutral-slate-600 leading-relaxed">
-                    No searching unverified directories or dealing with unavailable tutors. Every tutoring need is personally reviewed by <strong className="text-neutral-slate-900">Mr Oyedeji S.T</strong>, Director of Trainbow HUB, who matches your child with a vetted tutor available right now.
+                  <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+                    Video lessons and practice quizzes for your exams.
                   </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs text-neutral-slate-700">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
-                      <span>Private vetted roster</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
-                      <span>Guaranteed real-time availability</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
-                      <span>Parent match approval</span>
-                    </div>
-                  </div>
                 </div>
-
-                <div className="shrink-0 w-full sm:w-auto">
-                  <Link href="/request-tutor" className="block w-full">
-                    <Button variant="primary" size="lg" className="w-full sm:w-auto font-semibold px-6 py-3 shadow-md">
-                      <span>Request a Tutor Match</span>
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  </Link>
+                <div className="mt-4 pt-3 border-t border-neutral-slate-200/60 flex items-center justify-end text-brand-blue-600 group-hover:translate-x-0.5 transition-transform">
+                  <ArrowRight className="h-4 w-4" />
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 5. Trainbow AI Overview Section */}
-        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <Badge variant="ai">Pedagogical Guardrails</Badge>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-              How Trainbow AI Works
-            </h2>
-            <p className="text-sm text-neutral-slate-600">
-              Unlike generic chatbots that simply give away answers, Trainbow AI empowers learners through guided reasoning and curriculum-verified logic.
-            </p>
-          </div>
-
-          <AIInteractiveDemo />
-        </section>
-
-        {/* 6. Parents and Safeguarding Assurance */}
-        <section className="bg-neutral-slate-100/70 border-y border-neutral-slate-200 py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-5">
-              <Badge variant="tutor" className="gap-1.5">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Child-Safe By Design
-              </Badge>
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900 leading-tight">
-                Designed for Nigerian Parents Who Value Safety Above All Else
-              </h2>
-              <p className="text-sm text-neutral-slate-600 leading-relaxed">
-                We believe online learning must be as safe as an in-person classroom. Under the Nigeria Data Protection Act (NDPA) 2023, every student under 18 is protected by strict platform-level guardrails.
-              </p>
-
-              <div className="space-y-3 pt-2">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-status-green-600 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-semibold text-neutral-slate-900">Guardian Verification & Consent</h3>
-                    <p className="text-xs text-neutral-slate-600">Accounts for minors cannot book tutors or authorize payments without parent OTP approval.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-status-green-600 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-semibold text-neutral-slate-900">No Private Off-Platform Messaging</h3>
-                    <p className="text-xs text-neutral-slate-600">All student-tutor communication runs through supervised channels with conduct reporting tools.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-status-green-600 shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="text-sm font-semibold text-neutral-slate-900">Rigorous Identity & Credential Vetting</h3>
-                    <p className="text-xs text-neutral-slate-600">Every educator signs our Safeguarding Code of Conduct before a single lesson can be taught.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3">
-                <Link href="/legal/safeguarding">
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <span>Read Full Child Safeguarding Policy</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <div className="rounded-2xl border border-neutral-slate-200 bg-white p-6 sm:p-8 shadow-sm space-y-5">
-                <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-                  Parent Peace-of-Mind Checklist
-                </h3>
-                <div className="space-y-3 text-xs text-neutral-slate-700">
-                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
-                    <span className="font-medium">Observed Virtual Classrooms</span>
-                    <span className="text-status-green-800 font-bold">Enabled</span>
-                  </div>
-                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
-                    <span className="font-medium">Real-Time Attendance Timestamps</span>
-                    <span className="text-status-green-800 font-bold">Logged to Order</span>
-                  </div>
-                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
-                    <span className="font-medium">Incident Response SLA</span>
-                    <span className="text-brand-blue-600 font-bold">Triaged &lt; 24h</span>
-                  </div>
-                  <div className="p-3 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 flex items-center justify-between">
-                    <span className="font-medium">Payment Data Security</span>
-                    <span className="text-neutral-slate-900 font-bold">PCI-DSS (Paystack)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 7. Become a Tutor Band */}
-        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="space-y-3 max-w-2xl text-left relative z-10">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-service-tutor-700/60 px-3 py-1 text-xs font-semibold text-white border border-service-tutor-500/40">
-                <Award className="h-3.5 w-3.5" />
-                Join Nigeria&apos;s Elite Educator Network
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-white">
-                Are you an expert educator? Teach on Trainbow HUB.
-              </h2>
-              <p className="text-sm text-neutral-slate-200 leading-relaxed">
-                Set your own rates in naira, teach ambitious students across Nigeria, and earn reliable weekly income with zero scheduling hassle or payment chasing.
-              </p>
-            </div>
-            <Link href="/become-a-tutor" className="shrink-0 relative z-10">
-              <Button variant="primary" size="lg" className="font-semibold text-base px-8 py-3 shadow-lg">
-                Apply to Become a Tutor
-              </Button>
-            </Link>
-          </div>
-        </section>
-
-        {/* 8. Transparent Pricing Teaser */}
-        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <Badge variant="brand">Transparent Pricing</Badge>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-              Simple, Predictable Learning Costs
-            </h2>
-            <p className="text-sm text-neutral-slate-600">
-              Pay only for what you need. No hidden fees or surprise auto-renewals.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Pay per lesson */}
-            <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-hover transition-all">
-              <CardHeader className="space-y-2">
-                <Badge variant="tutor" className="w-fit">1-on-1 Tutoring</Badge>
-                <CardTitle className="text-lg">Pay Per Lesson</CardTitle>
-                <div className="pt-2">
-                  <span className="text-3xl font-extrabold font-heading text-neutral-slate-900">From ₦5,000</span>
-                  <span className="text-xs text-neutral-slate-500 block">/ 60-minute session</span>
-                </div>
-                <CardDescription className="text-xs text-neutral-slate-600 pt-2">
-                  Tailored 1-on-1 coaching with approved educators for WAEC, JAMB, or junior school.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700" />
-                  <span>Choose tutor by rate and qualifications</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700" />
-                  <span>Interactive virtual classroom included</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-tutor-700" />
-                  <span>100% refund on tutor cancellation</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Link href="/request-tutor" className="w-full">
-                  <Button variant="outline" size="sm" className="w-full">
-                    Request a Match
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-
-            {/* AI Assistant Plan */}
-            <Card className="flex flex-col justify-between border-2 border-service-ai-600 bg-purple-50/20 shadow-md relative hover:shadow-hover transition-all">
-              <div className="absolute -top-3 right-4 bg-service-ai-600 text-white px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                Popular
-              </div>
-              <CardHeader className="space-y-2">
-                <Badge variant="ai" className="w-fit">Trainbow AI</Badge>
-                <CardTitle className="text-lg">Socratic AI Pass</CardTitle>
-                <div className="pt-2">
-                  <span className="text-3xl font-extrabold font-heading text-neutral-slate-900">₦3,500</span>
-                  <span className="text-xs text-neutral-slate-500 block">/ month</span>
-                </div>
-                <CardDescription className="text-xs text-neutral-slate-600 pt-2">
-                  Unlimited 24/7 homework assistance, hint-first guidance, and verified math calculations.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600" />
-                  <span>Generous daily question quota</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600" />
-                  <span>WAEC & JAMB step-by-step solver</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-service-ai-600" />
-                  <span>One-click tutor escalation</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Link href="/pricing" className="w-full">
-                  <Button variant="ai" size="sm" className="w-full">
-                    Get AI Access
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-
-            {/* Academy Full Pass */}
-            <Card className="flex flex-col justify-between border-neutral-slate-200 hover:shadow-hover transition-all">
-              <CardHeader className="space-y-2">
-                <Badge variant="brand" className="w-fit">Academy Pass</Badge>
-                <CardTitle className="text-lg">Curriculum Courses</CardTitle>
-                <div className="pt-2">
-                  <span className="text-3xl font-extrabold font-heading text-neutral-slate-900">₦15,000</span>
-                  <span className="text-xs text-neutral-slate-500 block">/ term per subject</span>
-                </div>
-                <CardDescription className="text-xs text-neutral-slate-600 pt-2">
-                  All structured modules, video explanations, past exam questions, and stored quiz attempts.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-xs text-neutral-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600" />
-                  <span>All lessons and practice quizzes</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600" />
-                  <span>Resumable progress across devices</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-blue-600" />
-                  <span>Parent progress tracking reports</span>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Link href="/academy" className="w-full">
-                  <Button variant="outline" size="sm" className="w-full">
-                    Explore Academy
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          </div>
-        </section>
-
-        {/* 9. FAQ Accordion & Final CTA Band */}
-        <section className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-12">
-          <div className="text-center space-y-2">
-            <Badge variant="neutral">Got Questions?</Badge>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-sm text-neutral-slate-600">
-              Clear, transparent answers about our curriculum, safety rules, and booking policies.
-            </p>
-          </div>
-
-          <HomeFAQ />
-
-          {/* Final Conversion CTA Band */}
-          <div className="rounded-2xl border border-brand-blue-600/30 bg-gradient-to-r from-brand-navy-900 via-brand-navy-900 to-brand-blue-900 text-white p-8 sm:p-12 text-center space-y-6">
-            <h3 className="text-2xl sm:text-4xl font-extrabold font-heading text-white">
-              Give your child the academic edge they deserve.
-            </h3>
-            <p className="text-sm sm:text-base text-neutral-slate-200 max-w-xl mx-auto leading-relaxed">
-              Join hundreds of Nigerian students excelling in Mathematics and WAEC exams with verified tutors and Socratic AI guidance.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-              <Link href="/register">
-                <Button variant="primary" size="lg" className="font-semibold text-base px-8 py-3 shadow-lg">
-                  Get Started for Free
-                </Button>
               </Link>
-              <Link href="/request-tutor">
-                <Button variant="secondary" size="lg" className="font-semibold text-base px-8 py-3">
-                  Request a Tutor Match
-                </Button>
+
+              {/* AI Helper Card */}
+              <Link
+                href="/ai"
+                className="group rounded-2xl border border-neutral-slate-200 bg-neutral-slate-50/50 p-5 sm:p-6 flex flex-col justify-between hover:bg-white hover:border-purple-500 hover:shadow-md transition-all duration-150"
+              >
+                <div>
+                  <div className="h-10 w-10 rounded-xl bg-purple-50 text-service-ai-600 flex items-center justify-center mb-4">
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                    AI
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+                    Step-by-step guidance without giving away direct answers.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-neutral-slate-200/60 flex items-center justify-end text-service-ai-600 group-hover:translate-x-0.5 transition-transform">
+                  <ArrowRight className="h-4 w-4" />
+                </div>
+              </Link>
+
+              {/* Tutors Card */}
+              <Link
+                href="/request-tutor"
+                className="group rounded-2xl border border-neutral-slate-200 bg-neutral-slate-50/50 p-5 sm:p-6 flex flex-col justify-between hover:bg-white hover:border-teal-500 hover:shadow-md transition-all duration-150"
+              >
+                <div>
+                  <div className="h-10 w-10 rounded-xl bg-teal-50 text-service-tutor-700 flex items-center justify-center mb-4">
+                    <GraduationCap className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                    Tutors
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+                    Expert educators matched personally by our Director.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-neutral-slate-200/60 flex items-center justify-end text-service-tutor-700 group-hover:translate-x-0.5 transition-transform">
+                  <ArrowRight className="h-4 w-4" />
+                </div>
+              </Link>
+
+              {/* Music Card */}
+              <Link
+                href="/music"
+                className="group rounded-2xl border border-neutral-slate-200 bg-neutral-slate-50/50 p-5 sm:p-6 flex flex-col justify-between hover:bg-white hover:border-amber-500 hover:shadow-md transition-all duration-150"
+              >
+                <div>
+                  <div className="h-10 w-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-4">
+                    <Music className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                    Music
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+                    Theory and instrument coaching for all levels.
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-neutral-slate-200/60 flex items-center justify-end text-amber-700 group-hover:translate-x-0.5 transition-transform">
+                  <ArrowRight className="h-4 w-4" />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. HOW IT WORKS */}
+        <section className="py-12 sm:py-16 lg:py-24 bg-neutral-slate-50">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-neutral-slate-900 tracking-tight text-center mb-8 sm:mb-12">
+              How it works
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+              {/* Step 1 */}
+              <div className="rounded-2xl bg-white border border-neutral-slate-200/80 p-5 sm:p-6 text-center space-y-2">
+                <div className="h-9 w-9 rounded-full bg-brand-blue-50 text-brand-blue-600 font-bold text-sm flex items-center justify-center mx-auto mb-3">
+                  1
+                </div>
+                <p className="font-heading font-bold text-neutral-slate-900 text-sm sm:text-base">
+                  Tell us what you need.
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="rounded-2xl bg-white border border-neutral-slate-200/80 p-5 sm:p-6 text-center space-y-2">
+                <div className="h-9 w-9 rounded-full bg-brand-blue-50 text-brand-blue-600 font-bold text-sm flex items-center justify-center mx-auto mb-3">
+                  2
+                </div>
+                <p className="font-heading font-bold text-neutral-slate-900 text-sm sm:text-base">
+                  We match you with a tutor.
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="rounded-2xl bg-white border border-neutral-slate-200/80 p-5 sm:p-6 text-center space-y-2">
+                <div className="h-9 w-9 rounded-full bg-brand-blue-50 text-brand-blue-600 font-bold text-sm flex items-center justify-center mx-auto mb-3">
+                  3
+                </div>
+                <p className="font-heading font-bold text-neutral-slate-900 text-sm sm:text-base">
+                  Learn and track progress.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. FINAL CALL TO ACTION */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-brand-navy-900 text-white text-center">
+          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 space-y-5 sm:space-y-6">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white tracking-tight">
+              Ready to start learning?
+            </h2>
+
+            <div>
+              <Link href="/request-tutor" className="inline-block">
+                <span className="min-h-[44px] h-[48px] px-8 rounded-xl bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-semibold text-sm sm:text-base inline-flex items-center justify-center gap-2 shadow-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy-900">
+                  <span>Request a tutor</span>
+                  <ArrowRight className="h-4 w-4" />
+                </span>
               </Link>
             </div>
           </div>
         </section>
       </main>
 
-      {/* 10. Real Public Footer */}
       <Footer />
     </div>
   );

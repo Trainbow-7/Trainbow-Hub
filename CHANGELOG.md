@@ -261,7 +261,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Immutable feedback logging via `AIFeedbackRecord` and `POST /api/ai/feedback`.
 - **1-Tap Seamless Human Tutor Escalation Engine (AI-10)**:
   - 1-tap button (`data-testid="escalate-tutor-btn"`) allowing struggling learners to seamlessly bridge from AI hints to 1:1 human instruction.
-  - Contextual escalation recording student question, hint progress, and suggested topic, pre-populating booking with Lead Tutor Dr. Tayo Okafor.
+  - Contextual escalation recording student question, hint progress, and suggested topic, pre-populating booking with Lead Tutor Lead STEM Tutor.
 - **Privacy-Compliant Conversation Management (AI-11, AI-12)**:
   - Per-user isolated thread management (`POST /api/ai/conversations`, `GET /api/ai/conversations/[id]`, `DELETE /api/ai/conversations/[id]`).
   - Thread creation, switching, and deletion with cascading message cleanup.
@@ -350,7 +350,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Database & Data Architecture**:
   - PostgreSQL 16 migration `scripts/migrations/002_phase_d_academy_and_learning_engine.sql` with models for `enrollments`, `quiz_attempts`, `study_stats`, and `authoring_courses`.
   - Updated `prisma/schema.prisma` with relational models and regenerated Prisma client.
-  - Resilient in-memory database store (`src/lib/db/index.ts`) pre-seeded with demo student Chioma Adeleke (`usr-std-001`) and vetted tutor Dr. Tayo Okafor (`usr-tut-004`).
+  - Resilient in-memory database store (`src/lib/db/index.ts`) pre-seeded with demo student Chioma Adeleke (`usr-std-001`) and vetted tutor Lead STEM Tutor (`usr-tut-004`).
 - **RESTful Academy API Routes**:
   - `GET /api/academy/dashboard`: Aggregated dashboard data including enrollments, study stats, streak days, recent attempts, and revision topics.
   - `POST /api/academy/enroll`: Course enrollment action with entry lesson initialization.

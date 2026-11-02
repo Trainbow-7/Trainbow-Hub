@@ -61,6 +61,68 @@ export default function AIPage() {
           </div>
         </div>
 
+        {/* Example Socratic AI Dialogue Showcase */}
+        <section className="rounded-2xl border border-neutral-slate-200 bg-white p-6 sm:p-8 shadow-xs space-y-4">
+          <div className="flex items-center justify-between border-b border-neutral-slate-200 pb-3">
+            <div className="flex items-center gap-2">
+              <div className="h-7 w-7 rounded-lg bg-service-ai-600 text-white flex items-center justify-center shadow-xs">
+                <Sparkles className="h-4 w-4" />
+              </div>
+              <div>
+                <h2 className="text-sm sm:text-base font-bold font-heading text-neutral-slate-900">
+                  How Socratic AI Guidance Works
+                </h2>
+                <p className="text-xs text-neutral-slate-600">
+                  Step-by-step problem solving without spoiling direct answers
+                </p>
+              </div>
+            </div>
+            <span className="text-[11px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-full bg-service-ai-50 text-service-ai-700 border border-service-ai-200">
+              Example
+            </span>
+          </div>
+
+          <div className="space-y-3.5 pt-1">
+            {/* Message 1: Student Question */}
+            <div className="flex justify-end">
+              <div className="max-w-[85%] rounded-2xl rounded-tr-xs bg-brand-blue-600 px-4 py-2.5 text-white shadow-xs">
+                <p className="text-xs sm:text-sm font-medium">
+                  How do I solve <span className="font-semibold">x² − 5x + 6 = 0</span>?
+                </p>
+              </div>
+            </div>
+
+            {/* Message 2: Socratic AI Hint 1 */}
+            <div className="flex justify-start">
+              <div className="max-w-[85%] rounded-2xl rounded-tl-xs bg-purple-50/80 border border-purple-200 px-4 py-2.5 text-neutral-slate-800 shadow-xs space-y-1">
+                <p className="text-xs font-semibold text-service-ai-700">Trainbow Socratic Guidance</p>
+                <p className="text-xs sm:text-sm leading-relaxed">
+                  Let’s factor this quadratic! What two numbers multiply to <span className="font-semibold text-neutral-slate-900">6</span> and add up to <span className="font-semibold text-neutral-slate-900">−5</span>?
+                </p>
+              </div>
+            </div>
+
+            {/* Message 3: Student Response */}
+            <div className="flex justify-end">
+              <div className="max-w-[85%] rounded-2xl rounded-tr-xs bg-brand-blue-600 px-4 py-2.5 text-white shadow-xs">
+                <p className="text-xs sm:text-sm font-medium">
+                  −2 and −3, because (−2) × (−3) = 6 and (−2) + (−3) = −5.
+                </p>
+              </div>
+            </div>
+
+            {/* Message 4: Socratic AI Hint 2 & Verification */}
+            <div className="flex justify-start">
+              <div className="max-w-[85%] rounded-2xl rounded-tl-xs bg-purple-50/80 border border-purple-200 px-4 py-2.5 text-neutral-slate-800 shadow-xs space-y-1">
+                <p className="text-xs font-semibold text-service-ai-700">Trainbow Socratic Guidance</p>
+                <p className="text-xs sm:text-sm leading-relaxed">
+                  Spot on! That gives <span className="font-semibold text-neutral-slate-900">(x − 2)(x − 3) = 0</span>. Therefore, setting each factor to zero yields <span className="font-semibold text-neutral-slate-900">x = 2</span> or <span className="font-semibold text-neutral-slate-900">x = 3</span>. Both roots verify programmatically in the original equation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Live Academic AI Workspace Section */}
         <section id="workspace" className="space-y-4 scroll-mt-24">
           <div className="flex flex-wrap items-end justify-between gap-3">

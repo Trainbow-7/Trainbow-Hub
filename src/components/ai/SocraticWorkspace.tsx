@@ -624,7 +624,7 @@ export function SocraticWorkspace() {
         body: JSON.stringify({
           conversationId: activeConversationId,
           messageId: msg.id,
-          tutorSlug: "dr-tayo-okafor",
+          tutorSlug: "lead-stem-tutor",
           problemSnippet: lastUserMsg?.content || "Mathematics equation clarification",
           studentAttempt: msg.content.slice(0, 200),
           suggestedTopic: "Quadratic Equation Socratic Review",
@@ -890,7 +890,7 @@ export function SocraticWorkspace() {
               {showDrawingBoard ? "Hide Diagram Board" : "Draw Diagram"}
             </Button>
 
-            <Link href="/tutors/dr-tayo-okafor">
+            <Link href="/tutors/lead-stem-tutor">
               <Button
                 variant="outline"
                 size="sm"

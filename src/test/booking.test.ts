@@ -12,7 +12,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
   describe("BK-01: Slot Hold Expiration & Automatic Release", () => {
     it("creates a 10-minute hold that initially blocks conflicting holds", async () => {
       const hold = await db.createSlotHold({
-        tutorSlug: "dr-tayo-okafor",
+        tutorSlug: "lead-stem-tutor",
         studentId: "usr-std-001",
         slotDate: "2026-10-18",
         slotTime: "10:00 - 11:00",
@@ -21,13 +21,13 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
 
       expect(hold.id).toBeDefined();
       expect(hold.status).toBe("ACTIVE");
-      expect(hold.tutorSlug).toBe("dr-tayo-okafor");
+      expect(hold.tutorSlug).toBe("lead-stem-tutor");
       expect(hold.expiresAt.getTime()).toBeGreaterThan(Date.now());
 
       // Attempting to hold the exact same slot while active must throw conflict
       await expect(
         db.createSlotHold({
-          tutorSlug: "dr-tayo-okafor",
+          tutorSlug: "lead-stem-tutor",
           studentId: "usr-std-002",
           slotDate: "2026-10-18",
           slotTime: "10:00 - 11:00",
@@ -39,7 +39,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
     it("automatically releases expired slot holds to allow new reservations", async () => {
       // Create an expired hold
       const expiredHold = await db.createSlotHold({
-        tutorSlug: "dr-tayo-okafor",
+        tutorSlug: "lead-stem-tutor",
         studentId: "usr-std-001",
         slotDate: "2026-10-18",
         slotTime: "14:00 - 15:00",
@@ -50,7 +50,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
 
       // New student can now hold the same slot because the prior hold expired
       const newHold = await db.createSlotHold({
-        tutorSlug: "dr-tayo-okafor",
+        tutorSlug: "lead-stem-tutor",
         studentId: "usr-std-002",
         slotDate: "2026-10-18",
         slotTime: "14:00 - 15:00",
@@ -63,7 +63,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
 
     it("allows manual release of an active hold", async () => {
       const hold = await db.createSlotHold({
-        tutorSlug: "dr-tayo-okafor",
+        tutorSlug: "lead-stem-tutor",
         studentId: "usr-std-001",
         slotDate: "2026-10-19",
         slotTime: "11:00 - 12:00",
@@ -75,7 +75,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
 
       // Now another student can immediately reserve it
       const newHold = await db.createSlotHold({
-        tutorSlug: "dr-tayo-okafor",
+        tutorSlug: "lead-stem-tutor",
         studentId: "usr-std-002",
         slotDate: "2026-10-19",
         slotTime: "11:00 - 12:00",
@@ -89,14 +89,14 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
     it("safely handles parallel reservation attempts and allows only one winner", async () => {
       const results = await Promise.allSettled([
         db.createSlotHold({
-          tutorSlug: "dr-tayo-okafor",
+          tutorSlug: "lead-stem-tutor",
           studentId: "usr-std-001",
           slotDate: "2026-10-20",
           slotTime: "09:00 - 10:00",
           durationMinutes: 10,
         }),
         db.createSlotHold({
-          tutorSlug: "dr-tayo-okafor",
+          tutorSlug: "lead-stem-tutor",
           studentId: "usr-std-002",
           slotDate: "2026-10-20",
           slotTime: "09:00 - 10:00",
@@ -115,8 +115,8 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       // Create a confirmed booking
       await db.createBooking({
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
-        tutorName: "Dr. Tayo Okafor",
+        tutorSlug: "lead-stem-tutor",
+        tutorName: "Lead STEM Tutor",
         subject: "Senior Secondary Mathematics",
         slotDate: "2026-10-21",
         slotTime: "15:00 - 16:00",
@@ -131,7 +131,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       // Attempting to hold this confirmed slot must fail
       await expect(
         db.createSlotHold({
-          tutorSlug: "dr-tayo-okafor",
+          tutorSlug: "lead-stem-tutor",
           studentId: "usr-std-002",
           slotDate: "2026-10-21",
           slotTime: "15:00 - 16:00",
@@ -256,8 +256,8 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
     it("confirms a booking on verified payment and creates immutable ledger records", async () => {
       const booking = await db.createBooking({
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
-        tutorName: "Dr. Tayo Okafor",
+        tutorSlug: "lead-stem-tutor",
+        tutorName: "Lead STEM Tutor",
         subject: "Senior Secondary Mathematics",
         slotDate: "2026-10-22",
         slotTime: "11:00 - 12:00",
@@ -270,7 +270,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
         paymentReference: "pstk_ref_test_001",
       });
 
-      const initialLedger = await db.findLedgerEntriesByTutorSlug("dr-tayo-okafor");
+      const initialLedger = await db.findLedgerEntriesByTutorSlug("lead-stem-tutor");
       const initialLedgerCount = initialLedger.length;
 
       // Confirm with payment
@@ -286,7 +286,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       expect(confirmation.isReplay).toBe(false);
 
       // Check updated ledger entries
-      const updatedLedger = await db.findLedgerEntriesByTutorSlug("dr-tayo-okafor");
+      const updatedLedger = await db.findLedgerEntriesByTutorSlug("lead-stem-tutor");
       expect(updatedLedger.length).toBe(initialLedgerCount + 2); // 1 credit + 1 commission debit
 
       const creditEntry = updatedLedger.find(
@@ -305,8 +305,8 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
     it("idempotently handles duplicate webhook/verification replays without duplicating ledger records (BK-04)", async () => {
       const booking = await db.createBooking({
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
-        tutorName: "Dr. Tayo Okafor",
+        tutorSlug: "lead-stem-tutor",
+        tutorName: "Lead STEM Tutor",
         subject: "Senior Secondary Mathematics",
         slotDate: "2026-10-23",
         slotTime: "14:00 - 15:00",
@@ -327,7 +327,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       });
       expect(firstResult.isReplay).toBe(false);
 
-      const ledgerAfterFirst = await db.findLedgerEntriesByTutorSlug("dr-tayo-okafor");
+      const ledgerAfterFirst = await db.findLedgerEntriesByTutorSlug("lead-stem-tutor");
       const ledgerCountAfterFirst = ledgerAfterFirst.length;
 
       // Duplicate replay (e.g. repeated Paystack webhook)
@@ -341,7 +341,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       expect(secondResult.booking.bookingStatus).toBe("CONFIRMED");
 
       // Ledger count must remain identical
-      const ledgerAfterSecond = await db.findLedgerEntriesByTutorSlug("dr-tayo-okafor");
+      const ledgerAfterSecond = await db.findLedgerEntriesByTutorSlug("lead-stem-tutor");
       expect(ledgerAfterSecond.length).toBe(ledgerCountAfterFirst);
     });
   });
@@ -350,8 +350,8 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
     it("successfully reschedules an existing booking to an open slot", async () => {
       const booking = await db.createBooking({
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
-        tutorName: "Dr. Tayo Okafor",
+        tutorSlug: "lead-stem-tutor",
+        tutorName: "Lead STEM Tutor",
         subject: "Senior Secondary Mathematics",
         slotDate: "2026-10-24",
         slotTime: "10:00 - 11:00",
@@ -378,8 +378,8 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       // Create first booking
       const booking1 = await db.createBooking({
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
-        tutorName: "Dr. Tayo Okafor",
+        tutorSlug: "lead-stem-tutor",
+        tutorName: "Lead STEM Tutor",
         subject: "Senior Secondary Mathematics",
         slotDate: "2026-10-26",
         slotTime: "10:00 - 11:00",
@@ -394,8 +394,8 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       // Create second booking on another slot
       const booking2 = await db.createBooking({
         studentId: "usr-std-002",
-        tutorSlug: "dr-tayo-okafor",
-        tutorName: "Dr. Tayo Okafor",
+        tutorSlug: "lead-stem-tutor",
+        tutorName: "Lead STEM Tutor",
         subject: "Senior Secondary Mathematics",
         slotDate: "2026-10-26",
         slotTime: "11:00 - 12:00",
@@ -418,8 +418,8 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
     it("cancels a confirmed session and records a refund debit in the financial ledger", async () => {
       const booking = await db.createBooking({
         studentId: "usr-std-001",
-        tutorSlug: "dr-tayo-okafor",
-        tutorName: "Dr. Tayo Okafor",
+        tutorSlug: "lead-stem-tutor",
+        tutorName: "Lead STEM Tutor",
         subject: "Senior Secondary Mathematics",
         slotDate: "2026-10-27",
         slotTime: "12:00 - 13:00",
@@ -432,7 +432,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
         paymentReference: "pstk_cancel_test_01",
       });
 
-      const initialLedger = await db.findLedgerEntriesByTutorSlug("dr-tayo-okafor");
+      const initialLedger = await db.findLedgerEntriesByTutorSlug("lead-stem-tutor");
       const initialCount = initialLedger.length;
 
       const cancelled = await db.cancelBooking(
@@ -444,7 +444,7 @@ describe("Phase E: 1-on-1 Lesson Booking & Paystack Integration Unit Tests", () 
       expect(cancelled.cancellationReason).toContain("school exam clash");
 
       // Verify refund debit record created
-      const updatedLedger = await db.findLedgerEntriesByTutorSlug("dr-tayo-okafor");
+      const updatedLedger = await db.findLedgerEntriesByTutorSlug("lead-stem-tutor");
       expect(updatedLedger.length).toBe(initialCount + 1);
 
       const refundEntry = updatedLedger.find(

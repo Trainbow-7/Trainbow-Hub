@@ -145,7 +145,8 @@
   }
 }
 
-html[data-data-saver="true"] * {
+html[data-data-saver="true"] *,
+html[data-saver="true"] * {
   animation: none !important;
   transition-duration: 0.01ms !important;
 }
@@ -189,5 +190,22 @@ html[data-data-saver="true"] * {
   }
   .animate-hero-fade {
     animation: heroFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+
+/* Hero Hub Connector Lines Animation */
+@keyframes hubDash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-hub-flow-blue,
+  .animate-hub-flow-purple,
+  .animate-hub-flow-teal,
+  .animate-hub-flow-amber {
+    animation: hubDash 4s linear infinite;
   }
 }

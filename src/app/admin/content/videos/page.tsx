@@ -455,7 +455,7 @@ export default function AdminVideoLibraryPage() {
                   </label>
                   <textarea
                     rows={2}
-                    placeholder="E.g., verified by Dr. Okafor; covers WAEC 2024 theory past questions precisely."
+                    placeholder="E.g., verified by Chief Examiner; covers WAEC 2024 theory past questions precisely."
                     value={manualNotes}
                     onChange={(e) => setManualNotes(e.target.value)}
                     className="w-full text-xs p-2.5 rounded-lg border border-neutral-slate-200 text-neutral-slate-900 resize-none"

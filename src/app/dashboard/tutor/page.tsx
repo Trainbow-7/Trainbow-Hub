@@ -90,7 +90,7 @@ export default function TutorDashboardAuthoringPage() {
 
   const fetchBookings = React.useCallback(async () => {
     try {
-      const tutorSlug = user?.tutorProfileSlug || "dr-tayo-okafor";
+      const tutorSlug = user?.tutorProfileSlug || "lead-stem-tutor";
       const res = await fetch(`/api/bookings?tutorSlug=${tutorSlug}`);
       const json = await res.json();
       if (json.success) {
@@ -110,7 +110,7 @@ export default function TutorDashboardAuthoringPage() {
 
   const fetchAvailability = React.useCallback(async () => {
     try {
-      const tutorSlug = user?.tutorProfileSlug || "dr-tayo-okafor";
+      const tutorSlug = user?.tutorProfileSlug || "lead-stem-tutor";
       const res = await fetch(`/api/tutor/availability?tutorSlug=${tutorSlug}`);
       const json = await res.json();
       if (json.success && json.profile) {
@@ -125,7 +125,7 @@ export default function TutorDashboardAuthoringPage() {
     setUpdatingAvailability(true);
     setAvailabilityMessage(null);
     try {
-      const tutorSlug = user?.tutorProfileSlug || "dr-tayo-okafor";
+      const tutorSlug = user?.tutorProfileSlug || "lead-stem-tutor";
       const res = await fetch("/api/tutor/availability", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -586,7 +586,7 @@ export default function TutorDashboardAuthoringPage() {
                     Access Bank Plc
                   </div>
                   <span className="text-[11px] font-mono text-neutral-slate-500 mt-1 block">
-                    •••• •••• 4092 (Tayo Okafor)
+                    •••• •••• 4092 (Lead Tutor)
                   </span>
                 </div>
               </div>

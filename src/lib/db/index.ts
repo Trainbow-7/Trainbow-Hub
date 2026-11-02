@@ -1124,12 +1124,12 @@ class DatabaseStore {
     };
     this.guardianships.set(chiomaGuardianship.id, chiomaGuardianship);
 
-    // 4. Verified Tutor (Dr. Tayo Okafor)
+    // 4. Verified Tutor (Lead STEM Tutor)
     const tutorUser: UserRecord = {
       id: "usr-tut-004",
       email: "tutor@trainbowhub.ng",
       passwordHash: defaultHash,
-      fullName: "Dr. Tayo Okafor",
+      fullName: "Lead STEM Tutor",
       phoneNumber: "+2348094443322",
       role: "TUTOR",
       dateOfBirth: "1985-08-22",
@@ -1143,7 +1143,7 @@ class DatabaseStore {
     const tutorProfile: TutorProfileRecord = {
       id: "tp-001",
       userId: tutorUser.id,
-      slug: "dr-tayo-okafor",
+      slug: "lead-stem-tutor",
       title: "Senior Lecturer in Mathematics & WAEC Examiner",
       bio: "Dedicated senior secondary mathematics educator with over a decade of university lecture and secondary exam coaching experience.",
       teachingApproach: "First principles reasoning, step-by-step Socratic inquiry, and past question analysis.",
@@ -1161,7 +1161,7 @@ class DatabaseStore {
       internalNotes: "Senior specialist in WAEC/JAMB pure mathematics. Excellent student feedback.",
       settlementBankName: "Guaranty Trust Bank (GTBank)",
       settlementAccount: "0123456789",
-      settlementName: "Dr. Tayo Okafor",
+      settlementName: "Lead STEM Tutor",
       createdAt: new Date("2026-08-10"),
       updatedAt: new Date("2026-08-10"),
     };
@@ -1278,12 +1278,12 @@ class DatabaseStore {
     };
     this.matchingSettings.set(defaultSettings.id, defaultSettings);
 
-    // Seed initial demo booking: Chioma Adeleke booked Dr. Tayo Okafor (BK-01 .. BK-09)
+    // Seed initial demo booking: Chioma Adeleke booked Lead STEM Tutor (BK-01 .. BK-09)
     const seedBooking: BookingRecord = {
       id: "bkg-seed-001",
       studentId: studentUser.id,
-      tutorSlug: "dr-tayo-okafor",
-      tutorName: "Dr. Tayo Okafor",
+      tutorSlug: "lead-stem-tutor",
+      tutorName: "Lead STEM Tutor",
       subject: "Mathematics",
       slotDate: "2026-10-14",
       slotTime: "16:00 - 17:00",
@@ -1335,7 +1335,7 @@ class DatabaseStore {
     // Matching seed tutor ledger entry (PY-04, PY-05)
     const seedCredit: TutorLedgerEntryRecord = {
       id: "led-seed-001",
-      tutorSlug: "dr-tayo-okafor",
+      tutorSlug: "lead-stem-tutor",
       bookingId: seedBooking.id,
       transactionReference: seedTx.reference,
       type: "BOOKING_CREDIT",
@@ -1346,7 +1346,7 @@ class DatabaseStore {
     };
     const seedDebit: TutorLedgerEntryRecord = {
       id: "led-seed-002",
-      tutorSlug: "dr-tayo-okafor",
+      tutorSlug: "lead-stem-tutor",
       bookingId: seedBooking.id,
       transactionReference: seedTx.reference,
       type: "COMMISSION_DEBIT",
@@ -1362,7 +1362,7 @@ class DatabaseStore {
     const seedNote: TutorProgressNoteRecord = {
       id: "tpn-seed-001",
       bookingId: seedBooking.id,
-      tutorSlug: "dr-tayo-okafor",
+      tutorSlug: "lead-stem-tutor",
       studentId: studentUser.id,
       subject: "Mathematics",
       summary: "Chioma demonstrated strong conceptual grasp of quadratic factorisation and indices. Need further drill on simultaneous non-linear roots.",
@@ -1641,7 +1641,7 @@ class DatabaseStore {
       aiEnabled: false, // Evaluation passed, ready for admin toggle
       aiEvaluationStatus: "PASSED",
       aiEvaluationScore: 88.0,
-      aiEvaluationSignedBy: "Dr. Tayo Okafor (Lead STEM Evaluator)",
+      aiEvaluationSignedBy: "Lead STEM Tutor (Lead STEM Evaluator)",
       aiEvaluationSignedAt: new Date("2026-10-05T12:00:00Z"),
       aiGroundingSummary: "Ababio Physics & WAEC Practical Physics Manual.",
       aiVerificationMethod: "SYMBOLIC_SOLVER",
@@ -1719,7 +1719,7 @@ class DatabaseStore {
     // Seed Tutor Subject Qualifications (SB-03)
     const tsq1: TutorSubjectQualificationRecord = {
       id: "tsq-seed-001",
-      tutorSlug: "dr-tayo-okafor",
+      tutorSlug: "lead-stem-tutor",
       subjectSlug: "mathematics",
       levels: ["JSS 1-3", "SSS 1-3", "WAEC/JAMB", "Cambridge IGCSE"],
       credentialEvidenceUrl: "https://trainbow-storage.s3.af-south-1.amazonaws.com/credentials/tayo-phd-math.pdf",
@@ -1733,7 +1733,7 @@ class DatabaseStore {
 
     const tsq2: TutorSubjectQualificationRecord = {
       id: "tsq-seed-002",
-      tutorSlug: "dr-tayo-okafor",
+      tutorSlug: "lead-stem-tutor",
       subjectSlug: "physics",
       levels: ["SSS 1-3", "WAEC/JAMB"],
       credentialEvidenceUrl: "https://trainbow-storage.s3.af-south-1.amazonaws.com/credentials/tayo-trcn-physics.pdf",
@@ -1780,13 +1780,13 @@ class DatabaseStore {
       id: "eval-seed-phys-01",
       subjectSlug: "physics",
       evaluatorId: adminUser.id,
-      evaluatorName: "Dr. Tayo Okafor",
+      evaluatorName: "Lead STEM Tutor",
       rubricScore: 88.0,
       passed: true,
       unsafeContentBlockedCount: 8,
       groundingCoveragePercent: 89.5,
       notes: "Mechanics and kinematic equations verified with symbolic solver. Ready for live toggle.",
-      signOffSignature: "SIG-EVAL-PHYS-OKAFOR-2026",
+      signOffSignature: "SIG-EVAL-PHYS-LEAD-2026",
       evaluatedAt: new Date("2026-10-05T12:00:00Z"),
     };
 
@@ -3342,9 +3342,9 @@ class DatabaseStore {
     suggestedTopic?: string;
   }): Promise<AIEscalationRecord> {
     await this.init();
-    const tutorSlug = params.tutorSlug || "dr-tayo-okafor";
+    const tutorSlug = params.tutorSlug || "lead-stem-tutor";
     const tutor = this.tutorProfiles.get(tutorSlug);
-    const tutorName = tutor ? tutor.title : "Dr. Tayo Okafor";
+    const tutorName = tutor ? tutor.title : "Lead STEM Tutor";
 
     const record: AIEscalationRecord = {
       id: `esc-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,

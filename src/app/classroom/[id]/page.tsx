@@ -114,7 +114,7 @@ export default function ClassroomPage() {
       role: "SYSTEM",
     },
     {
-      sender: "Dr. Tayo Okafor",
+      sender: "Lead STEM Tutor",
       text: "Hello! Welcome to our Mathematics mastery session. Today we are tackling quadratic factorisation and discriminant analysis.",
       time: "Now",
       role: "TUTOR",
@@ -273,7 +273,7 @@ export default function ClassroomPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          tutorSlug: booking?.tutorSlug || "dr-tayo-okafor",
+          tutorSlug: booking?.tutorSlug || "lead-stem-tutor",
         }),
       });
 
@@ -299,7 +299,7 @@ export default function ClassroomPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           studentId: attendee?.userId || "usr-std-001",
-          tutorSlug: booking?.tutorSlug || "dr-tayo-okafor",
+          tutorSlug: booking?.tutorSlug || "lead-stem-tutor",
           rating: selectedRating,
           reviewText: reviewComment || "Excellent session! Very clear step-by-step mathematical explanation.",
         }),
@@ -323,7 +323,7 @@ export default function ClassroomPage() {
     setChatMessages((prev) => [
       ...prev,
       {
-        sender: attendee?.fullName || (requestedRole === "TUTOR" ? "Dr. Tayo Okafor" : "Chioma Adeleke"),
+        sender: attendee?.fullName || (requestedRole === "TUTOR" ? "Lead STEM Tutor" : "Chioma Adeleke"),
         text: newChatText,
         time: "Just now",
         role: requestedRole,
@@ -393,7 +393,7 @@ export default function ClassroomPage() {
             <div className="flex items-center gap-2">
               <h1 className="text-sm font-semibold text-white tracking-tight flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                {booking?.subject || "Mathematics"} with {booking?.tutorName || "Dr. Tayo Okafor"}
+                {booking?.subject || "Mathematics"} with {booking?.tutorName || "Lead STEM Tutor"}
               </h1>
               <span
                 data-testid="session-status-badge"
@@ -526,7 +526,7 @@ export default function ClassroomPage() {
                   </p>
                   <div className="bg-brand-navy-900 border border-neutral-slate-700 rounded-xl p-3 text-left text-xs text-neutral-slate-200">
                     <p className="font-semibold text-white mb-1">Active Audio Stream:</p>
-                    <p className="text-neutral-slate-300">Tutor: Dr. Tayo Okafor (Speaking) 🔊</p>
+                    <p className="text-neutral-slate-300">Tutor: Lead STEM Tutor (Speaking) 🔊</p>
                     <p className="text-neutral-slate-300">Learner: Chioma Adeleke (Connected) 🎙</p>
                   </div>
                 </div>
@@ -538,7 +538,7 @@ export default function ClassroomPage() {
                     <div className="w-24 h-24 rounded-full bg-teal-900/70 border-2 border-teal-400 flex items-center justify-center text-teal-100 text-3xl font-bold shadow-xl mb-3">
                       TO
                     </div>
-                    <p className="text-base font-semibold text-white">Dr. Tayo Okafor (Verified Tutor)</p>
+                    <p className="text-base font-semibold text-white">Lead STEM Tutor (Verified Tutor)</p>
                     <p className="text-xs text-teal-300 mt-1">PhD Mathematics • Lead Instructor</p>
                     <div className="absolute bottom-3 left-3 bg-brand-navy-950/90 px-2 py-1 rounded text-[11px] text-white flex items-center gap-1.5 border border-neutral-slate-700">
                       <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -1034,7 +1034,7 @@ export default function ClassroomPage() {
                 <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
                 <h3 className="text-base font-bold text-white mb-2">Review Recorded!</h3>
                 <p className="text-xs text-neutral-slate-200 leading-relaxed max-w-sm mx-auto mb-6">
-                  Thank you for rating Dr. Tayo Okafor. Your review has been added to their public tutor profile and unlocks the next stage of your learning journey.
+                  Thank you for rating Lead STEM Tutor. Your review has been added to their public tutor profile and unlocks the next stage of your learning journey.
                 </p>
                 <Link href="/bookings">
                   <Button variant="primary" className="w-full">

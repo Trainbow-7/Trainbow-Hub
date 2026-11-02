@@ -130,11 +130,11 @@ test.describe("Phase H: Administration, Safeguarding Triage & Financial Operatio
     await page.locator('[data-testid="run-reconcile-btn"]').click();
     await expect(page.locator("text=Settlement reconciliation report generated successfully")).toBeVisible();
 
-    // Disburse Tutor Payout to Dr. Tayo Okafor
-    const payoutBtn = page.locator('[data-testid="process-payout-btn-dr-tayo-okafor"]');
+    // Disburse Tutor Payout to Lead STEM Tutor
+    const payoutBtn = page.locator('[data-testid="process-payout-btn-lead-stem-tutor"]');
     if (await payoutBtn.isEnabled()) {
       await payoutBtn.click();
-      await expect(page.locator("text=Disburse Payout: Dr. Tayo Okafor")).toBeVisible();
+      await expect(page.locator("text=Disburse Payout: Lead STEM Tutor")).toBeVisible();
 
       // Enter payout amount (₦5,000)
       await page.locator('[data-testid="payout-amount-input"]').fill("500000");

@@ -15,7 +15,7 @@ test.describe("Phase G: Online Virtual Classroom & Safeguarding Engine E2E (CL-0
     await page.goto("/classroom/bkg-seed-001?role=STUDENT");
 
     // Header and Room title verification
-    await expect(page.locator("h1")).toContainText("Mathematics with Dr. Tayo Okafor");
+    await expect(page.locator("h1")).toContainText("Mathematics with Lead STEM Tutor");
     await expect(page.locator('[data-testid="session-status-badge"]')).toBeVisible();
 
     // CL-01: WAT timezone clock presence
@@ -29,7 +29,7 @@ test.describe("Phase G: Online Virtual Classroom & Safeguarding Engine E2E (CL-0
     await expect(recordingBadge).toContainText("Child Privacy Protected");
 
     // Video Stage & Feeds
-    await expect(page.locator("text=Dr. Tayo Okafor (Verified Tutor)")).toBeVisible();
+    await expect(page.locator("text=Lead STEM Tutor (Verified Tutor)")).toBeVisible();
     await expect(page.locator('[data-testid="student-pip-feed"]')).toBeVisible();
 
     // Controls bar verification

@@ -57,7 +57,7 @@ test.describe("Phase J: Full Parent & Guardian Oversight Portal (PP-01 to PP-05)
     const timetableItem = page.locator('[data-testid="timetable-item-bkg-seed-001"]');
     await expect(timetableItem).toBeVisible();
     await expect(timetableItem.getByText("Mathematics")).toBeVisible();
-    await expect(timetableItem.getByText("Tutor: Dr. Tayo Okafor")).toBeVisible();
+    await expect(timetableItem.getByText("Tutor: Lead STEM Tutor")).toBeVisible();
     await expect(timetableItem.getByText("Chioma Adeleke")).toBeVisible();
 
     // Verify 1-tap observer link and click it

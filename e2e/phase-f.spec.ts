@@ -105,16 +105,16 @@ test.describe("Phase F: Socratic AI Mathematics Assistant & Tutor Escalation Eng
     // Verify Escalation Banner appears
     const escalationBanner = page.locator('[data-testid="escalation-success-banner"]');
     await expect(escalationBanner).toBeVisible({ timeout: 10000 });
-    await expect(escalationBanner).toContainText("Dr. Tayo Okafor");
+    await expect(escalationBanner).toContainText("Lead STEM Tutor");
 
     // Click Complete Booking CTA
     const bookingLink = escalationBanner.getByRole("link", { name: /Complete Booking/i });
     await expect(bookingLink).toBeVisible();
     await bookingLink.click();
 
-    // Verify redirection to Dr. Tayo Okafor's profile with escalation query parameters
-    await expect(page).toHaveURL(/tutors\/dr-tayo-okafor.*escalationId/);
-    await expect(page.locator("h1")).toContainText("Dr. Tayo Okafor");
+    // Verify redirection to Lead STEM Tutor's profile with escalation query parameters
+    await expect(page).toHaveURL(/tutors\/lead-stem-tutor.*escalationId/);
+    await expect(page.locator("h1")).toContainText("Lead STEM Tutor");
   });
 
   test("3. Content Moderation & Safe Pedagogical Redirects (AI-08)", async ({ page }) => {
