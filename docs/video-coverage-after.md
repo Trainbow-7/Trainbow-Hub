@@ -59,3 +59,4 @@ Zero AI-generated, synthesized, or hallucinated video IDs exist in the codebase.
 4. **Removal of Invented Titles:** The fabricated title *"UTME Quantitative Specialist & CBT Strategy Lead"* was removed and replaced with *"Course by Trainbow HUB Academy"*.
 5. **Removal of Unconfigured Guarantees:** *"100% money-back guarantee within 7 days"* was removed and replaced with a direct link to the refund policy at \`/legal/refunds\`.
 6. **Removal of Lifetime Access Claims:** *"Lifetime access to course revisions"* was removed from the enrollment benefits checklist.
+

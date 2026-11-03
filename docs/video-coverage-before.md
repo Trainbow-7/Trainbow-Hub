@@ -46,3 +46,4 @@ On `/courses/jamb-utme-speed-mathematics`:
 3. The instructor card showed **"UTME Quantitative Specialist & CBT Strategy Lead"**, an invented marketing title.
 4. Microcopy claimed **"100% money-back guarantee within 7 days"** and **"Lifetime access to course revisions"** without tying to real platform policy data.
 5. The description claimed **"40 questions in under 45 minutes"**, which contradicts actual JAMB timing (180 questions across 4 subjects in 120 minutes total).
+
