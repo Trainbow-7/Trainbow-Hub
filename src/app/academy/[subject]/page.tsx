@@ -8,8 +8,8 @@ import { Badge } from "@/components/ui/Badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
 import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
-import { SEED_SUBJECTS, SEED_COURSES, SEED_TUTORS } from "@/lib/data/seed-data";
-import { BookOpen, Clock, ChevronRight, Sparkles, GraduationCap, CheckCircle2 } from "lucide-react";
+import { SEED_SUBJECTS, SEED_COURSES } from "@/lib/data/seed-data";
+import { BookOpen, Clock, ChevronRight, Sparkles } from "lucide-react";
 
 export function generateStaticParams() {
   return SEED_SUBJECTS.map((s) => ({ subject: s.slug }));
@@ -29,9 +29,6 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
   }
 
   const courses = SEED_COURSES.filter((c) => c.subjectSlug === subject.slug);
-  const relatedTutors = SEED_TUTORS.filter((t) =>
-    t.subjects.some((sub) => sub.toLowerCase().includes(subject.name.toLowerCase()))
-  );
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
@@ -70,7 +67,7 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
               {subject.name}
             </h1>
             <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
-              {subject.description} Structured lessons, practice sets, and tutors matched by our Director.
+              {subject.description} Structured lessons, practice sets, and verified 1-on-1 tutors aligned to Nigerian educational boards.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-2">
@@ -154,71 +151,10 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
                 Courses in Authoring Pipeline
               </h3>
               <p className="text-xs text-neutral-slate-500 max-w-md mx-auto">
-                Our content managers are reviewing lesson recordings and quiz items for {subject.name}. In the meantime, book 1-on-1 tutoring sessions with our verified educators below.
+                Our content managers are reviewing lesson recordings and quiz items for {subject.name}. Check back soon as new verified syllabi are published.
               </p>
             </div>
           )}
-        </div>
-
-        {/* Related Vetted Tutors */}
-        <div className="space-y-6 pt-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-xl font-bold font-heading text-neutral-slate-900">
-                Verified {subject.name} Tutors ({relatedTutors.length})
-              </h2>
-              <p className="text-xs text-neutral-slate-500">
-                Available for 1-on-1 online lessons or in-person sessions.
-              </p>
-            </div>
-            <Link href="/request-tutor" className="text-xs font-semibold text-brand-blue-600 hover:text-brand-blue-700">
-              Request a tutor match →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {relatedTutors.slice(0, 3).map((tutor) => (
-              <Card key={tutor.id} className="flex flex-col justify-between hover:shadow-hover transition-all">
-                <CardHeader className="space-y-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <Avatar name={tutor.name} size="md" />
-                      <div>
-                        <h4 className="font-heading font-bold text-sm text-neutral-slate-900">
-                          <Link href={`/tutors/${tutor.slug}`} className="hover:text-brand-blue-600 transition-colors">
-                            {tutor.name}
-                          </Link>
-                        </h4>
-                        <p className="text-xs text-neutral-slate-500">{tutor.location}</p>
-                      </div>
-                    </div>
-                    <Badge variant="tutor" className="shrink-0 text-[10px]">
-                      Verified
-                    </Badge>
-                  </div>
-                  <CardDescription className="text-xs text-neutral-slate-600 line-clamp-2">
-                    {tutor.bio}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-2 pt-0 text-xs">
-                  <div className="flex items-center justify-between">
-                    <Rating value={tutor.rating} count={tutor.completedLessons} />
-                    <span className="font-bold text-neutral-slate-900">
-                      ₦{(tutor.hourlyRateMinorUnits / 100).toLocaleString("en-NG")}/hr
-                    </span>
-                  </div>
-                </CardContent>
-                <CardFooter className="pt-0">
-                  <Link href={`/tutors/${tutor.slug}`} className="w-full">
-                    <Button variant="tutor" size="sm" className="w-full justify-between">
-                      <span>Book Lesson</span>
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
         </div>
       </main>
 

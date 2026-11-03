@@ -9,12 +9,11 @@ test.describe("Phase B: Public Website, Catalogue & Legal Slice", () => {
     await expect(page.getByRole("button", { name: "Explore Syllabus" }).first()).toBeVisible();
   });
 
-  test("loads /academy/mathematics and displays courses & tutors", async ({ page }) => {
+  test("loads /academy/mathematics and displays courses", async ({ page }) => {
     await page.goto("/academy/mathematics");
     await expect(page.getByRole("heading", { name: "Mathematics", exact: true })).toBeVisible();
     await expect(page.getByText(/WAEC & SSCE Comprehensive Mathematics Mastery/i)).toBeVisible();
     await expect(page.getByText(/JAMB UTME Speed & Strategy Mathematics/i)).toBeVisible();
-    await expect(page.getByText(/Verified Mathematics Tutors/i)).toBeVisible();
   });
 
   test("loads course details page (/courses/waec-ssce-mathematics-mastery)", async ({ page }) => {
