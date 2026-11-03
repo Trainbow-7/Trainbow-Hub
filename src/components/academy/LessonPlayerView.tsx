@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { RealVideoPlayer, LessonVideoData } from "@/components/video/RealVideoPlayer";
 import { InlineMathText } from "@/components/ui/InlineMathText";
+import { LessonNotesRenderer } from "@/components/academy/LessonNotesRenderer";
 
 interface LessonPayload {
   success: boolean;
@@ -416,23 +417,23 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
 
             {/* Tab Panels */}
             {activeTab === "notes" && (
-              <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-6 prose prose-slate max-w-none">
-                <div className="space-y-4 text-xs sm:text-sm text-neutral-slate-700 leading-relaxed">
-                  <div className="p-4 rounded-lg bg-brand-blue-50/50 border border-brand-blue-100">
-                    <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-brand-blue-800 mb-2">
-                      Key Objectives
-                    </h4>
-                    <ul className="space-y-1 list-disc list-inside">
-                      {lesson.keyObjectives.map((obj, i) => (
-                        <li key={i}><InlineMathText text={obj} /></li>
-                      ))}
-                    </ul>
+              <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-6">
+                {lesson.markdownNotes ? (
+                  <LessonNotesRenderer content={lesson.markdownNotes} />
+                ) : (
+                  <div className="space-y-4 text-xs sm:text-sm text-neutral-slate-700 leading-relaxed">
+                    <div className="p-4 rounded-lg bg-brand-blue-50/50 border border-brand-blue-100">
+                      <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-brand-blue-800 mb-2">
+                        Key Objectives
+                      </h4>
+                      <ul className="space-y-1 list-disc list-inside">
+                        {lesson.keyObjectives.map((obj, i) => (
+                          <li key={i}><InlineMathText text={obj} /></li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-
-                  <div className="whitespace-pre-line font-sans">
-                    <InlineMathText text={lesson.markdownNotes} />
-                  </div>
-                </div>
+                )}
               </div>
             )}
 
