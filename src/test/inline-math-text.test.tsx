@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import * as React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { InlineMathText } from "@/components/ui/InlineMathText";
 
 describe("InlineMathText Typography & KaTeX Rendering", () => {
@@ -71,5 +71,36 @@ describe("InlineMathText Typography & KaTeX Rendering", () => {
     const katexEls = container.querySelectorAll(".katex");
     expect(katexEls.length).toBeGreaterThanOrEqual(1);
   });
-});
 
+  it("renders theta (and tetha) and alpha symbols using correct mathematical KaTeX typography", () => {
+    // 1. Unescaped Greek words
+    const { container: c1 } = render(
+      <InlineMathText text="Quadrant 2: theta = 180 - alpha; Quadrant 3: theta = 180 + alpha; Quadrant 4: theta = 360 - alpha" />
+    );
+    expect(c1.querySelectorAll(".katex").length).toBe(3);
+    expect(c1.textContent).toContain("θ");
+    expect(c1.textContent).toContain("α");
+
+    // 2. Trig quadrant formulas with theta
+    const { container: c2 } = render(
+      <InlineMathText text="cos(180 - theta) = -cos(theta); sin(180 - theta) = sin(theta)" />
+    );
+    expect(c2.querySelectorAll(".katex").length).toBe(2);
+    expect(c2.textContent).toContain("θ");
+
+    // 3. Typo variant 'tetha'
+    const { container: c3 } = render(
+      <InlineMathText text="Find angle tetha in range 0 to 360" />
+    );
+    expect(c3.querySelectorAll(".katex").length).toBe(1);
+    expect(c3.textContent).toContain("θ");
+
+    // 4. Explicit LaTeX delimiters
+    const { container: c4 } = render(
+      <InlineMathText text="Quadrant 2: $\theta = 180^\circ - \alpha$" />
+    );
+    expect(c4.querySelectorAll(".katex").length).toBe(1);
+    expect(c4.textContent).toContain("θ");
+    expect(c4.textContent).toContain("α");
+  });
+});

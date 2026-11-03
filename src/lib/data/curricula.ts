@@ -498,8 +498,8 @@ export const COURSES_DATA: CourseData[] = [
               "Calculate unknown side lengths and angles using trigonometric ratios",
             ],
             keyPoints: [
-              "sin(theta) = O/H, cos(theta) = A/H, tan(theta) = O/A",
-              "Use inverse trig functions (sin^-1, cos^-1, tan^-1) when solving for angles",
+              "$\\sin\\theta = \\frac{\\text{Opposite}}{\\text{Hypotenuse}}$, $\\cos\\theta = \\frac{\\text{Adjacent}}{\\text{Hypotenuse}}$, $\\tan\\theta = \\frac{\\text{Opposite}}{\\text{Adjacent}}$",
+              "Use inverse trig functions ($\\sin^{-1}$, $\\cos^{-1}$, $\\tan^{-1}$) when solving for angles",
             ],
             reviewStatus: "verified",
             videoId: "PUB0TaZ7bhA",
@@ -512,14 +512,14 @@ export const COURSES_DATA: CourseData[] = [
             durationMinutes: 50,
             isFreePreview: false,
             topicId: "top-waec-trig-02",
-            summary: "a/sin A = b/sin B = c/sin C and a^2 = b^2 + c^2 - 2bc cos A.",
+            summary: "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$ and $a^2 = b^2 + c^2 - 2bc\\cos A$.",
             objectives: [
               "Apply Sine rule when given a matching side-angle pair",
               "Apply Cosine rule for SAS or SSS triangle problems",
             ],
             keyPoints: [
-              "Cosine rule: isolate cos A = (b^2 + c^2 - a^2) / (2bc) when given three sides",
-              "Area of triangle = 1/2 a b sin C",
+              "Cosine rule: isolate $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$ when given three sides",
+              "Area of triangle = $\\frac{1}{2}ab\\sin C$",
             ],
             reviewStatus: "verified",
             videoId: "9CGY0s-uCUE",
@@ -1376,14 +1376,14 @@ export const COURSES_DATA: CourseData[] = [
             durationMinutes: 50,
             isFreePreview: false,
             topicId: "top-ss2-trig-01",
-            summary: "Evaluating sine, cosine, tangent for angles between 0 and 360 degrees.",
+            summary: "Evaluating sine, cosine, tangent for angles between $0^\\circ$ and $360^\\circ$.",
             objectives: [
-              "Identify reference acute angle alpha for any given angle theta",
+              "Identify reference acute angle $\\alpha$ for any given angle $\\theta$",
               "Apply the CAST diagram (Quadrant 1: All, Quadrant 2: Sin, Quadrant 3: Tan, Quadrant 4: Cos)",
             ],
             keyPoints: [
-              "Quadrant 2: theta = 180 - alpha; Quadrant 3: theta = 180 + alpha; Quadrant 4: theta = 360 - alpha",
-              "cos(180 - theta) = -cos(theta); sin(180 - theta) = sin(theta)",
+              "Quadrant 2: $\\theta = 180^\\circ - \\alpha$; Quadrant 3: $\\theta = 180^\\circ + \\alpha$; Quadrant 4: $\\theta = 360^\\circ - \\alpha$",
+              "$\\cos(180^\\circ - \\theta) = -\\cos\\theta$; $\\sin(180^\\circ - \\theta) = \\sin\\theta$",
             ],
             reviewStatus: "verified",
             videoId: "E-xFXpVo14o"
