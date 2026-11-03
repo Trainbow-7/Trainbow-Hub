@@ -90,3 +90,4 @@ When clicking "View Syllabus" from any course card, the application redirected t
 3. **Step 4:** Map verified, level-appropriate educational videos per topic using the allowlisted educational inventory.
 4. **Step 5:** Compute ratings, lesson counts, and hours dynamically from real database records and remove banned claims.
 5. **Step 6 & 7:** Seed idempotent data and verify with comprehensive Vitest and Playwright test suites.
+

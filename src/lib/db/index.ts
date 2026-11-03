@@ -414,7 +414,7 @@ export interface LessonVideoRecord {
   reviewedAt?: Date;
   notes?: string;
   lastCheckedAt?: Date;
-  failureCount: number;
+  failureCount?: number;
   createdAt: Date;
   updatedAt: Date;
 }

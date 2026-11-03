@@ -137,8 +137,8 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
                         <span className="font-heading font-semibold text-xs sm:text-sm text-neutral-slate-900 block">
                           {mod.title}
                         </span>
-                        {mod.description && (
-                          <span className="text-[11px] text-neutral-slate-500">{mod.description}</span>
+                        {(mod as any).description && (
+                          <span className="text-[11px] text-neutral-slate-500">{(mod as any).description}</span>
                         )}
                       </div>
                       <span className="text-[11px] text-neutral-slate-500 font-medium shrink-0 ml-2">
@@ -233,3 +233,4 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
     </div>
   );
 }
+

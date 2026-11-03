@@ -23,11 +23,11 @@ export async function GET(
     }
 
     // STRICT CHECK: Verify that the lesson belongs to THIS course
-    let foundLesson = null;
+    let foundLesson: any = null;
     let moduleTitle = "Module 1";
     for (const m of course.syllabus) {
       const match = m.lessons.find(
-        (l) =>
+        (l: any) =>
           l.id === lessonId ||
           l.slug === lessonId ||
           (lessonId === "l1" && l.id === "waec-l1") ||
@@ -81,10 +81,10 @@ Welcome to this lesson in **${course.title}** (${course.level}).
 ${foundLesson.summary || "This topic builds directly upon core curriculum objectives."}
 
 ### Key Learning Objectives
-${(foundLesson.objectives || []).map((o) => `- ${o}`).join("\n")}
+${(foundLesson.objectives || []).map((o: any) => `- ${o}`).join("\n")}
 
 ### Essential Formulas & Key Points
-${(foundLesson.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
+${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`).join("\n")}
         `,
         worksheets: [
           {
@@ -112,7 +112,7 @@ ${(foundLesson.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
                 { id: "D", text: "None of the above" },
               ],
               correctOptionId: "A",
-              explanation: `Standard ${course.examBody || "curriculum"} marking schemes award full method marks for systematic application of core principles.`,
+              explanation: `Standard ${(course as any).examBody || "curriculum"} marking schemes award full method marks for systematic application of core principles.`,
               topic: foundLesson.title,
             },
           ],
@@ -130,7 +130,7 @@ ${(foundLesson.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
     // Get next and previous lesson pointers
     const allLessons = getCourseLessonList(slug);
     const currentIndex = allLessons.findIndex(
-      (l) => l.id === foundLesson.id || (foundLesson.slug && l.slug === foundLesson.slug)
+      (l: any) => l.id === foundLesson.id || (foundLesson.slug && l.slug === foundLesson.slug)
     );
     const prevLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null;
     const nextLesson =

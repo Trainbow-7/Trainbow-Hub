@@ -218,7 +218,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
           </p>
           <div className="pt-4 flex justify-center gap-3">
             <Link href={`/courses/${courseSlug}`}>
-              <Button variant="brand" size="sm">
+              <Button variant="primary" size="sm">
                 Back to Course Syllabus
               </Button>
             </Link>
@@ -280,11 +280,12 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             <div className="rounded-2xl border border-neutral-slate-200 bg-black overflow-hidden shadow-sm">
               {video?.hasVideo && video.primary ? (
                 <RealVideoPlayer
-                  video={video.primary}
+                  primaryVideo={video.primary}
                   alternates={video.alternates}
-                  courseSlug={course.slug}
+                  slug={course.slug}
                   lessonId={lesson.id}
-                  userProgress={video.userProgress}
+                  lessonTitle={lesson.title}
+                  initialPositionSeconds={video.userProgress?.positionSeconds || 0}
                   isWaecAligned={video.isWaecAligned}
                 />
               ) : (
@@ -310,7 +311,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                     </Button>
                     <Button
                       size="sm"
-                      variant="brand"
+                      variant="primary"
                       onClick={() => setActiveTab("quiz")}
                     >
                       <HelpCircle className="h-4 w-4 mr-1.5" />
@@ -342,7 +343,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
 
               <div className="flex items-center gap-2">
                 <Button
-                  variant={isCompletedLocal ? "outline" : "brand"}
+                  variant={isCompletedLocal ? "outline" : "primary"}
                   size="sm"
                   onClick={handleToggleComplete}
                   disabled={isMarkingComplete}
@@ -356,7 +357,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
               <div>
                 {navigation.nextLesson ? (
                   <Link href={`/courses/${course.slug}/lessons/${navigation.nextLesson.slug || navigation.nextLesson.id}`}>
-                    <Button variant="brand" size="sm" className="gap-1">
+                    <Button variant="primary" size="sm" className="gap-1">
                       <span className="hidden sm:inline">Next: </span>
                       <span className="truncate max-w-[120px]">{navigation.nextLesson.title}</span>
                       <ChevronRight className="h-4 w-4" />
@@ -502,7 +503,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                 {!quizSubmitted ? (
                   <Button
                     size="sm"
-                    variant="brand"
+                    variant="primary"
                     onClick={handleGradeQuiz}
                     disabled={Object.keys(selectedAnswers).length === 0}
                   >
@@ -632,3 +633,4 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
     </div>
   );
 }
+
