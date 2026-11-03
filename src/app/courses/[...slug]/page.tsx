@@ -1,34 +1,25 @@
 import * as React from "react";
 import { notFound, redirect } from "next/navigation";
-import { PRIMARY_INSTRUCTOR } from "@/data/instructor";
-import { TrackId, EXAM_TRACKS } from "@/data/pricing";
-import { CATALOGUE_SUBJECTS, getSubjectBySlug } from "@/data/courses";
-import { SubjectSyllabusView } from "@/components/academy/SubjectSyllabusView";
-
-const legacyRedirects: Record<string, { track: TrackId; subject: string }> = {
-  "waec-ssce-mathematics-mastery": { track: "waec-ssce", subject: "mathematics" },
-  "jamb-utme-speed-mathematics": { track: "jamb-utme", subject: "mathematics" },
-  "jss3-basic-mathematics-bece-prep": { track: "jss-bece", subject: "mathematics" },
-  "ss2-algebra-and-trigonometry-deep-dive": { track: "waec-ssce", subject: "mathematics" },
-  "primary6-quantitative-reasoning-common-entrance": { track: "primary-ncee", subject: "mathematics" },
-  "cambridge-igcse-extended-mathematics": { track: "cambridge-igcse", subject: "mathematics" },
-};
+import { SEED_COURSES } from "@/lib/data/seed-data";
+import { CourseDetailView } from "@/components/academy/CourseDetailView";
+import { LessonPlayerView } from "@/components/academy/LessonPlayerView";
 
 export function generateStaticParams() {
-  const tracks = Object.keys(EXAM_TRACKS) as TrackId[];
   const params: { slug: string[] }[] = [];
 
-  for (const track of tracks) {
-    for (const sub of CATALOGUE_SUBJECTS) {
-      params.push({
-        slug: [track, sub.slug],
-      });
-    }
-  }
+  for (const course of SEED_COURSES) {
+    // 1. Course syllabus route: /courses/[courseSlug]
+    params.push({ slug: [course.slug] });
 
-  // Also include single-slug params for legacy courses
-  for (const slug of Object.keys(legacyRedirects)) {
-    params.push({ slug: [slug] });
+    // 2. Lesson routes: /courses/[courseSlug]/lessons/[lessonSlug]
+    for (const mod of course.syllabus) {
+      for (const les of mod.lessons) {
+        if ((les as any).slug) {
+          params.push({ slug: [course.slug, "lessons", (les as any).slug] });
+        }
+        params.push({ slug: [course.slug, "lessons", les.id] });
+      }
+    }
   }
 
   return params;
@@ -41,47 +32,97 @@ interface CoursesCatchAllProps {
 }
 
 export function generateMetadata({ params }: CoursesCatchAllProps) {
-  let subjectSlug = params.slug?.[1] || params.slug?.[0] || "mathematics";
-  let trackId: TrackId = (params.slug?.[0] as TrackId) in EXAM_TRACKS ? (params.slug[0] as TrackId) : "waec-ssce";
+  const parts = params.slug || [];
 
-  if (legacyRedirects[subjectSlug]) {
-    trackId = legacyRedirects[subjectSlug].track;
-    subjectSlug = legacyRedirects[subjectSlug].subject;
+  if (parts.length === 1) {
+    const course = SEED_COURSES.find((c) => c.slug === parts[0]);
+    if (course) {
+      return {
+        title: `${course.title} (${course.level}) — Trainbow HUB Academy`,
+        description: course.shortDescription,
+      };
+    }
   }
 
-  const subject = getSubjectBySlug(subjectSlug);
-  const track = EXAM_TRACKS[trackId];
+  if (parts.length === 3 && parts[1] === "lessons") {
+    const course = SEED_COURSES.find((c) => c.slug === parts[0]);
+    if (course) {
+      let lessonTitle = "Lesson";
+      for (const m of course.syllabus) {
+        const found = m.lessons.find((l) => (l as any).slug === parts[2] || l.id === parts[2]);
+        if (found) {
+          lessonTitle = found.title;
+          break;
+        }
+      }
+      return {
+        title: `${lessonTitle} — ${course.title} — Trainbow HUB Academy`,
+        description: `Interactive lesson and checkpoint practice for ${lessonTitle} in ${course.title}.`,
+      };
+    }
+  }
 
   return {
-    title: `${subject?.name || "Subject"} Syllabus (${track?.shortName || "Exam"}) — Taught by ${PRIMARY_INSTRUCTOR.name} — Trainbow HUB`,
-    description: `Complete exam syllabus, high-frequency topics, and practice questions for ${subject?.name || "Subject"} directed by ${PRIMARY_INSTRUCTOR.name}.`,
+    title: "Course Syllabus — Trainbow HUB Academy",
+    description: "Curriculum-aligned masterclasses and structured lessons.",
   };
 }
 
 export default function CoursesCatchAllPage({ params }: CoursesCatchAllProps) {
   const parts = params.slug || [];
 
+  // 1. Single segment: /courses/[courseSlug]
   if (parts.length === 1) {
-    const single = parts[0];
-    if (legacyRedirects[single]) {
-      const { track, subject } = legacyRedirects[single];
-      redirect(`/instructors/${PRIMARY_INSTRUCTOR.slug}/courses/${track}/${subject}`);
+    const courseSlug = parts[0];
+    const course = SEED_COURSES.find((c) => c.slug === courseSlug);
+    if (!course) {
+      notFound();
     }
-
-    const sub = getSubjectBySlug(single);
-    if (!sub) notFound();
-    return <SubjectSyllabusView subject={sub} trackId="waec-ssce" />;
+    return <CourseDetailView course={course} />;
   }
 
-  if (parts.length >= 2) {
-    const potentialTrack = parts[0] as TrackId;
-    const trackId: TrackId = potentialTrack in EXAM_TRACKS ? potentialTrack : "waec-ssce";
-    const sub = getSubjectBySlug(parts[1]);
+  // 2. Three segments: /courses/[courseSlug]/lessons/[lessonSlug]
+  if (parts.length === 3 && parts[1] === "lessons") {
+    const [courseSlug, , lessonSlug] = parts;
+    const course = SEED_COURSES.find((c) => c.slug === courseSlug);
+    if (!course) {
+      notFound();
+    }
 
-    if (!sub) notFound();
-    return <SubjectSyllabusView subject={sub} trackId={trackId} />;
+    // STRICT CHECK: Verify that the lesson belongs to THIS course
+    const belongsToCourse = course.syllabus.some((m) =>
+      m.lessons.some(
+        (l) =>
+          (l as any).slug === lessonSlug ||
+          l.id === lessonSlug ||
+          (lessonSlug === "l1" && l.id === "waec-l1")
+      )
+    );
+
+    if (!belongsToCourse) {
+      notFound();
+    }
+
+    return <LessonPlayerView courseSlug={courseSlug} lessonSlug={lessonSlug} />;
+  }
+
+  // 3. Two segments: legacy /courses/[track]/[subject]
+  if (parts.length === 2) {
+    const [track, subject] = parts;
+    const trackToCourseMap: Record<string, string> = {
+      "waec-ssce": "waec-ssce-mathematics-mastery",
+      "jamb-utme": "jamb-utme-speed-mathematics",
+      "jss-bece": "jss3-basic-mathematics-bece-prep",
+      "primary-ncee": "primary6-quantitative-reasoning-common-entrance",
+      "cambridge-igcse": "cambridge-igcse-extended-mathematics",
+    };
+
+    if (trackToCourseMap[track]) {
+      redirect(`/courses/${trackToCourseMap[track]}`);
+    }
+
+    redirect(`/academy/${subject}`);
   }
 
   notFound();
 }
-

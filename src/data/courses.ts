@@ -93,11 +93,11 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
     department: "core",
     shortDescription: "Complete syllabus coverage from foundational numeracy to advanced calculus, geometry, and trigonometry.",
     fullOverview:
-      "Taught and moderated by Mr Oyedeji S.T (Senior Mathematics Lecturer & WAEC Chief Examiner Consultant). This flagship course provides complete, rigorous mastery of all syllabus modules across WAEC, NECO, JAMB UTME, BECE, Primary NCEE, and Cambridge IGCSE (0580). Features step-by-step mark scheme breakdowns, objective short-cuts, and proofs.",
+      "Directed by Trainbow HUB Academy faculty. This curriculum provides comprehensive mastery of mathematics across secondary and foundation tiers (WAEC, JAMB UTME, BECE, Primary NCEE, and Cambridge IGCSE 0580). Features step-by-step worked solutions, past examination questions, and verified video lessons.",
     lessonCount: 42,
     durationHours: 32,
-    rating: 4.9,
-    reviewCount: 142,
+    rating: 0,
+    reviewCount: 0,
     curriculumCoverage: 100,
     officialBoards: ["WAEC WASSCE", "NECO SSCE", "JAMB UTME", "Cambridge IGCSE 0580", "BECE", "NCEE"],
     highFrequencyExamTopics: [

@@ -72,3 +72,4 @@ describe("InlineMathText Typography & KaTeX Rendering", () => {
     expect(katexEls.length).toBeGreaterThanOrEqual(1);
   });
 });
+

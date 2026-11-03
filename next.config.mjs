@@ -14,35 +14,30 @@ const nextConfig = {
         destination: "/request-tutor",
         permanent: true,
       },
-      // 301 Permanent Redirects from legacy course URLs to Mr Oyedeji S.T syllabus routes
+      // 301 Permanent Redirects from legacy instructor routes to canonical course URLs
       {
-        source: "/courses/waec-ssce-mathematics-mastery",
-        destination: "/instructors/mr-oyedeji-st/courses/waec-ssce/mathematics",
+        source: "/instructors/:instructor/courses/waec-ssce/mathematics",
+        destination: "/courses/waec-ssce-mathematics-mastery",
         permanent: true,
       },
       {
-        source: "/courses/jamb-utme-speed-mathematics",
-        destination: "/instructors/mr-oyedeji-st/courses/jamb-utme/mathematics",
+        source: "/instructors/:instructor/courses/jamb-utme/mathematics",
+        destination: "/courses/jamb-utme-speed-mathematics",
         permanent: true,
       },
       {
-        source: "/courses/jss3-basic-mathematics-bece-prep",
-        destination: "/instructors/mr-oyedeji-st/courses/jss-bece/mathematics",
+        source: "/instructors/:instructor/courses/jss-bece/mathematics",
+        destination: "/courses/jss3-basic-mathematics-bece-prep",
         permanent: true,
       },
       {
-        source: "/courses/ss2-algebra-and-trigonometry-deep-dive",
-        destination: "/instructors/mr-oyedeji-st/courses/waec-ssce/mathematics",
+        source: "/instructors/:instructor/courses/primary-ncee/mathematics",
+        destination: "/courses/primary6-quantitative-reasoning-common-entrance",
         permanent: true,
       },
       {
-        source: "/courses/primary6-quantitative-reasoning-common-entrance",
-        destination: "/instructors/mr-oyedeji-st/courses/primary-ncee/mathematics",
-        permanent: true,
-      },
-      {
-        source: "/courses/cambridge-igcse-extended-mathematics",
-        destination: "/instructors/mr-oyedeji-st/courses/cambridge-igcse/mathematics",
+        source: "/instructors/:instructor/courses/cambridge-igcse/mathematics",
+        destination: "/courses/cambridge-igcse-extended-mathematics",
         permanent: true,
       },
     ];

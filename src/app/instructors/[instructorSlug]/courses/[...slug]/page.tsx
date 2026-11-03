@@ -5,13 +5,21 @@ import { TrackId, EXAM_TRACKS } from "@/data/pricing";
 import { CATALOGUE_SUBJECTS, getSubjectBySlug } from "@/data/courses";
 import { SubjectSyllabusView } from "@/components/academy/SubjectSyllabusView";
 
-const legacyRedirects: Record<string, { track: TrackId; subject: string }> = {
-  "waec-ssce-mathematics-mastery": { track: "waec-ssce", subject: "mathematics" },
-  "jamb-utme-speed-mathematics": { track: "jamb-utme", subject: "mathematics" },
-  "jss3-basic-mathematics-bece-prep": { track: "jss-bece", subject: "mathematics" },
-  "ss2-algebra-and-trigonometry-deep-dive": { track: "waec-ssce", subject: "mathematics" },
-  "primary6-quantitative-reasoning-common-entrance": { track: "primary-ncee", subject: "mathematics" },
-  "cambridge-igcse-extended-mathematics": { track: "cambridge-igcse", subject: "mathematics" },
+const courseSlugMap: Record<string, string> = {
+  "waec-ssce-mathematics-mastery": "waec-ssce-mathematics-mastery",
+  "jamb-utme-speed-mathematics": "jamb-utme-speed-mathematics",
+  "jss3-basic-mathematics-bece-prep": "jss3-basic-mathematics-bece-prep",
+  "ss2-algebra-and-trigonometry-deep-dive": "ss2-algebra-and-trigonometry-deep-dive",
+  "primary6-quantitative-reasoning-common-entrance": "primary6-quantitative-reasoning-common-entrance",
+  "cambridge-igcse-extended-mathematics": "cambridge-igcse-extended-mathematics",
+};
+
+const trackToCourseMap: Record<string, string> = {
+  "waec-ssce": "waec-ssce-mathematics-mastery",
+  "jamb-utme": "jamb-utme-speed-mathematics",
+  "jss-bece": "jss3-basic-mathematics-bece-prep",
+  "primary-ncee": "primary6-quantitative-reasoning-common-entrance",
+  "cambridge-igcse": "cambridge-igcse-extended-mathematics",
 };
 
 export function generateStaticParams() {
@@ -27,7 +35,6 @@ export function generateStaticParams() {
     }
   }
 
-  // Also include single-slug params
   for (const sub of CATALOGUE_SUBJECTS) {
     params.push({
       instructorSlug: PRIMARY_INSTRUCTOR.slug,
@@ -49,17 +56,12 @@ export function generateMetadata({ params }: CatchAllProps) {
   let subjectSlug = params.slug?.[1] || params.slug?.[0] || "mathematics";
   let trackId: TrackId = (params.slug?.[0] as TrackId) in EXAM_TRACKS ? (params.slug[0] as TrackId) : "waec-ssce";
 
-  if (legacyRedirects[subjectSlug]) {
-    trackId = legacyRedirects[subjectSlug].track;
-    subjectSlug = legacyRedirects[subjectSlug].subject;
-  }
-
   const subject = getSubjectBySlug(subjectSlug);
   const track = EXAM_TRACKS[trackId];
 
   return {
-    title: `${subject?.name || "Subject"} Syllabus (${track?.shortName || "Exam"}) — Taught by ${PRIMARY_INSTRUCTOR.name} — Trainbow HUB`,
-    description: `Complete exam syllabus, high-frequency topics, and practice questions for ${subject?.name || "Subject"} directed by ${PRIMARY_INSTRUCTOR.name}.`,
+    title: `${subject?.name || "Subject"} Syllabus (${track?.shortName || "Exam"}) — Trainbow HUB Academy`,
+    description: `Complete exam syllabus, high-frequency topics, and practice questions for ${subject?.name || "Subject"}.`,
   };
 }
 
@@ -68,9 +70,8 @@ export default function InstructorCourseCatchAllPage({ params }: CatchAllProps) 
 
   if (parts.length === 1) {
     const single = parts[0];
-    if (legacyRedirects[single]) {
-      const { track, subject } = legacyRedirects[single];
-      redirect(`/instructors/${PRIMARY_INSTRUCTOR.slug}/courses/${track}/${subject}`);
+    if (courseSlugMap[single]) {
+      redirect(`/courses/${courseSlugMap[single]}`);
     }
 
     const sub = getSubjectBySlug(single);
@@ -81,12 +82,16 @@ export default function InstructorCourseCatchAllPage({ params }: CatchAllProps) 
   if (parts.length >= 2) {
     const potentialTrack = parts[0] as TrackId;
     const trackId: TrackId = potentialTrack in EXAM_TRACKS ? potentialTrack : "waec-ssce";
-    const sub = getSubjectBySlug(parts[1]);
+    const subSlug = parts[1];
 
+    if (subSlug === "mathematics" && trackToCourseMap[trackId]) {
+      redirect(`/courses/${trackToCourseMap[trackId]}`);
+    }
+
+    const sub = getSubjectBySlug(subSlug);
     if (!sub) notFound();
     return <SubjectSyllabusView subject={sub} trackId={trackId} />;
   }
 
   notFound();
 }
-

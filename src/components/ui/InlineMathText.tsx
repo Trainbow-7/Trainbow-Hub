@@ -114,3 +114,4 @@ export function InlineMathText({ text, className, autoFormatUnescaped = true }: 
 }
 
 export default InlineMathText;
+

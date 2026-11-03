@@ -1,6 +1,7 @@
 import { hashPassword } from "@/lib/auth/password";
 import videoMapJson from "../../../content/video-map.json";
 import { SEED_COURSES } from "@/lib/data/seed-data";
+import { COURSES_DATA, SYLLABUS_SOURCES } from "@/lib/data/curricula";
 
 export type UserRoleType = "STUDENT" | "PARENT" | "TUTOR" | "ADMIN" | "MATCHING_COORDINATOR";
 
@@ -101,6 +102,104 @@ export interface StudyStatsRecord {
   lastActiveDate: string; // ISO date string YYYY-MM-DD
   totalMinutesStudied: number;
   lessonsCompleted: number;
+  updatedAt: Date;
+}
+
+
+export interface SyllabusSourceRecord {
+  id: string;
+  examBody: string;
+  subject: string;
+  level: string;
+  officialName: string;
+  versionYear: string;
+  url?: string;
+  lastCheckedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface SyllabusTopicRecord {
+  id: string;
+  sourceId: string;
+  topicCode: string;
+  title: string;
+  parentTopicId?: string;
+  description?: string;
+  learningObjectives: string[];
+  examBodyNotes?: string;
+  sortOrder: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface CourseRecord {
+  id: string;
+  slug: string;
+  title: string;
+  subject: string;
+  subjectSlug: string;
+  track: string;
+  level: string;
+  examBody: string;
+  instructorName: string;
+  instructorTitle?: string;
+  priceMinorUnits: number;
+  currency: string;
+  shortDescription: string;
+  description: string;
+  published: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ModuleRecord {
+  id: string;
+  courseId: string;
+  title: string;
+  description?: string;
+  sortOrder: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface LessonRecord {
+  id: string;
+  moduleId: string;
+  topicId?: string;
+  slug: string;
+  title: string;
+  sortOrder: number;
+  durationMinutes: number;
+  summary?: string;
+  objectives: string[];
+  keyPoints: string[];
+  isFreePreview: boolean;
+  reviewStatus: "verified" | "needs_teacher_review" | "rejected";
+  teacherNotes?: string;
+  markdownNotes?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface CourseSyllabusTopicRecord {
+  id: string;
+  courseId: string;
+  topicId: string;
+  sortOrder: number;
+  coverage: "full" | "core" | "revision";
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface CourseReviewRecord {
+  id: string;
+  courseId: string;
+  userId?: string;
+  rating: number; // 1 to 5
+  reviewText?: string;
+  verifiedStudent: boolean;
+  createdAt: Date;
   updatedAt: Date;
 }
 
@@ -939,6 +1038,14 @@ class DatabaseStore {
   channelBlocklists: Map<string, ChannelBlocklistRecord> = new Map();
   videoProgresses: Map<string, VideoProgressRecord> = new Map();
   videoReports: Map<string, VideoReportRecord> = new Map();
+  syllabusSources: Map<string, SyllabusSourceRecord> = new Map();
+  syllabusTopics: Map<string, SyllabusTopicRecord> = new Map();
+  courses: Map<string, CourseRecord> = new Map();
+  modules: Map<string, ModuleRecord> = new Map();
+  lessons: Map<string, LessonRecord> = new Map();
+  courseSyllabusTopics: Map<string, CourseSyllabusTopicRecord> = new Map();
+  courseReviews: Map<string, CourseReviewRecord> = new Map();
+
   private initialized = false;
 
   async reset() {
@@ -997,6 +1104,14 @@ class DatabaseStore {
     this.channelBlocklists.clear();
     this.videoProgresses.clear();
     this.videoReports.clear();
+    this.syllabusSources.clear();
+    this.syllabusTopics.clear();
+    this.courses.clear();
+    this.modules.clear();
+    this.lessons.clear();
+    this.courseSyllabusTopics.clear();
+    this.courseReviews.clear();
+
 
     // Default password hash for all demo seed users
     const defaultHash = await hashPassword("Trainbow2026!");

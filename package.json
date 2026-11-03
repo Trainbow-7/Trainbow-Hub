@@ -20,7 +20,9 @@
     "eval:solver": "tsx scripts/eval-solver.ts",
     "eval:models": "tsx scripts/eval-models.ts",
     "ingest:docs": "tsx scripts/ingest-docs.ts",
-    "videos:check": "tsx scripts/check-videos.ts"
+    "videos:check": "tsx scripts/check-videos.ts",
+    "seed:syllabi": "tsx scripts/seed-syllabi.ts",
+    "videos:attach": "tsx scripts/attach-videos.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",

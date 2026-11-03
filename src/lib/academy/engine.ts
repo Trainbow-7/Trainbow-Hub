@@ -103,14 +103,19 @@ export function calculateUpdatedStreak(currentStreak: number, lastActiveDateStr:
 /**
  * Helper to retrieve all lesson IDs in sequential order for a course.
  */
-export function getCourseLessonList(courseSlug: string): { id: string; title: string; durationMinutes: number }[] {
+export function getCourseLessonList(courseSlug: string): { id: string; slug: string; title: string; durationMinutes: number }[] {
   const course = SEED_COURSES.find((c) => c.slug === courseSlug);
   if (!course) return [];
 
-  const list: { id: string; title: string; durationMinutes: number }[] = [];
+  const list: { id: string; slug: string; title: string; durationMinutes: number }[] = [];
   for (const mod of course.syllabus) {
     for (const l of mod.lessons) {
-      list.push({ id: l.id, title: l.title, durationMinutes: l.durationMinutes });
+      list.push({
+        id: l.id,
+        slug: (l as any).slug || l.id,
+        title: l.title,
+        durationMinutes: l.durationMinutes,
+      });
     }
   }
   return list;

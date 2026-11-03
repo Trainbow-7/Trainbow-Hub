@@ -70,7 +70,7 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
               {subject.name}
             </h1>
             <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
-              {subject.description} Structured lessons, practice sets, and verified 1-on-1 tutors aligned to Nigerian educational boards.
+              {subject.description} Structured lessons, practice sets, and tutors matched by our Director.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-2">
@@ -125,7 +125,11 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
                         <Clock className="h-3.5 w-3.5 text-neutral-slate-400" />
                         {course.durationHours} Hours
                       </span>
-                      <Rating value={course.rating} count={course.reviewCount} />
+                      {course.reviewCount > 0 ? (
+                        <Rating value={course.rating} count={course.reviewCount} />
+                      ) : (
+                        <span className="text-[11px] text-neutral-slate-400 font-medium">New course</span>
+                      )}
                     </div>
                     <div className="flex items-center gap-2 text-xs text-neutral-slate-700">
                       <Avatar name={course.instructorName} size="sm" />

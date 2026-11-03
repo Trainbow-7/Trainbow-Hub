@@ -1,3 +1,4 @@
+import { COURSES_DATA } from "./curricula";
 export interface SubjectItem {
   id: string;
   name: string;
@@ -209,318 +210,53 @@ export const SEED_SUBJECTS: SubjectItem[] = [
 // -----------------------------------------------------------------------------
 // 6 MATHEMATICS COURSES
 // -----------------------------------------------------------------------------
-export const SEED_COURSES: CourseItem[] = [
-  {
-    id: "crs-waec-math",
-    slug: "waec-ssce-mathematics-mastery",
-    title: "WAEC & SSCE Comprehensive Mathematics Mastery",
-    subjectSlug: "mathematics",
-    subjectName: "Mathematics",
-    level: "WAEC Prep (SS 1-3)",
-    instructorName: "Mr Oyedeji S.T",
-    instructorTitle: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant",
-    instructorAvatar: "OS",
-    priceMinorUnits: 4000000, // ₦40,000 or included with subscription
-    currency: "NGN",
-    rating: 4.9,
-    reviewCount: 84,
-    lessonCount: 33,
-    durationHours: 26,
-    shortDescription: "Complete syllabus coverage for West African Senior School Certificate Examination (WASSCE) Mathematics with worked past papers.",
-    fullDescription: "Master every component of the WAEC General Mathematics curriculum. This intensive course covers General Mathematics Papers 1 (Objectives) and 2 (Theory), with special focus on quadratic functions, circle theorems, trigonometry, statistics, and 3D vectors.",
-    syllabus: [
-      {
-        id: "m1",
-        title: "Module 1: Number & Numeration",
-        lessons: [
-          { id: "l1", title: "Fractions & Decimals Operations", durationMinutes: 45, isFreePreview: true },
-          { id: "l2", title: "Percentages & Percentage Change", durationMinutes: 40, isFreePreview: false },
-          { id: "l3", title: "Ratio & Proportional Sharing", durationMinutes: 45, isFreePreview: true },
-        ],
-      },
-      {
-        id: "m2",
-        title: "Module 2: Commercial Arithmetic",
-        lessons: [
-          { id: "l4", title: "Profit, Loss & Percentage Margins", durationMinutes: 45, isFreePreview: false },
-          { id: "l5", title: "Discount & Commercial Markups", durationMinutes: 40, isFreePreview: false },
-          { id: "l6", title: "Simple & Compound Interest Calculations", durationMinutes: 50, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m3",
-        title: "Module 3: Algebra",
-        lessons: [
-          { id: "l7", title: "Linear Equations & Word Problems", durationMinutes: 50, isFreePreview: false },
-          { id: "l8", title: "Linear Inequalities & Number Line Graphs", durationMinutes: 45, isFreePreview: false },
-          { id: "l9", title: "Simultaneous Equations & Direct/Inverse Variation", durationMinutes: 55, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m4",
-        title: "Module 4: Indices & Logarithms",
-        lessons: [
-          { id: "l10", title: "Laws of Indices & Fractional Powers", durationMinutes: 45, isFreePreview: false },
-          { id: "l11", title: "Laws of Logarithms & Base Change", durationMinutes: 50, isFreePreview: false },
-          { id: "l12", title: "Logarithmic Calculations & WAEC Exam Problems", durationMinutes: 55, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m5",
-        title: "Module 5: Geometry",
-        lessons: [
-          { id: "l13", title: "Angles & Triangle Properties", durationMinutes: 45, isFreePreview: false },
-          { id: "l14", title: "Polygons & Interior/Exterior Angles", durationMinutes: 45, isFreePreview: false },
-          { id: "l15", title: "Circles Theorems & Geometric Constructions", durationMinutes: 60, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m6",
-        title: "Module 6: Mensuration",
-        lessons: [
-          { id: "l16", title: "Perimeter & Area of Plane Shapes", durationMinutes: 45, isFreePreview: false },
-          { id: "l17", title: "Surface Area of Prisms, Cylinders & Cones", durationMinutes: 50, isFreePreview: false },
-          { id: "l18", title: "Volume of Composite Solids & Spheres", durationMinutes: 55, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m7",
-        title: "Module 7: Statistics",
-        lessons: [
-          { id: "l19", title: "Mean, Median & Mode of Grouped Data", durationMinutes: 50, isFreePreview: false },
-          { id: "l20", title: "Frequency Tables & Histograms", durationMinutes: 45, isFreePreview: false },
-          { id: "l21", title: "Cumulative Frequency Curves (Ogive) & Percentiles", durationMinutes: 55, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m8",
-        title: "Module 8: Probability",
-        lessons: [
-          { id: "l22", title: "Simple Probability & Sample Spaces", durationMinutes: 40, isFreePreview: false },
-          { id: "l23", title: "Addition & Multiplication Rules of Probability", durationMinutes: 45, isFreePreview: false },
-          { id: "l24", title: "Tree Diagrams & Mutually Exclusive Events", durationMinutes: 50, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m9",
-        title: "Module 9: Coordinate Geometry",
-        lessons: [
-          { id: "l25", title: "Cartesian Graphs, Midpoint & Distance Formula", durationMinutes: 45, isFreePreview: false },
-          { id: "l26", title: "Gradient of Straight Lines & Collinearity", durationMinutes: 45, isFreePreview: false },
-          { id: "l27", title: "Equations of Straight Lines (Parallel & Perpendicular)", durationMinutes: 50, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m10",
-        title: "Module 10: Trigonometry",
-        lessons: [
-          { id: "l28", title: "Sine, Cosine & Tangent Ratios (SOH CAH TOA)", durationMinutes: 45, isFreePreview: false },
-          { id: "l29", title: "Angles of Elevation & Depression", durationMinutes: 50, isFreePreview: false },
-          { id: "l30", title: "Bearings & Sine/Cosine Rules for Triangles", durationMinutes: 60, isFreePreview: false },
-        ],
-      },
-      {
-        id: "m11",
-        title: "Module 11: Vectors & Transformations",
-        lessons: [
-          { id: "l31", title: "Vector Representation, Addition & Scalar Multiplication", durationMinutes: 45, isFreePreview: false },
-          { id: "l32", title: "Reflections & Rotations on the Coordinate Plane", durationMinutes: 50, isFreePreview: false },
-          { id: "l33", title: "Translations, Enlargement & Scale Factors", durationMinutes: 55, isFreePreview: false },
-        ],
-      },
-    ],
-    learningOutcomes: [
-      "Confidently solve WAEC Section B theory questions with full working marks",
-      "Avoid frequent calculation traps in indices, logarithm, and surd simplifications",
-      "Master geometric theorems and clear formal diagram proofs",
-      "Achieve high accuracy on the 50 objective questions in under 60 minutes",
-    ],
-    prerequisites: ["Completion of JSS 3 Mathematics or equivalent foundation"],
-  },
-  {
-    id: "crs-jamb-math",
-    slug: "jamb-utme-speed-mathematics",
-    title: "JAMB UTME Speed & Strategy Mathematics",
-    subjectSlug: "mathematics",
-    subjectName: "Mathematics",
-    level: "JAMB UTME Prep",
-    instructorName: "Mr Oyedeji S.T",
-    instructorTitle: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant",
-    instructorAvatar: "OS",
-    priceMinorUnits: 1800000, // ₦18,000
-    currency: "NGN",
-    rating: 4.8,
-    reviewCount: 62,
-    lessonCount: 35,
-    durationHours: 25,
-    shortDescription: "Techniques, short-cuts, and timed CBT drills for scoring 85+ in JAMB UTME Mathematics.",
-    fullDescription: "JAMB requires both speed and precision: 40 questions in under 45 minutes. Learn rapid calculation shortcuts, elimination tactics for multiple choice options, and review the most heavily tested topics in Calculus, Coordinate Geometry, Matrices, and Permutation/Combination.",
-    syllabus: [
-      {
-        id: "jm1",
-        title: "Module 1: CBT Time Management & Quick-Elimination Rules",
-        lessons: [
-          { id: "jl1", title: "Analyzing the JAMB Syllabus Frequency Distribution", durationMinutes: 30, isFreePreview: true },
-          { id: "jl2", title: "Elimination Tricks for Polynomial & Matrix Options", durationMinutes: 45, isFreePreview: true },
-        ],
-      },
-      {
-        id: "jm2",
-        title: "Module 2: Differentiation, Integration & Rate of Change",
-        lessons: [
-          { id: "jl3", title: "Rapid Derivative Rules & Maxima/Minima Problems", durationMinutes: 50, isFreePreview: false },
-          { id: "jl4", title: "Definite and Indefinite Integrals with Boundary Conditions", durationMinutes: 50, isFreePreview: false },
-        ],
-      },
-    ],
-    learningOutcomes: [
-      "Solve multiple choice problems in under 60 seconds each using rapid deduction",
-      "Master differentiation, integration, limits, and coordinate geometry shortcuts",
-      "Eliminate wrong answers with substitution and parity checks",
-    ],
-    prerequisites: ["Senior Secondary 2 or 3 mathematics background"],
-  },
-  {
-    id: "crs-jss3-math",
-    slug: "jss3-basic-mathematics-bece-prep",
-    title: "JSS 3 Basic Mathematics & BECE Exam Prep",
-    subjectSlug: "mathematics",
-    subjectName: "Mathematics",
-    level: "JSS 1-3",
-    instructorName: "Mr Oyedeji S.T",
-    instructorTitle: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant",
-    instructorAvatar: "OS",
-    priceMinorUnits: 1500000, // ₦15,000
-    currency: "NGN",
-    rating: 4.9,
-    reviewCount: 51,
-    lessonCount: 28,
-    durationHours: 20,
-    shortDescription: "Solidify core mathematical concepts for Junior WAEC / Basic Education Certificate Examination (BECE).",
-    fullDescription: "Bridge the transition from junior to senior secondary. Clear explanations for fractions, ratios, directed numbers, simple algebraic equations, factorization, Pythagoras theorem, plane shapes, and basic statistics.",
-    syllabus: [
-      {
-        id: "sm1",
-        title: "Module 1: Algebra & Linear Factorization",
-        lessons: [
-          { id: "sl1", title: "Expanding Brackets & Collecting Like Terms", durationMinutes: 35, isFreePreview: true },
-          { id: "sl2", title: "Simple Linear Equations with Fractions", durationMinutes: 40, isFreePreview: false },
-        ],
-      },
-    ],
-    learningOutcomes: [
-      "Excel in BECE/Junior WAEC Mathematics with distinctions",
-      "Build total confidence with algebraic equations and fractions",
-      "Smooth transition into Senior Secondary 1 science or commerce tracks",
-    ],
-    prerequisites: ["Primary 6 / JSS 1-2 Mathematics"],
-  },
-  {
-    id: "crs-ss2-trig",
-    slug: "ss2-algebra-and-trigonometry-deep-dive",
-    title: "Senior Secondary Algebra & Trigonometry Deep Dive",
-    subjectSlug: "mathematics",
-    subjectName: "Mathematics",
-    level: "SS 2",
-    instructorName: "Mr Oyedeji S.T",
-    instructorTitle: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant",
-    instructorAvatar: "OS",
-    priceMinorUnits: 2000000, // ₦20,000
-    currency: "NGN",
-    rating: 4.8,
-    reviewCount: 39,
-    lessonCount: 24,
-    durationHours: 18,
-    shortDescription: "In-depth treatment of trigonometric ratios, sine/cosine rules, bearing and distances, and arithmetic/geometric progressions.",
-    fullDescription: "Senior Secondary 2 is where mathematical rigor accelerates. Master Sequence and Series (AP & GP), Linear Inequalities in two variables, Compound Angles, Trigonometric Graphs, and Bearings with angle elevation/depression.",
-    syllabus: [
-      {
-        id: "am1",
-        title: "Module 1: Sequence & Series (AP and GP)",
-        lessons: [
-          { id: "al1", title: "nth Term and Sum of Arithmetic Progressions", durationMinutes: 45, isFreePreview: true },
-          { id: "al2", title: "Geometric Progressions & Sum to Infinity", durationMinutes: 45, isFreePreview: false },
-        ],
-      },
-    ],
-    learningOutcomes: [
-      "Calculate 3-figure bearings, angles of elevation and depression with precision",
-      "Apply Sine and Cosine rules to solve any scalene triangle problem",
-      "Derive and apply formulas for AP and GP real-world problems",
-    ],
-    prerequisites: ["SS 1 Mathematics"],
-  },
-  {
-    id: "crs-pri6-ncee",
-    slug: "primary6-quantitative-reasoning-common-entrance",
-    title: "Primary 6 Quantitative Reasoning & Mathematics",
-    subjectSlug: "mathematics",
-    subjectName: "Mathematics",
-    level: "Primary 1-6",
-    instructorName: "Mr Oyedeji S.T",
-    instructorTitle: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant",
-    instructorAvatar: "OS",
-    priceMinorUnits: 1200000, // ₦12,000
-    currency: "NGN",
-    rating: 4.9,
-    reviewCount: 47,
-    lessonCount: 20,
-    durationHours: 15,
-    shortDescription: "Tailored preparation for National Common Entrance Examination (NCEE) and top secondary school entrance exams.",
-    fullDescription: "Fun, patient, visual learning for younger students. Covers decimals, percentages, LCM/HCF, word problems, perimeter, area, volume, and complex pattern detection for quantitative aptitude papers.",
-    syllabus: [
-      {
-        id: "pm1",
-        title: "Module 1: Decimals, Fractions and Percentages",
-        lessons: [
-          { id: "pl1", title: "Converting Fractions to Decimals and Percentages", durationMinutes: 30, isFreePreview: true },
-          { id: "pl2", title: "Real-Life Money and Profit & Loss Calculations", durationMinutes: 35, isFreePreview: false },
-        ],
-      },
-    ],
-    learningOutcomes: [
-      "Score in the 90th percentile for Federal Unity Colleges entrance exams",
-      "Decipher pattern-based quantitative reasoning diagrams swiftly",
-      "Build a joyful, fear-free attitude towards mathematical thinking",
-    ],
-    prerequisites: ["Primary 5 Mathematics"],
-  },
-  {
-    id: "crs-igcse-math",
-    slug: "cambridge-igcse-extended-mathematics",
-    title: "Cambridge IGCSE Extended Mathematics Complete Guide",
-    subjectSlug: "mathematics",
-    subjectName: "Mathematics",
-    level: "Cambridge IGCSE",
-    instructorName: "Mr Oyedeji S.T",
-    instructorTitle: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant",
-    instructorAvatar: "OS",
-    priceMinorUnits: 3000000, // ₦30,000
-    currency: "NGN",
-    rating: 5.0,
-    reviewCount: 33,
-    lessonCount: 40,
-    durationHours: 30,
-    shortDescription: "Target A* in Cambridge IGCSE Mathematics (0580) with extended curriculum coverage and structured exam past questions.",
-    fullDescription: "Comprehensive training for students sitting Cambridge International Examinations. Covers vectors, transformations, function notation, matrix transformations, probability trees, cumulative frequency curves, and extended algebraic techniques.",
-    syllabus: [
-      {
-        id: "im1",
-        title: "Module 1: Functions, Vectors and Matrices",
-        lessons: [
-          { id: "il1", title: "Composite Functions and Inverse Functions", durationMinutes: 45, isFreePreview: true },
-          { id: "il2", title: "Column Vectors, Magnitude and Geometric Proofs", durationMinutes: 50, isFreePreview: false },
-        ],
-      },
-    ],
-    learningOutcomes: [
-      "Tackle both Paper 2 and Paper 4 extended questions with confidence",
-      "Master calculator operations and exact mathematical representations",
-      "Secure an A* grade in Cambridge 0580 syllabus",
-    ],
-    prerequisites: ["Senior Secondary 1 or Year 10 Mathematics"],
-  },
-];
+export const SEED_COURSES: CourseItem[] = COURSES_DATA.map((c) => {
+  const allLessons = c.modules.flatMap((m) => m.lessons);
+  const lessonCount = allLessons.length;
+  const totalMinutes = allLessons.reduce((sum, l) => sum + (l.durationMinutes || 0), 0);
+  const durationHours = Math.round(totalMinutes / 60);
+
+  return {
+    id: c.id,
+    slug: c.slug,
+    title: c.title,
+    subjectSlug: c.subjectSlug,
+    subjectName: c.subject,
+    level: c.level,
+    instructorName: c.instructorName,
+    instructorTitle: c.instructorTitle || "Senior Mathematics Faculty",
+    instructorAvatar: "TH",
+    priceMinorUnits: c.priceMinorUnits,
+    currency: c.currency,
+    rating: 0,
+    reviewCount: 0,
+    lessonCount,
+    durationHours,
+    shortDescription: c.shortDescription,
+    fullDescription: c.description,
+    syllabus: c.modules.map((m) => ({
+      id: m.id,
+      title: m.title,
+      description: m.description,
+      lessons: m.lessons.map((l) => ({
+        id: l.id,
+        slug: l.slug,
+        title: l.title,
+        durationMinutes: l.durationMinutes,
+        isFreePreview: l.isFreePreview,
+        topicId: l.topicId,
+        order: l.sortOrder,
+        summary: l.summary,
+        objectives: l.objectives,
+        keyPoints: l.keyPoints,
+        reviewStatus: l.reviewStatus,
+        videoId: l.videoId,
+      })),
+    })),
+    learningOutcomes: c.learningOutcomes,
+    prerequisites: c.prerequisites,
+  };
+});
 
 // -----------------------------------------------------------------------------
 // 12 VETTED NIGERIAN TUTORS

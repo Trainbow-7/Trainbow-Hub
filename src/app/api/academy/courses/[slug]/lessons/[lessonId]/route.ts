@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/session";
 import { db } from "@/lib/db";
 import { SEED_COURSES } from "@/lib/data/seed-data";
-import { getLessonById, DETAILED_LESSONS } from "@/lib/data/academy-content";
+import { getLessonById } from "@/lib/data/academy-content";
 import { getCourseLessonList } from "@/lib/academy/engine";
 
 export async function GET(
@@ -22,121 +22,148 @@ export async function GET(
       );
     }
 
-    // Retrieve detailed lesson or fallback generic mock for lessons beyond seed
-    let lesson = getLessonById(lessonId);
-    if (!lesson) {
-      // Find within course syllabus
-      let foundLesson = null;
-      let moduleTitle = "Module 1";
-      for (const m of course.syllabus) {
-        const match = m.lessons.find((l) => l.id === lessonId);
-        if (match) {
-          foundLesson = match;
-          moduleTitle = m.title;
-          break;
-        }
+    // STRICT CHECK: Verify that the lesson belongs to THIS course
+    let foundLesson = null;
+    let moduleTitle = "Module 1";
+    for (const m of course.syllabus) {
+      const match = m.lessons.find(
+        (l) =>
+          l.id === lessonId ||
+          l.slug === lessonId ||
+          (lessonId === "l1" && l.id === "waec-l1") ||
+          (lessonId === "waec-l1" && l.id === "l1")
+      );
+      if (match) {
+        foundLesson = match;
+        moduleTitle = m.title;
+        break;
       }
+    }
 
-      if (foundLesson) {
-        lesson = {
-          id: foundLesson.id,
-          courseSlug: course.slug,
-          title: foundLesson.title,
-          moduleTitle,
-          durationMinutes: foundLesson.durationMinutes,
-          isFreePreview: foundLesson.isFreePreview,
-          videoTitle: `${course.title} - ${foundLesson.title}`,
-          videoThumbnail: "/images/lessons/waec-math-l1.jpg",
-          keyObjectives: [
-            `Master key principles of ${foundLesson.title}`,
-            "Understand mathematical formulas and examination techniques",
-            "Solve past exam problems with step-by-step clarity",
-          ],
-          markdownNotes: `
+    if (!foundLesson) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Lesson '${lessonId}' does not belong to course '${slug}'`,
+        },
+        { status: 404 }
+      );
+    }
+
+    // Retrieve detailed lesson
+    let lesson =
+      getLessonById(foundLesson.id, course.slug) ||
+      getLessonById(foundLesson.slug || foundLesson.id, course.slug);
+
+    if (!lesson) {
+      lesson = {
+        id: foundLesson.id,
+        courseSlug: course.slug,
+        title: foundLesson.title,
+        moduleTitle,
+        durationMinutes: foundLesson.durationMinutes,
+        isFreePreview: foundLesson.isFreePreview,
+        videoTitle: `${course.title} — ${foundLesson.title}`,
+        videoThumbnail: `/images/lessons/${foundLesson.id}.jpg`,
+        keyObjectives: foundLesson.objectives || [
+          `Master core principles of ${foundLesson.title}`,
+          "Apply standard mathematical methods systematically",
+          "Solve curriculum exam problems step-by-step",
+        ],
+        markdownNotes: `
 # ${foundLesson.title}
 
-Welcome to this lesson in **${course.title}**.
+Welcome to this lesson in **${course.title}** (${course.level}).
 
 ---
 
 ## Overview & Mathematical Concepts
-This topic builds directly upon core WAEC and senior secondary mathematics objectives. Make sure you have your scientific calculator and notebook ready as you follow each worked step.
+${foundLesson.summary || "This topic builds directly upon core curriculum objectives."}
 
-### Step-by-Step Principles
-1. Carefully write down all given variables and identities.
-2. Select the appropriate formula from the syllabus reference.
-3. Solve systematically and express final units or base subscripts clearly.
-          `,
-          worksheets: [
+### Key Learning Objectives
+${(foundLesson.objectives || []).map((o) => `- ${o}`).join("\n")}
+
+### Essential Formulas & Key Points
+${(foundLesson.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
+        `,
+        worksheets: [
+          {
+            title: `${foundLesson.title} Practice Sheet (PDF)`,
+            filename: `${foundLesson.slug || foundLesson.id}_practice_drill.pdf`,
+            size: "450 KB",
+            type: "PDF Document",
+          },
+        ],
+        quiz: {
+          id: `quiz-${foundLesson.id}`,
+          title: `Practice Checkpoint: ${foundLesson.title}`,
+          passPercentage: 60,
+          questions: [
             {
-              title: `${foundLesson.title} Practice Sheet (PDF)`,
-              filename: `${foundLesson.id}_practice_drill.pdf`,
-              size: "650 KB",
-              type: "PDF Document",
+              id: `q_${foundLesson.id}_1`,
+              prompt: `Which of the following best represents the foundational principle for ${foundLesson.title}?`,
+              options: [
+                {
+                  id: "A",
+                  text: (foundLesson.keyPoints && foundLesson.keyPoints[0]) || "Direct algebraic balance and substitution",
+                },
+                { id: "B", text: "Ignoring sign changes across the equals sign" },
+                { id: "C", text: "Approximation without formal working" },
+                { id: "D", text: "None of the above" },
+              ],
+              correctOptionId: "A",
+              explanation: `Standard ${course.examBody || "curriculum"} marking schemes award full method marks for systematic application of core principles.`,
+              topic: foundLesson.title,
             },
           ],
-          quiz: {
-            id: `quiz-${foundLesson.id}`,
-            title: `Practice Checkpoint: ${foundLesson.title}`,
-            passPercentage: 60,
-            questions: [
-              {
-                id: "q_gen_1",
-                prompt: `Which of the following best represents the foundational rule for ${foundLesson.title}?`,
-                options: [
-                  { id: "A", text: "Direct algebraic substitution and balance" },
-                  { id: "B", text: "Ignoring sign changes across the equals sign" },
-                  { id: "C", text: "Approximation without formal working" },
-                  { id: "D", text: "None of the above" },
-                ],
-                correctOptionId: "A",
-                explanation: "Formal WAEC marking guidelines award full method marks (M1) for correct algebraic substitution.",
-                topic: foundLesson.title,
-              },
-            ],
-          },
-        };
-      } else {
-        return NextResponse.json(
-          { success: false, error: "Lesson not found in course" },
-          { status: 404 }
-        );
-      }
+        },
+      };
     }
 
     // Get user's enrollment and progress
     const enrollment = await db.findEnrollment(userId, slug);
-    const isCompleted = enrollment?.completedLessonIds.includes(lessonId) || false;
+    const isCompleted =
+      enrollment?.completedLessonIds.includes(foundLesson.id) ||
+      enrollment?.completedLessonIds.includes(foundLesson.slug || "") ||
+      false;
 
     // Get next and previous lesson pointers
     const allLessons = getCourseLessonList(slug);
-    const currentIndex = allLessons.findIndex((l) => l.id === lessonId);
+    const currentIndex = allLessons.findIndex(
+      (l) => l.id === foundLesson.id || (foundLesson.slug && l.slug === foundLesson.slug)
+    );
     const prevLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null;
-    const nextLesson = currentIndex !== -1 && currentIndex + 1 < allLessons.length ? allLessons[currentIndex + 1] : null;
+    const nextLesson =
+      currentIndex !== -1 && currentIndex + 1 < allLessons.length
+        ? allLessons[currentIndex + 1]
+        : null;
 
     // Update last accessed lesson if enrolled
     if (enrollment) {
       await db.createOrUpdateEnrollment({
         userId,
         courseSlug: slug,
-        lastAccessedLessonId: lessonId,
+        lastAccessedLessonId: foundLesson.id,
       });
     }
 
     // Retrieve verified real educational videos for this lesson
-    const allLessonVideos = await db.findLessonVideos(lessonId);
-    const approvedVideos = allLessonVideos.filter((v) => v.status === "APPROVED");
+    let allLessonVideos = await db.findLessonVideos(foundLesson.id);
+    if (allLessonVideos.length === 0 && foundLesson.slug) {
+      allLessonVideos = await db.findLessonVideos(foundLesson.slug);
+    }
+    // Filter approved videos strictly matching this course or topic
+    const approvedVideos = allLessonVideos.filter(
+      (v) => v.status === "APPROVED" && (v.courseSlug === slug || !v.courseSlug)
+    );
     const primaryVideo = approvedVideos.find((v) => v.isPrimary) || approvedVideos[0] || null;
     const alternateVideos = approvedVideos.filter((v) => v.id !== primaryVideo?.id);
 
     // Get user's video progress if primary video exists
     let videoProgress = null;
     if (primaryVideo) {
-      videoProgress = await db.getVideoProgress(userId, lessonId, primaryVideo.id);
+      videoProgress = await db.getVideoProgress(userId, foundLesson.id, primaryVideo.id);
     }
-
-    // Check WAEC alignment: syllabus mapped and verified
-    const isWaecAligned = course.level.toLowerCase().includes("waec") || course.slug.includes("waec");
 
     return NextResponse.json({
       success: true,
@@ -155,7 +182,7 @@ This topic builds directly upon core WAEC and senior secondary mathematics objec
         primary: primaryVideo,
         alternates: alternateVideos,
         userProgress: videoProgress,
-        isWaecAligned,
+        isWaecAligned: course.level.toLowerCase().includes("waec") || course.slug.includes("waec"),
       },
       progress: {
         isEnrolled: !!enrollment,
@@ -165,14 +192,14 @@ This topic builds directly upon core WAEC and senior secondary mathematics objec
         totalLessons: allLessons.length,
       },
       navigation: {
-        prevLesson,
-        nextLesson,
+        prevLesson: prevLesson ? { id: prevLesson.id, slug: prevLesson.slug, title: prevLesson.title } : null,
+        nextLesson: nextLesson ? { id: nextLesson.id, slug: nextLesson.slug, title: nextLesson.title } : null,
       },
     });
-  } catch (error) {
-    console.error("Failed to load lesson:", error);
+  } catch (err: any) {
+    console.error("Failed to retrieve lesson:", err);
     return NextResponse.json(
-      { success: false, error: "Internal server error" },
+      { success: false, error: err.message || "Internal server error" },
       { status: 500 }
     );
   }

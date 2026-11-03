@@ -1,3 +1,5 @@
+import { COURSES_DATA } from "./curricula";
+
 export interface QuizQuestion {
   id: string;
   prompt: string;
@@ -350,6 +352,91 @@ Indices and logarithms form the bedrock of secondary algebraic manipulation.
   },
 };
 
-export function getLessonById(lessonId: string): DetailedLesson | null {
-  return DETAILED_LESSONS[lessonId] ?? null;
+export function getLessonById(lessonId: string, courseSlug?: string): DetailedLesson | null {
+  // 1. Check exact key in DETAILED_LESSONS
+  if (DETAILED_LESSONS[lessonId]) {
+    const d = DETAILED_LESSONS[lessonId];
+    if (!courseSlug || d.courseSlug === courseSlug) {
+      return d;
+    }
+  }
+
+  // 2. Search across COURSES_DATA
+  for (const course of COURSES_DATA) {
+    if (courseSlug && course.slug !== courseSlug) continue;
+    for (const mod of course.modules) {
+      for (const les of mod.lessons) {
+        if (les.id === lessonId || les.slug === lessonId) {
+          return {
+            id: les.id,
+            courseSlug: course.slug,
+            title: les.title,
+            moduleTitle: mod.title,
+            durationMinutes: les.durationMinutes,
+            isFreePreview: les.isFreePreview,
+            videoTitle: `${course.title} — ${les.title}`,
+            videoThumbnail: `/images/lessons/${les.id}.jpg`,
+            keyObjectives: les.objectives && les.objectives.length > 0 ? les.objectives : [
+              `Master core principles of ${les.title}`,
+              "Apply standard mathematical methods systematically",
+              "Solve curriculum exam problems step-by-step",
+            ],
+            markdownNotes: les.markdownNotes || `
+# ${les.title}
+
+Welcome to this lesson in **${course.title}** (${course.level}).
+
+---
+
+## Overview & Key Concepts
+${les.summary}
+
+### Key Learning Objectives
+${(les.objectives || []).map((o) => `- ${o}`).join("\n")}
+
+### Essential Formulas & Principles
+${(les.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
+
+---
+
+### Step-by-Step Practice Strategy
+1. Review the given parameters and state all definitions clearly.
+2. Select the standard formula approved for ${course.examBody}.
+3. Work through calculations methodically, double checking arithmetic and units.
+`,
+            worksheets: [
+              {
+                title: `${les.title} Practice Sheet (PDF)`,
+                filename: `${les.slug}_practice_drill.pdf`,
+                size: "450 KB",
+                type: "PDF Document",
+              },
+            ],
+            quiz: {
+              id: `quiz-${les.id}`,
+              title: `Practice Checkpoint: ${les.title}`,
+              passPercentage: 60,
+              questions: [
+                {
+                  id: `q_${les.id}_1`,
+                  prompt: `Which of the following best represents the foundational principle for ${les.title}?`,
+                  options: [
+                    { id: "A", text: (les.keyPoints && les.keyPoints[0]) || "Direct algebraic balance and substitution" },
+                    { id: "B", text: "Ignoring sign changes across the equals sign" },
+                    { id: "C", text: "Approximation without formal working" },
+                    { id: "D", text: "None of the above" },
+                  ],
+                  correctOptionId: "A",
+                  explanation: `Standard ${course.examBody} marking schemes award full method marks for: ${(les.keyPoints && les.keyPoints[0]) || "systematic application of core principles"}.`,
+                  topic: les.title,
+                },
+              ],
+            },
+          };
+        }
+      }
+    }
+  }
+
+  return null;
 }
