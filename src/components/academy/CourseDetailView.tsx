@@ -54,10 +54,17 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
               <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="brand">{course.level}</Badge>
                 <Badge variant="neutral">{course.subjectName}</Badge>
-                <span className="text-xs text-status-green-800 font-bold flex items-center gap-1">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-status-green-700" />
-                  Syllabus Verified
-                </span>
+                {(course as any).teacherReviewCompleted ? (
+                  <span className="text-xs text-status-green-800 font-bold flex items-center gap-1">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-status-green-700" />
+                    Syllabus Verified
+                  </span>
+                ) : (
+                  <span className="text-xs text-neutral-slate-600 font-medium flex items-center gap-1">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-neutral-slate-400" />
+                    Syllabus mapping in review
+                  </span>
+                )}
               </div>
 
               <h1 className="text-2xl sm:text-4xl font-extrabold font-heading text-neutral-slate-900 tracking-tight leading-tight">
@@ -82,7 +89,11 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
               </div>
               <div className="flex items-center gap-1.5">
                 <Clock className="h-4 w-4 text-brand-blue-600" />
-                <span>{course.durationHours} Hours Video & Quizzes</span>
+                <span>
+                  {course.durationHours > 0
+                    ? `${course.durationHours} Hours Video & Quizzes`
+                    : "Videos coming soon"}
+                </span>
               </div>
             </div>
 
@@ -96,7 +107,11 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
                 <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                   {course.instructorName}
                 </h3>
-                <p className="text-xs text-neutral-slate-600">{course.instructorTitle}</p>
+                <p className="text-xs text-neutral-slate-600">
+                  {course.instructorTitle && course.instructorTitle !== "UTME Quantitative Specialist & CBT Strategy Lead"
+                    ? course.instructorTitle
+                    : "Course by Trainbow HUB Academy"}
+                </p>
               </div>
             </div>
 
@@ -215,10 +230,7 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
                   <ShieldCheck className="h-4 w-4 text-status-green-600 shrink-0" />
                   <span>Syllabus mapped to official examination standards</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-brand-blue-600 shrink-0" />
-                  <span>Lifetime access to course revisions</span>
-                </div>
+                
                 <div className="flex items-center gap-2">
                   <BookOpen className="h-4 w-4 text-brand-blue-600 shrink-0" />
                   <span>Practice checkpoints with automated grading</span>

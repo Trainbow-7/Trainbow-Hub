@@ -108,7 +108,7 @@ export function CourseEnrollmentAction({ courseSlug, priceMinorUnits, firstLesso
         )}
       </Button>
       <p className="text-[11px] text-neutral-slate-500 text-center">
-        Instant access on desktop and mobile. 100% money-back guarantee within 7 days.
+        Instant access on desktop and mobile. View our <Link href="/legal/refunds" className="underline hover:text-neutral-slate-700">refund policy</Link>.
       </p>
     </div>
   );

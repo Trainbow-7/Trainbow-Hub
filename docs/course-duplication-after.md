@@ -33,8 +33,8 @@ The root cause of syllabus and video duplication has been completely resolved:
 | Course Slug | Exam Body | Modules | Lessons | Actual Hours | Approved Videos | Status |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
 | `waec-ssce-mathematics-mastery` | WAEC | 7 | 19 | 15 hrs | 19 | Isolated & Verified |
-| `jamb-utme-speed-mathematics` | JAMB | 6 | 11 | 8 hrs | 2 | Isolated & Verified |
-| `jss3-basic-mathematics-bece-prep` | NECO/BECE | 5 | 12 | 8 hrs | 2 | Isolated & Verified |
-| `ss2-algebra-and-trigonometry-deep-dive` | NERDC / WAEC | 4 | 9 | 7 hrs | 3 | Isolated & Verified |
-| `primary6-quantitative-reasoning-common-entrance` | NERDC / NECO (NCEE) | 4 | 9 | 6 hrs | 0 | Isolated & Verified |
-| `cambridge-igcse-extended-mathematics` | CAMBRIDGE | 7 | 11 | 9 hrs | 2 | Isolated & Verified |
+| `jamb-utme-speed-mathematics` | JAMB | 6 | 11 | 8 hrs | 11 | Isolated & Verified |
+| `jss3-basic-mathematics-bece-prep` | NECO/BECE | 5 | 12 | 8 hrs | 12 | Isolated & Verified |
+| `ss2-algebra-and-trigonometry-deep-dive` | NERDC / WAEC | 4 | 9 | 7 hrs | 9 | Isolated & Verified |
+| `primary6-quantitative-reasoning-common-entrance` | NERDC / NECO (NCEE) | 4 | 9 | 6 hrs | 9 | Isolated & Verified |
+| `cambridge-igcse-extended-mathematics` | CAMBRIDGE | 7 | 11 | 9 hrs | 11 | Isolated & Verified |

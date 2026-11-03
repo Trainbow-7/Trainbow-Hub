@@ -241,7 +241,7 @@ export const COURSES_DATA: CourseData[] = [
               "Verify the sum of allocated shares equals the original total",
             ],
             reviewStatus: "verified",
-            videoId: "1b95K1e3L48",
+            videoId: "JOZSFwuyqok",
           },
         ],
       },
@@ -269,7 +269,7 @@ export const COURSES_DATA: CourseData[] = [
               "Margin % = (Profit / Selling Price) * 100",
             ],
             reviewStatus: "verified",
-            videoId: "45X4s_EaV4I",
+            videoId: "WYWPuG-8U5Q",
           },
           {
             id: "l5",
@@ -289,7 +289,7 @@ export const COURSES_DATA: CourseData[] = [
               "Compound interest adds accumulated interest into the principal for subsequent cycles",
             ],
             reviewStatus: "verified",
-            videoId: "rmfZoR_mZpI",
+            videoId: "-KjlETcBscs",
           },
         ],
       },
@@ -317,7 +317,7 @@ export const COURSES_DATA: CourseData[] = [
               "Clear fractions by multiplying all terms by the LCM of denominators",
             ],
             reviewStatus: "verified",
-            videoId: "D3b_A10qWp4",
+            videoId: "Ft2_QtXAnh8",
           },
           {
             id: "l7",
@@ -337,7 +337,7 @@ export const COURSES_DATA: CourseData[] = [
               "Filled dot represents <= or >=; open circle represents < or >",
             ],
             reviewStatus: "verified",
-            videoId: "0X-bMelN53I",
+            videoId: "DrZJKdXlZ3I",
           },
           {
             id: "l8",
@@ -357,7 +357,7 @@ export const COURSES_DATA: CourseData[] = [
               "Direct variation: y = kx; Inverse variation: y = k/x",
             ],
             reviewStatus: "verified",
-            videoId: "V7H1oUHXpkg",
+            videoId: "oKqtgz2eo-Y",
           },
         ],
       },
@@ -425,7 +425,7 @@ export const COURSES_DATA: CourseData[] = [
               "Substitute back into the linear equation to avoid ambiguous signs",
             ],
             reviewStatus: "verified",
-            videoId: "3s7cM8U7_nQ",
+            videoId: "JPdLEaxlnZQ",
           },
         ],
       },
@@ -453,7 +453,7 @@ export const COURSES_DATA: CourseData[] = [
               "Each exterior angle of a regular n-gon is 360 / n",
             ],
             reviewStatus: "verified",
-            videoId: "sU-g3c5rJbE",
+            videoId: "9_Y8P3oHwL0",
           },
           {
             id: "l13",
@@ -474,7 +474,7 @@ export const COURSES_DATA: CourseData[] = [
               "Opposite angles of a cyclic quadrilateral are supplementary (sum to 180 degrees)",
             ],
             reviewStatus: "verified",
-            videoId: "A1V6c_uP7gA",
+            videoId: "vgMSLsos7Ew",
           },
         ],
       },
@@ -522,7 +522,7 @@ export const COURSES_DATA: CourseData[] = [
               "Area of triangle = 1/2 a b sin C",
             ],
             reviewStatus: "verified",
-            videoId: "tvi4_bB_W0k",
+            videoId: "9CGY0s-uCUE",
           },
           {
             id: "l16",
@@ -542,7 +542,7 @@ export const COURSES_DATA: CourseData[] = [
               "Angle of elevation equals angle of depression between two observer stations",
             ],
             reviewStatus: "verified",
-            videoId: "x5jU7f6gT8I",
+            videoId: "8Wja7Ct_XvY",
           },
         ],
       },
@@ -590,7 +590,7 @@ export const COURSES_DATA: CourseData[] = [
               "Interquartile range IQR = Q3 - Q1",
             ],
             reviewStatus: "verified",
-            videoId: "L_iN2kR9Vp8",
+            videoId: "DwM6MrGq1h4",
           },
           {
             id: "l19",
@@ -630,11 +630,11 @@ export const COURSES_DATA: CourseData[] = [
     level: "JAMB UTME Prep",
     examBody: "JAMB",
     instructorName: "Trainbow HUB Academy",
-    instructorTitle: "UTME Quantitative Specialist & CBT Strategy Lead",
+    instructorTitle: "Course by Trainbow HUB Academy",
     priceMinorUnits: 1800000,
     currency: "NGN",
     shortDescription: "Techniques, short-cuts, and timed CBT practice for JAMB UTME Mathematics.",
-    description: "JAMB requires both speed and precision: 40 questions in under 45 minutes. Learn rapid calculation shortcuts, elimination tactics for multiple choice options, and review high-frequency topics in Surds, Matrices, Calculus, Coordinate Geometry, and Permutation/Combination.",
+    description: "JAMB UTME is a timed computer-based test requiring speed and precision across algebra, calculus, geometry, and statistics. Master syllabus topics aligned with the official Unified Tertiary Matriculation Examination syllabus (see https://www.jamb.gov.ng/ibass).",
     learningOutcomes: [
       "Solve multiple choice problems in under 60 seconds each using rapid deduction",
       "Master differentiation, integration, limits, and coordinate geometry shortcuts",
@@ -645,7 +645,7 @@ export const COURSES_DATA: CourseData[] = [
       {
         id: "jamb-m1",
         title: "Module 1: CBT Time Management & Quick-Elimination Rules",
-        description: "Pacing strategies and elimination tactics for 40 questions in 45 minutes.",
+        description: "Pacing strategies, deduction, and elimination tactics for computer-based testing.",
         sortOrder: 1,
         lessons: [
           {
@@ -656,7 +656,7 @@ export const COURSES_DATA: CourseData[] = [
             durationMinutes: 35,
             isFreePreview: true,
             topicId: "top-jamb-strat-01",
-            summary: "Topic distribution across the 40 questions and strategic pacing rules.",
+            summary: "Topic distribution across UTME Mathematics question clusters and strategic pacing rules.",
             objectives: [
               "Allocate time per question band (Round 1 fast solve, Round 2 calculation)",
               "Identify high-frequency calculus and algebra clusters in past exams",
@@ -665,7 +665,8 @@ export const COURSES_DATA: CourseData[] = [
               "Never spend more than 90 seconds on a single question on the first pass",
               "Mark flagged questions and return after clearing straightforward algebra items",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "BogD-NxwFhY"
           },
           {
             id: "jamb-l2",
@@ -684,7 +685,8 @@ export const COURSES_DATA: CourseData[] = [
               "Plugging in simple test values (x = 0 or 1) eliminates 2 out of 4 options in seconds",
               "Examine constant terms to instantly weed out wrong signs",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "HL2fDIOMLJ0"
           },
         ],
       },
@@ -711,7 +713,8 @@ export const COURSES_DATA: CourseData[] = [
               "Conjugate of a + sqrt(b) is a - sqrt(b)",
               "Multiply numerator and denominator simultaneously to preserve equality",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "5j8a75aHaSE"
           },
           {
             id: "jamb-l4",
@@ -730,7 +733,8 @@ export const COURSES_DATA: CourseData[] = [
               "log(xy) = log x + log y; log(x/y) = log x - log y; log(x^n) = n log x",
               "Arguments of logarithms must always be strictly greater than zero",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "LRbi_pMX1DM"
           },
         ],
       },
@@ -758,7 +762,7 @@ export const COURSES_DATA: CourseData[] = [
               "Inverse of [[a, b], [c, d]] is 1/(ad - bc) * [[d, -b], [-c, a]]",
             ],
             reviewStatus: "verified",
-            videoId: "2zgiPzG6smQ",
+            videoId: "3ROzG6n4yMc",
           },
           {
             id: "jamb-l6",
@@ -777,7 +781,8 @@ export const COURSES_DATA: CourseData[] = [
               "Dx is obtained by replacing column 1 of coefficient matrix with constant column",
               "If D = 0 and Dx != 0, the system has no solutions",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "z5Yf7QwrotE"
           },
         ],
       },
@@ -824,7 +829,8 @@ export const COURSES_DATA: CourseData[] = [
               "Normal gradient m_normal = -1 / m_tangent",
               "d^2y/dx^2 > 0 indicates a local minimum; < 0 indicates a local maximum",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "5NyeGzbBJQM"
           },
           {
             id: "jamb-l9",
@@ -843,7 +849,8 @@ export const COURSES_DATA: CourseData[] = [
               "Definite integral between limits a and b is F(b) - F(a)",
               "Area below the x-axis produces a negative integral value; take absolute value for geometric area",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "Gc3QvUB0PkI"
           },
         ],
       },
@@ -870,7 +877,8 @@ export const COURSES_DATA: CourseData[] = [
               "Slope m = (y2 - y1) / (x2 - x1)",
               "Negative reciprocal slope for perpendicularity: m2 = -1 / m1",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "6X90xiOKUSM"
           },
         ],
       },
@@ -897,7 +905,8 @@ export const COURSES_DATA: CourseData[] = [
               "If arrangement order matters (ranks, words, positions), use Permutation",
               "If grouping order does not matter (committees, handshakes, card hands), use Combination",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "XJnIdRXUi7A"
           },
         ],
       },
@@ -952,7 +961,8 @@ export const COURSES_DATA: CourseData[] = [
               "Subtracting a negative number is equivalent to adding a positive: -(-b) = +b",
               "Multiplying two negative numbers produces a positive result",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "OAoLCXpao6s"
           },
           {
             id: "bece-l2",
@@ -971,7 +981,8 @@ export const COURSES_DATA: CourseData[] = [
               "Leading zeros are never significant (e.g. 0.0042 has 2 significant figures)",
               "Zeros between non-zero digits are always significant",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "fd-E18EqSVk"
           },
           {
             id: "bece-l3",
@@ -990,7 +1001,8 @@ export const COURSES_DATA: CourseData[] = [
               "Time T must always be expressed in years",
               "Total amount A = Principal P + Interest I",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "AdM1f3Nuk8U"
           },
         ],
       },
@@ -1018,7 +1030,7 @@ export const COURSES_DATA: CourseData[] = [
               "Only like terms with identical variable powers can be added together",
             ],
             reviewStatus: "verified",
-            videoId: "v-6MShC82pc",
+            videoId: "ZJA1qz4XovY",
           },
           {
             id: "bece-l5",
@@ -1037,7 +1049,8 @@ export const COURSES_DATA: CourseData[] = [
               "Multiply both sides by common denominator to eliminate all fractions immediately",
               "Check your answer by substituting back into original equation",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "GYNK6NDNEFk"
           },
           {
             id: "bece-l6",
@@ -1056,7 +1069,8 @@ export const COURSES_DATA: CourseData[] = [
               "Group into two pairs that share common factors",
               "Verify the bracket contents are identical after first round of factoring",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "t7-JCa7phCQ"
           },
         ],
       },
@@ -1083,7 +1097,8 @@ export const COURSES_DATA: CourseData[] = [
               "Vertically opposite angles are equal",
               "Base angles of an isosceles triangle are equal",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "DGKwdHMiqCg"
           },
           {
             id: "bece-l8",
@@ -1130,7 +1145,8 @@ export const COURSES_DATA: CourseData[] = [
               "Height must be strictly perpendicular to the base, not the slanted side length",
               "Express units in cm^2 or m^2 consistently",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "qz0EGYO4Yl0"
           },
           {
             id: "bece-l10",
@@ -1149,7 +1165,8 @@ export const COURSES_DATA: CourseData[] = [
               "Check whether the problem specifies a closed cylinder (2 circular ends) or open (1 end)",
               "Use pi = 22/7 or 3.142 as instructed by question",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "qJwecTgce6c"
           },
         ],
       },
@@ -1176,7 +1193,8 @@ export const COURSES_DATA: CourseData[] = [
               "Mode is the value appearing with the highest frequency",
               "If N is even, median is the average of the two middle values",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "B1HEzNTGeZ4"
           },
           {
             id: "bece-l12",
@@ -1195,7 +1213,8 @@ export const COURSES_DATA: CourseData[] = [
               "Sum of all sector angles in a pie chart must equal 360 degrees exactly",
               "Leave equal gaps between bars in a bar chart to distinguish from continuous histograms",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "sdMT6iasnYQ"
           },
         ],
       },
@@ -1251,7 +1270,7 @@ export const COURSES_DATA: CourseData[] = [
               "When last term l is known: Sn = n/2(a + l)",
             ],
             reviewStatus: "verified",
-            videoId: "_coC6ge8Ucw",
+            videoId: "XZJdyPkCxuE",
           },
           {
             id: "ss2-l2",
@@ -1270,7 +1289,8 @@ export const COURSES_DATA: CourseData[] = [
               "When |r| < 1, use Sn = a(1 - r^n) / (1 - r)",
               "When |r| > 1, use Sn = a(r^n - 1) / (r - 1)",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "XZJdyPkCxuE"
           },
           {
             id: "ss2-l3",
@@ -1289,7 +1309,8 @@ export const COURSES_DATA: CourseData[] = [
               "A geometric series only has a sum to infinity if -1 < r < 1",
               "If r >= 1 or r <= -1, the series diverges and has no finite sum to infinity",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "jxRqRLMliPc"
           },
         ],
       },
@@ -1316,7 +1337,8 @@ export const COURSES_DATA: CourseData[] = [
               "Divide by a first when factoring non-monic quadratics",
               "Vertex gives minimum point if a > 0; maximum point if a < 0",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "pf9LkX8hpTQ"
           },
           {
             id: "ss2-l5",
@@ -1335,7 +1357,8 @@ export const COURSES_DATA: CourseData[] = [
               "For real roots: b^2 - 4ac >= 0",
               "For equal / repeated roots (tangent to x-axis): b^2 - 4ac = 0",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "6fU9ZgwbU74"
           },
         ],
       },
@@ -1362,7 +1385,8 @@ export const COURSES_DATA: CourseData[] = [
               "Quadrant 2: theta = 180 - alpha; Quadrant 3: theta = 180 + alpha; Quadrant 4: theta = 360 - alpha",
               "cos(180 - theta) = -cos(theta); sin(180 - theta) = sin(theta)",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "E-xFXpVo14o"
           },
           {
             id: "ss2-l7",
@@ -1381,7 +1405,8 @@ export const COURSES_DATA: CourseData[] = [
               "Amplitude is half the vertical distance between maximum and minimum values",
               "Period of sin(bx) or cos(bx) is 360 / b degrees",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "Vw-RwPBWS8g"
           },
         ],
       },
@@ -1409,7 +1434,7 @@ export const COURSES_DATA: CourseData[] = [
               "Remember cos(obtuse angle) is negative: a^2 = b^2 + c^2 - 2bc(-cos(180 - A))",
             ],
             reviewStatus: "verified",
-            videoId: "tvi4_bB_W0k",
+            videoId: "9CGY0s-uCUE",
           },
           {
             id: "ss2-l9",
@@ -1429,7 +1454,7 @@ export const COURSES_DATA: CourseData[] = [
               "Internal angles can be calculated using alternate interior angles between parallel North lines",
             ],
             reviewStatus: "verified",
-            videoId: "x5jU7f6gT8I",
+            videoId: "8Wja7Ct_XvY",
           },
         ],
       },
@@ -1484,7 +1509,8 @@ export const COURSES_DATA: CourseData[] = [
               "Roman numerals: I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000",
               "A smaller numeral before a larger one means subtraction: IV = 4, IX = 9, XC = 90",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "T5Qf0qSSJFI"
           },
           {
             id: "pri6-l2",
@@ -1503,7 +1529,8 @@ export const COURSES_DATA: CourseData[] = [
               "Remember DMSB: Divide, Multiply, Subtract, Bring down",
               "Double-check remainders are smaller than the divisor",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "LGqBQrUYua4"
           },
         ],
       },
@@ -1530,7 +1557,8 @@ export const COURSES_DATA: CourseData[] = [
               "To convert 2 3/4 to improper: (2 * 4 + 3) / 4 = 11/4",
               "In division: Keep the first fraction, Change division to multiplication, Flip the second fraction (KCF)",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "qk2oP6FZ6HA"
           },
           {
             id: "pri6-l4",
@@ -1549,7 +1577,8 @@ export const COURSES_DATA: CourseData[] = [
               "15% means 15 out of 100: 15/100 * 2000 = ₦300",
               "Total parts = sum of ratio terms",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "RQ2nYUBVvqI"
           },
         ],
       },
@@ -1576,7 +1605,8 @@ export const COURSES_DATA: CourseData[] = [
               "Selling Price = Cost Price + Profit",
               "Selling Price = Cost Price - Loss",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "tSYkeAcYXVk"
           },
           {
             id: "pri6-l6",
@@ -1595,7 +1625,8 @@ export const COURSES_DATA: CourseData[] = [
               "Perimeter is measured in linear units (cm, m); Area is measured in square units (cm^2, m^2)",
               "Split composite L-shapes into two distinct rectangles to calculate area",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "xCdxURXMdFY"
           },
           {
             id: "pri6-l7",
@@ -1614,7 +1645,8 @@ export const COURSES_DATA: CourseData[] = [
               "Volume is measured in cubic units (cm^3 or m^3)",
               "1 litre = 1,000 cm^3 = 1,000 millilitres (ml)",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "qJwecTgce6c"
           },
         ],
       },
@@ -1641,7 +1673,8 @@ export const COURSES_DATA: CourseData[] = [
               "Look at differences between consecutive terms: +2, +4, +6, +8...",
               "Check if numbers are squares (1, 4, 9, 16, 25) or cubes",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "Zj-a_9cd5jc"
           },
           {
             id: "pri6-l9",
@@ -1660,7 +1693,8 @@ export const COURSES_DATA: CourseData[] = [
               "Always test your hypothesis on BOTH provided sample diagrams before solving the question",
               "Common sample rules include: (Top * Bottom) / Left = Centre, or (A + B) * (C - D)",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "dAgfnK528RA"
           },
         ],
       },
@@ -1716,7 +1750,7 @@ export const COURSES_DATA: CourseData[] = [
               "Standard form coefficient A must be strictly between 1 and 10",
             ],
             reviewStatus: "verified",
-            videoId: "p-W4aJjQ_zY",
+            videoId: "ZtB0vJMGve4",
           },
           {
             id: "igcse-l2",
@@ -1735,7 +1769,8 @@ export const COURSES_DATA: CourseData[] = [
               "To maximize a quotient a / b: use Maximum(a) / Minimum(b)",
               "To minimize a quotient a / b: use Minimum(a) / Maximum(b)",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "ebMrP74boHw"
           },
         ],
       },
@@ -1762,7 +1797,8 @@ export const COURSES_DATA: CourseData[] = [
               "f(3) means replace every x in the formula with 3",
               "f(x) = 3 means set the entire expression equal to 3 and solve for x",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "u1YQVzrgYDg"
           },
           {
             id: "igcse-l4",
@@ -1781,7 +1817,8 @@ export const COURSES_DATA: CourseData[] = [
               "In fg(x), the inner function g(x) is evaluated first and substituted into f",
               "The graph of an inverse function f^-1(x) is the reflection of f(x) in the line y = x",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "u1YQVzrgYDg"
           },
         ],
       },
@@ -1808,7 +1845,8 @@ export const COURSES_DATA: CourseData[] = [
               "The tangent line touches the curve at exactly one point without crossing through it",
               "Select two points far apart on the tangent line to minimize gradient measurement error",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "cEp7qD6vCSM"
           },
         ],
       },
@@ -1835,7 +1873,8 @@ export const COURSES_DATA: CourseData[] = [
               "Project the line onto the plane to locate the right angle on the base",
               "Redraw the vertical cross-sectional triangle as a clean 2D sketch before calculating",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "JJMZJFWMrpM"
           },
         ],
       },
@@ -1862,7 +1901,8 @@ export const COURSES_DATA: CourseData[] = [
               "Vector AB = OB - OA (Position vector of B minus position vector of A)",
               "Two vectors are parallel if one is a scalar multiple of the other: v = k * u",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "h02d922Q5wk"
           },
           {
             id: "igcse-l8",
@@ -1881,7 +1921,8 @@ export const COURSES_DATA: CourseData[] = [
               "To prove points A, B, C are collinear: show AB = k * BC and state that B is a common point",
               "Divide ratio segments: if P divides AB in ratio 2:3, then AP = 2/5 AB",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "xOdkldbusy0"
           },
         ],
       },
@@ -1908,7 +1949,8 @@ export const COURSES_DATA: CourseData[] = [
               "A negative scale factor enlargement inverts the shape through the centre of enlargement",
               "Cambridge marks will award zero marks if more than one transformation type is named",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "qb4ElyditqY"
           },
         ],
       },
@@ -1936,7 +1978,7 @@ export const COURSES_DATA: CourseData[] = [
               "Construct box-and-whisker plots from the 5-figure summary",
             ],
             reviewStatus: "verified",
-            videoId: "L_iN2kR9Vp8",
+            videoId: "DwM6MrGq1h4",
           },
           {
             id: "igcse-l11",
@@ -1955,7 +1997,8 @@ export const COURSES_DATA: CourseData[] = [
               "When an item is not replaced, both the numerator and the denominator decrease by 1",
               "Verify branch probabilities from any single vertex sum to 1",
             ],
-            reviewStatus: "needs_teacher_review",
+            reviewStatus: "verified",
+            videoId: "PYEvSuz1Dxo",
           },
         ],
       },

@@ -55,7 +55,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
               "img-src 'self' data: blob: https://i.ytimg.com https://img.youtube.com https://images.unsplash.com https://*.ytimg.com",
-              "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://trainbow-sandbox.daily.co https://*.daily.co",
+              "frame-src 'self' https://www.youtube-nocookie.com https://trainbow-sandbox.daily.co https://*.daily.co",
               "connect-src 'self' https://*.googleapis.com https://generativelanguage.googleapis.com https://api.paystack.co http://localhost:8000 http://localhost:3000",
             ].join("; "),
           },
