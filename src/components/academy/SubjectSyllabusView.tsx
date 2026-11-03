@@ -25,6 +25,7 @@ import {
   ExternalLink,
   Video,
 } from "lucide-react";
+import { InlineMathText } from "@/components/ui/InlineMathText";
 
 interface SubjectSyllabusViewProps {
   subject: SubjectCatalogueItem;
@@ -182,7 +183,9 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                 {subject.highFrequencyExamTopics.map((topic, idx) => (
                   <div key={idx} className="flex items-start gap-2 text-xs text-amber-950">
                     <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                    <span className="font-medium">{topic}</span>
+                    <span className="font-medium">
+                      <InlineMathText text={topic} />
+                    </span>
                   </div>
                 ))}
               </div>
@@ -203,7 +206,9 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                 {subject.commonMistakes.map((mistake, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-rose-600 shrink-0 mt-1.5" />
-                    <span>{mistake}</span>
+                    <span className="flex-1">
+                      <InlineMathText text={mistake} />
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -248,7 +253,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                           </span>
                           <div>
                             <span className="font-heading font-semibold text-sm text-neutral-slate-900 block">
-                              {mod.title}
+                              <InlineMathText text={mod.title} />
                             </span>
                             <div className="flex flex-wrap items-center gap-2 mt-0.5">
                               <span className="text-[11px] text-neutral-slate-500">
@@ -288,7 +293,9 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                                   <h5 className="font-heading font-bold text-xs sm:text-sm text-neutral-slate-900 flex items-center gap-2">
                                     <span className="h-2 w-2 rounded-full bg-brand-blue-600 shrink-0" />
-                                    <span>{topic.name}</span>
+                                    <span>
+                                      <InlineMathText text={topic.name} />
+                                    </span>
                                   </h5>
 
                                   {/* Video Action Button or Status Badge */}
@@ -384,14 +391,16 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                                 )}
 
                                 {/* Subtopics Grid */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pl-3.5">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pl-3.5">
                                   {topic.subtopics.map((sub, sIdx) => (
                                     <div
                                       key={sIdx}
-                                      className="text-[11px] text-neutral-slate-600 flex items-center gap-1.5"
+                                      className="text-[11px] text-neutral-slate-600 flex items-start gap-1.5 leading-normal"
                                     >
-                                      <span className="text-neutral-slate-300">›</span>
-                                      <span>{sub}</span>
+                                      <span className="text-neutral-slate-300 shrink-0 select-none mt-0.5">›</span>
+                                      <span className="flex-1">
+                                        <InlineMathText text={sub} />
+                                      </span>
                                     </div>
                                   ))}
                                 </div>
@@ -441,7 +450,9 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                 {subject.learningOutcomes.map((outcome, idx) => (
                   <div key={idx} className="flex items-start gap-2.5">
                     <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0 mt-0.5" />
-                    <span>{outcome}</span>
+                    <span className="flex-1">
+                      <InlineMathText text={outcome} />
+                    </span>
                   </div>
                 ))}
               </div>

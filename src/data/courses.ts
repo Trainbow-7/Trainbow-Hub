@@ -109,15 +109,15 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
       "Statistics: Cumulative Frequency (Ogive) & Grouped Mean",
       "Probability Trees & Mutually Exclusive Events",
       "Coordinate Geometry (Gradient, Midpoint & Perpendicular Lines)",
-      "Matrices & Determinants (2x2 and 3x3)",
+      "Matrices & Determinants ($2 \\times 2$ and $3 \\times 3$)",
       "Calculus Basics: Differentiation & Definite Integration",
     ],
     commonMistakes: [
-      "Sign errors when expanding negative brackets (e.g. -(a - b) = -a + b)",
+      "Sign errors when expanding negative brackets (e.g. $-(a - b) = -a + b$)",
       "Forgetting to switch inequality signs when multiplying or dividing by negative numbers",
       "Leaving irrational denominators instead of rationalizing surds",
       "Confusing angle of elevation with angle of depression from observer eye-level",
-      "Omitting units in mensuration ($cm^2$ for area, $cm^3$ for volume)",
+      "Omitting units in mensuration ($\\text{cm}^2$ for area, $\\text{cm}^3$ for volume)",
       "Incorrectly reading cumulative frequency curves without plotting at upper class boundaries",
     ],
     pastQuestionsCount: 1250,
@@ -183,7 +183,11 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
           },
           {
             name: "Simple & Compound Interest Calculations",
-            subtopics: ["Simple interest formula I = PRT/100", "Compound interest formula A = P(1+r/n)^nt", "Depreciation & inflation"],
+            subtopics: [
+              "Simple interest formula $I = \\frac{PRT}{100}$",
+              "Compound interest formula $A = P\\left(1 + \\frac{r}{n}\\right)^{nt}$",
+              "Depreciation & inflation",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["simple-compound-interest"],
           },
         ],
@@ -210,7 +214,11 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
           },
           {
             name: "Quadratic Equations & Parabolic Roots",
-            subtopics: ["Factorization and completing the square", "Quadratic formula derivation", "Discriminant nature of roots"],
+            subtopics: [
+              "Factorization and completing the square",
+              "Quadratic formula derivation $x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$",
+              "Discriminant nature of roots ($\\Delta = b^2 - 4ac$)",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["quadratic-equations"],
           },
         ],
@@ -222,12 +230,20 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         topics: [
           {
             name: "Laws of Indices & Fractional Powers",
-            subtopics: ["Multiplication, division, and power of power laws", "Negative and fractional exponents", "Exponential equations"],
+            subtopics: [
+              "Multiplication, division, and power laws ($a^m \\times a^n = a^{m+n}$)",
+              "Negative and fractional exponents",
+              "Exponential equations",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["indices"],
           },
           {
             name: "Laws of Logarithms & Base Change",
-            subtopics: ["Product, quotient, and power rules of logarithms", "Change of base formula", "Logarithmic identities"],
+            subtopics: [
+              "Product, quotient, and power rules of logarithms ($\\log xy = \\log x + \\log y$)",
+              "Change of base formula $\\log_b a = \\frac{\\log_c a}{\\log_c b}$",
+              "Logarithmic identities",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["logarithms-rules"],
           },
           {
@@ -249,7 +265,11 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
           },
           {
             name: "Polygons & Interior/Exterior Angles",
-            subtopics: ["Formula (2n - 4) x 90° for interior angles", "Sum of exterior angles equals 360°", "Regular n-gon calculations"],
+            subtopics: [
+              "Interior angles formula $(2n - 4) \\times 90^\\circ$",
+              "Sum of exterior angles equals $360^\\circ$",
+              "Regular $n$-gon calculations",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["polygons"],
           },
           {
@@ -266,17 +286,29 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         topics: [
           {
             name: "Perimeter & Area of Plane Shapes",
-            subtopics: ["Triangles, parallelograms, trapeziums, rhombuses", "Arc length and sector area formulas", "Segment area calculations"],
+            subtopics: [
+              "Triangles, parallelograms, trapeziums, rhombuses",
+              "Arc length ($s = \\frac{\\theta}{360^\\circ} \\times 2\\pi r$) and sector area formulas",
+              "Segment area calculations",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["perimeter-area"],
           },
           {
             name: "Surface Area of Prisms, Cylinders & Cones",
-            subtopics: ["Total and curved surface area of cylinders", "Cone slant height and curved area pi*r*l", "Frustums of cones and pyramids"],
+            subtopics: [
+              "Total ($A = 2\\pi r h + 2\\pi r^2$) and curved ($A = 2\\pi r h$) surface area of cylinders",
+              "Cone slant height ($l = \\sqrt{r^2 + h^2}$) and curved area $\\pi r l$",
+              "Frustums of cones and pyramids",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["surface-area"],
           },
           {
             name: "Volume of Composite Solids & Spheres",
-            subtopics: ["Sphere volume 4/3 pi*r^3 and hemisphere area", "Cylinder and prism volumes", "Composite industrial tanks and containers"],
+            subtopics: [
+              "Sphere volume $V = \\frac{4}{3}\\pi r^3$ and hemisphere area",
+              "Cylinder and prism volumes",
+              "Composite industrial tanks and containers",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["volume-composite-solids"],
           },
         ],
@@ -310,12 +342,20 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         topics: [
           {
             name: "Simple Probability & Sample Spaces",
-            subtopics: ["Experimental vs theoretical probability", "Sample space listing for coins, dice, and cards", "Complementary events P(A') = 1 - P(A)"],
+            subtopics: [
+              "Experimental vs theoretical probability",
+              "Sample space listing for coins, dice, and cards",
+              "Complementary events $P(A') = 1 - P(A)$",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["simple-probability"],
           },
           {
             name: "Addition & Multiplication Rules of Probability",
-            subtopics: ["Mutually exclusive events P(A or B)", "Independent events P(A and B)", "Probability with and without replacement"],
+            subtopics: [
+              "Mutually exclusive events $P(A \\cup B) = P(A) + P(B)$",
+              "Independent events $P(A \\cap B) = P(A) \\times P(B)$",
+              "Probability with and without replacement",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["addition-multiplication-rules"],
           },
           {
@@ -332,17 +372,29 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         topics: [
           {
             name: "Cartesian Graphs, Midpoint & Distance Formula",
-            subtopics: ["Distance between two points d = sqrt((x2-x1)^2 + (y2-y1)^2)", "Midpoint coordinates ((x1+x2)/2, (y1+y2)/2)", "Collinearity testing"],
+            subtopics: [
+              "Distance between two points $d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$",
+              "Midpoint coordinates $\\left(\\frac{x_1 + x_2}{2}, \\frac{y_1 + y_2}{2}\\right)$",
+              "Collinearity testing",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["distance-midpoint"],
           },
           {
             name: "Gradient of Straight Lines & Collinearity",
-            subtopics: ["Slope m = (y2-y1)/(x2-x1)", "Positive, negative, zero, and undefined slopes", "Angle of inclination theta = arctan(m)"],
+            subtopics: [
+              "Slope $m = \\frac{y_2 - y_1}{x_2 - x_1}$",
+              "Positive, negative, zero, and undefined slopes",
+              "Angle of inclination $\\theta = \\arctan(m)$",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["gradient-slope"],
           },
           {
             name: "Equations of Straight Lines (Parallel & Perpendicular)",
-            subtopics: ["Point-slope form and slope-intercept form y = mx + c", "Parallel lines condition m1 = m2", "Perpendicular lines condition m1 * m2 = -1"],
+            subtopics: [
+              "Point-slope form and slope-intercept form $y = mx + c$",
+              "Parallel lines condition $m_1 = m_2$",
+              "Perpendicular lines condition $m_1 \\times m_2 = -1$",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["equations-of-lines"],
           },
         ],
@@ -354,17 +406,30 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         topics: [
           {
             name: "Sine, Cosine & Tangent Ratios (SOH CAH TOA)",
-            subtopics: ["Right-angled triangle trig definitions", "Special angles 30°, 45°, 60° without calculator", "Trigonometric ratios in four quadrants"],
+            subtopics: [
+              "Right-angled triangle trig definitions",
+              "Special angles $30^\\circ, 45^\\circ, 60^\\circ$ without calculator",
+              "Trigonometric ratios in four quadrants",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["trigonometric-ratios"],
           },
           {
             name: "Angles of Elevation & Depression",
-            subtopics: ["Observer horizontal reference line", "Alternate interior angles relationship", "Solving multi-triangle height problems"],
+            subtopics: [
+              "Observer horizontal reference line",
+              "Alternate interior angles relationship",
+              "Solving multi-triangle height problems",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["angles-elevation-depression"],
           },
           {
             name: "Bearings & Sine/Cosine Rules for Triangles",
-            subtopics: ["Three-figure bearings (000° to 360°)", "Sine Rule a/sinA = b/sinB = c/sinC", "Cosine Rule a^2 = b^2 + c^2 - 2bc*cosA", "Area of scalene triangle 1/2*ab*sinC"],
+            subtopics: [
+              "Three-figure bearings ($000^\\circ$ to $360^\\circ$)",
+              "Sine Rule $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$",
+              "Cosine Rule $a^2 = b^2 + c^2 - 2bc \\cos A$",
+              "Area of scalene triangle $\\text{Area} = \\frac{1}{2}ab \\sin C$",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["bearings-distances"],
           },
         ],
@@ -376,27 +441,48 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         topics: [
           {
             name: "Vector Representation, Addition & Scalar Multiplication",
-            subtopics: ["Column vectors (x, y)", "Magnitude |v| = sqrt(x^2 + y^2)", "Triangle and parallelogram laws of addition", "Unit vectors and scalar product"],
+            subtopics: [
+              "Column vectors $\\begin{pmatrix} x \\\\ y \\end{pmatrix}$ and $(x, y)$",
+              "Magnitude $|\\mathbf{v}| = \\sqrt{x^2 + y^2}$",
+              "Triangle and parallelogram laws of addition",
+              "Unit vectors ($\\mathbf{\\hat{i}}, \\mathbf{\\hat{j}}$) and scalar product",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["vectors-addition"],
           },
           {
             name: "Reflections & Rotations on the Coordinate Plane",
-            subtopics: ["Reflection in x-axis, y-axis, and line y = x", "Rotations of 90°, 180°, 270° about origin", "Matrix transformation representations"],
+            subtopics: [
+              "Reflection in $x$-axis, $y$-axis, and line $y = x$",
+              "Rotations of $90^\\circ, 180^\\circ, 270^\\circ$ about origin",
+              "Matrix transformation representations ($2 \\times 2$)",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["reflections-rotations"],
           },
           {
             name: "Translations, Enlargement & Scale Factors",
-            subtopics: ["Vector translations T = (a, b)", "Center of enlargement and scale factor k", "Area scale factor k^2"],
+            subtopics: [
+              "Vector translations $\\mathbf{T} = \\begin{pmatrix} a \\\\ b \\end{pmatrix}$",
+              "Center of enlargement and scale factor $k$",
+              "Area scale factor $k^2$",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["transformations-enlargement"],
           },
           {
             name: "Calculus Basics (Differentiation & Rate of Change)",
-            subtopics: ["Limits and first principles", "Power rule d/dx(x^n) = n*x^(n-1)", "Tangents, normals, and turning points for JAMB"],
+            subtopics: [
+              "Limits and first principles",
+              "Power rule $\\frac{d}{dx}(x^n) = n x^{n-1}$",
+              "Tangents, normals, and turning points ($\\frac{dy}{dx} = 0$)",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["calculus-differentiation"],
           },
           {
             name: "Integral Calculus Basics",
-            subtopics: ["Indefinite integration with constant C", "Definite integration and boundary conditions", "Area under curves"],
+            subtopics: [
+              "Indefinite integration with constant $+C$",
+              "Definite integration and boundary conditions ($\\int_a^b f(x)\\,dx$)",
+              "Area under curves",
+            ],
             video: RECOVERED_MATHEMATICS_VIDEOS["integral-calculus"],
           },
         ],
@@ -608,12 +694,12 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
       "Waves, Resonance & Optical Mirrors/Lenses",
       "Ohm's Law, Resistor Networks & Kirchhoff's Rules",
       "Electromagnetic Induction & Transformers",
-      "Photoelectric Effect, Half-Life & Nuclear Reactions",
+      "Photoelectric Effect, Half-Life ($T_{1/2}$) & Nuclear Reactions",
     ],
     commonMistakes: [
       "Confusing scalar and vector quantities in 2D momentum problems",
       "Neglecting friction or resolving forces incorrectly along inclined planes",
-      "Forgetting SI unit conversions (e.g. converting grams to kg or cm to meters)",
+      "Forgetting SI unit conversions (e.g. converting $\\text{g}$ to $\\text{kg}$ or $\\text{cm}$ to $\\text{m}$)",
       "Drawing light rays without propagation arrows in optics diagrams",
     ],
     pastQuestionsCount: 1150,
@@ -629,7 +715,7 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Mechanics & Dynamics",
         durationMinutes: 220,
         topics: [
-          { name: "Kinematics & Projectiles", subtopics: ["Uniform acceleration formulas", "Trajectory equations", "Time of flight and range"], video: getTopicVideoBySubject("physics", "Kinematics & Projectiles") },
+          { name: "Kinematics & Projectiles", subtopics: ["Uniform acceleration kinematic formulas ($v = u + at$, $s = ut + \\frac{1}{2}at^2$, $v^2 = u^2 + 2as$)", "Trajectory equations", "Time of flight and range"], video: getTopicVideoBySubject("physics", "Kinematics & Projectiles") },
           { name: "Dynamics & Friction", subtopics: ["Newton's three laws", "Coefficient of static vs dynamic friction"], video: getTopicVideoBySubject("physics", "Dynamics & Friction") },
           { name: "Equilibrium of Forces", subtopics: ["Lami's theorem", "Moments and couples", "Centers of gravity"], video: getTopicVideoBySubject("physics", "Equilibrium of Forces") },
         ],
@@ -648,7 +734,7 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 3: Electricity & Electromagnetism",
         durationMinutes: 220,
         topics: [
-          { name: "Electrostatics & Current Electricity", subtopics: ["Coulomb's law", "Resistor and capacitor networks", "Internal resistance"], video: getTopicVideoBySubject("physics", "Electrostatics & Current Electricity") },
+          { name: "Electrostatics & Current Electricity", subtopics: ["Coulomb's electrostatics law ($F = \\frac{k q_1 q_2}{r^2}$)", "Resistor and capacitor networks", "Internal resistance"], video: getTopicVideoBySubject("physics", "Electrostatics & Current Electricity") },
           { name: "Magnetic Fields & Induction", subtopics: ["Faraday's and Lenz's laws", "AC generators and transformers"], video: getTopicVideoBySubject("physics", "Magnetic Fields & Induction") },
         ],
       },
@@ -657,7 +743,7 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 4: Atomic & Nuclear Physics",
         durationMinutes: 180,
         topics: [
-          { name: "Quantum Nature of Light", subtopics: ["Photoelectric effect", "Einstein's photoelectric equation", "X-rays"], video: getTopicVideoBySubject("physics", "Quantum Nature of Light") },
+          { name: "Quantum Nature of Light", subtopics: ["Photoelectric effect", "Einstein's photoelectric equation ($E = hf = W_0 + K_{\\max}$)", "X-rays"], video: getTopicVideoBySubject("physics", "Quantum Nature of Light") },
           { name: "Radioactivity", subtopics: ["Alpha, beta, gamma decay", "Half-life decay equations", "Nuclear binding energy"], video: getTopicVideoBySubject("physics", "Radioactivity") },
         ],
       },
@@ -688,8 +774,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
     ],
     commonMistakes: [
       "Failure to balance chemical equations before calculating stoichiometric ratios",
-      "Misidentifying oxidation states in polyatomic ions (e.g. $Cr_2O_7^{2-}$)",
-      "Writing incorrect state symbols in precipitation and acid-base equations",
+      "Misidentifying oxidation states in polyatomic ions (e.g. $\\text{Cr}_2\\text{O}_7^{2-}$)",
+      "Writing incorrect state symbols in precipitation and acid-base equations (e.g. $(s), (l), (g), (aq)$)",
     ],
     pastQuestionsCount: 1120,
     cbtDrillsCount: 410,
@@ -704,7 +790,7 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Atomic Structure & Chemical Bonding",
         durationMinutes: 200,
         topics: [
-          { name: "Atomic Models & Electronic Configuration", subtopics: ["s, p, d, f orbitals", "Hund's rule", "Pauli exclusion principle"], video: getTopicVideoBySubject("chemistry", "Atomic Models & Electronic Configuration") },
+          { name: "Atomic Models & Electronic Configuration", subtopics: ["Subshells and orbitals ($s, p, d, f$)", "Hund's rule", "Pauli exclusion principle"], video: getTopicVideoBySubject("chemistry", "Atomic Models & Electronic Configuration") },
           { name: "Periodic Trends", subtopics: ["Electronegativity", "Ionization energy", "Atomic and ionic radius"], video: getTopicVideoBySubject("chemistry", "Periodic Trends") },
           { name: "Chemical Bonds", subtopics: ["Electrovalent, covalent, coordinate, and metallic bonding"], video: getTopicVideoBySubject("chemistry", "Chemical Bonds") },
         ],
@@ -797,9 +883,9 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
     curriculumCoverage: 100,
     officialBoards: ["WAEC WASSCE", "NECO SSCE", "Cambridge Additional Mathematics 0606"],
     highFrequencyExamTopics: [
-      "Roots of Polynomials & De Moivre's Complex Numbers",
+      "Roots of Polynomials & De Moivre's Theorem ($[\\cos\\theta + i\\sin\\theta]^n$)",
       "Integration by Parts, Substitution & Partial Fractions",
-      "Vector Cross Product & 3D Planes",
+      "Vector Cross Product ($\\mathbf{a} \\times \\mathbf{b}$) & 3D Planes",
       "Probability Distributions (Binomial, Poisson, Normal)",
       "Mechanics: Coplanar Forces, Friction on Inclines & Projectiles",
     ],
@@ -819,8 +905,8 @@ export const CATALOGUE_SUBJECTS: SubjectCatalogueItem[] = [
         title: "Module 1: Pure Mathematics & Advanced Calculus",
         durationMinutes: 240,
         topics: [
-          { name: "Advanced Differentiation", subtopics: ["Chain, product, quotient rules", "Implicit differentiation"], video: getTopicVideoBySubject("further-mathematics", "Advanced Differentiation") },
-          { name: "Advanced Integration", subtopics: ["Integration by parts", "Definite integral applications to volumes of revolution"], video: getTopicVideoBySubject("further-mathematics", "Advanced Integration") },
+          { name: "Advanced Differentiation", subtopics: ["Chain, product, and quotient rules ($\\frac{dy}{dx}$)", "Implicit differentiation ($\\frac{d}{dx}[f(x, y)] = 0$)"], video: getTopicVideoBySubject("further-mathematics", "Advanced Differentiation") },
+          { name: "Advanced Integration", subtopics: ["Integration by parts ($\\int u\\,dv = uv - \\int v\\,du$)", "Definite integral applications to volumes of revolution ($V = \\pi \\int y^2\\,dx$)"], video: getTopicVideoBySubject("further-mathematics", "Advanced Integration") },
         ],
       },
       {
