@@ -18,21 +18,21 @@ export default function AIPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
         {/* Header Hero */}
-        <div className="rounded-lg bg-brand-navy-900 text-white p-8 sm:p-12 text-left border border-brand-navy-800">
-          <div className="max-w-3xl space-y-4">
+        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 lg:p-14 text-center border border-brand-navy-800 shadow-md">
+          <div className="max-w-3xl mx-auto space-y-4 flex flex-col items-center text-center">
             <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 block">
               Study helper
             </span>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight text-center">
               Ask a question or upload a photo of a problem.
             </h1>
 
-            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl mx-auto text-center">
               Get a worked solution, step by step. Built for WAEC SSCE, JAMB UTME, Cambridge IGCSE, and BECE students.
             </p>
 
-            <div className="pt-2 flex flex-wrap gap-3 items-center">
+            <div className="pt-2 flex flex-wrap gap-3 items-center justify-center">
               <a href="#workspace">
                 <Button variant="primary" className="h-11 font-semibold text-sm px-6">
                   Open study helper

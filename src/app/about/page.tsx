@@ -15,17 +15,17 @@ export default function AboutPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
         {/* Hero Header */}
-        <div className="rounded-lg bg-brand-navy-900 text-white p-8 sm:p-12 text-left border border-brand-navy-800">
-          <div className="max-w-3xl space-y-3">
+        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 lg:p-14 text-center border border-brand-navy-800 shadow-md">
+          <div className="max-w-3xl mx-auto space-y-4 flex flex-col items-center text-center">
             <span className="text-xs font-semibold uppercase tracking-wider text-sky-300 block">
               About Trainbow HUB
             </span>
 
-            <h1 className="text-3xl sm:text-4xl font-extrabold font-heading text-white tracking-tight leading-tight">
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight text-center">
               Learn • Build • Grow
             </h1>
 
-            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl mx-auto text-center">
               Trainbow HUB was created to solve a persistent challenge for Nigerian families: fragmented learning materials, unvetted private tutors, and rote memorization that fails students during high-stakes WAEC and JAMB examinations.
             </p>
           </div>

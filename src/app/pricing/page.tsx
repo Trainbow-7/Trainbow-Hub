@@ -19,12 +19,12 @@ export default function PricingPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12 sm:space-y-16">
         {/* Header */}
-        <div className="max-w-3xl space-y-4">
-          <Badge variant="brand">Simple &amp; Predictable</Badge>
-          <h1 className="text-display font-extrabold font-heading text-neutral-slate-900 tracking-tight">
+        <div className="max-w-3xl mx-auto space-y-4 text-center flex flex-col items-center">
+          <Badge variant="brand" className="w-fit">Simple &amp; Predictable</Badge>
+          <h1 className="text-display font-extrabold font-heading text-neutral-slate-900 tracking-tight text-center">
             Clear pricing. Zero hidden fees.
           </h1>
-          <p className="text-body-lg text-neutral-slate-600 leading-relaxed">
+          <p className="text-body-lg text-neutral-slate-600 leading-relaxed max-w-2xl mx-auto text-center">
             All prices are in Nigerian Naira (₦). Pay per tutoring lesson or subscribe for ongoing study helper guidance.
           </p>
         </div>

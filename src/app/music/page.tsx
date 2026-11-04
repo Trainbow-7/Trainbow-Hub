@@ -278,29 +278,27 @@ export default function MusicPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
         {/* Hero Section */}
-        <div className="rounded-3xl bg-gradient-to-br from-brand-navy-900 via-brand-navy-950 to-neutral-900 text-white p-8 sm:p-14 relative overflow-hidden shadow-2xl border border-neutral-slate-800">
-          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
-          <div className="max-w-3xl space-y-5 relative z-10">
-            <div className="flex flex-wrap items-center gap-2">
+        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 lg:p-14 relative border border-brand-navy-800 shadow-md text-center">
+          <div className="max-w-3xl mx-auto space-y-5 relative z-10 flex flex-col items-center text-center">
+            <div className="flex flex-wrap items-center justify-center gap-2">
               <Badge variant="neutral" className="bg-amber-900 text-amber-100 border border-amber-700 font-semibold px-3 py-1 text-xs">
-                Trainbow HUB Music — Phase K
+                Trainbow HUB Music
               </Badge>
-              <span className="text-xs text-neutral-slate-300 flex items-center gap-1">
-                
-                ABRSM & MUSON Curriculum Accredited
+              <span className="text-xs text-neutral-slate-300">
+                ABRSM &amp; MUSON Curriculum Accredited
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
-              Master Instrument, Theory & Voice. <br />
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight text-center">
+              Master Instrument, Theory &amp; Voice. <br />
               <span className="text-amber-400">One Unified Academic Account.</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
-              Zero disparate logins. Experience certified piano, violin, voice, and music theory coaching on the same schedule and wallet as your academic WAEC & Cambridge subjects.
+            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl mx-auto text-center">
+              Zero disparate logins. Experience certified piano, violin, voice, and music theory coaching on the same schedule and wallet as your academic WAEC &amp; Cambridge subjects.
             </p>
 
-            <div className="pt-2 flex flex-wrap gap-4 items-center">
+            <div className="pt-2 flex flex-wrap gap-4 items-center justify-center">
               <Button
                 id="btn-explore-catalogue"
                 variant="primary"

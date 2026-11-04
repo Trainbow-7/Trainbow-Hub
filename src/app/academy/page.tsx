@@ -23,9 +23,9 @@ export default function AcademyPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
         {/* Header Hero */}
-        <div className="rounded-lg bg-brand-navy-900 text-white p-8 sm:p-12 relative">
-          <div className="max-w-3xl space-y-4">
-            <div className="flex flex-wrap items-center gap-2">
+        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 lg:p-14 relative border border-brand-navy-800 shadow-md text-center">
+          <div className="max-w-3xl mx-auto space-y-4 flex flex-col items-center text-center">
+            <div className="flex flex-wrap items-center justify-center gap-2">
               <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/40">
                 Trainbow HUB Academy
               </Badge>
@@ -34,11 +34,11 @@ export default function AcademyPage() {
               </span>
             </div>
 
-            <h1 className="text-display font-extrabold font-heading text-white tracking-tight">
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight text-center">
               Curriculum courses &amp; exam preparation
             </h1>
 
-            <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl mx-auto text-center">
               Structured modules designed and directed by veteran WAEC Chief Examiner Consultant{" "}
               <strong className="text-white font-semibold">{PRIMARY_INSTRUCTOR.name}</strong>. Learn key exam
               concepts with curriculum coverage, marking guidance, and bundle tuition.

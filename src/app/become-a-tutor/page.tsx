@@ -17,21 +17,21 @@ export default function BecomeATutorPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
         {/* Hero */}
-        <div className="rounded-lg bg-brand-navy-900 text-white p-8 sm:p-14 relative">
-          <div className="max-w-3xl space-y-5">
-            <Badge variant="tutor" className="bg-service-tutor-700/60 text-white border-service-tutor-500/40">
+        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 lg:p-14 relative border border-brand-navy-800 shadow-md text-center">
+          <div className="max-w-3xl mx-auto space-y-5 flex flex-col items-center text-center">
+            <Badge variant="tutor" className="bg-service-tutor-700/60 text-white border-service-tutor-500/40 w-fit">
               Educators
             </Badge>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight text-center">
               Teach on Trainbow HUB.
             </h1>
 
-            <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl mx-auto text-center">
               We connect qualified educators with motivated learners and supportive parents. Set your own hourly rates in naira and teach scheduled sessions through our online classroom.
             </p>
 
-            <div className="pt-2">
+            <div className="pt-2 flex justify-center">
               <Link href="/register">
                 <Button variant="primary" size="lg" className="font-semibold text-base px-8 py-3">
                   Submit tutor application
