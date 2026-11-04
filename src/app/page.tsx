@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { HeroProductTour } from "@/components/home/HeroProductTour";
+import { HeroHubVisual } from "@/components/home/HeroHubVisual";
 import { Reveal, Stagger, StaggerItem, HoverLift } from "@/components/motion";
 import { SEED_SUBJECTS } from "@/lib/data/seed-data";
 
@@ -74,9 +74,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Right Column: Hero Visual Product Tour */}
+              {/* Right Column: Hero Visual Hub Index */}
               <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-4 lg:mt-0">
-                <HeroProductTour />
+                <HeroHubVisual />
               </div>
             </div>
           </div>

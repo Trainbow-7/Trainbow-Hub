@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { HoverLift } from "@/components/motion";
 
 export interface HeroHubVisualProps {
   className?: string;
@@ -68,23 +69,24 @@ export function HeroHubVisual({ className }: HeroHubVisualProps) {
 
       <div className="space-y-2.5">
         {services.map((item) => (
-          <Link
-            key={item.id}
-            href={item.href}
-            className={`group block p-3 rounded-md bg-white/[0.02] hover:bg-white/[0.07] border border-white/10 border-l-[3px] ${item.accentBorder} transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400`}
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-heading font-bold text-sm text-white group-hover:text-slate-100 transition-colors">
-                {item.name}
-              </span>
-              <span className="text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">
-                Open
-              </span>
-            </div>
-            <p className="text-xs text-slate-300 mt-0.5">
-              {item.desc}
-            </p>
-          </Link>
+          <HoverLift key={item.id}>
+            <Link
+              href={item.href}
+              className={`group block p-3 rounded-md bg-white/[0.02] hover:bg-white/[0.07] border border-white/10 border-l-[3px] ${item.accentBorder} transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-heading font-bold text-sm text-white group-hover:text-slate-100 transition-colors">
+                  {item.name}
+                </span>
+                <span className="text-[11px] font-medium text-slate-400 group-hover:text-white transition-colors">
+                  Open
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 mt-0.5">
+                {item.desc}
+              </p>
+            </Link>
+          </HoverLift>
         ))}
       </div>
     </div>
