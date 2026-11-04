@@ -7,36 +7,7 @@ import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { TutorRequestTracker } from "@/components/matching/TutorRequestTracker";
 import { Button } from "@/components/ui/Button";
-import {
-  ShieldCheck,
-  ShieldAlert,
-  Users,
-  GraduationCap,
-  Calendar,
-  Clock,
-  BookOpen,
-  Award,
-  Video,
-  Receipt,
-  Bell,
-  Lock,
-  CheckCircle2,
-  AlertCircle,
-  RefreshCw,
-  Plus,
-  Trash2,
-  ExternalLink,
-  Smartphone,
-  Mail,
-  MessageSquare,
-  Sparkles,
-  FileText,
-  ChevronRight,
-  Flame,
-  Check,
-  X,
-  CreditCard,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, CloseIcon, ChevronRightIcon, ExternalLinkIcon, LoaderIcon } from "@/components/ui/icons";
 
 export type GuardianTab = "children" | "timetable" | "notes" | "receipts" | "notifications";
 
@@ -246,11 +217,9 @@ export default function GuardianPortalPage() {
             <div>
               <div className="flex items-center gap-2.5">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300">
-                  <ShieldCheck className="w-3.5 h-3.5 text-amber-900" />
                   NDPA 2023 & Child Rights Act Compliant
                 </span>
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-950 border border-emerald-300">
-                  <Lock className="w-3 h-3 text-emerald-800" />
                   Verified Guardian Oversight
                 </span>
               </div>
@@ -271,7 +240,7 @@ export default function GuardianPortalPage() {
                 className="gap-2 border-neutral-slate-300 hover:bg-neutral-slate-100 text-neutral-slate-800"
                 data-testid="guardian-refresh-button"
               >
-                <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin text-brand-blue-600" : "text-neutral-slate-600"}`} />
+                <LoaderIcon className="h-4 w-4" />
                 <span>Refresh</span>
               </Button>
 
@@ -283,7 +252,6 @@ export default function GuardianPortalPage() {
                   className="bg-amber-800 hover:bg-amber-900 text-white font-semibold shadow-xs"
                   data-testid="guardian-quick-signin"
                 >
-                  <Users className="w-4 h-4 mr-1.5" />
                   <span>Demo Parent Sign-In</span>
                 </Button>
               )}
@@ -302,9 +270,9 @@ export default function GuardianPortalPage() {
             >
               <div className="flex items-center gap-2">
                 {notice.type === "success" ? (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <CheckIcon className="h-4 w-4" />
                 ) : (
-                  <AlertCircle className="w-4 h-4 text-red-700 shrink-0" />
+                  <AlertIcon className="h-4 w-4" />
                 )}
                 <span className="font-medium">{notice.message}</span>
               </div>
@@ -313,7 +281,7 @@ export default function GuardianPortalPage() {
                 className="text-neutral-slate-500 hover:text-neutral-slate-800 p-1 rounded-md"
                 aria-label="Dismiss notice"
               >
-                <X className="w-4 h-4" />
+                <CloseIcon className="h-4 w-4" />
               </button>
             </div>
           )}
@@ -332,7 +300,6 @@ export default function GuardianPortalPage() {
               }`}
               data-testid="tab-guardian-children"
             >
-              <GraduationCap className="w-4 h-4" />
               <span>Linked Wards ({children.length})</span>
             </button>
 
@@ -345,7 +312,6 @@ export default function GuardianPortalPage() {
               }`}
               data-testid="tab-guardian-timetable"
             >
-              <Calendar className="w-4 h-4" />
               <span>Timetable & Live Observer</span>
             </button>
 
@@ -358,7 +324,6 @@ export default function GuardianPortalPage() {
               }`}
               data-testid="tab-guardian-notes"
             >
-              <FileText className="w-4 h-4" />
               <span>Tutor Notes & Homework ({notes.length})</span>
             </button>
 
@@ -371,7 +336,6 @@ export default function GuardianPortalPage() {
               }`}
               data-testid="tab-guardian-receipts"
             >
-              <Receipt className="w-4 h-4" />
               <span>Payment Receipts ({transactions.length})</span>
             </button>
 
@@ -384,7 +348,6 @@ export default function GuardianPortalPage() {
               }`}
               data-testid="tab-guardian-notifications"
             >
-              <Bell className="w-4 h-4" />
               <span>Privacy & Alerts (NDPA)</span>
             </button>
           </nav>
@@ -397,7 +360,6 @@ export default function GuardianPortalPage() {
         {user && user.role !== "PARENT" && user.role !== "ADMIN" && (
           <div className="mb-6 p-4 rounded-xl border border-amber-300 bg-amber-50 text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
-              <ShieldAlert className="w-5 h-5 text-amber-800 shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold">Learner Account Active: {user.fullName}</p>
                 <p className="text-xs text-amber-900 mt-0.5">
@@ -430,7 +392,6 @@ export default function GuardianPortalPage() {
                 className="bg-brand-blue-600 hover:bg-brand-blue-700 text-white font-semibold gap-1.5 shadow-xs"
                 data-testid="link-ward-button"
               >
-                <Plus className="w-4 h-4" />
                 <span>Link Additional Ward</span>
               </Button>
             </div>
@@ -440,7 +401,6 @@ export default function GuardianPortalPage() {
 
             {children.length === 0 ? (
               <div className="bg-white rounded-xl border border-neutral-slate-200 p-8 text-center">
-                <Users className="w-12 h-12 text-neutral-slate-400 mx-auto mb-3" />
                 <h3 className="text-lg font-bold text-neutral-slate-800">No Verified Wards Found</h3>
                 <p className="text-sm text-neutral-slate-600 max-w-md mx-auto mt-1 mb-4">
                   Link a ward account using the student&apos;s registered email and 6-digit verification code.
@@ -482,7 +442,6 @@ export default function GuardianPortalPage() {
                         title="Revoke guardian access immediately per NDPA 2023"
                         data-testid={`revoke-ward-btn-${ward.student.id}`}
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
                         <span>Revoke Access</span>
                       </button>
                     </div>
@@ -493,7 +452,6 @@ export default function GuardianPortalPage() {
                       <div>
                         <div className="flex items-center justify-between text-xs font-semibold text-neutral-slate-600 mb-1.5">
                           <span className="flex items-center gap-1 text-neutral-slate-800 font-bold">
-                            <BookOpen className="w-3.5 h-3.5 text-brand-blue-600" />
                             Active Course Curriculum
                           </span>
                           <span>
@@ -524,7 +482,6 @@ export default function GuardianPortalPage() {
                       <div className="p-3.5 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 space-y-2">
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-bold text-neutral-slate-800 flex items-center gap-1.5">
-                            <Award className="w-4 h-4 text-purple-600" />
                             Quiz Performance
                           </span>
                           <span className="text-xs font-extrabold text-neutral-slate-900">
@@ -544,7 +501,6 @@ export default function GuardianPortalPage() {
                       {/* Activity & AI Quota Grid */}
                       <div className="grid grid-cols-2 gap-3 text-xs">
                         <div className="p-3 rounded-lg bg-amber-50/60 border border-amber-200 flex items-center gap-2.5">
-                          <Flame className="w-5 h-5 text-amber-600 shrink-0" />
                           <div>
                             <div className="font-extrabold text-neutral-slate-900 text-sm">{ward.studyStats.streakDays} Days</div>
                             <div className="text-[11px] text-neutral-slate-600">{ward.studyStats.totalMinutesStudied} mins studied</div>
@@ -552,7 +508,6 @@ export default function GuardianPortalPage() {
                         </div>
 
                         <div className="p-3 rounded-lg bg-blue-50/60 border border-blue-200 flex items-center gap-2.5">
-                          <Sparkles className="w-5 h-5 text-brand-blue-600 shrink-0" />
                           <div>
                             <div className="font-extrabold text-neutral-slate-900 text-sm">
                               {ward.aiQuota.queriesUsedToday} / {ward.aiQuota.dailyLimit}
@@ -573,7 +528,7 @@ export default function GuardianPortalPage() {
                         className="text-brand-blue-600 hover:text-brand-blue-800 font-bold flex items-center gap-1"
                       >
                         <span>View Timetable</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
+                        <ChevronRightIcon className="h-4 w-4" />
                       </button>
                     </div>
                   </div>
@@ -595,7 +550,6 @@ export default function GuardianPortalPage() {
 
             {timetable.length === 0 ? (
               <div className="bg-white rounded-xl border border-neutral-slate-200 p-8 text-center">
-                <Calendar className="w-12 h-12 text-neutral-slate-400 mx-auto mb-3" />
                 <h3 className="text-lg font-bold text-neutral-slate-800">No Scheduled Lessons</h3>
                 <p className="text-sm text-neutral-slate-600 mt-1">
                   When your wards book 1-on-1 tutoring sessions, they will automatically appear here.
@@ -630,15 +584,12 @@ export default function GuardianPortalPage() {
 
                       <p className="text-xs text-neutral-slate-600 flex items-center gap-4 flex-wrap">
                         <span className="flex items-center gap-1 font-medium text-neutral-slate-800">
-                          <Users className="w-3.5 h-3.5 text-neutral-slate-500" />
                           Tutor: {item.tutorName}
                         </span>
                         <span className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5 text-neutral-slate-500" />
                           Date: {item.slotDate}
                         </span>
                         <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5 text-neutral-slate-500" />
                           Time: {item.slotTime} (WAT)
                         </span>
                         {item.durationSeconds > 0 && (
@@ -656,7 +607,6 @@ export default function GuardianPortalPage() {
                         className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-amber-800 hover:bg-amber-900 text-white font-bold text-xs shadow-xs transition-colors"
                         data-testid="guardian-observer-link"
                       >
-                        <Video className="w-4 h-4" />
                         <span>Enter as Observer</span>
                       </Link>
                     </div>
@@ -679,7 +629,6 @@ export default function GuardianPortalPage() {
 
             {notes.length === 0 ? (
               <div className="bg-white rounded-xl border border-neutral-slate-200 p-8 text-center">
-                <FileText className="w-12 h-12 text-neutral-slate-400 mx-auto mb-3" />
                 <h3 className="text-lg font-bold text-neutral-slate-800">No Tutor Progress Notes Recorded</h3>
                 <p className="text-sm text-neutral-slate-600 mt-1">
                   Once tutors submit post-lesson evaluations, detailed qualitative progress notes will display here.
@@ -722,7 +671,7 @@ export default function GuardianPortalPage() {
                       {note.strengths && (
                         <div className="p-3.5 rounded-lg bg-emerald-50/70 border border-emerald-200">
                           <h4 className="text-xs font-bold text-emerald-950 flex items-center gap-1.5 mb-1">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                            <CheckIcon className="h-4 w-4" />
                             Demonstrated Strengths
                           </h4>
                           <p className="text-xs text-emerald-950 font-medium leading-relaxed">
@@ -734,7 +683,7 @@ export default function GuardianPortalPage() {
                       {note.areasForImprovement && (
                         <div className="p-3.5 rounded-lg bg-amber-50/70 border border-amber-200">
                           <h4 className="text-xs font-bold text-amber-950 flex items-center gap-1.5 mb-1">
-                            <AlertCircle className="w-3.5 h-3.5 text-amber-800" />
+                            <AlertIcon className="h-4 w-4" />
                             Target Areas for Growth
                           </h4>
                           <p className="text-xs text-amber-950 font-medium leading-relaxed">
@@ -748,7 +697,6 @@ export default function GuardianPortalPage() {
                     {note.homeworkAssignment && (
                       <div className="p-3.5 rounded-lg bg-purple-50/70 border border-purple-200">
                         <h4 className="text-xs font-bold text-purple-950 flex items-center gap-1.5 mb-1">
-                          <BookOpen className="w-3.5 h-3.5 text-purple-700" />
                           Homework & Practice Assignment
                         </h4>
                         <p className="text-xs text-purple-950 font-semibold leading-relaxed">
@@ -775,7 +723,6 @@ export default function GuardianPortalPage() {
 
             {transactions.length === 0 ? (
               <div className="bg-white rounded-xl border border-neutral-slate-200 p-8 text-center">
-                <Receipt className="w-12 h-12 text-neutral-slate-400 mx-auto mb-3" />
                 <h3 className="text-lg font-bold text-neutral-slate-800">No Payment Transactions Found</h3>
                 <p className="text-sm text-neutral-slate-600 mt-1">
                   Verified Paystack booking transactions will be listed here automatically.
@@ -852,7 +799,6 @@ export default function GuardianPortalPage() {
                   {/* Email */}
                   <div className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-slate-200 hover:bg-neutral-slate-50 transition-colors">
                     <div className="flex items-center gap-3">
-                      <Mail className="w-5 h-5 text-brand-blue-600" />
                       <div>
                         <div className="text-sm font-bold text-neutral-slate-900">Email Notifications</div>
                         <div className="text-xs text-neutral-slate-500">Receive progress summaries and lesson confirmations via email.</div>
@@ -870,7 +816,6 @@ export default function GuardianPortalPage() {
                   {/* SMS */}
                   <div className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-slate-200 hover:bg-neutral-slate-50 transition-colors">
                     <div className="flex items-center gap-3">
-                      <Smartphone className="w-5 h-5 text-brand-blue-600" />
                       <div>
                         <div className="text-sm font-bold text-neutral-slate-900">SMS Urgent Alerts</div>
                         <div className="text-xs text-neutral-slate-500">Live lesson start reminders and urgent safeguarding alerts.</div>
@@ -888,7 +833,6 @@ export default function GuardianPortalPage() {
                   {/* WhatsApp */}
                   <div className="flex items-center justify-between p-3.5 rounded-lg border border-neutral-slate-200 hover:bg-neutral-slate-50 transition-colors">
                     <div className="flex items-center gap-3">
-                      <MessageSquare className="w-5 h-5 text-emerald-600" />
                       <div>
                         <div className="text-sm font-bold text-neutral-slate-900">WhatsApp Updates (Optional)</div>
                         <div className="text-xs text-neutral-slate-500">Instant lesson timetable links via WhatsApp messenger.</div>
@@ -935,7 +879,6 @@ export default function GuardianPortalPage() {
               {/* PP-03 NDPA 2023 Lockscreen Privacy Card */}
               <div className="bg-white rounded-xl border border-neutral-slate-200 p-6 shadow-xs space-y-4">
                 <div className="flex items-center gap-2 text-amber-950 font-bold text-sm">
-                  <Lock className="w-4 h-4 text-amber-800" />
                   <span>NDPA 2023 Lockscreen Invariant</span>
                 </div>
 
@@ -959,13 +902,13 @@ export default function GuardianPortalPage() {
                       Trainbow Hub: New activity update for your ward
                     </div>
                     <div className="text-[10px] text-neutral-slate-400">
-                      Unlock device to view detailed progress report.
+                      access device to view detailed progress report.
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 text-[11px] font-semibold text-emerald-950 bg-emerald-50 border border-emerald-300 p-2.5 rounded-lg">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <CheckIcon className="h-4 w-4" />
                   <span>Lockscreen Privacy Shield: Always Enforced</span>
                 </div>
               </div>
@@ -979,14 +922,13 @@ export default function GuardianPortalPage() {
             <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-neutral-slate-200 space-y-5">
               <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-3">
                 <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-brand-blue-600" />
                   <h3 className="text-lg font-bold text-neutral-slate-900">Link Student Ward</h3>
                 </div>
                 <button
                   onClick={() => setShowLinkModal(false)}
                   className="text-neutral-slate-400 hover:text-neutral-slate-700"
                 >
-                  <X className="w-5 h-5" />
+                  <CloseIcon className="h-4 w-4" />
                 </button>
               </div>
 
@@ -1082,14 +1024,13 @@ export default function GuardianPortalPage() {
             <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl border border-neutral-slate-200 space-y-5">
               <div className="flex items-center justify-between border-b border-neutral-slate-200 pb-3">
                 <div className="flex items-center gap-2">
-                  <Receipt className="w-5 h-5 text-brand-blue-600" />
                   <h3 className="text-lg font-bold text-neutral-slate-900">Official Payment Receipt</h3>
                 </div>
                 <button
                   onClick={() => setActiveReceipt(null)}
                   className="text-neutral-slate-400 hover:text-neutral-slate-700"
                 >
-                  <X className="w-5 h-5" />
+                  <CloseIcon className="h-4 w-4" />
                 </button>
               </div>
 

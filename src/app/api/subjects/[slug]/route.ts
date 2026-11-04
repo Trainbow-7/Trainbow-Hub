@@ -9,7 +9,7 @@ interface RouteParams {
 }
 
 // GET /api/subjects/[slug]
-// Returns full subject profile with associated courses, verified tutors, and AI availability
+// Returns full subject profile with associated courses, tutors, and AI availability
 export async function GET(
   request: NextRequest,
   { params }: RouteParams
@@ -45,7 +45,7 @@ export async function GET(
         const u = db.users.get(t.userId);
         return {
           ...t,
-          fullName: u?.fullName || "Verified Tutor",
+          fullName: u?.fullName || "Tutor",
         };
       });
 

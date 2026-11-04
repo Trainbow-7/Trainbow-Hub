@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { CheckCircle2, AlertTriangle, AlertCircle, Info, X } from "lucide-react";
+import { CloseIcon } from "@/components/ui/icons";
 
 export type ToastType = "success" | "warning" | "error" | "info";
 
@@ -55,10 +55,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               toast.type === "info" && "border-blue-200 bg-white text-brand-blue-600"
             )}
           >
-            {toast.type === "success" && <CheckCircle2 className="h-5 w-5 shrink-0" />}
-            {toast.type === "warning" && <AlertTriangle className="h-5 w-5 shrink-0" />}
-            {toast.type === "error" && <AlertCircle className="h-5 w-5 shrink-0" />}
-            {toast.type === "info" && <Info className="h-5 w-5 shrink-0" />}
+            {toast.type === "success" && <span className="font-bold text-xs">✓</span>}
+            {toast.type === "warning" && <span className="font-bold text-xs">!</span>}
+            {toast.type === "error" && <span className="font-bold text-xs">!</span>}
+            {toast.type === "info" && <span className="font-bold text-xs">ℹ</span>}
 
             <div className="flex-1 text-left">
               <h5 className="text-sm font-semibold text-neutral-slate-900">{toast.title}</h5>
@@ -72,7 +72,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               className="text-neutral-slate-400 hover:text-neutral-slate-600"
               aria-label="Dismiss toast"
             >
-              <X className="h-4 w-4" />
+              <CloseIcon className="h-4 w-4" />
             </button>
           </div>
         ))}

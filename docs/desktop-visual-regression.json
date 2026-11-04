@@ -1,0 +1,158 @@
+[
+  {
+    "route": "home",
+    "viewport": "1280px",
+    "diffPercent": "0.11%",
+    "status": "MATCH"
+  },
+  {
+    "route": "about",
+    "viewport": "1280px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "academy",
+    "viewport": "1280px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "academy-mathematics",
+    "viewport": "1280px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "course-waec",
+    "viewport": "1280px",
+    "diffPercent": "0.43%",
+    "status": "MATCH"
+  },
+  {
+    "route": "course-jamb",
+    "viewport": "1280px",
+    "diffPercent": "0.30%",
+    "status": "MATCH"
+  },
+  {
+    "route": "lesson-fractions",
+    "viewport": "1280px",
+    "diffPercent": "6.72%",
+    "status": "DRIFT_WITHIN_DYNAMIC_CONTENT"
+  },
+  {
+    "route": "lesson-trig",
+    "viewport": "1280px",
+    "diffPercent": "6.33%",
+    "status": "DRIFT_WITHIN_DYNAMIC_CONTENT"
+  },
+  {
+    "route": "ai-workspace",
+    "viewport": "1280px",
+    "diffPercent": "0.08%",
+    "status": "MATCH"
+  },
+  {
+    "route": "pricing",
+    "viewport": "1280px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "request-tutor",
+    "viewport": "1280px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "login",
+    "viewport": "1280px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "register",
+    "viewport": "1280px",
+    "diffPercent": "0.05%",
+    "status": "MATCH"
+  },
+  {
+    "route": "home",
+    "viewport": "1536px",
+    "diffPercent": "0.11%",
+    "status": "MATCH"
+  },
+  {
+    "route": "about",
+    "viewport": "1536px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "academy",
+    "viewport": "1536px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "academy-mathematics",
+    "viewport": "1536px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "course-waec",
+    "viewport": "1536px",
+    "diffPercent": "0.46%",
+    "status": "MATCH"
+  },
+  {
+    "route": "course-jamb",
+    "viewport": "1536px",
+    "diffPercent": "0.30%",
+    "status": "MATCH"
+  },
+  {
+    "route": "lesson-fractions",
+    "viewport": "1536px",
+    "diffPercent": "6.67%",
+    "status": "DRIFT_WITHIN_DYNAMIC_CONTENT"
+  },
+  {
+    "route": "lesson-trig",
+    "viewport": "1536px",
+    "diffPercent": "5.92%",
+    "status": "DRIFT_WITHIN_DYNAMIC_CONTENT"
+  },
+  {
+    "route": "ai-workspace",
+    "viewport": "1536px",
+    "diffPercent": "0.07%",
+    "status": "MATCH"
+  },
+  {
+    "route": "pricing",
+    "viewport": "1536px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "request-tutor",
+    "viewport": "1536px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "login",
+    "viewport": "1536px",
+    "diffPercent": "0.00%",
+    "status": "MATCH"
+  },
+  {
+    "route": "register",
+    "viewport": "1536px",
+    "diffPercent": "0.05%",
+    "status": "MATCH"
+  }
+]

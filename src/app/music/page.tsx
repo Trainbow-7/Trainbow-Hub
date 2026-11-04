@@ -10,31 +10,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
 import { Input } from "@/components/ui/Input";
-import {
-  Music,
-  Calendar,
-  CreditCard,
-  ChevronRight,
-  ShieldCheck,
-  Disc,
-  Play,
-  Square,
-  BookOpen,
-  CheckCircle2,
-  Sliders,
-  FileText,
-  Clock,
-  Sparkles,
-  Search,
-  Filter,
-  Volume2,
-  Award,
-  Layers,
-  MapPin,
-  Video,
-  PlusCircle,
-  HelpCircle,
-} from "lucide-react";
+import { ChevronRightIcon, PlayIcon, PauseIcon, CheckIcon, SearchIcon } from "@/components/ui/icons";
 
 interface MusicMaterial {
   id: string;
@@ -310,7 +286,7 @@ export default function MusicPage() {
                 Trainbow HUB Music — Phase K
               </Badge>
               <span className="text-xs text-neutral-slate-300 flex items-center gap-1">
-                <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                
                 ABRSM & MUSON Curriculum Accredited
               </span>
             </div>
@@ -359,7 +335,7 @@ export default function MusicPage() {
               </h2>
             </div>
             <p className="text-xs text-neutral-slate-600 max-w-2xl">
-              Music tuition runs seamlessly on the same database and payment ledger as academic STEM courses. Lessons appear on your unified calendar with live WebRTC recording and parent oversight.
+              Music tuition runs directly on the same database and payment ledger as academic STEM courses. Lessons appear on your unified calendar with live WebRTC recording and parent oversight.
             </p>
           </div>
 
@@ -392,7 +368,7 @@ export default function MusicPage() {
                   : "border-transparent text-neutral-slate-600 hover:text-neutral-slate-900"
               }`}
             >
-              <Layers className="h-4 w-4" />
+              
               <span>Disciplines & Tracks</span>
             </button>
             <button
@@ -405,7 +381,7 @@ export default function MusicPage() {
                   : "border-transparent text-neutral-slate-600 hover:text-neutral-slate-900"
               }`}
             >
-              <Award className="h-4 w-4" />
+              
               <span>Vetted Music Instructors ({tutors.length})</span>
             </button>
             <button
@@ -418,7 +394,7 @@ export default function MusicPage() {
                   : "border-transparent text-neutral-slate-600 hover:text-neutral-slate-900"
               }`}
             >
-              <BookOpen className="h-4 w-4" />
+              
               <span>Licensed Repertoire (MU-04)</span>
             </button>
             <button
@@ -431,7 +407,7 @@ export default function MusicPage() {
                   : "border-transparent text-neutral-slate-600 hover:text-neutral-slate-900"
               }`}
             >
-              <Sliders className="h-4 w-4" />
+              
               <span>Practice Log & Metronome (MU-03)</span>
             </button>
             <button
@@ -444,7 +420,7 @@ export default function MusicPage() {
                   : "border-transparent text-neutral-slate-600 hover:text-neutral-slate-900"
               }`}
             >
-              <FileText className="h-4 w-4" />
+              
               <span>ABRSM & MUSON Syllabus (MU-05)</span>
             </button>
           </nav>
@@ -492,7 +468,7 @@ export default function MusicPage() {
                       className="w-full text-xs font-semibold justify-between"
                     >
                       <span>Explore Repertoire</span>
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRightIcon className="h-4 w-4" />
                     </Button>
                   </CardFooter>
                 </Card>
@@ -513,7 +489,7 @@ export default function MusicPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-neutral-slate-300">
                 <div className="p-4 rounded-xl bg-neutral-slate-800/90 border border-neutral-slate-700 space-y-2">
                   <div className="flex items-center gap-2 text-white font-bold text-sm">
-                    <Video className="h-4 w-4 text-brand-blue-400" />
+                    
                     <span>Live WebRTC Classroom (Online)</span>
                   </div>
                   <p className="leading-relaxed">
@@ -523,7 +499,7 @@ export default function MusicPage() {
 
                 <div className="p-4 rounded-xl bg-neutral-slate-800/90 border border-neutral-slate-700 space-y-2">
                   <div className="flex items-center gap-2 text-white font-bold text-sm">
-                    <MapPin className="h-4 w-4 text-emerald-400" />
+                    
                     <span>In-Person Physical Music Studio</span>
                   </div>
                   <p className="leading-relaxed">
@@ -561,7 +537,7 @@ export default function MusicPage() {
                           <p className="text-xs text-brand-blue-700 font-medium">{tutor.title}</p>
                           <div className="flex items-center gap-2 pt-1">
                             <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-950 border border-emerald-300 flex items-center gap-1">
-                              <CheckCircle2 className="h-3 w-3 text-emerald-700" /> NIN & TRCN Verified
+                              <CheckIcon className="h-4 w-4" /> NIN & TRCN Verified
                             </span>
                             <span className="text-[11px] text-neutral-slate-500 font-medium">
                               {tutor.completedLessons} lessons taught
@@ -660,7 +636,7 @@ export default function MusicPage() {
                             }`}
                           >
                             <span className="flex items-center gap-1 font-bold">
-                              <Video className="h-3.5 w-3.5" /> Online Classroom
+                               Online Classroom
                             </span>
                             <span className="text-[11px] text-neutral-slate-500 font-normal">
                               WebRTC high-fidelity stream
@@ -677,7 +653,7 @@ export default function MusicPage() {
                             }`}
                           >
                             <span className="flex items-center gap-1 font-bold">
-                              <MapPin className="h-3.5 w-3.5" /> Physical Studio
+                               Physical Studio
                             </span>
                             <span className="text-[11px] text-neutral-slate-500 font-normal">
                               Lagos & Abuja studios
@@ -745,7 +721,7 @@ export default function MusicPage() {
               {/* Search and filters */}
               <div className="flex flex-wrap items-center gap-2">
                 <div className="relative">
-                  <Search className="h-3.5 w-3.5 absolute left-3 top-2.5 text-neutral-slate-400" />
+                  <SearchIcon className="h-4 w-4" />
                   <input
                     type="text"
                     value={searchQuery}
@@ -845,12 +821,12 @@ export default function MusicPage() {
                     >
                       {playingAudioId === mat.id ? (
                         <>
-                          <Square className="h-3.5 w-3.5 fill-current" />
+                          <PauseIcon className="h-4 w-4" />
                           <span>Stop Preview</span>
                         </>
                       ) : (
                         <>
-                          <Play className="h-3.5 w-3.5 fill-current" />
+                          <PlayIcon className="h-4 w-4" />
                           <span>Audio Sample</span>
                         </>
                       )}
@@ -863,7 +839,7 @@ export default function MusicPage() {
                       className="text-xs font-semibold text-brand-blue-600 hover:text-brand-blue-700 flex items-center gap-1"
                     >
                       <span>View Authorized Score</span>
-                      <ChevronRight className="h-3.5 w-3.5" />
+                      <ChevronRightIcon className="h-4 w-4" />
                     </a>
                   </CardFooter>
                 </Card>
@@ -889,7 +865,7 @@ export default function MusicPage() {
               <div className="lg:col-span-1 rounded-2xl border border-neutral-slate-200 bg-white p-6 shadow-sm space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Sliders className="h-5 w-5 text-amber-700" />
+                    
                     <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                       Digital Metronome
                     </h3>
@@ -970,12 +946,12 @@ export default function MusicPage() {
                     >
                       {isMetronomePlaying ? (
                         <>
-                          <Square className="h-4 w-4 fill-current" />
+                          <PauseIcon className="h-4 w-4" />
                           <span>Stop</span>
                         </>
                       ) : (
                         <>
-                          <Play className="h-4 w-4 fill-current" />
+                          <PlayIcon className="h-4 w-4" />
                           <span>Start Metronome</span>
                         </>
                       )}
@@ -1002,7 +978,7 @@ export default function MusicPage() {
               <div className="lg:col-span-2 rounded-2xl border border-neutral-slate-200 bg-white p-6 shadow-sm space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <PlusCircle className="h-5 w-5 text-brand-blue-600" />
+                    
                     <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                       Record Practice Rehearsal (MU-03)
                     </h3>
@@ -1012,7 +988,7 @@ export default function MusicPage() {
 
                 {logSuccessMessage && (
                   <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs font-medium flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-700 shrink-0" />
+                    <CheckIcon className="h-4 w-4" />
                     <span>{logSuccessMessage}</span>
                   </div>
                 )}

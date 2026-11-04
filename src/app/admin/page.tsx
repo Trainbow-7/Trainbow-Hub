@@ -4,39 +4,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Button } from "@/components/ui/Button";
-import {
-  Shield,
-  ShieldAlert,
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  Users,
-  GraduationCap,
-  DollarSign,
-  CreditCard,
-  TrendingUp,
-  Bot,
-  Clock,
-  FileText,
-  Filter,
-  Search,
-  RefreshCw,
-  Check,
-  X,
-  ExternalLink,
-  Lock,
-  Unlock,
-  Building2,
-  Sparkles,
-  ChevronRight,
-  AlertCircle,
-  Calendar,
-  LogOut,
-  Info,
-  Layers,
-  BookOpen,
-  Plus,
-} from "lucide-react";
+import { Badge } from "@/components/ui/Badge";
+import { Input } from "@/components/ui/Input";
+import { CheckIcon, AlertIcon, CloseIcon, ChevronRightIcon, ExternalLinkIcon, SearchIcon, LoaderIcon } from "@/components/ui/icons";
 
 export type AdminTab =
   | "overview"
@@ -85,7 +55,7 @@ export default function AdminPortalPage() {
   const [auditLogs, setAuditLogs] = useState<any[]>([]);
   const [alerts, setAlerts] = useState<any[]>([]);
 
-  // Phase I Subjects & Governance State
+  // Phase I Subjects & management State
   const [subjectsList, setSubjectsList] = useState<any[]>([]);
   const [tutorQualificationsList, setTutorQualificationsList] = useState<any[]>([]);
   const [newSubjectModalOpen, setNewSubjectModalOpen] = useState(false);
@@ -545,7 +515,7 @@ export default function AdminPortalPage() {
       if (res.ok) {
         setNotice({
           message: data.subjectStatus === "PASSED"
-            ? `Evaluation PASSED (${data.evaluation.rubricScore}%). AI gate unlocked for ${evalModalSubject.name}!`
+            ? `Evaluation PASSED (${data.evaluation.rubricScore}%). AI gate accessed for ${evalModalSubject.name}!`
             : `Evaluation FAILED (${data.evaluation.rubricScore}% < 80% threshold). Safety gate remains locked.`,
           type: data.subjectStatus === "PASSED" ? "success" : "error",
         });
@@ -610,7 +580,7 @@ export default function AdminPortalPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-neutral-slate-50">
         <div className="text-center space-y-3">
-          <RefreshCw className="w-8 h-8 animate-spin text-brand-blue-600 mx-auto" />
+          <LoaderIcon className="h-4 w-4" />
           <p className="text-sm font-semibold text-neutral-slate-700">Verifying Administrative Privileges...</p>
         </div>
       </div>
@@ -622,12 +592,11 @@ export default function AdminPortalPage() {
       <div className="min-h-screen flex items-center justify-center bg-neutral-slate-50 px-4 py-12">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-xl border border-neutral-slate-200 p-8 text-center space-y-6">
           <div className="w-16 h-16 rounded-2xl bg-purple-100 border border-purple-200 flex items-center justify-center mx-auto text-purple-700">
-            <Lock className="w-8 h-8" />
-          </div>
+            </div>
           <div>
             <h1 className="text-2xl font-black text-neutral-slate-900 tracking-tight">Trainbow Administrator Sign-In</h1>
             <p className="text-sm text-neutral-slate-600 mt-2">
-              Privileged operations portal for platform governance, safeguarding triage, tutor vetting, and financial reconciliation.
+              Privileged operations portal for platform management, safeguarding triage, tutor vetting, and financial reconciliation.
             </p>
           </div>
 
@@ -637,7 +606,6 @@ export default function AdminPortalPage() {
               data-testid="admin-quick-signin-btn"
               onClick={handleAdminSignIn}
             >
-              <Shield className="w-4 h-4 mr-2" />
               1-Tap Demo Admin Sign-In
             </Button>
             <p className="text-xs text-neutral-slate-500 mt-2">Demo Credential: admin@trainbowhub.ng</p>
@@ -661,8 +629,7 @@ export default function AdminPortalPage() {
           className="max-w-md w-full bg-white rounded-2xl shadow-lg border border-red-200 p-8 text-center space-y-5"
         >
           <div className="w-16 h-16 rounded-2xl bg-red-100 border border-red-200 flex items-center justify-center mx-auto text-red-600">
-            <ShieldAlert className="w-8 h-8" />
-          </div>
+            </div>
           <div>
             <h1 className="text-2xl font-bold text-red-950">403 — Administrative Privilege Required</h1>
             <p className="text-sm text-neutral-slate-600 mt-2">
@@ -686,8 +653,7 @@ export default function AdminPortalPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-purple-600 text-white shadow-xs">
-              <Shield className="w-5 h-5" />
-            </div>
+              </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-black text-base tracking-tight">Trainbow HUB Operations</span>
@@ -695,7 +661,7 @@ export default function AdminPortalPage() {
                   AD-01 Platform Admin
                 </span>
               </div>
-              <p className="text-xs text-neutral-slate-300">Governance, Vetting, Safeguarding SLA & Financial Ledger</p>
+              <p className="text-xs text-neutral-slate-300">management, Vetting, Safeguarding SLA & Financial Ledger</p>
             </div>
           </div>
 
@@ -705,7 +671,6 @@ export default function AdminPortalPage() {
               data-testid="wat-admin-clock"
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-slate-800 text-neutral-slate-300 text-xs font-mono font-medium border border-neutral-slate-700"
             >
-              <Clock className="w-3.5 h-3.5 text-brand-teal-400" />
               <span>{watTime || "WAT Clock"}</span>
             </div>
 
@@ -716,7 +681,7 @@ export default function AdminPortalPage() {
                 data-testid="active-alerts-badge"
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-semibold hover:bg-amber-500/30 transition-colors"
               >
-                <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+                <AlertIcon className="h-4 w-4" />
                 <span>{overview.activeAlertsCount} Alerts</span>
               </button>
             )}
@@ -729,7 +694,7 @@ export default function AdminPortalPage() {
               className="text-white border-neutral-slate-700 bg-neutral-slate-800 hover:bg-neutral-slate-700 text-xs"
               data-testid="admin-refresh-btn"
             >
-              <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${loading ? "animate-spin" : ""}`} />
+              <LoaderIcon className="h-4 w-4" />
               Sync
             </Button>
           </div>
@@ -739,16 +704,16 @@ export default function AdminPortalPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-neutral-slate-800/80 overflow-x-auto">
           <nav className="flex space-x-1 py-1" aria-label="Admin Navigation Tabs">
             {[
-              { id: "overview", label: "Overview & KPIs", icon: TrendingUp },
-              { id: "tutors", label: `Tutor Vetting (${overview?.pendingTutorApprovals || 0})`, icon: GraduationCap },
-              { id: "safeguarding", label: `Safeguarding SLA (${overview?.openSafeguardingIncidents || 0})`, icon: ShieldAlert },
-              { id: "finance", label: "Reconciliation & Payouts", icon: DollarSign },
-              { id: "ai", label: "AI Usage & Governance", icon: Bot },
-              { id: "subjects", label: `Subjects & AI Gates (${subjectsList.length})`, icon: Layers },
-              { id: "users", label: "User Access", icon: Users },
-              { id: "audit", label: "Immutable Audit Log", icon: FileText },
+              { id: "overview", label: "Overview & KPIs" },
+              { id: "tutors", label: `Tutor Vetting (${overview?.pendingTutorApprovals || 0})` },
+              { id: "safeguarding", label: `Safeguarding SLA (${overview?.openSafeguardingIncidents || 0})` },
+              { id: "finance", label: "Reconciliation & Payouts" },
+              { id: "ai", label: "AI Usage & management" },
+              { id: "subjects", label: `Subjects & AI Gates (${subjectsList.length})` },
+              { id: "users", label: "User Access" },
+              { id: "audit", label: "Immutable Audit Log" },
             ].map((tab) => {
-              const Icon = tab.icon;
+              
               const isActive = activeTab === tab.id;
               return (
                 <button
@@ -761,7 +726,7 @@ export default function AdminPortalPage() {
                       : "text-neutral-slate-400 hover:text-white hover:bg-neutral-slate-800"
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
+                  
                   <span>{tab.label}</span>
                 </button>
               );
@@ -781,11 +746,11 @@ export default function AdminPortalPage() {
             }`}
           >
             <div className="flex items-center gap-2">
-              {notice.type === "success" ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <AlertCircle className="w-4 h-4 text-red-600" />}
+              {notice.type === "success" ? <CheckIcon className="h-4 w-4" /> : <AlertIcon className="h-4 w-4" />}
               <span>{notice.message}</span>
             </div>
             <button onClick={() => setNotice(null)} className="text-neutral-slate-500 hover:text-neutral-900">
-              <X className="w-4 h-4" />
+              <CloseIcon className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -803,8 +768,7 @@ export default function AdminPortalPage() {
               <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-xs">
                 <div className="flex items-center justify-between text-neutral-slate-500 text-xs font-bold">
                   <span>Registered Users</span>
-                  <Users className="w-4 h-4 text-brand-blue-600" />
-                </div>
+                  </div>
                 <div className="mt-2 text-2xl font-black text-neutral-slate-900" data-testid="kpi-total-users">
                   {overview?.totalUsers || 0}
                 </div>
@@ -816,8 +780,7 @@ export default function AdminPortalPage() {
               <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-xs">
                 <div className="flex items-center justify-between text-neutral-slate-500 text-xs font-bold">
                   <span>Gross Booking Volume</span>
-                  <DollarSign className="w-4 h-4 text-emerald-600" />
-                </div>
+                  </div>
                 <div className="mt-2 text-2xl font-black text-neutral-slate-900" data-testid="kpi-gross-volume">
                   ₦{((overview?.totalVolumeMinorUnits || 0) / 100).toLocaleString()}
                 </div>
@@ -829,8 +792,7 @@ export default function AdminPortalPage() {
               <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-xs">
                 <div className="flex items-center justify-between text-neutral-slate-500 text-xs font-bold">
                   <span>Safeguarding Queue</span>
-                  <ShieldAlert className="w-4 h-4 text-red-600" />
-                </div>
+                  </div>
                 <div className="mt-2 text-2xl font-black text-neutral-slate-900" data-testid="kpi-open-incidents">
                   {overview?.openSafeguardingIncidents || 0}
                 </div>
@@ -842,8 +804,7 @@ export default function AdminPortalPage() {
               <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-xs">
                 <div className="flex items-center justify-between text-neutral-slate-500 text-xs font-bold">
                   <span>Daily AI Cost</span>
-                  <Bot className="w-4 h-4 text-purple-600" />
-                </div>
+                  </div>
                 <div className="mt-2 text-2xl font-black text-neutral-slate-900" data-testid="kpi-ai-cost">
                   ${overview?.dailyAiCostUsd || "0.00"}
                 </div>
@@ -857,7 +818,7 @@ export default function AdminPortalPage() {
             <div className="bg-white rounded-2xl border border-neutral-slate-200 shadow-xs overflow-hidden">
               <div className="p-4 border-b border-neutral-slate-100 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-amber-600" />
+                  <AlertIcon className="h-4 w-4" />
                   <h2 className="text-sm font-bold text-neutral-slate-900">Active Operational Alerts & Webhook Status (AD-06)</h2>
                 </div>
                 <span className="text-xs text-neutral-slate-500 font-mono">Real-time Monitor</span>
@@ -899,7 +860,7 @@ export default function AdminPortalPage() {
                           onClick={() => handleAcknowledgeAlert(alt.id)}
                           className="text-xs"
                         >
-                          <Check className="w-3 h-3 mr-1" />
+                          <CheckIcon className="h-4 w-4" />
                           Acknowledge
                         </Button>
                       )}
@@ -916,15 +877,14 @@ export default function AdminPortalPage() {
                 className="bg-white p-5 rounded-2xl border border-neutral-slate-200 hover:border-purple-300 transition-all cursor-pointer shadow-xs group"
               >
                 <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center font-bold mb-3 group-hover:scale-105 transition-transform">
-                  <GraduationCap className="w-5 h-5" />
-                </div>
+                  </div>
                 <h3 className="text-sm font-bold text-neutral-slate-900">Review Tutor Applications</h3>
                 <p className="text-xs text-neutral-slate-600 mt-1">
                   Inspect TRCN teaching credentials, NIN identities, and university degrees before approval.
                 </p>
                 <div className="mt-3 text-xs font-bold text-purple-700 flex items-center gap-1">
                   <span>Open Vetting Queue ({overview?.pendingTutorApprovals || 0})</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRightIcon className="h-4 w-4" />
                 </div>
               </div>
 
@@ -933,15 +893,14 @@ export default function AdminPortalPage() {
                 className="bg-white p-5 rounded-2xl border border-neutral-slate-200 hover:border-red-300 transition-all cursor-pointer shadow-xs group"
               >
                 <div className="w-10 h-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center font-bold mb-3 group-hover:scale-105 transition-transform">
-                  <ShieldAlert className="w-5 h-5" />
-                </div>
+                  </div>
                 <h3 className="text-sm font-bold text-neutral-slate-900">Safeguarding & Incident Triage</h3>
                 <p className="text-xs text-neutral-slate-600 mt-1">
                   Route concerns directly to Grace Danladi with &lt;24h statutory SLA under Child Rights Act.
                 </p>
                 <div className="mt-3 text-xs font-bold text-red-700 flex items-center gap-1">
                   <span>Triage Incidents ({overview?.openSafeguardingIncidents || 0})</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRightIcon className="h-4 w-4" />
                 </div>
               </div>
 
@@ -950,15 +909,14 @@ export default function AdminPortalPage() {
                 className="bg-white p-5 rounded-2xl border border-neutral-slate-200 hover:border-emerald-300 transition-all cursor-pointer shadow-xs group"
               >
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold mb-3 group-hover:scale-105 transition-transform">
-                  <DollarSign className="w-5 h-5" />
-                </div>
+                  </div>
                 <h3 className="text-sm font-bold text-neutral-slate-900">Settlement & Tutor Payouts</h3>
                 <p className="text-xs text-neutral-slate-600 mt-1">
-                  Execute Paystack transaction reconciliation and disburse verified tutor net earnings (85%).
+                  Execute Paystack transaction reconciliation and disburse approved tutor net earnings (85%).
                 </p>
                 <div className="mt-3 text-xs font-bold text-emerald-700 flex items-center gap-1">
                   <span>Review Payout Balances</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRightIcon className="h-4 w-4" />
                 </div>
               </div>
             </div>
@@ -1023,11 +981,11 @@ export default function AdminPortalPage() {
                       <td className="py-3.5 px-4">
                         <div className="flex flex-col gap-1">
                           <span className={`inline-flex items-center gap-1 font-semibold ${profile.ninVerified ? "text-emerald-700" : "text-amber-700"}`}>
-                            {profile.ninVerified ? <CheckCircle2 className="w-3.5 h-3.5" /> : <Clock className="w-3.5 h-3.5" />}
+                            {profile.ninVerified ? <CheckIcon className="h-4 w-4" /> : null}
                             <span>NIN: {profile.ninNumber || "Verified"}</span>
                           </span>
                           <span className={`inline-flex items-center gap-1 font-semibold ${profile.trcnCertified ? "text-emerald-700" : "text-amber-700"}`}>
-                            {profile.trcnCertified ? <CheckCircle2 className="w-3.5 h-3.5" /> : <Clock className="w-3.5 h-3.5" />}
+                            {profile.trcnCertified ? <CheckIcon className="h-4 w-4" /> : null}
                             <span>TRCN: {profile.trcnCertificateNumber || (profile.trcnCertified ? "Certified" : "Pending Check")}</span>
                           </span>
                         </div>
@@ -1078,11 +1036,10 @@ export default function AdminPortalPage() {
                 <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-neutral-slate-200 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
                     <div className="flex items-center gap-2">
-                      <GraduationCap className="w-5 h-5 text-purple-700" />
                       <h3 className="font-bold text-sm text-neutral-slate-900">Credential Inspection: {selectedTutor.tutorUser.fullName}</h3>
                     </div>
                     <button aria-label="Close credentials modal" onClick={() => setSelectedTutor(null)} className="text-neutral-slate-500 hover:text-neutral-900">
-                      <X className="w-5 h-5" />
+                      <CloseIcon className="h-4 w-4" />
                     </button>
                   </div>
 
@@ -1252,11 +1209,10 @@ export default function AdminPortalPage() {
                 <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-neutral-slate-200 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
                     <div className="flex items-center gap-2">
-                      <ShieldAlert className="w-5 h-5 text-red-600" />
                       <h3 className="font-bold text-sm text-neutral-slate-900">Incident Triage: {selectedIncident.id}</h3>
                     </div>
                     <button onClick={() => setSelectedIncident(null)} className="text-neutral-slate-400 hover:text-neutral-900">
-                      <X className="w-5 h-5" />
+                      <CloseIcon className="h-4 w-4" />
                     </button>
                   </div>
 
@@ -1339,7 +1295,7 @@ export default function AdminPortalPage() {
                   className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs"
                   data-testid="run-reconcile-btn"
                 >
-                  <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
+                  <LoaderIcon className="h-4 w-4" />
                   Run Daily Settlement Audit
                 </Button>
               </div>
@@ -1498,11 +1454,10 @@ export default function AdminPortalPage() {
                 <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-neutral-slate-200 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
                     <div className="flex items-center gap-2">
-                      <CreditCard className="w-5 h-5 text-emerald-600" />
                       <h3 className="font-bold text-sm text-neutral-slate-900">Disburse Payout: {payoutModalTutor.tutorName}</h3>
                     </div>
                     <button aria-label="Close payout modal" onClick={() => setPayoutModalTutor(null)} className="text-neutral-slate-500 hover:text-neutral-900">
-                      <X className="w-5 h-5" />
+                      <CloseIcon className="h-4 w-4" />
                     </button>
                   </div>
 
@@ -1564,14 +1519,14 @@ export default function AdminPortalPage() {
         )}
 
         {/* ==================================================================== */}
-        {/* TAB 5: AI USAGE & GOVERNANCE ANALYTICS (AD-05) */}
+        {/* TAB 5: AI USAGE & management ANALYTICS (AD-05) */}
         {/* ==================================================================== */}
         {activeTab === "ai" && (
           <div className="space-y-6" data-testid="ai-usage-panel">
             <div className="bg-white p-5 rounded-2xl border border-neutral-slate-200 shadow-xs">
               <h2 className="text-base font-bold text-neutral-slate-900">Trainbow HUB AI Usage & Cost Analytics (AD-05)</h2>
               <p className="text-xs text-neutral-slate-600 mt-0.5">
-                Monitoring Socratic mathematical reasoning turns, token consumption, and statutory NDPA 2023 anonymization safeguards.
+                Monitoring Socratic mathematical reasoning turns, token consumption, and statutory NDPA 2023 privacy filters safeguards.
               </p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5">
@@ -1637,7 +1592,6 @@ export default function AdminPortalPage() {
                   onClick={() => setNewSubjectModalOpen(true)}
                   className="bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs"
                 >
-                  <Plus className="w-3.5 h-3.5 mr-1" />
                   Register New Subject
                 </Button>
               </div>
@@ -1843,7 +1797,6 @@ export default function AdminPortalPage() {
                 <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-neutral-slate-200 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
                     <div className="flex items-center gap-2">
-                      <BookOpen className="w-5 h-5 text-purple-700" />
                       <h3 className="font-bold text-sm text-neutral-slate-900">Register New Academic Subject (SB-01)</h3>
                     </div>
                     <button
@@ -1851,7 +1804,7 @@ export default function AdminPortalPage() {
                       onClick={() => setNewSubjectModalOpen(false)}
                       className="text-neutral-slate-500 hover:text-neutral-900"
                     >
-                      <X className="w-5 h-5" />
+                      <CloseIcon className="h-4 w-4" />
                     </button>
                   </div>
 
@@ -1959,7 +1912,6 @@ export default function AdminPortalPage() {
                 <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-neutral-slate-200 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
                     <div className="flex items-center gap-2">
-                      <Bot className="w-5 h-5 text-purple-700" />
                       <h3 className="font-bold text-sm text-neutral-slate-900">
                         AI Safety &amp; Rubric Gate: {evalModalSubject.name} (SB-06)
                       </h3>
@@ -1969,7 +1921,7 @@ export default function AdminPortalPage() {
                       onClick={() => setEvalModalSubject(null)}
                       className="text-neutral-slate-500 hover:text-neutral-900"
                     >
-                      <X className="w-5 h-5" />
+                      <CloseIcon className="h-4 w-4" />
                     </button>
                   </div>
 
@@ -2087,7 +2039,7 @@ export default function AdminPortalPage() {
 
               <div className="flex items-center gap-2">
                 <div className="relative">
-                  <Search className="w-3.5 h-3.5 text-neutral-slate-400 absolute left-2.5 top-2.5" />
+                  <SearchIcon className="h-4 w-4" />
                   <input
                     type="text"
                     value={userSearch}
@@ -2165,7 +2117,7 @@ export default function AdminPortalPage() {
                             className={`text-xs ${u.isSuspended ? "text-emerald-700 border-emerald-300" : "text-red-700 border-red-200"}`}
                             data-testid={`suspend-user-btn-${u.id}`}
                           >
-                            {u.isSuspended ? <Unlock className="w-3 h-3 mr-1" /> : <Lock className="w-3 h-3 mr-1" />}
+                            
                             {u.isSuspended ? "Reactivate" : "Suspend"}
                           </Button>
                         )}

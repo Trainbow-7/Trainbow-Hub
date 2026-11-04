@@ -6,15 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { TrainbowLogo } from "@/components/ui/TrainbowLogo";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/components/auth/AuthProvider";
-import {
-  ShieldCheck,
-  CheckCircle2,
-  AlertCircle,
-  Clock,
-  Send,
-  KeyRound,
-  FileCheck,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, SendIcon } from "@/components/ui/icons";
 
 function GuardianConsentContent() {
   const router = useRouter();
@@ -127,7 +119,6 @@ function GuardianConsentContent() {
 
         <div className="text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200 text-xs font-bold mb-3">
-            <ShieldCheck className="w-4 h-4 text-amber-700" />
             <span>NDPA 2023 Section 31 Statutory Safeguard</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-slate-900 font-heading">
@@ -144,18 +135,17 @@ function GuardianConsentContent() {
           {isSuccess ? (
             <div className="text-center space-y-5">
               <div className="mx-auto w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
-                <CheckCircle2 className="w-8 h-8" />
+                <CheckIcon className="h-4 w-4" />
               </div>
               <h2 className="text-xl font-bold text-neutral-slate-900 font-heading">
                 Guardian Consent Confirmed!
               </h2>
               <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-left text-xs text-emerald-900 space-y-2">
                 <p className="font-semibold flex items-center gap-1.5">
-                  <FileCheck className="w-4 h-4 text-emerald-700" />
                   <span>Statutory Compliance Audit Log Recorded</span>
                 </p>
                 <p>
-                  Per the <strong>Nigeria Data Protection Act 2023 Section 31</strong>, parental authorization has been recorded. Full access to curriculum courses, AI math assistance, and verified tutor bookings has been activated.
+                  Per the <strong>Nigeria Data Protection Act 2023 Section 31</strong>, parental authorization has been recorded. Full access to curriculum courses, AI math assistance, and approved tutor bookings has been activated.
                 </p>
               </div>
 
@@ -183,7 +173,7 @@ function GuardianConsentContent() {
                   role="alert"
                   className="p-3.5 rounded-lg bg-red-50 border border-red-200 flex items-start gap-2.5 text-sm text-red-700"
                 >
-                  <AlertCircle className="w-5 h-5 shrink-0 text-red-600 mt-0.5" />
+                  <AlertIcon className="h-4 w-4" />
                   <span>{errorMsg}</span>
                 </div>
               )}
@@ -193,7 +183,7 @@ function GuardianConsentContent() {
                   role="status"
                   className="p-3.5 rounded-lg bg-brand-blue-50 border border-brand-blue-200 flex items-start gap-2.5 text-sm text-brand-blue-800"
                 >
-                  <Send className="w-5 h-5 shrink-0 text-brand-blue-600 mt-0.5" />
+                  <SendIcon className="h-4 w-4" />
                   <span>{infoMsg}</span>
                 </div>
               )}
@@ -226,8 +216,7 @@ function GuardianConsentContent() {
 
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-slate-400">
-                    <KeyRound className="h-5 w-5" />
-                  </div>
+                    </div>
                   <input
                     id="guardian-otp"
                     type="text"
@@ -280,7 +269,6 @@ function GuardianConsentContent() {
 
                 <div className="flex items-center justify-between text-xs text-neutral-slate-500 pt-1">
                   <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
                     <span>Passcode expires in 15 mins</span>
                   </span>
                   <button

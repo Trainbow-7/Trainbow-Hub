@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { PlayCircle, ArrowRight, CheckCircle2, RefreshCw } from "lucide-react";
+import { PlayIcon, LoaderIcon } from "@/components/ui/icons";
 
 interface Props {
   courseSlug: string;
@@ -69,7 +69,7 @@ export function CourseEnrollmentAction({ courseSlug, priceMinorUnits, firstLesso
     return (
       <div className="space-y-3">
         <div className="p-3 rounded-xl bg-status-green-600/10 border border-status-green-600/30 text-xs text-status-green-900 flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-status-green-700 shrink-0" />
+          <span className="text-status-green-600 font-bold text-xs">✓</span>
           <span>You are enrolled in this course ({progressPct}% completed)</span>
         </div>
         <Link href={`/learn/${courseSlug}/${lastLessonId}`} className="block w-full">
@@ -79,9 +79,9 @@ export function CourseEnrollmentAction({ courseSlug, priceMinorUnits, firstLesso
             className="w-full justify-center font-bold text-base shadow-sm gap-2"
             data-testid="continue-learning-cta"
           >
-            <PlayCircle className="w-5 h-5" />
+            
             <span>Continue Learning</span>
-            <ArrowRight className="w-4 h-4 ml-1" />
+            
           </Button>
         </Link>
       </div>
@@ -100,7 +100,7 @@ export function CourseEnrollmentAction({ courseSlug, priceMinorUnits, firstLesso
       >
         {enrolling ? (
           <>
-            <RefreshCw className="w-4 h-4 animate-spin" />
+            <LoaderIcon className="h-4 w-4 animate-spin text-current" />
             <span>Enrolling...</span>
           </>
         ) : (

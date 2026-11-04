@@ -3,27 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import {
-  BookOpen,
-  Calculator,
-  Atom,
-  FlaskConical,
-  Dna,
-  Music,
-  CheckCircle2,
-  Sparkles,
-  Bot,
-  Users,
-  GraduationCap,
-  ArrowRight,
-  ShieldCheck,
-  Star,
-  ChevronLeft,
-  Calendar,
-  Layers,
-  AlertCircle,
-  Clock,
-} from "lucide-react";
+import { ChevronLeftIcon, AlertIcon, ArrowRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 
 interface SubjectDetail {
@@ -66,15 +46,6 @@ interface TutorItem {
   trcnCertified: boolean;
 }
 
-const ICON_MAP: Record<string, any> = {
-  Calculator,
-  BookOpen,
-  Atom,
-  FlaskConical,
-  Dna,
-  Music,
-};
-
 export default function SubjectDetailPage() {
   const params = useParams();
   const slug = (params?.slug as string)?.toLowerCase();
@@ -112,7 +83,7 @@ export default function SubjectDetailPage() {
     return (
       <div className="min-h-screen bg-neutral-slate-50 flex items-center justify-center p-8">
         <div className="text-center space-y-3">
-          <div className="w-10 h-10 border-4 border-brand-purple-600 border-t-transparent rounded-full animate-spin mx-auto" />
+          <div className="w-10 h-10 border-4 border-brand-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
           <p className="text-neutral-slate-600 font-semibold text-sm">Loading curriculum tracks...</p>
         </div>
       </div>
@@ -122,19 +93,18 @@ export default function SubjectDetailPage() {
   if (error || !subject) {
     return (
       <div className="min-h-screen bg-neutral-slate-50 flex items-center justify-center p-8">
-        <div className="bg-white p-8 rounded-2xl border border-neutral-slate-200 max-w-md w-full text-center space-y-4">
-          <AlertCircle className="w-10 h-10 text-red-500 mx-auto" />
-          <h1 className="text-lg font-bold text-neutral-slate-900">Subject Not Found</h1>
+        <div className="bg-white p-8 rounded-lg border border-neutral-slate-200 max-w-md w-full text-center space-y-4">
+          <AlertIcon className="w-10 h-10 text-red-500 mx-auto" />
+          <h1 className="text-lg font-bold text-neutral-slate-900">Subject not found</h1>
           <p className="text-xs text-neutral-slate-600">{error || "The requested academic subject is not available."}</p>
           <Link href="/subjects" className="inline-block">
-            <Button size="sm">Back to All Subjects</Button>
+            <Button size="sm">Back to all subjects</Button>
           </Link>
         </div>
       </div>
     );
   }
 
-  const IconComp = ICON_MAP[subject.icon] || BookOpen;
   const formattedRate = `₦${(subject.pricingTierMinorUnits / 100).toLocaleString()}/hr`;
 
   return (
@@ -146,31 +116,27 @@ export default function SubjectDetailPage() {
             href="/subjects"
             className="inline-flex items-center gap-1 text-xs text-neutral-slate-400 hover:text-white transition-colors"
           >
-            <ChevronLeft className="w-3.5 h-3.5" /> Back to All Subjects
+            <ChevronLeftIcon className="w-3.5 h-3.5" />
+            <span>Back to all subjects</span>
           </Link>
 
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-purple-600/30 text-purple-300 border border-purple-500/40 flex items-center justify-center shadow-inner">
-                <IconComp className="w-8 h-8" />
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-neutral-slate-800 text-neutral-slate-300 border border-neutral-slate-700">
+                  {subject.category}
+                </span>
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-900 text-emerald-300 border border-emerald-700">
+                  {subject.status}
+                </span>
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-neutral-slate-800 text-neutral-slate-300 border border-neutral-slate-700">
-                    {subject.category}
-                  </span>
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700">
-                    {subject.status}
-                  </span>
-                </div>
-                <h1 className="text-2xl sm:text-4xl font-black tracking-tight mt-1" data-testid="subject-detail-title">
-                  {subject.name}
-                </h1>
-              </div>
+              <h1 className="text-2xl sm:text-4xl font-black tracking-tight mt-1" data-testid="subject-detail-title">
+                {subject.name}
+              </h1>
             </div>
 
             <div className="text-right">
-              <span className="text-[11px] text-neutral-slate-400 block">Baseline Lesson Rate</span>
+              <span className="text-[11px] text-neutral-slate-400 block">Lesson rate from</span>
               <span className="text-lg font-black text-white">{formattedRate}</span>
             </div>
           </div>
@@ -179,13 +145,13 @@ export default function SubjectDetailPage() {
             {subject.description}
           </p>
 
-          {/* Supported Levels & Delivery Badges */}
+          {/* Supported Levels */}
           <div className="pt-2 flex flex-wrap items-center gap-2">
-            <span className="text-xs font-bold text-neutral-slate-400">Curriculum Levels:</span>
+            <span className="text-xs font-bold text-neutral-slate-400">Curriculum levels:</span>
             {subject.levels.map((lvl) => (
               <span
                 key={lvl}
-                className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-neutral-slate-800 text-neutral-slate-200 border border-neutral-slate-700"
+                className="px-2.5 py-1 rounded text-xs font-semibold bg-neutral-slate-800 text-neutral-slate-200 border border-neutral-slate-700"
               >
                 {lvl}
               </span>
@@ -195,36 +161,34 @@ export default function SubjectDetailPage() {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-10">
-        {/* AI Socratic Assistant Governance Section */}
+        {/* AI Study Helper Section */}
         {subject.aiEnabled ? (
           <div
             data-testid="subject-ai-launcher"
-            className="bg-gradient-to-r from-purple-900 to-indigo-900 text-white rounded-2xl p-6 sm:p-8 shadow-md border border-purple-700 flex flex-col md:flex-row md:items-center justify-between gap-6"
+            className="bg-brand-navy-900 text-white rounded-lg p-6 sm:p-8 border border-neutral-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6"
           >
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-700/50 text-purple-200 text-xs font-bold border border-purple-500/40">
-                <Bot className="w-4 h-4 text-brand-teal-300" />
-                <span>Verified Socratic AI Pedagogical Assistant</span>
-              </div>
+              <span className="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-white/10 text-white">
+                Study helper available
+              </span>
               <h2 className="text-xl sm:text-2xl font-black">
-                Practice {subject.name} with AI Hints &amp; Step-by-Step Guidance
+                Practice {subject.name} with hints and step-by-step guidance
               </h2>
-              <p className="text-purple-200 text-xs sm:text-sm leading-relaxed">
-                Trained on the Nigerian curriculum with programmatic mathematical verification ({subject.aiVerificationMethod}).
-                Never dumps raw answers — guides you step-by-step through Socratic inquiry.
+              <p className="text-neutral-slate-200 text-xs sm:text-sm leading-relaxed">
+                Trained on curriculum topics with calculation checks ({subject.aiVerificationMethod || "automated verification"}).
+                Guides you step by step with hints first before revealing the complete solution.
               </p>
               {subject.aiEvaluationScore && (
-                <p className="text-[11px] text-purple-300 font-mono">
-                  Curriculum Benchmarking Score: {subject.aiEvaluationScore}% · Pass Criteria Met
+                <p className="text-[11px] text-neutral-slate-300 font-mono">
+                  Curriculum evaluation score: {subject.aiEvaluationScore}%
                 </p>
               )}
             </div>
 
             <div>
               <Link href={`/ai?subject=${subject.slug}`}>
-                <Button className="bg-white text-purple-950 hover:bg-neutral-slate-100 font-bold px-6 py-3 shadow-lg text-sm w-full sm:w-auto">
-                  <Sparkles className="w-4 h-4 mr-2 text-purple-600" />
-                  Launch Socratic AI Assistant
+                <Button variant="primary" className="font-bold px-6 py-3 text-sm w-full sm:w-auto">
+                  Launch study helper
                 </Button>
               </Link>
             </div>
@@ -232,52 +196,50 @@ export default function SubjectDetailPage() {
         ) : (
           <div
             data-testid="subject-ai-pending-notice"
-            className="bg-white rounded-2xl p-6 border border-neutral-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4"
+            className="bg-white rounded-lg p-6 border border-neutral-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4"
           >
             <div className="space-y-1.5 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 text-xs font-bold border border-amber-200">
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
-                <span>Academic Quality Gate Active (SB-06)</span>
-              </div>
+              <span className="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200">
+                Study helper under evaluation
+              </span>
               <h2 className="text-base font-bold text-neutral-slate-900">
-                AI Socratic Assistant In Pre-Release Academic Evaluation
+                AI study helper in academic review
               </h2>
               <p className="text-xs text-neutral-slate-600 leading-relaxed">
-                To prevent hallucinations and protect Nigerian learners under the Child Rights Act, AI guidance for{" "}
-                <span className="font-semibold text-neutral-slate-800">{subject.name}</span> is currently undergoing rigorous rubric testing.
-                Browse our TRCN-certified human tutors below for live 1-on-1 coaching.
+                Study helper guidance for{" "}
+                <span className="font-semibold text-neutral-slate-800">{subject.name}</span> is currently undergoing curriculum checks.
+                Explore our tutors below for 1-on-1 lessons.
               </p>
             </div>
 
             <Link href={`/tutors?subject=${subject.slug}`}>
               <Button variant="outline" size="sm" className="whitespace-nowrap">
-                Find {subject.name} Tutors
+                Find {subject.name} tutors
               </Button>
             </Link>
           </div>
         )}
 
-        {/* Section 1: Verified Tutors for this Subject */}
+        {/* Section 1: Tutors for this Subject */}
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-bold text-neutral-slate-900 flex items-center gap-2">
-                <Users className="w-5 h-5 text-purple-700" />
-                Verified Tutors in {subject.name} ({tutors.length})
+              <h2 className="text-lg font-bold text-neutral-slate-900">
+                Tutors in {subject.name} ({tutors.length})
               </h2>
               <p className="text-xs text-neutral-slate-600 mt-0.5">
-                Every tutor is identity-checked (NIN), TRCN certified, and approved for this specific curriculum.
+                Tutors approved for this specific curriculum subject.
               </p>
             </div>
-            <Link href="/request-tutor" className="text-xs font-bold text-brand-purple-700 hover:underline">
-              Request a Tutor Match
+            <Link href="/request-tutor" className="text-xs font-bold text-brand-blue-700 hover:underline">
+              Request a tutor match
             </Link>
           </div>
 
           {tutors.length === 0 ? (
-            <div className="p-8 text-center bg-white rounded-2xl border border-neutral-slate-200 space-y-2">
+            <div className="p-8 text-center bg-white rounded-lg border border-neutral-slate-200 space-y-2">
               <p className="text-xs font-semibold text-neutral-slate-700">No tutors currently listed for this subject.</p>
-              <p className="text-[11px] text-neutral-slate-500">Tutor applications are currently in administrative credential review.</p>
+              <p className="text-[11px] text-neutral-slate-500">Tutor applications are currently in credential review.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-testid="subject-tutors-list">
@@ -285,7 +247,7 @@ export default function SubjectDetailPage() {
                 <div
                   key={tutor.slug}
                   data-testid={`subject-tutor-card-${tutor.slug}`}
-                  className="bg-white rounded-2xl border border-neutral-slate-200 p-5 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg border border-neutral-slate-200 p-5 flex flex-col justify-between"
                 >
                   <div className="space-y-2.5">
                     <div className="flex items-start justify-between gap-2">
@@ -297,9 +259,8 @@ export default function SubjectDetailPage() {
                         </h3>
                         <p className="text-xs text-neutral-slate-500">{tutor.title}</p>
                       </div>
-                      <div className="flex items-center gap-1 font-bold text-xs bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
-                        <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                        <span className="text-amber-950 font-bold">{tutor.rating.toFixed(1)}</span>
+                      <div className="text-xs font-bold text-neutral-slate-800 bg-neutral-slate-100 px-2 py-0.5 rounded border border-neutral-slate-200">
+                        Rating: {tutor.rating.toFixed(1)}
                       </div>
                     </div>
 
@@ -309,11 +270,11 @@ export default function SubjectDetailPage() {
 
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {tutor.trcnCertified && (
-                        <span className="text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded-full border border-emerald-200 inline-flex items-center gap-1">
-                          <CheckCircle2 className="w-2.5 h-2.5" /> TRCN Certified
+                        <span className="text-[10px] bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded border border-emerald-200">
+                          TRCN Certified
                         </span>
                       )}
-                      <span className="text-[10px] bg-neutral-slate-100 text-neutral-slate-700 font-medium px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] bg-neutral-slate-100 text-neutral-slate-700 font-medium px-2 py-0.5 rounded">
                         {tutor.completedLessons} lessons taught
                       </span>
                     </div>
@@ -329,9 +290,9 @@ export default function SubjectDetailPage() {
 
                     <Link
                       href={`/tutors/${tutor.slug}`}
-                      className="px-3 py-1.5 bg-brand-purple-700 hover:bg-brand-purple-800 text-white rounded-lg text-xs font-bold transition-colors"
+                      className="px-3 py-1.5 bg-brand-blue-600 hover:bg-brand-blue-700 text-white rounded text-xs font-bold transition-colors"
                     >
-                      Book Lesson
+                      Book lesson
                     </Link>
                   </div>
                 </div>
@@ -344,21 +305,20 @@ export default function SubjectDetailPage() {
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-bold text-neutral-slate-900 flex items-center gap-2">
-                <GraduationCap className="w-5 h-5 text-brand-teal-700" />
-                Self-Paced Courses ({courses.length})
+              <h2 className="text-lg font-bold text-neutral-slate-900">
+                Self-paced courses ({courses.length})
               </h2>
               <p className="text-xs text-neutral-slate-600 mt-0.5">
-                Structured lessons, interactive quizzes, and examination review materials.
+                Structured lessons, practice quizzes, and examination review materials.
               </p>
             </div>
-            <Link href="/academy" className="text-xs font-bold text-brand-teal-700 hover:underline">
-              Explore Academy
+            <Link href="/academy" className="text-xs font-bold text-brand-blue-700 hover:underline">
+              Explore academy
             </Link>
           </div>
 
           {courses.length === 0 ? (
-            <div className="p-8 text-center bg-white rounded-2xl border border-neutral-slate-200 space-y-2">
+            <div className="p-8 text-center bg-white rounded-lg border border-neutral-slate-200 space-y-2">
               <p className="text-xs font-semibold text-neutral-slate-700">No Academy courses published yet for this subject.</p>
               <p className="text-[11px] text-neutral-slate-500">Curriculum managers are drafting new modules.</p>
             </div>
@@ -367,10 +327,10 @@ export default function SubjectDetailPage() {
               {courses.map((course) => (
                 <div
                   key={course.slug}
-                  className="bg-white rounded-2xl border border-neutral-slate-200 p-5 shadow-xs flex flex-col justify-between"
+                  className="bg-white rounded-lg border border-neutral-slate-200 p-5 flex flex-col justify-between"
                 >
                   <div className="space-y-2">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-50 text-teal-800 border border-teal-200">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-50 text-teal-800 border border-teal-200">
                       {course.level}
                     </span>
                     <h3 className="font-bold text-sm text-neutral-slate-900 mt-1">
@@ -384,12 +344,13 @@ export default function SubjectDetailPage() {
                   </div>
 
                   <div className="pt-4 mt-4 border-t border-neutral-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-bold text-emerald-700">Enrolment Open</span>
+                    <span className="text-xs font-bold text-emerald-700">Enrolment open</span>
                     <Link
                       href={`/academy/${course.slug}`}
-                      className="text-xs font-bold text-brand-teal-700 hover:underline flex items-center gap-1"
+                      className="text-xs font-bold text-brand-blue-700 hover:underline flex items-center gap-1"
                     >
-                      View Syllabus <ArrowRight className="w-3 h-3" />
+                      <span>View syllabus</span>
+                      <ArrowRightIcon className="w-3 h-3" />
                     </Link>
                   </div>
                 </div>

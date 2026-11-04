@@ -31,7 +31,7 @@ export async function POST(
 
     return NextResponse.json({
       success: true,
-      message: "Lesson marked as COMPLETED. Review form unlocked and earnings settlement finalized.",
+      message: "Lesson marked as COMPLETED. Review form available and earnings settlement finalized.",
       booking: {
         ...result.booking,
         status: result.booking.bookingStatus,

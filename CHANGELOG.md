@@ -6,8 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
- 
-- ### [0.14.0] - 2026-10-15 - Phase N: Concierge Tutor Matching, Director Desk & Private Roster (ADR-023, PRD Section 12)
+
+### [0.15.0] - 2026-11-04 - Design System, Typographic Identity & UX Copy Refinement
+#### Added
+- Authoritative functional icon registry (`src/components/ui/icons.tsx`) supporting `UI_ICONS=minimal|none` modes.
+- Custom designed typographic 404 (`src/app/not-found.tsx`) and 500 error (`src/app/error.tsx`) pages.
+- Comprehensive design system and copy test suite (`src/test/design-system-and-copy.test.ts`).
+
+#### Changed
+- Removed decorative icons, colored icon tiles, and emojis across the entire application and AI answer renderers.
+- Replaced hero orbit visual with calm, framed services index with 3px service accent borders and zero truncation.
+- Rewrote customer-facing copy across Academy, Study helper, Tutor matching, Legal, and Dashboard areas into plain, honest language.
+- Refined legal and safeguarding copy to state implemented protections factually.
+
+### [0.14.0] - 2026-10-15 - Phase N: Concierge Tutor Matching, Director Desk & Private Roster (ADR-023, PRD Section 12)
 #### Added
 - **Concierge Tutor Matching & Private Roster System (Phase N, ADR-023, PRD Section 12)**:
   - Strategic transition from open tutor marketplace to Director-led concierge matching personally managed by Mr Oyedeji S.T.

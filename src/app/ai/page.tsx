@@ -3,24 +3,12 @@ import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 import { SocraticWorkspace } from "@/components/ai/SocraticWorkspace";
-import {
-  Sparkles,
-  Lightbulb,
-  CheckCircle2,
-  ShieldCheck,
-  GraduationCap,
-  ArrowRight,
-  Calculator,
-  Lock,
-  Layers,
-} from "lucide-react";
 
 export const metadata = {
-  title: "Trainbow AI — Socratic Mathematics Learning Assistant",
+  title: "Study Helper — Trainbow HUB",
   description:
-    "Hint-first Mathematics guidance, programmatic formula verification, and seamless human tutor escalation for Nigerian curricula (WAEC, JAMB, IGCSE).",
+    "Ask a question or upload a photo of a problem. Get a worked solution, step by step, for Nigerian and international curricula.",
 };
 
 export default function AIPage() {
@@ -28,95 +16,88 @@ export default function AIPage() {
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
-        {/* Hero Section */}
-        <div className="rounded-2xl bg-gradient-to-r from-brand-navy-900 via-brand-navy-900 to-purple-950 text-white p-8 sm:p-14 relative overflow-hidden shadow-soft">
-          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
-          <div className="max-w-3xl space-y-5 relative z-10">
-            <Badge variant="ai" className="bg-service-ai-600/30 text-purple-200 border-service-ai-500/40">
-              Omni-Academic Intelligent Solver &amp; Tutor
-            </Badge>
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+        {/* Header Hero */}
+        <div className="rounded-lg bg-brand-navy-900 text-white p-8 sm:p-12 text-left border border-brand-navy-800">
+          <div className="max-w-3xl space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-purple-300 block">
+              Study helper
+            </span>
 
-            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight">
-              Trainbow HUB AI: <br />
-              <span className="text-service-ai-400">Master Any Subject,</span> Step by Step.
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              Ask a question or upload a photo of a problem.
             </h1>
 
-            <p className="text-body-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
-              Generic chatbots guess or provide shallow answers. Trainbow AI is a super-intelligent academic reasoning engine built specifically for Nigerian &amp; international curricula (WAEC SSCE, JAMB UTME, Cambridge IGCSE, BECE). Ask, attach photos, or type any complex problem across Mathematics, Sciences, Arts, and Commercial subjects for verified, step-by-step solutions with examiner insights.
+            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl">
+              Get a worked solution, step by step. Built for WAEC SSCE, JAMB UTME, Cambridge IGCSE, and BECE students.
             </p>
 
-            <div className="pt-2 flex flex-wrap gap-4 items-center">
+            <div className="pt-2 flex flex-wrap gap-3 items-center">
               <a href="#workspace">
-                <Button variant="ai" className="h-11 font-semibold text-sm shadow-soft px-6">
-                  Open Academic AI Workspace <ArrowRight className="h-4 w-4 ml-1.5" />
+                <Button variant="primary" className="h-11 font-semibold text-sm px-6">
+                  Open study helper
                 </Button>
               </a>
               <Link href="/request-tutor">
                 <Button variant="secondary" className="h-11 font-semibold text-sm px-6">
-                  Request a Tutor Match
+                  Ask for a tutor
                 </Button>
               </Link>
             </div>
           </div>
         </div>
 
-        {/* Example Socratic AI Dialogue Showcase */}
-        <section className="rounded-2xl border border-neutral-slate-200 bg-white p-6 sm:p-8 shadow-xs space-y-4">
-          <div className="flex items-center justify-between border-b border-neutral-slate-200 pb-3">
-            <div className="flex items-center gap-2">
-              <div className="h-7 w-7 rounded-lg bg-service-ai-600 text-white flex items-center justify-center shadow-xs">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <div>
-                <h2 className="text-sm sm:text-base font-bold font-heading text-neutral-slate-900">
-                  How Socratic AI Guidance Works
-                </h2>
-                <p className="text-xs text-neutral-slate-600">
-                  Step-by-step problem solving without spoiling direct answers
-                </p>
-              </div>
+        {/* Example Socratic Dialogue Showcase */}
+        <section className="rounded-lg border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-4 text-left">
+          <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-3">
+            <div>
+              <h2 className="text-sm sm:text-base font-bold font-heading text-neutral-slate-900">
+                How the study helper guides you
+              </h2>
+              <p className="text-xs text-neutral-slate-600">
+                Step-by-step problem solving without giving away direct answers
+              </p>
             </div>
-            <span className="text-[11px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-full bg-service-ai-50 text-service-ai-700 border border-service-ai-200">
+            <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-neutral-slate-100 text-neutral-slate-700">
               Example
             </span>
           </div>
 
-          <div className="space-y-3.5 pt-1">
-            {/* Message 1: Student Question */}
+          <div className="space-y-3 pt-1">
+            {/* Message 1 */}
             <div className="flex justify-end">
-              <div className="max-w-[85%] rounded-2xl rounded-tr-xs bg-brand-blue-600 px-4 py-2.5 text-white shadow-xs">
+              <div className="max-w-[85%] rounded-lg bg-brand-blue-600 px-4 py-2.5 text-white">
                 <p className="text-xs sm:text-sm font-medium">
                   How do I solve <span className="font-semibold">x² − 5x + 6 = 0</span>?
                 </p>
               </div>
             </div>
 
-            {/* Message 2: Socratic AI Hint 1 */}
+            {/* Message 2 */}
             <div className="flex justify-start">
-              <div className="max-w-[85%] rounded-2xl rounded-tl-xs bg-purple-50/80 border border-purple-200 px-4 py-2.5 text-neutral-slate-800 shadow-xs space-y-1">
-                <p className="text-xs font-semibold text-service-ai-700">Trainbow Socratic Guidance</p>
+              <div className="max-w-[85%] rounded-lg bg-purple-50 border border-purple-200 px-4 py-2.5 text-neutral-slate-800 space-y-1">
+                <p className="text-xs font-semibold text-purple-900">Study helper</p>
                 <p className="text-xs sm:text-sm leading-relaxed">
-                  Let’s factor this quadratic! What two numbers multiply to <span className="font-semibold text-neutral-slate-900">6</span> and add up to <span className="font-semibold text-neutral-slate-900">−5</span>?
+                  Let’s factor this quadratic. What two numbers multiply to <span className="font-semibold text-neutral-slate-900">6</span> and add up to <span className="font-semibold text-neutral-slate-900">−5</span>?
                 </p>
               </div>
             </div>
 
-            {/* Message 3: Student Response */}
+            {/* Message 3 */}
             <div className="flex justify-end">
-              <div className="max-w-[85%] rounded-2xl rounded-tr-xs bg-brand-blue-600 px-4 py-2.5 text-white shadow-xs">
+              <div className="max-w-[85%] rounded-lg bg-brand-blue-600 px-4 py-2.5 text-white">
                 <p className="text-xs sm:text-sm font-medium">
                   −2 and −3, because (−2) × (−3) = 6 and (−2) + (−3) = −5.
                 </p>
               </div>
             </div>
 
-            {/* Message 4: Socratic AI Hint 2 & Verification */}
+            {/* Message 4 */}
             <div className="flex justify-start">
-              <div className="max-w-[85%] rounded-2xl rounded-tl-xs bg-purple-50/80 border border-purple-200 px-4 py-2.5 text-neutral-slate-800 shadow-xs space-y-1">
-                <p className="text-xs font-semibold text-service-ai-700">Trainbow Socratic Guidance</p>
+              <div className="max-w-[85%] rounded-lg bg-purple-50 border border-purple-200 px-4 py-2.5 text-neutral-slate-800 space-y-1">
+                <p className="text-xs font-semibold text-purple-900">Study helper</p>
                 <p className="text-xs sm:text-sm leading-relaxed">
-                  Spot on! That gives <span className="font-semibold text-neutral-slate-900">(x − 2)(x − 3) = 0</span>. Therefore, setting each factor to zero yields <span className="font-semibold text-neutral-slate-900">x = 2</span> or <span className="font-semibold text-neutral-slate-900">x = 3</span>. Both roots verify programmatically in the original equation.
+                  Spot on! That gives <span className="font-semibold text-neutral-slate-900">(x − 2)(x − 3) = 0</span>. Therefore, setting each factor to zero yields <span className="font-semibold text-neutral-slate-900">x = 2</span> or <span className="font-semibold text-neutral-slate-900">x = 3</span>. We check this by substitution in the original equation: 2² − 5(2) + 6 = 0.
                 </p>
               </div>
             </div>
@@ -124,122 +105,96 @@ export default function AIPage() {
         </section>
 
         {/* Live Academic AI Workspace Section */}
-        <section id="workspace" className="space-y-4 scroll-mt-24">
-          <div className="flex flex-wrap items-end justify-between gap-3">
+        <section id="workspace" className="space-y-4 scroll-mt-24 text-left">
+          <div className="flex flex-wrap items-end justify-between gap-3 border-b border-neutral-slate-200 pb-3">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <Badge variant="ai" className="text-xs">
-                  Active Intelligence Engine
-                </Badge>
-                <span className="text-xs text-neutral-slate-600 font-medium">
-                  WAEC SSCE • JAMB UTME • Cambridge IGCSE • BECE
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900">
-                Live Academic AI Intelligence Workspace
+              <span className="text-xs font-medium text-neutral-slate-600 uppercase tracking-wider block">
+                WAEC SSCE • JAMB UTME • Cambridge IGCSE • BECE
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900 mt-0.5">
+                Study helper
               </h2>
             </div>
             <p className="text-xs text-neutral-slate-600 max-w-md">
-              Ask, type, or attach any academic problem or exam photo. The AI extracts question data instantly, computes verified solutions, and breaks down concepts with curriculum precision.
+              Ask a question or upload a photo of a problem. Get a worked solution, step by step.
             </p>
           </div>
 
           <SocraticWorkspace />
         </section>
 
-        {/* 3 Core Principles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-6 rounded-xl border border-neutral-slate-200 bg-white space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-purple-50 text-service-ai-600 flex items-center justify-center">
-              <Lightbulb className="h-5 w-5" />
-            </div>
+        {/* 3 Plain Statements (Replacing numbered icon cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+          <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-brand-blue-600 space-y-1.5">
             <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-              1. Hints Before Solutions
+              Hints first
             </h3>
-            <p className="text-xs text-neutral-slate-600 leading-relaxed">
-              When a student enters a problem, the AI delivers Level 1 hints (formula cues) and Level 2 step breakdowns
-              before ever exposing the full worked solution.
+            <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+              You get a hint before the full solution.
             </p>
           </div>
 
-          <div className="p-6 rounded-xl border border-neutral-slate-200 bg-white space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-status-green-600/10 text-status-green-600 flex items-center justify-center">
-              <Calculator className="h-5 w-5" />
-            </div>
+          <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-teal-600 space-y-1.5">
             <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-              2. Programmatic Verification
+              Answers are checked
             </h3>
-            <p className="text-xs text-neutral-slate-600 leading-relaxed">
-              LLMs often hallucinate arithmetic. Every formula, discriminant, derivative, and equation root is
-              programmatically verified on our server before reaching the learner.
+            <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+              We check calculations with software where we can, and we tell you when we could not.
             </p>
           </div>
 
-          <div className="p-6 rounded-xl border border-neutral-slate-200 bg-white space-y-3">
-            <div className="h-10 w-10 rounded-lg bg-teal-50 text-service-tutor-700 flex items-center justify-center">
-              <GraduationCap className="h-5 w-5" />
-            </div>
+          <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-purple-600 space-y-1.5">
             <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-              3. 1-Tap Tutor Escalation
+              A tutor when you need one
             </h3>
-            <p className="text-xs text-neutral-slate-600 leading-relaxed">
-              If a student is still struggling after hints, they can seamlessly escalate the exact conversation to an
-              approved human tutor for an in-depth lesson.
+            <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+              Ask for a tutor from any answer.
             </p>
           </div>
         </div>
 
-        {/* Safety & Quota Specifications */}
-        <div className="rounded-2xl border border-neutral-slate-200 bg-white p-8 sm:p-10 space-y-6">
-          <div className="flex items-center gap-2">
-            <Badge variant="brand">Safety &amp; Governance</Badge>
+        {/* Safety Section: How we keep it safe */}
+        <div className="rounded-lg border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-4 text-left">
+          <div className="border-b border-neutral-slate-100 pb-3">
             <h2 className="font-heading font-bold text-lg text-neutral-slate-900">
-              Architectural Safeguards for Nigerian Students
+              How we keep it safe
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-neutral-slate-700">
-            <div className="space-y-2">
-              <h4 className="font-bold text-neutral-slate-900 flex items-center gap-1.5">
-                <Lock className="h-4 w-4 text-brand-blue-600" />
-                Server-Side Gateway &amp; Anonymization
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-neutral-slate-700">
+            <div className="space-y-1">
+              <h4 className="font-bold text-neutral-slate-900">
+                Privacy
               </h4>
               <p className="text-neutral-slate-600 leading-relaxed">
-                Client browsers never receive API keys. Student identities and personal names are stripped prior to
-                model requests, ensuring compliance with the Nigeria Data Protection Act (NDPA) 2023.
+                We do not send your name or contact details to the AI service.
               </p>
             </div>
 
-            <div className="space-y-2">
-              <h4 className="font-bold text-neutral-slate-900 flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-status-green-600" />
-                Age-Appropriate Content Moderation
+            <div className="space-y-1">
+              <h4 className="font-bold text-neutral-slate-900">
+                Content filters
               </h4>
               <p className="text-neutral-slate-600 leading-relaxed">
-                Both student inputs and AI outputs pass strict automated moderation filters. Off-topic, unsafe, or
-                abusive prompts are immediately blocked and flagged for safeguarding review.
+                Questions that are unsafe or off-topic are blocked.
               </p>
             </div>
 
-            <div className="space-y-2">
-              <h4 className="font-bold text-neutral-slate-900 flex items-center gap-1.5">
-                <Layers className="h-4 w-4 text-service-ai-600" />
-                Daily Quotas &amp; Provider Fallbacks
+            <div className="space-y-1">
+              <h4 className="font-bold text-neutral-slate-900">
+                Daily limits
               </h4>
               <p className="text-neutral-slate-600 leading-relaxed">
-                Students receive a daily quota of questions to encourage thoughtful practice. If external provider
-                outages occur, failed requests do not deduct student quotas.
+                There is a daily question limit.
               </p>
             </div>
 
-            <div className="space-y-2">
-              <h4 className="font-bold text-neutral-slate-900 flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-service-tutor-700" />
-                Evaluation Sign-Off Before New Subjects
+            <div className="space-y-1">
+              <h4 className="font-bold text-neutral-slate-900">
+                Vetted subjects
               </h4>
               <p className="text-neutral-slate-600 leading-relaxed">
-                Mathematics is live. Other subjects (English, Physics, Chemistry, Biology) receive AI assistance only
-                after passing rigorous academic accuracy evaluations.
+                AI is switched on for a subject only after we have tested its answers.
               </p>
             </div>
           </div>

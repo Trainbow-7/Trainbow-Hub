@@ -9,17 +9,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { PRIMARY_INSTRUCTOR } from "@/data/instructor";
 import { CATALOGUE_SUBJECTS, DEPARTMENTS } from "@/data/courses";
 import { EXAM_TRACKS } from "@/data/pricing";
-import {
-  Award,
-  BookOpen,
-  CheckCircle2,
-  Clock,
-  GraduationCap,
-  ShieldCheck,
-  ChevronRight,
-  Star,
-  Users,
-} from "lucide-react";
+import { CheckIcon, ChevronRightIcon } from "@/components/ui/icons";
 
 export function generateStaticParams() {
   return [{ instructorSlug: PRIMARY_INSTRUCTOR.slug }];
@@ -71,7 +61,7 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
                   Academic Director &amp; Lead Examiner
                 </Badge>
                 <span className="text-xs text-neutral-slate-300 flex items-center gap-1.5">
-                  <ShieldCheck className="h-4 w-4 text-status-green-400" />
+                  
                   WAEC Chief Examiner Consultant
                 </span>
               </div>
@@ -127,7 +117,7 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
                 {PRIMARY_INSTRUCTOR.bio}
               </p>
               <p className="text-sm text-neutral-slate-700 leading-relaxed">
-                Under his leadership, Trainbow Hub curriculum packages have been calibrated to remove ambiguous question wording, align strictly with official West African and Cambridge examination marking rubrics, and deliver structured past question solving frameworks that empower students to attain straight distinctions.
+                Under his leadership, Trainbow Hub curriculum packages have been calibrated to remove ambiguous question wording, align strictly with official West African and Cambridge examination marking rubrics, and deliver structured past question solving frameworks that support students to attain straight distinctions.
               </p>
             </div>
 
@@ -155,7 +145,7 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
                           {DEPARTMENTS[sub.department].name}
                         </Badge>
                         <span className="text-[11px] text-status-green-700 font-semibold flex items-center gap-1">
-                          <CheckCircle2 className="h-3 w-3" />
+                          <CheckIcon className="h-4 w-4" />
                           100% Verified
                         </span>
                       </div>
@@ -171,7 +161,7 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
                       <span>{sub.lessonCount} Lessons • {sub.durationHours}h</span>
                       <span className="font-semibold text-brand-blue-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                         <span>Explore Syllabus</span>
-                        <ChevronRight className="h-3.5 w-3.5" />
+                        <ChevronRightIcon className="h-4 w-4" />
                       </span>
                     </div>
                   </Link>
@@ -184,13 +174,13 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
           <div className="lg:col-span-4 space-y-6">
             <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 space-y-4">
               <h3 className="font-heading font-bold text-base text-neutral-slate-900 flex items-center gap-2">
-                <Award className="h-5 w-5 text-brand-blue-600" />
+                
                 <span>Examiner Credentials</span>
               </h3>
               <ul className="space-y-3 text-xs text-neutral-slate-700">
                 {PRIMARY_INSTRUCTOR.examinerCredentials.map((cred, idx) => (
                   <li key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-4 w-4 text-brand-blue-600 shrink-0 mt-0.5" />
+                    <CheckIcon className="h-4 w-4" />
                     <span>{cred}</span>
                   </li>
                 ))}
@@ -199,7 +189,7 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
 
             <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 space-y-4">
               <h3 className="font-heading font-bold text-base text-neutral-slate-900 flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-brand-blue-600" />
+                
                 <span>Academic Qualifications</span>
               </h3>
               <ul className="space-y-2.5 text-xs text-neutral-slate-700">

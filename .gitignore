@@ -47,3 +47,7 @@ Thumbs.db
 
 # Test & Stage Screenshots
 *_screenshots/
+screenshots/
+audit/
+baselines/
+scratch/

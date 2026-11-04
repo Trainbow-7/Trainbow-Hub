@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowLeft, ShieldCheck, Clock, CheckCircle2, XCircle, RotateCcw } from "lucide-react";
+import { ArrowLeftIcon, CheckIcon, AlertIcon } from "@/components/ui/icons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RefundPolicyPage() {
             href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-700 transition-colors"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeftIcon className="h-4 w-4" />
             Back to Home
           </Link>
         </div>
@@ -26,7 +26,7 @@ export default function RefundPolicyPage() {
         {/* Mandatory Legal Review Banner */}
         <div className="mb-8 rounded-xl border border-amber-300 bg-amber-50 p-4 sm:p-5 shadow-sm" role="alert">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="h-5 w-5 text-amber-700 shrink-0 mt-0.5" />
+            <AlertIcon className="h-4 w-4" />
             <div>
               <h2 className="text-sm font-bold text-amber-900 uppercase tracking-wide">
                 Regulatory & Legal Notice
@@ -49,7 +49,7 @@ export default function RefundPolicyPage() {
             </h1>
             <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-neutral-slate-600 font-medium">
               <span className="flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5" /> Effective Date: October 10, 2026
+                Effective Date: October 10, 2026
               </span>
               <span>•</span>
               <span>Currency: Nigerian Naira (NGN Minor Kobo Units)</span>
@@ -96,7 +96,7 @@ export default function RefundPolicyPage() {
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-status-green-600/20 flex items-center gap-1.5 text-xs font-semibold text-status-green-700">
-                    <CheckCircle2 className="h-4 w-4" /> Full amount credited
+                    <CheckIcon className="h-4 w-4" /> Full amount credited
                   </div>
                 </div>
 
@@ -114,7 +114,7 @@ export default function RefundPolicyPage() {
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-amber-300/50 flex items-center gap-1.5 text-xs font-semibold text-amber-800">
-                    <RotateCcw className="h-4 w-4" /> Fair 50/50 split
+                    Fair 50/50 split
                   </div>
                 </div>
 
@@ -132,7 +132,7 @@ export default function RefundPolicyPage() {
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-status-red-200 flex items-center gap-1.5 text-xs font-semibold text-status-red-700">
-                    <XCircle className="h-4 w-4" /> Tutor time protected
+                    Tutor time protected
                   </div>
                 </div>
               </div>
@@ -222,7 +222,6 @@ export default function RefundPolicyPage() {
         {/* Footer Link */}
         <div className="mt-8 flex items-center justify-between text-xs text-neutral-slate-600 px-2">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-status-green-600" />
             <span>Guaranteed Fairness for Learners and Educators</span>
           </div>
           <Link href="/pricing" className="text-brand-blue-600 hover:underline">

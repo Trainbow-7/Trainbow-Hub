@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       suggestedTopic,
     });
 
-    // Generate seamless booking redirection URL (AI-10)
+    // Generate booking redirection URL (AI-10)
     const bookingParams = new URLSearchParams({
       escalationId: escalation.id,
       topic: suggestedTopic,
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
       tutorSlug,
       tutorName: escalation.tutorName,
       bookingUrl,
-      message: `Seamlessly escalated to ${escalation.tutorName}. Your question context and attempts have been attached.`,
+      message: `Escalated to ${escalation.tutorName}. Your question context and attempts have been attached.`,
     });
   } catch (error) {
     console.error("[POST_AI_ESCALATE_ERROR]", error);

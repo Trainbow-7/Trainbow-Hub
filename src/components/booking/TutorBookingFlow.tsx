@@ -6,20 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import {
-  Calendar,
-  Clock,
-  ShieldCheck,
-  AlertCircle,
-  CreditCard,
-  CheckCircle2,
-  Lock,
-  ArrowRight,
-  RefreshCw,
-  X,
-  ExternalLink,
-  ShieldAlert,
-} from "lucide-react";
+import { ChevronRightIcon, CheckIcon, CloseIcon, AlertIcon, ExternalLinkIcon, LoaderIcon } from "@/components/ui/icons";
 
 interface WeeklyAvailability {
   day: string;
@@ -255,7 +242,7 @@ export function TutorBookingFlow({
         className="w-full justify-center font-bold text-sm shadow-soft gap-2 h-11"
         data-testid="open-booking-modal-btn"
       >
-        <Calendar className="w-5 h-5" />
+        
         <span>Book a Lesson with {tutorName.split(" ")[0]}</span>
       </Button>
 
@@ -287,7 +274,7 @@ export function TutorBookingFlow({
                 className="p-1.5 rounded-lg text-neutral-slate-400 hover:text-neutral-slate-700 hover:bg-neutral-slate-100 transition-colors"
                 aria-label="Close booking modal"
               >
-                <X className="w-5 h-5" />
+                <CloseIcon size="md" />
               </button>
             </div>
 
@@ -302,9 +289,9 @@ export function TutorBookingFlow({
                 data-testid="booking-error-banner"
               >
                 {guardianRequired ? (
-                  <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                  <AlertIcon className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 ) : (
-                  <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                  <AlertIcon className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                 )}
                 <div className="space-y-2 flex-1">
                   <p className="font-semibold leading-relaxed">{holdError}</p>
@@ -315,7 +302,7 @@ export function TutorBookingFlow({
                       data-testid="guardian-consent-redirect-btn"
                     >
                       <span>Complete Guardian Consent (OTP)</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      
                     </Link>
                   )}
                 </div>
@@ -326,7 +313,7 @@ export function TutorBookingFlow({
             {confirmedBooking ? (
               <div className="mt-6 space-y-6 text-center" data-testid="booking-confirmation-screen">
                 <div className="w-16 h-16 bg-status-green-600/10 text-status-green-600 rounded-full flex items-center justify-center mx-auto ring-8 ring-status-green-600/5">
-                  <CheckCircle2 className="w-10 h-10" />
+                  <span className="text-status-green-600 font-bold text-xs">✓</span>
                 </div>
 
                 <div className="space-y-2">
@@ -360,7 +347,7 @@ export function TutorBookingFlow({
                       className="inline-flex items-center gap-1 font-semibold text-brand-blue-600 hover:underline"
                     >
                       <span>Join Room</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <ExternalLinkIcon size="sm" />
                     </a>
                   </div>
                 </div>
@@ -381,7 +368,7 @@ export function TutorBookingFlow({
               <div className="mt-6 space-y-6" data-testid="paystack-checkout-stage">
                 <div className="p-4 rounded-xl bg-brand-blue-50/70 border border-brand-blue-200 flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
-                    <CreditCard className="w-5 h-5 text-brand-blue-600" />
+                    
                     <div>
                       <span className="font-bold text-xs text-neutral-slate-900 block">Paystack PCI-DSS Checkout</span>
                       <span className="text-[11px] text-neutral-slate-600">Ref: {checkoutData.paystack.reference}</span>
@@ -394,7 +381,7 @@ export function TutorBookingFlow({
                 {activeHold && (
                   <div className="flex items-center justify-between p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-900">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-amber-600" />
+                      
                       <span>Slot Hold Expiration:</span>
                     </div>
                     <span className="font-mono font-bold text-sm text-amber-700" data-testid="slot-hold-timer">
@@ -429,19 +416,19 @@ export function TutorBookingFlow({
                   >
                     {isVerifying ? (
                       <>
-                        <RefreshCw className="w-4 h-4 animate-spin" />
+                        <LoaderIcon className="w-4 h-4 animate-spin" />
                         <span>Verifying with Paystack...</span>
                       </>
                     ) : (
                       <>
-                        <Lock className="w-4 h-4" />
+                        
                         <span>Confirm &amp; Complete Payment ({formattedGrossRate})</span>
                       </>
                     )}
                   </Button>
 
                   <p className="text-[11px] text-neutral-slate-500 text-center flex items-center justify-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-status-green-600" />
+                    
                     <span>256-bit SSL encrypted. Funds held in escrow until session completion.</span>
                   </p>
                 </div>
@@ -452,7 +439,7 @@ export function TutorBookingFlow({
                 {/* Hold Countdown Badge (BK-01) */}
                 <div className="p-4 rounded-xl bg-amber-50 border border-amber-300 flex items-center justify-between">
                   <div className="flex items-center gap-2.5">
-                    <Clock className="w-5 h-5 text-amber-600 animate-pulse" />
+                    
                     <div>
                       <span className="font-bold text-xs text-neutral-slate-900 block">Slot Reserved (Temporary Hold)</span>
                       <span className="text-[11px] text-neutral-slate-600">Reserved for 10 minutes to prevent double-booking</span>
@@ -499,10 +486,10 @@ export function TutorBookingFlow({
                     data-testid="paystack-checkout-btn"
                   >
                     {isInitializingPayment ? (
-                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      <LoaderIcon className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <CreditCard className="w-4 h-4" />
+                        
                         <span>Proceed to Paystack</span>
                       </>
                     )}
@@ -559,7 +546,7 @@ export function TutorBookingFlow({
                           }`}
                           data-testid={`slot-option-${slot.replace(/\s+/g, "_")}`}
                         >
-                          <Clock className="w-3.5 h-3.5 opacity-60" />
+                          
                           <span>{slot}</span>
                         </button>
                       ))}
@@ -582,13 +569,13 @@ export function TutorBookingFlow({
                 >
                   {isHolding ? (
                     <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      <LoaderIcon className="w-4 h-4 animate-spin" />
                       <span>Checking Slot Availability...</span>
                     </>
                   ) : (
                     <>
                       <span>Reserve Slot (10-Min Hold)</span>
-                      <ArrowRight className="w-4 h-4" />
+                      
                     </>
                   )}
                 </Button>

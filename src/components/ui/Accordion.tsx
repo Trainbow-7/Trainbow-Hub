@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDownIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 interface AccordionItemProps {
@@ -32,7 +32,7 @@ export function AccordionItem({
         className="flex w-full items-center justify-between py-4 text-left font-heading text-base font-semibold text-neutral-slate-900 transition-all hover:text-brand-blue-600 focus:outline-none focus:ring-2 focus:ring-brand-blue-600 rounded-sm"
       >
         <span>{title}</span>
-        <ChevronDown
+        <ChevronDownIcon
           className={cn(
             "h-5 w-5 shrink-0 text-neutral-slate-500 transition-transform duration-200",
             isOpen && "rotate-180 text-brand-blue-600"

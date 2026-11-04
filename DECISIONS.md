@@ -217,3 +217,15 @@
      - **Private Roster Protection**: Tutors are private by default (`publicListing: false`), maintaining availability states (`AVAILABLE_NOW`, `BOOKED_FULL`, `PAUSED_TRAINING`, `INACTIVE`) managed exclusively by the Director.
      - **Non-Destructive Data Model**: Existing bookings, payments, Paystack webhook integrity, audit logs, and virtual classroom links remain intact.
 - **Consequences:** Provides high-trust, personally verified tutor matching for Nigerian families; unlocks Director Matching Desk; passes 16/16 test files (161/161 tests) and strict TypeScript type-checking.
+
+## ADR-024: Mature Typographic Design System and Functional Icon Registry
+- **Status:** Accepted
+- **Context:** Early prototypes used excessive decorative icons in tinted tiles, floating animated cards, hype jargon ("Omni-Academic", "Live Intelligence Engine"), and unsupported claims.
+- **Decision:**
+  1. *Functional Icon Registry*: Built a single authoritative registry (`src/components/ui/icons.tsx`) containing only universal functional controls (menu, close, chevrons, search, play/pause, send, copy, download, check, alert). Enforced strict ESLint rule `no-restricted-imports` banning direct `lucide-react` imports across the codebase.
+  2. *Support UI_ICONS Configuration*: Support `UI_ICONS=minimal` (default) and `UI_ICONS=none` (accessible text labels such as "Menu", "Close", "Play", "Pause").
+  3. *Eliminate Decorative Elements & Emojis*: Removed colored icon tiles, sparkle/badge animations, and emojis across the entire user interface and AI answer format templates.
+  4. *Hero Presentation*: Replaced the animated orbit visual with a calm, framed services index with 3px service accent borders, clear typography, and zero truncated text.
+  5. *Truthful Copywriting*: Rewrote customer-facing copy into plain, honest language; removed developer jargon and unconfirmed legal claims; enforced brand tagline "Learn • Build • Grow".
+  6. *Error Pages*: Designed custom, accessible 404 (`src/app/not-found.tsx`) and 500 error (`src/app/error.tsx`) pages.
+- **Consequences:** Elevates Trainbow HUB to a calm, credible, mature education brand; 100% test coverage maintained across unit and design system test suites.

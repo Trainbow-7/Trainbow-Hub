@@ -4,16 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import {
-  Clock,
-  CheckCircle2,
-  AlertCircle,
-  ArrowRight,
-  ShieldCheck,
-  User,
-  Calendar,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRightIcon, CheckIcon, AlertIcon } from "@/components/ui/icons";
 
 interface TutorRequestItem {
   id: string;
@@ -60,13 +51,13 @@ export function TutorRequestTracker() {
       <div className="rounded-xl border border-service-tutor-200 bg-gradient-to-br from-white to-purple-50/30 p-5 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-service-tutor-900 font-bold text-sm">
-            <ShieldCheck className="w-4 h-4 text-service-tutor-700" />
+            
             <span>Concierge Tutor Matching</span>
           </div>
           <Badge variant="neutral" className="text-[10px]">Zero Guesswork</Badge>
         </div>
         <p className="text-xs text-neutral-slate-600 leading-relaxed">
-          Need a vetted 1-on-1 tutor? Mr Oyedeji S.T, Director of Trainbow HUB, personally matches you with verified tutors available right now.
+          Looking for 1-on-1 lessons? Tell us what you need and our academic team will match you with a tutor qualified for your syllabus.
         </p>
         <Link href="/request-tutor/new">
           <Button
@@ -75,7 +66,7 @@ export function TutorRequestTracker() {
             className="text-xs font-bold w-full justify-center min-h-[36px]"
           >
             <span>Request a Personal Match</span>
-            <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            <ArrowRightIcon size="sm" className="ml-1" />
           </Button>
         </Link>
       </div>
@@ -104,7 +95,7 @@ export function TutorRequestTracker() {
       <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-3">
         <div className="flex items-center gap-2">
           <div className="h-7 w-7 rounded-lg bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
-            <Sparkles className="w-4 h-4" />
+            
           </div>
           <div>
             <h3 className="font-heading font-bold text-sm text-neutral-slate-900">
@@ -140,7 +131,7 @@ export function TutorRequestTracker() {
             <div className="flex items-center justify-between text-[11px] text-neutral-slate-500 pt-1">
               <span>{req.level} · {req.lessonFormat}</span>
               <span className="flex items-center gap-1 text-neutral-slate-400">
-                <Clock className="w-3 h-3" />
+                
                 {req.urgency.replace(/_/g, " ")}
               </span>
             </div>

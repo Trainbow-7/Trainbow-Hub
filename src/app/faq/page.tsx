@@ -3,10 +3,10 @@
 import * as React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { SEED_FAQS, FAQItem } from "@/lib/data/seed-data";
+import { SEED_FAQS } from "@/lib/data/seed-data";
 import { Accordion, AccordionItem } from "@/components/ui/Accordion";
 import { Badge } from "@/components/ui/Badge";
-import { Search } from "lucide-react";
+import { SearchIcon } from "@/components/ui/icons";
 
 export default function FAQPage() {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -49,13 +49,13 @@ export default function FAQPage() {
 
         {/* Search Bar */}
         <div className="relative max-w-xl mx-auto">
-          <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-neutral-slate-400" />
+          <div className="absolute left-3.5 top-3.5 text-neutral-slate-400"><SearchIcon size="sm" /></div>
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search questions by keyword (e.g. refund, guardian, WAEC, Paystack)..."
-            className="w-full pl-10 pr-4 h-11 rounded-lg border border-neutral-slate-300 bg-white text-sm text-neutral-slate-900 placeholder:text-neutral-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue-600 focus:border-transparent transition-colors shadow-soft"
+            className="w-full pl-10 pr-4 h-11 rounded-lg border border-neutral-slate-300 bg-white text-base md:text-base md:text-sm text-neutral-slate-900 placeholder:text-neutral-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue-600 focus:border-transparent transition-colors shadow-soft"
           />
         </div>
 
@@ -89,7 +89,7 @@ export default function FAQPage() {
                   isOpen={openId === faq.id}
                   onToggle={() => toggleItem(faq.id)}
                 >
-                  <p className="text-sm text-neutral-slate-600 leading-relaxed font-sans">
+                  <p className="text-base md:text-sm text-neutral-slate-600 leading-relaxed font-sans">
                     {faq.answer}
                   </p>
                 </AccordionItem>
@@ -97,7 +97,7 @@ export default function FAQPage() {
             </Accordion>
           ) : (
             <div className="text-center py-10 space-y-2">
-              <p className="text-sm font-semibold text-neutral-slate-900">No questions matched your search query</p>
+              <p className="text-base md:text-sm font-semibold text-neutral-slate-900">No questions matched your search query</p>
               <p className="text-xs text-neutral-slate-500">Try searching for broader terms or select &quot;All&quot; categories.</p>
             </div>
           )}

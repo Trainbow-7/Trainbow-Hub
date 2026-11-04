@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowLeft, ShieldCheck, Clock } from "lucide-react";
+import { ArrowLeftIcon, CheckIcon, AlertIcon } from "@/components/ui/icons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function TermsOfServicePage() {
             href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-700 transition-colors"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeftIcon className="h-4 w-4" />
             Back to Home
           </Link>
         </div>
@@ -26,7 +26,7 @@ export default function TermsOfServicePage() {
         {/* Mandatory Legal Review Banner */}
         <div className="mb-8 rounded-xl border border-amber-300 bg-amber-50 p-4 sm:p-5 shadow-sm" role="alert">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="h-5 w-5 text-amber-700 shrink-0 mt-0.5" />
+            <AlertIcon className="h-4 w-4" />
             <div>
               <h2 className="text-sm font-bold text-amber-900 uppercase tracking-wide">
                 Regulatory & Legal Notice
@@ -49,7 +49,7 @@ export default function TermsOfServicePage() {
             </h1>
             <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-neutral-slate-600 font-medium">
               <span className="flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5" /> Effective Date: October 10, 2026
+                Effective Date: October 10, 2026
               </span>
               <span>•</span>
               <span>Jurisdiction: Federal Republic of Nigeria</span>
@@ -216,7 +216,6 @@ export default function TermsOfServicePage() {
         {/* Safeguarding Footer Note */}
         <div className="mt-8 flex items-center justify-between text-xs text-neutral-slate-600 px-2">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-status-green-600" />
             <span>Enforced by Trainbow HUB Trust & Safety Team</span>
           </div>
           <Link href="/legal/privacy" className="text-brand-blue-600 hover:underline">

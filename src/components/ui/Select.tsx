@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
+import { ChevronDownIcon } from "@/components/ui/icons";
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
@@ -27,7 +27,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             id={selectId}
             ref={ref}
             className={cn(
-              "flex h-11 w-full appearance-none rounded-control border border-neutral-slate-200 bg-white pl-3.5 pr-10 py-2 text-sm font-medium text-neutral-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600 focus-visible:border-brand-blue-600 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-150 ease-out shadow-sm cursor-pointer",
+              "flex h-11 w-full appearance-none rounded-control border border-neutral-slate-200 bg-white pl-3.5 pr-10 py-2 text-base md:text-sm font-medium text-neutral-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600 focus-visible:border-brand-blue-600 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-150 ease-out shadow-sm cursor-pointer",
               error && "border-status-red-600 focus-visible:ring-status-red-600",
               className
             )}
@@ -40,7 +40,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             ))}
           </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-neutral-slate-500">
-            <ChevronDown className="h-4 w-4" aria-hidden="true" />
+            <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
           </div>
         </div>
         {error && (

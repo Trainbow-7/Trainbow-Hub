@@ -301,3 +301,83 @@ html[data-saver="true"] .animate-hub-spoke-flow,
 html[data-saver="true"] .animate-hub-center-pulse {
   animation: none !important;
 }
+
+
+/* Mobile Foundations & Safe Area Insets */
+html {
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  min-height: 100dvh;
+}
+
+/* Prevent iOS Safari 100vh bugs with dvh */
+.h-dvh {
+  height: 100dvh;
+}
+
+.min-h-dvh {
+  min-height: 100dvh;
+}
+
+.max-h-dvh {
+  max-height: 100dvh;
+}
+
+/* Safe area padding utilities */
+.pt-safe {
+  padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+}
+
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+}
+
+.pl-safe {
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+}
+
+.pr-safe {
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Form input auto-zoom prevention on iOS (< 768px) */
+@media screen and (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+
+/* KaTeX Overflow Protection for Mobile */
+.katex-display,
+.katex-display-wrapper,
+.katex {
+  max-width: 100%;
+}
+
+.katex-display {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 0.25rem 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}

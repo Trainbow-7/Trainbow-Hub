@@ -23,20 +23,7 @@ import {
   SubjectCatalogueItem,
   getSubjectsByDepartment,
 } from "@/data/courses";
-import {
-  BookOpen,
-  Clock,
-  ChevronRight,
-  CheckCircle2,
-  Sparkles,
-  GraduationCap,
-  Award,
-  Layers,
-  Check,
-  Percent,
-  ShoppingCart,
-  RotateCcw,
-} from "lucide-react";
+import { ChevronRightIcon, CheckIcon } from "@/components/ui/icons";
 
 export function CourseCatalogueCard() {
   const [selectedTrack, setSelectedTrack] = React.useState<TrackId>("waec-ssce");
@@ -82,7 +69,7 @@ export function CourseCatalogueCard() {
                 Official Consolidated Curriculum
               </Badge>
               <span className="text-xs text-neutral-slate-300 flex items-center gap-1.5">
-                <GraduationCap className="h-4 w-4 text-brand-blue-400" />
+                
                 {CATALOGUE_SUBJECTS.length} Comprehensive Subjects across 4 Departments
               </span>
             </div>
@@ -101,13 +88,13 @@ export function CourseCatalogueCard() {
             href={`/instructors/${PRIMARY_INSTRUCTOR.slug}`}
             className="group shrink-0 p-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 transition-all duration-150 flex items-center gap-3.5 backdrop-blur-sm"
           >
-            <Avatar name={PRIMARY_INSTRUCTOR.name} size="lg" className="border-2 border-brand-blue-400" />
+            <Avatar name={PRIMARY_INSTRUCTOR.name} src={PRIMARY_INSTRUCTOR.avatarUrl} size="lg" className="border-2 border-brand-blue-400" />
             <div className="text-left">
               <div className="flex items-center gap-1.5">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue-300">
                   Course Director &amp; Lead Examiner
                 </span>
-                <CheckCircle2 className="h-3 w-3 text-status-green-400" />
+                <span className="text-status-green-600 font-bold text-xs">✓</span>
               </div>
               <h4 className="font-heading font-bold text-sm text-white group-hover:text-brand-blue-300 transition-colors">
                 {PRIMARY_INSTRUCTOR.name}
@@ -116,7 +103,7 @@ export function CourseCatalogueCard() {
                 {PRIMARY_INSTRUCTOR.title}
               </p>
             </div>
-            <ChevronRight className="h-4 w-4 text-neutral-slate-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+            <ChevronRightIcon className="h-4 w-4 text-neutral-slate-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
           </Link>
         </div>
 
@@ -186,7 +173,7 @@ export function CourseCatalogueCard() {
                       : "text-neutral-slate-600 hover:text-neutral-slate-900 hover:bg-neutral-slate-100"
                   }`}
                 >
-                  <Layers className="h-3.5 w-3.5" />
+                  
                   <span>{dept.name}</span>
                   <span
                     className={`px-1.5 py-0.5 rounded-full text-[10px] font-semibold ${
@@ -206,7 +193,7 @@ export function CourseCatalogueCard() {
               onClick={selectAllInDepartment}
               className="text-brand-blue-600 hover:text-brand-blue-700 font-semibold flex items-center gap-1"
             >
-              <Check className="h-3.5 w-3.5" />
+              <CheckIcon size="sm" />
               <span>Select {DEPARTMENTS[activeDepartment].name}</span>
             </button>
             <span className="text-neutral-slate-300">|</span>
@@ -215,7 +202,7 @@ export function CourseCatalogueCard() {
               disabled={selectedSubjectIds.length === 0}
               className="text-neutral-slate-500 hover:text-neutral-slate-700 disabled:opacity-40 flex items-center gap-1"
             >
-              <RotateCcw className="h-3.5 w-3.5" />
+              
               <span>Reset</span>
             </button>
           </div>
@@ -256,7 +243,7 @@ export function CourseCatalogueCard() {
                         : "border-neutral-slate-300 bg-white hover:border-brand-blue-500"
                     }`}
                   >
-                    {isSelected && <Check className="h-3.5 w-3.5 stroke-[3]" />}
+                    {isSelected && <CheckIcon size="sm" className="stroke-[3]" />}
                   </button>
 
                   <div className="space-y-2 flex-1 min-w-0">
@@ -268,7 +255,7 @@ export function CourseCatalogueCard() {
                         {DEPARTMENTS[subject.department].name}
                       </Badge>
                       <span className="text-[11px] text-status-green-800 font-semibold flex items-center gap-1">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-status-green-700" />
+                        <span className="text-status-green-600 font-bold text-xs">✓</span>
                         Verified for {trackConfig.shortName}
                       </span>
                     </div>
@@ -291,17 +278,17 @@ export function CourseCatalogueCard() {
                     {/* Subject Row Meta Stats & Instructor info */}
                     <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-slate-500 pt-1">
                       <span className="flex items-center gap-1">
-                        <BookOpen className="h-3.5 w-3.5 text-neutral-slate-400" />
+                        
                         {subject.lessonCount} Lessons
                       </span>
                       <span className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5 text-neutral-slate-400" />
+                        
                         {subject.durationHours} Hours
                       </span>
                       <Rating value={subject.rating} count={subject.reviewCount} />
                       <span className="text-neutral-slate-400">•</span>
                       <div className="flex items-center gap-1.5 text-neutral-slate-700 font-medium">
-                        <Avatar name={PRIMARY_INSTRUCTOR.name} size="sm" />
+                        <Avatar name={PRIMARY_INSTRUCTOR.name} src={PRIMARY_INSTRUCTOR.avatarUrl} size="sm" />
                         <span className="text-[11px]">{PRIMARY_INSTRUCTOR.name}</span>
                       </div>
                     </div>
@@ -325,7 +312,7 @@ export function CourseCatalogueCard() {
                       className="w-full sm:w-auto justify-between h-10 px-4 text-xs font-semibold gap-2"
                     >
                       <span>Explore Syllabus</span>
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRightIcon className="h-4 w-4" />
                     </Button>
                   </Link>
                 </div>
@@ -343,8 +330,7 @@ export function CourseCatalogueCard() {
               Live Tuition Calculation ({trackConfig.shortName})
             </span>
             {bundleCalculation.discountLabel && (
-              <Badge variant="brand" className="bg-status-green-600 text-white border-0 text-[10px] gap-1">
-                <Percent className="h-3 w-3" />
+              <Badge variant="brand" className="bg-status-green-600 text-white border-0 text-[10px]">
                 {bundleCalculation.discountLabel}
               </Badge>
             )}
@@ -373,7 +359,7 @@ export function CourseCatalogueCard() {
                     You save {formatNaira(bundleCalculation.discountAmount)} with bundle pricing!
                   </span>
                 ) : (
-                  <span>Select 3+ subjects to unlock 15% discount, or 5+ for 25% off.</span>
+                  <span>Select 3+ subjects to get 15% discount, or 5+ for 25% off.</span>
                 )}
               </span>
             )}
@@ -390,9 +376,8 @@ export function CourseCatalogueCard() {
               variant="primary"
               size="lg"
               disabled={bundleCalculation.selectedCount === 0}
-              className="w-full sm:w-auto h-12 px-6 font-bold gap-2 text-sm"
+              className="w-full sm:w-auto h-12 px-6 font-bold text-sm"
             >
-              <ShoppingCart className="h-4 w-4" />
               <span>Enroll / Checkout ({bundleCalculation.selectedCount})</span>
             </Button>
           </Link>

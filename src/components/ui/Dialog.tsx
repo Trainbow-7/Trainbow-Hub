@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
+import { CloseIcon } from "@/components/ui/icons";
 
 export function Dialog({
   open,
@@ -44,7 +44,7 @@ export function Dialog({
           className="absolute right-4 top-4 rounded-md p-1 text-neutral-slate-400 hover:bg-neutral-slate-100 hover:text-neutral-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-blue-600"
           aria-label="Close dialog"
         >
-          <X className="h-5 w-5" />
+          <CloseIcon className="h-5 w-5" />
         </button>
         {children}
       </div>

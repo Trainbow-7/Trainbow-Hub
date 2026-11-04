@@ -4,24 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import {
-  BookOpen,
-  Calculator,
-  Atom,
-  FlaskConical,
-  Dna,
-  Music,
-  CheckCircle2,
-  Sparkles,
-  Bot,
-  Users,
-  GraduationCap,
-  ArrowRight,
-  Filter,
-  ShieldCheck,
-  Search,
-  ExternalLink,
-} from "lucide-react";
+import { SearchIcon, ArrowRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 
 interface Subject {
@@ -41,15 +24,6 @@ interface Subject {
   aiEvaluationStatus: "NOT_STARTED" | "IN_EVALUATION" | "PASSED" | "FAILED";
   aiEvaluationScore?: number;
 }
-
-const ICON_MAP: Record<string, any> = {
-  Calculator,
-  BookOpen,
-  Atom,
-  FlaskConical,
-  Dna,
-  Music,
-};
 
 export default function SubjectsCatalogPage() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
@@ -90,32 +64,33 @@ export default function SubjectsCatalogPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-brand-navy-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-neutral-slate-800 shadow-soft">
+      <section className="bg-brand-navy-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-neutral-slate-800">
         <div className="max-w-6xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple-900/60 border border-brand-purple-500/40 text-brand-purple-200 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Academic Curriculum Registry</span>
-          </div>
+          <span className="inline-block px-3 py-1 rounded bg-white/10 text-brand-blue-200 text-xs font-semibold">
+            Academic curriculum registry
+          </span>
 
           <h1 className="text-display font-black tracking-tight leading-tight">
-            Explore All Subjects &amp; Curricula
+            Explore subjects and curricula
           </h1>
           <p className="text-body-lg text-neutral-slate-200 max-w-2xl">
             From foundational Mathematics to English, Physics, and Chemistry. Every subject is
-            aligned to WAEC, JAMB, and Cambridge standards with verified human tutors and rigorously evaluated AI guidance.
+            aligned to WAEC, JAMB, and Cambridge standards with qualified tutors and evaluated study helper support.
           </p>
 
           {/* Search & Filter Controls */}
           <div className="pt-4 flex flex-wrap gap-3 items-center">
             <div className="relative flex-1 min-w-[240px] max-w-md">
-              <Search className="w-4 h-4 text-neutral-slate-400 absolute left-3 top-3.5" />
+              <div className="absolute left-3 top-3 text-neutral-slate-400">
+                <SearchIcon size="sm" />
+              </div>
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search subject by name or topic..."
                 aria-label="Search subjects"
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-neutral-slate-800 border border-neutral-slate-700 text-white text-sm placeholder:text-neutral-slate-400 focus:outline-hidden focus:border-brand-purple-400"
+                className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-neutral-slate-800 border border-neutral-slate-700 text-white text-sm placeholder:text-neutral-slate-400 focus:outline-hidden focus:border-brand-blue-400"
               />
             </div>
 
@@ -124,9 +99,9 @@ export default function SubjectsCatalogPage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-2 rounded-xl text-xs font-bold transition-colors ${
+                  className={`px-3 py-2 rounded-lg text-xs font-bold transition-colors ${
                     selectedCategory === cat
-                      ? "bg-brand-purple-600 text-white"
+                      ? "bg-brand-blue-600 text-white"
                       : "bg-neutral-slate-800 text-neutral-slate-300 hover:bg-neutral-slate-700 hover:text-white"
                   }`}
                 >
@@ -139,18 +114,19 @@ export default function SubjectsCatalogPage() {
       </section>
 
       {/* Main Subjects Grid */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 flex-1">
         <div className="flex items-center justify-between pb-6 border-b border-neutral-slate-200">
           <div>
             <h2 className="text-xl font-black text-neutral-slate-900">
               Active Academic Subjects ({filteredSubjects.length})
             </h2>
             <p className="text-xs text-neutral-slate-600 mt-0.5">
-              Approved curricula ready for immediate self-paced study or 1-on-1 virtual tutor booking.
+              Approved curricula ready for self-paced study or 1-on-1 virtual tutor booking.
             </p>
           </div>
-          <Link href="/request-tutor" className="text-xs font-bold text-brand-purple-700 hover:underline flex items-center gap-1">
-            Request a Tutor Match <ArrowRight className="w-3.5 h-3.5" />
+          <Link href="/request-tutor" className="text-xs font-bold text-brand-blue-700 hover:underline flex items-center gap-1">
+            <span>Request a tutor match</span>
+            <ArrowRightIcon className="w-3.5 h-3.5" />
           </Link>
         </div>
 
@@ -159,57 +135,50 @@ export default function SubjectsCatalogPage() {
             Loading subjects catalogue...
           </div>
         ) : filteredSubjects.length === 0 ? (
-          <div className="py-20 text-center space-y-3 bg-white rounded-2xl border border-neutral-slate-200 mt-6 p-8">
+          <div className="py-20 text-center space-y-3 bg-white rounded-lg border border-neutral-slate-200 mt-6 p-8">
             <p className="text-neutral-slate-700 font-semibold text-sm">No subjects found matching your search.</p>
             <Button variant="outline" size="sm" onClick={() => { setSelectedCategory("ALL"); setSearchQuery(""); }}>
-              Reset Filters
+              Reset filters
             </Button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" data-testid="subjects-catalog-grid">
             {filteredSubjects.map((sub) => {
-              const IconComp = ICON_MAP[sub.icon] || BookOpen;
               const formattedPrice = `₦${(sub.pricingTierMinorUnits / 100).toLocaleString()}/hr`;
 
               return (
                 <div
                   key={sub.slug}
                   data-testid={`subject-card-${sub.slug}`}
-                  className="bg-white rounded-2xl border border-neutral-slate-200 p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow relative overflow-hidden group"
+                  className="bg-white rounded-lg border border-neutral-slate-200 p-6 flex flex-col justify-between relative overflow-hidden group"
                 >
                   {/* Category Pill & AI Status */}
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-neutral-slate-100 text-neutral-slate-700 border border-neutral-slate-200">
+                    <span className="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-neutral-slate-100 text-neutral-slate-700 border border-neutral-slate-200">
                       {sub.category}
                     </span>
 
                     {sub.aiEnabled ? (
                       <span
                         data-testid={`ai-badge-active-${sub.slug}`}
-                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-800 border border-purple-200"
+                        className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800 border border-purple-200"
                       >
-                        <Bot className="w-3 h-3 text-purple-600" />
-                        AI Socratic Active
+                        Study helper active
                       </span>
                     ) : (
                       <span
                         data-testid={`ai-badge-eval-${sub.slug}`}
-                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-neutral-slate-100 text-neutral-slate-600 border border-neutral-slate-200"
+                        className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-neutral-slate-100 text-neutral-slate-600 border border-neutral-slate-200"
                       >
-                        <ShieldCheck className="w-3 h-3 text-neutral-slate-500" />
-                        AI in Quality Evaluation
+                        Helper in evaluation
                       </span>
                     )}
                   </div>
 
-                  {/* Icon & Subject Title */}
+                  {/* Subject Title */}
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center font-bold">
-                      <IconComp className="w-6 h-6" />
-                    </div>
-
                     <div>
-                      <h3 className="text-lg font-bold text-neutral-slate-900 group-hover:text-purple-700 transition-colors">
+                      <h3 className="text-lg font-bold text-neutral-slate-900 group-hover:text-brand-blue-700 transition-colors">
                         <Link href={`/subjects/${sub.slug}`} className="hover:underline">
                           {sub.name}
                         </Link>
@@ -222,19 +191,19 @@ export default function SubjectsCatalogPage() {
                     {/* Levels Badge List */}
                     <div className="pt-1">
                       <p className="text-[10px] font-bold text-neutral-slate-500 uppercase tracking-wider mb-1">
-                        Curriculum Tracks:
+                        Curriculum tracks:
                       </p>
                       <div className="flex flex-wrap gap-1">
                         {sub.levels.slice(0, 3).map((lvl) => (
                           <span
                             key={lvl}
-                            className="text-[10px] bg-neutral-slate-50 text-neutral-slate-700 px-2 py-0.5 rounded-md border border-neutral-slate-200 font-medium"
+                            className="text-[10px] bg-neutral-slate-50 text-neutral-slate-700 px-2 py-0.5 rounded border border-neutral-slate-200 font-medium"
                           >
                             {lvl}
                           </span>
                         ))}
                         {sub.levels.length > 3 && (
-                          <span className="text-[10px] bg-neutral-slate-50 text-neutral-slate-600 px-1.5 py-0.5 rounded-md border border-neutral-slate-200 font-medium">
+                          <span className="text-[10px] bg-neutral-slate-50 text-neutral-slate-600 px-1.5 py-0.5 rounded border border-neutral-slate-200 font-medium">
                             +{sub.levels.length - 3} more
                           </span>
                         )}
@@ -245,7 +214,7 @@ export default function SubjectsCatalogPage() {
                   {/* Footer Meta & Action Links */}
                   <div className="pt-5 mt-5 border-t border-neutral-slate-100 flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] text-neutral-slate-500 block">Lessons From</span>
+                      <span className="text-[10px] text-neutral-slate-500 block">Lessons from</span>
                       <span className="text-xs font-black text-neutral-slate-900">{formattedPrice}</span>
                     </div>
 
@@ -253,9 +222,9 @@ export default function SubjectsCatalogPage() {
                       <Link
                         href={`/subjects/${sub.slug}`}
                         data-testid={`view-subject-btn-${sub.slug}`}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-neutral-slate-900 text-white text-xs font-bold hover:bg-neutral-slate-800 transition-colors"
+                        className="inline-flex items-center px-3 py-1.5 rounded bg-neutral-slate-900 text-white text-xs font-bold hover:bg-neutral-slate-800 transition-colors"
                       >
-                        Explore <ArrowRight className="w-3 h-3" />
+                        Explore
                       </Link>
                     </div>
                   </div>
@@ -266,19 +235,18 @@ export default function SubjectsCatalogPage() {
         )}
 
         {/* Quality Standard Callout */}
-        <div className="mt-16 mb-12 bg-white rounded-2xl border border-neutral-slate-200 p-8 shadow-soft">
+        <div className="mt-16 mb-12 bg-white rounded-lg border border-neutral-slate-200 p-8">
           <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-service-tutor-700 text-xs font-bold border border-teal-200">
-              <ShieldCheck className="w-4 h-4 text-service-tutor-700" />
-              <span>Trainbow Rigorous Subject Launch Gate</span>
-            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-service-tutor-700">
+              Subject review standard
+            </span>
             <h2 className="text-xl font-black text-neutral-slate-900">
               Why aren&apos;t all subjects AI-enabled immediately?
             </h2>
             <p className="text-xs text-neutral-slate-600 leading-relaxed">
-              Under our pedagogical governance framework, an AI assistant is never released to Nigerian students
-              as a generic, unverified model. Each subject must first pass formal curriculum grounding,
-              symbolic or rubric accuracy tests exceeding 80%, and minor child safety filters before being toggled live.
+              Under our curriculum review process, an AI study helper is never released to Nigerian students
+              as an untested model. Each subject must first pass curriculum grounding,
+              accuracy tests exceeding 80%, and child safety filters before being enabled.
             </p>
           </div>
         </div>

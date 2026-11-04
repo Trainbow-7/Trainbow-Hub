@@ -8,17 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { calculateAge, isMinorFromDob } from "@/lib/auth/utils";
-import {
-  ShieldAlert,
-  ShieldCheck,
-  GraduationCap,
-  Users,
-  Briefcase,
-  AlertCircle,
-  Eye,
-  EyeOff,
-  CheckCircle2,
-} from "lucide-react";
+import { EyeIcon, EyeOffIcon, AlertIcon, CheckIcon } from "@/components/ui/icons";
 
 type RoleType = "STUDENT" | "PARENT" | "TUTOR";
 
@@ -69,7 +59,7 @@ export default function RegisterPage() {
 
     if (isMinor && !guardianEmail && !guardianPhone) {
       setErrorMsg(
-        "Under NDPA 2023, learners under 18 must provide a parent/guardian email or phone number for verification."
+        "Learners under 18 must provide a parent or guardian email or phone number."
       );
       return;
     }
@@ -158,7 +148,6 @@ export default function RegisterPage() {
                 : "text-neutral-slate-600 hover:text-neutral-slate-900"
             }`}
           >
-            <GraduationCap className="w-4 h-4 mb-1" />
             <span>Learner</span>
           </button>
 
@@ -176,7 +165,6 @@ export default function RegisterPage() {
                 : "text-neutral-slate-600 hover:text-neutral-slate-900"
             }`}
           >
-            <Users className="w-4 h-4 mb-1" />
             <span>Parent / Guardian</span>
           </button>
 
@@ -194,7 +182,6 @@ export default function RegisterPage() {
                 : "text-neutral-slate-600 hover:text-neutral-slate-900"
             }`}
           >
-            <Briefcase className="w-4 h-4 mb-1" />
             <span>Tutor</span>
           </button>
         </div>
@@ -208,7 +195,7 @@ export default function RegisterPage() {
                 role="alert"
                 className="p-3.5 rounded-lg bg-red-50 border border-red-200 flex items-start gap-2.5 text-sm text-red-700"
               >
-                <AlertCircle className="w-5 h-5 shrink-0 text-red-600 mt-0.5" />
+                <AlertIcon className="w-5 h-5 shrink-0 text-red-600 mt-0.5" />
                 <span>{errorMsg}</span>
               </div>
             )}
@@ -269,7 +256,7 @@ export default function RegisterPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="flex h-10 w-full rounded-md border border-neutral-slate-200 bg-white px-3 py-2 pr-10 text-sm text-neutral-slate-900 placeholder:text-neutral-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600"
+                  className="flex min-h-[44px] w-full rounded-md border border-neutral-slate-200 bg-white px-3 py-2 pr-10 text-base md:text-sm text-neutral-slate-900 placeholder:text-neutral-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600"
                 />
                 <button
                   type="button"
@@ -277,7 +264,7 @@ export default function RegisterPage() {
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-neutral-slate-400 hover:text-neutral-slate-600 focus:outline-none"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
                 </button>
               </div>
             </div>
@@ -297,10 +284,10 @@ export default function RegisterPage() {
                       learnerAge !== null
                         ? `Age: ${learnerAge} years old · ${
                             isMinor
-                              ? "Minor (Under 18) — NDPA Guardian Safeguard applies"
+                              ? "Minor (Under 18) — Guardian consent applies"
                               : "Adult learner (18+) — Direct booking enabled"
                           }`
-                        : "Required to verify eligibility and apply appropriate NDPA 2023 safeguarding."
+                        : "Required to verify eligibility and apply appropriate student safeguarding."
                     }
                   />
                 </div>
@@ -309,13 +296,12 @@ export default function RegisterPage() {
                 {isMinor && (
                   <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200 space-y-4">
                     <div className="flex items-start gap-2.5">
-                      <ShieldAlert className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
                       <div>
                         <h2 className="text-sm font-bold text-amber-900">
-                          Parent / Guardian Consent Required (NDPA 2023 Section 31)
+                          Parent / Guardian Consent Required
                         </h2>
                         <p className="text-xs text-amber-800 mt-1 leading-relaxed">
-                          Because you are under 18 ({learnerAge} years old), Nigerian data protection regulations require consent from a parent or legal guardian. We will dispatch a 6-digit verification passcode to confirm your guardian&apos;s authorization.
+                          Because you are under 18 ({learnerAge} years old), consent is required from a parent or legal guardian. We will dispatch a 6-digit verification passcode to confirm your guardian&apos;s authorization.
                         </p>
                       </div>
                     </div>
@@ -343,7 +329,7 @@ export default function RegisterPage() {
                           id="guardian-rel"
                           value={guardianRelationship}
                           onChange={(e) => setGuardianRelationship(e.target.value)}
-                          className="flex h-10 w-full rounded-md border border-neutral-slate-200 bg-white px-3 py-2 text-sm text-neutral-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600"
+                          className="flex min-h-[44px] w-full rounded-md border border-neutral-slate-200 bg-white px-3 py-2 text-base md:text-sm text-neutral-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600"
                         >
                           <option value="Mother">Mother</option>
                           <option value="Father">Father</option>
@@ -380,7 +366,7 @@ export default function RegisterPage() {
 
                 {!isMinor && dateOfBirth && (
                   <div className="p-3 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center gap-2 text-xs text-emerald-800">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <CheckIcon className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>Adult learner verified (18+). Direct booking and scheduling permissions active upon registration.</span>
                   </div>
                 )}
@@ -429,7 +415,7 @@ export default function RegisterPage() {
                     id="tutor-subject"
                     value={tutorSubject}
                     onChange={(e) => setTutorSubject(e.target.value)}
-                    className="flex h-10 w-full rounded-md border border-neutral-slate-200 bg-white px-3 py-2 text-sm text-neutral-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600"
+                    className="flex min-h-[44px] w-full rounded-md border border-neutral-slate-200 bg-white px-3 py-2 text-base md:text-sm text-neutral-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-600"
                   >
                     <option value="Senior Secondary Mathematics (WAEC/JAMB)">Senior Secondary Mathematics (WAEC/JAMB)</option>
                     <option value="Further Mathematics & Calculus">Further Mathematics & Calculus</option>
@@ -469,7 +455,6 @@ export default function RegisterPage() {
 
           {/* Compliance notice */}
           <div className="mt-6 pt-5 border-t border-neutral-slate-100 flex items-start gap-2 text-xs text-neutral-slate-500">
-            <ShieldCheck className="w-4 h-4 text-brand-teal-600 shrink-0 mt-0.5" />
             <p>
               By registering, you agree to the{" "}
               <Link href="/legal/terms" className="text-brand-blue-600 hover:underline">

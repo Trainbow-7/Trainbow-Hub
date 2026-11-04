@@ -27,6 +27,14 @@ export function Avatar({ name, src, size = "md", className, ...props }: AvatarPr
     return n.slice(0, 2).toUpperCase();
   };
 
+  // If no explicit src is provided, check if the avatar belongs to Mr Oyedeji S.T
+  // This automatically displays his official photo anywhere his name is rendered.
+  const resolvedSrc =
+    src ||
+    (name && /oyedeji/i.test(name)
+      ? "/images/instructors/mr-oyedeji-st.jpg"
+      : undefined);
+
   return (
     <div
       className={cn(
@@ -36,12 +44,12 @@ export function Avatar({ name, src, size = "md", className, ...props }: AvatarPr
       )}
       {...props}
     >
-      {src && !imgError ? (
+      {resolvedSrc && !imgError ? (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img
-          src={src}
+          src={resolvedSrc}
           alt={name}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-top"
           onError={() => setImgError(true)}
         />
       ) : (

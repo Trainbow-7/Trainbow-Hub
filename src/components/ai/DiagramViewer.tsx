@@ -3,16 +3,7 @@
 import * as React from "react";
 import { DiagramSpec } from "@/lib/ai/diagram-spec";
 import { Button } from "@/components/ui/Button";
-import {
-  ZoomIn,
-  ZoomOut,
-  Maximize2,
-  Download,
-  Copy,
-  Check,
-  Eye,
-  Sliders,
-} from "lucide-react";
+import { DownloadIcon, CopyIcon, CheckIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 interface DiagramViewerProps {
@@ -94,7 +85,7 @@ export function DiagramViewer({ spec, className }: DiagramViewerProps) {
             className="h-7 w-7 p-0 text-neutral-slate-600 hover:text-service-ai-700"
             title="Zoom In"
           >
-            <ZoomIn className="h-3.5 w-3.5" />
+            <span>+</span>
           </Button>
           <Button
             type="button"
@@ -104,7 +95,7 @@ export function DiagramViewer({ spec, className }: DiagramViewerProps) {
             className="h-7 w-7 p-0 text-neutral-slate-600 hover:text-service-ai-700"
             title="Zoom Out"
           >
-            <ZoomOut className="h-3.5 w-3.5" />
+            <span>-</span>
           </Button>
           <Button
             type="button"
@@ -138,7 +129,7 @@ export function DiagramViewer({ spec, className }: DiagramViewerProps) {
             className="h-7 w-7 p-0 text-neutral-slate-600 hover:text-service-ai-700"
             title="Toggle Labels"
           >
-            <Eye className="h-3.5 w-3.5" />
+            
           </Button>
 
           {/* Copy SVG */}
@@ -150,7 +141,7 @@ export function DiagramViewer({ spec, className }: DiagramViewerProps) {
             className="h-7 w-7 p-0 text-neutral-slate-600 hover:text-service-ai-700"
             title="Copy SVG"
           >
-            {copied ? <Check className="h-3.5 w-3.5 text-status-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? <CheckIcon className="h-3.5 w-3.5 text-status-green-600" /> : <CopyIcon className="h-3.5 w-3.5" />}
           </Button>
 
           {/* Download PNG */}
@@ -162,7 +153,7 @@ export function DiagramViewer({ spec, className }: DiagramViewerProps) {
             className="h-7 w-7 p-0 text-neutral-slate-600 hover:text-service-ai-700"
             title="Export as High-Res PNG"
           >
-            <Download className="h-3.5 w-3.5" />
+            <DownloadIcon className="h-3.5 w-3.5" />
           </Button>
         </div>
       </div>

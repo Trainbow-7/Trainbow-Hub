@@ -7,7 +7,7 @@ import { TrainbowLogo } from "@/components/ui/TrainbowLogo";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { Eye, EyeOff, Lock, Mail, ShieldCheck, UserCheck, AlertCircle, Sparkles } from "lucide-react";
+import { EyeIcon, EyeOffIcon, AlertIcon } from "@/components/ui/icons";
 
 const DEMO_PRESETS = [
   {
@@ -117,7 +117,6 @@ function LoginForm() {
         {/* Quick Demo Credentials Panel */}
         <div className="mb-6 bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-xs">
           <div className="flex items-center gap-1.5 text-xs font-bold text-neutral-slate-700 uppercase tracking-wider mb-2.5">
-            <Sparkles className="w-4 h-4 text-brand-blue-600" />
             <span>Quick Demo Sign-In (1-Tap Selection)</span>
           </div>
           <p className="text-xs text-neutral-slate-500 mb-3">
@@ -145,7 +144,7 @@ function LoginForm() {
                 role="alert"
                 className="p-3.5 rounded-lg bg-red-50 border border-red-200 flex items-start gap-2.5 text-sm text-red-700"
               >
-                <AlertCircle className="w-5 h-5 shrink-0 text-red-600 mt-0.5" />
+                <AlertIcon className="w-5 h-5 shrink-0 text-red-600 mt-0.5" />
                 <span>{errorMsg}</span>
               </div>
             )}
@@ -158,9 +157,7 @@ function LoginForm() {
                 Email address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-slate-400">
-                  <Mail className="h-5 w-5" />
-                </div>
+                
                 <Input
                   id="email"
                   name="email"
@@ -170,7 +167,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. chioma@trainbowhub.ng"
-                  className="pl-10 text-sm h-11"
+                  className="text-base md:text-sm h-11"
                 />
               </div>
             </div>
@@ -188,9 +185,7 @@ function LoginForm() {
                 </span>
               </div>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-slate-400">
-                  <Lock className="h-5 w-5" />
-                </div>
+                
                 <Input
                   id="password"
                   name="password"
@@ -200,7 +195,7 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="pl-10 pr-10 text-sm h-11"
+                  className="pr-10 text-base md:text-sm h-11"
                 />
                 <button
                   type="button"
@@ -208,7 +203,7 @@ function LoginForm() {
                   className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-neutral-slate-400 hover:text-neutral-slate-600 focus:outline-none min-w-[44px] min-h-[44px] justify-center"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {showPassword ? <EyeOffIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
                 </button>
               </div>
             </div>
@@ -225,10 +220,8 @@ function LoginForm() {
 
           {/* NDPA 2023 Safeguard Notice */}
           <div className="mt-6 pt-5 border-t border-neutral-slate-100 flex items-start gap-2 text-xs text-neutral-slate-500">
-            <ShieldCheck className="w-4 h-4 text-service-tutor-700 shrink-0 mt-0.5" />
             <p>
-              Under <span className="font-semibold text-neutral-slate-700">NDPA 2023 Section 31</span>,
-              learners under 18 years operate under verified parental consent before booking sessions.
+              Learners under 18 years operate under parental consent before booking sessions.
             </p>
           </div>
 

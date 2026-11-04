@@ -26,7 +26,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={textareaId}
           ref={ref}
           className={cn(
-            "flex min-h-[96px] w-full rounded-md border border-neutral-slate-300 bg-white px-3 py-2 text-sm text-neutral-slate-900 placeholder:text-neutral-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue-600 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-colors",
+            "flex min-h-[96px] w-full rounded-md border border-neutral-slate-300 bg-white px-3 py-2 text-base md:text-sm text-neutral-slate-900 placeholder:text-neutral-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue-600 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-colors",
             error && "border-status-red-600 focus:ring-status-red-600",
             className
           )}
@@ -59,7 +59,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           id={checkboxId}
           ref={ref}
           className={cn(
-            "h-4 w-4 rounded border-neutral-slate-300 text-brand-blue-600 focus:ring-brand-blue-600 mt-0.5 cursor-pointer",
+            "h-4 w-4 rounded border-neutral-slate-300 text-brand-blue-600 focus:ring-brand-blue-600 mt-0.5 cursor-pointer min-w-[20px] min-h-[20px]",
             className
           )}
           {...props}

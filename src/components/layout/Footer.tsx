@@ -1,7 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { TrainbowLogo } from "@/components/ui/TrainbowLogo";
-import { Mail, Phone, MapPin } from "lucide-react";
 import { BRAND } from "@/lib/brand";
 
 export function Footer() {
@@ -86,31 +85,26 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Contact Strip */}
+        {/* Contact Strip (Typographic, no decorative icons) */}
         <div className="mt-8 pt-6 border-t border-neutral-slate-200 flex flex-wrap items-center justify-between gap-4 text-xs text-neutral-slate-600">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <a
               href={`mailto:${BRAND.supportEmail}`}
-              className="inline-flex items-center gap-1.5 hover:text-brand-blue-600 transition-colors"
+              className="hover:text-brand-blue-600 transition-colors"
             >
-              <Mail className="h-3.5 w-3.5 text-brand-blue-600 shrink-0" />
               <span>{BRAND.supportEmail}</span>
             </a>
             <a
               href={`tel:${BRAND.supportPhone}`}
-              className="inline-flex items-center gap-1.5 hover:text-brand-blue-600 transition-colors"
+              className="hover:text-brand-blue-600 transition-colors"
             >
-              <Phone className="h-3.5 w-3.5 text-brand-blue-600 shrink-0" />
               <span>{BRAND.supportPhone}</span>
             </a>
-            <span className="inline-flex items-center gap-1.5 text-neutral-slate-500">
-              <MapPin className="h-3.5 w-3.5 text-neutral-slate-400 shrink-0" />
-              <span>{BRAND.location}</span>
-            </span>
+            <span>{BRAND.location}</span>
           </div>
 
-          <p className="text-neutral-slate-500 text-[11px] sm:text-xs">
-            © {new Date().getFullYear()} {BRAND.name} Limited. All rights reserved.
+          <p className="text-neutral-slate-400">
+            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
         </div>
       </div>

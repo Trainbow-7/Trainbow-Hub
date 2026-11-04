@@ -19,23 +19,7 @@ import {
   isDataSaverEnabled,
   toggleDataSaver,
 } from "@/lib/offline/sync";
-import {
-  Building2,
-  Users,
-  GraduationCap,
-  Award,
-  Layers,
-  Upload,
-  CheckCircle2,
-  Clock,
-  Sparkles,
-  Search,
-  WifiOff,
-  RefreshCw,
-  Plus,
-  ShieldCheck,
-  AlertCircle,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, SearchIcon, LoaderIcon } from "@/components/ui/icons";
 
 interface SchoolOverviewData {
   school: {
@@ -325,7 +309,7 @@ export default function SchoolPage() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-100 text-xs font-bold border border-emerald-700">
-                  <Building2 className="w-3.5 h-3.5" />
+                  
                   <span>Institutional Multi-Tenant Portal (ADR-013)</span>
                 </div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
@@ -392,7 +376,7 @@ export default function SchoolPage() {
                 <span>Type: <strong className="text-white">{data.school.type}</strong></span>
                 <span className="hidden sm:inline text-white/60">•</span>
                 <span className="inline-flex items-center gap-1 text-emerald-200 font-bold">
-                  <ShieldCheck className="w-3.5 h-3.5" /> Ministry Verified
+                   Ministry Verified
                 </span>
               </div>
             )}
@@ -451,7 +435,7 @@ export default function SchoolPage() {
                   onClick={() => setIsBulkModalOpen(true)}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-brand-blue-600 hover:bg-brand-blue-700 text-white shadow-xs transition-colors"
                 >
-                  <Upload className="w-4 h-4" />
+                  
                   <span>{dict.school.bulkEnroll}</span>
                 </button>
                 <button
@@ -459,7 +443,7 @@ export default function SchoolPage() {
                   onClick={() => setIsCohortModalOpen(true)}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-neutral-slate-100 hover:bg-neutral-slate-200 text-neutral-slate-800 border border-neutral-slate-300 transition-colors"
                 >
-                  <Plus className="w-4 h-4" />
+                  
                   <span>Add Cohort</span>
                 </button>
               </div>
@@ -469,7 +453,7 @@ export default function SchoolPage() {
             <div className="bg-white rounded-2xl p-6 border border-neutral-slate-200 shadow-xs flex flex-col justify-between">
               <div className="flex items-center justify-between text-neutral-slate-500">
                 <span className="text-xs font-semibold uppercase tracking-wider">{dict.school.averageScore}</span>
-                <Award className="w-5 h-5 text-amber-700" />
+                
               </div>
               <div className="my-2">
                 <span className="text-3xl font-black text-neutral-slate-900">
@@ -488,7 +472,7 @@ export default function SchoolPage() {
             <div className="bg-white rounded-2xl p-6 border border-neutral-slate-200 shadow-xs flex flex-col justify-between">
               <div className="flex items-center justify-between text-neutral-slate-500">
                 <span className="text-xs font-semibold uppercase tracking-wider">{dict.school.completionRate}</span>
-                <GraduationCap className="w-5 h-5 text-brand-blue-600" />
+                
               </div>
               <div className="my-2">
                 <span className="text-3xl font-black text-neutral-slate-900">
@@ -507,12 +491,11 @@ export default function SchoolPage() {
           {/* Navigation Tabs */}
           <div className="border-b border-neutral-slate-200 flex flex-wrap items-center gap-2">
             {[
-              { id: "overview", label: "Cohorts & Classes", icon: Layers },
-              { id: "students", label: "Enrolled Students Roster", icon: Users },
-              { id: "multilingual", label: "Multilingual Localization (ADR-013)", icon: Sparkles },
-              { id: "offline", label: "Low-Bandwidth & Offline PWA", icon: WifiOff },
+              { id: "overview", label: "Cohorts & Classes" },
+              { id: "students", label: "Enrolled Students Roster" },
+              { id: "multilingual", label: "Multilingual Localization (ADR-013)" },
+              { id: "offline", label: "Low-Bandwidth & Offline PWA" },
             ].map((tab) => {
-              const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
                 <button
@@ -525,7 +508,6 @@ export default function SchoolPage() {
                       : "border-transparent text-neutral-slate-600 hover:text-neutral-slate-900 hover:border-neutral-slate-300"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -549,7 +531,7 @@ export default function SchoolPage() {
                   onClick={() => setIsCohortModalOpen(true)}
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-blue-600 text-white hover:bg-brand-blue-700 shadow-xs"
                 >
-                  <Plus className="w-4 h-4" />
+                  
                   <span>Create Class Cohort</span>
                 </button>
               </div>
@@ -584,7 +566,7 @@ export default function SchoolPage() {
                         <strong>{cohort.studentCount}</strong> Students Enrolled
                       </span>
                       <span className="inline-flex items-center gap-1 text-emerald-700 font-semibold">
-                        <CheckCircle2 className="w-3.5 h-3.5" /> Licensed
+                        <CheckIcon className="h-4 w-4" /> Licensed
                       </span>
                     </div>
                   </div>
@@ -608,7 +590,7 @@ export default function SchoolPage() {
 
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <Search className="w-4 h-4 absolute left-3 top-2.5 text-neutral-slate-400" />
+                    <SearchIcon className="h-4 w-4" />
                     <input
                       id={searchInputId}
                       type="text"
@@ -625,7 +607,7 @@ export default function SchoolPage() {
                     onClick={() => setIsBulkModalOpen(true)}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-brand-blue-600 text-white hover:bg-brand-blue-700 shadow-xs"
                   >
-                    <Upload className="w-3.5 h-3.5" />
+                    
                     <span>Bulk Onboard</span>
                   </button>
                 </div>
@@ -669,7 +651,7 @@ export default function SchoolPage() {
                           </td>
                           <td className="py-3 px-4">
                             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                              <CheckCircle2 className="w-3 h-3" />
+                              <CheckIcon className="h-4 w-4" />
                               {st.status}
                             </span>
                           </td>
@@ -696,7 +678,7 @@ export default function SchoolPage() {
             <div className="bg-white rounded-2xl p-6 border border-neutral-slate-200 shadow-xs space-y-6">
               <div className="space-y-1">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-900 text-xs font-bold">
-                  <Sparkles className="w-3.5 h-3.5 text-purple-700" />
+                  
                   <span>5-Language Regional Localization Engine</span>
                 </div>
                 <h2 className="text-xl font-bold text-neutral-slate-900">
@@ -768,7 +750,7 @@ export default function SchoolPage() {
             <div className="bg-white rounded-2xl p-6 border border-neutral-slate-200 shadow-xs space-y-6">
               <div className="space-y-1">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-950 text-xs font-bold">
-                  <WifiOff className="w-3.5 h-3.5 text-emerald-800" />
+                  
                   <span>Offline-First PWA & Low-Bandwidth 2G/3G Engine</span>
                 </div>
                 <h2 className="text-xl font-bold text-neutral-slate-900">
@@ -834,7 +816,7 @@ export default function SchoolPage() {
 
               {syncStatusMsg && (
                 <div className="p-3 bg-brand-blue-50 border border-brand-blue-200 text-brand-blue-800 rounded-xl text-xs font-medium flex items-center gap-2">
-                  <RefreshCw className="w-4 h-4 text-brand-blue-600 animate-spin" />
+                  <LoaderIcon className="h-4 w-4" />
                   <span>{syncStatusMsg}</span>
                 </div>
               )}
@@ -893,9 +875,9 @@ export default function SchoolPage() {
                     }`}
                   >
                     {bulkMessage.type === "success" ? (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <CheckIcon className="h-4 w-4" />
                     ) : (
-                      <AlertCircle className="w-4 h-4 text-red-600" />
+                      <AlertIcon className="h-4 w-4" />
                     )}
                     <span>{bulkMessage.text}</span>
                   </div>

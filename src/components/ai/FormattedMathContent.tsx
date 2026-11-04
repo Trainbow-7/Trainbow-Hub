@@ -4,7 +4,7 @@ import * as React from "react";
 import katex from "katex";
 import "katex/dist/contrib/mhchem.js";
 import { cn } from "@/lib/utils";
-import { Check, Copy } from "lucide-react";
+import { CheckIcon, CopyIcon } from "@/components/ui/icons";
 import { normalizeMathInText } from "@/lib/ai/math-formatter";
 
 interface Attachment {
@@ -362,7 +362,7 @@ function DiagramBlock({ code, type }: { code: string; type?: string }) {
           className="text-neutral-slate-500 hover:text-neutral-slate-800 p-1 rounded hover:bg-white text-xs flex items-center gap-1 transition-colors"
           title="Copy Diagram Code"
         >
-          {copied ? <Check className="w-3.5 h-3.5 text-status-green-600" /> : <Copy className="w-3.5 h-3.5" />}
+          {copied ? <CheckIcon className="w-3.5 h-3.5 text-status-green-600" /> : <CopyIcon className="w-3.5 h-3.5" />}
           <span className="text-[10px]">{copied ? "Copied" : "Copy"}</span>
         </button>
       </div>

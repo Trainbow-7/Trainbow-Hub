@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { InlineMathText } from "@/components/ui/InlineMathText";
-import { BookOpen, CheckCircle2, Lightbulb, Compass, Info } from "lucide-react";
+// Typographic callout markers per Icon Policy
 import { cn } from "@/lib/utils";
 
 interface LessonNotesRendererProps {
@@ -174,33 +174,21 @@ export function LessonNotesRenderer({ content, className }: LessonNotesRendererP
           case "h2":
             return (
               <div key={idx} className="flex items-center gap-2 pt-4 pb-1 border-b border-neutral-slate-100">
-                <BookOpen className="w-4 h-4 text-brand-blue-600 shrink-0" />
+                
                 <h3 className="text-base sm:text-lg font-bold font-heading text-neutral-slate-900">
                   {renderFormattedInline(block.text)}
                 </h3>
               </div>
             );
 
-          case "h3": {
-            const lower = block.text.toLowerCase();
-            const isObjectives = lower.includes("objective");
-            const isFormulas = lower.includes("formula") || lower.includes("principle") || lower.includes("key point");
-            const isStrategy = lower.includes("strategy") || lower.includes("practice") || lower.includes("step");
-
+          case "h3":
             return (
-              <div key={idx} className="flex items-center gap-2 pt-3 pb-1">
-                {isObjectives && <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />}
-                {isFormulas && <Lightbulb className="w-4 h-4 text-amber-600 shrink-0" />}
-                {isStrategy && <Compass className="w-4 h-4 text-brand-blue-600 shrink-0" />}
-                {!isObjectives && !isFormulas && !isStrategy && (
-                  <Info className="w-4 h-4 text-neutral-slate-400 shrink-0" />
-                )}
+              <div key={idx} className="pt-3 pb-1">
                 <h4 className="text-sm sm:text-base font-bold font-heading text-neutral-slate-900">
                   {renderFormattedInline(block.text)}
                 </h4>
               </div>
             );
-          }
 
           case "divider":
             return <hr key={idx} className="my-5 border-neutral-slate-200/80" />;
@@ -243,7 +231,7 @@ export function LessonNotesRenderer({ content, className }: LessonNotesRendererP
                 key={idx}
                 className="my-3 p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-amber-900 flex items-start gap-3"
               >
-                <Lightbulb className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                
                 <div className="flex-1 leading-relaxed">{renderFormattedInline(block.text)}</div>
               </div>
             );

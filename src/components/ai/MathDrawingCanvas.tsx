@@ -2,18 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/Button";
-import {
-  Square,
-  Circle,
-  Triangle,
-  Spline,
-  Eraser,
-  Undo2,
-  Download,
-  Trash2,
-  X,
-  Palette,
-} from "lucide-react";
+import { CloseIcon, DownloadIcon } from "@/components/ui/icons";
 
 interface MathDrawingCanvasProps {
   onClose?: () => void;
@@ -243,7 +232,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-neutral-slate-200 pb-3">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-purple-100 text-service-ai-600 flex items-center justify-center">
-            <Spline className="w-4 h-4" />
+            
           </div>
           <div>
             <h4 className="font-heading font-bold text-sm text-neutral-slate-900">
@@ -261,7 +250,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
             type="button"
             className="p-1 rounded-lg text-neutral-slate-500 hover:text-neutral-slate-800 hover:bg-neutral-slate-100"
           >
-            <X className="w-4 h-4" />
+            <CloseIcon className="w-4 h-4" />
           </button>
         )}
       </div>
@@ -278,7 +267,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
                 : "bg-white text-neutral-slate-700 border-neutral-slate-200 hover:bg-purple-50"
             }`}
           >
-            <Palette className="w-3.5 h-3.5" /> Pen
+             Pen
           </button>
 
           <button
@@ -290,7 +279,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
                 : "bg-white text-neutral-slate-700 border-neutral-slate-200 hover:bg-purple-50"
             }`}
           >
-            <Triangle className="w-3.5 h-3.5" /> Triangle
+             Triangle
           </button>
 
           <button
@@ -302,7 +291,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
                 : "bg-white text-neutral-slate-700 border-neutral-slate-200 hover:bg-purple-50"
             }`}
           >
-            <Circle className="w-3.5 h-3.5" /> Circle
+             Circle
           </button>
 
           <button
@@ -314,7 +303,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
                 : "bg-white text-neutral-slate-700 border-neutral-slate-200 hover:bg-purple-50"
             }`}
           >
-            <Spline className="w-3.5 h-3.5" /> Parabola / Graph
+             Parabola / Graph
           </button>
 
           <button
@@ -326,7 +315,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
                 : "bg-white text-neutral-slate-700 border-neutral-slate-200 hover:bg-neutral-slate-100"
             }`}
           >
-            <Eraser className="w-3.5 h-3.5" /> Eraser
+             Eraser
           </button>
         </div>
 
@@ -354,7 +343,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
             className="p-1 rounded text-neutral-slate-600 hover:text-neutral-slate-900 disabled:opacity-40"
             title="Undo"
           >
-            <Undo2 className="w-4 h-4" />
+            
           </button>
 
           <button
@@ -363,7 +352,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
             className="p-1 rounded text-neutral-slate-600 hover:text-neutral-slate-900"
             title="Clear Canvas"
           >
-            <Trash2 className="w-4 h-4" />
+            
           </button>
 
           <button
@@ -371,7 +360,7 @@ export function MathDrawingCanvas({ onClose, onInsertDiagram }: MathDrawingCanva
             onClick={handleDownload}
             className="px-2 py-1 rounded bg-neutral-slate-100 text-neutral-slate-700 hover:bg-neutral-slate-200 font-medium text-[11px] flex items-center gap-1"
           >
-            <Download className="w-3 h-3" /> Save PNG
+            <DownloadIcon className="w-3 h-3" /> Save PNG
           </button>
         </div>
       </div>

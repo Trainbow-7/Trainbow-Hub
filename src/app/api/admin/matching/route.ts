@@ -106,7 +106,7 @@ export async function POST(req: Request) {
       proposedSlotTime,
       quoteAmountMinorUnits: Number(quoteAmountMinorUnits),
       cancellationTerms: cancellationTerms || "Free cancellation up to 24 hours prior to session start.",
-      messageToFamily: messageToFamily || "Mr Oyedeji S.T personally matched this tutor from our private roster.",
+      messageToFamily: messageToFamily || "Mr Oyedeji S.T personally matched this tutor for your schedule.",
     });
 
     return NextResponse.json({ success: true, proposal });

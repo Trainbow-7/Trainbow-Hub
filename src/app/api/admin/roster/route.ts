@@ -40,7 +40,7 @@ export async function GET(req: Request) {
   } catch (error) {
     console.error("[GET_ADMIN_ROSTER_ERROR]", error);
     return NextResponse.json(
-      { success: false, error: "Internal server error fetching private roster" },
+      { success: false, error: "Internal server error fetching educator roster" },
       { status: 500 }
     );
   }

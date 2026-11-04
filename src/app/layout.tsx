@@ -20,10 +20,14 @@ const inter = Inter({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0B1B3A",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0B1B3A" },
+    { media: "(prefers-color-scheme: dark)", color: "#070F24" },
+  ],
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -40,7 +44,7 @@ export const metadata: Metadata = {
     "JAMB UTME prep",
     "Cambridge IGCSE",
     "AI maths helper",
-    "vetted tutors Nigeria",
+    "tutors Nigeria",
   ],
   authors: [{ name: `${BRAND.name} Team` }],
   icons: {

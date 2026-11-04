@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { BookOpen, Sparkles, GraduationCap, Music, Pause, Play } from "lucide-react";
+import { PlayIcon, PauseIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 export interface HubOrbitProps {
@@ -24,7 +24,7 @@ interface ServiceCardConfig {
   id: string;
   name: string;
   desc: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }>;
   color: string;
   badgeBg: string;
   cardBorder: string;
@@ -41,7 +41,7 @@ const ORBIT_SERVICES: ServiceCardConfig[] = [
     id: "academy",
     name: "Academy",
     desc: "Lessons and quizzes",
-    icon: BookOpen,
+    
     color: "#3B82F6",
     badgeBg: "bg-blue-500/20 text-sky-300 border-blue-400/30",
     cardBorder: "border-blue-400/25",
@@ -54,7 +54,7 @@ const ORBIT_SERVICES: ServiceCardConfig[] = [
     id: "ai",
     name: "AI",
     desc: "Instant study help",
-    icon: Sparkles,
+    
     color: "#8B5CF6",
     badgeBg: "bg-purple-500/20 text-purple-300 border-purple-400/30",
     cardBorder: "border-purple-400/25",
@@ -67,7 +67,7 @@ const ORBIT_SERVICES: ServiceCardConfig[] = [
     id: "music",
     name: "Music",
     desc: "Theory and instruments",
-    icon: Music,
+    
     color: "#F59E0B",
     badgeBg: "bg-amber-500/20 text-amber-300 border-amber-400/30",
     cardBorder: "border-amber-400/25",
@@ -80,7 +80,7 @@ const ORBIT_SERVICES: ServiceCardConfig[] = [
     id: "tutors",
     name: "Tutors",
     desc: "Matched to you",
-    icon: GraduationCap,
+    
     color: "#14B8A6",
     badgeBg: "bg-teal-500/20 text-teal-300 border-teal-400/30",
     cardBorder: "border-teal-400/25",
@@ -204,9 +204,9 @@ export function HubOrbit({ duration = 48, radius = 130, className }: HubOrbitPro
           title={userPaused ? "Play animation" : "Pause animation"}
         >
           {userPaused ? (
-            <Play className="w-4 h-4 fill-current ml-0.5" />
+            <PlayIcon size="sm" className="fill-current ml-0.5" />
           ) : (
-            <Pause className="w-4 h-4 fill-current" />
+            <PauseIcon size="sm" className="fill-current" />
           )}
         </button>
       </div>
@@ -289,7 +289,7 @@ export function HubOrbit({ duration = 48, radius = 130, className }: HubOrbitPro
           {ORBIT_SERVICES.map((s) => {
             const anchorLeft = cx + s.xSign * diagOffset;
             const anchorTop = cy + s.ySign * diagOffset;
-            const Icon = s.icon;
+            
 
             return (
               <div
@@ -315,14 +315,6 @@ export function HubOrbit({ duration = 48, radius = 130, className }: HubOrbitPro
                     animationPlayState: isAnimationPaused ? "paused" : "running",
                   }}
                 >
-                  <div
-                    className={cn(
-                      "w-6 h-6 rounded-md flex items-center justify-center shrink-0 border",
-                      s.badgeBg
-                    )}
-                  >
-                    <Icon className="w-3.5 h-3.5" />
-                  </div>
                   <div className="flex flex-col min-w-0">
                     <span className="text-[14px] font-bold text-white font-heading leading-none truncate">
                       {s.name}
@@ -381,7 +373,7 @@ export function HubOrbit({ duration = 48, radius = 130, className }: HubOrbitPro
         {/* 2x2 Grid */}
         <div className="grid grid-cols-2 gap-2.5">
           {ORBIT_SERVICES.map((s) => {
-            const Icon = s.icon;
+            
             return (
               <div
                 key={s.id}
@@ -391,14 +383,7 @@ export function HubOrbit({ duration = 48, radius = 130, className }: HubOrbitPro
                 )}
               >
                 <div className="flex items-center gap-1.5 mb-1">
-                  <div
-                    className={cn(
-                      "w-5 h-5 rounded-md flex items-center justify-center shrink-0",
-                      s.badgeBg
-                    )}
-                  >
-                    <Icon className="w-3 h-3" />
-                  </div>
+
                   <span className="text-xs font-bold text-white font-heading truncate">
                     {s.name}
                   </span>

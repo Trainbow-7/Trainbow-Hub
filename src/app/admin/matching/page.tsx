@@ -7,22 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Input } from "@/components/ui/Input";
-import {
-  ShieldCheck,
-  Clock,
-  UserCheck,
-  AlertCircle,
-  CheckCircle2,
-  Filter,
-  Search,
-  Sparkles,
-  ArrowRight,
-  Send,
-  Calendar,
-  Layers,
-  RefreshCw,
-  X,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, SearchIcon, ArrowRightIcon, SendIcon, CloseIcon, LoaderIcon } from "@/components/ui/icons";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 interface TutorRequest {
@@ -73,7 +58,7 @@ export default function MatchingDeskPage() {
   const [proposedTime, setProposedTime] = React.useState<string>("16:00 - 18:00 (WAT)");
   const [quoteAmount, setQuoteAmount] = React.useState<number>(7500);
   const [rationale, setRationale] = React.useState<string>(
-    "Mr Oyedeji S.T has personally reviewed your learning requirements and selected this verified tutor who is available right now."
+    "Mr Oyedeji S.T has personally reviewed your learning requirements and selected this approved tutor who is available right now."
   );
   const [sendingProposal, setSendingProposal] = React.useState<boolean>(false);
   const [notice, setNotice] = React.useState<{ message: string; type: "success" | "error" } | null>(null);
@@ -155,8 +140,7 @@ export default function MatchingDeskPage() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-purple-600/30 text-purple-400 border border-purple-500/40 flex items-center justify-center font-bold">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
+              </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-lg font-black tracking-tight text-white">Director Matching Desk</h1>
@@ -173,8 +157,7 @@ export default function MatchingDeskPage() {
           <div className="flex items-center gap-2.5">
             <Link href="/admin/roster">
               <Button variant="outline" size="sm" className="text-xs text-neutral-slate-300 border-neutral-slate-700 hover:bg-neutral-slate-800">
-                <Layers className="w-3.5 h-3.5 mr-1.5" />
-                <span>Private Roster ({roster.length})</span>
+                <span>coordinator network ({roster.length})</span>
               </Button>
             </Link>
             <Link href="/admin">
@@ -189,7 +172,7 @@ export default function MatchingDeskPage() {
               disabled={loading}
               className="text-xs text-white border-neutral-slate-700 hover:bg-neutral-slate-800"
             >
-              <RefreshCw className={`w-3.5 h-3.5 mr-1 ${loading ? "animate-spin" : ""}`} />
+              <LoaderIcon className="h-4 w-4" />
               <span>Sync Queue</span>
             </Button>
           </div>
@@ -208,11 +191,11 @@ export default function MatchingDeskPage() {
             }`}
           >
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <CheckIcon className="h-4 w-4" />
               <span>{notice.message}</span>
             </div>
             <button onClick={() => setNotice(null)} className="text-neutral-slate-400 hover:text-white">
-              <X className="w-4 h-4" />
+              <CloseIcon className="h-4 w-4" />
             </button>
           </div>
         )}
@@ -237,7 +220,7 @@ export default function MatchingDeskPage() {
 
           <div className="p-4 rounded-xl bg-neutral-slate-950 border border-neutral-slate-800">
             <span className="text-[11px] font-bold uppercase tracking-wider text-purple-400 block">
-              Private Roster Tutors
+              coordinator network Tutors
             </span>
             <span className="text-2xl font-black text-purple-300">{roster.length}</span>
           </div>
@@ -256,7 +239,6 @@ export default function MatchingDeskPage() {
         <div className="rounded-xl border border-neutral-slate-800 bg-neutral-slate-950 overflow-hidden shadow-lg">
           <div className="p-4 border-b border-neutral-slate-800 flex items-center justify-between">
             <h2 className="text-sm font-bold text-white flex items-center gap-2">
-              <Clock className="w-4 h-4 text-purple-400" />
               <span>Prioritized Request Queue (SLA Ordered)</span>
             </h2>
             <span className="text-xs text-neutral-slate-400">
@@ -270,7 +252,7 @@ export default function MatchingDeskPage() {
             </div>
           ) : requests.length === 0 ? (
             <div className="py-16 text-center space-y-2">
-              <CheckCircle2 className="w-8 h-8 text-emerald-500 mx-auto" />
+              <CheckIcon className="h-4 w-4" />
               <p className="text-xs font-bold text-neutral-slate-300">Queue is Clear</p>
               <p className="text-[11px] text-neutral-slate-500">All matching requests have active proposals or are confirmed.</p>
             </div>
@@ -316,7 +298,6 @@ export default function MatchingDeskPage() {
                       onClick={() => handleOpenProposal(req)}
                       className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md"
                     >
-                      <Sparkles className="w-3.5 h-3.5 mr-1" />
                       <span>Create Match Proposal</span>
                     </Button>
                   </div>
@@ -339,14 +320,14 @@ export default function MatchingDeskPage() {
                 </p>
               </div>
               <button onClick={() => setSelectedRequest(null)} className="text-neutral-slate-400 hover:text-white">
-                <X className="w-5 h-5" />
+                <CloseIcon className="h-4 w-4" />
               </button>
             </div>
 
             <div className="space-y-4 text-xs">
-              {/* Tutor Selection from Private Roster */}
+              {/* Tutor Selection from coordinator network */}
               <div className="space-y-1.5">
-                <label className="font-bold text-neutral-slate-300">Select Tutor from Private Roster</label>
+                <label className="font-bold text-neutral-slate-300">Select Tutor from coordinator network</label>
                 <select
                   value={selectedTutorId}
                   onChange={(e) => setSelectedTutorId(e.target.value)}

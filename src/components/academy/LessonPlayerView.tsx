@@ -8,24 +8,12 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
-import {
-  BookOpen,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  Play,
-  FileText,
-  HelpCircle,
-  Download,
-  AlertTriangle,
-  Lightbulb,
-  Clock,
-  Video,
-  ExternalLink,
-} from "lucide-react";
+import { ChevronRightIcon, ChevronLeftIcon, LoaderIcon, CheckIcon, AlertIcon, PlayIcon, DownloadIcon } from "@/components/ui/icons";
 import { RealVideoPlayer, LessonVideoData } from "@/components/video/RealVideoPlayer";
 import { InlineMathText } from "@/components/ui/InlineMathText";
 import { LessonNotesRenderer } from "@/components/academy/LessonNotesRenderer";
+import { ScrollableTabs } from "@/components/ui/responsive/ScrollableTabs";
+import { BottomSheet } from "@/components/ui/responsive/BottomSheet";
 
 interface LessonPayload {
   success: boolean;
@@ -113,6 +101,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [activeTab, setActiveTab] = React.useState<"notes" | "quiz" | "resources">("notes");
+  const [syllabusSheetOpen, setSyllabusSheetOpen] = React.useState(false);
 
   // Quiz runner state
   const [selectedAnswers, setSelectedAnswers] = React.useState<Record<string, string>>({});
@@ -210,7 +199,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
       <div className="min-h-screen flex flex-col bg-neutral-slate-50">
         <Navbar />
         <main className="flex-1 max-w-3xl mx-auto px-4 py-20 text-center space-y-4">
-          <AlertTriangle className="h-12 w-12 text-amber-500 mx-auto" />
+          <AlertIcon className="h-12 w-12 text-amber-500 mx-auto" />
           <h1 className="text-2xl font-bold font-heading text-neutral-slate-900">
             {error || "Lesson Not Found"}
           </h1>
@@ -237,27 +226,107 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
 
   const { course, lesson, video, progress, navigation } = data;
 
+  const renderSyllabusTree = () => (
+    <div className="space-y-4">
+      <div>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-slate-500">
+          Course Syllabus
+        </span>
+        <h3 className="font-heading font-bold text-sm text-neutral-slate-900 truncate">
+          <Link href={`/courses/${course.slug}`} className="hover:text-brand-blue-600 transition-colors">
+            {course.title}
+          </Link>
+        </h3>
+      </div>
+
+      {/* Course Progress */}
+      <div className="space-y-1.5 pt-2 border-t border-neutral-slate-100">
+        <div className="flex items-center justify-between text-xs text-neutral-slate-600">
+          <span>Course Progress</span>
+          <span className="font-bold">{progress.progressPercentage}%</span>
+        </div>
+        <ProgressBar value={progress.progressPercentage} />
+      </div>
+
+      {/* Scrollable Module & Lesson List */}
+      <div
+        ref={syllabusContainerRef}
+        className="space-y-3 max-h-[500px] lg:max-h-[600px] overflow-y-auto pr-1 text-xs"
+      >
+        {course.syllabus.map((mod) => (
+          <div key={mod.id} className="rounded-lg border border-neutral-slate-200 overflow-hidden">
+            <div className="bg-neutral-slate-50 px-3 py-2 border-b border-neutral-slate-200 font-semibold text-neutral-slate-900 text-[11px]">
+              {mod.title}
+            </div>
+            <div className="divide-y divide-neutral-slate-100">
+              {mod.lessons.map((les) => {
+                const isActive = les.id === lesson.id || les.slug === lessonSlug;
+                const isDone = progress.completedLessonIds.includes(les.id);
+
+                return (
+                  <Link
+                    key={les.id}
+                    ref={isActive ? activeLessonRef : null}
+                    href={`/courses/${course.slug}/lessons/${les.slug || les.id}`}
+                    onClick={() => setSyllabusSheetOpen(false)}
+                    className={`block p-2.5 transition-colors ${
+                      isActive
+                        ? "bg-brand-blue-50 text-brand-blue-700 font-medium border-l-4 border-brand-blue-600"
+                        : "hover:bg-neutral-slate-50 text-neutral-slate-700"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 truncate">
+                        {isDone ? (
+                          <span className="text-status-green-600 font-bold text-xs">✓</span>
+                        ) : isActive ? (
+                          <PlayIcon className="h-3.5 w-3.5 text-brand-blue-600 shrink-0" />
+                        ) : null}
+                        <span className="truncate">{les.title}</span>
+                      </div>
+                      <span className="text-[10px] text-neutral-slate-400 shrink-0">
+                        {les.durationMinutes}m
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-        {/* Breadcrumb Navigation: Home > Academy > Subject > Course > Module > Lesson */}
-        <nav className="flex items-center gap-2 text-xs text-neutral-slate-500 flex-wrap" aria-label="Breadcrumb">
-          <Link href="/" className="hover:text-neutral-slate-900">Home</Link>
-          <span>/</span>
-          <Link href="/academy" className="hover:text-neutral-slate-900">Academy</Link>
-          <span>/</span>
-          <Link href="/academy/mathematics" className="hover:text-neutral-slate-900">Mathematics</Link>
-          <span>/</span>
-          <Link href={`/courses/${course.slug}`} className="hover:text-neutral-slate-900 font-medium truncate max-w-[200px]">
-            {course.title}
-          </Link>
-          <span>/</span>
-          <span className="text-neutral-slate-400 truncate max-w-[150px]">{lesson.moduleTitle}</span>
-          <span>/</span>
-          <span className="font-semibold text-neutral-slate-900 truncate max-w-[200px]">{lesson.title}</span>
-        </nav>
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 pb-28 lg:pb-8">
+        {/* Top Navigation & Breadcrumb Row */}
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <nav className="flex items-center gap-1.5 sm:gap-2 text-xs text-neutral-slate-500 flex-wrap overflow-hidden" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-neutral-slate-900 shrink-0">Home</Link>
+            <span>/</span>
+            <Link href="/academy" className="hover:text-neutral-slate-900 shrink-0">Academy</Link>
+            <span>/</span>
+            <Link href={`/courses/${course.slug}`} className="hover:text-neutral-slate-900 font-medium truncate max-w-[140px] sm:max-w-[200px]">
+              {course.title}
+            </Link>
+            <span>/</span>
+            <span className="font-semibold text-neutral-slate-900 truncate max-w-[140px] sm:max-w-[220px]">{lesson.title}</span>
+          </nav>
+
+          {/* Mobile Syllabus Pill Button (< 1024px) */}
+          <button
+            type="button"
+            onClick={() => setSyllabusSheetOpen(true)}
+            className="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-neutral-slate-200 text-neutral-slate-700 hover:bg-neutral-slate-100 shadow-xs min-h-[36px]"
+          >
+            
+            <span>Syllabus ({progress.progressPercentage}%)</span>
+          </button>
+        </div>
 
         {/* 2-Column Responsive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -278,7 +347,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             </div>
 
             {/* Video Player or Level-Appropriate Fallback */}
-            <div className="rounded-2xl border border-neutral-slate-200 bg-black overflow-hidden shadow-sm">
+            <div className="rounded-2xl border border-neutral-slate-200 bg-black overflow-hidden shadow-sm aspect-video w-full flex items-center justify-center">
               {video?.hasVideo && video.primary ? (
                 <RealVideoPlayer
                   primaryVideo={video.primary}
@@ -290,8 +359,8 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                   isWaecAligned={video.isWaecAligned}
                 />
               ) : (
-                <div className="bg-neutral-slate-900 text-white p-8 sm:p-12 text-center space-y-4">
-                  <Video className="h-12 w-12 text-neutral-slate-400 mx-auto" />
+                <div className="bg-neutral-slate-900 text-white p-6 sm:p-12 text-center space-y-4 w-full">
+                  <p className="text-xs text-neutral-slate-400 uppercase tracking-wider font-semibold">Video Unavailable</p>
                   <div className="space-y-1">
                     <h3 className="font-heading font-bold text-base sm:text-lg text-white">
                       Video Lesson in Production
@@ -307,7 +376,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                       className="text-white border-white/20 hover:bg-white/10"
                       onClick={() => setActiveTab("notes")}
                     >
-                      <BookOpen className="h-4 w-4 mr-1.5" />
+                      
                       Read Lesson Notes
                     </Button>
                     <Button
@@ -315,7 +384,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                       variant="primary"
                       onClick={() => setActiveTab("quiz")}
                     >
-                      <HelpCircle className="h-4 w-4 mr-1.5" />
+                      
                       Take Checkpoint Quiz
                     </Button>
                   </div>
@@ -323,20 +392,20 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
               )}
             </div>
 
-            {/* Action Bar: Prev / Next & Mark Complete */}
-            <div className="flex items-center justify-between gap-4 py-3 border-y border-neutral-slate-200 text-xs">
+            {/* Desktop Action Bar: Prev / Next & Mark Complete (>= 1024px) */}
+            <div className="hidden lg:flex items-center justify-between gap-4 py-3 border-y border-neutral-slate-200 text-xs">
               <div>
                 {navigation.prevLesson ? (
                   <Link href={`/courses/${course.slug}/lessons/${navigation.prevLesson.slug || navigation.prevLesson.id}`}>
                     <Button variant="outline" size="sm" className="gap-1">
-                      <ChevronLeft className="h-4 w-4" />
-                      <span className="hidden sm:inline">Previous: </span>
-                      <span className="truncate max-w-[120px]">{navigation.prevLesson.title}</span>
+                      <ChevronLeftIcon className="h-4 w-4" />
+                      <span>Previous: </span>
+                      <span className="truncate max-w-[140px]">{navigation.prevLesson.title}</span>
                     </Button>
                   </Link>
                 ) : (
                   <Button variant="outline" size="sm" disabled className="gap-1 opacity-40">
-                    <ChevronLeft className="h-4 w-4" />
+                    <ChevronLeftIcon className="h-4 w-4" />
                     <span>Previous</span>
                   </Button>
                 )}
@@ -350,7 +419,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                   disabled={isMarkingComplete}
                   className="gap-1.5"
                 >
-                  <CheckCircle2 className={`h-4 w-4 ${isCompletedLocal ? "text-status-green-600" : ""}`} />
+                  <span className="text-status-green-600 font-bold text-xs">✓</span>
                   <span>{isCompletedLocal ? "Completed" : "Mark Complete"}</span>
                 </Button>
               </div>
@@ -359,65 +428,34 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                 {navigation.nextLesson ? (
                   <Link href={`/courses/${course.slug}/lessons/${navigation.nextLesson.slug || navigation.nextLesson.id}`}>
                     <Button variant="primary" size="sm" className="gap-1">
-                      <span className="hidden sm:inline">Next: </span>
-                      <span className="truncate max-w-[120px]">{navigation.nextLesson.title}</span>
-                      <ChevronRight className="h-4 w-4" />
+                      <span>Next: </span>
+                      <span className="truncate max-w-[140px]">{navigation.nextLesson.title}</span>
+                      <ChevronRightIcon className="h-4 w-4" />
                     </Button>
                   </Link>
                 ) : (
                   <Button variant="outline" size="sm" disabled className="gap-1 opacity-40">
                     <span>Next</span>
-                    <ChevronRight className="h-4 w-4" />
+                    <ChevronRightIcon className="h-4 w-4" />
                   </Button>
                 )}
               </div>
             </div>
 
-            {/* Tab Navigation: Notes, Quiz, Resources */}
-            <div className="border-b border-neutral-slate-200">
-              <nav className="flex space-x-6 text-sm font-semibold">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("notes")}
-                  className={`py-3 border-b-2 flex items-center gap-2 transition-colors ${
-                    activeTab === "notes"
-                      ? "border-brand-blue-600 text-brand-blue-600"
-                      : "border-transparent text-neutral-slate-500 hover:text-neutral-slate-900"
-                  }`}
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Lesson Notes
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("quiz")}
-                  className={`py-3 border-b-2 flex items-center gap-2 transition-colors ${
-                    activeTab === "quiz"
-                      ? "border-brand-blue-600 text-brand-blue-600"
-                      : "border-transparent text-neutral-slate-500 hover:text-neutral-slate-900"
-                  }`}
-                >
-                  <HelpCircle className="h-4 w-4" />
-                  Practice Quiz ({lesson.quiz?.questions?.length || 0})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("resources")}
-                  className={`py-3 border-b-2 flex items-center gap-2 transition-colors ${
-                    activeTab === "resources"
-                      ? "border-brand-blue-600 text-brand-blue-600"
-                      : "border-transparent text-neutral-slate-500 hover:text-neutral-slate-900"
-                  }`}
-                >
-                  <FileText className="h-4 w-4" />
-                  Resources ({lesson.worksheets?.length || 0})
-                </button>
-              </nav>
-            </div>
+            {/* Responsive Tab Navigation: Notes, Quiz, Resources */}
+            <ScrollableTabs
+              tabs={[
+                { id: "notes", label: "Lesson Notes" },
+                { id: "quiz", label: "Practice Quiz", count: lesson.quiz?.questions?.length || 0 },
+                { id: "resources", label: "Resources", count: lesson.worksheets?.length || 0 },
+              ]}
+              activeId={activeTab}
+              onChange={(id) => setActiveTab(id as any)}
+            />
 
             {/* Tab Panels */}
             {activeTab === "notes" && (
-              <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-6">
+              <div className="rounded-xl border border-neutral-slate-200 bg-white p-5 sm:p-8 space-y-6">
                 {lesson.markdownNotes ? (
                   <LessonNotesRenderer content={lesson.markdownNotes} />
                 ) : (
@@ -438,7 +476,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             )}
 
             {activeTab === "quiz" && (
-              <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-6">
+              <div className="rounded-xl border border-neutral-slate-200 bg-white p-5 sm:p-8 space-y-6">
                 <div>
                   <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                     {lesson.quiz?.title || "Checkpoint Quiz"}
@@ -526,7 +564,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             )}
 
             {activeTab === "resources" && (
-              <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-4">
+              <div className="rounded-xl border border-neutral-slate-200 bg-white p-5 sm:p-8 space-y-4">
                 <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                   Worksheets & Study Materials
                 </h3>
@@ -537,15 +575,15 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                       className="p-4 rounded-xl border border-neutral-slate-200 flex items-center justify-between text-xs"
                     >
                       <div className="flex items-center gap-3">
-                        <FileText className="h-5 w-5 text-brand-blue-600 shrink-0" />
+                        
                         <div>
                           <h4 className="font-semibold text-neutral-slate-900">{w.title}</h4>
                           <span className="text-neutral-slate-500">{w.size} • {w.type}</span>
                         </div>
                       </div>
                       <Button size="sm" variant="outline" className="gap-1">
-                        <Download className="h-3.5 w-3.5" />
-                        Download
+                        <DownloadIcon size="sm" />
+                        <span>Download</span>
                       </Button>
                     </div>
                   ))}
@@ -554,84 +592,72 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             )}
           </div>
 
-          {/* Right Sidebar: Course Syllabus Tree (4 Cols) */}
-          <div className="lg:col-span-4 sticky top-20 space-y-4">
+          {/* Right Sidebar: Course Syllabus Tree (4 Cols on desktop >= 1024px) */}
+          <div className="hidden lg:block lg:col-span-4 sticky top-20 space-y-4">
             <div className="rounded-2xl border border-neutral-slate-200 bg-white p-5 shadow-sm space-y-4">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-slate-500">
-                  Course Syllabus
-                </span>
-                <h3 className="font-heading font-bold text-sm text-neutral-slate-900 truncate">
-                  <Link href={`/courses/${course.slug}`} className="hover:text-brand-blue-600 transition-colors">
-                    {course.title}
-                  </Link>
-                </h3>
-              </div>
-
-              {/* Course Progress */}
-              <div className="space-y-1.5 pt-2 border-t border-neutral-slate-100">
-                <div className="flex items-center justify-between text-xs text-neutral-slate-600">
-                  <span>Course Progress</span>
-                  <span className="font-bold">{progress.progressPercentage}%</span>
-                </div>
-                <ProgressBar value={progress.progressPercentage} />
-              </div>
-
-              {/* Scrollable Module & Lesson List */}
-              <div
-                ref={syllabusContainerRef}
-                className="space-y-3 max-h-[600px] overflow-y-auto pr-1 text-xs"
-              >
-                {course.syllabus.map((mod, mIdx) => (
-                  <div key={mod.id} className="rounded-lg border border-neutral-slate-200 overflow-hidden">
-                    <div className="bg-neutral-slate-50 px-3 py-2 border-b border-neutral-slate-200 font-semibold text-neutral-slate-900 text-[11px]">
-                      {mod.title}
-                    </div>
-                    <div className="divide-y divide-neutral-slate-100">
-                      {mod.lessons.map((les) => {
-                        const isActive = les.id === lesson.id || les.slug === lessonSlug;
-                        const isDone = progress.completedLessonIds.includes(les.id);
-
-                        return (
-                          <Link
-                            key={les.id}
-                            ref={isActive ? activeLessonRef : null}
-                            href={`/courses/${course.slug}/lessons/${les.slug || les.id}`}
-                            className={`block p-2.5 transition-colors ${
-                              isActive
-                                ? "bg-brand-blue-50 text-brand-blue-700 font-medium border-l-4 border-brand-blue-600"
-                                : "hover:bg-neutral-slate-50 text-neutral-slate-700"
-                            }`}
-                          >
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="flex items-center gap-2 truncate">
-                                {isDone ? (
-                                  <CheckCircle2 className="h-3.5 w-3.5 text-status-green-600 shrink-0" />
-                                ) : isActive ? (
-                                  <Play className="h-3.5 w-3.5 text-brand-blue-600 shrink-0" />
-                                ) : (
-                                  <BookOpen className="h-3.5 w-3.5 text-neutral-slate-400 shrink-0" />
-                                )}
-                                <span className="truncate">{les.title}</span>
-                              </div>
-                              <span className="text-[10px] text-neutral-slate-400 shrink-0">
-                                {les.durationMinutes}m
-                              </span>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {renderSyllabusTree()}
             </div>
           </div>
         </div>
       </main>
 
+      {/* Mobile Syllabus Bottom Sheet (< 1024px) */}
+      <BottomSheet
+        open={syllabusSheetOpen}
+        onOpenChange={setSyllabusSheetOpen}
+        title="Course Syllabus"
+        description={`${course.title} • ${progress.progressPercentage}% completed`}
+      >
+        {renderSyllabusTree()}
+      </BottomSheet>
+
+      {/* Pinned Bottom Navigation Bar on Mobile (< 1024px) */}
+      <div
+        className="fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white/95 dark:bg-[#0B1226]/95 backdrop-blur-md border-t border-neutral-slate-200 dark:border-white/10 px-3 py-2 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-[0_-4px_16px_rgba(11,27,58,0.08)]"
+      >
+        <div className="flex items-center justify-between gap-2 max-w-lg mx-auto">
+          {navigation.prevLesson ? (
+            <Link href={`/courses/${course.slug}/lessons/${navigation.prevLesson.slug || navigation.prevLesson.id}`} className="shrink-0">
+              <Button variant="outline" size="sm" className="gap-1 min-h-[44px]">
+                <ChevronLeftIcon className="h-4 w-4" />
+                <span className="hidden sm:inline">Prev</span>
+              </Button>
+            </Link>
+          ) : (
+            <Button variant="outline" size="sm" disabled className="gap-1 opacity-40 shrink-0 min-h-[44px]">
+              <ChevronLeftIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">Prev</span>
+            </Button>
+          )}
+
+          <Button
+            variant={isCompletedLocal ? "outline" : "primary"}
+            size="sm"
+            onClick={handleToggleComplete}
+            disabled={isMarkingComplete}
+            className="flex-1 justify-center gap-1.5 min-h-[44px]"
+          >
+            <span className="text-status-green-600 font-bold text-xs">✓</span>
+            <span className="truncate">{isCompletedLocal ? "Completed" : "Mark Complete"}</span>
+          </Button>
+
+          {navigation.nextLesson ? (
+            <Link href={`/courses/${course.slug}/lessons/${navigation.nextLesson.slug || navigation.nextLesson.id}`} className="shrink-0">
+              <Button variant="primary" size="sm" className="gap-1 min-h-[44px]">
+                <span className="hidden sm:inline">Next</span>
+                <ChevronRightIcon className="h-4 w-4" />
+              </Button>
+            </Link>
+          ) : (
+            <Button variant="outline" size="sm" disabled className="gap-1 opacity-40 shrink-0 min-h-[44px]">
+              <span className="hidden sm:inline">Next</span>
+              <ChevronRightIcon className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
 }
-

@@ -10,22 +10,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
-import {
-  Calendar,
-  Clock,
-  Video,
-  CheckCircle2,
-  AlertCircle,
-  RefreshCw,
-  ExternalLink,
-  RotateCcw,
-  XCircle,
-  X,
-  CreditCard,
-  ShieldCheck,
-  ChevronRight,
-  User,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, CloseIcon, ChevronRightIcon, LoaderIcon, ExternalLinkIcon } from "@/components/ui/icons";
 
 interface BookingItem {
   id: string;
@@ -206,7 +191,7 @@ function BookingsContent() {
                 className: "text-xs font-bold shadow-sm gap-1.5",
               })}
             >
-              <Calendar className="w-4 h-4" />
+              
               <span>Request a Tutor</span>
             </Link>
           </div>
@@ -219,7 +204,7 @@ function BookingsContent() {
             data-testid="payment-success-banner"
           >
             <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="w-5 h-5 text-status-green-600 shrink-0" />
+              <CheckIcon className="h-4 w-4" />
               <span>{verifyBanner}</span>
             </div>
             <button
@@ -228,7 +213,7 @@ function BookingsContent() {
               className="text-status-green-800 hover:opacity-75"
               aria-label="Dismiss banner"
             >
-              <X className="w-4 h-4" />
+              <CloseIcon className="w-4 h-4" />
             </button>
           </div>
         )}
@@ -237,7 +222,7 @@ function BookingsContent() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="bg-white p-5 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-4">
             <div className="p-3 rounded-lg bg-emerald-50 text-emerald-700">
-              <Calendar className="w-6 h-6" />
+              
             </div>
             <div>
               <span className="text-xs text-neutral-slate-500 font-medium block">Upcoming Confirmed</span>
@@ -249,7 +234,7 @@ function BookingsContent() {
 
           <div className="bg-white p-5 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-4">
             <div className="p-3 rounded-lg bg-blue-50 text-brand-blue-600">
-              <CheckCircle2 className="w-6 h-6" />
+              <CheckIcon className="h-4 w-4" />
             </div>
             <div>
               <span className="text-xs text-neutral-slate-500 font-medium block">Completed Lessons</span>
@@ -261,7 +246,7 @@ function BookingsContent() {
 
           <div className="bg-white p-5 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-4">
             <div className="p-3 rounded-lg bg-purple-50 text-purple-600">
-              <CreditCard className="w-6 h-6" />
+              
             </div>
             <div>
               <span className="text-xs text-neutral-slate-500 font-medium block">Escrow Protected</span>
@@ -326,13 +311,13 @@ function BookingsContent() {
         {/* Bookings List Section */}
         {loading ? (
           <div className="p-12 text-center text-sm text-neutral-slate-500 flex items-center justify-center gap-2">
-            <RefreshCw className="w-5 h-5 animate-spin text-brand-blue-600" />
+            <LoaderIcon className="h-4 w-4" />
             <span>Loading your tutoring schedule...</span>
           </div>
         ) : activeTab === "upcoming" ? (
           upcomingBookings.length === 0 ? (
             <div className="bg-white rounded-2xl border border-neutral-slate-200 p-12 text-center space-y-4">
-              <Calendar className="w-12 h-12 text-neutral-slate-300 mx-auto" />
+              
               <div className="space-y-1">
                 <h3 className="font-heading font-bold text-lg text-neutral-slate-900">No Upcoming Sessions</h3>
                 <p className="text-xs text-neutral-slate-500 max-w-sm mx-auto">
@@ -387,12 +372,12 @@ function BookingsContent() {
                   <div className="p-3.5 rounded-xl bg-neutral-slate-50 border border-neutral-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-1.5 font-bold text-neutral-slate-800">
-                        <Calendar className="w-4 h-4 text-brand-blue-600" />
+                        
                         <span>{booking.slotDate}</span>
                       </div>
                       <span className="text-neutral-slate-300">|</span>
                       <div className="flex items-center gap-1.5 font-mono font-semibold text-neutral-slate-700">
-                        <Clock className="w-4 h-4 text-neutral-slate-500" />
+                        
                         <span>{booking.slotTime} (WAT)</span>
                       </div>
                       {booking.rescheduledFromId && (
@@ -415,7 +400,7 @@ function BookingsContent() {
                         })}
                         data-testid={`join-classroom-btn-${booking.id}`}
                       >
-                        <Video className="w-4 h-4" />
+                        
                         <span>Join Virtual Classroom</span>
                       </a>
                     )}
@@ -439,7 +424,7 @@ function BookingsContent() {
                         className="text-xs font-semibold gap-1 min-h-[34px]"
                         data-testid={`reschedule-btn-${booking.id}`}
                       >
-                        <RotateCcw className="w-3.5 h-3.5" />
+                        
                         <span>Reschedule</span>
                       </Button>
 
@@ -453,7 +438,7 @@ function BookingsContent() {
                         className="text-xs text-red-700 hover:text-red-800 hover:bg-red-50 font-semibold gap-1 min-h-[34px]"
                         data-testid={`cancel-btn-${booking.id}`}
                       >
-                        <XCircle className="w-3.5 h-3.5" />
+                        <CloseIcon className="h-4 w-4" />
                         <span>Cancel</span>
                       </Button>
                     </div>
@@ -521,13 +506,13 @@ function BookingsContent() {
                   onClick={() => setRescheduleBooking(null)}
                   className="p-1 text-neutral-slate-400 hover:text-neutral-slate-700"
                 >
-                  <X className="w-5 h-5" />
+                  <CloseIcon className="w-5 h-5" />
                 </button>
               </div>
 
               {rescheduleError && (
                 <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-800 flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                  <AlertIcon className="h-4 w-4" />
                   <span>{rescheduleError}</span>
                 </div>
               )}
@@ -581,7 +566,7 @@ function BookingsContent() {
                   className="flex-1 justify-center text-xs font-bold"
                   data-testid="confirm-reschedule-btn"
                 >
-                  {isRescheduling ? <RefreshCw className="w-4 h-4 animate-spin" /> : "Confirm New Slot"}
+                  {isRescheduling ? <LoaderIcon className="h-4 w-4" /> : "Confirm New Slot"}
                 </Button>
               </div>
             </div>
@@ -609,13 +594,13 @@ function BookingsContent() {
                   onClick={() => setCancelBookingTarget(null)}
                   className="p-1 text-neutral-slate-400 hover:text-neutral-slate-700"
                 >
-                  <X className="w-5 h-5" />
+                  <CloseIcon className="w-5 h-5" />
                 </button>
               </div>
 
               {cancelError && (
                 <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-800 flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                  <AlertIcon className="h-4 w-4" />
                   <span>{cancelError}</span>
                 </div>
               )}
@@ -655,7 +640,7 @@ function BookingsContent() {
                   className="flex-1 justify-center text-xs font-bold bg-red-600 hover:bg-red-700 border-red-600 text-white"
                   data-testid="confirm-cancel-btn"
                 >
-                  {isCancelling ? <RefreshCw className="w-4 h-4 animate-spin" /> : "Confirm Cancellation"}
+                  {isCancelling ? <LoaderIcon className="h-4 w-4" /> : "Confirm Cancellation"}
                 </Button>
               </div>
             </div>

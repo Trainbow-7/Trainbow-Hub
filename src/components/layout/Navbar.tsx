@@ -8,7 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/Button";
 import { Sheet } from "@/components/ui/Sheet";
 import { Avatar } from "@/components/ui/Avatar";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { Menu, ArrowRight, LogOut, ShieldAlert, ChevronDown, BookOpen } from "lucide-react";
+import { MenuIcon, ChevronDownIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { UtilityPopover } from "./UtilityPopover";
 
@@ -82,7 +82,7 @@ export function Navbar() {
     pathname?.startsWith("/subjects/");
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#0B1226]/95 backdrop-blur-md transition-all text-white">
+    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#0B1226]/95 backdrop-blur-md transition-all text-white pt-[env(safe-area-inset-top,0px)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 min-h-[4.25rem] flex items-center justify-between">
         {/* Brand Wordmark & Tagline */}
         <div className="flex items-center gap-6 lg:gap-8">
@@ -102,7 +102,7 @@ export function Navbar() {
               >
                 <Link
                   href="/academy"
-                  className="px-3 py-2 text-sm font-medium"
+                  className="pl-3.5 pr-1.5 py-2 text-sm font-medium focus-visible:outline-none"
                 >
                   Academy
                 </Link>
@@ -114,7 +114,7 @@ export function Navbar() {
                   aria-label="Toggle Academy menu"
                   className="pr-2.5 pl-0.5 py-2 hover:text-sky-300 focus-visible:outline-none"
                 >
-                  <ChevronDown
+                  <ChevronDownIcon
                     className={cn(
                       "h-3.5 w-3.5 transition-transform duration-150",
                       academyMenuOpen && "rotate-180 text-sky-300"
@@ -134,19 +134,14 @@ export function Navbar() {
                       href={item.href}
                       onClick={() => setAcademyMenuOpen(false)}
                       className={cn(
-                        "flex items-start gap-3 p-3 rounded-control transition-colors text-left",
+                        "block p-3 rounded-control transition-colors text-left border-l-2 border-transparent",
                         pathname === item.href || pathname?.startsWith(`${item.href}/`)
-                          ? "bg-white/10 text-sky-200"
+                          ? "bg-white/10 text-sky-200 border-l-sky-400"
                           : "hover:bg-white/[0.06] text-slate-200 hover:text-white"
                       )}
                     >
-                      <div className="h-8 w-8 rounded-md bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0 mt-0.5">
-                        <BookOpen className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-white">{item.title}</p>
-                        <p className="text-[11px] text-slate-400 leading-snug">{item.desc}</p>
-                      </div>
+                      <p className="text-xs font-bold text-white">{item.title}</p>
+                      <p className="text-[11px] text-slate-400 leading-snug mt-0.5">{item.desc}</p>
                     </Link>
                   ))}
                 </div>
@@ -187,10 +182,9 @@ export function Navbar() {
               {user.isMinor && !user.isVerified && (
                 <Link
                   href={`/guardian/consent?studentId=${user.id}`}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-200 border border-amber-400/40 text-xs font-semibold hover:bg-amber-500/30 transition-colors"
-                  title="Guardian verification required under NDPA 2023 Section 31"
+                  className="inline-flex items-center px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-200 border border-amber-400/40 text-xs font-semibold hover:bg-amber-500/30 transition-colors"
+                  title="Guardian verification required before booking"
                 >
-                  <ShieldAlert className="w-3.5 h-3.5 text-amber-300" />
                   <span>Verify Guardian</span>
                 </Link>
               )}
@@ -213,7 +207,7 @@ export function Navbar() {
                       {getRoleLabel(user.role)}
                     </span>
                   </div>
-                  <ChevronDown
+                  <ChevronDownIcon
                     className={cn(
                       "h-3.5 w-3.5 text-slate-400 transition-transform duration-150",
                       userMenuOpen && "rotate-180 text-sky-300"
@@ -237,28 +231,28 @@ export function Navbar() {
                       <Link
                         href="/guardian"
                         onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
+                        className="flex items-center px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
                         data-testid="navbar-parent-portal-link"
                       >
-                        Profile & Parent Portal
+                        Profile &amp; Parent Portal
                       </Link>
                     ) : user.role === "TUTOR" ? (
                       <Link
                         href="/dashboard/tutor"
                         onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
+                        className="flex items-center px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
                         data-testid="navbar-tutor-portal-link"
                       >
-                        Profile & Tutor Portal
+                        Profile &amp; Tutor Portal
                       </Link>
                     ) : (
                       <Link
                         href="/dashboard"
                         onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
+                        className="flex items-center px-3 py-2 text-xs font-semibold rounded-control text-slate-200 hover:text-white hover:bg-white/[0.06] transition-colors"
                         data-testid="navbar-dashboard-link"
                       >
-                        Profile & Dashboard
+                        Profile &amp; Dashboard
                       </Link>
                     )}
 
@@ -267,7 +261,7 @@ export function Navbar() {
                       <Link
                         href="/admin"
                         onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 text-xs font-bold rounded-control text-purple-300 hover:text-purple-100 hover:bg-purple-900/30 transition-colors"
+                        className="flex items-center px-3 py-2 text-xs font-bold rounded-control text-purple-300 hover:text-purple-100 hover:bg-purple-900/30 transition-colors"
                         data-testid="navbar-admin-link"
                       >
                         Admin Portal
@@ -283,11 +277,10 @@ export function Navbar() {
                         setUserMenuOpen(false);
                         logout();
                       }}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-control text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors text-left"
+                      className="w-full flex items-center px-3 py-2 text-xs font-semibold rounded-control text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors text-left"
                       aria-label="Sign out of account"
                     >
-                      <LogOut className="w-3.5 h-3.5" />
-                      <span>Log out</span>
+                      Log out
                     </button>
                   </div>
                 )}
@@ -327,10 +320,10 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden rounded-control p-2.5 text-slate-300 hover:bg-white/[0.08] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-400 transition-colors"
+            className="lg:hidden rounded-control p-2.5 text-slate-300 hover:bg-white/[0.08] hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-400 transition-colors min-w-[44px] min-h-[44px] inline-flex items-center justify-center"
             aria-label="Open navigation menu"
           >
-            <Menu className="h-6 w-6" />
+            <MenuIcon className="h-6 w-6" />
           </button>
         </div>
       </div>
@@ -368,28 +361,27 @@ export function Navbar() {
                     user.role === "ADMIN"
                       ? "bg-purple-700 hover:bg-purple-800"
                       : user.role === "PARENT"
-                      ? "bg-amber-600 hover:bg-amber-700"
-                      : "bg-brand-blue-600 hover:bg-brand-blue-700"
+                        ? "bg-amber-600 hover:bg-amber-700"
+                        : "bg-brand-blue-600 hover:bg-brand-blue-700"
                   )}
                   data-testid="mobile-portal-link"
                 >
                   {user.role === "ADMIN"
                     ? "Open Admin Portal"
                     : user.role === "PARENT"
-                    ? "Open Parent Portal"
-                    : user.role === "TUTOR"
-                    ? "Open Tutor Portal"
-                    : "Open My Dashboard"}
+                      ? "Open Parent Portal"
+                      : user.role === "TUTOR"
+                        ? "Open Tutor Portal"
+                        : "Open My Dashboard"}
                 </Link>
 
                 {user.isMinor && !user.isVerified && (
                   <Link
                     href={`/guardian/consent?studentId=${user.id}`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 p-2 rounded-control bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-900 hover:bg-amber-100"
+                    className="block p-2 rounded-control bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-900 hover:bg-amber-100"
                   >
-                    <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0" />
-                    <span>NDPA Consent Required — Verify Now</span>
+                    <span>Guardian verification required — Verify now</span>
                   </Link>
                 )}
               </div>
@@ -408,7 +400,6 @@ export function Navbar() {
                 )}
               >
                 <span>Academy</span>
-                <ArrowRight className="h-4 w-4 text-neutral-slate-400" />
               </Link>
               <Link
                 href="/subjects"
@@ -421,7 +412,6 @@ export function Navbar() {
                 )}
               >
                 <span>Subjects</span>
-                <ArrowRight className="h-4 w-4 text-neutral-slate-400" />
               </Link>
               {PRIMARY_NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href || pathname?.startsWith(`${link.href}/`);
@@ -438,7 +428,6 @@ export function Navbar() {
                     )}
                   >
                     <span>{link.label}</span>
-                    <ArrowRight className="h-4 w-4 text-neutral-slate-400" />
                   </Link>
                 );
               })}
@@ -460,8 +449,7 @@ export function Navbar() {
                   logout();
                 }}
               >
-                <LogOut className="w-4 h-4 mr-2" />
-                <span>Log out</span>
+                Log out
               </Button>
             ) : (
               <div className="space-y-2">

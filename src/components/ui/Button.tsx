@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Loader2 } from "lucide-react";
+import { LoaderIcon } from "@/components/ui/icons";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?:
@@ -44,7 +44,7 @@ export function buttonVariants({
   };
 
   const sizeStyles = {
-    sm: "min-h-[36px] px-3.5 py-1.5 text-xs gap-1.5",
+    sm: "min-h-[44px] sm:min-h-[36px] px-3.5 py-1.5 text-xs gap-1.5",
     md: "min-h-[44px] px-4 py-2 text-sm gap-2",
     lg: "min-h-[48px] px-6 py-2.5 text-base gap-2.5",
   };
@@ -72,11 +72,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={buttonVariants({ variant, size, className })}
         {...props}
       >
-        {isLoading && <Loader2 className="h-4 w-4 animate-spin text-current" />}
+        {isLoading && <LoaderIcon className="h-4 w-4 animate-spin text-current" />}
         {children}
       </button>
     );
   }
 );
 Button.displayName = "Button";
-

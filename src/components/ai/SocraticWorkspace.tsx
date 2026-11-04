@@ -4,34 +4,14 @@ import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  Sparkles,
-  Send,
-  Lightbulb,
-  CheckCircle2,
-  AlertCircle,
-  HelpCircle,
-  GraduationCap,
-  Calculator,
-  PlusCircle,
-  Trash2,
-  ThumbsUp,
-  ThumbsDown,
-  Flag,
-  ArrowRight,
-  ShieldCheck,
-  ChevronRight,
-  ExternalLink,
-  RefreshCw,
-  BookOpen,
-  Spline,
-  Paperclip,
-  Image as ImageIcon,
-  FileText,
-  X,
-  Pencil,
-  Maximize2,
-  Minimize2,
-} from "lucide-react";
+  SendIcon,
+  AttachIcon,
+  CloseIcon,
+  ChevronRightIcon,
+  ExternalLinkIcon,
+  LoaderIcon,
+  CheckIcon,
+} from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
@@ -699,7 +679,7 @@ export function SocraticWorkspace() {
               className="w-full justify-center text-xs font-semibold shadow-xs"
               data-testid="new-conversation-btn"
             >
-              <PlusCircle className="h-4 w-4 mr-1.5" />
+              
               New Problem
             </Button>
           </div>
@@ -716,7 +696,7 @@ export function SocraticWorkspace() {
               id="curriculum-select"
               value={selectedCurriculum}
               onChange={(e) => setSelectedCurriculum(e.target.value)}
-              className="w-full text-xs rounded-lg border border-neutral-slate-200 bg-white px-2.5 py-1.5 text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-service-ai-600"
+              className="w-full text-base md:text-xs rounded-lg border border-neutral-slate-200 bg-white px-2.5 py-1.5 text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-service-ai-600 min-h-[44px] md:min-h-0"
               data-testid="curriculum-selector"
             >
               <option value="WAEC_SSCE">WAEC SSCE (Senior Secondary)</option>
@@ -739,7 +719,7 @@ export function SocraticWorkspace() {
               id="subject-select"
               value={selectedSubject}
               onChange={(e) => setSelectedSubject(e.target.value)}
-              className="w-full text-xs rounded-lg border border-neutral-slate-200 bg-white px-2.5 py-1.5 text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-service-ai-600"
+              className="w-full text-base md:text-xs rounded-lg border border-neutral-slate-200 bg-white px-2.5 py-1.5 text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-service-ai-600 min-h-[44px] md:min-h-0"
               data-testid="subject-selector"
             >
               <option value="Mathematics">Mathematics & Further Maths</option>
@@ -764,7 +744,7 @@ export function SocraticWorkspace() {
             >
               {conversations.length === 0 ? (
                 <div className="text-center py-6 px-2 text-xs text-neutral-slate-600">
-                  <BookOpen className="h-6 w-6 text-neutral-slate-300 mx-auto mb-1" />
+                  
                   No questions yet. Ask a question or pick a sample problem!
                 </div>
               ) : (
@@ -799,7 +779,7 @@ export function SocraticWorkspace() {
                         aria-label="Delete Thread"
                         data-testid="delete-conversation-btn"
                       >
-                        <Trash2 className="h-3.5 w-3.5" />
+                        <span>Delete</span>
                       </button>
                     </div>
                   );
@@ -816,7 +796,7 @@ export function SocraticWorkspace() {
         >
           <div className="flex items-center justify-between text-xs font-semibold text-neutral-slate-900 mb-1.5">
             <span className="flex items-center gap-1 text-service-ai-700">
-              <Sparkles className="h-3.5 w-3.5 text-service-ai-600" />
+              
               Daily Query Quota
             </span>
             <span className="font-mono text-xs">
@@ -854,30 +834,19 @@ export function SocraticWorkspace() {
         {/* Workspace Header */}
         <header className="px-6 py-4 border-b border-neutral-slate-200 flex flex-wrap items-center justify-between gap-3 bg-neutral-slate-50/50">
           <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-service-ai-600/10 text-service-ai-600 flex items-center justify-center shrink-0">
-              <GraduationCap className="h-4 w-4" />
-            </div>
+            
             <div>
               <h2 className="text-sm font-bold font-heading text-neutral-slate-900 flex items-center gap-2">
-                <span>Omni-Academic Problem Solver &amp; AI Workspace</span>
-                <span className="rounded bg-service-ai-600/10 px-2 py-0.5 text-[10px] font-bold text-service-ai-600 uppercase tracking-wider">
-                  Live Intelligence
-                </span>
+                <span>Study helper</span>
               </h2>
               <p className="text-[11px] text-neutral-slate-600">
-                Verified step-by-step solutions, interactive diagrams &amp; examiner tips across all curricula
+                Ask a question or upload a photo of a problem. Get a worked solution, step by step.
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <Badge
-              variant="neutral"
-              className="text-[10px] py-1 border-status-green-600/40 text-status-green-900 bg-status-green-100 flex items-center gap-1 font-semibold"
-            >
-              <CheckCircle2 className="h-3 w-3 text-status-green-700" />
-              Formula Verifier Active
-            </Badge>
+            
 
             <Button
               variant={showDrawingBoard ? "ai" : "outline"}
@@ -886,18 +855,16 @@ export function SocraticWorkspace() {
               className="text-xs h-7 gap-1 border-service-ai-600 text-service-ai-700 hover:bg-purple-50"
               title="Open Mathematical Diagram & Geometry Board"
             >
-              <Spline className="h-3 w-3" />
-              {showDrawingBoard ? "Hide Diagram Board" : "Draw Diagram"}
+              {showDrawingBoard ? "Hide diagram" : "Draw diagram"}
             </Button>
 
-            <Link href="/tutors/lead-stem-tutor">
+            <Link href="/request-tutor">
               <Button
                 variant="outline"
                 size="sm"
                 className="text-xs h-7 gap-1 border-service-tutor-600 text-service-tutor-700 hover:bg-service-tutor-50"
               >
-                <GraduationCap className="h-3 w-3" />
-                Live Tutor
+                Ask a tutor
               </Button>
             </Link>
 
@@ -916,13 +883,11 @@ export function SocraticWorkspace() {
             >
               {isMaximized ? (
                 <>
-                  <Minimize2 className="h-3.5 w-3.5" />
-                  <span>Exit Focus</span>
+                  <span>Exit full screen</span>
                 </>
               ) : (
                 <>
-                  <Maximize2 className="h-3.5 w-3.5 text-service-ai-600" />
-                  <span>Maximize Focus</span>
+                  <span>Full screen</span>
                 </>
               )}
             </Button>
@@ -943,15 +908,15 @@ export function SocraticWorkspace() {
             data-testid="escalation-success-banner"
           >
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
+              <span className="text-status-green-600 font-bold">✓</span>
               <span>
-                Successfully escalated to <strong>{escalationSuccess.tutorName}</strong>! Your
+                Connected with <strong>{escalationSuccess.tutorName}</strong>! Your
                 problem and hint progress have been attached to your booking.
               </span>
             </div>
             <Link href={escalationSuccess.bookingUrl}>
               <Button size="sm" variant="tutor" className="text-xs h-7 py-1 px-3">
-                Complete Booking <ArrowRight className="h-3 w-3 ml-1" />
+                Complete Booking 
               </Button>
             </Link>
           </div>
@@ -964,7 +929,7 @@ export function SocraticWorkspace() {
             data-testid="ai-error-banner"
           >
             <div className="flex items-center gap-2">
-              <AlertCircle className="h-4 w-4 text-status-red-600 shrink-0" />
+              <span className="text-status-red-600 font-bold">!</span>
               <span>{errorMessage}</span>
             </div>
             <button
@@ -983,14 +948,14 @@ export function SocraticWorkspace() {
         >
           {fetchingConversation ? (
             <div className="flex items-center justify-center py-16 text-neutral-slate-600 text-xs">
-              <RefreshCw className="h-5 w-5 animate-spin mr-2 text-service-ai-600" />
+              <LoaderIcon className="h-5 w-5 animate-spin mr-2 text-service-ai-600" />
               Loading mathematical discussion...
             </div>
           ) : messages.length === 0 ? (
             /* Empty state with Nigerian curriculum prompts */
             <div className="text-center py-10 max-w-xl mx-auto space-y-5">
               <div className="h-12 w-12 rounded-2xl bg-purple-100 text-service-ai-600 mx-auto flex items-center justify-center">
-                <Sparkles className="h-6 w-6" />
+                
               </div>
               <div className="space-y-1.5">
                 <h3 className="font-heading font-bold text-base text-neutral-slate-900">
@@ -1043,13 +1008,13 @@ export function SocraticWorkspace() {
                                 />
                               ) : (
                                 <div className="h-8 w-8 rounded bg-white/20 flex items-center justify-center shrink-0">
-                                  <FileText className="h-4 w-4 text-white" />
+                                  
                                 </div>
                               )}
                               <div className="min-w-0 flex-1 pr-1">
                                 <p className="text-[11px] font-semibold truncate text-white">{file.name}</p>
                                 <p className="text-[9px] text-blue-200">
-                                  {(file.size / 1024).toFixed(1)} KB {file.previewUrl && "• 🔍 View"}
+                                  {(file.size / 1024).toFixed(1)} KB {file.previewUrl && "• View"}
                                 </p>
                               </div>
                             </button>
@@ -1096,7 +1061,7 @@ export function SocraticWorkspace() {
                   data-testid={`message-ai-${msg.id}`}
                 >
                   <div className="h-8 w-8 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-xs shrink-0 mt-1 shadow-xs">
-                    <Sparkles className="h-4 w-4" />
+                    
                   </div>
 
                   <div className="flex-1 max-w-2xl space-y-3">
@@ -1124,7 +1089,7 @@ export function SocraticWorkspace() {
 
                         {msg.isEscalated && (
                           <span className="text-[10px] font-bold text-service-tutor-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
-                            Escalated to Tutor
+                            Matched with Tutor
                           </span>
                         )}
                       </div>
@@ -1138,39 +1103,32 @@ export function SocraticWorkspace() {
                         />
                       </div>
 
-                      {/* Programmatic Verification Badge (Shown only when mathematically verified) */}
-                      {msg.verification && msg.verification.isValid && (
-                        <div
-                          className="rounded-xl border border-status-green-600/30 bg-status-green-600/5 p-3.5 space-y-1.5"
-                          data-testid="math-verification-card"
-                        >
-                          <div className="flex items-center gap-1.5 text-status-green-700 font-bold text-xs">
-                            <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0" />
-                            <span>Verified ({msg.verification.method || "Independent Verification Passed"})</span>
-                          </div>
-                          {msg.verification.equation && (
-                            <p className="text-[11px] font-mono text-neutral-slate-700">
-                              <strong>Equation:</strong> {msg.verification.equation}
-                            </p>
-                          )}
-                          {msg.verification.stepCheck && (
-                            <p className="text-[11px] font-mono text-neutral-slate-700">
-                              <strong>Check:</strong> {msg.verification.stepCheck}
-                            </p>
-                          )}
-                          {msg.verification.roots && msg.verification.roots.length > 0 && (
-                            <p className="text-[11px] font-mono text-status-green-800 font-semibold">
-                              <strong>Computed Roots:</strong> x ={" "}
-                              {msg.verification.roots.join(", ")}
-                            </p>
-                          )}
-                          {msg.verification.notes && (
-                            <p className="text-[10px] text-neutral-slate-600 italic">
-                              {msg.verification.notes}
-                            </p>
-                          )}
-                        </div>
-                      )}
+                      {/* Answer Check Verification */}
+                      <div
+                        className="mt-3 pt-2 border-t border-neutral-slate-200 text-xs text-neutral-slate-600 space-y-1"
+                        data-testid="math-verification-card"
+                      >
+                        <p className="font-semibold text-neutral-slate-800">
+                          {msg.verification && msg.verification.isValid
+                            ? `Checked by substitution (${msg.verification.method || "verified"})`
+                            : "Not independently checked"}
+                        </p>
+                        {msg.verification?.equation && (
+                          <p className="text-[11px] font-mono text-neutral-slate-600">
+                            Equation: {msg.verification.equation}
+                          </p>
+                        )}
+                        {msg.verification?.stepCheck && (
+                          <p className="text-[11px] font-mono text-neutral-slate-600">
+                            Check: {msg.verification.stepCheck}
+                          </p>
+                        )}
+                        {msg.verification?.roots && msg.verification.roots.length > 0 && (
+                          <p className="text-[11px] font-mono text-neutral-slate-700">
+                            Roots: x = {msg.verification.roots.join(", ")}
+                          </p>
+                        )}
+                      </div>
 
                       {/* Socratic Hint Advancement CTA (AI-02) */}
                       {msg.hintLevel !== "FULL_SOLUTION" && (
@@ -1179,7 +1137,7 @@ export function SocraticWorkspace() {
                           data-testid="hint-advancement-controls"
                         >
                           <div className="text-[11px] text-neutral-slate-600 flex items-center gap-1">
-                            <Lightbulb className="h-3.5 w-3.5 text-service-ai-600" />
+                            
                             <span>Try solving using this clue, or request the next level:</span>
                           </div>
 
@@ -1192,7 +1150,7 @@ export function SocraticWorkspace() {
                                 className="text-xs h-7 px-2.5 font-semibold border-service-ai-600 text-service-ai-700 hover:bg-purple-50"
                                 data-testid="advance-hint-2-btn"
                               >
-                                Advance to Hint 2 (Formula) <ChevronRight className="h-3 w-3 ml-1" />
+                                Advance to Hint 2 (Formula) 
                               </Button>
                             )}
 
@@ -1204,7 +1162,7 @@ export function SocraticWorkspace() {
                                 className="text-xs h-7 px-2.5 font-semibold border-service-ai-600 text-service-ai-700 hover:bg-purple-50"
                                 data-testid="advance-hint-3-btn"
                               >
-                                Advance to Hint 3 (Steps) <ChevronRight className="h-3 w-3 ml-1" />
+                                Advance to Hint 3 (Steps) 
                               </Button>
                             )}
 
@@ -1243,7 +1201,7 @@ export function SocraticWorkspace() {
                             title="Helpful explanation"
                             data-testid="feedback-helpful"
                           >
-                            <ThumbsUp className="h-3.5 w-3.5" />
+                            <span className="text-xs">Helpful</span>
                           </button>
                           <button
                             type="button"
@@ -1257,7 +1215,7 @@ export function SocraticWorkspace() {
                             title="Not helpful"
                             data-testid="feedback-unhelpful"
                           >
-                            <ThumbsDown className="h-3.5 w-3.5" />
+                            <span className="text-xs">Not helpful</span>
                           </button>
                           <button
                             type="button"
@@ -1271,7 +1229,7 @@ export function SocraticWorkspace() {
                             title="Report error"
                             data-testid="feedback-report"
                           >
-                            <Flag className="h-3.5 w-3.5" />
+                            <span className="text-xs">Report</span>
                           </button>
                           {feedback && (
                             <span className="text-[10px] text-status-green-600 font-medium ml-1">
@@ -1289,10 +1247,7 @@ export function SocraticWorkspace() {
                           className="text-xs h-7 px-2 text-service-tutor-700 hover:bg-teal-50 hover:text-service-tutor-800 font-medium"
                           data-testid="escalate-tutor-btn"
                         >
-                          <GraduationCap className="h-3.5 w-3.5 mr-1 text-service-tutor-600" />
-                          {escalatingMessageId === msg.id
-                            ? "Escalating..."
-                            : "Escalate to Human Tutor"}
+                          {escalatingMessageId === msg.id ? "Connecting..." : "Ask a tutor"}
                         </Button>
 
                         {/* Report Wrong Answer Button */}
@@ -1304,7 +1259,7 @@ export function SocraticWorkspace() {
                           data-testid="report-wrong-answer-btn"
                           title="Report this solution to academic review queue"
                         >
-                          <AlertCircle className="h-3.5 w-3.5 mr-1 text-rose-600" />
+                          
                           {reportedMessageIds.has(msg.id)
                             ? "Reported to Review Queue"
                             : "Report wrong answer"}
@@ -1321,10 +1276,10 @@ export function SocraticWorkspace() {
           {loading && (
             <div className="flex items-start gap-3" data-testid="ai-thinking-indicator">
               <div className="h-8 w-8 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-xs shrink-0 animate-pulse shadow-xs">
-                <Sparkles className="h-4 w-4" />
+                
               </div>
               <div className="rounded-2xl rounded-tl-xs border border-purple-200 bg-purple-50/50 p-4 text-xs text-service-ai-700 flex items-center gap-2.5 shadow-2xs">
-                <RefreshCw className="h-4 w-4 animate-spin text-service-ai-600 shrink-0" />
+                <LoaderIcon className="h-4 w-4 animate-spin text-service-ai-600 shrink-0" />
                 <span className="font-medium">
                   {(() => {
                     const lastUserMsg = [...messages].reverse().find((m) => m.role === "USER");
@@ -1481,7 +1436,7 @@ export function SocraticWorkspace() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-[11px] font-semibold text-neutral-slate-700">
                     <span className="flex items-center gap-1 text-purple-950 font-bold">
-                      <Sparkles className="h-3.5 w-3.5 text-service-ai-600" />
+                      
                       Extracted Question (Formatted Math):
                     </span>
                     <button
@@ -1489,7 +1444,7 @@ export function SocraticWorkspace() {
                       onClick={() => setIsEditingExtractedText((prev) => !prev)}
                       className="text-[11px] text-service-ai-700 hover:text-service-ai-900 font-medium flex items-center gap-1 hover:underline"
                     >
-                      <Pencil className="h-3 w-3" />
+                      
                       {isEditingExtractedText ? "Hide Text Editor" : "Edit LaTeX / Text"}
                     </button>
                   </div>
@@ -1551,7 +1506,7 @@ export function SocraticWorkspace() {
                       }}
                       className="h-7 text-xs font-semibold px-3"
                     >
-                      <CheckCircle2 className="h-3.5 w-3.5 mr-1" />
+                      <CheckIcon size="sm" className="mr-1" />
                       Looks Right
                     </Button>
 
@@ -1564,7 +1519,7 @@ export function SocraticWorkspace() {
                       }}
                       className="h-7 text-xs font-semibold px-2.5"
                     >
-                      <Pencil className="h-3 w-3 mr-1" />
+                      
                       {isEditingExtractedText ? "Done Editing" : "Edit"}
                     </Button>
                   </div>
@@ -1580,7 +1535,7 @@ export function SocraticWorkspace() {
                       }}
                       className="h-7 text-xs text-neutral-slate-600 hover:text-service-ai-700 px-2"
                     >
-                      <RefreshCw className="h-3 w-3 mr-1" />
+                      
                       Re-scan
                     </Button>
 
@@ -1596,7 +1551,7 @@ export function SocraticWorkspace() {
                       }}
                       className="h-7 text-xs text-status-red-600 hover:bg-status-red-50 px-2"
                     >
-                      <Trash2 className="h-3 w-3 mr-1" />
+                      
                       Wrong Image
                     </Button>
                   </div>
@@ -1619,7 +1574,7 @@ export function SocraticWorkspace() {
                         className="h-6 w-6 object-cover rounded"
                       />
                     ) : (
-                      <FileText className="h-4 w-4 text-service-ai-600" />
+                      <span className="text-[10px] font-mono text-neutral-slate-400">DOC</span>
                     )}
                     <span className="max-w-[140px] sm:max-w-[200px] truncate font-medium text-neutral-slate-800 text-[11px]">
                       {file.name}
@@ -1630,7 +1585,7 @@ export function SocraticWorkspace() {
                       className="p-1 hover:bg-neutral-slate-100 rounded-full text-neutral-slate-500 hover:text-status-red-600 transition-colors"
                       title="Remove file"
                     >
-                      <X className="h-3 w-3" />
+                      <CloseIcon className="h-3 w-3" />
                     </button>
                   </div>
                 ))}
@@ -1661,9 +1616,9 @@ export function SocraticWorkspace() {
                 data-testid="ai-attach-file-btn"
               >
                 {isReadingFile ? (
-                  <RefreshCw className="h-4 w-4 animate-spin text-service-ai-600" />
+                  <LoaderIcon className="h-4 w-4 animate-spin text-service-ai-600" />
                 ) : (
-                  <Paperclip className="h-4 w-4" />
+                  <AttachIcon className="h-4 w-4" />
                 )}
                 <span className="text-[10px] font-semibold">Attach</span>
               </Button>
@@ -1681,7 +1636,7 @@ export function SocraticWorkspace() {
                 placeholder="Ask or attach any question across any subject (e.g. shoe sizes statistics, circle chords, 2x² - 5x + 3 = 0, Ohm's law, stoichiometry, literature)..."
                 rows={2}
                 disabled={loading || quota.remaining === 0}
-                className="flex-1 rounded-xl border border-neutral-slate-200 bg-white p-3 text-xs sm:text-sm text-neutral-slate-900 placeholder:text-neutral-slate-600 focus:outline-none focus:ring-2 focus:ring-service-ai-600 focus:border-transparent resize-none shadow-2xs"
+                className="flex-1 rounded-xl border border-neutral-slate-200 bg-white p-3 text-base md:text-sm text-neutral-slate-900 placeholder:text-neutral-slate-600 focus:outline-none focus:ring-2 focus:ring-service-ai-600 focus:border-transparent resize-none shadow-2xs"
                 data-testid="ai-prompt-input"
               />
 
@@ -1692,7 +1647,7 @@ export function SocraticWorkspace() {
                 className="h-14 px-4 font-semibold shadow-sm shrink-0"
                 data-testid="ai-submit-btn"
               >
-                <Send className="h-4 w-4" />
+                <SendIcon className="h-4 w-4" />
                 <span className="sr-only">Send academic question</span>
               </Button>
             </div>
@@ -1752,7 +1707,7 @@ export function SocraticWorkspace() {
           >
             <div className="flex items-center justify-between px-5 py-3 border-b border-neutral-slate-200 bg-neutral-slate-50">
               <div className="flex items-center gap-2">
-                <ImageIcon className="h-4 w-4 text-service-ai-600" />
+                
                 <span className="text-xs font-bold text-neutral-slate-900 truncate">
                   {previewModalAttachment.name}
                 </span>
@@ -1766,7 +1721,7 @@ export function SocraticWorkspace() {
                 className="p-1 rounded-lg text-neutral-slate-500 hover:text-neutral-slate-900 hover:bg-neutral-slate-200 transition-colors"
                 title="Close"
               >
-                <X className="h-5 w-5" />
+                <CloseIcon size="md" />
               </button>
             </div>
             <div className="p-4 flex items-center justify-center bg-neutral-900 overflow-auto max-h-[calc(90vh-60px)]">

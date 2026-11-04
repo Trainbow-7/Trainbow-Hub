@@ -3,6 +3,28 @@
   "extends": ["next"],
   "rules": {
     "@next/next/no-html-link-for-pages": "off",
-    "react/no-unescaped-entities": "off"
-  }
+    "react/no-unescaped-entities": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "lucide-react",
+            "message": "Direct imports from 'lucide-react' are forbidden per the Trainbow Hub Icon Policy. Import functional icons exclusively from '@/components/ui/icons'."
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/components/ui/icons.tsx",
+        "src/components/ui/icons.ts"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ]
 }

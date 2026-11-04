@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
+import { CloseIcon } from "@/components/ui/icons";
 
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string;
@@ -68,7 +68,7 @@ export function Chip({
             selected ? "text-white" : "text-neutral-slate-500"
           )}
         >
-          <X className="h-3 w-3" />
+          <CloseIcon className="h-3 w-3" />
         </button>
       )}
     </div>

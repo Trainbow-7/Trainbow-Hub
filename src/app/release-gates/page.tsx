@@ -3,25 +3,7 @@
 import React, { useState, useEffect, useId } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import {
-  ShieldCheck,
-  CheckCircle2,
-  Database,
-  Lock,
-  Layers,
-  Sparkles,
-  RefreshCw,
-  Clock,
-  Download,
-  AlertTriangle,
-  ChevronDown,
-  ChevronUp,
-  FileText,
-  UserX,
-  ExternalLink,
-  Award,
-  Zap,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, ChevronDownIcon, ChevronUpIcon, ExternalLinkIcon, DownloadIcon, LoaderIcon } from "@/components/ui/icons";
 
 interface ReleaseGateItem {
   id: string;
@@ -235,7 +217,7 @@ export default function ReleaseGatesPage() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-100 text-xs font-bold border border-emerald-700">
-                  <ShieldCheck className="w-3.5 h-3.5" />
+                  
                   <span>Production Release Gates & Operational Handover (ADR-014)</span>
                 </div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
@@ -267,7 +249,7 @@ export default function ReleaseGatesPage() {
                   disabled={reverifying}
                   className="mt-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-brand-blue-600 hover:bg-brand-blue-500 text-white shadow-xs disabled:opacity-50 transition-colors"
                 >
-                  <RefreshCw className={`w-3.5 h-3.5 ${reverifying ? "animate-spin" : ""}`} />
+                  <LoaderIcon className="h-4 w-4" />
                   <span>{reverifying ? "Verifying Gates..." : "Re-Verify All 8 Gates"}</span>
                 </button>
               </div>
@@ -284,7 +266,7 @@ export default function ReleaseGatesPage() {
               <span>Disaster RTO Target: <strong className="text-emerald-200">5 min</strong></span>
               <span className="hidden sm:inline text-white/60">•</span>
               <span className="inline-flex items-center gap-1 text-emerald-200 font-bold">
-                <CheckCircle2 className="w-3.5 h-3.5" /> 100% Handover Complete
+                <CheckIcon className="h-4 w-4" /> 100% Handover Complete
               </span>
             </div>
           </div>
@@ -294,7 +276,7 @@ export default function ReleaseGatesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-6">
           {actionFeedback && (
             <div className="p-3 bg-brand-blue-50 border border-brand-blue-200 text-brand-blue-900 rounded-xl text-xs font-semibold flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-brand-blue-600 shrink-0" />
+              
               <span>{actionFeedback}</span>
             </div>
           )}
@@ -302,12 +284,12 @@ export default function ReleaseGatesPage() {
           {/* Navigation Tabs */}
           <div className="border-b border-neutral-slate-200 flex flex-wrap items-center gap-2">
             {[
-              { id: "gates", label: "8 Mandatory Release Gates", icon: ShieldCheck },
-              { id: "backups", label: "Disaster Recovery & Automated Backups", icon: Database },
-              { id: "privacy", label: "NDPA 2023 Privacy & Retention", icon: Lock },
-              { id: "handover", label: "12 Platform Handover Deliverables", icon: FileText },
+              { id: "gates", label: "8 Mandatory Release Gates", },
+              { id: "backups", label: "Disaster Recovery & Automated Backups", },
+              { id: "privacy", label: "NDPA 2023 Privacy & Retention", },
+              { id: "handover", label: "12 Platform Handover Deliverables", },
             ].map((tab) => {
-              const Icon = tab.icon;
+              
               const isActive = activeTab === tab.id;
               return (
                 <button
@@ -320,7 +302,7 @@ export default function ReleaseGatesPage() {
                       : "border-transparent text-neutral-slate-700 hover:text-neutral-slate-900 hover:border-neutral-slate-300"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  
                   <span>{tab.label}</span>
                 </button>
               );
@@ -363,7 +345,7 @@ export default function ReleaseGatesPage() {
                             Gate #{gate.gateNumber} · {gate.category}
                           </span>
                           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-100 text-emerald-900">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                            <CheckIcon className="h-4 w-4" />
                             {gate.scorePercentage}% Passed
                           </span>
                         </div>
@@ -396,7 +378,7 @@ export default function ReleaseGatesPage() {
                           className="text-xs font-bold text-brand-blue-700 hover:text-brand-blue-800 inline-flex items-center gap-1"
                         >
                           <span>{isExpanded ? "Hide Evidence" : "View Evidence"}</span>
-                          {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                          {isExpanded ? <ChevronUpIcon className="h-4 w-4" /> : <ChevronDownIcon className="h-4 w-4" />}
                         </button>
 
                         <button
@@ -434,7 +416,7 @@ export default function ReleaseGatesPage() {
                   onClick={handleTriggerBackup}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-brand-blue-600 hover:bg-brand-blue-700 text-white shadow-xs transition-colors"
                 >
-                  <Database className="w-4 h-4" />
+                  
                   <span>Trigger Instant Snapshot</span>
                 </button>
               </div>
@@ -498,7 +480,7 @@ export default function ReleaseGatesPage() {
                                 : "bg-emerald-100 text-emerald-900"
                             }`}
                           >
-                            <CheckCircle2 className="w-3 h-3" />
+                            <CheckIcon className="h-4 w-4" />
                             {bkp.status}
                           </span>
                         </td>
@@ -527,7 +509,7 @@ export default function ReleaseGatesPage() {
             <div className="bg-white rounded-2xl p-6 border border-neutral-slate-200 shadow-xs space-y-6">
               <div className="space-y-1">
                 <h2 className="text-xl font-bold text-neutral-slate-900">
-                  NDPA 2023 Data Retention & Privacy Governance
+                  NDPA 2023 Data Retention & Privacy release gates
                 </h2>
                 <p className="text-xs text-neutral-slate-600">
                   Enforces statutory retention limits, minor learner consent lifecycles, and user-initiated data erasure tools.
@@ -578,7 +560,7 @@ export default function ReleaseGatesPage() {
               {/* Privacy Erasure Tool */}
               <div className="bg-neutral-slate-50 rounded-xl p-5 border border-neutral-slate-200 space-y-4">
                 <div className="flex items-center gap-2 text-neutral-slate-900">
-                  <UserX className="w-5 h-5 text-red-700" />
+                  
                   <h3 className="text-sm font-bold">
                     Execute NDPA 2023 Statutory Privacy Erasure (Sec 34)
                   </h3>
@@ -655,7 +637,7 @@ export default function ReleaseGatesPage() {
                         Item #{item.number}
                       </span>
                       <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-800">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <CheckIcon className="h-4 w-4" />
                         {item.status}
                       </span>
                     </div>

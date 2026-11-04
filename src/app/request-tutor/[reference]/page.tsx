@@ -8,20 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card";
-import {
-  ShieldCheck,
-  CheckCircle2,
-  Clock,
-  Calendar,
-  CreditCard,
-  User,
-  ArrowLeft,
-  ArrowRight,
-  AlertCircle,
-  Sparkles,
-  X,
-  MessageSquare,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, ArrowRightIcon, ArrowLeftIcon, CloseIcon } from "@/components/ui/icons";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 interface RequestProposalData {
@@ -160,7 +147,7 @@ export default function RequestTrackerProposalPage({
             href="/dashboard"
             className="inline-flex items-center gap-1.5 text-xs text-neutral-slate-500 hover:text-neutral-slate-900 font-medium"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeftIcon className="w-3.5 h-3.5" />
             <span>Back to Dashboard</span>
           </Link>
           <Badge variant="brand" className="font-mono">
@@ -177,11 +164,11 @@ export default function RequestTrackerProposalPage({
             }`}
           >
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <CheckIcon className="w-4 h-4 text-emerald-600" />
               <span>{notice.message}</span>
             </div>
             <button onClick={() => setNotice(null)} className="text-neutral-slate-400 hover:text-neutral-900">
-              <X className="w-4 h-4" />
+              <CloseIcon className="w-4 h-4" />
             </button>
           </div>
         )}
@@ -192,7 +179,7 @@ export default function RequestTrackerProposalPage({
           </div>
         ) : !data ? (
           <div className="p-8 bg-white rounded-xl border border-neutral-slate-200 text-center space-y-3">
-            <AlertCircle className="w-8 h-8 text-neutral-slate-400 mx-auto" />
+            <AlertIcon className="w-8 h-8 text-neutral-slate-400 mx-auto" />
             <p className="text-sm font-bold text-neutral-slate-800">Tutor Request Not Found</p>
             <p className="text-xs text-neutral-slate-500">
               Unable to locate reference {params.reference}. Please check the code and try again.
@@ -250,7 +237,6 @@ export default function RequestTrackerProposalPage({
                 <div className="flex items-start justify-between gap-4 border-b border-brand-blue-100 pb-4">
                   <div className="space-y-1">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-blue-100 text-brand-blue-900 text-xs font-bold">
-                      <Sparkles className="w-3.5 h-3.5 text-brand-blue-600" />
                       <span>Director Match Proposal</span>
                     </div>
                     <h2 className="text-xl font-black font-heading text-neutral-slate-900">
@@ -276,23 +262,21 @@ export default function RequestTrackerProposalPage({
                 <div className="p-4 rounded-xl bg-white border border-neutral-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-3.5">
                     <div className="h-12 w-12 rounded-xl bg-brand-blue-600 text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-sm">
-                      <User className="w-6 h-6" />
-                    </div>
+                      </div>
                     <div>
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-sm text-neutral-slate-900">{data.proposal.tutorName}</h3>
                         <Badge variant="tutor" className="text-[10px] gap-1">
-                          <ShieldCheck className="w-3 h-3" /> Verified Faculty
+                          Verified Faculty
                         </Badge>
                       </div>
                       <p className="text-xs text-neutral-slate-500">
-                        Private Roster Specialist · Background &amp; TRCN Vetted
+                        tutor team Specialist · Background &amp; TRCN Vetted
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3 text-xs text-neutral-slate-700 bg-neutral-slate-50 px-3 py-2 rounded-lg border border-neutral-slate-200">
-                    <Calendar className="w-4 h-4 text-brand-blue-600 shrink-0" />
                     <div>
                       <span className="block font-bold">{data.proposal.proposedSlotDate}</span>
                       <span className="text-[11px] text-neutral-slate-500">{data.proposal.proposedSlotTime}</span>
@@ -303,7 +287,6 @@ export default function RequestTrackerProposalPage({
                 {/* Director Recommendation Rationale */}
                 <div className="p-4 rounded-xl bg-purple-50/70 border border-purple-200/80 space-y-1.5 text-xs text-purple-950">
                   <span className="font-bold flex items-center gap-1.5 text-purple-900">
-                    <MessageSquare className="w-3.5 h-3.5" />
                     Director Oyedeji's Match Rationale:
                   </span>
                   <p className="leading-relaxed text-neutral-slate-700">
@@ -331,7 +314,7 @@ export default function RequestTrackerProposalPage({
                       className="w-full sm:w-auto min-h-[44px] px-8 font-bold shadow-md"
                     >
                       <span>{acting ? "Confirming..." : "Approve Match & Proceed to Paystack"}</span>
-                      <ArrowRight className="w-4 h-4 ml-1.5" />
+                      <ArrowRightIcon className="w-4 h-4 ml-1.5" />
                     </Button>
                   </div>
                 ) : (
@@ -343,12 +326,11 @@ export default function RequestTrackerProposalPage({
             ) : (
               /* Awaiting Director Match Proposal Notice */
               <div className="p-8 rounded-2xl bg-white border border-neutral-slate-200 text-center space-y-3 shadow-xs">
-                <Clock className="w-10 h-10 text-brand-blue-600 mx-auto animate-pulse" />
                 <h2 className="text-lg font-bold text-neutral-slate-900">
                   Mr Oyedeji S.T is Reviewing Your Needs
                 </h2>
                 <p className="text-xs text-neutral-slate-500 max-w-md mx-auto leading-relaxed">
-                  The Director is hand-matching your request with an available tutor from our private roster. You will receive an alert and proposal review prompt right here within our SLA target.
+                  The Director is hand-matching your request with an available tutor available for your schedule. You will receive an alert and proposal review prompt right here within our SLA target.
                 </p>
               </div>
             )}
@@ -363,7 +345,7 @@ export default function RequestTrackerProposalPage({
             <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-2">
               <h3 className="text-sm font-bold text-neutral-slate-900">Request Alternative Tutor</h3>
               <button onClick={() => setShowDeclineModal(false)} className="text-neutral-slate-400 hover:text-neutral-900">
-                <X className="w-4 h-4" />
+                <CloseIcon className="w-4 h-4" />
               </button>
             </div>
             <p className="text-neutral-slate-600 leading-relaxed">

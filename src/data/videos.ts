@@ -465,7 +465,7 @@ export const ALL_CURATED_SYLLABUS_VIDEOS: Record<string, TopicVideo> = {
   },
   "english-language:concord rules": {
     youtubeId: "tqTWOtLEepA",
-    title: "🔥 NOUN IN ENGLISH GRAMMAR | CLASS 6 | FREE GRAMMAR COURSE | TYPES/SUBJECT VERB AGREEMENT/QUESTIONS",
+    title: "NOUN IN ENGLISH GRAMMAR | CLASS 6 | FREE GRAMMAR COURSE | TYPES/SUBJECT VERB AGREEMENT/QUESTIONS",
     durationMinutes: 18,
     channelName: "Dear Sir",
   },
@@ -861,7 +861,7 @@ export const ALL_CURATED_SYLLABUS_VIDEOS: Record<string, TopicVideo> = {
   },
   "history:trade networks": {
     youtubeId: "b4AsjAHV10Y",
-    title: "🐫 The Trans-Saharan Trade Route: Where Gold Met Salt and Empires Rose",
+    title: "The Trans-Saharan Trade Route: Where Gold Met Salt and Empires Rose",
     durationMinutes: 18,
     channelName: "Did You Know? - World Cultural Heritage",
   },

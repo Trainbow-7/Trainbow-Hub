@@ -1,11 +1,11 @@
 import * as React from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowLeft, ShieldCheck, Clock, Lock, CheckCircle2 } from "lucide-react";
+import { ArrowLeftIcon, CheckIcon, AlertIcon } from "@/components/ui/icons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Notice (NDPA 2023) | Trainbow HUB",
-  description: "Privacy Notice and data protection disclosures in compliance with the Nigeria Data Protection Act 2023.",
+  description: "Privacy Notice and data protection disclosures in principles of Nigerian data protection.",
 };
 
 export default function PrivacyNoticePage() {
@@ -18,7 +18,7 @@ export default function PrivacyNoticePage() {
             href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-700 transition-colors"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeftIcon className="h-4 w-4" />
             Back to Home
           </Link>
         </div>
@@ -26,7 +26,7 @@ export default function PrivacyNoticePage() {
         {/* Mandatory Legal Review Banner */}
         <div className="mb-8 rounded-xl border border-amber-300 bg-amber-50 p-4 sm:p-5 shadow-sm" role="alert">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="h-5 w-5 text-amber-700 shrink-0 mt-0.5" />
+            <AlertIcon className="h-4 w-4" />
             <div>
               <h2 className="text-sm font-bold text-amber-900 uppercase tracking-wide">
                 Regulatory & Legal Notice
@@ -49,7 +49,7 @@ export default function PrivacyNoticePage() {
             </h1>
             <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-neutral-slate-600 font-medium">
               <span className="flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5" /> Effective Date: October 10, 2026
+                Effective Date: October 10, 2026
               </span>
               <span>•</span>
               <span>Governing Statute: Nigeria Data Protection Act (NDPA) 2023</span>
@@ -129,7 +129,6 @@ export default function PrivacyNoticePage() {
             {/* Section 3 */}
             <section className="space-y-3">
               <h2 className="text-xl font-bold text-neutral-slate-900 flex items-center gap-2">
-                <Lock className="h-5 w-5 text-status-green-600" />
                 3. Protection of Children&apos;s Data (NDPA Section 31)
               </h2>
               <p>
@@ -151,7 +150,7 @@ export default function PrivacyNoticePage() {
             {/* Section 4 */}
             <section className="space-y-3">
               <h2 className="text-xl font-bold text-neutral-slate-900">
-                4. AI Gateway & Data Anonymization Standards
+                4. AI Gateway & Data privacy filtering Standards
               </h2>
               <p>
                 Trainbow HUB deploys an isolated server-side AI Gateway to power the Socratic Mathematics assistant:
@@ -164,7 +163,7 @@ export default function PrivacyNoticePage() {
                   <strong>No Model Training:</strong> All commercial model agreements explicitly forbid the provider from retaining learner prompts for foundation model training or commercial fine-tuning.
                 </li>
                 <li>
-                  <strong>Programmatic Verification:</strong> Mathematical equations are parsed through deterministic server-side evaluation engines to verify factual correctness and eliminate hallucinations before returning guidance.
+                  <strong>automated Verification:</strong> Mathematical equations are parsed through deterministic server-side evaluation engines to verify factual correctness and eliminate hallucinations before returning guidance.
                 </li>
               </ul>
             </section>
@@ -179,7 +178,7 @@ export default function PrivacyNoticePage() {
               </p>
               <div className="space-y-2">
                 <div className="flex items-start gap-3 p-3 bg-neutral-slate-50 rounded-lg border border-neutral-slate-200">
-                  <CheckCircle2 className="h-4 w-4 text-brand-blue-600 mt-1 shrink-0" />
+                  <CheckIcon className="h-4 w-4" />
                   <div>
                     <span className="font-semibold text-neutral-slate-900 text-sm">Paystack (Payments): </span>
                     <span className="text-xs text-neutral-slate-600">
@@ -188,7 +187,7 @@ export default function PrivacyNoticePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-3 bg-neutral-slate-50 rounded-lg border border-neutral-slate-200">
-                  <CheckCircle2 className="h-4 w-4 text-brand-blue-600 mt-1 shrink-0" />
+                  <CheckIcon className="h-4 w-4" />
                   <div>
                     <span className="font-semibold text-neutral-slate-900 text-sm">Termii / Resend (Communications): </span>
                     <span className="text-xs text-neutral-slate-600">
@@ -247,8 +246,7 @@ export default function PrivacyNoticePage() {
         {/* Footer Link */}
         <div className="mt-8 flex items-center justify-between text-xs text-neutral-slate-600 px-2">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-status-green-600" />
-            <span>NDPA 2023 Compliant Learning Platform</span>
+            <span>Privacy Notice &amp; Data Rights</span>
           </div>
           <Link href="/legal/safeguarding" className="text-brand-blue-600 hover:underline">
             Read Safeguarding Policy →

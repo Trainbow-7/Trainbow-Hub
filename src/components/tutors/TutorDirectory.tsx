@@ -13,21 +13,7 @@ import { Slider } from "@/components/ui/Slider";
 import { Chip } from "@/components/ui/Chip";
 import { Sheet } from "@/components/ui/Sheet";
 import { SkeletonCard, EmptyState } from "@/components/ui/States";
-import {
-  ShieldCheck,
-  Search,
-  Filter,
-  MapPin,
-  Clock,
-  ChevronRight,
-  GraduationCap,
-  X,
-  Calendar,
-  SlidersHorizontal,
-  Video,
-  UserCheck,
-  HelpCircle,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, SearchIcon, CloseIcon, ChevronDownIcon, ChevronUpIcon, LoaderIcon, ChevronRightIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 const SUBJECT_OPTIONS = [
@@ -187,7 +173,7 @@ export function TutorDirectory() {
         <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
           {/* Search Box */}
           <div className="relative flex-1 w-full">
-            <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-neutral-slate-400" />
+            <SearchIcon className="h-4 w-4" />
             <input
               type="text"
               value={searchTerm}
@@ -206,7 +192,7 @@ export function TutorDirectory() {
               onClick={() => setMobileFilterOpen(true)}
               className="md:hidden flex-1 justify-center gap-2 min-h-[44px]"
             >
-              <SlidersHorizontal className="h-4 w-4 text-neutral-slate-600" />
+              
               <span>Filters {hasActiveFilters && "•"}</span>
             </Button>
 
@@ -338,12 +324,12 @@ export function TutorDirectory() {
       {/* Directory Count Header */}
       <div className="flex items-center justify-between px-1">
         <p className="text-sm text-neutral-slate-600 font-medium">
-          Showing <strong className="text-neutral-slate-900 font-bold">{filteredTutors.length}</strong> verified tutor{filteredTutors.length === 1 ? "" : "s"}
+          Showing <strong className="text-neutral-slate-900 font-bold">{filteredTutors.length}</strong> approved tutor{filteredTutors.length === 1 ? "" : "s"}
         </p>
         <div className="flex items-center gap-1.5 text-xs text-service-tutor-700 font-semibold">
-          <ShieldCheck className="h-4 w-4" />
+          
           <span className="hidden sm:inline">All tutors verified under Safeguarding Code</span>
-          <span className="sm:hidden">Verified tutors</span>
+          <span className="sm:hidden">Tutors</span>
         </div>
       </div>
 
@@ -373,13 +359,13 @@ export function TutorDirectory() {
                           </Link>
                         </h2>
                         <div className="flex items-center gap-1 text-xs text-neutral-slate-500 mt-0.5">
-                          <MapPin className="h-3 w-3 shrink-0" />
+                          
                           <span>{tutor.location}</span>
                         </div>
                       </div>
                     </div>
                     <Badge variant="tutor" className="shrink-0 gap-1 text-[10px]">
-                      <ShieldCheck className="h-3 w-3" />
+                      
                       Verified
                     </Badge>
                   </div>
@@ -401,7 +387,7 @@ export function TutorDirectory() {
                         <Rating value={tutor.rating} count={tutor.completedLessons} />
                       ) : (
                         <span className="text-[11px] font-medium text-neutral-slate-500">
-                          New verified tutor
+                          New approved tutor
                         </span>
                       )}
                     </div>
@@ -429,7 +415,7 @@ export function TutorDirectory() {
                     {/* Delivery Formats & Languages */}
                     <div className="flex items-center justify-between text-[11px] text-neutral-slate-500 pt-1">
                       <span className="flex items-center gap-1">
-                        <Video className="h-3 w-3 text-neutral-slate-400" />
+                        
                         {tutor.deliveryFormats.join(", ")}
                       </span>
                       <span className="truncate max-w-[130px]">
@@ -440,7 +426,7 @@ export function TutorDirectory() {
                     {/* Next slot hint */}
                     <div className="pt-1.5 flex items-center justify-between text-[11px] text-service-tutor-700 bg-service-tutor-700/5 px-2.5 py-1 rounded-control border border-service-tutor-700/10">
                       <span className="flex items-center gap-1 font-medium">
-                        <Calendar className="h-3 w-3" />
+                        
                         Next slot:
                       </span>
                       <span className="font-semibold">Today, 4:00 PM</span>
@@ -466,7 +452,7 @@ export function TutorDirectory() {
                       className="w-full min-h-[44px] text-xs font-semibold shadow-sm justify-center gap-1"
                     >
                       <span>Book Slot</span>
-                      <ChevronRight className="h-3.5 w-3.5" />
+                      <ChevronRightIcon size="sm" />
                     </Button>
                   </Link>
                 </CardFooter>
@@ -478,7 +464,7 @@ export function TutorDirectory() {
         /* Friendly Empty State with Reset Action & "Ask for a Tutor" option */
         <div className="rounded-panel border border-neutral-slate-200 bg-white p-8 sm:p-12 text-center space-y-4 shadow-soft">
           <div className="h-12 w-12 rounded-full bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center mx-auto">
-            <GraduationCap className="h-6 w-6" />
+            
           </div>
           <h3 className="font-heading font-bold text-neutral-slate-900 text-lg">
             No Tutors Match Your Current Filters

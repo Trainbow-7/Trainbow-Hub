@@ -13,18 +13,7 @@ import { Select } from "@/components/ui/Select";
 import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/Dialog";
 import { ToastProvider, useToast } from "@/components/ui/Toast";
 import { EmptyState, LoadingState, ErrorState } from "@/components/ui/States";
-import {
-  Sparkles,
-  BookOpen,
-  GraduationCap,
-  Music,
-  ShieldCheck,
-  CheckCircle2,
-  Clock,
-  Layers,
-  Activity,
-  ArrowRight,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, ArrowRightIcon } from "@/components/ui/icons";
 
 function DesignSystemContent() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -58,7 +47,7 @@ function DesignSystemContent() {
               </Badge>
             ) : (
               <Badge variant="warning" className="gap-1.5 py-1">
-                <Clock className="h-3 w-3" />
+                
                 Connecting...
               </Badge>
             )}
@@ -102,7 +91,7 @@ function DesignSystemContent() {
               className="gap-2"
               onClick={() => setDialogOpen(true)}
             >
-              <Activity className="h-4 w-4" />
+              
               Verify Design Tokens Modal
             </Button>
             <Button
@@ -148,7 +137,7 @@ function DesignSystemContent() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-lg bg-brand-blue-50 text-brand-blue-600 flex items-center justify-center">
-                    <BookOpen className="h-5 w-5" />
+                    
                   </div>
                   <Badge variant="brand">Academy</Badge>
                 </div>
@@ -174,13 +163,13 @@ function DesignSystemContent() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-lg bg-purple-50 text-service-ai-600 flex items-center justify-center">
-                    <Sparkles className="h-5 w-5" />
+                    
                   </div>
                   <Badge variant="ai">Trainbow AI</Badge>
                 </div>
                 <CardTitle className="mt-2">Mathematics Assistant</CardTitle>
                 <CardDescription>
-                  Socratic hints, programmatic formula verification, and seamless tutor escalation.
+                  Socratic hints, formula verification, and direct tutor matching.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -200,7 +189,7 @@ function DesignSystemContent() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="h-10 w-10 rounded-lg bg-teal-50 text-service-tutor-700 flex items-center justify-center">
-                    <GraduationCap className="h-5 w-5" />
+                    
                   </div>
                   <Badge variant="tutor">Tutors</Badge>
                 </div>
@@ -392,7 +381,7 @@ function DesignSystemContent() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
             <div className="p-3 rounded-lg border border-green-200 bg-green-50/50 flex items-start gap-2.5">
-              <CheckCircle2 className="h-5 w-5 text-status-green-600 shrink-0 mt-0.5" />
+              <CheckIcon size="sm" className="text-status-green-600 shrink-0 mt-0.5" />
               <div>
                 <strong className="block text-neutral-slate-900">Phase 0: Foundation</strong>
                 <span className="text-xs text-neutral-slate-600">Docker, CI, Design tokens, /api/health, Vitest</span>
@@ -400,7 +389,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 1: Data & Identity</strong>
                 <span className="text-xs text-neutral-slate-600">PostgreSQL schema, OTP auth, Guardian consent, audit</span>
@@ -408,7 +397,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 2: Public Site</strong>
                 <span className="text-xs text-neutral-slate-600">Home, catalog, tutors directory, policies, SEO</span>
@@ -416,7 +405,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 3: Subjects & Learning</strong>
                 <span className="text-xs text-neutral-slate-600">Math course authoring, quizzes, persistent progress</span>
@@ -424,7 +413,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 4: Tutors & Availability</strong>
                 <span className="text-xs text-neutral-slate-600">Vetting queue, credentials upload, recurring slots</span>
@@ -432,7 +421,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 5: Concurrency Booking</strong>
                 <span className="text-xs text-neutral-slate-600">10-min slot holds, DB exclusion constraints, concurrency tests</span>
@@ -440,7 +429,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 6: Payments & Ledger</strong>
                 <span className="text-xs text-neutral-slate-600">Paystack sandbox, signed webhooks, append-only ledger</span>
@@ -448,7 +437,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 7: AI Gateway</strong>
                 <span className="text-xs text-neutral-slate-600">Hint-first Socratic math, quotas, formula verification</span>
@@ -456,7 +445,7 @@ function DesignSystemContent() {
             </div>
 
             <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 flex items-start gap-2.5">
-              <Clock className="h-5 w-5 text-neutral-slate-400 shrink-0 mt-0.5" />
+              <span className="text-xs text-neutral-slate-400 font-mono">--</span>
               <div>
                 <strong className="block text-neutral-slate-900">Phase 8-10: Classroom & Ops</strong>
                 <span className="text-xs text-neutral-slate-600">Video sessions, admin safeguarding, security hardening</span>
@@ -493,15 +482,15 @@ function DesignSystemContent() {
         </DialogHeader>
         <div className="space-y-3 py-2 text-xs text-neutral-slate-600">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-status-green-600" />
+            <CheckIcon size="sm" className="text-status-green-600" />
             <span>PostgreSQL 16 with btree_gist extension configured</span>
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-status-green-600" />
+            <CheckIcon size="sm" className="text-status-green-600" />
             <span>Tailwind design tokens mapped to CSS variables</span>
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-status-green-600" />
+            <CheckIcon size="sm" className="text-status-green-600" />
             <span>Radix-compliant accessible components created</span>
           </div>
         </div>

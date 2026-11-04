@@ -968,7 +968,7 @@ export async function generateSocraticResponse(
 
 **Curriculum Alignment:** ${curriculumDisplay} — ${activeSubject}
 
-### Hint Level 1: Conceptual Clue 💡
+### Hint Level 1: Conceptual Clue
 1. **Core Concept & Governing Rule:**
    ${analysis.keyFormulaOrLaw}
 
@@ -984,7 +984,7 @@ How would you set up the initial equations using the values given in the problem
 
 **Curriculum Alignment:** ${curriculumDisplay} — ${activeSubject}
 
-### Hint Level 2: Formula & Identity 📐
+### Hint Level 2: Formula & Identity
 1. **Applicable Theorem / Law:**
    ${analysis.keyFormulaOrLaw}
 
@@ -998,7 +998,7 @@ Try carrying out the substitution and arithmetic, or tap **Advance to Hint 3** f
     pedagogicalSummary = "Level 3 Step-by-Step Breakdown: Work through intermediate calculations.";
     content = `${verificationHeader}
 
-### Hint Level 3: Step-by-Step Breakdown 🔍
+### Hint Level 3: Step-by-Step Breakdown
 ${analysis.stepByStepSolution.map((s: string, idx: number) => `#### Step ${idx + 1}:\n${s}`).join("\n\n")}
 
 ${analysis.diagramCode ? `\`\`\`diagram\n${analysis.diagramCode}\n\`\`\`\n` : ""}
@@ -1020,7 +1020,7 @@ Tap **Full Solution** below to review the final verified answer with examiner ma
 
     content = `${verificationHeader}
 
-### Full Worked Solution & Verification ${verification?.isValid ? "✅" : "ℹ️"}
+### Full Worked Solution & Verification
 
 ---
 
@@ -1034,7 +1034,7 @@ ${analysis.stepByStepSolution.map((s: string, idx: number) => `#### Step ${idx +
 ${formattedFinalAnswer}
 
 ---
-💡 **Examiner Tip for ${curriculumDisplay}:**
+**Examiner Tip for ${curriculumDisplay}:**
 ${analysis.examinerTips}`;
   }
 

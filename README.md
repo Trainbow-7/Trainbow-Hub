@@ -86,12 +86,44 @@ Open [http://localhost:3000](http://localhost:3000) to view Trainbow HUB.
 
 ---
 
+## Test on a Real Phone
+
+To test Trainbow HUB on your physical mobile device (iOS Safari, Android Chrome):
+
+### 1. Launch Dev Server Bound to All Network Interfaces
+```bash
+npm run dev -- -H 0.0.0.0
+# or
+npx next dev -H 0.0.0.0
+```
+
+### 2. Find Your Computer's Local IP Address on Wi-Fi
+- **Windows (PowerShell / Command Prompt)**:
+  ```powershell
+  ipconfig
+  # Look for "IPv4 Address" under your active Wi-Fi adapter (e.g. 192.168.1.50)
+  ```
+- **macOS / Linux**:
+  ```bash
+  ipconfig getifaddr en0
+  # or
+  hostname -I
+  ```
+
+### 3. Open on Mobile Device
+Ensure your phone is connected to the same Wi-Fi network as your computer:
+- **iOS Safari / Mobile Chrome**: Open `http://<YOUR_LOCAL_IP>:3000` (e.g., `http://192.168.1.50:3000`).
+- **PWA / Full Screen**: Tap **Share** -> **Add to Home Screen** to test full-bleed display with safe area insets on notched devices.
+
+---
+
 ## Quality & Testing
 
 - **Lint:** `npm run lint`
 - **Type-Check:** `npm run type-check`
 - **Unit Tests:** `npm run test`
 - **E2E Tests:** `npx playwright test`
+- **Responsive Suite:** `npx playwright test e2e/responsive-suite.spec.ts`
 - **Health Check:** `curl http://localhost:3000/api/health`
 
 ---

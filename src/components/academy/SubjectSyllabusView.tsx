@@ -11,20 +11,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { PRIMARY_INSTRUCTOR } from "@/data/instructor";
 import { TrackId, EXAM_TRACKS, SUBJECT_PRICES, formatNaira } from "@/data/pricing";
 import { DEPARTMENTS, SubjectCatalogueItem } from "@/data/courses";
-import {
-  BookOpen,
-  Clock,
-  CheckCircle2,
-  AlertTriangle,
-  Flame,
-  ChevronDown,
-  ShieldCheck,
-  Laptop,
-  Play,
-  X,
-  ExternalLink,
-  Video,
-} from "lucide-react";
+import { ChevronRightIcon, ChevronLeftIcon, CheckIcon, AlertIcon, ChevronDownIcon, PlayIcon, CloseIcon, ExternalLinkIcon } from "@/components/ui/icons";
 import { InlineMathText } from "@/components/ui/InlineMathText";
 
 interface SubjectSyllabusViewProps {
@@ -90,6 +77,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
           <div className="flex items-start sm:items-center gap-4">
             <Avatar
               name={PRIMARY_INSTRUCTOR.name}
+              src={PRIMARY_INSTRUCTOR.avatarUrl}
               size="lg"
               className="border-2 border-brand-blue-400 shrink-0"
             />
@@ -128,7 +116,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                 <Badge variant="brand">{track.name}</Badge>
                 <Badge variant="neutral">{department.name}</Badge>
                 <span className="text-xs text-status-green-800 font-bold flex items-center gap-1">
-                  <CheckCircle2 className="h-4 w-4 text-status-green-700" />
+                  <span className="text-status-green-600 font-bold text-xs">✓</span>
                   100% Curriculum Verified
                 </span>
               </div>
@@ -158,11 +146,11 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
               <div className="flex flex-wrap items-center gap-6 py-4 border-y border-neutral-slate-200 text-xs text-neutral-slate-600">
                 <Rating value={subject.rating} count={subject.reviewCount} />
                 <div className="flex items-center gap-1.5">
-                  <BookOpen className="h-4 w-4 text-brand-blue-600" />
+                  
                   <span>{subject.lessonCount} Structured Lessons</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Clock className="h-4 w-4 text-brand-blue-600" />
+                  
                   <span>{subject.durationHours} Hours Video &amp; Notes</span>
                 </div>
               </div>
@@ -171,7 +159,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
             {/* HIGH-FREQUENCY EXAM TOPICS CARD */}
             <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-6 space-y-3">
               <div className="flex items-center gap-2 text-amber-800">
-                <Flame className="h-5 w-5 text-amber-600" />
+                
                 <h3 className="font-heading font-bold text-base">
                   High-Frequency Exam Topics ({track.shortName})
                 </h3>
@@ -182,7 +170,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
                 {subject.highFrequencyExamTopics.map((topic, idx) => (
                   <div key={idx} className="flex items-start gap-2 text-xs text-amber-950">
-                    <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span className="text-status-green-600 font-bold text-xs">✓</span>
                     <span className="font-medium">
                       <InlineMathText text={topic} />
                     </span>
@@ -194,7 +182,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
             {/* COMMON MISTAKES & EXAMINER TRAPS */}
             <div className="rounded-xl border border-rose-200 bg-rose-50/40 p-6 space-y-3">
               <div className="flex items-center gap-2 text-rose-900">
-                <AlertTriangle className="h-5 w-5 text-rose-600" />
+                <AlertIcon className="h-5 w-5 text-rose-600" />
                 <h3 className="font-heading font-bold text-base">
                   Common Mistakes &amp; Examiner Pitfalls to Avoid
                 </h3>
@@ -226,7 +214,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                   </p>
                 </div>
                 <div className="text-xs text-neutral-slate-500 font-medium flex items-center gap-1.5">
-                  <Video className="h-4 w-4 text-brand-blue-600" />
+                  
                   <span>Interactive YouTube Video Masterclasses</span>
                 </div>
               </div>
@@ -261,7 +249,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                               </span>
                               {videosCount > 0 ? (
                                 <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-brand-blue-700 bg-brand-blue-50 px-2 py-0.5 rounded-full border border-brand-blue-200">
-                                  <Video className="h-3 w-3 text-brand-blue-600" />
+                                  
                                   {videosCount} of {mod.topics.length} topics have videos
                                 </span>
                               ) : (
@@ -273,7 +261,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                           </div>
                         </div>
 
-                        <ChevronDown
+                        <ChevronDownIcon
                           className={`h-4 w-4 text-neutral-slate-400 transition-transform ${
                             isOpen ? "rotate-180" : ""
                           }`}
@@ -313,7 +301,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                                             : "bg-brand-blue-600 text-white hover:bg-brand-blue-700 hover:shadow-xs"
                                         }`}
                                       >
-                                        <Play className="h-3 w-3 fill-white" />
+                                        <PlayIcon size="sm" className="fill-white" />
                                         <span>{isPlaying ? "Close Video" : "Watch Video"}</span>
                                         {topic.video?.durationMinutes && (
                                           <span className="text-[10px] opacity-80">
@@ -352,7 +340,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                                         aria-label="Close player"
                                         className="p-1 rounded-md bg-white/10 hover:bg-white/20 text-neutral-300 hover:text-white transition-colors"
                                       >
-                                        <X className="h-4 w-4" />
+                                        <CloseIcon size="sm" />
                                       </button>
                                     </div>
 
@@ -384,7 +372,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                                         className="text-brand-blue-400 hover:text-brand-blue-300 font-semibold inline-flex items-center gap-1 hover:underline"
                                       >
                                         <span>Watch on YouTube</span>
-                                        <ExternalLink className="h-3 w-3" />
+                                        <ExternalLinkIcon size="sm" />
                                       </a>
                                     </div>
                                   </div>
@@ -418,7 +406,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
             {/* JAMB CBT DRILLS & PAST QUESTIONS HIGHLIGHT */}
             <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 space-y-4">
               <h3 className="font-heading font-bold text-base text-neutral-slate-900 flex items-center gap-2">
-                <Laptop className="h-4 w-4 text-brand-blue-600" />
+                
                 <span>Exam Practice &amp; CBT Testing Bank</span>
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -449,7 +437,7 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
               <div className="space-y-2.5 text-xs text-neutral-slate-700">
                 {subject.learningOutcomes.map((outcome, idx) => (
                   <div key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-4 w-4 text-status-green-600 shrink-0 mt-0.5" />
+                    <span className="text-status-green-600 font-bold text-xs">✓</span>
                     <span className="flex-1">
                       <InlineMathText text={outcome} />
                     </span>
@@ -505,15 +493,15 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
               {/* Trust Badges */}
               <div className="pt-4 border-t border-neutral-slate-100 space-y-2.5 text-xs text-neutral-slate-600">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-status-green-600" />
+                  
                   <span>Curriculum verified by Chief Examiner</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-brand-blue-600" />
+                  
                   <span>Lifetime access to course updates</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <BookOpen className="h-4 w-4 text-brand-blue-600" />
+                  
                   <span>Includes {subject.pastQuestionsCount}+ past question solutions</span>
                 </div>
               </div>

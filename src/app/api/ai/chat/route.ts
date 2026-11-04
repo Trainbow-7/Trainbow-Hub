@@ -241,7 +241,7 @@ export async function POST(req: Request) {
     const imageBase64 = primaryAttachment?.previewUrl || primaryAttachment?.imageBase64;
     const structuredExtraction = primaryAttachment?.extraction;
 
-    // AI-01, AI-02, AI-03, AI-04: Socratic AI & Programmatic Math Verification
+    // AI-01, AI-02, AI-03, AI-04: Socratic AI & Calculation Verification
     const socraticResult = await generateSocraticResponse({
       prompt: effectiveQuestion,
       hintLevel: hintLevel as AIHintLevel,

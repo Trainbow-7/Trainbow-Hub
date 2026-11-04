@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { AlertTriangle, ArrowLeft, ShieldCheck, Clock, AlertOctagon, PhoneCall, CheckCircle2 } from "lucide-react";
+import { ArrowLeftIcon, CheckIcon, AlertIcon } from "@/components/ui/icons";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function SafeguardingPolicyPage() {
             href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue-600 hover:text-brand-blue-700 transition-colors"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeftIcon className="h-4 w-4" />
             Back to Home
           </Link>
         </div>
@@ -26,7 +26,7 @@ export default function SafeguardingPolicyPage() {
         {/* Mandatory Legal Review Banner */}
         <div className="mb-8 rounded-xl border border-amber-300 bg-amber-50 p-4 sm:p-5 shadow-sm" role="alert">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="h-5 w-5 text-amber-700 shrink-0 mt-0.5" />
+            <AlertIcon className="h-4 w-4" />
             <div>
               <h2 className="text-sm font-bold text-amber-900 uppercase tracking-wide">
                 Regulatory & Legal Notice
@@ -43,7 +43,7 @@ export default function SafeguardingPolicyPage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
               <div className="h-10 w-10 rounded-full bg-status-red-600/10 text-status-red-600 flex items-center justify-center shrink-0">
-                <AlertOctagon className="h-6 w-6" />
+                <AlertIcon className="h-4 w-4" />
               </div>
               <div>
                 <h3 className="text-base font-bold text-neutral-slate-900">
@@ -65,7 +65,6 @@ export default function SafeguardingPolicyPage() {
                 href="tel:+23480087246269"
                 className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-neutral-slate-100 hover:bg-neutral-slate-200 text-neutral-slate-800 font-semibold text-xs rounded-xl transition-colors text-center"
               >
-                <PhoneCall className="h-3.5 w-3.5" />
                 Hotline: +234 800-TRAINBOW
               </a>
             </div>
@@ -83,7 +82,7 @@ export default function SafeguardingPolicyPage() {
             </h1>
             <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-neutral-slate-600 font-medium">
               <span className="flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5" /> Effective Date: October 10, 2026
+                Effective Date: October 10, 2026
               </span>
               <span>•</span>
               <span>Framework: Child&apos;s Rights Act & NDPA 2023</span>
@@ -99,7 +98,7 @@ export default function SafeguardingPolicyPage() {
                 1. Core Safeguarding Principles
               </h2>
               <p>
-                Trainbow HUB is committed to creating an uncompromised, secure digital learning environment where every child and young learner is respected, protected, and empowered. Every child, regardless of age, gender, background, or ability, has the right to be protected from harm, abuse, and exploitation.
+                Trainbow HUB is committed to creating an uncompromised, secure digital learning environment where every child and young learner is respected, protected, and support. Every child, regardless of age, gender, background, or ability, has the right to be protected from harm, abuse, and exploitation.
               </p>
               <p>
                 Our policy aligns with the <strong>Child&apos;s Rights Act (2003)</strong> of Nigeria, relevant State Child Rights Laws, the <strong>Nigeria Data Protection Act 2023</strong>, and international digital safeguarding standards.
@@ -117,7 +116,7 @@ export default function SafeguardingPolicyPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                 <div className="p-4 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50">
                   <div className="flex items-center gap-2 font-bold text-neutral-slate-900 text-sm mb-1">
-                    <CheckCircle2 className="h-4 w-4 text-status-green-600" />
+                    <CheckIcon className="h-4 w-4" />
                     <span>Stage 1: Government KYC</span>
                   </div>
                   <p className="text-xs text-neutral-slate-600">
@@ -126,7 +125,7 @@ export default function SafeguardingPolicyPage() {
                 </div>
                 <div className="p-4 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50">
                   <div className="flex items-center gap-2 font-bold text-neutral-slate-900 text-sm mb-1">
-                    <CheckCircle2 className="h-4 w-4 text-status-green-600" />
+                    <CheckIcon className="h-4 w-4" />
                     <span>Stage 2: Academic Credentials</span>
                   </div>
                   <p className="text-xs text-neutral-slate-600">
@@ -135,7 +134,7 @@ export default function SafeguardingPolicyPage() {
                 </div>
                 <div className="p-4 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50">
                   <div className="flex items-center gap-2 font-bold text-neutral-slate-900 text-sm mb-1">
-                    <CheckCircle2 className="h-4 w-4 text-status-green-600" />
+                    <CheckIcon className="h-4 w-4" />
                     <span>Stage 3: Live Pedagogical Interview</span>
                   </div>
                   <p className="text-xs text-neutral-slate-600">
@@ -144,7 +143,7 @@ export default function SafeguardingPolicyPage() {
                 </div>
                 <div className="p-4 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50">
                   <div className="flex items-center gap-2 font-bold text-neutral-slate-900 text-sm mb-1">
-                    <CheckCircle2 className="h-4 w-4 text-status-green-600" />
+                    <CheckIcon className="h-4 w-4" />
                     <span>Stage 4: Safeguarding Training</span>
                   </div>
                   <p className="text-xs text-neutral-slate-600">
@@ -241,7 +240,6 @@ export default function SafeguardingPolicyPage() {
         {/* Footer Link */}
         <div className="mt-8 flex items-center justify-between text-xs text-neutral-slate-600 px-2">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-status-green-600" />
             <span>Dedicated to Child Protection in Digital Learning</span>
           </div>
           <Link href="/legal/refunds" className="text-brand-blue-600 hover:underline">

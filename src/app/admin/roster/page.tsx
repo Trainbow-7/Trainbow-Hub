@@ -5,20 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Input } from "@/components/ui/Input";
-import {
-  ShieldCheck,
-  UserCheck,
-  Clock,
-  CheckCircle2,
-  AlertCircle,
-  Search,
-  Filter,
-  RefreshCw,
-  Layers,
-  ArrowLeft,
-  ChevronRight,
-  X,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, SearchIcon, ArrowLeftIcon, ChevronRightIcon, CloseIcon, LoaderIcon } from "@/components/ui/icons";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 interface RosterTutor {
@@ -62,7 +49,7 @@ export default function PrivateRosterPage() {
         setTutors(data.tutors || []);
       }
     } catch (err) {
-      console.error("Failed to load private roster", err);
+      console.error("Failed to load educator network", err);
     } finally {
       setLoading(false);
     }
@@ -117,7 +104,7 @@ export default function PrivateRosterPage() {
               href="/admin/matching"
               className="h-10 w-10 rounded-xl bg-neutral-slate-850 hover:bg-neutral-slate-800 text-neutral-slate-400 hover:text-white flex items-center justify-center transition-colors"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeftIcon className="h-4 w-4" />
             </Link>
             <div>
               <div className="flex items-center gap-2">
@@ -145,7 +132,7 @@ export default function PrivateRosterPage() {
               disabled={loading}
               className="text-xs text-white border-neutral-slate-700 hover:bg-neutral-slate-800"
             >
-              <RefreshCw className={`w-3.5 h-3.5 mr-1 ${loading ? "animate-spin" : ""}`} />
+              <LoaderIcon className="h-4 w-4" />
               <span>Refresh</span>
             </Button>
           </div>
@@ -163,11 +150,11 @@ export default function PrivateRosterPage() {
             }`}
           >
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <CheckIcon className="h-4 w-4" />
               <span>{notice.message}</span>
             </div>
             <button onClick={() => setNotice(null)} className="text-neutral-slate-400 hover:text-white">
-              <X className="w-4 h-4" />
+              <CloseIcon className="h-4 w-4" />
             </button>
           </div>
         )}
@@ -175,7 +162,7 @@ export default function PrivateRosterPage() {
         {/* Filter & Search Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 rounded-xl bg-neutral-slate-950 border border-neutral-slate-800">
           <div className="relative w-full sm:w-72">
-            <Search className="w-4 h-4 absolute left-3 top-3 text-neutral-slate-500" />
+            <SearchIcon className="h-4 w-4" />
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -205,7 +192,7 @@ export default function PrivateRosterPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {loading ? (
             <div className="col-span-full py-16 text-center text-xs text-neutral-slate-500 animate-pulse">
-              Loading private roster faculty...
+              Loading educator network faculty...
             </div>
           ) : filtered.length === 0 ? (
             <div className="col-span-full py-16 text-center text-xs text-neutral-slate-500">
@@ -245,12 +232,12 @@ export default function PrivateRosterPage() {
                   <div className="flex items-center gap-2 pt-2 text-[10px] text-neutral-slate-400">
                     {t.profile.trcnCertified && (
                       <span className="inline-flex items-center gap-1 text-emerald-400">
-                        <CheckCircle2 className="w-3 h-3" /> TRCN Certified
+                        <CheckIcon className="h-4 w-4" /> TRCN Certified
                       </span>
                     )}
                     {t.profile.ninVerified && (
                       <span className="inline-flex items-center gap-1 text-emerald-400">
-                        <CheckCircle2 className="w-3 h-3" /> NIN Vetted
+                        <CheckIcon className="h-4 w-4" /> NIN Vetted
                       </span>
                     )}
                   </div>

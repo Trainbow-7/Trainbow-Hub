@@ -9,7 +9,6 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
 import { SEED_SUBJECTS, SEED_COURSES } from "@/lib/data/seed-data";
-import { BookOpen, Clock, ChevronRight, Sparkles } from "lucide-react";
 
 export function generateStaticParams() {
   return SEED_SUBJECTS.map((s) => ({ subject: s.slug }));
@@ -45,20 +44,19 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
         </nav>
 
         {/* Hero Header */}
-        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 relative overflow-hidden">
-          <div className="max-w-3xl space-y-4 relative z-10">
+        <div className="rounded-lg bg-brand-navy-900 text-white p-8 sm:p-12 relative">
+          <div className="max-w-3xl space-y-4">
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/30">
-                {subject.category} Curriculum
+                {subject.category} curriculum
               </Badge>
               {subject.aiEnabled ? (
-                <Badge variant="ai" className="gap-1">
-                  <Sparkles className="h-3 w-3" />
-                  Socratic AI Enabled
+                <Badge variant="ai">
+                  Study helper enabled
                 </Badge>
               ) : (
                 <span className="text-xs text-neutral-slate-300">
-                  AI pending evaluation sign-off
+                  Helper testing in progress
                 </span>
               )}
             </div>
@@ -67,13 +65,13 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
               {subject.name}
             </h1>
             <p className="text-sm sm:text-base text-neutral-slate-200 leading-relaxed max-w-2xl">
-              {subject.description} Structured lessons, practice sets, and verified 1-on-1 tutors aligned to Nigerian educational boards.
+              {subject.description} Structured lessons, practice sets, and 1-on-1 tutor support for Nigerian examination boards.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-2">
-              <span className="text-xs text-neutral-slate-400 font-semibold mr-1">Supported Levels:</span>
+              <span className="text-xs text-neutral-slate-400 font-semibold mr-1">Levels:</span>
               {subject.levels.map((lvl) => (
-                <span key={lvl} className="px-2.5 py-0.5 rounded-full bg-white/10 text-xs text-white border border-white/10">
+                <span key={lvl} className="px-2.5 py-0.5 rounded bg-white/10 text-xs text-white border border-white/10">
                   {lvl}
                 </span>
               ))}
@@ -85,17 +83,17 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold font-heading text-neutral-slate-900">
-              {subject.name} Courses ({courses.length})
+              {subject.name} courses ({courses.length})
             </h2>
             {courses.length === 0 && (
-              <span className="text-xs text-amber-600 font-semibold">New courses publishing soon</span>
+              <span className="text-xs text-amber-700 font-semibold">New courses publishing soon</span>
             )}
           </div>
 
           {courses.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courses.map((course) => (
-                <Card key={course.id} className="flex flex-col justify-between hover:shadow-hover transition-all">
+                <Card key={course.id} className="flex flex-col justify-between">
                   <CardHeader className="space-y-2">
                     <div className="flex items-center justify-between">
                       <Badge variant="brand">{course.level}</Badge>
@@ -114,14 +112,8 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
                   </CardHeader>
                   <CardContent className="space-y-3 pt-0">
                     <div className="flex items-center justify-between text-xs text-neutral-slate-500 border-t border-neutral-slate-100 pt-3">
-                      <span className="flex items-center gap-1">
-                        <BookOpen className="h-3.5 w-3.5 text-neutral-slate-400" />
-                        {course.lessonCount} Lessons
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3.5 w-3.5 text-neutral-slate-400" />
-                        {course.durationHours} Hours
-                      </span>
+                      <span>{course.lessonCount} lessons</span>
+                      <span>{course.durationHours} hours</span>
                       {course.reviewCount > 0 ? (
                         <Rating value={course.rating} count={course.reviewCount} />
                       ) : (
@@ -135,9 +127,8 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
                   </CardContent>
                   <CardFooter className="pt-0">
                     <Link href={`/courses/${course.slug}`} className="w-full">
-                      <Button variant="outline" size="sm" className="w-full justify-between">
-                        <span>View Syllabus</span>
-                        <ChevronRight className="h-4 w-4" />
+                      <Button variant="outline" size="sm" className="w-full justify-center">
+                        <span>View syllabus</span>
                       </Button>
                     </Link>
                   </CardFooter>
@@ -145,13 +136,12 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
               ))}
             </div>
           ) : (
-            <div className="rounded-xl border border-neutral-slate-200 bg-white p-8 text-center space-y-3">
-              <BookOpen className="h-8 w-8 text-neutral-slate-400 mx-auto" />
+            <div className="rounded-lg border border-neutral-slate-200 bg-white p-8 text-center space-y-3">
               <h3 className="font-heading font-semibold text-neutral-slate-900 text-sm">
-                Courses in Authoring Pipeline
+                Courses in authoring pipeline
               </h3>
               <p className="text-xs text-neutral-slate-500 max-w-md mx-auto">
-                Our content managers are reviewing lesson recordings and quiz items for {subject.name}. Check back soon as new verified syllabi are published.
+                Lesson recordings and practice items are being reviewed for {subject.name}. Check back as new course syllabi are added.
               </p>
             </div>
           )}

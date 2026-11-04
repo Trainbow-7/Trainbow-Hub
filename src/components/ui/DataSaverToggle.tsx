@@ -82,7 +82,7 @@ export const DataSaverToggle: React.FC<DataSaverToggleProps> = ({
           aria-label={`Sync ${pendingCount} offline quiz attempts`}
           className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-brand-blue-50 text-brand-blue-700 border border-brand-blue-200 hover:bg-brand-blue-100 disabled:opacity-50"
         >
-          <span>🔄</span>
+          <span className="text-xs font-semibold">Data</span>
           <span>{syncing ? "Syncing..." : `${pendingCount} Offline Sync`}</span>
         </button>
       )}

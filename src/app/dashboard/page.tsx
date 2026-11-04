@@ -10,21 +10,7 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { TutorRequestTracker } from "@/components/matching/TutorRequestTracker";
-import {
-  BookOpen,
-  CheckCircle2,
-  Clock,
-  Flame,
-  ArrowRight,
-  PlayCircle,
-  Award,
-  AlertCircle,
-  Lightbulb,
-  Calendar,
-  Compass,
-  GraduationCap,
-  Sparkles,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, ArrowRightIcon, PlayIcon } from "@/components/ui/icons";
 
 interface DashboardData {
   user: {
@@ -143,7 +129,7 @@ export default function StudentDashboardPage() {
               <div className="flex items-center justify-between gap-3 mb-2">
                 <div className="flex items-center gap-2">
                   <div className="p-2 rounded-lg bg-amber-500/20 text-amber-300">
-                    <Flame className="w-5 h-5 text-amber-400 fill-amber-400" />
+                    
                   </div>
                   <div>
                     <span className="text-[10px] uppercase font-bold tracking-wider text-blue-200 block">Current Streak</span>
@@ -176,7 +162,7 @@ export default function StudentDashboardPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
             <div className="p-3 rounded-lg bg-blue-50 text-brand-blue-600">
-              <BookOpen className="w-5 h-5" />
+              
             </div>
             <div>
               <span className="text-xs text-neutral-slate-500 font-medium block">Enrolled Courses</span>
@@ -188,7 +174,7 @@ export default function StudentDashboardPage() {
 
           <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
             <div className="p-3 rounded-lg bg-status-green-600/10 text-status-green-700">
-              <CheckCircle2 className="w-5 h-5" />
+              <CheckIcon className="h-4 w-4" />
             </div>
             <div>
               <span className="text-xs text-neutral-slate-500 font-medium block">Lessons Completed</span>
@@ -200,7 +186,7 @@ export default function StudentDashboardPage() {
 
           <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
             <div className="p-3 rounded-lg bg-purple-50 text-purple-600">
-              <Award className="w-5 h-5" />
+              
             </div>
             <div>
               <span className="text-xs text-neutral-slate-500 font-medium block">Quizzes Taken</span>
@@ -212,7 +198,7 @@ export default function StudentDashboardPage() {
 
           <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
             <div className="p-3 rounded-lg bg-amber-50 text-amber-600">
-              <Clock className="w-5 h-5" />
+              
             </div>
             <div>
               <span className="text-xs text-neutral-slate-500 font-medium block">Study Minutes</span>
@@ -230,7 +216,7 @@ export default function StudentDashboardPage() {
               <div className="space-y-3 max-w-2xl">
                 <div className="flex items-center gap-2">
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-blue-50 text-brand-blue-600 text-xs font-bold uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5" />
+                    
                     Up Next in Your Syllabus
                   </span>
                   <Badge variant="neutral">{data.continueLearning.level}</Badge>
@@ -241,7 +227,7 @@ export default function StudentDashboardPage() {
                 </h2>
 
                 <div className="flex items-center gap-2 text-sm text-neutral-slate-600">
-                  <PlayCircle className="w-4 h-4 text-brand-blue-600 shrink-0" />
+                  <PlayIcon className="h-4 w-4" />
                   <span className="font-semibold text-neutral-slate-800">Next Lesson:</span>
                   <span className="truncate">{data.continueLearning.nextLessonTitle}</span>
                 </div>
@@ -267,7 +253,7 @@ export default function StudentDashboardPage() {
                   data-testid="continue-learning-btn"
                 >
                   <span>Resume Lesson</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRightIcon className="h-4 w-4" />
                 </Link>
 
                 <Link
@@ -303,7 +289,7 @@ export default function StudentDashboardPage() {
                 })}
               >
                 <span>Browse Catalogue</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </div>
 
@@ -335,7 +321,7 @@ export default function StudentDashboardPage() {
                         className: "shrink-0 text-xs font-semibold gap-1.5 min-h-[36px]",
                       })}
                     >
-                      <PlayCircle className="w-3.5 h-3.5" />
+                      <PlayIcon className="h-4 w-4" />
                       <span>Resume</span>
                     </Link>
                   </div>
@@ -359,7 +345,7 @@ export default function StudentDashboardPage() {
             <div className="bg-white rounded-xl border border-neutral-slate-200 p-6 shadow-sm space-y-5">
               <div className="flex items-start gap-3">
                 <div className="p-2.5 rounded-lg bg-amber-50 text-amber-700 shrink-0">
-                  <Lightbulb className="w-5 h-5" />
+                  
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-base text-neutral-slate-900">
@@ -383,7 +369,7 @@ export default function StudentDashboardPage() {
                         key={idx}
                         className="p-3 rounded-lg bg-amber-50/60 border border-amber-200/60 text-xs flex items-start gap-2.5"
                       >
-                        <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                        <AlertIcon className="h-4 w-4" />
                         <div className="space-y-1">
                           <span className="font-bold text-neutral-slate-900 block">{topic}</span>
                           <p className="text-[11px] text-neutral-slate-600">
@@ -407,7 +393,7 @@ export default function StudentDashboardPage() {
                 </div>
               ) : (
                 <div className="p-4 rounded-lg bg-neutral-slate-50 border border-neutral-slate-200 text-center space-y-2">
-                  <CheckCircle2 className="w-6 h-6 text-status-green-600 mx-auto" />
+                  <CheckIcon className="h-4 w-4" />
                   <p className="text-xs font-semibold text-neutral-slate-800">All Topics Mastered!</p>
                   <p className="text-[11px] text-neutral-slate-600">
                     You scored 100% on recent checkpoints. Continue to the next syllabus module!
@@ -423,7 +409,7 @@ export default function StudentDashboardPage() {
             <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
-                  <Calendar className="w-4 h-4 text-emerald-700" />
+                  
                   <span>1-on-1 Live Tutoring</span>
                 </div>
                 <Badge variant="success" className="text-[10px]">Active</Badge>
@@ -447,7 +433,7 @@ export default function StudentDashboardPage() {
             {/* Quick Socratic AI Assistant Banner */}
             <div className="rounded-xl border border-brand-blue-200 bg-brand-blue-50/50 p-5 space-y-3">
               <div className="flex items-center gap-2 text-brand-blue-600 font-bold text-sm">
-                <Sparkles className="w-4 h-4" />
+                
                 <span>Need Step-by-Step Guidance?</span>
               </div>
               <p className="text-xs text-neutral-slate-600 leading-relaxed">

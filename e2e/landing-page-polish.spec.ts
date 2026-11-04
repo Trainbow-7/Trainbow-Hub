@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 test.describe("Landing Page Polish, Responsive Viewports & Accessibility", () => {
-  const artifactDir = "C:\\Users\\USER\\.gemini\\antigravity\\brain\\f9ac1c5b-572a-472b-a210-561b547c9f08\\screenshots";
+  const artifactDir = process.env.ARTIFACT_DIR || path.join(process.cwd(), "screenshots");
 
   test.beforeAll(() => {
     if (!fs.existsSync(artifactDir)) {

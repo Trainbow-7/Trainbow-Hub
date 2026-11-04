@@ -30,7 +30,7 @@ describe("Rule 1: Format Contract & Golden Snapshot Tests", () => {
     expect(res.content).toMatch(/a = 3 or a = 7\/9/);
 
     // 5. Examiner Tip with curriculum name
-    expect(res.content).toMatch(/💡 \*\*Examiner Tip for WAEC SSCE \(Senior Secondary\):\*\*/);
+    expect(res.content).toMatch(/\*\*Examiner Tip for WAEC SSCE \(Senior Secondary\):\*\*/);
 
     // 6. Verification metadata
     expect(res.verification.isValid).toBe(true);
@@ -49,7 +49,7 @@ describe("Rule 1: Format Contract & Golden Snapshot Tests", () => {
     expect(res.content).toMatch(/\*\*Curriculum Alignment:\*\* WAEC SSCE \(Senior Secondary\) — Mathematics/);
 
     // 2. Hint 1 heading
-    expect(res.content).toMatch(/### Hint Level 1: Conceptual Clue 💡/);
+    expect(res.content).toMatch(/### Hint Level 1: Conceptual Clue/);
 
     // 3. Core concept and insight
     expect(res.content).toMatch(/\*\*Core Concept & Governing Rule:\*\*/);

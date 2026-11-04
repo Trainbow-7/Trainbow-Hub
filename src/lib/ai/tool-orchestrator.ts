@@ -383,7 +383,7 @@ function formatOrchestratorOutput(
 
     if (verification.isValid) {
       renderedContent += `\n\n---\n\n`;
-      renderedContent += `✅ **Verified Solution (Confidence: ${verification.confidence}%):**\n`;
+      renderedContent += `**Verified Solution (Confidence: ${verification.confidence}%):**\n`;
       renderedContent += `*How I checked:* ${verification.stepCheck}\n`;
       renderedContent += `*Check Method:* ${verification.method}\n`;
     }
@@ -413,7 +413,7 @@ function createErrorOutput(
 ): OrchestratorOutput {
   const content = `[AI-Generated Academic Guidance — Solver Error]
 
-### ⚠️ Solution Temporarily Unavailable
+### Solution Temporarily Unavailable
 We were unable to generate a mathematically verified solution for this question at this moment.
 
 **Error Category:** \`${errorCategory}\`

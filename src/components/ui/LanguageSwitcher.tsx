@@ -56,7 +56,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         Select interface language
       </label>
       <span className="text-sm font-medium text-neutral-slate-600 select-none" aria-hidden="true">
-        🌐
+        
       </span>
       <select
         id="language-switcher-select"

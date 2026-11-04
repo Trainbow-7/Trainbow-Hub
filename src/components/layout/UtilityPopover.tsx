@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Globe, Sliders, Check } from "lucide-react";
+import { CheckIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { SUPPORTED_LOCALES, LocaleCode } from "@/lib/i18n";
 import { isDataSaverEnabled, toggleDataSaver } from "@/lib/offline/sync";
@@ -92,7 +92,7 @@ export function UtilityPopover({ isDark = false }: { isDark?: boolean }) {
               : "border-neutral-slate-200 bg-white text-neutral-slate-700 hover:bg-neutral-slate-50 hover:border-neutral-slate-300"
         )}
       >
-        <Globe className={cn("h-4 w-4 shrink-0", isDark ? "text-sky-400" : "text-brand-blue-600")} />
+        
         <span className={cn("hidden sm:inline font-medium", isDark ? "text-slate-100" : "text-neutral-slate-800")}>
           {activeLocale.name.split(" ")[0]}
         </span>
@@ -112,7 +112,7 @@ export function UtilityPopover({ isDark = false }: { isDark?: boolean }) {
           {/* Header */}
           <div className="flex items-center justify-between pb-3 border-b border-neutral-slate-100">
             <div className="flex items-center gap-2">
-              <Sliders className="h-4 w-4 text-brand-blue-600" />
+              
               <h3 className="font-heading text-sm font-bold text-neutral-slate-900">
                 Regional & Data Settings
               </h3>
@@ -190,7 +190,7 @@ export function UtilityPopover({ isDark = false }: { isDark?: boolean }) {
                           ({locale.nativeName})
                         </span>
                       </div>
-                      {isSelected && <Check className="h-3.5 w-3.5 text-brand-blue-600" />}
+                      {isSelected && <CheckIcon size="sm" className="text-brand-blue-600" />}
                     </button>
                   );
                 })}

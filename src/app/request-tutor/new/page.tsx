@@ -9,19 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card";
-import {
-  ShieldCheck,
-  CheckCircle2,
-  AlertTriangle,
-  ArrowRight,
-  ArrowLeft,
-  Clock,
-  Sparkles,
-  BookOpen,
-  Calendar,
-  DollarSign,
-  User,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, ArrowRightIcon, ArrowLeftIcon } from "@/components/ui/icons";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 const SUBJECT_OPTIONS = [
@@ -157,7 +145,7 @@ export default function NewTutorRequestPage() {
             href="/request-tutor"
             className="inline-flex items-center gap-1.5 text-xs text-neutral-slate-500 hover:text-neutral-slate-900 font-medium"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeftIcon className="w-3.5 h-3.5" />
             <span>Back to Tutor Concierge</span>
           </Link>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -205,7 +193,7 @@ export default function NewTutorRequestPage() {
         {/* Error Alert */}
         {errorMsg && (
           <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-900 text-xs flex items-start gap-3">
-            <AlertTriangle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+            <AlertIcon className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
             <div className="space-y-1">
               <p className="font-bold">Submission Blocked</p>
               <p>{errorMsg}</p>
@@ -266,7 +254,6 @@ export default function NewTutorRequestPage() {
               {isMinor && (
                 <div className="p-4 rounded-xl bg-amber-50/80 border border-amber-200 space-y-3">
                   <div className="flex items-center gap-2 text-xs font-bold text-amber-900">
-                    <ShieldCheck className="w-4 h-4 text-amber-700" />
                     <span>NDPA 2023 Section 31 Guardian Verification</span>
                   </div>
                   <p className="text-[11px] text-neutral-slate-600 leading-relaxed">
@@ -315,7 +302,7 @@ export default function NewTutorRequestPage() {
                   className="min-h-[44px] px-6"
                 >
                   <span>Continue to Academic Goals</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                  <ArrowRightIcon className="w-4 h-4 ml-1.5" />
                 </Button>
               </div>
             </CardContent>
@@ -338,7 +325,7 @@ export default function NewTutorRequestPage() {
                 <select
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  className="w-full rounded-control border border-neutral-slate-300 bg-white px-3 py-2 text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600 h-11"
+                  className="w-full rounded-control border border-neutral-slate-300 bg-white px-3 py-2 text-base md:text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600 h-11"
                 >
                   {SUBJECT_OPTIONS.map((sub) => (
                     <option key={sub} value={sub}>{sub}</option>
@@ -351,7 +338,7 @@ export default function NewTutorRequestPage() {
                 <select
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
-                  className="w-full rounded-control border border-neutral-slate-300 bg-white px-3 py-2 text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600 h-11"
+                  className="w-full rounded-control border border-neutral-slate-300 bg-white px-3 py-2 text-base md:text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600 h-11"
                 >
                   {LEVEL_OPTIONS.map((lvl) => (
                     <option key={lvl} value={lvl}>{lvl}</option>
@@ -388,18 +375,18 @@ export default function NewTutorRequestPage() {
                   onChange={(e) => setTopicsNeedingHelp(e.target.value)}
                   placeholder="e.g. Circle Theorems, Calculus, Simultaneous Equations, or Exam Past-Paper Drills"
                   rows={3}
-                  className="w-full rounded-control border border-neutral-slate-300 bg-white p-3 text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600"
+                  className="w-full rounded-control border border-neutral-slate-300 bg-white p-3 text-base md:text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600"
                 />
               </div>
 
               <div className="flex items-center justify-between pt-4">
                 <Button variant="outline" size="md" onClick={() => setStep(1)} className="min-h-[44px]">
-                  <ArrowLeft className="w-4 h-4 mr-1.5" />
+                  <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
                   <span>Back</span>
                 </Button>
                 <Button variant="primary" size="md" onClick={() => setStep(3)} className="min-h-[44px] px-6">
                   <span>Continue to Schedule</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                  <ArrowRightIcon className="w-4 h-4 ml-1.5" />
                 </Button>
               </div>
             </CardContent>
@@ -515,12 +502,12 @@ export default function NewTutorRequestPage() {
 
               <div className="flex items-center justify-between pt-4">
                 <Button variant="outline" size="md" onClick={() => setStep(2)} className="min-h-[44px]">
-                  <ArrowLeft className="w-4 h-4 mr-1.5" />
+                  <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
                   <span>Back</span>
                 </Button>
                 <Button variant="primary" size="md" onClick={() => setStep(4)} className="min-h-[44px] px-6">
                   <span>Continue to Review</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                  <ArrowRightIcon className="w-4 h-4 ml-1.5" />
                 </Button>
               </div>
             </CardContent>
@@ -591,7 +578,7 @@ export default function NewTutorRequestPage() {
                   onChange={(e) => setExtraNotes(e.target.value)}
                   placeholder="Any particular personality, pacing, or teaching style preferences?"
                   rows={2}
-                  className="w-full rounded-control border border-neutral-slate-300 bg-white p-3 text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600"
+                  className="w-full rounded-control border border-neutral-slate-300 bg-white p-3 text-base md:text-xs text-neutral-slate-900 focus:ring-2 focus:ring-brand-blue-600"
                 />
               </div>
 
@@ -623,7 +610,7 @@ export default function NewTutorRequestPage() {
 
               <div className="flex items-center justify-between pt-4">
                 <Button variant="outline" size="md" onClick={() => setStep(3)} className="min-h-[44px]">
-                  <ArrowLeft className="w-4 h-4 mr-1.5" />
+                  <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
                   <span>Back</span>
                 </Button>
                 <Button
@@ -645,13 +632,13 @@ export default function NewTutorRequestPage() {
           <div className="rounded-2xl border border-status-green-200 bg-white p-6 sm:p-10 space-y-8 shadow-floating">
             <div className="text-center space-y-3 max-w-lg mx-auto">
               <div className="h-14 w-14 rounded-full bg-status-green-100 text-status-green-700 flex items-center justify-center mx-auto shadow-sm">
-                <CheckCircle2 className="w-8 h-8" />
+                <CheckIcon className="w-8 h-8" />
               </div>
               <h2 className="text-2xl font-black font-heading text-neutral-slate-900">
                 Tutor Request Submitted!
               </h2>
               <p className="text-xs text-neutral-slate-600">
-                Your request has been routed to Mr Oyedeji S.T, Director of Trainbow HUB, for personal matching from our private roster.
+                Your request has been routed to Mr Oyedeji S.T, Director of Trainbow HUB, for personal matching available for your schedule.
               </p>
             </div>
 
@@ -666,7 +653,6 @@ export default function NewTutorRequestPage() {
                 </span>
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-neutral-slate-200 text-xs text-neutral-slate-700 shadow-xs">
-                <Clock className="w-4 h-4 text-brand-blue-600" />
                 <span>Target Match SLA: <strong>Under 24 Hours</strong></span>
               </div>
             </div>
@@ -677,7 +663,7 @@ export default function NewTutorRequestPage() {
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
                 <div className="p-3 rounded-lg border border-status-green-300 bg-status-green-50 text-status-green-900 space-y-1">
                   <div className="flex items-center gap-1.5 font-bold">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-status-green-600" />
+                    <CheckIcon className="w-3.5 h-3.5 text-status-green-600" />
                     <span>1. Received</span>
                   </div>
                   <p className="text-[10px] text-status-green-700">Request logged in Matching Desk queue</p>
@@ -685,7 +671,6 @@ export default function NewTutorRequestPage() {
 
                 <div className="p-3 rounded-lg border border-brand-blue-300 bg-brand-blue-50/50 text-brand-blue-900 space-y-1">
                   <div className="flex items-center gap-1.5 font-bold">
-                    <Clock className="w-3.5 h-3.5 text-brand-blue-600 animate-pulse" />
                     <span>2. Matching</span>
                   </div>
                   <p className="text-[10px] text-neutral-slate-600">Director reviewing private tutor availability</p>
@@ -693,7 +678,6 @@ export default function NewTutorRequestPage() {
 
                 <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 text-neutral-slate-500 space-y-1">
                   <div className="flex items-center gap-1.5 font-semibold">
-                    <User className="w-3.5 h-3.5" />
                     <span>3. Proposal</span>
                   </div>
                   <p className="text-[10px]">Tutor background &amp; quote sent for your review</p>
@@ -701,7 +685,7 @@ export default function NewTutorRequestPage() {
 
                 <div className="p-3 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 text-neutral-slate-500 space-y-1">
                   <div className="flex items-center gap-1.5 font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <CheckIcon className="w-3.5 h-3.5" />
                     <span>4. Confirmed</span>
                   </div>
                   <p className="text-[10px]">Parent approval &amp; classroom activation</p>
@@ -714,7 +698,7 @@ export default function NewTutorRequestPage() {
               <Link href="/dashboard" className="w-full sm:w-auto">
                 <Button variant="primary" size="md" className="w-full min-h-[44px] px-6">
                   <span>Track in My Dashboard</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                  <ArrowRightIcon className="w-4 h-4 ml-1.5" />
                 </Button>
               </Link>
               <Link href="/request-tutor" className="w-full sm:w-auto">

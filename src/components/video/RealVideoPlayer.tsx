@@ -2,19 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import {
-  Play,
-  Pause,
-  RotateCcw,
-  Volume2,
-  ExternalLink,
-  AlertTriangle,
-  Layers,
-  CheckCircle,
-  HelpCircle,
-  Info,
-  ShieldCheck,
-} from "lucide-react";
+import { PlayIcon, PauseIcon, LoaderIcon, AlertIcon, CheckIcon, ExternalLinkIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 
@@ -189,9 +177,7 @@ export function RealVideoPlayer({
         className="rounded-2xl border-2 border-dashed border-neutral-slate-300 bg-neutral-slate-50/80 p-8 sm:p-12 text-center space-y-4"
         data-testid="no-video-fallback"
       >
-        <div className="w-14 h-14 mx-auto rounded-full bg-blue-100 text-brand-blue-700 flex items-center justify-center shadow-xs">
-          <Info className="w-7 h-7" />
-        </div>
+        
         <div className="max-w-md mx-auto space-y-2">
           <h3 className="text-base font-bold text-neutral-slate-900">Video Lesson Under Review</h3>
           <p className="text-xs text-neutral-slate-600 leading-relaxed">
@@ -272,7 +258,6 @@ export function RealVideoPlayer({
                 </div>
                 {isWaecAligned && (
                   <Badge className="bg-emerald-600/90 hover:bg-emerald-700 text-white border-none text-[10px] px-2 py-0.5 flex items-center gap-1 shadow-xs">
-                    <ShieldCheck className="w-3 h-3" />
                     <span>WAEC Aligned</span>
                   </Badge>
                 )}
@@ -281,7 +266,7 @@ export function RealVideoPlayer({
               {/* Big Centered Play Button */}
               <div className="flex flex-col items-center justify-center z-10 space-y-2">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brand-blue-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform focus:outline-hidden">
-                  <Play className="w-8 h-8 sm:w-10 sm:h-10 ml-1 text-white fill-white" />
+                  <PlayIcon className="w-8 h-8 sm:w-10 sm:h-10 ml-1 text-white fill-white" />
                 </div>
                 <span className="text-xs font-semibold text-neutral-200 tracking-wide bg-black/40 px-3 py-1 rounded-full backdrop-blur-xs">
                   Click to Play (Data Saver)
@@ -318,7 +303,6 @@ export function RealVideoPlayer({
         <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 flex items-start justify-between gap-3 text-xs text-blue-900">
           <div className="space-y-1">
             <p className="font-semibold flex items-center gap-1.5">
-              <Info className="w-4 h-4 text-brand-blue-600 shrink-0" />
               <span>Educational Video Notice</span>
             </p>
             <p className="text-[11px] text-blue-800 leading-relaxed">
@@ -346,7 +330,7 @@ export function RealVideoPlayer({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-brand-blue-600 hover:text-brand-blue-800 font-semibold"
           >
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLinkIcon className="w-3.5 h-3.5" />
             <span>Watch on YouTube</span>
           </a>
 
@@ -400,7 +384,6 @@ export function RealVideoPlayer({
             title="Report an issue with this video"
             data-testid="report-video-btn"
           >
-            <AlertTriangle className="w-3.5 h-3.5 mr-1" />
             <span>Report issue</span>
           </Button>
         </div>
@@ -412,7 +395,6 @@ export function RealVideoPlayer({
           <div className="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-neutral-slate-200">
             <div className="flex items-center justify-between pb-2 border-b border-neutral-slate-100">
               <h4 className="text-sm font-bold text-neutral-slate-900 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-red-600" />
                 Report a Problem with this Video
               </h4>
               <button
@@ -426,7 +408,7 @@ export function RealVideoPlayer({
 
             {reportSubmitted ? (
               <div className="py-6 text-center space-y-2 text-status-green-700">
-                <CheckCircle className="w-8 h-8 mx-auto text-status-green-600" />
+                <CheckIcon className="w-8 h-8 mx-auto text-status-green-600" />
                 <p className="text-xs font-bold">Report submitted. Thank you!</p>
                 <p className="text-[11px] text-neutral-slate-600">Our curriculum teachers will review this video link promptly.</p>
               </div>

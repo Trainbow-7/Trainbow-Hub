@@ -9,30 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/components/auth/AuthProvider";
-import {
-  BookOpen,
-  PlusCircle,
-  Edit,
-  Eye,
-  CheckCircle2,
-  Clock,
-  Layers,
-  Save,
-  Send,
-  UploadCloud,
-  FileCheck,
-  Sparkles,
-  AlertCircle,
-  X,
-  Play,
-  HelpCircle,
-  Calendar,
-  DollarSign,
-  Video,
-  CreditCard,
-  ShieldCheck,
-  ArrowUpRight,
-} from "lucide-react";
+import { CheckIcon, AlertIcon, CloseIcon, PlayIcon, ExternalLinkIcon, EyeIcon } from "@/components/ui/icons";
 
 interface AuthoringCourse {
   id: string;
@@ -263,13 +240,13 @@ export default function TutorDashboardAuthoringPage() {
               className="shrink-0 font-bold text-sm gap-2 shadow-sm"
               data-testid="create-course-draft-btn"
             >
-              <PlusCircle className="w-4 h-4" />
+              
               <span>Create New Course Draft</span>
             </Button>
           </div>
         </div>
 
-        {/* Concierge Matching Governance Banner */}
+        {/* Concierge Matching guidelines Banner */}
         <div
           className="rounded-2xl border border-brand-blue-200 bg-gradient-to-r from-brand-blue-50/80 via-white to-brand-navy-50/50 p-6 shadow-xs space-y-4"
           data-testid="concierge-model-notice-banner"
@@ -280,13 +257,13 @@ export default function TutorDashboardAuthoringPage() {
                 <Badge variant="brand" className="bg-brand-blue-700 text-white font-bold">
                   Direct Concierge Matching Model
                 </Badge>
-                <Badge variant="neutral">Private Roster Active</Badge>
+                <Badge variant="neutral">educator network Active</Badge>
               </div>
               <h2 className="text-xl font-extrabold font-heading text-neutral-slate-900">
                 Personalized Tutoring Coordination
               </h2>
               <p className="text-xs sm:text-sm text-neutral-slate-700 leading-relaxed">
-                Trainbow HUB does not list tutors on an uncurated public marketplace. Every tutoring inquiry is reviewed personally by <strong>Mr Oyedeji S.T (Director of Trainbow HUB)</strong>, who matches families directly with qualified, verified educators from our private roster.
+                Trainbow HUB does not list tutors on an uncurated public marketplace. Every tutoring inquiry is reviewed personally by <strong>Mr Oyedeji S.T (Director of Trainbow HUB)</strong>, who matches families directly with qualified, verified educators from our educator network.
               </p>
               <div className="text-xs text-neutral-slate-600 flex flex-wrap items-center gap-y-1 gap-x-4 pt-1">
                 <span>🛡️ TRCN & NIN Identity Verified</span>
@@ -329,7 +306,7 @@ export default function TutorDashboardAuthoringPage() {
                   className="w-full text-xs font-bold gap-1.5 shadow-xs"
                   data-testid="confirm-available-now-btn"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <CheckIcon className="h-4 w-4" />
                   <span>Confirm I&apos;m Available This Week</span>
                 </Button>
 
@@ -375,7 +352,7 @@ export default function TutorDashboardAuthoringPage() {
             className="p-4 rounded-xl bg-status-green-600/10 border border-status-green-600 text-status-green-900 text-xs font-bold flex items-center gap-2.5 animate-fadeIn"
             data-testid="authoring-success-banner"
           >
-            <CheckCircle2 className="w-5 h-5 text-status-green-700 shrink-0" />
+            <CheckIcon className="h-4 w-4" />
             <span>{actionSuccessMsg}</span>
           </div>
         )}
@@ -435,15 +412,15 @@ export default function TutorDashboardAuthoringPage() {
 
                     <div className="flex flex-wrap items-center gap-4 text-xs text-neutral-slate-500 pt-1">
                       <div className="flex items-center gap-1.5">
-                        <Layers className="w-3.5 h-3.5 text-brand-blue-600" />
+                        
                         <span>{course.syllabus.length} Modules</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <BookOpen className="w-3.5 h-3.5 text-brand-blue-600" />
+                        
                         <span>{totalLessons} Lessons</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-brand-blue-600" />
+                        
                         <span>Level: {course.level}</span>
                       </div>
                     </div>
@@ -457,7 +434,7 @@ export default function TutorDashboardAuthoringPage() {
                       className="text-xs font-semibold gap-1 text-brand-blue-600 hover:text-brand-blue-700 pl-0"
                       data-testid={`preview-course-btn-${course.slug}`}
                     >
-                      <Eye className="w-3.5 h-3.5" />
+                      <EyeIcon className="h-4 w-4" />
                       <span>Student Live Preview</span>
                     </Button>
 
@@ -469,7 +446,7 @@ export default function TutorDashboardAuthoringPage() {
                         className="text-xs font-semibold gap-1"
                         data-testid={`edit-course-btn-${course.slug}`}
                       >
-                        <Edit className="w-3.5 h-3.5" />
+                        
                         <span>Edit Course</span>
                       </Button>
 
@@ -484,7 +461,7 @@ export default function TutorDashboardAuthoringPage() {
                           className="text-xs font-bold gap-1"
                           data-testid={`publish-course-btn-${course.slug}`}
                         >
-                          <UploadCloud className="w-3.5 h-3.5" />
+                          
                           <span>Publish</span>
                         </Button>
                       )}
@@ -517,7 +494,7 @@ export default function TutorDashboardAuthoringPage() {
               data-testid="view-student-bookings-hub-btn"
             >
               <span>Switch to Student View</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ExternalLinkIcon className="h-4 w-4" />
             </Link>
           </div>
 
@@ -541,7 +518,7 @@ export default function TutorDashboardAuthoringPage() {
                 <div className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs">
                   <div className="flex items-center justify-between text-neutral-slate-500 mb-2">
                     <span className="text-xs font-semibold uppercase tracking-wider">Gross Booking Volume</span>
-                    <DollarSign className="w-4 h-4 text-brand-blue-600" />
+                    
                   </div>
                   <div className="text-2xl font-extrabold font-heading text-neutral-slate-900" data-testid="tutor-gross-volume">
                     ₦{(totalGross / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
@@ -554,7 +531,7 @@ export default function TutorDashboardAuthoringPage() {
                 <div className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs">
                   <div className="flex items-center justify-between text-neutral-slate-500 mb-2">
                     <span className="text-xs font-semibold uppercase tracking-wider">Platform Fee (15%)</span>
-                    <CreditCard className="w-4 h-4 text-amber-600" />
+                    
                   </div>
                   <div className="text-2xl font-extrabold font-heading text-neutral-slate-900" data-testid="tutor-platform-fee">
                     ₦{(totalCommission / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
@@ -567,7 +544,7 @@ export default function TutorDashboardAuthoringPage() {
                 <div className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs">
                   <div className="flex items-center justify-between text-neutral-slate-500 mb-2">
                     <span className="text-xs font-semibold uppercase tracking-wider">Net Tutor Earnings (85%)</span>
-                    <ShieldCheck className="w-4 h-4 text-status-green-600" />
+                    
                   </div>
                   <div className="text-2xl font-extrabold font-heading text-status-green-700" data-testid="tutor-net-earnings">
                     ₦{(totalNet / 100).toLocaleString("en-NG", { minimumFractionDigits: 2 })}
@@ -599,7 +576,7 @@ export default function TutorDashboardAuthoringPage() {
             <div className="lg:col-span-7 bg-white rounded-2xl border border-neutral-slate-200 p-6 shadow-xs space-y-4">
               <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-3">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-brand-blue-600" />
+                  
                   <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                     Active Student Bookings
                   </h3>
@@ -643,7 +620,7 @@ export default function TutorDashboardAuthoringPage() {
                           </Badge>
                         </div>
                         <div className="text-xs text-neutral-slate-600 flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5 text-neutral-slate-400" />
+                          
                           <span>
                             {b.slotDate} • {b.slotTime} WAT
                           </span>
@@ -660,7 +637,7 @@ export default function TutorDashboardAuthoringPage() {
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-blue-600 hover:bg-brand-blue-700 text-white text-xs font-bold shadow-xs transition-colors"
                           data-testid={`tutor-launch-classroom-${b.id}`}
                         >
-                          <Video className="w-3.5 h-3.5" />
+                          
                           <span>Launch Classroom</span>
                         </a>
                       </div>
@@ -674,7 +651,7 @@ export default function TutorDashboardAuthoringPage() {
             <div className="lg:col-span-5 bg-white rounded-2xl border border-neutral-slate-200 p-6 shadow-xs space-y-4">
               <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-3">
                 <div className="flex items-center gap-2">
-                  <CreditCard className="w-4 h-4 text-status-green-600" />
+                  
                   <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                     Escrow Financial Ledger
                   </h3>
@@ -748,7 +725,7 @@ export default function TutorDashboardAuthoringPage() {
                   onClick={() => setEditingCourse(null)}
                   className="p-1 rounded-lg hover:bg-neutral-slate-100 text-neutral-slate-500"
                 >
-                  <X className="w-5 h-5" />
+                  <CloseIcon className="w-5 h-5" />
                 </button>
               </div>
 
@@ -849,7 +826,7 @@ export default function TutorDashboardAuthoringPage() {
                   onClick={() => handleOpenStudentPreview(editingCourse)}
                   className="text-xs font-semibold gap-1.5"
                 >
-                  <Eye className="w-3.5 h-3.5" />
+                  <EyeIcon className="h-4 w-4" />
                   <span>Student Preview</span>
                 </Button>
 
@@ -861,7 +838,7 @@ export default function TutorDashboardAuthoringPage() {
                     className="text-xs font-semibold gap-1.5"
                     data-testid="save-draft-btn"
                   >
-                    <Save className="w-3.5 h-3.5" />
+                    
                     <span>Save Draft</span>
                   </Button>
 
@@ -872,7 +849,7 @@ export default function TutorDashboardAuthoringPage() {
                     className="text-xs font-semibold gap-1.5"
                     data-testid="submit-review-btn"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    
                     <span>Submit for Review</span>
                   </Button>
 
@@ -883,7 +860,7 @@ export default function TutorDashboardAuthoringPage() {
                     className="text-xs font-bold gap-1.5 shadow-sm"
                     data-testid="confirm-publish-btn"
                   >
-                    <UploadCloud className="w-3.5 h-3.5" />
+                    
                     <span>Publish Course (v{editingCourse.version + 1}.0)</span>
                   </Button>
                 </div>
@@ -906,13 +883,13 @@ export default function TutorDashboardAuthoringPage() {
                   onClick={() => setPreviewModalOpen(false)}
                   className="p-1 rounded-lg hover:bg-neutral-slate-100 text-neutral-slate-500"
                 >
-                  <X className="w-5 h-5" />
+                  <CloseIcon className="w-5 h-5" />
                 </button>
               </div>
 
               {/* Simulated Lesson Video Player */}
               <div className="aspect-video rounded-xl bg-brand-navy-900 text-white flex flex-col justify-center items-center p-6 text-center space-y-3">
-                <Play className="w-12 h-12 text-brand-blue-500" />
+                <PlayIcon className="h-4 w-4" />
                 <h4 className="font-heading font-bold text-sm text-white">{previewLesson.lessonTitle}</h4>
                 <span className="text-xs text-blue-200 font-mono">Simulated HD Lesson Video ({previewLesson.duration}m)</span>
               </div>

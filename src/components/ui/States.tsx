@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { AlertCircle, Inbox, Loader2 } from "lucide-react";
+import { LoaderIcon, AlertIcon } from "@/components/ui/icons";
 import { Button } from "./Button";
 
 export function EmptyState({
@@ -8,7 +8,6 @@ export function EmptyState({
   description = "There are no records matching your request at this time.",
   actionText,
   onAction,
-  icon: Icon = Inbox,
   className,
 }: {
   title?: string;
@@ -25,9 +24,6 @@ export function EmptyState({
         className
       )}
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-slate-100 text-neutral-slate-500 mb-4">
-        <Icon className="h-6 w-6" />
-      </div>
       <h4 className="font-heading text-base font-bold text-neutral-slate-900">{title}</h4>
       <p className="mt-1 text-xs text-neutral-slate-600 max-w-sm">{description}</p>
       {actionText && onAction && (
@@ -53,7 +49,7 @@ export function LoadingState({
         className
       )}
     >
-      <Loader2 className="h-8 w-8 animate-spin text-brand-blue-600 mb-3" />
+      <LoaderIcon className="h-8 w-8 animate-spin text-brand-blue-600 mb-3" />
       <p className="text-sm font-medium text-neutral-slate-600">{message}</p>
     </div>
   );
@@ -73,12 +69,12 @@ export function ErrorState({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center p-8 text-center rounded-card border border-red-200 bg-red-50/30",
+        "flex flex-col items-center justify-center p-8 text-center rounded-lg border border-red-200 bg-red-50/30",
         className
       )}
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-status-red-600 mb-4">
-        <AlertCircle className="h-6 w-6" />
+        <AlertIcon className="h-6 w-6" />
       </div>
       <h4 className="font-heading text-base font-bold text-status-red-600">{title}</h4>
       <p className="mt-1 text-xs text-neutral-slate-600 max-w-sm">{message}</p>
@@ -110,7 +106,7 @@ export function SkeletonCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "rounded-card border border-neutral-slate-200 bg-white p-6 space-y-4 shadow-soft",
+        "rounded-lg border border-neutral-slate-200 bg-white p-6 space-y-4 shadow-soft",
         className
       )}
     >
