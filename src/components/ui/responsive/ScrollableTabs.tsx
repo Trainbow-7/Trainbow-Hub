@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { ActiveIndicator } from "@/components/motion";
 
 export interface TabItem {
   id: string;
@@ -95,7 +96,7 @@ export function ScrollableTabs({
               id={`tab-${tab.id}`}
               onClick={() => onChange(tab.id)}
               className={cn(
-                "snap-start shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-control text-xs sm:text-sm font-semibold transition-all select-none min-h-[44px]",
+                "snap-start shrink-0 relative inline-flex items-center gap-2 px-3.5 py-2 rounded-control text-xs sm:text-sm font-semibold transition-all select-none min-h-[44px]",
                 isActive
                   ? "bg-brand-blue-600 text-white shadow-sm"
                   : "bg-neutral-slate-100 hover:bg-neutral-slate-200 text-neutral-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:text-slate-300"
@@ -114,6 +115,12 @@ export function ScrollableTabs({
                 >
                   {tab.count}
                 </span>
+              )}
+              {isActive && (
+                <ActiveIndicator
+                  layoutId="scrollable-tab-indicator"
+                  className="absolute bottom-0 left-2 right-2 h-[2.5px] bg-white rounded-full"
+                />
               )}
             </button>
           );

@@ -6,7 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { ProgressBar } from "@/components/ui/ProgressBar";
+import { ProgressBar, Reveal, Stagger, StaggerItem, HoverLift } from "@/components/motion";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { TutorRequestTracker } from "@/components/matching/TutorRequestTracker";
@@ -103,172 +103,192 @@ export default function StudentDashboardPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Welcome & Streak Banner */}
-        <div className="rounded-2xl bg-gradient-to-r from-brand-navy-900 via-brand-navy-900 to-brand-blue-600 text-white p-6 sm:p-8 shadow-md">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Badge variant="brand" className="bg-brand-blue-500/20 text-blue-200 border-blue-400/30">
-                  Learner Portal
-                </Badge>
-                {data?.user?.isMinor && !data?.user?.isVerified && (
-                  <Badge variant="warning" className="bg-amber-500/20 text-amber-200 border-amber-400/30">
-                    Consent Pending
-                  </Badge>
-                )}
-              </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold font-heading tracking-tight text-white">
-                Welcome back, {firstName}!
-              </h1>
-              <p className="text-sm text-blue-100 max-w-xl">
-                Keep up the momentum. You are on track for your West African Senior School Certificate Examination preparations.
-              </p>
-            </div>
-
-            {/* Streak Card */}
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 shrink-0 min-w-[220px]">
-              <div className="flex items-center justify-between gap-3 mb-2">
+        <Reveal>
+          <div className="rounded-2xl bg-gradient-to-r from-brand-navy-900 via-brand-navy-900 to-brand-blue-600 text-white p-6 sm:p-8 shadow-md">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-lg bg-amber-500/20 text-amber-300">
-                    
-                  </div>
-                  <div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-blue-200 block">Current Streak</span>
-                    <span data-testid="streak-counter" className="text-lg font-black text-white font-heading">
-                      {data?.studyStats.streakDays || 5} Days Active
-                    </span>
+                  <Badge variant="brand" className="bg-brand-blue-500/20 text-blue-200 border-blue-400/30">
+                    Learner Portal
+                  </Badge>
+                  {data?.user?.isMinor && !data?.user?.isVerified && (
+                    <Badge variant="warning" className="bg-amber-500/20 text-amber-200 border-amber-400/30">
+                      Consent Pending
+                    </Badge>
+                  )}
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold font-heading tracking-tight text-white">
+                  Welcome back, {firstName}!
+                </h1>
+                <p className="text-sm text-blue-100 max-w-xl">
+                  Keep up the momentum. You are on track for your West African Senior School Certificate Examination preparations.
+                </p>
+              </div>
+
+              {/* Streak Card */}
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 shrink-0 min-w-[220px]">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="p-2 rounded-lg bg-amber-500/20 text-amber-300">
+                      
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-blue-200 block">Current Streak</span>
+                      <span data-testid="streak-counter" className="text-lg font-black text-white font-heading">
+                        {data?.studyStats.streakDays || 5} Days Active
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* Day Dots */}
-              <div className="flex items-center justify-between gap-1 pt-2 border-t border-white/10 text-xs">
-                {weekdays.map((day, idx) => (
-                  <div key={idx} className="flex flex-col items-center gap-1">
-                    <span className="text-[10px] text-blue-200">{day.label}</span>
-                    <span
-                      className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold ${
-                        day.active ? "bg-amber-400 text-brand-navy-900" : "bg-white/20 text-white/50"
-                      }`}
-                    >
-                      {day.active ? "✓" : "•"}
-                    </span>
-                  </div>
-                ))}
+                {/* Day Dots */}
+                <div className="flex items-center justify-between gap-1 pt-2 border-t border-white/10 text-xs">
+                  {weekdays.map((day, idx) => (
+                    <div key={idx} className="flex flex-col items-center gap-1">
+                      <span className="text-[10px] text-blue-200">{day.label}</span>
+                      <span
+                        className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold ${
+                          day.active ? "bg-amber-400 text-brand-navy-900" : "bg-white/20 text-white/50"
+                        }`}
+                      >
+                        {day.active ? "✓" : "•"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Quick KPI Stat Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
-            <div className="p-3 rounded-lg bg-blue-50 text-brand-blue-600">
-              
-            </div>
-            <div>
-              <span className="text-xs text-neutral-slate-500 font-medium block">Enrolled Courses</span>
-              <span data-testid="enrolled-courses-count" className="text-xl font-bold font-heading text-neutral-slate-900">
-                {data?.enrollments.length || 1}
-              </span>
-            </div>
-          </div>
+        <Stagger className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <StaggerItem>
+            <HoverLift>
+              <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5 h-full">
+                <div className="p-3 rounded-lg bg-blue-50 text-brand-blue-600">
+                  
+                </div>
+                <div>
+                  <span className="text-xs text-neutral-slate-500 font-medium block">Enrolled Courses</span>
+                  <span data-testid="enrolled-courses-count" className="text-xl font-bold font-heading text-neutral-slate-900">
+                    {data?.enrollments.length || 1}
+                  </span>
+                </div>
+              </div>
+            </HoverLift>
+          </StaggerItem>
 
-          <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
-            <div className="p-3 rounded-lg bg-status-green-600/10 text-status-green-700">
-              <CheckIcon className="h-4 w-4" />
-            </div>
-            <div>
-              <span className="text-xs text-neutral-slate-500 font-medium block">Lessons Completed</span>
-              <span data-testid="completed-lessons-count" className="text-xl font-bold font-heading text-neutral-slate-900">
-                {data?.studyStats.lessonsCompleted || 1}
-              </span>
-            </div>
-          </div>
+          <StaggerItem>
+            <HoverLift>
+              <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5 h-full">
+                <div className="p-3 rounded-lg bg-status-green-600/10 text-status-green-700">
+                  <CheckIcon className="h-4 w-4" />
+                </div>
+                <div>
+                  <span className="text-xs text-neutral-slate-500 font-medium block">Lessons Completed</span>
+                  <span data-testid="completed-lessons-count" className="text-xl font-bold font-heading text-neutral-slate-900">
+                    {data?.studyStats.lessonsCompleted || 1}
+                  </span>
+                </div>
+              </div>
+            </HoverLift>
+          </StaggerItem>
 
-          <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
-            <div className="p-3 rounded-lg bg-purple-50 text-purple-600">
-              
-            </div>
-            <div>
-              <span className="text-xs text-neutral-slate-500 font-medium block">Quizzes Taken</span>
-              <span data-testid="quizzes-taken-count" className="text-xl font-bold font-heading text-neutral-slate-900">
-                {data?.recentQuizAttempts.length || 1}
-              </span>
-            </div>
-          </div>
+          <StaggerItem>
+            <HoverLift>
+              <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5 h-full">
+                <div className="p-3 rounded-lg bg-purple-50 text-purple-600">
+                  
+                </div>
+                <div>
+                  <span className="text-xs text-neutral-slate-500 font-medium block">Quizzes Taken</span>
+                  <span data-testid="quizzes-taken-count" className="text-xl font-bold font-heading text-neutral-slate-900">
+                    {data?.recentQuizAttempts.length || 1}
+                  </span>
+                </div>
+              </div>
+            </HoverLift>
+          </StaggerItem>
 
-          <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5">
-            <div className="p-3 rounded-lg bg-amber-50 text-amber-600">
-              
-            </div>
-            <div>
-              <span className="text-xs text-neutral-slate-500 font-medium block">Study Minutes</span>
-              <span className="text-xl font-bold font-heading text-neutral-slate-900">
-                {data?.studyStats.totalMinutesStudied || 145}m
-              </span>
-            </div>
-          </div>
-        </div>
+          <StaggerItem>
+            <HoverLift>
+              <div className="bg-white p-4 rounded-xl border border-neutral-slate-200 shadow-sm flex items-center gap-3.5 h-full">
+                <div className="p-3 rounded-lg bg-amber-50 text-amber-600">
+                  
+                </div>
+                <div>
+                  <span className="text-xs text-neutral-slate-500 font-medium block">Study Minutes</span>
+                  <span className="text-xl font-bold font-heading text-neutral-slate-900">
+                    {data?.studyStats.totalMinutesStudied || 145}m
+                  </span>
+                </div>
+              </div>
+            </HoverLift>
+          </StaggerItem>
+        </Stagger>
 
         {/* Hero "Continue Learning" Action Card */}
         {data?.continueLearning && (
-          <div className="bg-white rounded-2xl border border-neutral-slate-200 p-6 sm:p-8 shadow-sm">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-              <div className="space-y-3 max-w-2xl">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-blue-50 text-brand-blue-600 text-xs font-bold uppercase tracking-wider">
-                    
-                    Up Next in Your Syllabus
-                  </span>
-                  <Badge variant="neutral">{data.continueLearning.level}</Badge>
-                </div>
-
-                <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900">
-                  {data.continueLearning.courseTitle}
-                </h2>
-
-                <div className="flex items-center gap-2 text-sm text-neutral-slate-600">
-                  <PlayIcon className="h-4 w-4" />
-                  <span className="font-semibold text-neutral-slate-800">Next Lesson:</span>
-                  <span className="truncate">{data.continueLearning.nextLessonTitle}</span>
-                </div>
-
-                {/* Course Progress Meter */}
-                <div className="space-y-1.5 pt-1">
-                  <div className="flex justify-between text-xs font-medium text-neutral-slate-600">
-                    <span>Overall Course Progress</span>
-                    <span className="font-bold text-neutral-slate-900">{data.continueLearning.progressPercentage}%</span>
+          <Reveal>
+            <div className="bg-white rounded-2xl border border-neutral-slate-200 p-6 sm:p-8 shadow-sm">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="space-y-3 max-w-2xl">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-blue-50 text-brand-blue-600 text-xs font-bold uppercase tracking-wider">
+                      
+                      Up Next in Your Syllabus
+                    </span>
+                    <Badge variant="neutral">{data.continueLearning.level}</Badge>
                   </div>
-                  <ProgressBar value={data.continueLearning.progressPercentage} variant="brand" />
+
+                  <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900">
+                    {data.continueLearning.courseTitle}
+                  </h2>
+
+                  <div className="flex items-center gap-2 text-sm text-neutral-slate-600">
+                    <PlayIcon className="h-4 w-4" />
+                    <span className="font-semibold text-neutral-slate-800">Next Lesson:</span>
+                    <span className="truncate">{data.continueLearning.nextLessonTitle}</span>
+                  </div>
+
+                  {/* Course Progress Meter */}
+                  <div className="space-y-1.5 pt-1">
+                    <div className="flex justify-between text-xs font-medium text-neutral-slate-600">
+                      <span>Overall Course Progress</span>
+                      <span className="font-bold text-neutral-slate-900">{data.continueLearning.progressPercentage}%</span>
+                    </div>
+                    <ProgressBar value={data.continueLearning.progressPercentage} variant="brand" />
+                  </div>
                 </div>
-              </div>
 
-              <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3 min-w-[200px]">
-                <Link
-                  href={`/learn/${data.continueLearning.courseSlug}/${data.continueLearning.nextLessonId}`}
-                  className={buttonVariants({
-                    variant: "primary",
-                    size: "lg",
-                    className: "w-full justify-center font-bold text-base shadow-sm gap-2 min-h-[44px]",
-                  })}
-                  data-testid="continue-learning-btn"
-                >
-                  <span>Resume Lesson</span>
-                  <ArrowRightIcon className="h-4 w-4" />
-                </Link>
+                <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-3 min-w-[200px]">
+                  <Link
+                    href={`/learn/${data.continueLearning.courseSlug}/${data.continueLearning.nextLessonId}`}
+                    className={buttonVariants({
+                      variant: "primary",
+                      size: "lg",
+                      className: "w-full justify-center font-bold text-base shadow-sm gap-2 min-h-[44px]",
+                    })}
+                    data-testid="continue-learning-btn"
+                  >
+                    <span>Resume Lesson</span>
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
 
-                <Link
-                  href={`/courses/${data.continueLearning.courseSlug}`}
-                  className={buttonVariants({
-                    variant: "outline",
-                    size: "sm",
-                    className: "w-full justify-center text-xs min-h-[36px]",
-                  })}
-                >
-                  View Full Syllabus
-                </Link>
+                  <Link
+                    href={`/courses/${data.continueLearning.courseSlug}`}
+                    className={buttonVariants({
+                      variant: "outline",
+                      size: "sm",
+                      className: "w-full justify-center text-xs min-h-[36px]",
+                    })}
+                  >
+                    View Full Syllabus
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         )}
 
         {/* 2-Column: My Courses & Revision Recommendations */}

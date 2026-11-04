@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { AuthProvider } from "@/components/auth/AuthProvider";
+import { MotionProvider } from "@/components/motion";
 import { BRAND } from "@/lib/brand";
 import "./globals.css";
 import "katex/dist/katex.min.css";
@@ -113,7 +114,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased bg-neutral-slate-50 text-neutral-slate-900 selection:bg-brand-blue-50 selection:text-brand-blue-600">
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <MotionProvider>{children}</MotionProvider>
+        </AuthProvider>
       </body>
     </html>
   );

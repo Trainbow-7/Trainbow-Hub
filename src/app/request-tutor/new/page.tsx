@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card";
 import { CheckIcon, AlertIcon, ArrowRightIcon, ArrowLeftIcon } from "@/components/ui/icons";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { ProgressBar, Presence, StepTransition } from "@/components/motion";
 
 const SUBJECT_OPTIONS = [
   "Mathematics",
@@ -49,7 +50,13 @@ export default function NewTutorRequestPage() {
   const { user } = useAuth();
 
   const [step, setStep] = React.useState<number>(1);
+  const [direction, setDirection] = React.useState<number>(1);
   const [submitting, setSubmitting] = React.useState<boolean>(false);
+
+  const goToStep = (nextStep: number) => {
+    setDirection(nextStep > step ? 1 : -1);
+    setStep(nextStep);
+  };
   const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
   const [submittedRequest, setSubmittedRequest] = React.useState<any | null>(null);
 
@@ -126,7 +133,7 @@ export default function NewTutorRequestPage() {
       }
 
       setSubmittedRequest(data.request);
-      setStep(5);
+      goToStep(5);
     } catch (err: any) {
       setErrorMsg(err?.message || "An unexpected network error occurred.");
     } finally {
@@ -167,50 +174,56 @@ export default function NewTutorRequestPage() {
 
         {/* Stepper Indicator */}
         {step < 5 && (
-          <div className="grid grid-cols-4 gap-2 text-xs font-semibold">
-            {[
-              { num: 1, label: "Learner" },
-              { num: 2, label: "Goals" },
-              { num: 3, label: "Schedule" },
-              { num: 4, label: "Review" },
-            ].map((s) => (
-              <div
-                key={s.num}
-                className={`py-2 px-3 text-center border-b-2 transition-colors ${
-                  step === s.num
-                    ? "border-brand-blue-600 text-brand-blue-600 font-bold"
-                    : step > s.num
-                    ? "border-status-green-600 text-status-green-700"
-                    : "border-neutral-slate-200 text-neutral-slate-400"
-                }`}
-              >
-                <span>{s.num}. {s.label}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Error Alert */}
-        {errorMsg && (
-          <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-900 text-xs flex items-start gap-3">
-            <AlertIcon className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-            <div className="space-y-1">
-              <p className="font-bold">Submission Blocked</p>
-              <p>{errorMsg}</p>
-              {isMinor && (
-                <Link
-                  href="/guardian/consent"
-                  className="inline-block mt-1 font-bold underline hover:text-red-950"
+          <div className="space-y-3">
+            <ProgressBar value={(step / 4) * 100} className="h-1.5" />
+            <div className="grid grid-cols-4 gap-2 text-xs font-semibold">
+              {[
+                { num: 1, label: "Learner" },
+                { num: 2, label: "Goals" },
+                { num: 3, label: "Schedule" },
+                { num: 4, label: "Review" },
+              ].map((s) => (
+                <div
+                  key={s.num}
+                  className={`py-2 px-3 text-center border-b-2 transition-colors ${
+                    step === s.num
+                      ? "border-brand-blue-600 text-brand-blue-600 font-bold"
+                      : step > s.num
+                      ? "border-status-green-600 text-status-green-700"
+                      : "border-neutral-slate-200 text-neutral-slate-400"
+                  }`}
                 >
-                  Verify Guardian Consent Now →
-                </Link>
-              )}
+                  <span>{s.num}. {s.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         )}
 
-        {/* STEP 1: Learner Profile & NDPA Consent */}
-        {step === 1 && (
+        {/* Error Alert */}
+        <Presence present={!!errorMsg} variant="fade">
+          {errorMsg && (
+            <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-900 text-xs flex items-start gap-3">
+              <AlertIcon className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-bold">Submission Blocked</p>
+                <p>{errorMsg}</p>
+                {isMinor && (
+                  <Link
+                    href="/guardian/consent"
+                    className="inline-block mt-1 font-bold underline hover:text-red-950"
+                  >
+                    Verify Guardian Consent Now →
+                  </Link>
+                )}
+              </div>
+            </div>
+          )}
+        </Presence>
+
+        <StepTransition stepKey={step} direction={direction}>
+          {/* STEP 1: Learner Profile & NDPA Consent */}
+          {step === 1 && (
           <Card className="p-6 sm:p-8 space-y-6">
             <CardHeader className="p-0 space-y-1">
               <CardTitle className="text-lg">Step 1: Learner &amp; Guardian Information</CardTitle>
@@ -298,7 +311,7 @@ export default function NewTutorRequestPage() {
                   variant="primary"
                   size="md"
                   disabled={isMinor && !hasGuardianConsent}
-                  onClick={() => setStep(2)}
+                  onClick={() => goToStep(2)}
                   className="min-h-[44px] px-6"
                 >
                   <span>Continue to Academic Goals</span>
@@ -380,11 +393,11 @@ export default function NewTutorRequestPage() {
               </div>
 
               <div className="flex items-center justify-between pt-4">
-                <Button variant="outline" size="md" onClick={() => setStep(1)} className="min-h-[44px]">
+                <Button variant="outline" size="md" onClick={() => goToStep(1)} className="min-h-[44px]">
                   <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
                   <span>Back</span>
                 </Button>
-                <Button variant="primary" size="md" onClick={() => setStep(3)} className="min-h-[44px] px-6">
+                <Button variant="primary" size="md" onClick={() => goToStep(3)} className="min-h-[44px] px-6">
                   <span>Continue to Schedule</span>
                   <ArrowRightIcon className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -501,11 +514,11 @@ export default function NewTutorRequestPage() {
               </div>
 
               <div className="flex items-center justify-between pt-4">
-                <Button variant="outline" size="md" onClick={() => setStep(2)} className="min-h-[44px]">
+                <Button variant="outline" size="md" onClick={() => goToStep(2)} className="min-h-[44px]">
                   <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
                   <span>Back</span>
                 </Button>
-                <Button variant="primary" size="md" onClick={() => setStep(4)} className="min-h-[44px] px-6">
+                <Button variant="primary" size="md" onClick={() => goToStep(4)} className="min-h-[44px] px-6">
                   <span>Continue to Review</span>
                   <ArrowRightIcon className="w-4 h-4 ml-1.5" />
                 </Button>
@@ -609,7 +622,7 @@ export default function NewTutorRequestPage() {
               </div>
 
               <div className="flex items-center justify-between pt-4">
-                <Button variant="outline" size="md" onClick={() => setStep(3)} className="min-h-[44px]">
+                <Button variant="outline" size="md" onClick={() => goToStep(3)} className="min-h-[44px]">
                   <ArrowLeftIcon className="w-4 h-4 mr-1.5" />
                   <span>Back</span>
                 </Button>
@@ -709,6 +722,7 @@ export default function NewTutorRequestPage() {
             </div>
           </div>
         )}
+        </StepTransition>
       </main>
 
       <Footer />

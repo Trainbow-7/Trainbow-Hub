@@ -21,6 +21,7 @@ import { MathDrawingCanvas } from "./MathDrawingCanvas";
 import { normalizeMathInText } from "@/lib/ai/math-formatter";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { computeClientSha256, generateClientUploadId } from "@/lib/ai/client-hash";
+import { Carousel, HoverLift } from "@/components/motion";
 
 interface Attachment {
   id: string;
@@ -953,10 +954,7 @@ export function SocraticWorkspace() {
             </div>
           ) : messages.length === 0 ? (
             /* Empty state with Nigerian curriculum prompts */
-            <div className="text-center py-10 max-w-xl mx-auto space-y-5">
-              <div className="h-12 w-12 rounded-2xl bg-purple-100 text-service-ai-600 mx-auto flex items-center justify-center">
-                
-              </div>
+            <div className="text-center py-8 max-w-xl mx-auto space-y-6">
               <div className="space-y-1.5">
                 <h3 className="font-heading font-bold text-base text-neutral-slate-900">
                   Welcome to Trainbow Academic AI
@@ -967,6 +965,50 @@ export function SocraticWorkspace() {
                 </p>
               </div>
 
+              {/* Try asking carousel of real syllabus topics */}
+              <div className="pt-2 space-y-3 text-left">
+                <div className="flex items-center justify-between border-b border-neutral-slate-100 pb-1.5">
+                  <span className="text-xs font-bold uppercase tracking-wider text-service-ai-600">
+                    Try asking
+                  </span>
+                  <span className="text-[11px] text-neutral-slate-500">
+                    Select a topic question
+                  </span>
+                </div>
+
+                <Carousel
+                  items={SAMPLE_QUESTIONS}
+                  ariaLabel="Try asking syllabus topics carousel"
+                  slidesPerView={{ default: 1, sm: 2 }}
+                  showControls={true}
+                  showProgress={false}
+                  renderItem={(item) => (
+                    <HoverLift className="h-full">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPrompt(item.query);
+                          setSelectedSubject(item.subject);
+                          setSelectedCurriculum(item.curriculum);
+                        }}
+                        className="w-full text-left p-3.5 rounded-xl border border-neutral-slate-200 bg-white hover:border-service-ai-500 hover:bg-purple-50/30 transition-colors h-full flex flex-col justify-between space-y-2 cursor-pointer"
+                      >
+                        <div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-service-ai-600 block mb-1">
+                            {item.topic}
+                          </span>
+                          <p className="text-xs text-neutral-slate-800 line-clamp-3 leading-relaxed">
+                            {item.query}
+                          </p>
+                        </div>
+                        <span className="text-[11px] font-semibold text-service-ai-600 pt-1">
+                          Load into editor →
+                        </span>
+                      </button>
+                    </HoverLift>
+                  )}
+                />
+              </div>
             </div>
           ) : (
             /* Render Conversation Messages */
@@ -1272,14 +1314,14 @@ export function SocraticWorkspace() {
             })
           )}
 
-          {/* Loading Indicator */}
+          {/* Loading Indicator (Calm, restrained CSS state) */}
           {loading && (
             <div className="flex items-start gap-3" data-testid="ai-thinking-indicator">
-              <div className="h-8 w-8 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-xs shrink-0 animate-pulse shadow-xs">
-                
+              <div className="h-8 w-8 rounded-full bg-service-ai-600 text-white font-bold flex items-center justify-center text-xs shrink-0 shadow-xs">
+                AI
               </div>
               <div className="rounded-2xl rounded-tl-xs border border-purple-200 bg-purple-50/50 p-4 text-xs text-service-ai-700 flex items-center gap-2.5 shadow-2xs">
-                <LoaderIcon className="h-4 w-4 animate-spin text-service-ai-600 shrink-0" />
+                <span className="w-2 h-2 rounded-full bg-service-ai-600 opacity-75 shrink-0" />
                 <span className="font-medium">
                   {(() => {
                     const lastUserMsg = [...messages].reverse().find((m) => m.role === "USER");

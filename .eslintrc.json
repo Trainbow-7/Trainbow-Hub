@@ -11,6 +11,18 @@
           {
             "name": "lucide-react",
             "message": "Direct imports from 'lucide-react' are forbidden per the Trainbow Hub Icon Policy. Import functional icons exclusively from '@/components/ui/icons'."
+          },
+          {
+            "name": "motion",
+            "message": "Direct imports from 'motion' are forbidden. Import motion primitives exclusively from '@/components/motion' or '@/lib/motion'."
+          },
+          {
+            "name": "motion/react",
+            "message": "Direct imports from 'motion/react' are forbidden. Import motion primitives exclusively from '@/components/motion' or '@/lib/motion'."
+          },
+          {
+            "name": "framer-motion",
+            "message": "Direct imports from 'framer-motion' are forbidden. Import motion primitives exclusively from '@/components/motion' or '@/lib/motion'."
           }
         ]
       }
@@ -21,6 +33,15 @@
       "files": [
         "src/components/ui/icons.tsx",
         "src/components/ui/icons.ts"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    },
+    {
+      "files": [
+        "src/components/motion/**/*.{ts,tsx}",
+        "src/lib/motion.ts"
       ],
       "rules": {
         "no-restricted-imports": "off"

@@ -151,155 +151,28 @@ html[data-saver="true"] * {
   transition-duration: 0.01ms !important;
 }
 
-/* Hero Split Layout Float Keyframes */
-@keyframes heroFloatTutor {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
+/* Motion system tokens & Progressive Enhancement */
+:root {
+  --motion-duration-fast: 120ms;
+  --motion-duration-base: 200ms;
+  --motion-duration-slow: 360ms;
+  --motion-ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-exit: ease-in-out;
 }
 
-@keyframes heroFloatChip {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(6px);
-  }
+/* Scroll snap carousel container for zero-JS and mobile progressive enhancement */
+.snap-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .animate-hero-float-tutor {
-    animation: heroFloatTutor 7s ease-in-out infinite;
-  }
-  .animate-hero-float-chip {
-    animation: heroFloatChip 6s ease-in-out infinite 1s;
-  }
-  .animate-hero-fade {
-    animation: heroFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-}
-
-
-/* Hero Hub Connector Lines Animation */
-@keyframes hubDash {
-  to {
-    stroke-dashoffset: -16;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .animate-hub-flow-blue,
-  .animate-hub-flow-purple,
-  .animate-hub-flow-teal,
-  .animate-hub-flow-amber {
-    animation: hubDash 4s linear infinite;
-  }
-}
-
-
-/* Hub Marquee Orbit Keyframes */
-@keyframes hubOrbitCW {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes hubCounterRotateCCW {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
-}
-
-@keyframes hubCenterPulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 16px 2px rgba(56, 189, 248, 0.25), 0 0 32px 4px rgba(124, 58, 237, 0.15);
-  }
-  50% {
-    transform: scale(1.025);
-    box-shadow: 0 0 26px 6px rgba(56, 189, 248, 0.45), 0 0 48px 8px rgba(124, 58, 237, 0.3);
-  }
-}
-
-@keyframes hubSpokeFlow {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: -32;
-  }
-}
-
-@keyframes hubEntranceFadeScale {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-hub-entrance {
-  animation: hubEntranceFadeScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-hub-center-pulse {
-  animation: hubCenterPulse 3.5s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .animate-hub-orbit {
-    animation: hubOrbitCW var(--orbit-duration, 48s) linear infinite;
-  }
-  .animate-hub-counter {
-    animation: hubCounterRotateCCW var(--orbit-duration, 48s) linear infinite;
-  }
-  .animate-hub-spoke-flow {
-    animation: hubSpokeFlow 12s linear infinite;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-hub-orbit,
-  .animate-hub-counter,
-  .animate-hub-spoke-flow,
-  .animate-hub-center-pulse,
-  .animate-hub-entrance {
-    animation: none !important;
-  }
-}
-
-html[data-data-saver="true"] .animate-hub-orbit,
-html[data-data-saver="true"] .animate-hub-counter,
-html[data-data-saver="true"] .animate-hub-spoke-flow,
-html[data-data-saver="true"] .animate-hub-center-pulse,
-html[data-saver="true"] .animate-hub-orbit,
-html[data-saver="true"] .animate-hub-counter,
-html[data-saver="true"] .animate-hub-spoke-flow,
-html[data-saver="true"] .animate-hub-center-pulse {
-  animation: none !important;
+.snap-slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
 }
 
 

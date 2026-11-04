@@ -38,9 +38,19 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [academyMenuOpen, setAcademyMenuOpen] = React.useState(false);
   const [userMenuOpen, setUserMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
   const academyDropdownRef = React.useRef<HTMLDivElement>(null);
   const userDropdownRef = React.useRef<HTMLDivElement>(null);
   const { user, logout, isLoading } = useAuth();
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const getRoleLabel = (role: string) => {
     switch (role) {
@@ -82,7 +92,13 @@ export function Navbar() {
     pathname?.startsWith("/subjects/");
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#0B1226]/95 backdrop-blur-md transition-all text-white pt-[env(safe-area-inset-top,0px)]">
+    <header
+      className={`sticky top-0 z-40 w-full transition-all duration-200 text-white pt-[env(safe-area-inset-top,0px)] ${
+        isScrolled
+          ? "border-b border-white/15 bg-[#0B1226]/90 backdrop-blur-md shadow-sm"
+          : "border-b border-white/[0.04] bg-[#0B1226]"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 min-h-[4.25rem] flex items-center justify-between">
         {/* Brand Wordmark & Tagline */}
         <div className="flex items-center gap-6 lg:gap-8">

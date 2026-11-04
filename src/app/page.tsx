@@ -2,7 +2,8 @@ import * as React from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { HeroHubVisual } from "@/components/home/HeroHubVisual";
+import { HeroProductTour } from "@/components/home/HeroProductTour";
+import { Reveal, Stagger, StaggerItem, HoverLift } from "@/components/motion";
 import { SEED_SUBJECTS } from "@/lib/data/seed-data";
 
 export default function HomePage() {
@@ -22,7 +23,7 @@ export default function HomePage() {
         <section className="relative bg-[#0B1226] text-white py-12 sm:py-16 lg:py-20 border-b border-slate-800">
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Left Column */}
+              {/* Left Column: Immediate text (Never initial 0 opacity on LCP) */}
               <div className="lg:col-span-7 flex flex-col items-start text-left">
                 {/* Audience Statement */}
                 <span className="text-xs sm:text-sm font-medium text-sky-200 uppercase tracking-wider">
@@ -73,9 +74,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Right Column: Hero Visual */}
+              {/* Right Column: Hero Visual Product Tour */}
               <div className="lg:col-span-5 w-full flex justify-center lg:justify-end mt-4 lg:mt-0">
-                <HeroHubVisual />
+                <HeroProductTour />
               </div>
             </div>
           </div>
@@ -84,111 +85,137 @@ export default function HomePage() {
         {/* 2. EVERYTHING IN ONE PLACE */}
         <section className="py-12 sm:py-16 bg-white border-b border-neutral-slate-200">
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900 tracking-tight text-left mb-6 sm:mb-8">
-              Everything in one place
-            </h2>
+            <Reveal>
+              <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900 tracking-tight text-left mb-6 sm:mb-8">
+                Everything in one place
+              </h2>
+            </Reveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link
-                href="/academy"
-                className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-brand-blue-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors"
-              >
-                <div>
-                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
-                    Academy
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-slate-600">
-                    Video lessons and quizzes for your exams.
-                  </p>
-                </div>
-              </Link>
+            <Stagger className="flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 no-scrollbar pb-2 sm:pb-0">
+              <StaggerItem index={0} className="min-w-[80vw] sm:min-w-0 snap-start">
+                <HoverLift>
+                  <Link
+                    href="/academy"
+                    className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-brand-blue-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors h-full block"
+                  >
+                    <div>
+                      <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                        Academy
+                      </h3>
+                      <p className="text-xs sm:text-sm text-neutral-slate-600">
+                        Video lessons and quizzes for your exams.
+                      </p>
+                    </div>
+                  </Link>
+                </HoverLift>
+              </StaggerItem>
 
-              <Link
-                href="/ai"
-                className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-purple-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors"
-              >
-                <div>
-                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
-                    AI
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-slate-600">
-                    Step-by-step guidance without giving away answers.
-                  </p>
-                </div>
-              </Link>
+              <StaggerItem index={1} className="min-w-[80vw] sm:min-w-0 snap-start">
+                <HoverLift>
+                  <Link
+                    href="/ai"
+                    className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-purple-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors h-full block"
+                  >
+                    <div>
+                      <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                        AI
+                      </h3>
+                      <p className="text-xs sm:text-sm text-neutral-slate-600">
+                        Step-by-step guidance without giving away answers.
+                      </p>
+                    </div>
+                  </Link>
+                </HoverLift>
+              </StaggerItem>
 
-              <Link
-                href="/request-tutor"
-                className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-teal-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors"
-              >
-                <div>
-                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
-                    Tutors
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-slate-600">
-                    Teachers matched personally by our Director.
-                  </p>
-                </div>
-              </Link>
+              <StaggerItem index={2} className="min-w-[80vw] sm:min-w-0 snap-start">
+                <HoverLift>
+                  <Link
+                    href="/request-tutor"
+                    className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-teal-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors h-full block"
+                  >
+                    <div>
+                      <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                        Tutors
+                      </h3>
+                      <p className="text-xs sm:text-sm text-neutral-slate-600">
+                        Teachers matched personally by our Director.
+                      </p>
+                    </div>
+                  </Link>
+                </HoverLift>
+              </StaggerItem>
 
-              <Link
-                href="/music"
-                className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-amber-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors"
-              >
-                <div>
-                  <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
-                    Music
-                  </h3>
-                  <p className="text-xs sm:text-sm text-neutral-slate-600">
-                    Theory and instrument coaching for all levels.
-                  </p>
-                </div>
-              </Link>
-            </div>
+              <StaggerItem index={3} className="min-w-[80vw] sm:min-w-0 snap-start">
+                <HoverLift>
+                  <Link
+                    href="/music"
+                    className="group rounded-md border border-neutral-slate-200 border-l-[3px] border-l-amber-600 bg-white p-5 flex flex-col justify-between hover:border-neutral-slate-300 transition-colors h-full block"
+                  >
+                    <div>
+                      <h3 className="text-base font-bold font-heading text-neutral-slate-900 mb-1">
+                        Music
+                      </h3>
+                      <p className="text-xs sm:text-sm text-neutral-slate-600">
+                        Theory and instrument coaching for all levels.
+                      </p>
+                    </div>
+                  </Link>
+                </HoverLift>
+              </StaggerItem>
+            </Stagger>
           </div>
         </section>
 
         {/* 3. HOW IT WORKS (Tagline: Learn • Build • Grow) */}
         <section className="py-12 sm:py-16 bg-neutral-slate-50 border-b border-neutral-slate-200">
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900 tracking-tight text-left mb-6 sm:mb-8">
-              How it works
-            </h2>
+            <Reveal>
+              <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900 tracking-tight text-left mb-6 sm:mb-8">
+                How it works
+              </h2>
+            </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="rounded-md bg-white border border-neutral-slate-200 p-5 space-y-1 text-left">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-blue-600 block">
-                  Learn
-                </span>
-                <p className="text-xs sm:text-sm text-neutral-slate-700">
-                  Lessons and exam practice.
-                </p>
-              </div>
+            <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <StaggerItem index={0}>
+                <div className="rounded-md bg-white border border-neutral-slate-200 p-5 space-y-1 text-left h-full">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-brand-blue-600 block">
+                    Learn
+                  </span>
+                  <p className="text-xs sm:text-sm text-neutral-slate-700">
+                    Lessons and exam practice.
+                  </p>
+                </div>
+              </StaggerItem>
 
-              <div className="rounded-md bg-white border border-neutral-slate-200 p-5 space-y-1 text-left">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-700 block">
-                  Build
-                </span>
-                <p className="text-xs sm:text-sm text-neutral-slate-700">
-                  Director matching with parental approval.
-                </p>
-              </div>
+              <StaggerItem index={1}>
+                <div className="rounded-md bg-white border border-neutral-slate-200 p-5 space-y-1 text-left h-full">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-teal-700 block">
+                    Build
+                  </span>
+                  <p className="text-xs sm:text-sm text-neutral-slate-700">
+                    Director matching with parental approval.
+                  </p>
+                </div>
+              </StaggerItem>
 
-              <div className="rounded-md bg-white border border-neutral-slate-200 p-5 space-y-1 text-left">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700 block">
-                  Grow
-                </span>
-                <p className="text-xs sm:text-sm text-neutral-slate-700">
-                  Study habits and confidence.
-                </p>
-              </div>
-            </div>
+              <StaggerItem index={2}>
+                <div className="rounded-md bg-white border border-neutral-slate-200 p-5 space-y-1 text-left h-full">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700 block">
+                    Grow
+                  </span>
+                  <p className="text-xs sm:text-sm text-neutral-slate-700">
+                    Study habits and confidence.
+                  </p>
+                </div>
+              </StaggerItem>
+            </Stagger>
           </div>
         </section>
 
         {/* 4. FINAL CALL TO ACTION */}
         <section className="py-12 sm:py-16 bg-brand-navy-900 text-white text-left">
-          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <Reveal className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <h2 className="text-xl sm:text-2xl font-bold font-heading text-white tracking-tight">
               Ready to start learning?
             </h2>
@@ -198,7 +225,7 @@ export default function HomePage() {
                 Request a tutor
               </span>
             </Link>
-          </div>
+          </Reveal>
         </section>
       </main>
 

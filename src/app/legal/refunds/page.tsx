@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowLeftIcon, CheckIcon, AlertIcon } from "@/components/ui/icons";
 import { Metadata } from "next";
+import { ScrollProgress } from "@/components/motion";
 
 export const metadata: Metadata = {
   title: "Refund & Cancellation Policy | Trainbow HUB",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function RefundPolicyPage() {
   return (
     <div className="bg-neutral-slate-50 min-h-screen py-10 sm:py-16">
+      <ScrollProgress />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Navigation Breadcrumb */}
         <div className="mb-6">

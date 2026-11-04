@@ -7,7 +7,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { ProgressBar } from "@/components/ui/ProgressBar";
+import { ScrollProgress, Carousel, HoverLift, ProgressBar } from "@/components/motion";
 import { ChevronRightIcon, ChevronLeftIcon, LoaderIcon, CheckIcon, AlertIcon, PlayIcon, DownloadIcon } from "@/components/ui/icons";
 import { RealVideoPlayer, LessonVideoData } from "@/components/video/RealVideoPlayer";
 import { InlineMathText } from "@/components/ui/InlineMathText";
@@ -301,6 +301,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
   return (
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
       <Navbar />
+      <ScrollProgress />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 pb-28 lg:pb-8">
         {/* Top Navigation & Breadcrumb Row */}
@@ -575,7 +576,6 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                       className="p-4 rounded-xl border border-neutral-slate-200 flex items-center justify-between text-xs"
                     >
                       <div className="flex items-center gap-3">
-                        
                         <div>
                           <h4 className="font-semibold text-neutral-slate-900">{w.title}</h4>
                           <span className="text-neutral-slate-500">{w.size} • {w.type}</span>
@@ -590,6 +590,56 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                 </div>
               </div>
             )}
+
+            {/* Next Lessons Carousel */}
+            {(() => {
+              const allLessons = course.syllabus.flatMap((m) => m.lessons);
+              const curIdx = allLessons.findIndex((l) => l.id === lesson.id || (l as any).slug === lessonSlug);
+              const upcoming = allLessons.slice(curIdx + 1, curIdx + 7);
+              if (upcoming.length === 0) return null;
+              return (
+                <div className="rounded-xl border border-neutral-slate-200 bg-white p-5 sm:p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-heading font-bold text-base text-neutral-slate-900">
+                        Next lessons in this course
+                      </h3>
+                      <p className="text-xs text-neutral-slate-500">
+                        Continue through your syllabus curriculum
+                      </p>
+                    </div>
+                  </div>
+                  <Carousel
+                    items={upcoming}
+                    ariaLabel="Upcoming lessons carousel"
+                    slidesPerView={{ default: 1, sm: 2 }}
+                    showControls={true}
+                    showProgress={true}
+                    renderItem={(nextLes) => (
+                      <HoverLift className="h-full">
+                        <Link
+                          href={`/courses/${course.slug}/lessons/${(nextLes as any).slug || nextLes.id}`}
+                          className="group block p-4 rounded-lg border border-neutral-slate-200 bg-neutral-slate-50 hover:bg-brand-blue-50/50 hover:border-brand-blue-300 transition-colors h-full flex flex-col justify-between space-y-2"
+                        >
+                          <div className="space-y-1">
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-slate-500">
+                              Upcoming
+                            </span>
+                            <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-slate-900 group-hover:text-brand-blue-700 transition-colors line-clamp-2">
+                              {nextLes.title}
+                            </h4>
+                          </div>
+                          <div className="flex items-center justify-between text-[11px] text-neutral-slate-500 pt-2 border-t border-neutral-slate-200/60">
+                            <span>{nextLes.durationMinutes}m</span>
+                            <span className="font-semibold text-brand-blue-600">Start lesson →</span>
+                          </div>
+                        </Link>
+                      </HoverLift>
+                    )}
+                  />
+                </div>
+              );
+            })()}
           </div>
 
           {/* Right Sidebar: Course Syllabus Tree (4 Cols on desktop >= 1024px) */}

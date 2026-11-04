@@ -11,6 +11,7 @@ import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
 import { Input } from "@/components/ui/Input";
 import { ChevronRightIcon, PlayIcon, PauseIcon, CheckIcon, SearchIcon } from "@/components/ui/icons";
+import { Reveal, Stagger, StaggerItem, HoverLift, AnimatedNumber } from "@/components/motion";
 
 interface MusicMaterial {
   id: string;
@@ -278,80 +279,90 @@ export default function MusicPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
         {/* Hero Section */}
-        <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 lg:p-14 relative border border-brand-navy-800 shadow-md text-center">
-          <div className="max-w-3xl mx-auto space-y-5 relative z-10 flex flex-col items-center text-center">
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <Badge variant="neutral" className="bg-amber-900 text-amber-100 border border-amber-700 font-semibold px-3 py-1 text-xs">
-                Trainbow HUB Music
-              </Badge>
-              <span className="text-xs text-neutral-slate-300">
-                ABRSM &amp; MUSON Curriculum Accredited
-              </span>
-            </div>
+        <Reveal>
+          <div className="rounded-2xl bg-brand-navy-900 text-white p-8 sm:p-12 lg:p-14 relative border border-brand-navy-800 shadow-md text-center">
+            <div className="max-w-3xl mx-auto space-y-5 relative z-10 flex flex-col items-center text-center">
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <Badge variant="neutral" className="bg-amber-900 text-amber-100 border border-amber-700 font-semibold px-3 py-1 text-xs">
+                  Trainbow HUB Music
+                </Badge>
+                <span className="text-xs text-neutral-slate-300">
+                  ABRSM &amp; MUSON Curriculum Accredited
+                </span>
+              </div>
 
-            <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight text-center">
-              Master Instrument, Theory &amp; Voice. <br />
-              <span className="text-amber-400">One Unified Academic Account.</span>
-            </h1>
+              <h1 className="text-display font-extrabold font-heading text-white tracking-tight leading-tight text-center">
+                Master Instrument, Theory &amp; Voice. <br />
+                <span className="text-amber-400">One Unified Academic Account.</span>
+              </h1>
 
-            <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl mx-auto text-center">
-              Zero disparate logins. Experience certified piano, violin, voice, and music theory coaching on the same schedule and wallet as your academic WAEC &amp; Cambridge subjects.
-            </p>
+              <p className="text-base sm:text-lg text-neutral-slate-200 leading-relaxed max-w-2xl mx-auto text-center">
+                Zero disparate logins. Experience certified piano, violin, voice, and music theory coaching on the same schedule and wallet as your academic WAEC &amp; Cambridge subjects.
+              </p>
 
-            <div className="pt-2 flex flex-wrap gap-4 items-center justify-center">
-              <Button
-                id="btn-explore-catalogue"
-                variant="primary"
-                size="lg"
-                onClick={() => setActiveTab("tutors")}
-                className="font-semibold text-base px-6 py-3 shadow-lg bg-brand-blue-600 hover:bg-brand-blue-700 text-white"
-              >
-                Find a Music Instructor
-              </Button>
-              <Button
-                id="btn-open-practice-log"
-                variant="outline"
-                size="lg"
-                onClick={() => setActiveTab("practice")}
-                className="font-semibold text-base px-6 py-3 bg-neutral-slate-800/80 hover:bg-neutral-slate-700 text-white border-neutral-slate-600"
-              >
-                Log Practice Session
-              </Button>
+              <div className="pt-2 flex flex-wrap gap-4 items-center justify-center">
+                <Button
+                  id="btn-explore-catalogue"
+                  variant="primary"
+                  size="lg"
+                  onClick={() => setActiveTab("tutors")}
+                  className="font-semibold text-base px-6 py-3 shadow-lg bg-brand-blue-600 hover:bg-brand-blue-700 text-white"
+                >
+                  Find a Music Instructor
+                </Button>
+                <Button
+                  id="btn-open-practice-log"
+                  variant="outline"
+                  size="lg"
+                  onClick={() => setActiveTab("practice")}
+                  className="font-semibold text-base px-6 py-3 bg-neutral-slate-800/80 hover:bg-neutral-slate-700 text-white border-neutral-slate-600"
+                >
+                  Log Practice Session
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Phase K Invariant Banner: ADR-012 Unified Architecture */}
-        <div className="rounded-2xl border border-neutral-slate-200 bg-white p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300">
-                ADR-012 Invariant
-              </span>
-              <h2 className="font-heading font-bold text-base text-neutral-slate-900">
-                Single Sign-On, One Calendar, Shared Naira Wallet
-              </h2>
+        <Reveal>
+          <div className="rounded-2xl border border-neutral-slate-200 bg-white p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300">
+                  ADR-012 Invariant
+                </span>
+                <h2 className="font-heading font-bold text-base text-neutral-slate-900">
+                  Single Sign-On, One Calendar, Shared Naira Wallet
+                </h2>
+              </div>
+              <p className="text-xs text-neutral-slate-600 max-w-2xl">
+                Music tuition runs directly on the same database and payment ledger as academic STEM courses. Lessons appear on your unified calendar with live WebRTC recording and parent oversight.
+              </p>
             </div>
-            <p className="text-xs text-neutral-slate-600 max-w-2xl">
-              Music tuition runs directly on the same database and payment ledger as academic STEM courses. Lessons appear on your unified calendar with live WebRTC recording and parent oversight.
-            </p>
-          </div>
 
-          <div className="flex items-center gap-6 shrink-0 text-center">
-            <div className="border-r border-neutral-slate-200 pr-6">
-              <p className="text-2xl font-black text-brand-navy-900">{totalPracticeMins}m</p>
-              <p className="text-[11px] font-medium text-neutral-slate-500 uppercase tracking-wider">Practice Logged</p>
-            </div>
-            <div className="border-r border-neutral-slate-200 pr-6">
-              <p className="text-2xl font-black text-brand-navy-900">{materials.length || 4}</p>
-              <p className="text-[11px] font-medium text-neutral-slate-500 uppercase tracking-wider">Licensed Scores</p>
-            </div>
-            <div>
-              <p className="text-2xl font-black text-brand-navy-900">{tutors.length || 2}</p>
-              <p className="text-[11px] font-medium text-neutral-slate-500 uppercase tracking-wider">Music Faculty</p>
+            <div className="flex items-center gap-6 shrink-0 text-center">
+              <div className="border-r border-neutral-slate-200 pr-6">
+                <p className="text-2xl font-black text-brand-navy-900">
+                  <AnimatedNumber value={totalPracticeMins} />m
+                </p>
+                <p className="text-[11px] font-medium text-neutral-slate-500 uppercase tracking-wider">Practice Logged</p>
+              </div>
+              <div className="border-r border-neutral-slate-200 pr-6">
+                <p className="text-2xl font-black text-brand-navy-900">
+                  <AnimatedNumber value={materials.length || 4} />
+                </p>
+                <p className="text-[11px] font-medium text-neutral-slate-500 uppercase tracking-wider">Licensed Scores</p>
+              </div>
+              <div>
+                <p className="text-2xl font-black text-brand-navy-900">
+                  <AnimatedNumber value={tutors.length || 2} />
+                </p>
+                <p className="text-[11px] font-medium text-neutral-slate-500 uppercase tracking-wider">Music Faculty</p>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Navigation Tabs */}
         <div className="border-b border-neutral-slate-200">
@@ -436,42 +447,46 @@ export default function MusicPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {INSTRUMENT_TRACKS.map((track) => (
-                <Card key={track.id} className="hover:shadow-md transition-all border-neutral-slate-200">
-                  <CardHeader className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-3xl" role="img" aria-label={track.name}>
-                        {track.icon}
-                      </span>
-                      <Badge variant="neutral" className="bg-neutral-slate-100 text-neutral-slate-800 text-[11px]">
-                        {track.count}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-base font-bold text-neutral-slate-900">
-                      {track.name}
-                    </CardTitle>
-                    <CardDescription className="text-xs text-neutral-slate-600 leading-relaxed">
-                      {track.desc}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardFooter className="pt-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setSelectedInstrumentFilter(track.id === "theory" ? "Theory" : track.id);
-                        setActiveTab("repertoire");
-                      }}
-                      className="w-full text-xs font-semibold justify-between"
-                    >
-                      <span>Explore Repertoire</span>
-                      <ChevronRightIcon className="h-4 w-4" />
-                    </Button>
-                  </CardFooter>
-                </Card>
+                <StaggerItem key={track.id} className="h-full">
+                  <HoverLift className="h-full">
+                    <Card className="hover:shadow-md transition-all border-neutral-slate-200 h-full flex flex-col justify-between">
+                      <CardHeader className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-3xl" role="img" aria-label={track.name}>
+                            {track.icon}
+                          </span>
+                          <Badge variant="neutral" className="bg-neutral-slate-100 text-neutral-slate-800 text-[11px]">
+                            {track.count}
+                          </Badge>
+                        </div>
+                        <CardTitle className="text-base font-bold text-neutral-slate-900">
+                          {track.name}
+                        </CardTitle>
+                        <CardDescription className="text-xs text-neutral-slate-600 leading-relaxed">
+                          {track.desc}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardFooter className="pt-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            setSelectedInstrumentFilter(track.id === "theory" ? "Theory" : track.id);
+                            setActiveTab("repertoire");
+                          }}
+                          className="w-full text-xs font-semibold justify-between"
+                        >
+                          <span>Explore Repertoire</span>
+                          <ChevronRightIcon className="h-4 w-4" />
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </HoverLift>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
 
             {/* Delivery formats highlight (MU-02) */}
             <div className="rounded-2xl bg-neutral-slate-900 text-white p-8 space-y-6">

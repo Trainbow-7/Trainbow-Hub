@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { CheckIcon, AlertIcon, CloseIcon, PlayIcon, ExternalLinkIcon, EyeIcon } from "@/components/ui/icons";
+import { Reveal, HoverLift } from "@/components/motion";
 
 interface AuthoringCourse {
   id: string;
@@ -218,133 +219,137 @@ export default function TutorDashboardAuthoringPage() {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Header Banner */}
-        <div className="bg-white rounded-2xl border border-neutral-slate-200 p-6 sm:p-8 shadow-sm">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Badge variant="brand">Tutor & Educator Portal</Badge>
-                <Badge variant="success">TRCN Certified Educator</Badge>
+        <Reveal>
+          <div className="bg-white rounded-2xl border border-neutral-slate-200 p-6 sm:p-8 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Badge variant="brand">Tutor & Educator Portal</Badge>
+                  <Badge variant="success">TRCN Certified Educator</Badge>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900 tracking-tight">
+                  Course Authoring & Curriculum Management
+                </h1>
+                <p className="text-sm text-neutral-slate-600 max-w-2xl">
+                  Design curriculum modules, author step-by-step lessons, configure checkpoint quizzes, and track draft lifecycle states under LN-06.
+                </p>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900 tracking-tight">
-                Course Authoring & Curriculum Management
-              </h1>
-              <p className="text-sm text-neutral-slate-600 max-w-2xl">
-                Design curriculum modules, author step-by-step lessons, configure checkpoint quizzes, and track draft lifecycle states under LN-06.
-              </p>
-            </div>
 
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={handleCreateNewDraft}
-              className="shrink-0 font-bold text-sm gap-2 shadow-sm"
-              data-testid="create-course-draft-btn"
-            >
-              
-              <span>Create New Course Draft</span>
-            </Button>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleCreateNewDraft}
+                className="shrink-0 font-bold text-sm gap-2 shadow-sm"
+                data-testid="create-course-draft-btn"
+              >
+                
+                <span>Create New Course Draft</span>
+              </Button>
+            </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Concierge Matching guidelines Banner */}
-        <div
-          className="rounded-2xl border border-brand-blue-200 bg-gradient-to-r from-brand-blue-50/80 via-white to-brand-navy-50/50 p-6 shadow-xs space-y-4"
-          data-testid="concierge-model-notice-banner"
-        >
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-            <div className="space-y-2 max-w-2xl">
-              <div className="flex items-center gap-2">
-                <Badge variant="brand" className="bg-brand-blue-700 text-white font-bold">
-                  Direct Concierge Matching Model
-                </Badge>
-                <Badge variant="neutral">educator network Active</Badge>
-              </div>
-              <h2 className="text-xl font-extrabold font-heading text-neutral-slate-900">
-                Personalized Tutoring Coordination
-              </h2>
-              <p className="text-xs sm:text-sm text-neutral-slate-700 leading-relaxed">
-                Trainbow HUB does not list tutors on an uncurated public marketplace. Every tutoring inquiry is reviewed personally by <strong>Mr Oyedeji S.T (Director of Trainbow HUB)</strong>, who matches families directly with qualified, verified educators from our educator network.
-              </p>
-              <div className="text-xs text-neutral-slate-600 flex flex-wrap items-center gap-y-1 gap-x-4 pt-1">
-                <span>🛡️ TRCN & NIN Identity Verified</span>
-                <span>📋 Concierge Proposal System</span>
-                <span>🔒 Secure Escrow Sessions</span>
-              </div>
-            </div>
-
-            {/* Availability Confirmation Card */}
-            <div
-              className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs shrink-0 w-full md:w-80 space-y-3"
-              data-testid="tutor-availability-control-card"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-neutral-slate-900">Weekly Availability</span>
-                <Badge
-                  variant={
-                    rosterStatus === "AVAILABLE_NOW"
-                      ? "success"
-                      : rosterStatus === "LIMITED"
-                      ? "warning"
-                      : "neutral"
-                  }
-                  data-testid="current-roster-status-badge"
-                >
-                  {rosterStatus.replace(/_/g, " ")}
-                </Badge>
-              </div>
-
-              <p className="text-[11px] text-neutral-slate-500 leading-snug">
-                Keep your status updated so the Director knows whether to match incoming students with your schedule this week.
-              </p>
-
-              <div className="space-y-2 pt-1">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  onClick={() => handleUpdateAvailability("AVAILABLE_NOW")}
-                  disabled={updatingAvailability || rosterStatus === "AVAILABLE_NOW"}
-                  className="w-full text-xs font-bold gap-1.5 shadow-xs"
-                  data-testid="confirm-available-now-btn"
-                >
-                  <CheckIcon className="h-4 w-4" />
-                  <span>Confirm I&apos;m Available This Week</span>
-                </Button>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleUpdateAvailability("LIMITED")}
-                    disabled={updatingAvailability || rosterStatus === "LIMITED"}
-                    className="text-[11px] font-semibold py-1.5 px-2"
-                    data-testid="set-limited-btn"
-                  >
-                    Limited Slots
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleUpdateAvailability("BUSY")}
-                    disabled={updatingAvailability || rosterStatus === "BUSY"}
-                    className="text-[11px] font-semibold py-1.5 px-2"
-                    data-testid="set-busy-btn"
-                  >
-                    Fully Booked
-                  </Button>
+        <Reveal>
+          <div
+            className="rounded-2xl border border-brand-blue-200 bg-gradient-to-r from-brand-blue-50/80 via-white to-brand-navy-50/50 p-6 shadow-xs space-y-4"
+            data-testid="concierge-model-notice-banner"
+          >
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <div className="space-y-2 max-w-2xl">
+                <div className="flex items-center gap-2">
+                  <Badge variant="brand" className="bg-brand-blue-700 text-white font-bold">
+                    Direct Concierge Matching Model
+                  </Badge>
+                  <Badge variant="neutral">educator network Active</Badge>
+                </div>
+                <h2 className="text-xl font-extrabold font-heading text-neutral-slate-900">
+                  Personalized Tutoring Coordination
+                </h2>
+                <p className="text-xs sm:text-sm text-neutral-slate-700 leading-relaxed">
+                  Trainbow HUB does not list tutors on an uncurated public marketplace. Every tutoring inquiry is reviewed personally by <strong>Mr Oyedeji S.T (Director of Trainbow HUB)</strong>, who matches families directly with qualified, verified educators from our educator network.
+                </p>
+                <div className="text-xs text-neutral-slate-600 flex flex-wrap items-center gap-y-1 gap-x-4 pt-1">
+                  <span>🛡️ TRCN & NIN Identity Verified</span>
+                  <span>📋 Concierge Proposal System</span>
+                  <span>🔒 Secure Escrow Sessions</span>
                 </div>
               </div>
 
-              {availabilityMessage && (
-                <div
-                  className="p-2.5 rounded-lg bg-status-green-600/10 border border-status-green-600 text-status-green-900 text-[11px] font-bold animate-fadeIn"
-                  data-testid="availability-toast-msg"
-                >
-                  {availabilityMessage}
+              {/* Availability Confirmation Card */}
+              <div
+                className="bg-white rounded-xl border border-neutral-slate-200 p-5 shadow-xs shrink-0 w-full md:w-80 space-y-3"
+                data-testid="tutor-availability-control-card"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-neutral-slate-900">Weekly Availability</span>
+                  <Badge
+                    variant={
+                      rosterStatus === "AVAILABLE_NOW"
+                        ? "success"
+                        : rosterStatus === "LIMITED"
+                        ? "warning"
+                        : "neutral"
+                    }
+                    data-testid="current-roster-status-badge"
+                  >
+                    {rosterStatus.replace(/_/g, " ")}
+                  </Badge>
                 </div>
-              )}
+
+                <p className="text-[11px] text-neutral-slate-500 leading-snug">
+                  Keep your status updated so the Director knows whether to match incoming students with your schedule this week.
+                </p>
+
+                <div className="space-y-2 pt-1">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={() => handleUpdateAvailability("AVAILABLE_NOW")}
+                    disabled={updatingAvailability || rosterStatus === "AVAILABLE_NOW"}
+                    className="w-full text-xs font-bold gap-1.5 shadow-xs"
+                    data-testid="confirm-available-now-btn"
+                  >
+                    <CheckIcon className="h-4 w-4" />
+                    <span>Confirm I&apos;m Available This Week</span>
+                  </Button>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleUpdateAvailability("LIMITED")}
+                      disabled={updatingAvailability || rosterStatus === "LIMITED"}
+                      className="text-[11px] font-semibold py-1.5 px-2"
+                      data-testid="set-limited-btn"
+                    >
+                      Limited Slots
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleUpdateAvailability("BUSY")}
+                      disabled={updatingAvailability || rosterStatus === "BUSY"}
+                      className="text-[11px] font-semibold py-1.5 px-2"
+                      data-testid="set-busy-btn"
+                    >
+                      Fully Booked
+                    </Button>
+                  </div>
+                </div>
+
+                {availabilityMessage && (
+                  <div
+                    className="p-2.5 rounded-lg bg-status-green-600/10 border border-status-green-600 text-status-green-900 text-[11px] font-bold animate-fadeIn"
+                    data-testid="availability-toast-msg"
+                  >
+                    {availabilityMessage}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Action Success Toast Banner */}
         {actionSuccessMsg && (

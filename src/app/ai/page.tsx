@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { SocraticWorkspace } from "@/components/ai/SocraticWorkspace";
+import { Reveal, HoverLift, Stagger, StaggerItem } from "@/components/motion";
 
 export const metadata = {
   title: "Study Helper — Trainbow HUB",
@@ -124,34 +125,46 @@ export default function AIPage() {
         </section>
 
         {/* 3 Plain Statements (Replacing numbered icon cards) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-brand-blue-600 space-y-1.5">
-            <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-              Hints first
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
-              You get a hint before the full solution.
-            </p>
-          </div>
+        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+          <StaggerItem index={0}>
+            <HoverLift className="h-full">
+              <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-brand-blue-600 space-y-1.5 h-full">
+                <h3 className="font-heading font-bold text-base text-neutral-slate-900">
+                  Hints first
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+                  You get a hint before the full solution.
+                </p>
+              </div>
+            </HoverLift>
+          </StaggerItem>
 
-          <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-teal-600 space-y-1.5">
-            <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-              Answers are checked
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
-              We check calculations with software where we can, and we tell you when we could not.
-            </p>
-          </div>
+          <StaggerItem index={1}>
+            <HoverLift className="h-full">
+              <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-teal-600 space-y-1.5 h-full">
+                <h3 className="font-heading font-bold text-base text-neutral-slate-900">
+                  Answers are checked
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+                  We check calculations with software where we can, and we tell you when we could not.
+                </p>
+              </div>
+            </HoverLift>
+          </StaggerItem>
 
-          <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-purple-600 space-y-1.5">
-            <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-              A tutor when you need one
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
-              Ask for a tutor from any answer.
-            </p>
-          </div>
-        </div>
+          <StaggerItem index={2}>
+            <HoverLift className="h-full">
+              <div className="p-5 rounded-lg border border-neutral-slate-200 bg-white border-l-[3px] border-l-purple-600 space-y-1.5 h-full">
+                <h3 className="font-heading font-bold text-base text-neutral-slate-900">
+                  A tutor when you need one
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-slate-600 leading-relaxed">
+                  Ask for a tutor from any answer.
+                </p>
+              </div>
+            </HoverLift>
+          </StaggerItem>
+        </Stagger>
 
         {/* Safety Section: How we keep it safe */}
         <div className="rounded-lg border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-4 text-left">
