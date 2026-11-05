@@ -35,6 +35,9 @@ jobs:
 
       - name: Build Next.js Application
         run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+          SESSION_SECRET: test_ci_secret_key_32_chars_long_pipeline_key!
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium

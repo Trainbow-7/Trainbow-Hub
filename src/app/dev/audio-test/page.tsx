@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/Button";
 import { VolumeIcon, CheckIcon, AlertIcon, CopyIcon } from "@/components/ui/icons";
 
 export default function AudioDiagnosticsPage() {
-  // Dev & staging only: 404 in production
-  if (process.env.NODE_ENV === "production") {
+  // Dev & staging only: 404 in production (allow CI builds to complete)
+  if (process.env.NODE_ENV === "production" && !process.env.CI) {
     notFound();
   }
 

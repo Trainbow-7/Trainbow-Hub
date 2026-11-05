@@ -223,7 +223,7 @@ export function LessonVideoPlayer({
         }
 
         // Monitor volume and mute telemetry from YouTube
-        if (payload?.event === "infoDelivery" && payload?.info) {
+        if ((payload?.event === "infoDelivery" || payload?.event === "initialDelivery") && payload?.info) {
           if (payload.info.muted === true || payload.info.volume === 0) {
             setSoundSafeguardTriggered(true);
           } else if (payload.info.muted === false && payload.info.volume > 0) {
@@ -373,14 +373,22 @@ export function LessonVideoPlayer({
       }
     } catch (e) {}
 
-    // Fallback: direct postMessage to iframe window
+    // Fallback: direct postMessage to iframe window (both array and string parameter forms)
     try {
       iframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ event: "command", func: "unMute", args: [] }),
         "*"
       );
       iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "unMute", args: "" }),
+        "*"
+      );
+      iframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ event: "command", func: "setVolume", args: [100] }),
+        "*"
+      );
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "setVolume", args: 100 }),
         "*"
       );
     } catch (e) {}
