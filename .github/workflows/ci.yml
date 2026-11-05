@@ -36,6 +36,7 @@ jobs:
       - name: Build Next.js Application
         run: npm run build
         env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
           NEXT_TELEMETRY_DISABLED: 1
           SESSION_SECRET: test_ci_secret_key_32_chars_long_pipeline_key!
 

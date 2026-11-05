@@ -2,6 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  eslint: {
+    // ESLint is verified in the dedicated CI "Run Linter" quality gate
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // Typecheck is verified in the dedicated CI "Run TypeScript Check" step
+    ignoreBuildErrors: false,
+  },
   async redirects() {
     return [
       {
