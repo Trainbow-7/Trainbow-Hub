@@ -34,18 +34,6 @@ export class GeminiProviderAdapter implements IAIProviderAdapter {
 
     while (turn < MAX_TURNS) {
       turn++;
-      const config: any = {
-        systemInstruction: params.systemInstruction,
-        temperature: 0.1,
-        tools: toolsConfig,
-      };
-
-      if (params.reasoningEffort) {
-        config.thinkingConfig = {
-          thinkingBudget: params.reasoningEffort === "high" ? 4096 : params.reasoningEffort === "medium" ? 2048 : 1024,
-        };
-      }
-
       const candidateModels = Array.from(
         new Set([
           params.model,
@@ -59,33 +47,73 @@ export class GeminiProviderAdapter implements IAIProviderAdapter {
 
       let response: any = null;
       let lastErr: any = null;
+
       for (const m of candidateModels) {
-        try {
-          const res = await ai.models.generateContent({
-            model: m,
-            contents,
-            config,
-          });
-          if (res?.candidates?.[0]?.content?.parts) {
-            response = res;
-            break;
+        // Attempt 1: with tools (thinkingConfig omitted because Gemini API forbids thinking + tools)
+        const configWithTools: any = {
+          systemInstruction: params.systemInstruction,
+          temperature: 0.1,
+          tools: toolsConfig,
+        };
+
+        // Attempt 2: fallback without tools if function calling fails or is unsupported
+        const configWithoutTools: any = {
+          systemInstruction: params.systemInstruction,
+          temperature: 0.1,
+        };
+
+        const configsToTry = [configWithTools, configWithoutTools];
+
+        let modelSuccess = false;
+        for (const cfg of configsToTry) {
+          try {
+            const res = await ai.models.generateContent({
+              model: m,
+              contents,
+              config: cfg,
+            });
+            if (res?.candidates?.[0]?.content?.parts) {
+              response = res;
+              modelSuccess = true;
+              break;
+            }
+          } catch (callErr: any) {
+            lastErr = callErr;
+            console.warn(`[GEMINI_CALL_WARN] Model ${m} call attempt failed: ${callErr.message}`);
           }
-        } catch (callErr: any) {
-          lastErr = callErr;
-          const msg = (callErr?.message || "").toLowerCase();
-          if (
-            msg.includes("503") ||
-            msg.includes("404") ||
-            msg.includes("demand") ||
-            msg.includes("not found") ||
-            msg.includes("no longer available")
-          ) {
-            console.warn(
-              `[GEMINI_REASONING_FAILOVER] Model ${m} returned error. Trying fallback model...`
-            );
-            continue;
+        }
+
+        if (modelSuccess) {
+          break;
+        }
+
+        console.warn(`[GEMINI_REASONING_FAILOVER] Model ${m} failed. Trying next candidate model...`);
+      }
+
+      // Direct REST fallback if SDK failed across all candidate models
+      if (!response) {
+        for (const m of candidateModels) {
+          try {
+            const restUrl = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${params.apiKey}`;
+            const restRes = await fetch(restUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                system_instruction: { parts: [{ text: params.systemInstruction }] },
+                contents,
+                generationConfig: { temperature: 0.1 },
+              }),
+            });
+            if (restRes.ok) {
+              const restJson = await restRes.json();
+              if (restJson?.candidates?.[0]?.content?.parts) {
+                response = restJson;
+                break;
+              }
+            }
+          } catch (restErr: any) {
+            console.warn(`[GEMINI_REST_FALLBACK_WARN] Model ${m} REST failed: ${restErr.message}`);
           }
-          throw callErr;
         }
       }
 

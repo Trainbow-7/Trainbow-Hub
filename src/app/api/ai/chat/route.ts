@@ -106,10 +106,18 @@ export async function POST(req: Request) {
     }
 
     if (attachedImagesWithExtractedText.length > 0) {
-      if (isPlaceholderPrompt) {
-        effectiveQuestion = attachedImagesWithExtractedText.join("\n\n");
+      const extractedJoined = attachedImagesWithExtractedText.join("\n\n").trim();
+      const rawTrimmed = (rawPrompt || "").trim();
+      if (
+        isPlaceholderPrompt ||
+        !rawTrimmed ||
+        rawTrimmed === extractedJoined ||
+        rawTrimmed.includes(extractedJoined) ||
+        extractedJoined.includes(rawTrimmed)
+      ) {
+        effectiveQuestion = extractedJoined || rawTrimmed;
       } else {
-        effectiveQuestion = `${rawPrompt}\n\n${attachedImagesWithExtractedText.join("\n\n")}`;
+        effectiveQuestion = `${rawTrimmed}\n\n${extractedJoined}`;
       }
     } else {
       effectiveQuestion = rawPrompt;

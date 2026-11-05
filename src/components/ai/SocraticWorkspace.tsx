@@ -90,6 +90,78 @@ const SAMPLE_QUESTIONS = [
   },
 ];
 
+export interface CurriculumSubjectOption {
+  value: string;
+  label: string;
+}
+
+export const CURRICULUM_SUBJECTS_MAP: Record<string, CurriculumSubjectOption[]> = {
+  BECE: [
+    { value: "Mathematics", label: "General Mathematics" },
+    { value: "English", label: "English Studies & Literature" },
+    { value: "Basic_Science", label: "Basic Science" },
+    { value: "Basic_Technology", label: "Basic Technology" },
+    { value: "Civic_Education", label: "Social Studies & Civic Education" },
+    { value: "Business_Studies", label: "Business Studies" },
+    { value: "Agricultural_Science", label: "Agricultural Science" },
+    { value: "Computer_Science", label: "Computer Studies & ICT" },
+    { value: "Music", label: "Cultural & Creative Arts (Music)" },
+  ],
+  WAEC_SSCE: [
+    { value: "Mathematics", label: "General Mathematics" },
+    { value: "Further_Maths", label: "Further Mathematics" },
+    { value: "English", label: "English Language & Literature" },
+    { value: "Physics", label: "Physics" },
+    { value: "Chemistry", label: "Chemistry" },
+    { value: "Biology", label: "Biology" },
+    { value: "Economics", label: "Economics & Commerce" },
+    { value: "Accounting", label: "Financial Accounting" },
+    { value: "Civic_Education", label: "Civic Education & Government" },
+    { value: "Geography", label: "Geography" },
+    { value: "Agricultural_Science", label: "Agricultural Science" },
+    { value: "Computer_Science", label: "Computer Studies & ICT" },
+    { value: "Music", label: "Music (Theory & Practical)" },
+  ],
+  JAMB_UTME: [
+    { value: "English", label: "Use of English (Compulsory)" },
+    { value: "Mathematics", label: "Mathematics" },
+    { value: "Physics", label: "Physics" },
+    { value: "Chemistry", label: "Chemistry" },
+    { value: "Biology", label: "Biology" },
+    { value: "Economics", label: "Economics" },
+    { value: "Accounting", label: "Principles of Accounts & Commerce" },
+    { value: "Civic_Education", label: "Government" },
+    { value: "Literature", label: "Literature in English" },
+    { value: "Geography", label: "Geography" },
+    { value: "Agricultural_Science", label: "Agricultural Science" },
+    { value: "Music", label: "Music" },
+  ],
+  CAMBRIDGE_IGCSE: [
+    { value: "Mathematics", label: "Mathematics (Core & Extended)" },
+    { value: "Further_Maths", label: "Additional Mathematics" },
+    { value: "English", label: "English Language & Literature" },
+    { value: "Physics", label: "Physics" },
+    { value: "Chemistry", label: "Chemistry" },
+    { value: "Biology", label: "Biology" },
+    { value: "General_Science", label: "Combined & Co-ordinated Sciences" },
+    { value: "Economics", label: "Economics & Business Studies" },
+    { value: "Computer_Science", label: "Computer Science" },
+    { value: "Geography", label: "Geography & History" },
+    { value: "Music", label: "Music" },
+  ],
+  GENERAL: [
+    { value: "Mathematics", label: "General Mathematics" },
+    { value: "English", label: "English Language & Writing" },
+    { value: "Physics", label: "Physics" },
+    { value: "Chemistry", label: "Chemistry" },
+    { value: "Biology", label: "Biology" },
+    { value: "Economics", label: "Economics & Business" },
+    { value: "Computer_Science", label: "Computer Science & Coding" },
+    { value: "Geography", label: "Geography & Social Sciences" },
+    { value: "Music", label: "Music (Theory & Practice)" },
+  ],
+};
+
 const MATH_SYMBOLS = ["x²", "√", "±", "π", "θ", "Δ", "÷", "≤", "≥", "="];
 
 function getSubjectThinkingMessage(subject: string, promptText?: string): string {
@@ -150,6 +222,15 @@ export function SocraticWorkspace() {
   const [selectedHintLevel, setSelectedHintLevel] = React.useState<AIHintLevel>("FULL_SOLUTION");
   const [selectedCurriculum, setSelectedCurriculum] = React.useState("WAEC_SSCE");
   const [selectedSubject, setSelectedSubject] = React.useState("Mathematics");
+
+  const handleCurriculumChange = (newCurriculum: string) => {
+    setSelectedCurriculum(newCurriculum);
+    const available = CURRICULUM_SUBJECTS_MAP[newCurriculum] || CURRICULUM_SUBJECTS_MAP.GENERAL;
+    const exists = available.some((s) => s.value === selectedSubject);
+    if (!exists && available.length > 0) {
+      setSelectedSubject(available[0].value);
+    }
+  };
   const [loading, setLoading] = React.useState(false);
   const [fetchingConversation, setFetchingConversation] = React.useState(false);
   const [feedbackGiven, setFeedbackGiven] = React.useState<Record<string, string>>({});
@@ -736,7 +817,7 @@ export function SocraticWorkspace() {
             <select
               id="curriculum-select"
               value={selectedCurriculum}
-              onChange={(e) => setSelectedCurriculum(e.target.value)}
+              onChange={(e) => handleCurriculumChange(e.target.value)}
               className="w-full text-base md:text-xs rounded-lg border border-neutral-slate-200 bg-white px-2.5 py-1.5 text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-service-ai-600 min-h-[44px] md:min-h-0"
               data-testid="curriculum-selector"
             >
@@ -763,14 +844,11 @@ export function SocraticWorkspace() {
               className="w-full text-base md:text-xs rounded-lg border border-neutral-slate-200 bg-white px-2.5 py-1.5 text-neutral-slate-900 focus:outline-none focus:ring-2 focus:ring-service-ai-600 min-h-[44px] md:min-h-0"
               data-testid="subject-selector"
             >
-              <option value="Mathematics">Mathematics & Further Maths</option>
-              <option value="Physics">Physics</option>
-              <option value="Chemistry">Chemistry</option>
-              <option value="Biology">Biology</option>
-              <option value="English">English & Literature</option>
-              <option value="Economics">Economics & Commerce</option>
-              <option value="Geography">Geography</option>
-              <option value="Music">Music (Theory & Practical)</option>
+              {(CURRICULUM_SUBJECTS_MAP[selectedCurriculum] || CURRICULUM_SUBJECTS_MAP.GENERAL).map((subj) => (
+                <option key={subj.value} value={subj.value}>
+                  {subj.label}
+                </option>
+              ))}
             </select>
           </div>
 

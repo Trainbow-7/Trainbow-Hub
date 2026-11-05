@@ -265,10 +265,9 @@ $$\\angle QPM = 180^\\circ - (90^\\circ + 63^\\circ) = 27^\\circ$$
   //       (b) In Fig. 2.35, calculate the value of x, giving a reason for each step in your answer. [WAEC]"
   // =========================================================================
   if (
-    lower.includes("cyclic quadrilateral") ||
     lower.includes("fig. 2.35") ||
     lower.includes("fig 2.35") ||
-    (lower.includes("supplementary") && lower.includes("opposite angles"))
+    (lower.includes("cyclic quadrilateral") && lower.includes("supplementary") && lower.includes("opposite angles"))
   ) {
     const geom = verifyGeometryProblem(text);
     const xVal = geom?.calculatedAngles.x ?? 40;
