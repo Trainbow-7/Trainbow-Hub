@@ -359,18 +359,18 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             </div>
 
             {/* Video Player or Level-Appropriate Fallback */}
-            <div className="rounded-2xl border border-neutral-slate-200 bg-black overflow-hidden shadow-sm aspect-video w-full flex items-center justify-center">
-              {video?.hasVideo && video.primary ? (
-                <RealVideoPlayer
-                  primaryVideo={video.primary}
-                  alternates={video.alternates}
-                  slug={course.slug}
-                  lessonId={lesson.id}
-                  lessonTitle={lesson.title}
-                  initialPositionSeconds={video.userProgress?.positionSeconds || 0}
-                  isWaecAligned={video.isWaecAligned}
-                />
-              ) : (
+            {video?.hasVideo && video.primary ? (
+              <RealVideoPlayer
+                primaryVideo={video.primary}
+                alternates={video.alternates}
+                slug={course.slug}
+                lessonId={lesson.id}
+                lessonTitle={lesson.title}
+                initialPositionSeconds={video.userProgress?.positionSeconds || 0}
+                isWaecAligned={video.isWaecAligned}
+              />
+            ) : (
+              <div className="rounded-2xl border border-neutral-slate-200 bg-black overflow-hidden shadow-sm aspect-video w-full flex items-center justify-center">
                 <div className="bg-neutral-slate-900 text-white p-6 sm:p-12 text-center space-y-4 w-full">
                   <p className="text-xs text-neutral-slate-400 uppercase tracking-wider font-semibold">Video Unavailable</p>
                   <div className="space-y-1">
@@ -388,7 +388,6 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                       className="text-white border-white/20 hover:bg-white/10"
                       onClick={() => setActiveTab("notes")}
                     >
-                      
                       Read Lesson Notes
                     </Button>
                     <Button
@@ -396,13 +395,12 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                       variant="primary"
                       onClick={() => setActiveTab("quiz")}
                     >
-                      
                       Take Checkpoint Quiz
                     </Button>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* Desktop Action Bar: Prev / Next & Mark Complete (>= 1024px) */}
             <div className="hidden lg:flex items-center justify-between gap-4 py-3 border-y border-neutral-slate-200 text-xs">

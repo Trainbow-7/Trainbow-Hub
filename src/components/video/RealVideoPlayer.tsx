@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { PlayIcon, PauseIcon, LoaderIcon, AlertIcon, CheckIcon, ExternalLinkIcon } from "@/components/ui/icons";
+import { PlayIcon, PauseIcon, LoaderIcon, AlertIcon, CheckIcon, ExternalLinkIcon, VolumeIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 
@@ -49,8 +49,15 @@ export function RealVideoPlayer({
   // Current active video (primary or user-selected alternate)
   const [activeVideo, setActiveVideo] = React.useState<LessonVideoData | null>(primaryVideo);
 
-  // Click-to-play facade state: iframe is NEVER loaded until user initiates play
-  const [hasLoadedIframe, setHasLoadedIframe] = React.useState(false);
+  // Iframe reference for direct postMessage control (unmute, volume, playback state)
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const [audioNotice, setAudioNotice] = React.useState<string | null>(null);
+
+  // Data saver policy detection
+  const [isDataSaver, setIsDataSaver] = React.useState(false);
+  // Standard users load iframe directly with autoplay=0 so clicking Play inside the iframe activates full audio immediately!
+  // Low-bandwidth / data-saver users are shown the facade first to save bandwidth.
+  const [hasLoadedIframe, setHasLoadedIframe] = React.useState(true);
   const [showNotice, setShowNotice] = React.useState(false);
   const [hasAcknowledgedNotice, setHasAcknowledgedNotice] = React.useState(false);
 
@@ -65,12 +72,33 @@ export function RealVideoPlayer({
   const [reportDetails, setReportDetails] = React.useState("");
   const [reportSubmitted, setReportSubmitted] = React.useState(false);
 
+  // Detect data-saver policy on mount
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const nav = navigator as unknown as { connection?: { saveData?: boolean } };
+      const dataSaverActive =
+        nav.connection?.saveData === true ||
+        document.documentElement.getAttribute("data-data-saver") === "true";
+      setIsDataSaver(dataSaverActive);
+      if (dataSaverActive) {
+        setHasLoadedIframe(false);
+      } else {
+        setHasLoadedIframe(true);
+      }
+    }
+  }, []);
+
   // Update active video if primaryVideo changes
   React.useEffect(() => {
     setActiveVideo(primaryVideo);
-    setHasLoadedIframe(false);
+    if (!isDataSaver) {
+      setHasLoadedIframe(true);
+    } else {
+      setHasLoadedIframe(false);
+    }
     setPlaybackError(false);
-  }, [primaryVideo?.id]);
+    setAudioNotice(null);
+  }, [primaryVideo?.id, isDataSaver]);
 
   // Check legal notice acknowledgment from localStorage
   React.useEffect(() => {
@@ -81,6 +109,43 @@ export function RealVideoPlayer({
       }
     } catch {
       // localStorage may be disabled
+    }
+  }, []);
+
+  // Unmute & full volume handler: sends postMessage to embedded YouTube player
+  const handleUnmute = React.useCallback(() => {
+    if (iframeRef.current?.contentWindow) {
+      try {
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "unMute", args: [] }),
+          "*"
+        );
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "setVolume", args: [100] }),
+          "*"
+        );
+        setAudioNotice("Audio unmuted at 100% volume");
+        setTimeout(() => setAudioNotice(null), 4000);
+      } catch (err) {
+        console.warn("Could not postMessage to iframe:", err);
+      }
+    }
+  }, []);
+
+  // When iframe loads, handshake with postMessage and ensure unMute
+  const handleIframeLoad = React.useCallback(() => {
+    if (iframeRef.current?.contentWindow) {
+      try {
+        iframeRef.current.contentWindow.postMessage(JSON.stringify({ event: "listening" }), "*");
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "unMute", args: [] }),
+          "*"
+        );
+        iframeRef.current.contentWindow.postMessage(
+          JSON.stringify({ event: "command", func: "setVolume", args: [100] }),
+          "*"
+        );
+      } catch {}
     }
   }, []);
 
@@ -205,7 +270,8 @@ export function RealVideoPlayer({
   // Construct privacy-enhanced YouTube embed URL (youtube-nocookie.com)
   const startSec = activeVideo.startSeconds || (initialPositionSeconds > 0 ? initialPositionSeconds : 0);
   const embedParams = new URLSearchParams({
-    autoplay: "1",
+    // Standard playback is click-to-play directly on YouTube (autoplay=0) so browser permits 100% audio immediately!
+    autoplay: isDataSaver && hasLoadedIframe ? "1" : "0",
     rel: "0",
     modestbranding: "1",
     playsinline: "1",
@@ -222,6 +288,23 @@ export function RealVideoPlayer({
 
   return (
     <div className="space-y-3" data-testid="real-video-player-container">
+      {/* Audio notice for Data Saver users if video autoplays */}
+      {isDataSaver && hasLoadedIframe && (
+        <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-between gap-2 text-xs text-amber-900">
+          <div className="flex items-center gap-2">
+            <VolumeIcon className="w-4 h-4 text-amber-700 shrink-0" />
+            <span>Browser may start video muted. Click <strong>&ldquo;Unmute / Audio 100%&rdquo;</strong> below or the speaker icon on the video if you don&apos;t hear sound.</span>
+          </div>
+          <button
+            type="button"
+            onClick={handleUnmute}
+            className="px-2.5 py-1 rounded-md bg-amber-200 hover:bg-amber-300 font-semibold text-[11px] text-amber-900 shrink-0 transition-colors"
+          >
+            Unmute Audio
+          </button>
+        </div>
+      )}
+
       {/* 16:9 Video Player Box */}
       <div className="rounded-2xl bg-neutral-950 text-white overflow-hidden shadow-md border border-neutral-800 relative">
         <div className="relative aspect-video w-full bg-neutral-900">
@@ -286,10 +369,12 @@ export function RealVideoPlayer({
           ) : (
             /* ACTIVE YOUTUBE-NOCOOKIE IFRAME */
             <iframe
+              ref={iframeRef}
+              onLoad={handleIframeLoad}
               src={embedSrc}
               title={activeVideo.title}
               className="w-full h-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               data-testid="youtube-nocookie-iframe"
               onError={() => setPlaybackError(true)}
@@ -322,7 +407,7 @@ export function RealVideoPlayer({
 
       {/* Video Actions & Alternates Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           {/* Watch on YouTube link */}
           <a
             href={watchOnYouTubeUrl}
@@ -345,6 +430,25 @@ export function RealVideoPlayer({
           <span className="text-neutral-slate-600 font-mono">
             {formatDuration(activeVideo.durationSeconds)}
           </span>
+
+          {/* Unmute / Audio 100% Button */}
+          <button
+            type="button"
+            onClick={handleUnmute}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-brand-blue-50 hover:bg-brand-blue-100 text-brand-blue-700 font-semibold text-xs border border-brand-blue-200 transition-colors shadow-2xs"
+            title="Click to guarantee audio is unmuted and playing at 100% volume"
+            data-testid="unmute-audio-btn"
+          >
+            <VolumeIcon className="w-3.5 h-3.5" />
+            <span>Unmute / Audio 100%</span>
+          </button>
+
+          {audioNotice && (
+            <span className="text-xs text-status-green-700 font-semibold flex items-center gap-1">
+              <CheckIcon className="w-3.5 h-3.5 text-status-green-600" />
+              <span>{audioNotice}</span>
+            </span>
+          )}
         </div>
 
         <div className="flex items-center gap-2">

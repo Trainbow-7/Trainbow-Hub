@@ -23,6 +23,7 @@ import {
   EyeOff,
   ArrowLeft,
   ArrowRight,
+  Volume2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -115,3 +116,4 @@ export const EyeIcon = createFunctionalIcon(Eye, "Show");
 export const EyeOffIcon = createFunctionalIcon(EyeOff, "Hide");
 export const ArrowLeftIcon = createFunctionalIcon(ArrowLeft, "←");
 export const ArrowRightIcon = createFunctionalIcon(ArrowRight, "→");
+export const VolumeIcon = createFunctionalIcon(Volume2, "Audio");

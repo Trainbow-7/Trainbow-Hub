@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import * as fs from "fs";
+import * as path from "path";
 import { getSession } from "@/lib/auth/session";
 import { db } from "@/lib/db";
 import { ALL_COURSES } from "@/lib/data/seed-data";
@@ -159,16 +161,37 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
 
     // Fallback: If DB query returned no approved record but curriculum lesson has verified videoId
     if (approvedVideos.length === 0 && foundLesson.videoId) {
+      let cachedMeta: any = null;
+      try {
+        const cachePath = path.join(process.cwd(), "content", "video-discovery-cache.json");
+        if (fs.existsSync(cachePath)) {
+          const raw = fs.readFileSync(cachePath, "utf8");
+          const json = JSON.parse(raw);
+          const items = json.items || {};
+          const key = `${slug}:${foundLesson.slug || foundLesson.id}`;
+          if (items[key]) {
+            cachedMeta = items[key];
+          } else {
+            for (const entry of Object.values(items) as any[]) {
+              if (entry.videoId === foundLesson.videoId) {
+                cachedMeta = entry;
+                break;
+              }
+            }
+          }
+        }
+      } catch {}
+
       const fallbackVideo = {
         id: `lv-${foundLesson.id}-primary`,
         lessonId: foundLesson.id,
         courseSlug: slug,
         provider: "YOUTUBE" as const,
         providerVideoId: foundLesson.videoId,
-        title: `${course.title} — ${foundLesson.title}`,
-        channelId: "UC_TRUSTED_EDU",
-        channelName: "The Organic Chemistry Tutor / Khan Academy",
-        durationSeconds: (foundLesson.durationMinutes || 30) * 60,
+        title: cachedMeta?.title || `${course.title} — ${foundLesson.title}`,
+        channelId: cachedMeta?.channelId || "UC_TRUSTED_EDU",
+        channelName: cachedMeta?.channelName || "Trainbow Verified Educational Partner",
+        durationSeconds: cachedMeta?.durationSeconds || (foundLesson.durationMinutes || 30) * 60,
         language: "en",
         thumbnailUrl: `https://i.ytimg.com/vi/${foundLesson.videoId}/hqdefault.jpg`,
         embeddable: true,
