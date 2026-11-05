@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { SEED_SUBJECTS, SEED_COURSES } from "@/lib/data/seed-data";
+import { SEED_SUBJECTS, ALL_COURSES } from "@/lib/data/seed-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://trainbowhub.ng";
@@ -114,12 +114,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Course routes
-  const courseRoutes: MetadataRoute.Sitemap = SEED_COURSES.map((c) => ({
+  const courseRoutes: MetadataRoute.Sitemap = ALL_COURSES.map((c) => ({
     url: `${baseUrl}/courses/${c.slug}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...subjectRoutes, ...courseRoutes];
+  // Preview lesson routes (SEO discoverability for free preview lessons)
+  const previewLessonRoutes: MetadataRoute.Sitemap = ALL_COURSES.flatMap((c) =>
+    c.syllabus.flatMap((m) =>
+      m.lessons
+        .filter((l) => l.isFreePreview)
+        .map((l) => ({
+          url: `${baseUrl}/courses/${c.slug}/lessons/${(l as any).slug || l.id}`,
+          lastModified,
+          changeFrequency: "monthly" as const,
+          priority: 0.75,
+        }))
+    )
+  );
+
+  return [...staticRoutes, ...subjectRoutes, ...courseRoutes, ...previewLessonRoutes];
 }

@@ -14,6 +14,7 @@ import { InlineMathText } from "@/components/ui/InlineMathText";
 import { LessonNotesRenderer } from "@/components/academy/LessonNotesRenderer";
 import { ScrollableTabs } from "@/components/ui/responsive/ScrollableTabs";
 import { BottomSheet } from "@/components/ui/responsive/BottomSheet";
+import { getWeakAreaByCode } from "@/lib/data/english-deficiency-map";
 
 interface LessonPayload {
   success: boolean;
@@ -341,6 +342,16 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                 {lesson.isFreePreview && (
                   <Badge variant="tutor" className="text-[10px]">Free Preview</Badge>
                 )}
+                {(() => {
+                  const weakCode = (lesson as any).weakAreaCodes?.[0];
+                  if (!weakCode) return null;
+                  const wa = getWeakAreaByCode(weakCode);
+                  return (
+                    <span className="text-xs text-neutral-slate-600 font-normal">
+                      Fixes: {wa ? wa.title : weakCode}
+                    </span>
+                  );
+                })()}
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-neutral-slate-900 tracking-tight">
                 {lesson.title}
@@ -550,16 +561,85 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                     Submit Answers
                   </Button>
                 ) : (
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => {
-                      setQuizSubmitted(false);
-                      setSelectedAnswers({});
-                    }}
-                  >
-                    Retake Quiz
-                  </Button>
+                  <div className="space-y-4 pt-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        setQuizSubmitted(false);
+                        setSelectedAnswers({});
+                      }}
+                    >
+                      Retake Quiz
+                    </Button>
+
+                    {/* Next Best Lesson Recommendation & AI Helper */}
+                    {(() => {
+                      const questions = lesson.quiz?.questions || [];
+                      const correctCount = questions.filter(
+                        (q) => selectedAnswers[q.id]?.toUpperCase() === q.correctOptionId.toUpperCase()
+                      ).length;
+                      const totalCount = questions.length;
+                      const allCorrect = totalCount > 0 && correctCount === totalCount;
+
+                      return (
+                        <div className="p-4 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50 space-y-3 mt-4">
+                          <div className="flex items-center justify-between">
+                            <span className="font-heading font-bold text-sm text-neutral-slate-900">
+                              Checkpoint Result: {correctCount} / {totalCount} ({Math.round((correctCount / (totalCount || 1)) * 100)}%)
+                            </span>
+                            {allCorrect ? (
+                              <span className="text-xs text-status-green-700 font-bold">Concept Mastered</span>
+                            ) : (
+                              <span className="text-xs text-amber-700 font-semibold">Review Recommended</span>
+                            )}
+                          </div>
+
+                          <div className="pt-2 border-t border-neutral-slate-200 space-y-2">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-slate-500">
+                              Next Best Lesson
+                            </span>
+                            {navigation.nextLesson ? (
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-white rounded-lg border border-neutral-slate-200">
+                                <div>
+                                  <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-slate-900">
+                                    {navigation.nextLesson.title}
+                                  </h4>
+                                  <p className="text-[11px] text-neutral-slate-500">
+                                    {allCorrect
+                                      ? "You demonstrated strong mastery on this checkpoint. Proceed to the next lesson."
+                                      : "Continue through your curriculum path to reinforce and apply these skills."}
+                                  </p>
+                                </div>
+                                <Link
+                                  href={`/courses/${course.slug}/lessons/${navigation.nextLesson.slug || navigation.nextLesson.id}`}
+                                  className="shrink-0"
+                                >
+                                  <Button size="sm" variant="primary">
+                                    Continue →
+                                  </Button>
+                                </Link>
+                              </div>
+                            ) : (
+                              <p className="text-xs text-neutral-slate-600">
+                                You have completed all lessons in this course! Check your progress on the Academy dashboard.
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="pt-1 flex items-center justify-between text-xs text-neutral-slate-500 flex-wrap gap-2">
+                            <span>Questions about this lesson or checkpoint?</span>
+                            <Link
+                              href={`/ai?q=${encodeURIComponent(`Help me understand: ${lesson.title}`)}`}
+                              className="text-brand-blue-600 hover:underline font-medium"
+                            >
+                              Ask the study helper →
+                            </Link>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
                 )}
               </div>
             )}

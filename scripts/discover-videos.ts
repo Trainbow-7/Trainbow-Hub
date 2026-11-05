@@ -15,6 +15,7 @@ import * as fs from "fs";
 import * as path from "path";
 import https from "https";
 import { COURSES_DATA } from "../src/lib/data/curricula";
+import { ENGLISH_COURSES_DATA } from "../src/lib/data/english-curriculum";
 import { TRUSTED_CHANNELS_ALLOWLIST } from "../src/lib/video/trusted-channels";
 import { fetchYouTubeVideoDetails, searchYouTubeVideos } from "../src/lib/video/youtube-client";
 
@@ -124,8 +125,22 @@ async function main() {
   let alreadyCachedCount = 0;
   const videoUsage: Record<string, number> = {};
 
-  for (const course of COURSES_DATA) {
+  const args = process.argv.slice(2);
+  const subjectIndex = args.indexOf("--subject");
+  const subjectArg = subjectIndex !== -1 ? args[subjectIndex + 1] : "all";
+
+  let coursesToProcess: any[] = [];
+  if (subjectArg === "english") {
+    coursesToProcess = ENGLISH_COURSES_DATA;
+  } else if (subjectArg === "math" || subjectArg === "mathematics") {
+    coursesToProcess = COURSES_DATA;
+  } else {
+    coursesToProcess = [...COURSES_DATA, ...ENGLISH_COURSES_DATA];
+  }
+
+  for (const course of coursesToProcess) {
     console.log(`Processing Course: ${course.title} (${course.slug})...`);
+    const isEnglish = (course as any).subjectSlug === "english-language" || course.subject === "English Language";
 
     for (const mod of course.modules) {
       for (const les of mod.lessons) {
@@ -158,7 +173,10 @@ async function main() {
 
         if (apiKey && quotaUsed + 100 <= DAILY_QUOTA_LIMIT) {
           quotaUsed += 100; // Search cost
-          const results = await searchYouTubeVideos(`${les.title} ${course.examBody} Mathematics`, apiKey, 5);
+          const qText = isEnglish
+            ? `${les.title} ${course.level} English lesson`
+            : `${les.title} ${course.examBody || ""} Mathematics`;
+          const results = await searchYouTubeVideos(qText, apiKey, 5);
           for (const item of results) {
             if ((videoUsage[item.videoId] || 0) < 3) {
               foundId = item.videoId;
@@ -171,11 +189,18 @@ async function main() {
 
         // Fallback to web search + oEmbed verification
         if (!foundId) {
-          const queries = [
-            `The Organic Chemistry Tutor ${les.title}`,
-            `Corbettmaths ${les.title}`,
-            `mathantics ${les.title}`,
-          ];
+          const queries = isEnglish
+            ? [
+                `BBC Learning English ${les.title}`,
+                `Learn English with Emma ${les.title}`,
+                `Oxford Online English ${les.title}`,
+                `English with Lucy ${les.title}`,
+              ]
+            : [
+                `The Organic Chemistry Tutor ${les.title}`,
+                `Corbettmaths ${les.title}`,
+                `mathantics ${les.title}`,
+              ];
 
           for (const q of queries) {
             const candidateIds = await searchYouTubeWeb(q);

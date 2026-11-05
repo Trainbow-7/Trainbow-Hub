@@ -74,6 +74,19 @@
   }
 }
 
+/* IPA Phonetic Fallback via unicode-range for oral pronunciation characters
+ * Covers: IPA Extensions (U+0250-02AF), Spacing Modifier Letters (U+02B0-02FF),
+ * and Greek/Coptic for θ (U+0370-03FF) in the same clean sans-serif visual family.
+ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local('Segoe UI'), local('Arial'), local('Helvetica Neue'), sans-serif;
+  unicode-range: U+00F0, U+014B, U+0250-02AF, U+02B0-02FF, U+0370-03FF;
+}
+
 /* Accessibility Invariants: Never allow white text on Amber 500 or Teal 500 */
 .badge-amber,
 .fill-amber,

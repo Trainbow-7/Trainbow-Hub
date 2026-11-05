@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/session";
 import { db } from "@/lib/db";
-import { SEED_COURSES } from "@/lib/data/seed-data";
+import { ALL_COURSES } from "@/lib/data/seed-data";
 import { getLessonById } from "@/lib/data/academy-content";
 import { getCourseLessonList } from "@/lib/academy/engine";
 
@@ -14,7 +14,7 @@ export async function GET(
     const session = await getSession();
     const userId = session?.id || "usr-std-001";
 
-    const course = SEED_COURSES.find((c) => c.slug === slug);
+    const course = ALL_COURSES.find((c) => c.slug === slug);
     if (!course) {
       return NextResponse.json(
         { success: false, error: "Course not found" },
@@ -203,7 +203,10 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
         instructorName: course.instructorName,
         syllabus: course.syllabus,
       },
-      lesson,
+      lesson: {
+        ...lesson,
+        weakAreaCodes: (foundLesson as any).weakAreaCodes || (lesson as any).weakAreaCodes || [],
+      },
       video: {
         hasVideo: !!primaryVideo,
         primary: primaryVideo,

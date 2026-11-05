@@ -1,4 +1,5 @@
 import { COURSES_DATA } from "./curricula";
+import { ENGLISH_COURSES_DATA } from "./english-curriculum";
 export interface SubjectItem {
   id: string;
   name: string;
@@ -111,7 +112,7 @@ export const SEED_SUBJECTS: SubjectItem[] = [
     levels: ["Primary 1-6", "JSS 1-3", "SS 1-3", "WAEC Prep", "JAMB UTME Prep"],
     description: "Grammar, comprehension, oral pronunciation, essay composition, and literary analysis.",
     accentColor: "border-indigo-600",
-    courseCount: 3,
+    courseCount: 11,
     tutorCount: 5,
   },
   {
@@ -257,6 +258,77 @@ export const SEED_COURSES: CourseItem[] = COURSES_DATA.map((c) => {
     prerequisites: c.prerequisites,
   };
 });
+
+// -----------------------------------------------------------------------------
+// 11 ENGLISH LANGUAGE COURSES
+// -----------------------------------------------------------------------------
+export const SEED_ENGLISH_COURSES: CourseItem[] = ENGLISH_COURSES_DATA.map((c) => {
+  const allLessons = c.modules.flatMap((m) => m.lessons);
+  const lessonCount = allLessons.length;
+  const totalMinutes = allLessons.reduce((sum, l) => sum + (l.durationMinutes || 0), 0);
+  const durationHours = Math.round(totalMinutes / 60);
+
+  return {
+    id: c.id,
+    slug: c.slug,
+    title: c.title,
+    subjectSlug: c.subjectSlug || "english",
+    subjectName: c.subject || "English Language",
+    level: c.level,
+    instructorName: c.instructorName || "Trainbow HUB Academy",
+    instructorTitle: c.instructorTitle || "Senior English Faculty",
+    instructorAvatar: "TH",
+    priceMinorUnits: c.priceMinorUnits || 0,
+    currency: c.currency || "NGN",
+    rating: 0,
+    reviewCount: 0,
+    lessonCount,
+    durationHours,
+    shortDescription: c.shortDescription || c.description,
+    fullDescription: c.description,
+    syllabus: c.modules.map((m) => ({
+      id: m.id,
+      title: m.title,
+      description: m.description,
+      lessons: m.lessons.map((l) => ({
+        id: l.id,
+        slug: l.slug,
+        title: l.title,
+        durationMinutes: l.durationMinutes,
+        isFreePreview: l.isFreePreview,
+        topicId: l.topicId,
+        order: l.sortOrder,
+        summary: l.summary,
+        objectives: l.objectives,
+        keyPoints: l.keyPoints,
+        reviewStatus: l.reviewStatus,
+        videoId: l.videoId,
+        weakAreaCodes: l.weakAreaCodes,
+        examTip: l.examTip,
+      })),
+    })),
+    learningOutcomes: c.learningOutcomes,
+    prerequisites: c.prerequisites,
+  };
+});
+
+// All courses combined across subjects
+export const ALL_COURSES: CourseItem[] = [...SEED_COURSES, ...SEED_ENGLISH_COURSES];
+
+export function getAllCourses(): CourseItem[] {
+  return ALL_COURSES;
+}
+
+export function getCourseBySlug(slug: string): CourseItem | undefined {
+  return ALL_COURSES.find((c) => c.slug === slug);
+}
+
+export function getCoursesBySubject(subjectSlug: string): CourseItem[] {
+  if (subjectSlug === "english" || subjectSlug === "english-language") {
+    return SEED_ENGLISH_COURSES;
+  }
+  return SEED_COURSES.filter((c) => c.subjectSlug === subjectSlug);
+}
 
 // -----------------------------------------------------------------------------
 // 12 VETTED NIGERIAN TUTORS

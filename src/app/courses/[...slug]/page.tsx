@@ -1,17 +1,21 @@
 import * as React from "react";
 import { notFound, redirect } from "next/navigation";
-import { SEED_COURSES } from "@/lib/data/seed-data";
+import { ALL_COURSES } from "@/lib/data/seed-data";
 import { CourseDetailView } from "@/components/academy/CourseDetailView";
 import { LessonPlayerView } from "@/components/academy/LessonPlayerView";
+import { CourseDiagnosticView } from "@/components/academy/CourseDiagnosticView";
 
 export function generateStaticParams() {
   const params: { slug: string[] }[] = [];
 
-  for (const course of SEED_COURSES) {
+  for (const course of ALL_COURSES) {
     // 1. Course syllabus route: /courses/[courseSlug]
     params.push({ slug: [course.slug] });
 
-    // 2. Lesson routes: /courses/[courseSlug]/lessons/[lessonSlug]
+    // 2. Course diagnostic route: /courses/[courseSlug]/diagnostic
+    params.push({ slug: [course.slug, "diagnostic"] });
+
+    // 3. Lesson routes: /courses/[courseSlug]/lessons/[lessonSlug]
     for (const mod of course.syllabus) {
       for (const les of mod.lessons) {
         if ((les as any).slug) {
@@ -35,7 +39,7 @@ export function generateMetadata({ params }: CoursesCatchAllProps) {
   const parts = params.slug || [];
 
   if (parts.length === 1) {
-    const course = SEED_COURSES.find((c) => c.slug === parts[0]);
+    const course = ALL_COURSES.find((c) => c.slug === parts[0]);
     if (course) {
       return {
         title: `${course.title} (${course.level}) — Trainbow HUB Academy`,
@@ -44,8 +48,18 @@ export function generateMetadata({ params }: CoursesCatchAllProps) {
     }
   }
 
+  if (parts.length === 2 && parts[1] === "diagnostic") {
+    const course = ALL_COURSES.find((c) => c.slug === parts[0]);
+    if (course) {
+      return {
+        title: `Diagnostic Assessment — ${course.title} — Trainbow HUB Academy`,
+        description: `Find your weak spots and get a personalized remediation path for ${course.title}.`,
+      };
+    }
+  }
+
   if (parts.length === 3 && parts[1] === "lessons") {
-    const course = SEED_COURSES.find((c) => c.slug === parts[0]);
+    const course = ALL_COURSES.find((c) => c.slug === parts[0]);
     if (course) {
       let lessonTitle = "Lesson";
       for (const m of course.syllabus) {
@@ -74,17 +88,27 @@ export default function CoursesCatchAllPage({ params }: CoursesCatchAllProps) {
   // 1. Single segment: /courses/[courseSlug]
   if (parts.length === 1) {
     const courseSlug = parts[0];
-    const course = SEED_COURSES.find((c) => c.slug === courseSlug);
+    const course = ALL_COURSES.find((c) => c.slug === courseSlug);
     if (!course) {
       notFound();
     }
     return <CourseDetailView course={course} />;
   }
 
-  // 2. Three segments: /courses/[courseSlug]/lessons/[lessonSlug]
+  // 2. Two segments: /courses/[courseSlug]/diagnostic
+  if (parts.length === 2 && parts[1] === "diagnostic") {
+    const courseSlug = parts[0];
+    const course = ALL_COURSES.find((c) => c.slug === courseSlug);
+    if (!course) {
+      notFound();
+    }
+    return <CourseDiagnosticView course={course} />;
+  }
+
+  // 3. Three segments: /courses/[courseSlug]/lessons/[lessonSlug]
   if (parts.length === 3 && parts[1] === "lessons") {
     const [courseSlug, , lessonSlug] = parts;
-    const course = SEED_COURSES.find((c) => c.slug === courseSlug);
+    const course = ALL_COURSES.find((c) => c.slug === courseSlug);
     if (!course) {
       notFound();
     }
@@ -106,7 +130,7 @@ export default function CoursesCatchAllPage({ params }: CoursesCatchAllProps) {
     return <LessonPlayerView courseSlug={courseSlug} lessonSlug={lessonSlug} />;
   }
 
-  // 3. Two segments: legacy /courses/[track]/[subject]
+  // 4. Two segments: legacy /courses/[track]/[subject]
   if (parts.length === 2) {
     const [track, subject] = parts;
     const trackToCourseMap: Record<string, string> = {

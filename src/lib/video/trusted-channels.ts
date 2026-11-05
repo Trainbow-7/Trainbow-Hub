@@ -58,6 +58,36 @@ export const TRUSTED_CHANNELS_ALLOWLIST: ChannelEntry[] = [
     notes: "Bite-sized, animated visual conceptual explanations in middle- and high-school mathematics and biology.",
     subjects: ["Mathematics", "Biology", "Geometry"],
   },
+  {
+    channelId: "UCHaHD477h-FeBbVh9Sh7syA",
+    name: "BBC Learning English",
+    notes: "World standard English grammar, pronunciation, vocabulary, and listening comprehension lessons.",
+    subjects: ["English Language", "Grammar", "Pronunciation", "Comprehension"],
+  },
+  {
+    channelId: "UCEKXieT208wU4eq4GXUslnQ",
+    name: "Learn English with Emma [engVid]",
+    notes: "Structured academic writing, essay composition, grammar rules, and IELTS/SSCE preparation strategies.",
+    subjects: ["English Language", "Essay Composition", "Grammar"],
+  },
+  {
+    channelId: "UCNbeSPp8RYKmHUliYBUDizg",
+    name: "Oxford Online English",
+    notes: "In-depth tutorials on formal letter writing, phonetics, intonation, and common grammatical mistakes.",
+    subjects: ["English Language", "Oral English", "Phonetics", "Writing"],
+  },
+  {
+    channelId: "UCH3qEaG74kLwKkmElAkyOyg",
+    name: "English with Lucy",
+    notes: "Clear articulation of British English vowel/consonant contrasts, diphthongs, and advanced vocabulary.",
+    subjects: ["English Language", "Oral English", "Vocabulary"],
+  },
+  {
+    channelId: "UCX6b17PVsYBQ0ip5gyeme-Q",
+    name: "CrashCourse",
+    notes: "High quality curriculum videos on Literature analysis, rhetorical devices, and critical reading.",
+    subjects: ["English Literature", "Literary Analysis", "Reading"],
+  },
 ];
 
 export const INITIAL_CHANNEL_BLOCKLIST: ChannelEntry[] = [

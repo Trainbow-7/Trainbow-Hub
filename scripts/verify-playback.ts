@@ -56,6 +56,18 @@ const TEST_COURSES = [
     lessonSlug: "indices-standard-form-scientific-notation",
     expectedVideoId: "ZtB0vJMGve4",
   },
+  {
+    courseSlug: "waec-neco-ssce-english-mastery",
+    courseTitle: "WAEC and NECO SSCE English Language Mastery",
+    lessonSlug: "waec-paper-1-lexis-and-collocations",
+    expectedVideoId: "3xSgXh4Gg0o",
+  },
+  {
+    courseSlug: "primary-english-foundations-1-3",
+    courseTitle: "Primary English Foundations (Primary 1-3)",
+    lessonSlug: "short-vowel-sounds-phonics",
+    expectedVideoId: "vHj8W0o9j8c",
+  },
 ];
 
 interface PlaybackResult {

@@ -13,6 +13,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { db } from "../src/lib/db";
 import { COURSES_DATA, SYLLABUS_SOURCES } from "../src/lib/data/curricula";
+import { ENGLISH_COURSES_DATA } from "../src/lib/data/english-curriculum";
 
 interface VideoMapRow {
   courseTitle: string;
@@ -44,7 +45,9 @@ async function main() {
   const videoUsageCount: Record<string, string[]> = {};
   const gaps: Array<{ course: string; lesson: string; slug: string }> = [];
 
-  for (const course of COURSES_DATA) {
+  const allCoursesToMap = [...COURSES_DATA, ...ENGLISH_COURSES_DATA];
+
+  for (const course of allCoursesToMap) {
     const source = SYLLABUS_SOURCES.find((s) => s.id.includes(course.examBody.toLowerCase()) || s.level === course.level) || SYLLABUS_SOURCES[0];
 
     for (const mod of course.modules) {
@@ -135,13 +138,13 @@ async function main() {
   console.log("\n[2/3] Writing docs/course-topic-video-map.md...");
   let mapMd = `# Course Topic & Video Inventory Map\n\n`;
   mapMd += `**Generated Date:** ${new Date().toISOString().split("T")[0]}  \n`;
-  mapMd += `**Total Courses:** ${COURSES_DATA.length}  \n`;
+  mapMd += `**Total Courses:** ${allCoursesToMap.length}  \n`;
   mapMd += `**Total Lessons:** ${rows.length}  \n`;
   mapMd += `**Approved Video Lessons:** ${rows.filter((r) => r.hasVideo).length}  \n`;
   mapMd += `**Pending Teacher Review / Gaps:** ${gaps.length}  \n\n`;
   mapMd += `---\n\n`;
 
-  for (const course of COURSES_DATA) {
+  for (const course of allCoursesToMap) {
     const courseRows = rows.filter((r) => r.courseSlug === course.slug);
     const approvedCount = courseRows.filter((r) => r.status === "APPROVED").length;
     const pendingCount = courseRows.filter((r) => r.status !== "APPROVED").length;

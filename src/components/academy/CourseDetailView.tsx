@@ -7,7 +7,9 @@ import { Footer } from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/Badge";
 import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
-import { CourseItem, SEED_COURSES } from "@/lib/data/seed-data";
+import { Button } from "@/components/ui/Button";
+import { CourseItem, ALL_COURSES } from "@/lib/data/seed-data";
+import { getWeakAreaByCode } from "@/lib/data/english-deficiency-map";
 import { CourseEnrollmentAction } from "@/components/academy/CourseEnrollmentAction";
 import { StickyActionBar } from "@/components/ui/responsive/StickyActionBar";
 import { ChevronRightIcon, ChevronDownIcon, ChevronUpIcon, PlayIcon } from "@/components/ui/icons";
@@ -35,7 +37,7 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
     setOpenModules((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const relatedCourses = SEED_COURSES.filter(
+  const relatedCourses = ALL_COURSES.filter(
     (c) => c.id !== course.id && (c.subjectSlug === course.subjectSlug || c.level === course.level)
   ).slice(0, 6);
 
@@ -158,6 +160,23 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
                   <span className="text-xs text-neutral-slate-500">Resumable on phone & laptop</span>
                 </div>
 
+                {/* Diagnostic Entrance */}
+                <div className="rounded-xl border border-indigo-100 bg-indigo-50/50 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="font-heading font-bold text-sm text-brand-navy-900">
+                      Find your weak spots
+                    </h3>
+                    <p className="text-xs text-neutral-slate-600 max-w-xl">
+                      Take a 10-minute diagnostic test to identify your priority weak areas and generate a personalized lesson path.
+                    </p>
+                  </div>
+                  <Link href={`/courses/${course.slug}/diagnostic`} className="shrink-0">
+                    <Button variant="outline" size="sm" className="border-indigo-300 text-indigo-700 hover:bg-indigo-100">
+                      Start diagnostic test
+                    </Button>
+                  </Link>
+                </div>
+
                 <div className="space-y-4">
                   {course.syllabus.map((mod) => {
                     const isOpen = !!openModules[mod.id];
@@ -193,12 +212,19 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
                           <div className="divide-y divide-neutral-slate-100 p-2">
                             {mod.lessons.map((lesson) => {
                               const lessonSlug = (lesson as any).slug || lesson.id;
+                              const weakAreaCode = (lesson as any).weakAreaCodes?.[0];
+                              const weakArea = weakAreaCode ? getWeakAreaByCode(weakAreaCode) : null;
                               const lessonRow = (
                                 <div className="flex items-center justify-between py-2.5 px-3 text-xs min-h-[44px]">
-                                  <div className="flex items-center gap-2.5 truncate mr-2">
+                                  <div className="flex items-center gap-2.5 truncate mr-2 flex-wrap sm:flex-nowrap">
                                     <span className={lesson.isFreePreview ? "font-medium text-brand-blue-700 hover:underline truncate" : "text-neutral-slate-700 truncate"}>
                                       <InlineMathText text={lesson.title} />
                                     </span>
+                                    {weakArea && (
+                                      <span className="text-[11px] text-neutral-slate-500 font-normal shrink-0">
+                                        Fixes: {weakArea.title}
+                                      </span>
+                                    )}
                                   </div>
                                   <div className="flex items-center gap-3 shrink-0">
                                     <span className="text-[11px] text-neutral-slate-500">{lesson.durationMinutes}m</span>

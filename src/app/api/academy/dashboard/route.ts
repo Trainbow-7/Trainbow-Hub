@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/session";
 import { db } from "@/lib/db";
-import { SEED_COURSES } from "@/lib/data/seed-data";
+import { ALL_COURSES, SEED_COURSES } from "@/lib/data/seed-data";
 import { getLessonById } from "@/lib/data/academy-content";
 
 export async function GET() {
@@ -17,7 +17,7 @@ export async function GET() {
 
     // Hydrate enrollments with course metadata
     const hydratedEnrollments = enrollments.map((enr) => {
-      const course = SEED_COURSES.find((c) => c.slug === enr.courseSlug);
+      const course = ALL_COURSES.find((c) => c.slug === enr.courseSlug);
       const lastLesson = enr.lastAccessedLessonId ? getLessonById(enr.lastAccessedLessonId) : null;
       return {
         ...enr,

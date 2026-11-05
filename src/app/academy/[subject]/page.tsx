@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from "@/components/ui/Button";
 import { Rating } from "@/components/ui/Rating";
 import { Avatar } from "@/components/ui/Avatar";
-import { SEED_SUBJECTS, SEED_COURSES } from "@/lib/data/seed-data";
+import { SEED_SUBJECTS, getCoursesBySubject } from "@/lib/data/seed-data";
 import { Reveal, Stagger, StaggerItem, HoverLift } from "@/components/motion";
 
 interface SubjectPageProps {
@@ -18,11 +18,13 @@ interface SubjectPageProps {
 }
 
 export function generateStaticParams() {
-  return SEED_SUBJECTS.map((s) => ({ subject: s.slug }));
+  const base = SEED_SUBJECTS.map((s) => ({ subject: s.slug }));
+  return [...base, { subject: "english-language" }];
 }
 
 export function generateMetadata({ params }: SubjectPageProps) {
-  const subject = SEED_SUBJECTS.find((s) => s.slug === params.subject);
+  const normalizedSlug = params.subject === "english-language" ? "english" : params.subject;
+  const subject = SEED_SUBJECTS.find((s) => s.slug === normalizedSlug);
   if (!subject) return { title: "Subject Not Found — Trainbow HUB" };
   return {
     title: `${subject.name} Courses & Syllabus — Trainbow HUB Academy`,
@@ -31,10 +33,11 @@ export function generateMetadata({ params }: SubjectPageProps) {
 }
 
 export default function SubjectDetailPage({ params }: SubjectPageProps) {
-  const subject = SEED_SUBJECTS.find((s) => s.slug === params.subject);
+  const normalizedSlug = params.subject === "english-language" ? "english" : params.subject;
+  const subject = SEED_SUBJECTS.find((s) => s.slug === normalizedSlug);
   if (!subject) notFound();
 
-  const courses = SEED_COURSES.filter((c) => c.subjectSlug === subject.slug);
+  const courses = getCoursesBySubject(params.subject);
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
@@ -58,14 +61,10 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
                 <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/30">
                   {subject.category} curriculum
                 </Badge>
-                {subject.aiEnabled ? (
+                {subject.aiEnabled && (
                   <Badge variant="ai">
                     Study helper enabled
                   </Badge>
-                ) : (
-                  <span className="text-xs text-neutral-slate-300">
-                    Helper testing in progress
-                  </span>
                 )}
               </div>
 
@@ -94,9 +93,6 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
             <h2 className="text-xl font-bold font-heading text-neutral-slate-900">
               {subject.name} courses ({courses.length})
             </h2>
-            {courses.length === 0 && (
-              <span className="text-xs text-amber-700 font-semibold">New courses publishing soon</span>
-            )}
           </div>
 
           {courses.length > 0 ? (
@@ -149,13 +145,20 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
               ))}
             </Stagger>
           ) : (
-            <div className="rounded-lg border border-neutral-slate-200 bg-white p-8 text-center space-y-3">
-              <h3 className="font-heading font-semibold text-neutral-slate-900 text-sm">
-                Courses in authoring pipeline
+            <div className="rounded-xl border border-neutral-slate-200 bg-white p-8 sm:p-12 text-center space-y-4">
+              <h3 className="font-heading font-semibold text-neutral-slate-900 text-base">
+                No self-paced courses available yet for {subject.name}
               </h3>
-              <p className="text-xs text-neutral-slate-500 max-w-md mx-auto">
-                Lesson recordings and practice items are being reviewed for {subject.name}. Check back as new course syllabi are added.
+              <p className="text-sm text-neutral-slate-600 max-w-md mx-auto">
+                Looking for instruction in {subject.name}? Request a vetted Nigerian tutor for tailored one-on-one virtual or in-person lessons.
               </p>
+              <div className="pt-2">
+                <Link href="/request-tutor">
+                  <Button variant="primary" size="md">
+                    Request a tutor
+                  </Button>
+                </Link>
+              </div>
             </div>
           )}
         </div>

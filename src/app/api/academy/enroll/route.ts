@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/session";
 import { db } from "@/lib/db";
-import { SEED_COURSES } from "@/lib/data/seed-data";
+import { ALL_COURSES } from "@/lib/data/seed-data";
 import { z } from "zod";
 
 const EnrollSchema = z.object({
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { courseSlug } = validation.data;
-    const course = SEED_COURSES.find((c) => c.slug === courseSlug);
+    const course = ALL_COURSES.find((c) => c.slug === courseSlug);
     if (!course) {
       return NextResponse.json(
         { success: false, error: "Course not found" },

@@ -1,4 +1,5 @@
 import { COURSES_DATA } from "./curricula";
+import { ENGLISH_COURSES_DATA } from "./english-curriculum";
 
 export interface QuizQuestion {
   id: string;
@@ -432,6 +433,130 @@ ${(les.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
                 },
               ],
             },
+          };
+        }
+      }
+    }
+  }
+
+  // 3. Search across ENGLISH_COURSES_DATA
+  for (const course of ENGLISH_COURSES_DATA) {
+    if (courseSlug && course.slug !== courseSlug) continue;
+    for (const mod of course.modules) {
+      for (const les of mod.lessons) {
+        if (les.id === lessonId || les.slug === lessonId) {
+          const commonMistakesSection = les.commonMistakes
+            ? `
+### Common Examination Pitfall & Error Correction
+- **Common Mistake:** ${les.commonMistakes.mistake}
+- **Incorrect:** *${les.commonMistakes.wrongExample}*
+- **Corrected:** **${les.commonMistakes.correctedExample}**
+- **Examiner's Rule:** ${les.commonMistakes.explanation}
+`
+            : "";
+
+          const workedExamplesSection = les.workedExamples && les.workedExamples.length > 0
+            ? `
+### Original Worked Examples & Examiner Analysis
+${les.workedExamples.map((ex, i) => `
+#### Example ${i + 1}: ${ex.context}
+**Question:** ${ex.question}
+
+**Step-by-Step Analysis:**
+${ex.stepByStepSolution.map((s, idx) => `${idx + 1}. ${s}`).join("\n")}
+
+**Correct Answer:** **${ex.finalAnswer}**
+*Examiner Marking Rule:* ${ex.ruleExplanation}
+`).join("\n")}`
+            : "";
+
+          const examTipSection = les.examTip
+            ? `
+### Examiner's Tip for Nigerian Exams
+> ${les.examTip}
+`
+            : "";
+
+          const markdownNotes = les.markdownNotes || `
+# ${les.title}
+
+Welcome to this lesson in **${course.title}** (${course.level}).
+
+---
+
+## Overview & Curriculum Context
+${les.summary}
+
+### Key Learning Objectives
+${(les.objectives || []).map((o) => `- ${o}`).join("\n")}
+
+### Essential Rules & Language Principles
+${(les.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
+
+${commonMistakesSection}
+
+${workedExamplesSection}
+
+${examTipSection}
+`;
+
+          return {
+            id: les.id,
+            courseSlug: course.slug,
+            title: les.title,
+            moduleTitle: mod.title,
+            durationMinutes: les.durationMinutes,
+            isFreePreview: les.isFreePreview,
+            videoTitle: `${course.title} — ${les.title}`,
+            videoThumbnail: `/images/lessons/${les.id}.jpg`,
+            keyObjectives: les.objectives && les.objectives.length > 0 ? les.objectives : [
+              `Master core concepts of ${les.title}`,
+              "Apply standard English rules and structures accurately",
+              "Demonstrate mastery in curriculum exam questions",
+            ],
+            markdownNotes,
+            worksheets: [
+              {
+                title: `${les.title} Worksheet (PDF)`,
+                filename: `${les.slug}_worksheet.pdf`,
+                size: "380 KB",
+                type: "PDF Document",
+              },
+            ],
+            quiz: les.checkpoint
+              ? {
+                  id: les.checkpoint.id,
+                  title: les.checkpoint.title,
+                  passPercentage: les.checkpoint.passPercentage || 60,
+                  questions: les.checkpoint.questions.map((q) => ({
+                    id: q.id,
+                    prompt: q.prompt,
+                    options: q.options,
+                    correctOptionId: q.correctOptionId,
+                    explanation: q.explanation,
+                    topic: q.topic || les.title,
+                  })),
+                }
+              : {
+                  id: `quiz-${les.id}`,
+                  title: `Practice Checkpoint: ${les.title}`,
+                  passPercentage: 60,
+                  questions: [
+                    {
+                      id: `q_${les.id}_1`,
+                      prompt: `Which of the following best reflects the key principle of ${les.title}?`,
+                      options: [
+                        { id: "A", text: (les.keyPoints && les.keyPoints[0]) || "Accurate grammatical application" },
+                        { id: "B", text: "Ignoring subject-verb agreement" },
+                        { id: "C", text: "Direct copying without rephrasing" },
+                        { id: "D", text: "None of the above" },
+                      ],
+                      correctOptionId: "A",
+                      explanation: `Standard exam guidelines require: ${(les.keyPoints && les.keyPoints[0]) || "systematic application of core rules"}.`,
+                      topic: les.title,
+                    },
+                  ],
+                },
           };
         }
       }

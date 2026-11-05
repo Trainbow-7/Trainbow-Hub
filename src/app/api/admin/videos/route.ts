@@ -5,7 +5,7 @@ import {
   discoverVideosForLesson,
   verifyAndIngestManualVideo,
 } from "@/lib/video/video-orchestrator";
-import { SEED_COURSES } from "@/lib/data/seed-data";
+import { ALL_COURSES } from "@/lib/data/seed-data";
 
 export async function GET(req: NextRequest) {
   try {
@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
 
     // Map out all lessons across seed courses
     const allLessonsSummary: any[] = [];
-    for (const c of SEED_COURSES) {
+    for (const c of ALL_COURSES) {
       if (courseSlug && c.slug !== courseSlug) continue;
       for (const m of c.syllabus) {
         for (const l of m.lessons) {
