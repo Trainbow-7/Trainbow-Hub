@@ -177,6 +177,7 @@ export function SocraticWorkspace() {
   const [adminSkipConfirmation, setAdminSkipConfirmation] = React.useState(false);
   const [previewModalAttachment, setPreviewModalAttachment] = React.useState<Attachment | null>(null);
   const [isMaximized, setIsMaximized] = React.useState(false);
+  const [isDragging, setIsDragging] = React.useState(false);
 
   // Allow pressing Escape to exit maximized focus mode
   React.useEffect(() => {
@@ -206,138 +207,177 @@ export function SocraticWorkspace() {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
   const isNewProblemRef = React.useRef(false);
 
-  // File upload & extraction handler
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files || files.length === 0) return;
+  // Process incoming files (from file chooser, drag-and-drop, or clipboard paste)
+  const processFiles = React.useCallback(
+    async (files: FileList | File[]) => {
+      const fileArray = Array.from(files);
+      if (fileArray.length === 0) return;
 
-    Array.from(files).forEach(async (file) => {
-      // 10MB limit
-      if (file.size > 10 * 1024 * 1024) {
-        setErrorMessage(`File "${file.name}" exceeds the 10MB limit.`);
-        return;
-      }
+      for (const file of fileArray) {
+        // 10MB limit
+        if (file.size > 10 * 1024 * 1024) {
+          setErrorMessage(`File "${file.name}" exceeds the 10MB limit.`);
+          continue;
+        }
 
-      setIsReadingFile(true);
-      const isImg = file.type.startsWith("image/");
-      const isText = file.type.includes("text") || file.name.endsWith(".txt") || file.name.endsWith(".md") || file.name.endsWith(".csv");
+        setIsReadingFile(true);
+        const isImg = file.type.startsWith("image/");
+        const isText =
+          file.type.includes("text") ||
+          file.name.endsWith(".txt") ||
+          file.name.endsWith(".md") ||
+          file.name.endsWith(".csv");
 
-      try {
-        const sha256 = await computeClientSha256(file);
-        const uploadId = generateClientUploadId(file.name, sha256);
-        const attachmentId = `att_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+        try {
+          const sha256 = await computeClientSha256(file);
+          const uploadId = generateClientUploadId(file.name, sha256);
+          const attachmentId = `att_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
-        if (isImg) {
-          const reader = new FileReader();
-          reader.onload = async (event) => {
-            const previewUrl = event.target?.result as string;
-            const newAttachment: Attachment = {
-              id: attachmentId,
-              name: file.name,
-              type: file.type,
-              size: file.size,
-              previewUrl,
-              contentSha256: sha256,
-              uploadId,
-              extractedText: undefined,
-            };
+          if (isImg) {
+            const reader = new FileReader();
+            reader.onload = async (event) => {
+              const previewUrl = event.target?.result as string;
+              const newAttachment: Attachment = {
+                id: attachmentId,
+                name: file.name,
+                type: file.type,
+                size: file.size,
+                previewUrl,
+                contentSha256: sha256,
+                uploadId,
+                extractedText: undefined,
+              };
 
-            // Call Server-side Vision Extraction Pipeline
-            try {
-              const res = await fetch("/api/ai/extract-vision", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  imageBase64: previewUrl,
-                  fileName: file.name,
-                  typedPrompt: prompt,
-                  contentSha256: sha256,
-                }),
-              });
-              const visionData = await res.json().catch(() => ({}));
-              if (res.ok && visionData.success && visionData.extraction) {
-                const subQs: string[] = visionData.extraction.sub_questions || [];
-                const formattedQText = normalizeMathInText(visionData.extraction.question_text);
-                const formattedSubQs = subQs.map(normalizeMathInText);
-                setPendingConfirmationAttachment({
-                  attachment: newAttachment,
-                  extractedQuestionText: formattedQText,
-                  subQuestions: formattedSubQs,
-                  selectedSubQuestions: formattedSubQs.length > 0 ? [...formattedSubQs] : undefined,
-                  confidence: visionData.extraction.confidence || 98,
-                  diagramElements: visionData.extraction.diagram_elements,
-                  isMock: Boolean(visionData.isMock),
+              // Call Server-side Vision Extraction Pipeline
+              try {
+                const res = await fetch("/api/ai/extract-vision", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    imageBase64: previewUrl,
+                    fileName: file.name,
+                    typedPrompt: prompt,
+                    contentSha256: sha256,
+                  }),
                 });
-                setIsEditingExtractedText(false);
-                setIsReadingFile(false);
-                return;
-              } else {
-                // Honest error from server
-                const errMsg =
-                  visionData.error ||
-                  "Image reading is not available right now. You can type the question instead.";
-                setErrorMessage(errMsg);
-                // Attach file preview for user reference without fake OCR
+                const visionData = await res.json().catch(() => ({}));
+                if (res.ok && visionData.success && visionData.extraction) {
+                  const subQs: string[] = visionData.extraction.sub_questions || [];
+                  const formattedQText = normalizeMathInText(visionData.extraction.question_text);
+                  const formattedSubQs = subQs.map(normalizeMathInText);
+                  setPendingConfirmationAttachment({
+                    attachment: newAttachment,
+                    extractedQuestionText: formattedQText,
+                    subQuestions: formattedSubQs,
+                    selectedSubQuestions: formattedSubQs.length > 0 ? [...formattedSubQs] : undefined,
+                    confidence: visionData.extraction.confidence || 98,
+                    diagramElements: visionData.extraction.diagram_elements,
+                    isMock: Boolean(visionData.isMock),
+                  });
+                  setIsEditingExtractedText(false);
+                  setIsReadingFile(false);
+                  return;
+                } else {
+                  // Honest error from server
+                  const errMsg =
+                    visionData.error ||
+                    "Image reading is not available right now. You can type the question instead.";
+                  setErrorMessage(errMsg);
+                  // Attach file preview for user reference without fake OCR
+                  setAttachedFiles((prev) => [...prev, newAttachment]);
+                  setIsReadingFile(false);
+                  textareaRef.current?.focus();
+                  return;
+                }
+              } catch (vErr) {
+                console.warn("Vision extraction gateway error", vErr);
+                setErrorMessage(
+                  "Image reading is not available right now. You can type the question instead."
+                );
                 setAttachedFiles((prev) => [...prev, newAttachment]);
                 setIsReadingFile(false);
                 textareaRef.current?.focus();
                 return;
               }
-            } catch (vErr) {
-              console.warn("Vision extraction gateway error", vErr);
-              setErrorMessage(
-                "Image reading is not available right now. You can type the question instead."
-              );
-              setAttachedFiles((prev) => [...prev, newAttachment]);
+            };
+            reader.onerror = () => {
+              setErrorMessage(`Could not read image "${file.name}".`);
               setIsReadingFile(false);
-              textareaRef.current?.focus();
-              return;
-            }
-          };
-          reader.readAsDataURL(file);
-        } else if (isText) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            const content = (event.target?.result as string) || "";
+            };
+            reader.readAsDataURL(file);
+          } else if (isText) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              const content = (event.target?.result as string) || "";
+              const newAttachment: Attachment = {
+                id: attachmentId,
+                name: file.name,
+                type: file.type,
+                size: file.size,
+                contentSha256: sha256,
+                uploadId,
+                extractedText: content,
+              };
+
+              setAttachedFiles((prev) => [...prev, newAttachment]);
+              setPrompt((prev) => (prev.trim() ? `${prev}\n\n${content}` : content));
+              setIsReadingFile(false);
+            };
+            reader.onerror = () => {
+              setErrorMessage(`Could not read text file "${file.name}".`);
+              setIsReadingFile(false);
+            };
+            reader.readAsText(file);
+          } else {
+            // PDF or other documents
             const newAttachment: Attachment = {
               id: attachmentId,
               name: file.name,
-              type: file.type,
+              type: file.type || "application/octet-stream",
               size: file.size,
               contentSha256: sha256,
               uploadId,
-              extractedText: content,
+              extractedText: undefined,
             };
-
             setAttachedFiles((prev) => [...prev, newAttachment]);
-            setPrompt((prev) => (prev.trim() ? `${prev}\n\n${content}` : content));
             setIsReadingFile(false);
-          };
-          reader.readAsText(file);
-        } else {
-          // PDF or other documents
-          const newAttachment: Attachment = {
-            id: attachmentId,
-            name: file.name,
-            type: file.type || "application/octet-stream",
-            size: file.size,
-            contentSha256: sha256,
-            uploadId,
-            extractedText: undefined,
-          };
-          setAttachedFiles((prev) => [...prev, newAttachment]);
+          }
+        } catch (err) {
+          console.error("Failed to process file attachment", err);
+          setErrorMessage(`Could not read file "${file.name}".`);
           setIsReadingFile(false);
         }
-      } catch (err) {
-        console.error("Failed to process file attachment", err);
-        setErrorMessage(`Could not read file "${file.name}".`);
-        setIsReadingFile(false);
       }
-    });
+    },
+    [prompt]
+  );
 
-    // Reset input value so re-picking the same file fires onChange reliably
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+  // File upload input change handler
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      processFiles(files);
+    }
+    // Reset input value so selecting the same file again fires onChange
+    if (e.target) {
+      e.target.value = "";
+    }
+  };
+
+  // Clipboard paste handler for attached images/screenshots
+  const handlePaste = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    const items = e.clipboardData?.items;
+    if (!items || items.length === 0) return;
+    const fileList: File[] = [];
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].kind === "file") {
+        const file = items[i].getAsFile();
+        if (file) fileList.push(file);
+      }
+    }
+    if (fileList.length > 0) {
+      e.preventDefault();
+      processFiles(fileList);
     }
   };
 
@@ -1634,28 +1674,58 @@ export function SocraticWorkspace() {
               </div>
             )}
 
-            <div className="flex items-start gap-2">
-              {/* File Attachment Button */}
+            <div
+              className={cn(
+                "flex items-start gap-2 rounded-xl transition-all",
+                isDragging && "ring-2 ring-service-ai-500 bg-purple-50/50 p-1"
+              )}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setIsDragging(true);
+              }}
+              onDragLeave={(e) => {
+                e.preventDefault();
+                setIsDragging(false);
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                setIsDragging(false);
+                if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+                  processFiles(e.dataTransfer.files);
+                }
+              }}
+            >
+              {/* File Attachment Input (hidden from view, accessible to screen readers & label) */}
               <input
                 ref={fileInputRef}
                 type="file"
                 multiple
                 accept="image/*,.pdf,.txt,.md,.csv"
                 onChange={handleFileUpload}
-                className="hidden"
+                className="sr-only"
                 id="ai-file-attachment-input"
-              />
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => fileInputRef.current?.click()}
+                aria-label="Upload question image or document"
                 disabled={loading || quota.remaining === 0 || isReadingFile}
+              />
+              <label
+                htmlFor="ai-file-attachment-input"
+                role="button"
+                tabIndex={loading || quota.remaining === 0 || isReadingFile ? -1 : 0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    fileInputRef.current?.click();
+                  }
+                }}
                 className={cn(
-                  "h-14 px-3 border-neutral-slate-200 text-neutral-slate-700 hover:border-service-ai-600 hover:text-service-ai-700 transition-colors flex flex-col items-center justify-center gap-1 shadow-2xs shrink-0",
+                  "h-14 px-3 rounded-control border border-neutral-slate-200 text-neutral-slate-700 hover:border-service-ai-600 hover:text-service-ai-700 bg-white transition-all flex flex-col items-center justify-center gap-1 shadow-2xs shrink-0 cursor-pointer select-none active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-service-ai-600 focus-visible:ring-offset-2",
+                  (loading || quota.remaining === 0 || isReadingFile) &&
+                    "opacity-50 pointer-events-none cursor-not-allowed",
                   attachedFiles.length > 0 && "border-service-ai-600 text-service-ai-700 bg-purple-50"
                 )}
                 title="Attach an image of a handwritten or textbook question, or document"
                 data-testid="ai-attach-file-btn"
+                aria-label="Attach question image or document"
               >
                 {isReadingFile ? (
                   <LoaderIcon className="h-4 w-4 animate-spin text-service-ai-600" />
@@ -1663,12 +1733,13 @@ export function SocraticWorkspace() {
                   <AttachIcon className="h-4 w-4" />
                 )}
                 <span className="text-[10px] font-semibold">Attach</span>
-              </Button>
+              </label>
 
               <textarea
                 ref={textareaRef}
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
+                onPaste={handlePaste}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
