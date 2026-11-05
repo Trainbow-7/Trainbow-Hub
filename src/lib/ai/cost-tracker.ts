@@ -23,6 +23,12 @@ interface ModelPrice {
 
 const MODEL_PRICING: Record<string, ModelPrice> = {
   // Google Gemini
+  "gemini-3.6-flash": { inputPerMillion: 0.10, outputPerMillion: 0.40 },
+  "gemini-3.1-flash-lite": { inputPerMillion: 0.075, outputPerMillion: 0.30 },
+  "gemini-3.5-flash": { inputPerMillion: 0.15, outputPerMillion: 0.60 },
+  "gemini-3.5-flash-lite": { inputPerMillion: 0.075, outputPerMillion: 0.30 },
+  "gemini-flash-lite-latest": { inputPerMillion: 0.075, outputPerMillion: 0.30 },
+  "gemini-flash-latest": { inputPerMillion: 0.15, outputPerMillion: 0.60 },
   "gemini-2.5-pro": { inputPerMillion: 1.25, outputPerMillion: 5.0 },
   "gemini-2.5-flash": { inputPerMillion: 0.15, outputPerMillion: 0.6 },
   "gemini-1.5-pro": { inputPerMillion: 1.25, outputPerMillion: 5.0 },

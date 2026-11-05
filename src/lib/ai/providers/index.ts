@@ -52,21 +52,21 @@ export class ProviderRegistry {
     }
 
     const defaultReasoningModel: Record<AIProviderName, string> = {
-      gemini: "gemini-3.5-flash",
+      gemini: "gemini-3.6-flash",
       openai: "o3-mini",
       anthropic: "claude-3-7-sonnet-20250219",
       sandbox: "sandbox-model",
     };
 
     const defaultVisionModel: Record<AIProviderName, string> = {
-      gemini: "gemini-3.5-flash-lite",
+      gemini: "gemini-3.6-flash",
       openai: "gpt-4o",
       anthropic: "claude-3-7-sonnet-20250219",
       sandbox: "sandbox-vision",
     };
 
     const defaultFastModel: Record<AIProviderName, string> = {
-      gemini: "gemini-3.5-flash-lite",
+      gemini: "gemini-3.1-flash-lite",
       openai: "gpt-4o-mini",
       anthropic: "claude-3-5-haiku-20241022",
       sandbox: "sandbox-fast",
@@ -75,9 +75,9 @@ export class ProviderRegistry {
     return {
       primaryProvider,
       secondaryProvider: secondaryProvider && secondaryProvider !== primaryProvider ? secondaryProvider : undefined,
-      reasoningModel: process.env.AI_REASONING_MODEL || defaultReasoningModel[primaryProvider] || "gemini-2.5-pro",
-      visionModel: process.env.AI_VISION_MODEL || defaultVisionModel[primaryProvider] || "gemini-2.5-pro",
-      fastModel: process.env.AI_FAST_MODEL || defaultFastModel[primaryProvider] || "gemini-2.5-flash",
+      reasoningModel: process.env.AI_REASONING_MODEL || defaultReasoningModel[primaryProvider] || "gemini-3.6-flash",
+      visionModel: process.env.AI_VISION_MODEL || defaultVisionModel[primaryProvider] || "gemini-3.6-flash",
+      fastModel: process.env.AI_FAST_MODEL || defaultFastModel[primaryProvider] || "gemini-3.1-flash-lite",
       apiKey,
       routing: (process.env.AI_ROUTING || "always_strong") as "always_strong" | "adaptive",
       reasoningEffort: (process.env.AI_REASONING_EFFORT || "high") as "low" | "medium" | "high",
