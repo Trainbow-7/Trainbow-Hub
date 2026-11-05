@@ -51,12 +51,13 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com https://*.youtube.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: blob: https://i.ytimg.com https://img.youtube.com https://images.unsplash.com https://*.ytimg.com",
-              "frame-src 'self' https://www.youtube-nocookie.com https://trainbow-sandbox.daily.co https://*.daily.co",
-              "connect-src 'self' https://*.googleapis.com https://generativelanguage.googleapis.com https://api.paystack.co http://localhost:8000 http://localhost:3000",
+              "img-src 'self' data: blob: https://i.ytimg.com https://img.youtube.com https://images.unsplash.com https://*.ytimg.com https://*.youtube.com",
+              "media-src 'self' blob: data: https://*.googlevideo.com https://*.youtube.com https://*.youtube-nocookie.com",
+              "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://*.youtube.com https://trainbow-sandbox.daily.co https://*.daily.co",
+              "connect-src 'self' https://*.googlevideo.com https://*.youtube.com https://*.youtube-nocookie.com https://*.googleapis.com https://generativelanguage.googleapis.com https://api.paystack.co http://localhost:8000 http://localhost:3000",
             ].join("; "),
           },
           {

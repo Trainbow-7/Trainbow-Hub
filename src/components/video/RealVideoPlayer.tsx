@@ -52,6 +52,7 @@ export function RealVideoPlayer({
   // Iframe reference for direct postMessage control (unmute, volume, playback state)
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const [audioNotice, setAudioNotice] = React.useState<string | null>(null);
+  const [showFloatingAudioHint, setShowFloatingAudioHint] = React.useState(true);
 
   // Data saver policy detection
   const [isDataSaver, setIsDataSaver] = React.useState(false);
@@ -130,6 +131,41 @@ export function RealVideoPlayer({
         console.warn("Could not postMessage to iframe:", err);
       }
     }
+    setShowFloatingAudioHint(false);
+  }, []);
+
+  // Listen to messages from YouTube player to auto-unmute when playback starts
+  React.useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (!event.origin.includes("youtube.com") && !event.origin.includes("youtube-nocookie.com")) {
+        return;
+      }
+      try {
+        let payload: any = event.data;
+        if (typeof payload === "string") {
+          payload = JSON.parse(payload);
+        }
+        if (
+          payload?.event === "onReady" ||
+          payload?.event === "initialDelivery" ||
+          payload?.info?.playerState === 1
+        ) {
+          if (iframeRef.current?.contentWindow) {
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: "command", func: "unMute", args: [] }),
+              "*"
+            );
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: "command", func: "setVolume", args: [100] }),
+              "*"
+            );
+          }
+        }
+      } catch {}
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
   }, []);
 
   // When iframe loads, handshake with postMessage and ensure unMute
@@ -269,6 +305,7 @@ export function RealVideoPlayer({
 
   // Construct privacy-enhanced YouTube embed URL (youtube-nocookie.com)
   const startSec = activeVideo.startSeconds || (initialPositionSeconds > 0 ? initialPositionSeconds : 0);
+  const currentOrigin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
   const embedParams = new URLSearchParams({
     // Standard playback is click-to-play directly on YouTube (autoplay=0) so browser permits 100% audio immediately!
     autoplay: isDataSaver && hasLoadedIframe ? "1" : "0",
@@ -276,6 +313,7 @@ export function RealVideoPlayer({
     modestbranding: "1",
     playsinline: "1",
     enablejsapi: "1",
+    origin: currentOrigin,
   });
   if (startSec > 0) {
     embedParams.set("start", String(startSec));
@@ -367,18 +405,38 @@ export function RealVideoPlayer({
               </div>
             </div>
           ) : (
-            /* ACTIVE YOUTUBE-NOCOOKIE IFRAME */
-            <iframe
-              ref={iframeRef}
-              onLoad={handleIframeLoad}
-              src={embedSrc}
-              title={activeVideo.title}
-              className="w-full h-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              data-testid="youtube-nocookie-iframe"
-              onError={() => setPlaybackError(true)}
-            />
+            <>
+              {/* ACTIVE YOUTUBE-NOCOOKIE IFRAME */}
+              <iframe
+                ref={iframeRef}
+                onLoad={handleIframeLoad}
+                src={embedSrc}
+                title={activeVideo.title}
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                data-testid="youtube-nocookie-iframe"
+                onError={() => setPlaybackError(true)}
+              />
+
+              {/* Floating Quick-Unmute Pill: Direct click guarantees audio is activated with 100% volume */}
+              {showFloatingAudioHint && (
+                <div className="absolute top-3 left-3 z-30 pointer-events-auto">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleUnmute();
+                      setShowFloatingAudioHint(false);
+                    }}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-blue-600 hover:bg-brand-blue-700 text-white text-xs font-semibold shadow-lg backdrop-blur-xs border border-white/20 transition-all hover:scale-105 active:scale-95"
+                    title="Click to guarantee audio is unmuted and playing at 100% volume"
+                  >
+                    <VolumeIcon className="w-4 h-4 text-white" />
+                    <span>Click to Unmute / Boost Audio</span>
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
