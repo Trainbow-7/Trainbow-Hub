@@ -114,6 +114,7 @@ export function LessonVideoPlayer({
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [soundSafeguardTriggered, setSoundSafeguardTriggered] = React.useState(false);
   const [playbackError, setPlaybackError] = React.useState(false);
+  const [soundFeedback, setSoundFeedback] = React.useState<string | null>(null);
 
   // Problem reporting modal state
   const [reportModalOpen, setReportModalOpen] = React.useState(false);
@@ -127,6 +128,12 @@ export function LessonVideoPlayer({
   const playerInstanceRef = React.useRef<any>(null);
   const safeguardTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
   const progressIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Unique DOM ID for this iframe instance so YouTube API can bind to it
+  const iframeDomId = React.useMemo(() => {
+    const vid = activeVideo?.providerVideoId || directVideoId || "player";
+    return `yt-iframe-${vid.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+  }, [activeVideo?.providerVideoId, directVideoId]);
 
   // Update active video if primaryVideo or directVideoId changes
   React.useEffect(() => {
@@ -172,9 +179,77 @@ export function LessonVideoPlayer({
 
   // Synchronous play trigger initiated strictly by user click gesture
   const handleStartPlayback = () => {
+    // Unlock browser AudioContext under active user click
+    try {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioCtx) {
+        const ctx = new AudioCtx();
+        if (ctx.state === "suspended") {
+          ctx.resume().catch(() => {});
+        }
+      }
+    } catch {}
+
     setIsPlaying(true);
     setPlaybackError(false);
   };
+
+  // Native message listener listening to postMessage events from YouTube
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleWindowMessage = (event: MessageEvent) => {
+      if (!event.origin.includes("youtube.com") && !event.origin.includes("youtube-nocookie.com")) {
+        return;
+      }
+      try {
+        let payload: any = event.data;
+        if (typeof payload === "string") {
+          payload = JSON.parse(payload);
+        }
+
+        // When YouTube player announces ready or state delivery, attempt unMute handshake
+        if (payload?.event === "onReady" || payload?.event === "initialDelivery") {
+          if (iframeRef.current?.contentWindow) {
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: "command", func: "unMute", args: [] }),
+              "*"
+            );
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: "command", func: "setVolume", args: [100] }),
+              "*"
+            );
+          }
+        }
+
+        // Monitor volume and mute telemetry from YouTube
+        if (payload?.event === "infoDelivery" && payload?.info) {
+          if (payload.info.muted === true || payload.info.volume === 0) {
+            setSoundSafeguardTriggered(true);
+          } else if (payload.info.muted === false && payload.info.volume > 0) {
+            setSoundSafeguardTriggered(false);
+          }
+        }
+
+        if (payload?.info?.playerState === 1 || payload?.data === 1) {
+          // Playing: trigger immediate unMute command
+          if (iframeRef.current?.contentWindow) {
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: "command", func: "unMute", args: [] }),
+              "*"
+            );
+            iframeRef.current.contentWindow.postMessage(
+              JSON.stringify({ event: "command", func: "setVolume", args: [100] }),
+              "*"
+            );
+          }
+        }
+      } catch {}
+    };
+
+    window.addEventListener("message", handleWindowMessage);
+    return () => window.removeEventListener("message", handleWindowMessage);
+  }, []);
 
   // Cleanup timers on unmount
   React.useEffect(() => {
@@ -185,9 +260,7 @@ export function LessonVideoPlayer({
         if (playerInstanceRef.current?.destroy) {
           playerInstanceRef.current.destroy();
         }
-      } catch (err) {
-        // Player destroy ignored
-      }
+      } catch (err) {}
     };
   }, []);
 
@@ -208,6 +281,12 @@ export function LessonVideoPlayer({
             onReady: (event) => {
               playerInstanceRef.current = event.target;
               onPlayerReady?.(event.target);
+
+              // Proactively unMute on ready
+              try {
+                event.target.unMute();
+                event.target.setVolume(100);
+              } catch (e) {}
             },
             onStateChange: (event) => {
               const state = event.data;
@@ -215,6 +294,12 @@ export function LessonVideoPlayer({
 
               // 1 = PLAYING
               if (state === 1) {
+                // Try immediate unMute on playback start
+                try {
+                  event.target.unMute();
+                  event.target.setVolume(100);
+                } catch (e) {}
+
                 // SOUND SAFEGUARD: 1 second after playback starts, verify sound is active
                 if (safeguardTimeoutRef.current) clearTimeout(safeguardTimeoutRef.current);
                 safeguardTimeoutRef.current = setTimeout(() => {
@@ -224,7 +309,6 @@ export function LessonVideoPlayer({
 
                     if (isMuted || volume === 0) {
                       setSoundSafeguardTriggered(true);
-                      // Send anonymous telemetry
                       fetch("/api/analytics/video-sound-state", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -240,9 +324,7 @@ export function LessonVideoPlayer({
                     } else {
                       setSoundSafeguardTriggered(false);
                     }
-                  } catch (e) {
-                    // API query error ignored
-                  }
+                  } catch (e) {}
                 }, 1000);
 
                 // Progress tracking polling (1 second interval while playing)
@@ -262,10 +344,8 @@ export function LessonVideoPlayer({
                   } catch (e) {}
                 }, 1000);
               } else {
-                // If paused or ended, clear progress ticker
                 if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
                 if (state === 0 && onLessonAutoCompleted) {
-                  // 0 = ENDED
                   onLessonAutoCompleted();
                 }
               }
@@ -284,7 +364,7 @@ export function LessonVideoPlayer({
     setupPlayer();
   }, [activeVideo, courseSlug, lessonSlug, onLessonAutoCompleted, onPlayerReady, onPlayerStateChange, onProgressUpdate]);
 
-  // Turn on sound action triggered by user click on safeguard banner
+  // Turn on sound action triggered by user click on safeguard banner or quick button
   const handleTurnOnSound = () => {
     try {
       if (playerInstanceRef.current) {
@@ -306,6 +386,8 @@ export function LessonVideoPlayer({
     } catch (e) {}
 
     setSoundSafeguardTriggered(false);
+    setSoundFeedback("Audio active at 100% volume");
+    setTimeout(() => setSoundFeedback(null), 4000);
 
     // Send anonymous telemetry indicating user unmuted sound via safeguard
     if (activeVideo) {
@@ -476,6 +558,7 @@ export function LessonVideoPlayer({
             /* ACTIVE YOUTUBE-NOCOOKIE IFRAME */
             /* ZERO OVERLAYS: Absolutely nothing sits on top of this iframe so all pointer events reach YouTube controls */
             <iframe
+              id={iframeDomId}
               ref={handleIframeMount}
               src={embedSrc}
               title={activeVideo.title}
@@ -492,23 +575,25 @@ export function LessonVideoPlayer({
       {/* SOUND SAFEGUARD BANNER (Directly below player; never overlapping iframe) */}
       {soundSafeguardTriggered && (
         <div
-          className="flex items-center justify-between p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-xs transition-all"
+          className="flex items-center justify-between p-3.5 rounded-xl bg-amber-500/15 border-2 border-amber-500/40 text-amber-950 dark:text-amber-100 text-xs transition-all animate-fadeIn"
           data-testid="sound-safeguard-banner"
           role="alert"
         >
-          <div className="flex items-center gap-2">
-            <VolumeIcon className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
-            <span className="font-medium">
-              Sound is off. Click &ldquo;Turn on sound&rdquo; to hear the lesson audio.
-            </span>
+          <div className="flex items-center gap-2.5">
+            <VolumeIcon className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
+            <div>
+              <span className="font-bold text-sm block">Sound is off.</span>
+              <span className="text-[11px] text-amber-800 dark:text-amber-300">Browser started playback muted. Click &ldquo;Turn on sound&rdquo; to hear the lesson audio.</span>
+            </div>
           </div>
           <button
             type="button"
             onClick={handleTurnOnSound}
-            className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold text-xs shrink-0 transition-colors shadow-xs"
+            className="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-neutral-950 font-extrabold text-xs shrink-0 transition-transform hover:scale-105 active:scale-95 shadow-md flex items-center gap-1.5"
             data-testid="turn-on-sound-button"
           >
-            Turn on sound
+            <VolumeIcon className="w-4 h-4 text-neutral-950" />
+            <span>Turn on sound</span>
           </button>
         </div>
       )}
@@ -532,13 +617,34 @@ export function LessonVideoPlayer({
         </div>
       )}
 
-      {/* PERMANENT AUDIO HINT & ATTRIBUTION ROW */}
+      {/* PERMANENT AUDIO HINT & QUICK ACTIONS ROW */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-0.5 text-xs text-neutral-500 dark:text-neutral-400">
-        <div className="flex items-center gap-1.5">
-          <VolumeIcon className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
-          <span>
-            No sound? Check the volume in the video bar and on your device.
-          </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <VolumeIcon className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
+            <span>
+              No sound? Check the volume in the video bar and on your device.
+            </span>
+          </div>
+
+          {/* Dedicated quick Unmute action button */}
+          <button
+            type="button"
+            onClick={handleTurnOnSound}
+            className="px-2.5 py-1 rounded-md bg-brand-blue-50 dark:bg-brand-blue-950/40 text-brand-blue-700 dark:text-brand-blue-300 hover:bg-brand-blue-100 font-semibold text-xs border border-brand-blue-200 dark:border-brand-blue-800 transition-colors inline-flex items-center gap-1 shadow-2xs"
+            data-testid="unmute-quick-btn"
+            title="Force audio unMute and restore 100% volume"
+          >
+            <VolumeIcon className="w-3 h-3 text-brand-blue-600 dark:text-brand-blue-400" />
+            <span>Unmute / Audio 100%</span>
+          </button>
+
+          {soundFeedback && (
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold text-xs flex items-center gap-1">
+              <CheckIcon className="w-3.5 h-3.5" />
+              <span>{soundFeedback}</span>
+            </span>
+          )}
         </div>
 
         <div className="flex items-center gap-3">

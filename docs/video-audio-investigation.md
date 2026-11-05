@@ -177,3 +177,4 @@ Because automated tools cannot listen to physical speakers, verify playback on r
 | **macOS / Safari** | 1. Open lesson page<br>2. Click "Play Lesson Video"<br>3. Verify audio output | Plays with audio; controls responsive | [ ] |
 | **Android / Chrome** | 1. Ensure Media Volume slider is turned up<br>2. Open lesson on mobile viewport<br>3. Tap player facade | Video plays with clear speaker audio | [ ] |
 | **iPhone / Safari** | 1. **Check physical Ring/Silent switch on the side (must NOT be on Silent/Mute)**<br>2. Ensure Low Power Mode is not disabling media<br>3. Tap player facade | Audio plays through iPhone speaker | [ ] |
+
