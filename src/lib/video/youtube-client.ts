@@ -57,11 +57,29 @@ export function buildLessonSearchQueries(options: {
   moduleTitle?: string;
   courseTitle?: string;
   curriculum?: string;
+  subject?: string;
 }): string[] {
-  const { title, moduleTitle = "", courseTitle = "", curriculum = "WAEC" } = options;
+  const { title, moduleTitle = "", courseTitle = "", curriculum = "WAEC", subject } = options;
+
+  const isEnglish =
+    subject?.toLowerCase().includes("english") ||
+    courseTitle?.toLowerCase().includes("english") ||
+    title.toLowerCase().includes("phonics") ||
+    title.toLowerCase().includes("concord") ||
+    title.toLowerCase().includes("essay") ||
+    title.toLowerCase().includes("comprehension");
 
   // Clean title
   const cleanTitle = title.replace(/\([^)]*\)/g, "").trim();
+
+  if (isEnglish) {
+    const q1 = `${cleanTitle} English lesson`;
+    const q2 = `${cleanTitle} ${curriculum} English tutorial`;
+    const q3 = moduleTitle
+      ? `${cleanTitle} ${moduleTitle.replace(/^Module \d+:\s*/, "")}`
+      : `${cleanTitle} lesson tutorial`;
+    return [q1, q2, q3];
+  }
 
   const q1 = `${cleanTitle} ${curriculum} Mathematics`;
   const q2 = `${cleanTitle} math lesson step by step tutorial`;

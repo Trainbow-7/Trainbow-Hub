@@ -54,6 +54,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri13-1-1",
             slug: "short-vowel-sounds-phonics",
+            videoId: "o6QYl-4LrKw",
             title: "Short Vowel Sounds: /æ/, /e/, /ɪ/, /ɒ/, /ʌ/",
             sortOrder: 1,
             durationMinutes: 25,
@@ -177,6 +178,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri13-1-2",
             slug: "blending-consonants-phonics",
+            videoId: "6n656GWy6ew",
             title: "Blending Consonants: /st/, /bl/, /gr/",
             sortOrder: 2,
             durationMinutes: 25,
@@ -307,6 +309,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri13-2-1",
             slug: "high-frequency-sight-words",
+            videoId: "EppIgnilutw",
             title: "50 Essential Sight Words for Early Readers",
             sortOrder: 1,
             durationMinutes: 25,
@@ -435,6 +438,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri13-3-1",
             slug: "naming-words-nouns-primary",
+            videoId: "oeksdmgw3W4",
             title: "Naming Words: People, Places, and Things",
             sortOrder: 1,
             durationMinutes: 25,
@@ -565,6 +569,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri13-4-1",
             slug: "capital-letters-and-full-stops",
+            videoId: "8DpJCYoAjws",
             title: "Capital Letters and Full Stops in Sentences",
             sortOrder: 1,
             durationMinutes: 25,
@@ -694,6 +699,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri13-5-1",
             slug: "reading-short-stories-details",
+            videoId: "Mk3ALujK8ZY",
             title: "Reading Short Stories: Finding Who, What, and Where",
             sortOrder: 1,
             durationMinutes: 25,
@@ -823,6 +829,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri13-6-1",
             slug: "writing-short-sentences-myself",
+            videoId: "NXIem0v14x4",
             title: "Describing Myself and My School in Simple Sentences",
             sortOrder: 1,
             durationMinutes: 25,
@@ -993,6 +1000,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri46-1-1",
             slug: "identifying-parts-of-speech-in-context",
+            videoId: "SceDmiBEESI",
             title: "Identifying Parts of Speech in Sentences for Common Entrance",
             sortOrder: 1,
             durationMinutes: 30,
@@ -1123,6 +1131,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri46-2-1",
             slug: "irregular-past-tense-verbs-primary",
+            videoId: "oJZdkhclusQ",
             title: "Irregular Past Tense Verbs: Did, Went, Saw, Came, Wrote",
             sortOrder: 1,
             durationMinutes: 30,
@@ -1254,6 +1263,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri46-3-1",
             slug: "confused-homophones-primary",
+            videoId: "RgasB8IsS3k",
             title: "Tricky Homophones: There, Their, They're, To, Too, Two",
             sortOrder: 1,
             durationMinutes: 30,
@@ -1385,6 +1395,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri46-4-1",
             slug: "finding-facts-and-inferences-primary",
+            videoId: "W7BW9gv_OkU",
             title: "Reading Comprehension: Direct Facts vs Reading Between the Lines",
             sortOrder: 1,
             durationMinutes: 30,
@@ -1513,6 +1524,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri46-5-1",
             slug: "informal-letter-writing-primary",
+            videoId: "3ClV82aT2oA",
             title: "Informal Letter Writing: Writing to a Friend or Relative",
             sortOrder: 1,
             durationMinutes: 30,
@@ -1645,6 +1657,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-pri46-6-1",
             slug: "contrasting-vowel-sounds-primary",
+            videoId: "RS1UpQb3HVU",
             title: "Speech Work: Contrasting /iː/ (sheep) and /ɪ/ (ship)",
             sortOrder: 1,
             durationMinutes: 30,
@@ -1815,6 +1828,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-jss-1-1",
             slug: "clauses-and-sentence-types-bece",
+            videoId: "Z0bZ8wNfuYA",
             title: "Simple, Compound, and Complex Sentences for BECE",
             sortOrder: 1,
             durationMinutes: 35,
@@ -1945,6 +1959,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-jss-2-1",
             slug: "subject-verb-agreement-jss",
+            videoId: "USeBA_VM-Ys",
             title: "Subject-Verb Concord: Singular and Plural Rules for BECE",
             sortOrder: 1,
             durationMinutes: 35,
@@ -2074,6 +2089,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-jss-3-1",
             slug: "punctuation-apostrophe-possession-jss",
+            videoId: "My6oGvkHnfY",
             title: "Apostrophes in Possession vs Contraction",
             sortOrder: 1,
             durationMinutes: 35,
@@ -2203,6 +2219,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-jss-4-1",
             slug: "bece-continuous-writing-essay-structure",
+            videoId: "qRRFCjAq5MQ",
             title: "BECE Essay Structure: Planning, Paragraphing, and Content",
             sortOrder: 1,
             durationMinutes: 35,
@@ -2333,6 +2350,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-jss-5-1",
             slug: "introductory-summary-skills-jss",
+            videoId: "mkZo2zVKJR4",
             title: "Summary Basics: Distinguishing Main Ideas from Supporting Details",
             sortOrder: 1,
             durationMinutes: 35,
@@ -2463,6 +2481,7 @@ export const PRIMARY_JSS_COURSES: EnglishCourseData[] = [
           {
             id: "les-jss-6-1",
             slug: "dental-fricatives-sounds-jss",
+            videoId: "nlKNo1TGALA",
             title: "Oral English: Contrasting /θ/ (thin) and /ð/ (this)",
             sortOrder: 1,
             durationMinutes: 35,

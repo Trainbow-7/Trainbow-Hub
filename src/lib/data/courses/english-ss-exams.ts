@@ -55,6 +55,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-ss-1-1",
             slug: "advanced-concord-proximity-notional",
+            videoId: "dPMbyHb71Uk",
             title: "Advanced Concord: Proximity Rule and Notional Agreement",
             sortOrder: 1,
             durationMinutes: 40,
@@ -186,6 +187,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-ss-2-1",
             slug: "clauses-and-grammatical-functions-waec",
+            videoId: "MCTpquXCf_s",
             title: "Grammatical Names and Functions: Noun, Adjectival, and Adverbial Clauses",
             sortOrder: 1,
             durationMinutes: 40,
@@ -317,6 +319,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-ss-3-1",
             slug: "conditional-clauses-and-subjunctive-mood",
+            videoId: "OUwkVFgaL5E",
             title: "Conditional Clauses (Types 1, 2, 3) and the Subjunctive 'Were'",
             sortOrder: 1,
             durationMinutes: 40,
@@ -445,6 +448,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-ss-4-1",
             slug: "authorial-tone-and-inference-waec",
+            videoId: "IvIJl4xi8l8",
             title: "Authorial Tone, Mood, and Deductive Inference in SSCE Prose",
             sortOrder: 1,
             durationMinutes: 40,
@@ -575,6 +579,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-ss-5-1",
             slug: "expository-essay-and-article-writing-waec",
+            videoId: "Xa_LqEYsvpQ",
             title: "Expository Essays and Articles for Publication",
             sortOrder: 1,
             durationMinutes: 40,
@@ -704,6 +709,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-ss-6-1",
             slug: "dangling-modifiers-and-sentence-mechanics",
+            videoId: "M6AzQ99bYO8",
             title: "Eliminating Dangling Modifiers, Comma Splices, and Ambiguity",
             sortOrder: 1,
             durationMinutes: 40,
@@ -874,6 +880,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-waec-1-1",
             slug: "waec-paper-1-lexis-and-collocations",
+            videoId: "XzkbcWh8s4w",
             title: "WAEC Paper 1: Prepositional Collocations and Idiomatic Precision",
             sortOrder: 1,
             durationMinutes: 45,
@@ -1005,6 +1012,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-waec-2-1",
             slug: "waec-continuous-writing-marking-scheme",
+            videoId: "dXlQe8T6H6Y",
             title: "Cracking the WAEC Continuous Writing 50-Mark Rubric",
             sortOrder: 1,
             durationMinutes: 45,
@@ -1136,6 +1144,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-waec-3-1",
             slug: "waec-summary-writing-zero-lifting",
+            videoId: "5jJLfwTkGe8",
             title: "WAEC Summary Writing: Zero-Tolerance Lifting and Sentence Precision",
             sortOrder: 1,
             durationMinutes: 45,
@@ -1266,6 +1275,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-waec-4-1",
             slug: "waec-paper-3-test-of-orals-mastery",
+            videoId: "Vu6UVwkUgzc",
             title: "WAEC Paper 3: Oral Vowels, Consonants, and Stress Rules",
             sortOrder: 1,
             durationMinutes: 45,
@@ -1435,6 +1445,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-jamb-1-1",
             slug: "jamb-comprehension-speed-and-inference",
+            videoId: "Bxt55OHOkvc",
             title: "JAMB Reading Comprehension: Speed, Inference, and Tone",
             sortOrder: 1,
             durationMinutes: 40,
@@ -1565,6 +1576,7 @@ export const SS_EXAM_COURSES: EnglishCourseData[] = [
           {
             id: "les-jamb-2-1",
             slug: "jamb-emphatic-stress-mastery",
+            videoId: "UAMVrAizb6o",
             title: "JAMB Emphatic Stress: How to Score 5/5 Guaranteed Marks",
             sortOrder: 1,
             durationMinutes: 40,

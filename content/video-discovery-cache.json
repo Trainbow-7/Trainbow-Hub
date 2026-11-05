@@ -1,6 +1,6 @@
 {
   "quotaUsedToday": 0,
-  "lastRunDate": "2026-11-03",
+  "lastRunDate": "2026-11-05",
   "items": {
     "waec-ssce-mathematics-mastery:fractions-decimals-operations": {
       "videoId": "Vb5c7ay0ziU",
@@ -497,6 +497,294 @@
       "title": "Probability Tree Diagrams Without Replacement",
       "channelName": "Verified Educational Partner",
       "verifiedAt": "2026-11-03T10:57:33.919Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-1-3:short-vowel-sounds-phonics": {
+      "videoId": "o6QYl-4LrKw",
+      "title": "How to Pronounce Monophthongs - Vowel Sounds æ e ɪ ɒ ʌ - British English RP Accent",
+      "channelName": "English with Liz",
+      "durationSeconds": 735,
+      "verifiedAt": "2026-11-05T13:44:17.197Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-1-3:blending-consonants-phonics": {
+      "videoId": "6n656GWy6ew",
+      "title": "Let's Learn Blending with Consonant Blends",
+      "channelName": "Growing Primary",
+      "durationSeconds": 350,
+      "verifiedAt": "2026-11-05T13:44:17.954Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-1-3:high-frequency-sight-words": {
+      "videoId": "EppIgnilutw",
+      "title": "25 Sight Words for Kindergarten #1 - Vocabulary Words - ELF Learning",
+      "channelName": "ELF Kids Videos",
+      "durationSeconds": 184,
+      "verifiedAt": "2026-11-05T13:44:18.713Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-1-3:naming-words-nouns-primary": {
+      "videoId": "oeksdmgw3W4",
+      "title": "What Is a Noun? | Happy Noun Hunting!",
+      "channelName": "Tutoring Hour",
+      "durationSeconds": 234,
+      "verifiedAt": "2026-11-05T13:44:19.536Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-1-3:capital-letters-and-full-stops": {
+      "videoId": "8DpJCYoAjws",
+      "title": "How Do You Use Capital Letters and Full Stops? | KS2 English Concept for Kids",
+      "channelName": "Twinkl Educational Publishing",
+      "durationSeconds": 244,
+      "verifiedAt": "2026-11-05T13:44:20.342Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-1-3:reading-short-stories-details": {
+      "videoId": "Mk3ALujK8ZY",
+      "title": "Reading Lesson with Question & Answer | Reading Comprehension | Reading Guide for Kids | Teacher Aya",
+      "channelName": "Teacher Aya Online Tutor",
+      "durationSeconds": 808,
+      "verifiedAt": "2026-11-05T13:44:21.081Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-1-3:writing-short-sentences-myself": {
+      "videoId": "NXIem0v14x4",
+      "title": "Introduce Yourself in English in School/College/University. Tips for Effective Self-Introduction",
+      "channelName": "English Lessons with Kate",
+      "durationSeconds": 563,
+      "verifiedAt": "2026-11-05T13:44:21.811Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-4-6:identifying-parts-of-speech-in-context": {
+      "videoId": "SceDmiBEESI",
+      "title": "Basic English Grammar: Parts of Speech – noun, verb, adjective, pronoun, adverb...",
+      "channelName": "ENGLISH with James · engVid",
+      "durationSeconds": 1206,
+      "verifiedAt": "2026-11-05T13:44:22.520Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-4-6:irregular-past-tense-verbs-primary": {
+      "videoId": "oJZdkhclusQ",
+      "title": "Irregular Past Tense Verbs Grammar Practice",
+      "channelName": "Tiny Teaching Tube",
+      "durationSeconds": 497,
+      "verifiedAt": "2026-11-05T13:44:23.251Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-4-6:confused-homophones-primary": {
+      "videoId": "RgasB8IsS3k",
+      "title": "There Their and They're Homophones",
+      "channelName": "Tiny Teaching Tube",
+      "durationSeconds": 382,
+      "verifiedAt": "2026-11-05T13:44:26.537Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-4-6:finding-facts-and-inferences-primary": {
+      "videoId": "W7BW9gv_OkU",
+      "title": "Reading comprehension skills | Reading comprehension strategies | Free English lessons online",
+      "channelName": "MYABCENGLISH",
+      "durationSeconds": 243,
+      "verifiedAt": "2026-11-05T13:44:29.019Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-4-6:informal-letter-writing-primary": {
+      "videoId": "3ClV82aT2oA",
+      "title": "How to Write a Friendly Letter",
+      "channelName": "Amal Mansour",
+      "durationSeconds": 288,
+      "verifiedAt": "2026-11-05T13:44:29.778Z",
+      "status": "APPROVED"
+    },
+    "primary-english-foundations-4-6:contrasting-vowel-sounds-primary": {
+      "videoId": "RS1UpQb3HVU",
+      "title": "How to pronounce /e/ and /ɪ/ in English #englishpronunciation #englishaccent #englishspeaking",
+      "channelName": "IELTS with Vic",
+      "durationSeconds": 362,
+      "verifiedAt": "2026-11-05T13:44:30.493Z",
+      "status": "APPROVED"
+    },
+    "jss-english-grammar-and-writing:clauses-and-sentence-types-bece": {
+      "videoId": "Z0bZ8wNfuYA",
+      "title": "Types of sentence structures | Simple, Compound, Complex & Compound-complex",
+      "channelName": "Learn Easy English",
+      "durationSeconds": 384,
+      "verifiedAt": "2026-11-05T13:44:31.109Z",
+      "status": "APPROVED"
+    },
+    "jss-english-grammar-and-writing:subject-verb-agreement-jss": {
+      "videoId": "USeBA_VM-Ys",
+      "title": "Concord in English Language Explained (JAMB, NECO & WAEC Grammar Masterclass)",
+      "channelName": "AllCBTs – 2026 Exam Questions & Updates",
+      "durationSeconds": 1489,
+      "verifiedAt": "2026-11-05T13:44:31.835Z",
+      "status": "APPROVED"
+    },
+    "jss-english-grammar-and-writing:punctuation-apostrophe-possession-jss": {
+      "videoId": "My6oGvkHnfY",
+      "title": "When to use apostrophes - Laura McClure",
+      "channelName": "TED-Ed",
+      "durationSeconds": 194,
+      "verifiedAt": "2026-11-05T13:44:32.538Z",
+      "status": "APPROVED"
+    },
+    "jss-english-grammar-and-writing:bece-continuous-writing-essay-structure": {
+      "videoId": "qRRFCjAq5MQ",
+      "title": "How To Write A Perfect P.E.E.L Paragraph: \"PEEL\" Structure Explained! | English GCSE Essay Revision!",
+      "channelName": "First Rate Tutors",
+      "durationSeconds": 432,
+      "verifiedAt": "2026-11-05T13:44:33.175Z",
+      "status": "APPROVED"
+    },
+    "jss-english-grammar-and-writing:introductory-summary-skills-jss": {
+      "videoId": "mkZo2zVKJR4",
+      "title": "Main Idea | Award Winning Main Idea and Supporting Details Teaching Video | What is Main Idea?",
+      "channelName": "GrammarSongs by Melissa",
+      "durationSeconds": 379,
+      "verifiedAt": "2026-11-05T13:44:33.984Z",
+      "status": "APPROVED"
+    },
+    "jss-english-grammar-and-writing:dental-fricatives-sounds-jss": {
+      "videoId": "nlKNo1TGALA",
+      "title": "English Sounds - The Two TH Consonants [θ] and [ð]",
+      "channelName": "Rachel's English",
+      "durationSeconds": 310,
+      "verifiedAt": "2026-11-05T13:44:34.671Z",
+      "status": "APPROVED"
+    },
+    "ss-english-grammar-comprehension-essay:advanced-concord-proximity-notional": {
+      "videoId": "dPMbyHb71Uk",
+      "title": "RULES OF CONCORD (PART 4) | PROXIMITY, NOTIONAL CONCORD, COLLECTIVE NOUNS & \"NUMBER OF \"",
+      "channelName": "The English Mastery Academy",
+      "durationSeconds": 764,
+      "verifiedAt": "2026-11-05T13:44:35.250Z",
+      "status": "APPROVED"
+    },
+    "ss-english-grammar-comprehension-essay:clauses-and-grammatical-functions-waec": {
+      "videoId": "MCTpquXCf_s",
+      "title": "A Simple Way to Identify Grammatical Names & Functions in WAEC &NECO Comprehension Passages - Part 1",
+      "channelName": "V-Concepts Online",
+      "durationSeconds": 2104,
+      "verifiedAt": "2026-11-05T13:44:36.007Z",
+      "status": "APPROVED"
+    },
+    "ss-english-grammar-comprehension-essay:conditional-clauses-and-subjunctive-mood": {
+      "videoId": "OUwkVFgaL5E",
+      "title": "The Subjunctive in English - Complete Advanced English Grammar Lesson",
+      "channelName": "English with Lucy",
+      "durationSeconds": 475,
+      "verifiedAt": "2026-11-05T13:44:36.831Z",
+      "status": "APPROVED"
+    },
+    "ss-english-grammar-comprehension-essay:authorial-tone-and-inference-waec": {
+      "videoId": "IvIJl4xi8l8",
+      "title": "Understanding Tone and Mood",
+      "channelName": "Melissa Adams",
+      "durationSeconds": 720,
+      "verifiedAt": "2026-11-05T13:44:41.894Z",
+      "status": "APPROVED"
+    },
+    "ss-english-grammar-comprehension-essay:expository-essay-and-article-writing-waec": {
+      "videoId": "Xa_LqEYsvpQ",
+      "title": "Expository Essays",
+      "channelName": "Mometrix Academy",
+      "durationSeconds": 180,
+      "verifiedAt": "2026-11-05T13:44:42.484Z",
+      "status": "APPROVED"
+    },
+    "ss-english-grammar-comprehension-essay:dangling-modifiers-and-sentence-mechanics": {
+      "videoId": "M6AzQ99bYO8",
+      "title": "DANGLING & MISPLACED MODIFIERS | English Lesson",
+      "channelName": "Kevin Spaans",
+      "durationSeconds": 424,
+      "verifiedAt": "2026-11-05T13:44:43.245Z",
+      "status": "APPROVED"
+    },
+    "waec-neco-ssce-english-mastery:waec-paper-1-lexis-and-collocations": {
+      "videoId": "XzkbcWh8s4w",
+      "title": "Prepositions of PLACE  👉  IN / ON / AT / BY  👈  Common English Grammar Mistakes",
+      "channelName": "mmmEnglish",
+      "durationSeconds": 934,
+      "verifiedAt": "2026-11-05T13:44:43.897Z",
+      "status": "APPROVED"
+    },
+    "waec-neco-ssce-english-mastery:waec-continuous-writing-marking-scheme": {
+      "videoId": "dXlQe8T6H6Y",
+      "title": "How to Answer English WAEC Questions When You Don’t Know the Answers",
+      "channelName": "A1 English Language for Secondary School Students",
+      "durationSeconds": 720,
+      "verifiedAt": "2026-11-05T13:44:55.831Z",
+      "status": "APPROVED"
+    },
+    "waec-neco-ssce-english-mastery:waec-summary-writing-zero-lifting": {
+      "videoId": "5jJLfwTkGe8",
+      "title": "What is Transpiration in Plants?",
+      "channelName": "Free Animated Education",
+      "durationSeconds": 180,
+      "verifiedAt": "2026-11-05T13:44:56.817Z",
+      "status": "APPROVED"
+    },
+    "waec-neco-ssce-english-mastery:waec-paper-3-test-of-orals-mastery": {
+      "videoId": "Vu6UVwkUgzc",
+      "title": "Syllables and Word Stress - English Pronunciation Lesson",
+      "channelName": "Oxford Online English",
+      "durationSeconds": 832,
+      "verifiedAt": "2026-11-05T13:44:57.501Z",
+      "status": "APPROVED"
+    },
+    "jamb-utme-use-of-english-complete:jamb-comprehension-speed-and-inference": {
+      "videoId": "Bxt55OHOkvc",
+      "title": "How To Answer JAMB Comprehension Passage (LESSON 1) | JAMB English",
+      "channelName": "321Exam",
+      "durationSeconds": 1591,
+      "verifiedAt": "2026-11-05T13:44:58.244Z",
+      "status": "APPROVED"
+    },
+    "jamb-utme-use-of-english-complete:jamb-emphatic-stress-mastery": {
+      "videoId": "UAMVrAizb6o",
+      "title": "Emphatic stress made easy! #englishlearningclass #englishexam",
+      "channelName": "Lexa Academy ",
+      "durationSeconds": 720,
+      "verifiedAt": "2026-11-05T13:45:01.926Z",
+      "status": "APPROVED"
+    },
+    "grammar-fix-it-common-errors:fixing-indefinite-pronoun-concord": {
+      "videoId": "Xn7HuKQ0mY0",
+      "title": "(ENGLISH) What are Indefinite Pronouns? | #iQuestionPH",
+      "channelName": "iQuestion PH",
+      "durationSeconds": 180,
+      "verifiedAt": "2026-11-05T13:45:05.490Z",
+      "status": "APPROVED"
+    },
+    "comprehension-and-summary-skills-masterclass:vocabulary-substitution-in-comprehension": {
+      "videoId": "CyK01USxdg0",
+      "title": "Context Clues | Award Winning Context Clues Teaching Video | Comprehension & Reading Strategies",
+      "channelName": "GrammarSongs by Melissa",
+      "durationSeconds": 447,
+      "verifiedAt": "2026-11-05T13:45:10.501Z",
+      "status": "APPROVED"
+    },
+    "oral-english-sounds-stress-intonation:monophthongs-long-vs-short-vowels": {
+      "videoId": "HOWV7AxL4_c",
+      "title": "English Vowel Sounds: The 12 Pure Vowels - See words in which they can be found.",
+      "channelName": "Daniel Narkotey Official",
+      "durationSeconds": 271,
+      "verifiedAt": "2026-11-05T13:45:12.291Z",
+      "status": "APPROVED"
+    },
+    "essay-and-letter-writing-workshop:four-pillars-of-continuous-writing": {
+      "videoId": "3iKfb5nDgdU",
+      "title": "The Teachers' Room: Introducing new vocabulary",
+      "channelName": "BBC Learning English",
+      "durationSeconds": 720,
+      "verifiedAt": "2026-11-05T13:45:20.388Z",
+      "status": "APPROVED"
+    },
+    "literary-analysis-skills-workshop:figures-of-speech-comparison-association": {
+      "videoId": "iLw5DSyYsaI",
+      "title": "FIGURATIVE SPEECH for KIDS 🧾 Similes, Metaphors and Hyperboles ✏️ Literature for Kids ✍️ Episode 1",
+      "channelName": "Smile and Learn - English",
+      "durationSeconds": 242,
+      "verifiedAt": "2026-11-05T13:45:25.207Z",
       "status": "APPROVED"
     }
   }

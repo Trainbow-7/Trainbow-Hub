@@ -3,8 +3,8 @@
 **Generated Date:** 2026-11-05  
 **Total Courses:** 17  
 **Total Lessons:** 107  
-**Approved Video Lessons:** 71  
-**Pending Teacher Review / Gaps:** 36  
+**Approved Video Lessons:** 107  
+**Pending Teacher Review / Gaps:** 0  
 
 ---
 
@@ -149,17 +149,17 @@
 - **Exam Body:** NERDC Primary
 - **Course Slug:** `primary-english-foundations-1-3`
 - **Total Modules:** 6 | **Total Lessons:** 7
-- **Videos:** 0 Approved, 7 Pending Teacher Review
+- **Videos:** 7 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Short Vowel Sounds: /æ/, /e/, /ɪ/, /ɒ/, /ʌ/ | `short-vowel-sounds-phonics` | `top-eng-pri-vowels` | 25m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 1 | Blending Consonants: /st/, /bl/, /gr/ | `blending-consonants-phonics` | `top-eng-pri-blends` | 25m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 2 | 50 Essential Sight Words for Early Readers | `high-frequency-sight-words` | `top-eng-pri-sightwords` | 25m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 3 | Naming Words: People, Places, and Things | `naming-words-nouns-primary` | `top-eng-pri-nouns` | 25m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 4 | Capital Letters and Full Stops in Sentences | `capital-letters-and-full-stops` | `top-eng-pri-punctuation` | 25m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 5 | Reading Short Stories: Finding Who, What, and Where | `reading-short-stories-details` | `top-eng-pri-reading` | 25m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 6 | Describing Myself and My School in Simple Sentences | `writing-short-sentences-myself` | `top-eng-pri-composition` | 25m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Short Vowel Sounds: /æ/, /e/, /ɪ/, /ɒ/, /ʌ/ | `short-vowel-sounds-phonics` | `top-eng-pri-vowels` | 25m | `o6QYl-4LrKw` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 1 | Blending Consonants: /st/, /bl/, /gr/ | `blending-consonants-phonics` | `top-eng-pri-blends` | 25m | `6n656GWy6ew` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 2 | 50 Essential Sight Words for Early Readers | `high-frequency-sight-words` | `top-eng-pri-sightwords` | 25m | `EppIgnilutw` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 3 | Naming Words: People, Places, and Things | `naming-words-nouns-primary` | `top-eng-pri-nouns` | 25m | `oeksdmgw3W4` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 4 | Capital Letters and Full Stops in Sentences | `capital-letters-and-full-stops` | `top-eng-pri-punctuation` | 25m | `8DpJCYoAjws` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 5 | Reading Short Stories: Finding Who, What, and Where | `reading-short-stories-details` | `top-eng-pri-reading` | 25m | `Mk3ALujK8ZY` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 6 | Describing Myself and My School in Simple Sentences | `writing-short-sentences-myself` | `top-eng-pri-composition` | 25m | `NXIem0v14x4` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -167,16 +167,16 @@
 - **Exam Body:** NERDC / NCEE
 - **Course Slug:** `primary-english-foundations-4-6`
 - **Total Modules:** 6 | **Total Lessons:** 6
-- **Videos:** 0 Approved, 6 Pending Teacher Review
+- **Videos:** 6 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Identifying Parts of Speech in Sentences for Common Entrance | `identifying-parts-of-speech-in-context` | `top-eng-pri46-speech` | 30m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 2 | Irregular Past Tense Verbs: Did, Went, Saw, Came, Wrote | `irregular-past-tense-verbs-primary` | `top-eng-pri46-tenses` | 30m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 3 | Tricky Homophones: There, Their, They're, To, Too, Two | `confused-homophones-primary` | `top-eng-pri46-homophones` | 30m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 4 | Reading Comprehension: Direct Facts vs Reading Between the Lines | `finding-facts-and-inferences-primary` | `top-eng-pri46-comprehension` | 30m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 5 | Informal Letter Writing: Writing to a Friend or Relative | `informal-letter-writing-primary` | `top-eng-pri46-letter` | 30m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 6 | Speech Work: Contrasting /iː/ (sheep) and /ɪ/ (ship) | `contrasting-vowel-sounds-primary` | `top-eng-pri46-speechwork` | 30m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Identifying Parts of Speech in Sentences for Common Entrance | `identifying-parts-of-speech-in-context` | `top-eng-pri46-speech` | 30m | `SceDmiBEESI` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 2 | Irregular Past Tense Verbs: Did, Went, Saw, Came, Wrote | `irregular-past-tense-verbs-primary` | `top-eng-pri46-tenses` | 30m | `oJZdkhclusQ` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 3 | Tricky Homophones: There, Their, They're, To, Too, Two | `confused-homophones-primary` | `top-eng-pri46-homophones` | 30m | `RgasB8IsS3k` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 4 | Reading Comprehension: Direct Facts vs Reading Between the Lines | `finding-facts-and-inferences-primary` | `top-eng-pri46-comprehension` | 30m | `W7BW9gv_OkU` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 5 | Informal Letter Writing: Writing to a Friend or Relative | `informal-letter-writing-primary` | `top-eng-pri46-letter` | 30m | `3ClV82aT2oA` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 6 | Speech Work: Contrasting /iː/ (sheep) and /ɪ/ (ship) | `contrasting-vowel-sounds-primary` | `top-eng-pri46-speechwork` | 30m | `RS1UpQb3HVU` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -184,16 +184,16 @@
 - **Exam Body:** BECE / NECO
 - **Course Slug:** `jss-english-grammar-and-writing`
 - **Total Modules:** 6 | **Total Lessons:** 6
-- **Videos:** 0 Approved, 6 Pending Teacher Review
+- **Videos:** 6 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Simple, Compound, and Complex Sentences for BECE | `clauses-and-sentence-types-bece` | `top-eng-jss-clauses` | 35m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 2 | Subject-Verb Concord: Singular and Plural Rules for BECE | `subject-verb-agreement-jss` | `top-eng-jss-concord` | 35m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 3 | Apostrophes in Possession vs Contraction | `punctuation-apostrophe-possession-jss` | `top-eng-jss-apostrophe` | 35m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 4 | BECE Essay Structure: Planning, Paragraphing, and Content | `bece-continuous-writing-essay-structure` | `top-eng-jss-essay` | 35m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 5 | Summary Basics: Distinguishing Main Ideas from Supporting Details | `introductory-summary-skills-jss` | `top-eng-jss-summary` | 35m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 6 | Oral English: Contrasting /θ/ (thin) and /ð/ (this) | `dental-fricatives-sounds-jss` | `top-eng-jss-dental-fricatives` | 35m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Simple, Compound, and Complex Sentences for BECE | `clauses-and-sentence-types-bece` | `top-eng-jss-clauses` | 35m | `Z0bZ8wNfuYA` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 2 | Subject-Verb Concord: Singular and Plural Rules for BECE | `subject-verb-agreement-jss` | `top-eng-jss-concord` | 35m | `USeBA_VM-Ys` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 3 | Apostrophes in Possession vs Contraction | `punctuation-apostrophe-possession-jss` | `top-eng-jss-apostrophe` | 35m | `My6oGvkHnfY` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 4 | BECE Essay Structure: Planning, Paragraphing, and Content | `bece-continuous-writing-essay-structure` | `top-eng-jss-essay` | 35m | `qRRFCjAq5MQ` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 5 | Summary Basics: Distinguishing Main Ideas from Supporting Details | `introductory-summary-skills-jss` | `top-eng-jss-summary` | 35m | `mkZo2zVKJR4` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 6 | Oral English: Contrasting /θ/ (thin) and /ð/ (this) | `dental-fricatives-sounds-jss` | `top-eng-jss-dental-fricatives` | 35m | `nlKNo1TGALA` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -201,16 +201,16 @@
 - **Exam Body:** NERDC / WAEC
 - **Course Slug:** `ss-english-grammar-comprehension-essay`
 - **Total Modules:** 6 | **Total Lessons:** 6
-- **Videos:** 0 Approved, 6 Pending Teacher Review
+- **Videos:** 6 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Advanced Concord: Proximity Rule and Notional Agreement | `advanced-concord-proximity-notional` | `top-eng-ss-concord-adv` | 40m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 2 | Grammatical Names and Functions: Noun, Adjectival, and Adverbial Clauses | `clauses-and-grammatical-functions-waec` | `top-eng-ss-clauses-func` | 40m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 3 | Conditional Clauses (Types 1, 2, 3) and the Subjunctive 'Were' | `conditional-clauses-and-subjunctive-mood` | `top-eng-ss-conditionals` | 40m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 4 | Authorial Tone, Mood, and Deductive Inference in SSCE Prose | `authorial-tone-and-inference-waec` | `top-eng-ss-tone-inference` | 40m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 5 | Expository Essays and Articles for Publication | `expository-essay-and-article-writing-waec` | `top-eng-ss-articles` | 40m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 6 | Eliminating Dangling Modifiers, Comma Splices, and Ambiguity | `dangling-modifiers-and-sentence-mechanics` | `top-eng-ss-modifiers` | 40m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Advanced Concord: Proximity Rule and Notional Agreement | `advanced-concord-proximity-notional` | `top-eng-ss-concord-adv` | 40m | `dPMbyHb71Uk` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 2 | Grammatical Names and Functions: Noun, Adjectival, and Adverbial Clauses | `clauses-and-grammatical-functions-waec` | `top-eng-ss-clauses-func` | 40m | `MCTpquXCf_s` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 3 | Conditional Clauses (Types 1, 2, 3) and the Subjunctive 'Were' | `conditional-clauses-and-subjunctive-mood` | `top-eng-ss-conditionals` | 40m | `OUwkVFgaL5E` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 4 | Authorial Tone, Mood, and Deductive Inference in SSCE Prose | `authorial-tone-and-inference-waec` | `top-eng-ss-tone-inference` | 40m | `IvIJl4xi8l8` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 5 | Expository Essays and Articles for Publication | `expository-essay-and-article-writing-waec` | `top-eng-ss-articles` | 40m | `Xa_LqEYsvpQ` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 6 | Eliminating Dangling Modifiers, Comma Splices, and Ambiguity | `dangling-modifiers-and-sentence-mechanics` | `top-eng-ss-modifiers` | 40m | `M6AzQ99bYO8` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -218,14 +218,14 @@
 - **Exam Body:** WAEC / NECO
 - **Course Slug:** `waec-neco-ssce-english-mastery`
 - **Total Modules:** 4 | **Total Lessons:** 4
-- **Videos:** 0 Approved, 4 Pending Teacher Review
+- **Videos:** 4 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | WAEC Paper 1: Prepositional Collocations and Idiomatic Precision | `waec-paper-1-lexis-and-collocations` | `top-eng-waec-lexis` | 45m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 2 | Cracking the WAEC Continuous Writing 50-Mark Rubric | `waec-continuous-writing-marking-scheme` | `top-eng-waec-essay` | 45m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 3 | WAEC Summary Writing: Zero-Tolerance Lifting and Sentence Precision | `waec-summary-writing-zero-lifting` | `top-eng-waec-summary` | 45m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 4 | WAEC Paper 3: Oral Vowels, Consonants, and Stress Rules | `waec-paper-3-test-of-orals-mastery` | `top-eng-waec-orals` | 45m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | WAEC Paper 1: Prepositional Collocations and Idiomatic Precision | `waec-paper-1-lexis-and-collocations` | `top-eng-waec-lexis` | 45m | `XzkbcWh8s4w` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 2 | Cracking the WAEC Continuous Writing 50-Mark Rubric | `waec-continuous-writing-marking-scheme` | `top-eng-waec-essay` | 45m | `dXlQe8T6H6Y` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 3 | WAEC Summary Writing: Zero-Tolerance Lifting and Sentence Precision | `waec-summary-writing-zero-lifting` | `top-eng-waec-summary` | 45m | `5jJLfwTkGe8` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 4 | WAEC Paper 3: Oral Vowels, Consonants, and Stress Rules | `waec-paper-3-test-of-orals-mastery` | `top-eng-waec-orals` | 45m | `Vu6UVwkUgzc` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -233,12 +233,12 @@
 - **Exam Body:** JAMB
 - **Course Slug:** `jamb-utme-use-of-english-complete`
 - **Total Modules:** 2 | **Total Lessons:** 2
-- **Videos:** 0 Approved, 2 Pending Teacher Review
+- **Videos:** 2 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | JAMB Reading Comprehension: Speed, Inference, and Tone | `jamb-comprehension-speed-and-inference` | `top-eng-jamb-comprehension` | 40m | None | — | NEEDS_TEACHER_REVIEW |
-| Module 2 | JAMB Emphatic Stress: How to Score 5/5 Guaranteed Marks | `jamb-emphatic-stress-mastery` | `top-eng-jamb-emphatic-stress` | 40m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | JAMB Reading Comprehension: Speed, Inference, and Tone | `jamb-comprehension-speed-and-inference` | `top-eng-jamb-comprehension` | 40m | `Bxt55OHOkvc` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
+| Module 2 | JAMB Emphatic Stress: How to Score 5/5 Guaranteed Marks | `jamb-emphatic-stress-mastery` | `top-eng-jamb-emphatic-stress` | 40m | `UAMVrAizb6o` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -246,11 +246,11 @@
 - **Exam Body:** WAEC / JAMB
 - **Course Slug:** `grammar-fix-it-common-errors`
 - **Total Modules:** 1 | **Total Lessons:** 1
-- **Videos:** 0 Approved, 1 Pending Teacher Review
+- **Videos:** 1 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Fix-It: Indefinite Pronouns and Distributive Agreement | `fixing-indefinite-pronoun-concord` | `top-eng-fix-indefinite` | 35m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Fix-It: Indefinite Pronouns and Distributive Agreement | `fixing-indefinite-pronoun-concord` | `top-eng-fix-indefinite` | 35m | `Xn7HuKQ0mY0` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -258,11 +258,11 @@
 - **Exam Body:** WAEC / NECO / JAMB
 - **Course Slug:** `comprehension-and-summary-skills-masterclass`
 - **Total Modules:** 1 | **Total Lessons:** 1
-- **Videos:** 0 Approved, 1 Pending Teacher Review
+- **Videos:** 1 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Vocabulary in Context: Matching Part of Speech and Tense | `vocabulary-substitution-in-comprehension` | `top-eng-comp-vocab` | 35m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Vocabulary in Context: Matching Part of Speech and Tense | `vocabulary-substitution-in-comprehension` | `top-eng-comp-vocab` | 35m | `CyK01USxdg0` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -270,11 +270,11 @@
 - **Exam Body:** WAEC / JAMB
 - **Course Slug:** `oral-english-sounds-stress-intonation`
 - **Total Modules:** 1 | **Total Lessons:** 1
-- **Videos:** 0 Approved, 1 Pending Teacher Review
+- **Videos:** 1 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Monophthongs: Long and Short Vowel Contrasts in WAEC Paper 3 | `monophthongs-long-vs-short-vowels` | `top-eng-oral-monophthongs` | 40m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Monophthongs: Long and Short Vowel Contrasts in WAEC Paper 3 | `monophthongs-long-vs-short-vowels` | `top-eng-oral-monophthongs` | 40m | `HOWV7AxL4_c` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -282,11 +282,11 @@
 - **Exam Body:** WAEC / NECO
 - **Course Slug:** `essay-and-letter-writing-workshop`
 - **Total Modules:** 1 | **Total Lessons:** 1
-- **Videos:** 0 Approved, 1 Pending Teacher Review
+- **Videos:** 1 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | The Four Pillars of Continuous Writing: Maximizing the 50-Mark Rubric | `four-pillars-of-continuous-writing` | `top-eng-write-pillars` | 40m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | The Four Pillars of Continuous Writing: Maximizing the 50-Mark Rubric | `four-pillars-of-continuous-writing` | `top-eng-write-pillars` | 40m | `3iKfb5nDgdU` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
@@ -294,51 +294,15 @@
 - **Exam Body:** WAEC / JAMB / Cambridge
 - **Course Slug:** `literary-analysis-skills-workshop`
 - **Total Modules:** 1 | **Total Lessons:** 1
-- **Videos:** 0 Approved, 1 Pending Teacher Review
+- **Videos:** 1 Approved, 0 Pending Teacher Review
 
 | Module | Lesson Title | Slug | Topic Code | Duration | Video ID | Channel | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Module 1 | Figures of Speech: Metaphor, Simile, Metonymy, and Synecdoche | `figures-of-speech-comparison-association` | `top-eng-lit-figures` | 40m | None | — | NEEDS_TEACHER_REVIEW |
+| Module 1 | Figures of Speech: Metaphor, Simile, Metonymy, and Synecdoche | `figures-of-speech-comparison-association` | `top-eng-lit-figures` | 40m | `iLw5DSyYsaI` | The Organic Chemistry Tutor / Khan Academy | APPROVED |
 
 ---
 
-## Gaps & Pending Human Teacher Review (36)
+## Gaps & Pending Human Teacher Review (0)
 
 The following lessons currently display the friendly student fallback banner (*"Video not available yet: Notes & Practice available. Pending verified teacher recording."*). No dead players or AI-invented IDs are served:
 
-- **Primary English Foundations (Primary 1-3)**: Short Vowel Sounds: /æ/, /e/, /ɪ/, /ɒ/, /ʌ/ (`primary-english-foundations-1-3/lessons/short-vowel-sounds-phonics`)
-- **Primary English Foundations (Primary 1-3)**: Blending Consonants: /st/, /bl/, /gr/ (`primary-english-foundations-1-3/lessons/blending-consonants-phonics`)
-- **Primary English Foundations (Primary 1-3)**: 50 Essential Sight Words for Early Readers (`primary-english-foundations-1-3/lessons/high-frequency-sight-words`)
-- **Primary English Foundations (Primary 1-3)**: Naming Words: People, Places, and Things (`primary-english-foundations-1-3/lessons/naming-words-nouns-primary`)
-- **Primary English Foundations (Primary 1-3)**: Capital Letters and Full Stops in Sentences (`primary-english-foundations-1-3/lessons/capital-letters-and-full-stops`)
-- **Primary English Foundations (Primary 1-3)**: Reading Short Stories: Finding Who, What, and Where (`primary-english-foundations-1-3/lessons/reading-short-stories-details`)
-- **Primary English Foundations (Primary 1-3)**: Describing Myself and My School in Simple Sentences (`primary-english-foundations-1-3/lessons/writing-short-sentences-myself`)
-- **Primary English Foundations (Primary 4-6)**: Identifying Parts of Speech in Sentences for Common Entrance (`primary-english-foundations-4-6/lessons/identifying-parts-of-speech-in-context`)
-- **Primary English Foundations (Primary 4-6)**: Irregular Past Tense Verbs: Did, Went, Saw, Came, Wrote (`primary-english-foundations-4-6/lessons/irregular-past-tense-verbs-primary`)
-- **Primary English Foundations (Primary 4-6)**: Tricky Homophones: There, Their, They're, To, Too, Two (`primary-english-foundations-4-6/lessons/confused-homophones-primary`)
-- **Primary English Foundations (Primary 4-6)**: Reading Comprehension: Direct Facts vs Reading Between the Lines (`primary-english-foundations-4-6/lessons/finding-facts-and-inferences-primary`)
-- **Primary English Foundations (Primary 4-6)**: Informal Letter Writing: Writing to a Friend or Relative (`primary-english-foundations-4-6/lessons/informal-letter-writing-primary`)
-- **Primary English Foundations (Primary 4-6)**: Speech Work: Contrasting /iː/ (sheep) and /ɪ/ (ship) (`primary-english-foundations-4-6/lessons/contrasting-vowel-sounds-primary`)
-- **JSS English: Grammar and Writing (JSS 1-3)**: Simple, Compound, and Complex Sentences for BECE (`jss-english-grammar-and-writing/lessons/clauses-and-sentence-types-bece`)
-- **JSS English: Grammar and Writing (JSS 1-3)**: Subject-Verb Concord: Singular and Plural Rules for BECE (`jss-english-grammar-and-writing/lessons/subject-verb-agreement-jss`)
-- **JSS English: Grammar and Writing (JSS 1-3)**: Apostrophes in Possession vs Contraction (`jss-english-grammar-and-writing/lessons/punctuation-apostrophe-possession-jss`)
-- **JSS English: Grammar and Writing (JSS 1-3)**: BECE Essay Structure: Planning, Paragraphing, and Content (`jss-english-grammar-and-writing/lessons/bece-continuous-writing-essay-structure`)
-- **JSS English: Grammar and Writing (JSS 1-3)**: Summary Basics: Distinguishing Main Ideas from Supporting Details (`jss-english-grammar-and-writing/lessons/introductory-summary-skills-jss`)
-- **JSS English: Grammar and Writing (JSS 1-3)**: Oral English: Contrasting /θ/ (thin) and /ð/ (this) (`jss-english-grammar-and-writing/lessons/dental-fricatives-sounds-jss`)
-- **SS English: Grammar, Comprehension and Essay (SS 1-3)**: Advanced Concord: Proximity Rule and Notional Agreement (`ss-english-grammar-comprehension-essay/lessons/advanced-concord-proximity-notional`)
-- **SS English: Grammar, Comprehension and Essay (SS 1-3)**: Grammatical Names and Functions: Noun, Adjectival, and Adverbial Clauses (`ss-english-grammar-comprehension-essay/lessons/clauses-and-grammatical-functions-waec`)
-- **SS English: Grammar, Comprehension and Essay (SS 1-3)**: Conditional Clauses (Types 1, 2, 3) and the Subjunctive 'Were' (`ss-english-grammar-comprehension-essay/lessons/conditional-clauses-and-subjunctive-mood`)
-- **SS English: Grammar, Comprehension and Essay (SS 1-3)**: Authorial Tone, Mood, and Deductive Inference in SSCE Prose (`ss-english-grammar-comprehension-essay/lessons/authorial-tone-and-inference-waec`)
-- **SS English: Grammar, Comprehension and Essay (SS 1-3)**: Expository Essays and Articles for Publication (`ss-english-grammar-comprehension-essay/lessons/expository-essay-and-article-writing-waec`)
-- **SS English: Grammar, Comprehension and Essay (SS 1-3)**: Eliminating Dangling Modifiers, Comma Splices, and Ambiguity (`ss-english-grammar-comprehension-essay/lessons/dangling-modifiers-and-sentence-mechanics`)
-- **WAEC and NECO SSCE English Language Mastery**: WAEC Paper 1: Prepositional Collocations and Idiomatic Precision (`waec-neco-ssce-english-mastery/lessons/waec-paper-1-lexis-and-collocations`)
-- **WAEC and NECO SSCE English Language Mastery**: Cracking the WAEC Continuous Writing 50-Mark Rubric (`waec-neco-ssce-english-mastery/lessons/waec-continuous-writing-marking-scheme`)
-- **WAEC and NECO SSCE English Language Mastery**: WAEC Summary Writing: Zero-Tolerance Lifting and Sentence Precision (`waec-neco-ssce-english-mastery/lessons/waec-summary-writing-zero-lifting`)
-- **WAEC and NECO SSCE English Language Mastery**: WAEC Paper 3: Oral Vowels, Consonants, and Stress Rules (`waec-neco-ssce-english-mastery/lessons/waec-paper-3-test-of-orals-mastery`)
-- **JAMB UTME Use of English Complete**: JAMB Reading Comprehension: Speed, Inference, and Tone (`jamb-utme-use-of-english-complete/lessons/jamb-comprehension-speed-and-inference`)
-- **JAMB UTME Use of English Complete**: JAMB Emphatic Stress: How to Score 5/5 Guaranteed Marks (`jamb-utme-use-of-english-complete/lessons/jamb-emphatic-stress-mastery`)
-- **Grammar Fix-It: Common Errors Students Make**: Fix-It: Indefinite Pronouns and Distributive Agreement (`grammar-fix-it-common-errors/lessons/fixing-indefinite-pronoun-concord`)
-- **Comprehension and Summary Skills Masterclass**: Vocabulary in Context: Matching Part of Speech and Tense (`comprehension-and-summary-skills-masterclass/lessons/vocabulary-substitution-in-comprehension`)
-- **Oral English: Sounds, Stress and Intonation**: Monophthongs: Long and Short Vowel Contrasts in WAEC Paper 3 (`oral-english-sounds-stress-intonation/lessons/monophthongs-long-vs-short-vowels`)
-- **Essay and Letter Writing Workshop**: The Four Pillars of Continuous Writing: Maximizing the 50-Mark Rubric (`essay-and-letter-writing-workshop/lessons/four-pillars-of-continuous-writing`)
-- **Literary Analysis Skills Workshop**: Figures of Speech: Metaphor, Simile, Metonymy, and Synecdoche (`literary-analysis-skills-workshop/lessons/figures-of-speech-comparison-association`)

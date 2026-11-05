@@ -56,6 +56,7 @@ export const SKILLS_WORKSHOP_COURSES: EnglishCourseData[] = [
           {
             id: "les-fix-1-1",
             slug: "fixing-indefinite-pronoun-concord",
+            videoId: "Xn7HuKQ0mY0",
             title: "Fix-It: Indefinite Pronouns and Distributive Agreement",
             sortOrder: 1,
             durationMinutes: 35,
@@ -224,6 +225,7 @@ export const SKILLS_WORKSHOP_COURSES: EnglishCourseData[] = [
           {
             id: "les-comp-1-1",
             slug: "vocabulary-substitution-in-comprehension",
+            videoId: "CyK01USxdg0",
             title: "Vocabulary in Context: Matching Part of Speech and Tense",
             sortOrder: 1,
             durationMinutes: 35,
@@ -394,6 +396,7 @@ export const SKILLS_WORKSHOP_COURSES: EnglishCourseData[] = [
           {
             id: "les-oral-1-1",
             slug: "monophthongs-long-vs-short-vowels",
+            videoId: "HOWV7AxL4_c",
             title: "Monophthongs: Long and Short Vowel Contrasts in WAEC Paper 3",
             sortOrder: 1,
             durationMinutes: 40,
@@ -564,6 +567,7 @@ export const SKILLS_WORKSHOP_COURSES: EnglishCourseData[] = [
           {
             id: "les-write-1-1",
             slug: "four-pillars-of-continuous-writing",
+            videoId: "3iKfb5nDgdU",
             title: "The Four Pillars of Continuous Writing: Maximizing the 50-Mark Rubric",
             sortOrder: 1,
             durationMinutes: 40,
@@ -733,6 +737,7 @@ export const SKILLS_WORKSHOP_COURSES: EnglishCourseData[] = [
           {
             id: "les-lit-1-1",
             slug: "figures-of-speech-comparison-association",
+            videoId: "iLw5DSyYsaI",
             title: "Figures of Speech: Metaphor, Simile, Metonymy, and Synecdoche",
             sortOrder: 1,
             durationMinutes: 40,
