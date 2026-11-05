@@ -13,6 +13,7 @@ import { TrackId, EXAM_TRACKS, SUBJECT_PRICES, formatNaira } from "@/data/pricin
 import { DEPARTMENTS, SubjectCatalogueItem } from "@/data/courses";
 import { ChevronRightIcon, ChevronLeftIcon, CheckIcon, AlertIcon, ChevronDownIcon, PlayIcon, CloseIcon, ExternalLinkIcon } from "@/components/ui/icons";
 import { InlineMathText } from "@/components/ui/InlineMathText";
+import { LessonVideoPlayer } from "@/components/video/LessonVideoPlayer";
 
 interface SubjectSyllabusViewProps {
   subject: SubjectCatalogueItem;
@@ -344,37 +345,13 @@ export function SubjectSyllabusView({ subject, trackId }: SubjectSyllabusViewPro
                                       </button>
                                     </div>
 
-                                    {/* 16:9 Privacy-Enhanced YouTube Embed */}
-                                    <div className="relative aspect-video w-full rounded-lg overflow-hidden bg-black shadow-inner">
-                                      <iframe
-                                        src={`https://www.youtube-nocookie.com/embed/${topic.video.youtubeId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`}
-                                        title={`Video lesson for ${topic.name}`}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowFullScreen
-                                        className="absolute inset-0 w-full h-full border-0"
-                                      />
-                                    </div>
-
-                                    {/* Player Footer & Fallback Link */}
-                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 text-[11px] text-neutral-400">
-                                      <span>
-                                        Channel:{" "}
-                                        <strong className="text-neutral-200">
-                                          {topic.video.channelName || "Verified Educational Partner"}
-                                        </strong>{" "}
-                                        • Privacy-Enhanced Player
-                                      </span>
-
-                                      <a
-                                        href={`https://www.youtube.com/watch?v=${topic.video.youtubeId}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-brand-blue-400 hover:text-brand-blue-300 font-semibold inline-flex items-center gap-1 hover:underline"
-                                      >
-                                        <span>Watch on YouTube</span>
-                                        <ExternalLinkIcon size="sm" />
-                                      </a>
-                                    </div>
+                                    {/* Unified Privacy-Enhanced YouTube Embed with Sound Safeguard */}
+                                    <LessonVideoPlayer
+                                      videoId={topic.video.youtubeId}
+                                      videoTitle={topic.video.title || topic.name}
+                                      channelName={topic.video.channelName || "Verified Educational Partner"}
+                                      lessonTitle={topic.name}
+                                    />
                                   </div>
                                 )}
 

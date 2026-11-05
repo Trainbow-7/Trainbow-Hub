@@ -61,6 +61,10 @@ const nextConfig = {
             ].join("; "),
           },
           {
+            key: "Permissions-Policy",
+            value: 'autoplay=(self "https://www.youtube-nocookie.com" "https://www.youtube.com"), encrypted-media=(self "https://www.youtube-nocookie.com" "https://www.youtube.com"), fullscreen=*',
+          },
+          {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
           },

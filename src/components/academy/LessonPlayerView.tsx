@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ScrollProgress, Carousel, HoverLift, ProgressBar } from "@/components/motion";
 import { ChevronRightIcon, ChevronLeftIcon, LoaderIcon, CheckIcon, AlertIcon, PlayIcon, DownloadIcon } from "@/components/ui/icons";
-import { RealVideoPlayer, LessonVideoData } from "@/components/video/RealVideoPlayer";
+import { LessonVideoPlayer, LessonVideoData } from "@/components/video/LessonVideoPlayer";
 import { InlineMathText } from "@/components/ui/InlineMathText";
 import { LessonNotesRenderer } from "@/components/academy/LessonNotesRenderer";
 import { ScrollableTabs } from "@/components/ui/responsive/ScrollableTabs";
@@ -360,10 +360,12 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
 
             {/* Video Player or Level-Appropriate Fallback */}
             {video?.hasVideo && video.primary ? (
-              <RealVideoPlayer
+              <LessonVideoPlayer
                 primaryVideo={video.primary}
                 alternates={video.alternates}
                 slug={course.slug}
+                courseSlug={course.slug}
+                lessonSlug={lesson.id}
                 lessonId={lesson.id}
                 lessonTitle={lesson.title}
                 initialPositionSeconds={video.userProgress?.positionSeconds || 0}
