@@ -10,7 +10,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 items-start">
           {/* Brand & Tagline */}
           <div className="lg:col-span-5 space-y-3">
-            <TrainbowLogo isDarkSurface={false} showTagline={true} />
+            <TrainbowLogo isDarkSurface={false} showTagline={false} />
+            <p className="text-xs font-semibold text-neutral-slate-500 tracking-wide">
+              {BRAND.tagline}
+            </p>
             <p className="text-xs sm:text-sm text-neutral-slate-600 max-w-sm leading-relaxed">
               {BRAND.description}
             </p>

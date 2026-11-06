@@ -49,35 +49,10 @@ export function TrainbowLogo({
         />
       </div>
 
-      {/* Brand Typography & Tagline */}
-      <div className="flex flex-col items-start leading-tight">
-        <div className="flex items-center gap-1.5">
-          <span
-            className={cn(
-              "font-heading font-extrabold tracking-tight",
-              currentSize.textClass,
-              isDarkSurface ? "text-white" : "text-brand-navy-900"
-            )}
-          >
-            Trainbow
-          </span>
-          <span className="font-heading text-xs font-bold uppercase tracking-wider text-brand-blue-600 bg-brand-blue-50 px-1.5 py-0.5 rounded border border-brand-blue-200/40">
-            HUB
-          </span>
-        </div>
-
-        {showTagline && (
-          <span
-            className={cn(
-              "font-medium tracking-wide mt-0.5",
-              currentSize.subClass,
-              isDarkSurface ? "text-neutral-slate-300" : "text-neutral-slate-600"
-            )}
-          >
-            {BRAND.tagline}
-          </span>
-        )}
-      </div>
+      {/* Screen-reader accessible label preserving BRAND.name and BRAND.tagline */}
+      <span className="sr-only">
+        {BRAND.name} — {showTagline ? BRAND.tagline : ""}
+      </span>
     </Link>
   );
 }
