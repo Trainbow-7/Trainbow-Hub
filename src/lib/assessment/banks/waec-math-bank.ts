@@ -397,7 +397,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Evaluate: $$\\frac{3}{4} - \\frac{1}{2} \\times \\frac{2}{3} + \\frac{1}{6}$$",
     "correctAnswer": "A",
-    "explanation": "1/2 \u00d7 2/3 = 1/3; 3/4 - 1/3 + 1/6 = 7/12.",
+    "explanation": "1/2 × 2/3 = 1/3; 3/4 - 1/3 + 1/6 = 7/12.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -532,7 +532,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "D",
-        "text": "Multiply and simplify: (2 \u00d7 9) / (3 \u00d7 4) = 18/12 = 3/2."
+        "text": "Multiply and simplify: (2 × 9) / (3 × 4) = 18/12 = 3/2."
       }
     ]
   },
@@ -643,7 +643,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In evaluating $$\\frac{3}{4} \\div \\frac{1}{2}$$, a student wrote $$\\frac{3}{4} \\times \\frac{1}{2} = \\frac{3}{8}$$. What was the mistake?",
     "correctAnswer": "A",
-    "explanation": "3/4 \u00d7 2/1 = 6/4 = 3/2.",
+    "explanation": "3/4 × 2/1 = 6/4 = 3/2.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -680,9 +680,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "Multiplied numerators incorrectly.",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "3 \u00d7 1 = 3 is correct arithmetic.",
-        "rationale": "3 \u00d7 1 = 3 is correct arithmetic.",
-        "remediation": "3 \u00d7 1 = 3 is correct arithmetic."
+        "feedback": "3 × 1 = 3 is correct arithmetic.",
+        "rationale": "3 × 1 = 3 is correct arithmetic.",
+        "remediation": "3 × 1 = 3 is correct arithmetic."
       },
       {
         "id": "D",
@@ -707,7 +707,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Evaluate: $$\\left(2\\frac{1}{3} - 1\\frac{3}{4}\\right) \\div 1\\frac{1}{6}$$",
     "correctAnswer": "A",
-    "explanation": "7/12 \u00f7 7/6 = 7/12 \u00d7 6/7 = 1/2.",
+    "explanation": "7/12 ÷ 7/6 = 7/12 × 6/7 = 1/2.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -744,9 +744,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "\\frac{2}{3}",
         "misconceptionTag": "MIS-RECIPROCAL-SLIP",
         "misconceptionId": "MIS-RECIPROCAL-SLIP",
-        "feedback": "(7/12) \u00f7 (7/6) = (7/12) \u00d7 (6/7) = 1/2.",
-        "rationale": "(7/12) \u00f7 (7/6) = (7/12) \u00d7 (6/7) = 1/2.",
-        "remediation": "(7/12) \u00f7 (7/6) = (7/12) \u00d7 (6/7) = 1/2."
+        "feedback": "(7/12) ÷ (7/6) = (7/12) × (6/7) = 1/2.",
+        "rationale": "(7/12) ÷ (7/6) = (7/12) × (6/7) = 1/2.",
+        "remediation": "(7/12) ÷ (7/6) = (7/12) × (6/7) = 1/2."
       },
       {
         "id": "D",
@@ -771,7 +771,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A container is $\\frac{2}{5}$ full of kerosene. When $21\\text{ litres}$ is added, it becomes $\\frac{3}{4}$ full. What is the capacity of the container?",
     "correctAnswer": "A",
-    "explanation": "7/20 of C = 21 litres => C = 21 \u00d7 (20/7) = 60 litres.",
+    "explanation": "7/20 of C = 21 litres => C = 21 × (20/7) = 60 litres.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -808,9 +808,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$70\\text{ litres}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "21 / (7/20) = 21 \u00d7 (20/7) = 60 litres.",
-        "rationale": "21 / (7/20) = 21 \u00d7 (20/7) = 60 litres.",
-        "remediation": "21 / (7/20) = 21 \u00d7 (20/7) = 60 litres."
+        "feedback": "21 / (7/20) = 21 × (20/7) = 60 litres.",
+        "rationale": "21 / (7/20) = 21 × (20/7) = 60 litres.",
+        "remediation": "21 / (7/20) = 21 × (20/7) = 60 litres."
       },
       {
         "id": "D",
@@ -833,17 +833,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate percentage increase, decrease, and error",
     "thinkingLevel": "understanding",
     "questionType": "single_choice",
-    "prompt": "What does a $15\\%$ discount on an item costing \\\u20a6$8,000$ mean?",
+    "prompt": "What does a $15\\%$ discount on an item costing \\₦$8,000$ mean?",
     "correctAnswer": "A",
-    "explanation": "15% of \u20a68,000 = \u20a61,200. Price = \u20a68,000 - \u20a61,200 = \u20a66,800.",
+    "explanation": "15% of ₦8,000 = ₦1,200. Price = ₦8,000 - ₦1,200 = ₦6,800.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "What does a $15\\%$ discount on an item costing \\\u20a6$8,000$ mean?",
-      "output": "The price is reduced by \\\u20a6$1,200$, so the customer pays \\\u20a6$6,800$.",
+      "input": "What does a $15\\%$ discount on an item costing \\₦$8,000$ mean?",
+      "output": "The price is reduced by \\₦$1,200$, so the customer pays \\₦$6,800$.",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -856,20 +856,20 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "The price is reduced by \\\u20a6$1,200$, so the customer pays \\\u20a6$6,800$."
+        "text": "The price is reduced by \\₦$1,200$, so the customer pays \\₦$6,800$."
       },
       {
         "id": "B",
-        "text": "The price is reduced by \\\u20a6$150$, so the customer pays \\\u20a6$7,850$.",
+        "text": "The price is reduced by \\₦$150$, so the customer pays \\₦$7,850$.",
         "misconceptionTag": "MIS-PERCENT-BASE",
         "misconceptionId": "MIS-PERCENT-BASE",
-        "feedback": "15% means 15 per hundred, not \u20a6150.",
-        "rationale": "15% means 15 per hundred, not \u20a6150.",
-        "remediation": "15% means 15 per hundred, not \u20a6150."
+        "feedback": "15% means 15 per hundred, not ₦150.",
+        "rationale": "15% means 15 per hundred, not ₦150.",
+        "remediation": "15% means 15 per hundred, not ₦150."
       },
       {
         "id": "C",
-        "text": "The price increases by \\\u20a6$1,200$, so the customer pays \\\u20a6$9,200$.",
+        "text": "The price increases by \\₦$1,200$, so the customer pays \\₦$9,200$.",
         "misconceptionTag": "MIS-DISCOUNT-ADD",
         "misconceptionId": "MIS-DISCOUNT-ADD",
         "feedback": "Discount reduces price.",
@@ -878,7 +878,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "D",
-        "text": "The customer pays \\\u20a6$1,200$ total.",
+        "text": "The customer pays \\₦$1,200$ total.",
         "misconceptionTag": "MIS-PERCENT-REMAINDER",
         "misconceptionId": "MIS-PERCENT-REMAINDER",
         "feedback": "Discount is the reduction, not final price.",
@@ -899,7 +899,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Express $\\frac{7}{25}$ as a percentage.",
     "correctAnswer": "A",
-    "explanation": "(7/25) \u00d7 100% = 28%.",
+    "explanation": "(7/25) × 100% = 28%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -927,18 +927,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$14\\%$",
         "misconceptionTag": "MIS-PERCENT-MULT",
         "misconceptionId": "MIS-PERCENT-MULT",
-        "feedback": "Multiply by 100%: (7/25) \u00d7 100% = 28%.",
-        "rationale": "Multiply by 100%: (7/25) \u00d7 100% = 28%.",
-        "remediation": "Multiply by 100%: (7/25) \u00d7 100% = 28%."
+        "feedback": "Multiply by 100%: (7/25) × 100% = 28%.",
+        "rationale": "Multiply by 100%: (7/25) × 100% = 28%.",
+        "remediation": "Multiply by 100%: (7/25) × 100% = 28%."
       },
       {
         "id": "C",
         "text": "$35\\%$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "7 \u00d7 4 = 28, not 35.",
-        "rationale": "7 \u00d7 4 = 28, not 35.",
-        "remediation": "7 \u00d7 4 = 28, not 35."
+        "feedback": "7 × 4 = 28, not 35.",
+        "rationale": "7 × 4 = 28, not 35.",
+        "remediation": "7 × 4 = 28, not 35."
       },
       {
         "id": "D",
@@ -963,7 +963,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Which formula correctly gives the percentage error in a measurement?",
     "correctAnswer": "A",
-    "explanation": "Percentage error = (|Measured - Actual| / Actual) \u00d7 100%.",
+    "explanation": "Percentage error = (|Measured - Actual| / Actual) × 100%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -1027,7 +1027,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: If a quantity increases by $20\\%$ and then decreases by $20\\%$, it returns to its original value.",
     "correctAnswer": "A",
-    "explanation": "100 \u00d7 1.20 \u00d7 0.80 = 96 (4% less).",
+    "explanation": "100 × 1.20 × 0.80 = 96 (4% less).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -1064,9 +1064,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "False: The final value is 4% greater than original.",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "1.20 \u00d7 0.80 = 0.96, which is 4% less.",
-        "rationale": "1.20 \u00d7 0.80 = 0.96, which is 4% less.",
-        "remediation": "1.20 \u00d7 0.80 = 0.96, which is 4% less."
+        "feedback": "1.20 × 0.80 = 0.96, which is 4% less.",
+        "rationale": "1.20 × 0.80 = 0.96, which is 4% less.",
+        "remediation": "1.20 × 0.80 = 0.96, which is 4% less."
       },
       {
         "id": "D",
@@ -1091,7 +1091,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The population of a community increased from $40,000$ to $46,000$. Calculate the percentage increase.",
     "correctAnswer": "A",
-    "explanation": "6,000 / 40,000 \u00d7 100% = 15%.",
+    "explanation": "6,000 / 40,000 × 100% = 15%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -1155,7 +1155,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student measured a length as $1.25\\text{ m}$, whereas the actual length was $1.20\\text{ m}$. Calculate the percentage error to 2 decimal places.",
     "correctAnswer": "A",
-    "explanation": "0.05 / 1.20 \u00d7 100% = 4.17%.",
+    "explanation": "0.05 / 1.20 × 100% = 4.17%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -1217,17 +1217,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate percentage increase, decrease, and error",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "After a price reduction of $12\\%$, a solar lamp sells for \\\u20a6$22,000$. What was its original price before the discount?",
+    "prompt": "After a price reduction of $12\\%$, a solar lamp sells for \\₦$22,000$. What was its original price before the discount?",
     "correctAnswer": "A",
-    "explanation": "22,000 / 0.88 = \u20a625,000.",
+    "explanation": "22,000 / 0.88 = ₦25,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "After a price reduction of $12\\%$, a solar lamp sells for \\\u20a6$22,000$. What was its original price before the discount?",
-      "output": "\\\u20a6$25,000$",
+      "input": "After a price reduction of $12\\%$, a solar lamp sells for \\₦$22,000$. What was its original price before the discount?",
+      "output": "\\₦$25,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -1240,34 +1240,34 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$25,000$"
+        "text": "\\₦$25,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$24,640$",
+        "text": "\\₦$24,640$",
         "misconceptionTag": "MIS-PERCENT-REVERSE",
         "misconceptionId": "MIS-PERCENT-REVERSE",
-        "feedback": "\u20a622,000 represents 88% of original.",
-        "rationale": "\u20a622,000 represents 88% of original.",
-        "remediation": "\u20a622,000 represents 88% of original."
+        "feedback": "₦22,000 represents 88% of original.",
+        "rationale": "₦22,000 represents 88% of original.",
+        "remediation": "₦22,000 represents 88% of original."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$26,400$",
+        "text": "\\₦$26,400$",
         "misconceptionTag": "MIS-PERCENT-MULT",
         "misconceptionId": "MIS-PERCENT-MULT",
-        "feedback": "22,000 / 0.88 = \u20a625,000.",
-        "rationale": "22,000 / 0.88 = \u20a625,000.",
-        "remediation": "22,000 / 0.88 = \u20a625,000."
+        "feedback": "22,000 / 0.88 = ₦25,000.",
+        "rationale": "22,000 / 0.88 = ₦25,000.",
+        "remediation": "22,000 / 0.88 = ₦25,000."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$24,000$",
+        "text": "\\₦$24,000$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Check 25,000 \u00d7 0.88 = 22,000.",
-        "rationale": "Check 25,000 \u00d7 0.88 = 22,000.",
-        "remediation": "Check 25,000 \u00d7 0.88 = 22,000."
+        "feedback": "Check 25,000 × 0.88 = 22,000.",
+        "rationale": "Check 25,000 × 0.88 = 22,000.",
+        "remediation": "Check 25,000 × 0.88 = 22,000."
       }
     ]
   },
@@ -1281,16 +1281,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate percentage increase, decrease, and error",
     "thinkingLevel": "application",
     "questionType": "numeric_entry",
-    "prompt": "A shopkeeper bought an appliance for \\\u20a6$50,000$ and sold it for \\\u20a6$62,500$. Calculate the percentage profit (numeric value only in %).",
+    "prompt": "A shopkeeper bought an appliance for \\₦$50,000$ and sold it for \\₦$62,500$. Calculate the percentage profit (numeric value only in %).",
     "correctAnswer": 25,
-    "explanation": "Profit = 12,500 / 50,000 \u00d7 100% = 25%.",
+    "explanation": "Profit = 12,500 / 50,000 × 100% = 25%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A shopkeeper bought an appliance for \\\u20a6$50,000$ and sold it for \\\u20a6$62,500$. Calculate the percentage profit (numeric val",
+      "input": "A shopkeeper bought an appliance for \\₦$50,000$ and sold it for \\₦$62,500$. Calculate the percentage profit (numeric val",
       "output": "25",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -1399,17 +1399,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate percentage increase, decrease, and error",
     "thinkingLevel": "error_analysis",
     "questionType": "single_choice",
-    "prompt": "A trader priced a bag at \\\u20a6$30,000$, increased it by $10\\%$, then gave a $10\\%$ discount on the new price. A student claims the price is back to \\\u20a6$30,000$. What is the error?",
+    "prompt": "A trader priced a bag at \\₦$30,000$, increased it by $10\\%$, then gave a $10\\%$ discount on the new price. A student claims the price is back to \\₦$30,000$. What is the error?",
     "correctAnswer": "A",
-    "explanation": "10% of \u20a633,000 is \u20a63,300 => \u20a629,700.",
+    "explanation": "10% of ₦33,000 is ₦3,300 => ₦29,700.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A trader priced a bag at \\\u20a6$30,000$, increased it by $10\\%$, then gave a $10\\%$ discount on the new price. A student cla",
-      "output": "The $10\\%$ discount applies to \\\u20a6$33,000$ (giving \\\u20a6$3,300$ off), making the final price \\\u20a6$29,700$.",
+      "input": "A trader priced a bag at \\₦$30,000$, increased it by $10\\%$, then gave a $10\\%$ discount on the new price. A student cla",
+      "output": "The $10\\%$ discount applies to \\₦$33,000$ (giving \\₦$3,300$ off), making the final price \\₦$29,700$.",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -1422,7 +1422,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "The $10\\%$ discount applies to \\\u20a6$33,000$ (giving \\\u20a6$3,300$ off), making the final price \\\u20a6$29,700$."
+        "text": "The $10\\%$ discount applies to \\₦$33,000$ (giving \\₦$3,300$ off), making the final price \\₦$29,700$."
       },
       {
         "id": "B",
@@ -1465,7 +1465,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student calculates percentage error for a length measured as $8\\text{ cm}$ with true length $10\\text{ cm}$ as $\\frac{10 - 8}{8} \\times 100\\% = 25\\%$. What is the mistake?",
     "correctAnswer": "A",
-    "explanation": "|8 - 10| / 10 \u00d7 100% = 20%.",
+    "explanation": "|8 - 10| / 10 × 100% = 20%.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -1529,7 +1529,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A company's production grew by $20\\%$ in year 1, but dropped by $15\\%$ in year 2. If initial production was $150,000$ units, what was the production at the end of year 2?",
     "correctAnswer": "A",
-    "explanation": "150,000 \u00d7 1.20 \u00d7 0.85 = 153,000 units.",
+    "explanation": "150,000 × 1.20 × 0.85 = 153,000 units.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -1566,18 +1566,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$150,000\\text{ units}$",
         "misconceptionTag": "MIS-ROUNDING-GUESS",
         "misconceptionId": "MIS-ROUNDING-GUESS",
-        "feedback": "150,000 \u00d7 1.20 \u00d7 0.85 = 153,000.",
-        "rationale": "150,000 \u00d7 1.20 \u00d7 0.85 = 153,000.",
-        "remediation": "150,000 \u00d7 1.20 \u00d7 0.85 = 153,000."
+        "feedback": "150,000 × 1.20 × 0.85 = 153,000.",
+        "rationale": "150,000 × 1.20 × 0.85 = 153,000.",
+        "remediation": "150,000 × 1.20 × 0.85 = 153,000."
       },
       {
         "id": "D",
         "text": "$142,500\\text{ units}$",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "1.20 \u00d7 0.85 = 1.02.",
-        "rationale": "1.20 \u00d7 0.85 = 1.02.",
-        "remediation": "1.20 \u00d7 0.85 = 1.02."
+        "feedback": "1.20 × 0.85 = 1.02.",
+        "rationale": "1.20 × 0.85 = 1.02.",
+        "remediation": "1.20 × 0.85 = 1.02."
       }
     ]
   },
@@ -1593,7 +1593,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The sides of a rectangle are measured as $10\\text{ cm}$ and $20\\text{ cm}$, each with a possible error of $+5\\%$. What is the maximum possible percentage error in the calculated area?",
     "correctAnswer": "A",
-    "explanation": "(1.05 \u00d7 1.05 - 1) \u00d7 100% = 10.25%.",
+    "explanation": "(1.05 × 1.05 - 1) × 100% = 10.25%.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -1621,9 +1621,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$10.00\\%$",
         "misconceptionTag": "MIS-LINEAR-APPROX",
         "misconceptionId": "MIS-LINEAR-APPROX",
-        "feedback": "Adding 5% + 5% ignores the cross-product term (1.05 \u00d7 1.05 = 1.1025).",
-        "rationale": "Adding 5% + 5% ignores the cross-product term (1.05 \u00d7 1.05 = 1.1025).",
-        "remediation": "Adding 5% + 5% ignores the cross-product term (1.05 \u00d7 1.05 = 1.1025)."
+        "feedback": "Adding 5% + 5% ignores the cross-product term (1.05 × 1.05 = 1.1025).",
+        "rationale": "Adding 5% + 5% ignores the cross-product term (1.05 × 1.05 = 1.1025).",
+        "remediation": "Adding 5% + 5% ignores the cross-product term (1.05 × 1.05 = 1.1025)."
       },
       {
         "id": "C",
@@ -1783,17 +1783,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Simplify ratios and divide quantities proportionally",
     "thinkingLevel": "understanding",
     "questionType": "single_choice",
-    "prompt": "Three partners share \\\u20a6$120,000$ in the ratio $3 : 4 : 5$. How much is the largest share?",
+    "prompt": "Three partners share \\₦$120,000$ in the ratio $3 : 4 : 5$. How much is the largest share?",
     "correctAnswer": "A",
-    "explanation": "5/12 \u00d7 \u20a6120,000 = \u20a650,000.",
+    "explanation": "5/12 × ₦120,000 = ₦50,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "Three partners share \\\u20a6$120,000$ in the ratio $3 : 4 : 5$. How much is the largest share?",
-      "output": "\\\u20a6$50,000$",
+      "input": "Three partners share \\₦$120,000$ in the ratio $3 : 4 : 5$. How much is the largest share?",
+      "output": "\\₦$50,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -1806,34 +1806,34 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$50,000$"
+        "text": "\\₦$50,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$40,000$",
+        "text": "\\₦$40,000$",
         "misconceptionTag": "MIS-MIDDLE-SHARE",
         "misconceptionId": "MIS-MIDDLE-SHARE",
-        "feedback": "\u20a640,000 is the middle share (4 parts).",
-        "rationale": "\u20a640,000 is the middle share (4 parts).",
-        "remediation": "\u20a640,000 is the middle share (4 parts)."
+        "feedback": "₦40,000 is the middle share (4 parts).",
+        "rationale": "₦40,000 is the middle share (4 parts).",
+        "remediation": "₦40,000 is the middle share (4 parts)."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$30,000$",
+        "text": "\\₦$30,000$",
         "misconceptionTag": "MIS-SMALLEST-SHARE",
         "misconceptionId": "MIS-SMALLEST-SHARE",
-        "feedback": "\u20a630,000 is the smallest share (3 parts).",
-        "rationale": "\u20a630,000 is the smallest share (3 parts).",
-        "remediation": "\u20a630,000 is the smallest share (3 parts)."
+        "feedback": "₦30,000 is the smallest share (3 parts).",
+        "rationale": "₦30,000 is the smallest share (3 parts).",
+        "remediation": "₦30,000 is the smallest share (3 parts)."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$60,000$",
+        "text": "\\₦$60,000$",
         "misconceptionTag": "MIS-HALF-GUESS",
         "misconceptionId": "MIS-HALF-GUESS",
-        "feedback": "Total parts = 3 + 4 + 5 = 12. Largest = (5/12) \u00d7 120,000 = \u20a650,000.",
-        "rationale": "Total parts = 3 + 4 + 5 = 12. Largest = (5/12) \u00d7 120,000 = \u20a650,000.",
-        "remediation": "Total parts = 3 + 4 + 5 = 12. Largest = (5/12) \u00d7 120,000 = \u20a650,000."
+        "feedback": "Total parts = 3 + 4 + 5 = 12. Largest = (5/12) × 120,000 = ₦50,000.",
+        "rationale": "Total parts = 3 + 4 + 5 = 12. Largest = (5/12) × 120,000 = ₦50,000.",
+        "remediation": "Total parts = 3 + 4 + 5 = 12. Largest = (5/12) × 120,000 = ₦50,000."
       }
     ]
   },
@@ -1849,7 +1849,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: If two numbers are in the ratio $2 : 3$, increasing both by $4$ keeps their ratio as $2 : 3$.",
     "correctAnswer": "A",
-    "explanation": "2+4=6, 3+4=7. 6:7 \u2260 2:3.",
+    "explanation": "2+4=6, 3+4=7. 6:7 ≠ 2:3.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -1886,9 +1886,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "False: The ratio becomes 4 : 6 which is identical to 2 : 3.",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "2+4=6, 3+4=7; 6/7 \u2260 2/3.",
-        "rationale": "2+4=6, 3+4=7; 6/7 \u2260 2/3.",
-        "remediation": "2+4=6, 3+4=7; 6/7 \u2260 2/3."
+        "feedback": "2+4=6, 3+4=7; 6/7 ≠ 2/3.",
+        "rationale": "2+4=6, 3+4=7; 6/7 ≠ 2/3.",
+        "remediation": "2+4=6, 3+4=7; 6/7 ≠ 2/3."
       },
       {
         "id": "D",
@@ -1913,7 +1913,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Share $48\\text{ kg}$ of rice between two families in the ratio $5 : 7$. How many kilograms does the family with the smaller share receive?",
     "correctAnswer": "A",
-    "explanation": "5/12 \u00d7 48 kg = 20 kg.",
+    "explanation": "5/12 × 48 kg = 20 kg.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -1959,9 +1959,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$15\\text{ kg}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Total parts = 12. Smaller = (5/12) \u00d7 48 = 20 kg.",
-        "rationale": "Total parts = 12. Smaller = (5/12) \u00d7 48 = 20 kg.",
-        "remediation": "Total parts = 12. Smaller = (5/12) \u00d7 48 = 20 kg."
+        "feedback": "Total parts = 12. Smaller = (5/12) × 48 = 20 kg.",
+        "rationale": "Total parts = 12. Smaller = (5/12) × 48 = 20 kg.",
+        "remediation": "Total parts = 12. Smaller = (5/12) × 48 = 20 kg."
       }
     ]
   },
@@ -1977,7 +1977,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In a school of $600$ students, the ratio of boys to girls is $7 : 5$. How many boys are enrolled?",
     "correctAnswer": "A",
-    "explanation": "7/12 \u00d7 600 = 350 boys.",
+    "explanation": "7/12 × 600 = 350 boys.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -2023,9 +2023,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$420$",
         "misconceptionTag": "MIS-PERCENT-CONFUSION",
         "misconceptionId": "MIS-PERCENT-CONFUSION",
-        "feedback": "Total parts = 12. Boys = (7/12) \u00d7 600 = 350.",
-        "rationale": "Total parts = 12. Boys = (7/12) \u00d7 600 = 350.",
-        "remediation": "Total parts = 12. Boys = (7/12) \u00d7 600 = 350."
+        "feedback": "Total parts = 12. Boys = (7/12) × 600 = 350.",
+        "rationale": "Total parts = 12. Boys = (7/12) × 600 = 350.",
+        "remediation": "Total parts = 12. Boys = (7/12) × 600 = 350."
       }
     ]
   },
@@ -2041,7 +2041,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Two angles of a triangle are in the ratio $2 : 3$. If their sum is $100^\\circ$, calculate the measure of the smaller angle.",
     "correctAnswer": "A",
-    "explanation": "2/5 \u00d7 100\u00b0 = 40\u00b0.",
+    "explanation": "2/5 × 100° = 40°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -2069,27 +2069,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$60^\\circ$",
         "misconceptionTag": "MIS-LARGER-ANGLE",
         "misconceptionId": "MIS-LARGER-ANGLE",
-        "feedback": "60\u00b0 is the larger angle.",
-        "rationale": "60\u00b0 is the larger angle.",
-        "remediation": "60\u00b0 is the larger angle."
+        "feedback": "60° is the larger angle.",
+        "rationale": "60° is the larger angle.",
+        "remediation": "60° is the larger angle."
       },
       {
         "id": "C",
         "text": "$50^\\circ$",
         "misconceptionTag": "MIS-EQUAL-SPLIT",
         "misconceptionId": "MIS-EQUAL-SPLIT",
-        "feedback": "100\u00b0 / 2 = 50\u00b0 is equal split.",
-        "rationale": "100\u00b0 / 2 = 50\u00b0 is equal split.",
-        "remediation": "100\u00b0 / 2 = 50\u00b0 is equal split."
+        "feedback": "100° / 2 = 50° is equal split.",
+        "rationale": "100° / 2 = 50° is equal split.",
+        "remediation": "100° / 2 = 50° is equal split."
       },
       {
         "id": "D",
         "text": "$20^\\circ$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "1 part = 100\u00b0 / 5 = 20\u00b0. Smaller = 2 \u00d7 20\u00b0 = 40\u00b0.",
-        "rationale": "1 part = 100\u00b0 / 5 = 20\u00b0. Smaller = 2 \u00d7 20\u00b0 = 40\u00b0.",
-        "remediation": "1 part = 100\u00b0 / 5 = 20\u00b0. Smaller = 2 \u00d7 20\u00b0 = 40\u00b0."
+        "feedback": "1 part = 100° / 5 = 20°. Smaller = 2 × 20° = 40°.",
+        "rationale": "1 part = 100° / 5 = 20°. Smaller = 2 × 20° = 40°.",
+        "remediation": "1 part = 100° / 5 = 20°. Smaller = 2 × 20° = 40°."
       }
     ]
   },
@@ -2103,16 +2103,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Simplify ratios and divide quantities proportionally",
     "thinkingLevel": "application",
     "questionType": "numeric_entry",
-    "prompt": "Divide \\\u20a6$90,000$ in the ratio $2 : 3 : 4$. What is the middle share (numeric value only in \u20a6)?",
+    "prompt": "Divide \\₦$90,000$ in the ratio $2 : 3 : 4$. What is the middle share (numeric value only in ₦)?",
     "correctAnswer": 30000,
-    "explanation": "Total parts = 9. 1 part = \u20a610,000. Middle = 3 \u00d7 10,000 = \u20a630,000.",
+    "explanation": "Total parts = 9. 1 part = ₦10,000. Middle = 3 × 10,000 = ₦30,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "Divide \\\u20a6$90,000$ in the ratio $2 : 3 : 4$. What is the middle share (numeric value only in \u20a6)?",
+      "input": "Divide \\₦$90,000$ in the ratio $2 : 3 : 4$. What is the middle share (numeric value only in ₦)?",
       "output": "30000",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -2172,7 +2172,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "Multiply V by each ratio term: a\u00d7V, b\u00d7V, and c\u00d7V."
+        "text": "Multiply V by each ratio term: a×V, b×V, and c×V."
       },
       {
         "id": "D",
@@ -2221,16 +2221,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Simplify ratios and divide quantities proportionally",
     "thinkingLevel": "error_analysis",
     "questionType": "single_choice",
-    "prompt": "A student attempted to share \\\u20a6$50,000$ in the ratio $2 : 3$ by calculating $\\frac{2}{3} \\times 50,000$. What error did the student commit?",
+    "prompt": "A student attempted to share \\₦$50,000$ in the ratio $2 : 3$ by calculating $\\frac{2}{3} \\times 50,000$. What error did the student commit?",
     "correctAnswer": "A",
-    "explanation": "Denominator must be 2 + 3 = 5: (2/5) \u00d7 50,000 = \u20a620,000.",
+    "explanation": "Denominator must be 2 + 3 = 5: (2/5) × 50,000 = ₦20,000.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A student attempted to share \\\u20a6$50,000$ in the ratio $2 : 3$ by calculating $\\frac{2}{3} \\times 50,000$. What error did ",
+      "input": "A student attempted to share \\₦$50,000$ in the ratio $2 : 3$ by calculating $\\frac{2}{3} \\times 50,000$. What error did ",
       "output": "Divided by $3$ instead of the total sum of the ratio parts ($2 + 3 = 5$).",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -2257,7 +2257,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "Should have subtracted \u20a650,000 from 2/3.",
+        "text": "Should have subtracted ₦50,000 from 2/3.",
         "misconceptionTag": "MIS-SUB-CONFUSION",
         "misconceptionId": "MIS-SUB-CONFUSION",
         "feedback": "Proportional sharing requires multiplying total by fraction.",
@@ -2415,7 +2415,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Three positive numbers $x, y, z$ are in the ratio $1 : 2 : 3$. If $x^2 + y^2 + z^2 = 504$, find the value of $z$.",
     "correctAnswer": "A",
-    "explanation": "14k\u00b2 = 504 => k\u00b2 = 36 => k = 6. z = 3(6) = 18.",
+    "explanation": "14k² = 504 => k² = 36 => k = 6. z = 3(6) = 18.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -2461,9 +2461,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$24$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "x\u00b2 + 4x\u00b2 + 9x\u00b2 = 14x\u00b2 = 504 => x = 6 => z = 18.",
-        "rationale": "x\u00b2 + 4x\u00b2 + 9x\u00b2 = 14x\u00b2 = 504 => x = 6 => z = 18.",
-        "remediation": "x\u00b2 + 4x\u00b2 + 9x\u00b2 = 14x\u00b2 = 504 => x = 6 => z = 18."
+        "feedback": "x² + 4x² + 9x² = 14x² = 504 => x = 6 => z = 18.",
+        "rationale": "x² + 4x² + 9x² = 14x² = 504 => x = 6 => z = 18.",
+        "remediation": "x² + 4x² + 9x² = 14x² = 504 => x = 6 => z = 18."
       }
     ]
   },
@@ -2479,7 +2479,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Which expression correctly defines the percentage profit on an item?",
     "correctAnswer": "A",
-    "explanation": "Percentage profit = (Profit / Cost Price) \u00d7 100%.",
+    "explanation": "Percentage profit = (Profit / Cost Price) × 100%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -2541,16 +2541,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "understanding",
     "questionType": "single_choice",
-    "prompt": "A trader bought a phone for \\\u20a6$40,000$ and sold it for \\\u20a6$48,000$. What was the percentage profit?",
+    "prompt": "A trader bought a phone for \\₦$40,000$ and sold it for \\₦$48,000$. What was the percentage profit?",
     "correctAnswer": "A",
-    "explanation": "Profit = 48,000 - 40,000 = \u20a68,000. % profit = (8,000 / 40,000) \u00d7 100% = 20%.",
+    "explanation": "Profit = 48,000 - 40,000 = ₦8,000. % profit = (8,000 / 40,000) × 100% = 20%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A trader bought a phone for \\\u20a6$40,000$ and sold it for \\\u20a6$48,000$. What was the percentage profit?",
+      "input": "A trader bought a phone for \\₦$40,000$ and sold it for \\₦$48,000$. What was the percentage profit?",
       "output": "$20\\%$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -2571,18 +2571,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$16.67\\%$",
         "misconceptionTag": "MIS-MARGIN-CONFUSION",
         "misconceptionId": "MIS-MARGIN-CONFUSION",
-        "feedback": "Divided by selling price \u20a648,000 instead of cost price \u20a640,000.",
-        "rationale": "Divided by selling price \u20a648,000 instead of cost price \u20a640,000.",
-        "remediation": "Divided by selling price \u20a648,000 instead of cost price \u20a640,000."
+        "feedback": "Divided by selling price ₦48,000 instead of cost price ₦40,000.",
+        "rationale": "Divided by selling price ₦48,000 instead of cost price ₦40,000.",
+        "remediation": "Divided by selling price ₦48,000 instead of cost price ₦40,000."
       },
       {
         "id": "C",
         "text": "$8\\%$",
         "misconceptionTag": "MIS-DIFF-ONLY",
         "misconceptionId": "MIS-DIFF-ONLY",
-        "feedback": "\u20a68,000 is the profit, percentage is 8,000/40,000 \u00d7 100% = 20%.",
-        "rationale": "\u20a68,000 is the profit, percentage is 8,000/40,000 \u00d7 100% = 20%.",
-        "remediation": "\u20a68,000 is the profit, percentage is 8,000/40,000 \u00d7 100% = 20%."
+        "feedback": "₦8,000 is the profit, percentage is 8,000/40,000 × 100% = 20%.",
+        "rationale": "₦8,000 is the profit, percentage is 8,000/40,000 × 100% = 20%.",
+        "remediation": "₦8,000 is the profit, percentage is 8,000/40,000 × 100% = 20%."
       },
       {
         "id": "D",
@@ -2605,17 +2605,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "understanding",
     "questionType": "single_choice",
-    "prompt": "A shoe costing \\\u20a6$15,000$ was sold at a $10\\%$ loss. What was the selling price?",
+    "prompt": "A shoe costing \\₦$15,000$ was sold at a $10\\%$ loss. What was the selling price?",
     "correctAnswer": "A",
-    "explanation": "Loss = 0.10 \u00d7 15,000 = \u20a61,500. Selling price = 15,000 - 1,500 = \u20a613,500.",
+    "explanation": "Loss = 0.10 × 15,000 = ₦1,500. Selling price = 15,000 - 1,500 = ₦13,500.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A shoe costing \\\u20a6$15,000$ was sold at a $10\\%$ loss. What was the selling price?",
-      "output": "\\\u20a6$13,500$",
+      "input": "A shoe costing \\₦$15,000$ was sold at a $10\\%$ loss. What was the selling price?",
+      "output": "\\₦$13,500$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -2628,11 +2628,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$13,500$"
+        "text": "\\₦$13,500$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$16,500$",
+        "text": "\\₦$16,500$",
         "misconceptionTag": "MIS-ADD-LOSS",
         "misconceptionId": "MIS-ADD-LOSS",
         "feedback": "A loss decreases the selling price below cost price.",
@@ -2641,21 +2641,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "\\\u20a6$14,000$",
+        "text": "\\₦$14,000$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "10% of 15,000 is 1,500. 15,000 - 1,500 = \u20a613,500.",
-        "rationale": "10% of 15,000 is 1,500. 15,000 - 1,500 = \u20a613,500.",
-        "remediation": "10% of 15,000 is 1,500. 15,000 - 1,500 = \u20a613,500."
+        "feedback": "10% of 15,000 is 1,500. 15,000 - 1,500 = ₦13,500.",
+        "rationale": "10% of 15,000 is 1,500. 15,000 - 1,500 = ₦13,500.",
+        "remediation": "10% of 15,000 is 1,500. 15,000 - 1,500 = ₦13,500."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$1,500$",
+        "text": "\\₦$1,500$",
         "misconceptionTag": "MIS-LOSS-ONLY",
         "misconceptionId": "MIS-LOSS-ONLY",
-        "feedback": "\u20a61,500 is the loss amount, not the selling price.",
-        "rationale": "\u20a61,500 is the loss amount, not the selling price.",
-        "remediation": "\u20a61,500 is the loss amount, not the selling price."
+        "feedback": "₦1,500 is the loss amount, not the selling price.",
+        "rationale": "₦1,500 is the loss amount, not the selling price.",
+        "remediation": "₦1,500 is the loss amount, not the selling price."
       }
     ]
   },
@@ -2671,7 +2671,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: If an article is sold at a $25\\%$ profit, the Selling Price is $125\\%$ of the Cost Price.",
     "correctAnswer": "A",
-    "explanation": "SP = CP \u00d7 (1 + 0.25) = 1.25 CP = 125% of CP.",
+    "explanation": "SP = CP × (1 + 0.25) = 1.25 CP = 125% of CP.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -2733,17 +2733,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "An article was sold for \\\u20a6$36,000$ at a profit of $20\\%$. Find the original Cost Price.",
+    "prompt": "An article was sold for \\₦$36,000$ at a profit of $20\\%$. Find the original Cost Price.",
     "correctAnswer": "A",
-    "explanation": "CP = SP / 1.20 = 36,000 / 1.20 = \u20a630,000.",
+    "explanation": "CP = SP / 1.20 = 36,000 / 1.20 = ₦30,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "An article was sold for \\\u20a6$36,000$ at a profit of $20\\%$. Find the original Cost Price.",
-      "output": "\\\u20a6$30,000$",
+      "input": "An article was sold for \\₦$36,000$ at a profit of $20\\%$. Find the original Cost Price.",
+      "output": "\\₦$30,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -2756,29 +2756,29 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$30,000$"
+        "text": "\\₦$30,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$28,800$",
+        "text": "\\₦$28,800$",
         "misconceptionTag": "MIS-PERCENT-REVERSE",
         "misconceptionId": "MIS-PERCENT-REVERSE",
-        "feedback": "Cannot simply subtract 20% of 36,000; \u20a636,000 represents 120% of CP.",
-        "rationale": "Cannot simply subtract 20% of 36,000; \u20a636,000 represents 120% of CP.",
-        "remediation": "Cannot simply subtract 20% of 36,000; \u20a636,000 represents 120% of CP."
+        "feedback": "Cannot simply subtract 20% of 36,000; ₦36,000 represents 120% of CP.",
+        "rationale": "Cannot simply subtract 20% of 36,000; ₦36,000 represents 120% of CP.",
+        "remediation": "Cannot simply subtract 20% of 36,000; ₦36,000 represents 120% of CP."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$32,000$",
+        "text": "\\₦$32,000$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "36,000 / 1.20 = \u20a630,000.",
-        "rationale": "36,000 / 1.20 = \u20a630,000.",
-        "remediation": "36,000 / 1.20 = \u20a630,000."
+        "feedback": "36,000 / 1.20 = ₦30,000.",
+        "rationale": "36,000 / 1.20 = ₦30,000.",
+        "remediation": "36,000 / 1.20 = ₦30,000."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$43,200$",
+        "text": "\\₦$43,200$",
         "misconceptionTag": "MIS-ADD-INSTEAD-DIV",
         "misconceptionId": "MIS-ADD-INSTEAD-DIV",
         "feedback": "Cost price must be lower than selling price when there is profit.",
@@ -2797,17 +2797,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "A merchant bought $50\\text{ kg}$ of sugar for \\\u20a6$25,000$ and retailed it at \\\u20a6$600\\text{ per kg}$. What was the total profit?",
+    "prompt": "A merchant bought $50\\text{ kg}$ of sugar for \\₦$25,000$ and retailed it at \\₦$600\\text{ per kg}$. What was the total profit?",
     "correctAnswer": "A",
-    "explanation": "Total sales = 50 \u00d7 600 = \u20a630,000. Profit = 30,000 - 25,000 = \u20a65,000.",
+    "explanation": "Total sales = 50 × 600 = ₦30,000. Profit = 30,000 - 25,000 = ₦5,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A merchant bought $50\\text{ kg}$ of sugar for \\\u20a6$25,000$ and retailed it at \\\u20a6$600\\text{ per kg}$. What was the total pr",
-      "output": "\\\u20a6$5,000$",
+      "input": "A merchant bought $50\\text{ kg}$ of sugar for \\₦$25,000$ and retailed it at \\₦$600\\text{ per kg}$. What was the total pr",
+      "output": "\\₦$5,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -2820,34 +2820,34 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$5,000$"
+        "text": "\\₦$5,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$30,000$",
+        "text": "\\₦$30,000$",
         "misconceptionTag": "MIS-TOTAL-REVENUE",
         "misconceptionId": "MIS-TOTAL-REVENUE",
-        "feedback": "\u20a630,000 is total revenue, not profit.",
-        "rationale": "\u20a630,000 is total revenue, not profit.",
-        "remediation": "\u20a630,000 is total revenue, not profit."
+        "feedback": "₦30,000 is total revenue, not profit.",
+        "rationale": "₦30,000 is total revenue, not profit.",
+        "remediation": "₦30,000 is total revenue, not profit."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$6,000$",
+        "text": "\\₦$6,000$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "50 \u00d7 600 = 30,000; 30,000 - 25,000 = \u20a65,000.",
-        "rationale": "50 \u00d7 600 = 30,000; 30,000 - 25,000 = \u20a65,000.",
-        "remediation": "50 \u00d7 600 = 30,000; 30,000 - 25,000 = \u20a65,000."
+        "feedback": "50 × 600 = 30,000; 30,000 - 25,000 = ₦5,000.",
+        "rationale": "50 × 600 = 30,000; 30,000 - 25,000 = ₦5,000.",
+        "remediation": "50 × 600 = 30,000; 30,000 - 25,000 = ₦5,000."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$4,000$",
+        "text": "\\₦$4,000$",
         "misconceptionTag": "MIS-SUB-SLIP",
         "misconceptionId": "MIS-SUB-SLIP",
-        "feedback": "Check 30,000 - 25,000 = \u20a65,000.",
-        "rationale": "Check 30,000 - 25,000 = \u20a65,000.",
-        "remediation": "Check 30,000 - 25,000 = \u20a65,000."
+        "feedback": "Check 30,000 - 25,000 = ₦5,000.",
+        "rationale": "Check 30,000 - 25,000 = ₦5,000.",
+        "remediation": "Check 30,000 - 25,000 = ₦5,000."
       }
     ]
   },
@@ -2861,17 +2861,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "A television is marked at \\\u20a6$80,000$. A customer negotiates a $10\\%$ discount and an additional $5\\%$ cash rebate on the discounted price. How much does the customer pay?",
+    "prompt": "A television is marked at \\₦$80,000$. A customer negotiates a $10\\%$ discount and an additional $5\\%$ cash rebate on the discounted price. How much does the customer pay?",
     "correctAnswer": "A",
-    "explanation": "After 10%: 80,000 \u00d7 0.90 = 72,000. After 5%: 72,000 \u00d7 0.95 = \u20a668,400.",
+    "explanation": "After 10%: 80,000 × 0.90 = 72,000. After 5%: 72,000 × 0.95 = ₦68,400.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A television is marked at \\\u20a6$80,000$. A customer negotiates a $10\\%$ discount and an additional $5\\%$ cash rebate on the",
-      "output": "\\\u20a6$68,400$",
+      "input": "A television is marked at \\₦$80,000$. A customer negotiates a $10\\%$ discount and an additional $5\\%$ cash rebate on the",
+      "output": "\\₦$68,400$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -2884,11 +2884,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$68,400$"
+        "text": "\\₦$68,400$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$68,000$",
+        "text": "\\₦$68,000$",
         "misconceptionTag": "MIS-PERCENT-SUM",
         "misconceptionId": "MIS-PERCENT-SUM",
         "feedback": "Cannot simply add 10% + 5% = 15% of 80,000 = 68,000.",
@@ -2897,21 +2897,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "\\\u20a6$72,000$",
+        "text": "\\₦$72,000$",
         "misconceptionTag": "MIS-FIRST-DISCOUNT",
         "misconceptionId": "MIS-FIRST-DISCOUNT",
-        "feedback": "\u20a672,000 is the price after 10% discount before cash rebate.",
-        "rationale": "\u20a672,000 is the price after 10% discount before cash rebate.",
-        "remediation": "\u20a672,000 is the price after 10% discount before cash rebate."
+        "feedback": "₦72,000 is the price after 10% discount before cash rebate.",
+        "rationale": "₦72,000 is the price after 10% discount before cash rebate.",
+        "remediation": "₦72,000 is the price after 10% discount before cash rebate."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$64,000$",
+        "text": "\\₦$64,000$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "80,000 \u00d7 0.90 \u00d7 0.95 = \u20a668,400.",
-        "rationale": "80,000 \u00d7 0.90 \u00d7 0.95 = \u20a668,400.",
-        "remediation": "80,000 \u00d7 0.90 \u00d7 0.95 = \u20a668,400."
+        "feedback": "80,000 × 0.90 × 0.95 = ₦68,400.",
+        "rationale": "80,000 × 0.90 × 0.95 = ₦68,400.",
+        "remediation": "80,000 × 0.90 × 0.95 = ₦68,400."
       }
     ]
   },
@@ -2925,16 +2925,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "application",
     "questionType": "numeric_entry",
-    "prompt": "If a generator is bought for \\\u20a6$120,000$ and sold for \\\u20a6$150,000$, calculate the percentage profit (numeric value in %).",
+    "prompt": "If a generator is bought for \\₦$120,000$ and sold for \\₦$150,000$, calculate the percentage profit (numeric value in %).",
     "correctAnswer": 25,
-    "explanation": "Profit = 30,000. % profit = (30,000 / 120,000) \u00d7 100% = 25%.",
+    "explanation": "Profit = 30,000. % profit = (30,000 / 120,000) × 100% = 25%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "If a generator is bought for \\\u20a6$120,000$ and sold for \\\u20a6$150,000$, calculate the percentage profit (numeric value in %).",
+      "input": "If a generator is bought for \\₦$120,000$ and sold for \\₦$150,000$, calculate the percentage profit (numeric value in %).",
       "output": "25",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -2990,7 +2990,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Write the equation: SP = CP \u00d7 (100 + r) / 100."
+        "text": "Write the equation: SP = CP × (100 + r) / 100."
       },
       {
         "id": "C",
@@ -3045,7 +3045,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student calculates percentage profit as $\\frac{60,000 - 50,000}{60,000} \\times 100\\% = 16.67\\%$. What error was committed?",
     "correctAnswer": "A",
-    "explanation": "Percentage profit must always divide by the cost price: 10,000 / 50,000 \u00d7 100% = 20%.",
+    "explanation": "Percentage profit must always divide by the cost price: 10,000 / 50,000 × 100% = 20%.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -3073,18 +3073,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "Subtracted in the wrong order.",
         "misconceptionTag": "MIS-ORDER-SUB",
         "misconceptionId": "MIS-ORDER-SUB",
-        "feedback": "60,000 - 50,000 correctly gives \u20a610,000 profit.",
-        "rationale": "60,000 - 50,000 correctly gives \u20a610,000 profit.",
-        "remediation": "60,000 - 50,000 correctly gives \u20a610,000 profit."
+        "feedback": "60,000 - 50,000 correctly gives ₦10,000 profit.",
+        "rationale": "60,000 - 50,000 correctly gives ₦10,000 profit.",
+        "remediation": "60,000 - 50,000 correctly gives ₦10,000 profit."
       },
       {
         "id": "C",
         "text": "Forgot to multiply by 100%.",
         "misconceptionTag": "MIS-FACTOR-100",
         "misconceptionId": "MIS-FACTOR-100",
-        "feedback": "The expression includes \u00d7 100%.",
-        "rationale": "The expression includes \u00d7 100%.",
-        "remediation": "The expression includes \u00d7 100%."
+        "feedback": "The expression includes × 100%.",
+        "rationale": "The expression includes × 100%.",
+        "remediation": "The expression includes × 100%."
       },
       {
         "id": "D",
@@ -3109,7 +3109,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A trader applies two successive discounts of $20\\%$ and $10\\%$. A student claims this is equivalent to a single discount of $30\\%$. Why is this claim wrong?",
     "correctAnswer": "A",
-    "explanation": "0.80 \u00d7 0.90 = 0.72 => effective discount is 100% - 72% = 28%.",
+    "explanation": "0.80 × 0.90 = 0.72 => effective discount is 100% - 72% = 28%.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -3143,7 +3143,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "The second discount should be multiplied: 20 \u00d7 10 = 200%.",
+        "text": "The second discount should be multiplied: 20 × 10 = 200%.",
         "misconceptionTag": "MIS-ARITH-MULT",
         "misconceptionId": "MIS-ARITH-MULT",
         "feedback": "Discounts are not multiplied directly.",
@@ -3152,7 +3152,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "D",
-        "text": "The claim is correct for all purchases above \u20a6100,000.",
+        "text": "The claim is correct for all purchases above ₦100,000.",
         "misconceptionTag": "MIS-THRESHOLD-CONFUSION",
         "misconceptionId": "MIS-THRESHOLD-CONFUSION",
         "feedback": "Mathematical percentage laws hold regardless of total amount.",
@@ -3171,17 +3171,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "challenge_transfer",
     "questionType": "single_choice",
-    "prompt": "A dealer sold two cars for \\\u20a6$2,400,000$ each. On the first car, he made a $20\\%$ profit; on the second car, he made a $20\\%$ loss. What was his overall financial outcome on both transactions combined?",
+    "prompt": "A dealer sold two cars for \\₦$2,400,000$ each. On the first car, he made a $20\\%$ profit; on the second car, he made a $20\\%$ loss. What was his overall financial outcome on both transactions combined?",
     "correctAnswer": "A",
-    "explanation": "Car 1 CP = 2.4M / 1.2 = 2.0M (gain 400k). Car 2 CP = 2.4M / 0.8 = 3.0M (loss 600k). Total CP = 5.0M, Total SP = 4.8M. Net loss = \u20a6200,000.",
+    "explanation": "Car 1 CP = 2.4M / 1.2 = 2.0M (gain 400k). Car 2 CP = 2.4M / 0.8 = 3.0M (loss 600k). Total CP = 5.0M, Total SP = 4.8M. Net loss = ₦200,000.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A dealer sold two cars for \\\u20a6$2,400,000$ each. On the first car, he made a $20\\%$ profit; on the second car, he made a $",
-      "output": "A net loss of \\\u20a6$200,000$",
+      "input": "A dealer sold two cars for \\₦$2,400,000$ each. On the first car, he made a $20\\%$ profit; on the second car, he made a $",
+      "output": "A net loss of \\₦$200,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -3194,7 +3194,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "A net loss of \\\u20a6$200,000$"
+        "text": "A net loss of \\₦$200,000$"
       },
       {
         "id": "B",
@@ -3207,7 +3207,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "A net profit of \u20a6100,000",
+        "text": "A net profit of ₦100,000",
         "misconceptionTag": "MIS-PROFIT-BIAS",
         "misconceptionId": "MIS-PROFIT-BIAS",
         "feedback": "The loss on the second car exceeds the gain on the first car.",
@@ -3216,12 +3216,12 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "D",
-        "text": "A net loss of \u20a6400,000",
+        "text": "A net loss of ₦400,000",
         "misconceptionTag": "MIS-DOUBLE-LOSS",
         "misconceptionId": "MIS-DOUBLE-LOSS",
-        "feedback": "Overall loss is exactly \u20a6200,000.",
-        "rationale": "Overall loss is exactly \u20a6200,000.",
-        "remediation": "Overall loss is exactly \u20a6200,000."
+        "feedback": "Overall loss is exactly ₦200,000.",
+        "rationale": "Overall loss is exactly ₦200,000.",
+        "remediation": "Overall loss is exactly ₦200,000."
       }
     ]
   },
@@ -3235,17 +3235,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate profit, loss, and percentage margins",
     "thinkingLevel": "challenge_transfer",
     "questionType": "single_choice",
-    "prompt": "A grocer mixes two grades of tea costing \\\u20a6$1,200\\text{ per kg}$ and \\\u20a6$1,500\\text{ per kg}$ in the ratio $2 : 1$. At what price per kg must the grocer sell the blend to make a $20\\%$ profit?",
+    "prompt": "A grocer mixes two grades of tea costing \\₦$1,200\\text{ per kg}$ and \\₦$1,500\\text{ per kg}$ in the ratio $2 : 1$. At what price per kg must the grocer sell the blend to make a $20\\%$ profit?",
     "correctAnswer": "A",
-    "explanation": "Cost of 3 kg = 2(1,200) + 1,500 = \u20a63,900 => CP per kg = \u20a61,300. Selling price = 1,300 \u00d7 1.20 = \u20a61,560.",
+    "explanation": "Cost of 3 kg = 2(1,200) + 1,500 = ₦3,900 => CP per kg = ₦1,300. Selling price = 1,300 × 1.20 = ₦1,560.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A grocer mixes two grades of tea costing \\\u20a6$1,200\\text{ per kg}$ and \\\u20a6$1,500\\text{ per kg}$ in the ratio $2 : 1$. At wh",
-      "output": "\\\u20a6$1,560\\text{ per kg}$",
+      "input": "A grocer mixes two grades of tea costing \\₦$1,200\\text{ per kg}$ and \\₦$1,500\\text{ per kg}$ in the ratio $2 : 1$. At wh",
+      "output": "\\₦$1,560\\text{ per kg}$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -3258,34 +3258,34 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$1,560\\text{ per kg}$"
+        "text": "\\₦$1,560\\text{ per kg}$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$1,440\\text{ per kg}$",
+        "text": "\\₦$1,440\\text{ per kg}$",
         "misconceptionTag": "MIS-CP-ONLY",
         "misconceptionId": "MIS-CP-ONLY",
-        "feedback": "\u20a61,300 is cost price of 1kg mixture, 1.20 \u00d7 1,300 = \u20a61,560.",
-        "rationale": "\u20a61,300 is cost price of 1kg mixture, 1.20 \u00d7 1,300 = \u20a61,560.",
-        "remediation": "\u20a61,300 is cost price of 1kg mixture, 1.20 \u00d7 1,300 = \u20a61,560."
+        "feedback": "₦1,300 is cost price of 1kg mixture, 1.20 × 1,300 = ₦1,560.",
+        "rationale": "₦1,300 is cost price of 1kg mixture, 1.20 × 1,300 = ₦1,560.",
+        "remediation": "₦1,300 is cost price of 1kg mixture, 1.20 × 1,300 = ₦1,560."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$1,620\\text{ per kg}$",
+        "text": "\\₦$1,620\\text{ per kg}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Cost of 3kg = 2(1,200) + 1,500 = 3,900 => CP/kg = 1,300. SP = 1.20 \u00d7 1,300 = 1,560.",
-        "rationale": "Cost of 3kg = 2(1,200) + 1,500 = 3,900 => CP/kg = 1,300. SP = 1.20 \u00d7 1,300 = 1,560.",
-        "remediation": "Cost of 3kg = 2(1,200) + 1,500 = 3,900 => CP/kg = 1,300. SP = 1.20 \u00d7 1,300 = 1,560."
+        "feedback": "Cost of 3kg = 2(1,200) + 1,500 = 3,900 => CP/kg = 1,300. SP = 1.20 × 1,300 = 1,560.",
+        "rationale": "Cost of 3kg = 2(1,200) + 1,500 = 3,900 => CP/kg = 1,300. SP = 1.20 × 1,300 = 1,560.",
+        "remediation": "Cost of 3kg = 2(1,200) + 1,500 = 3,900 => CP/kg = 1,300. SP = 1.20 × 1,300 = 1,560."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$1,500\\text{ per kg}$",
+        "text": "\\₦$1,500\\text{ per kg}$",
         "misconceptionTag": "MIS-AVERAGE-GUESS",
         "misconceptionId": "MIS-AVERAGE-GUESS",
-        "feedback": "Weighted cost is \u20a61,300, not \u20a61,350.",
-        "rationale": "Weighted cost is \u20a61,300, not \u20a61,350.",
-        "remediation": "Weighted cost is \u20a61,300, not \u20a61,350."
+        "feedback": "Weighted cost is ₦1,300, not ₦1,350.",
+        "rationale": "Weighted cost is ₦1,300, not ₦1,350.",
+        "remediation": "Weighted cost is ₦1,300, not ₦1,350."
       }
     ]
   },
@@ -3363,17 +3363,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "understanding",
     "questionType": "single_choice",
-    "prompt": "Find the simple interest on \\\u20a6$50,000$ invested at $6\\%$ per annum for $3$ years.",
+    "prompt": "Find the simple interest on \\₦$50,000$ invested at $6\\%$ per annum for $3$ years.",
     "correctAnswer": "A",
-    "explanation": "I = (50,000 \u00d7 6 \u00d7 3) / 100 = \u20a69,000.",
+    "explanation": "I = (50,000 × 6 × 3) / 100 = ₦9,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "Find the simple interest on \\\u20a6$50,000$ invested at $6\\%$ per annum for $3$ years.",
-      "output": "\\\u20a6$9,000$",
+      "input": "Find the simple interest on \\₦$50,000$ invested at $6\\%$ per annum for $3$ years.",
+      "output": "\\₦$9,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -3386,34 +3386,34 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$9,000$"
+        "text": "\\₦$9,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$3,000$",
+        "text": "\\₦$3,000$",
         "misconceptionTag": "MIS-ONE-YEAR",
         "misconceptionId": "MIS-ONE-YEAR",
-        "feedback": "\u20a63,000 is interest for 1 year; multiply by 3 years to get \u20a69,000.",
-        "rationale": "\u20a63,000 is interest for 1 year; multiply by 3 years to get \u20a69,000.",
-        "remediation": "\u20a63,000 is interest for 1 year; multiply by 3 years to get \u20a69,000."
+        "feedback": "₦3,000 is interest for 1 year; multiply by 3 years to get ₦9,000.",
+        "rationale": "₦3,000 is interest for 1 year; multiply by 3 years to get ₦9,000.",
+        "remediation": "₦3,000 is interest for 1 year; multiply by 3 years to get ₦9,000."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$59,000$",
+        "text": "\\₦$59,000$",
         "misconceptionTag": "MIS-TOTAL-AMOUNT",
         "misconceptionId": "MIS-TOTAL-AMOUNT",
-        "feedback": "\u20a659,000 is the total amount (P + I), not the interest alone.",
-        "rationale": "\u20a659,000 is the total amount (P + I), not the interest alone.",
-        "remediation": "\u20a659,000 is the total amount (P + I), not the interest alone."
+        "feedback": "₦59,000 is the total amount (P + I), not the interest alone.",
+        "rationale": "₦59,000 is the total amount (P + I), not the interest alone.",
+        "remediation": "₦59,000 is the total amount (P + I), not the interest alone."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$18,000$",
+        "text": "\\₦$18,000$",
         "misconceptionTag": "MIS-DOUBLE-SLIP",
         "misconceptionId": "MIS-DOUBLE-SLIP",
-        "feedback": "50,000 \u00d7 6 \u00d7 3 / 100 = \u20a69,000.",
-        "rationale": "50,000 \u00d7 6 \u00d7 3 / 100 = \u20a69,000.",
-        "remediation": "50,000 \u00d7 6 \u00d7 3 / 100 = \u20a69,000."
+        "feedback": "50,000 × 6 × 3 / 100 = ₦9,000.",
+        "rationale": "50,000 × 6 × 3 / 100 = ₦9,000.",
+        "remediation": "50,000 × 6 × 3 / 100 = ₦9,000."
       }
     ]
   },
@@ -3555,17 +3555,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "Calculate the compound amount on \\\u20a6$100,000$ invested at $10\\%$ per annum compound interest for $2$ years.",
+    "prompt": "Calculate the compound amount on \\₦$100,000$ invested at $10\\%$ per annum compound interest for $2$ years.",
     "correctAnswer": "A",
-    "explanation": "A = 100,000 \u00d7 (1.10)\u00b2 = 100,000 \u00d7 1.21 = \u20a6121,000.",
+    "explanation": "A = 100,000 × (1.10)² = 100,000 × 1.21 = ₦121,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "Calculate the compound amount on \\\u20a6$100,000$ invested at $10\\%$ per annum compound interest for $2$ years.",
-      "output": "\\\u20a6$121,000$",
+      "input": "Calculate the compound amount on \\₦$100,000$ invested at $10\\%$ per annum compound interest for $2$ years.",
+      "output": "\\₦$121,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -3578,34 +3578,34 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$121,000$"
+        "text": "\\₦$121,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$120,000$",
+        "text": "\\₦$120,000$",
         "misconceptionTag": "MIS-SIMPLE-CONFUSION",
         "misconceptionId": "MIS-SIMPLE-CONFUSION",
-        "feedback": "\u20a6120,000 is simple interest amount; compound interest adds interest on year 1 interest.",
-        "rationale": "\u20a6120,000 is simple interest amount; compound interest adds interest on year 1 interest.",
-        "remediation": "\u20a6120,000 is simple interest amount; compound interest adds interest on year 1 interest."
+        "feedback": "₦120,000 is simple interest amount; compound interest adds interest on year 1 interest.",
+        "rationale": "₦120,000 is simple interest amount; compound interest adds interest on year 1 interest.",
+        "remediation": "₦120,000 is simple interest amount; compound interest adds interest on year 1 interest."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$21,000$",
+        "text": "\\₦$21,000$",
         "misconceptionTag": "MIS-INTEREST-ONLY",
         "misconceptionId": "MIS-INTEREST-ONLY",
-        "feedback": "\u20a621,000 is the compound interest, the amount is P + CI = \u20a6121,000.",
-        "rationale": "\u20a621,000 is the compound interest, the amount is P + CI = \u20a6121,000.",
-        "remediation": "\u20a621,000 is the compound interest, the amount is P + CI = \u20a6121,000."
+        "feedback": "₦21,000 is the compound interest, the amount is P + CI = ₦121,000.",
+        "rationale": "₦21,000 is the compound interest, the amount is P + CI = ₦121,000.",
+        "remediation": "₦21,000 is the compound interest, the amount is P + CI = ₦121,000."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$110,000$",
+        "text": "\\₦$110,000$",
         "misconceptionTag": "MIS-ONE-YEAR",
         "misconceptionId": "MIS-ONE-YEAR",
-        "feedback": "\u20a6110,000 is the amount after only 1 year.",
-        "rationale": "\u20a6110,000 is the amount after only 1 year.",
-        "remediation": "\u20a6110,000 is the amount after only 1 year."
+        "feedback": "₦110,000 is the amount after only 1 year.",
+        "rationale": "₦110,000 is the amount after only 1 year.",
+        "remediation": "₦110,000 is the amount after only 1 year."
       }
     ]
   },
@@ -3619,16 +3619,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "At what rate per annum will \\\u20a6$40,000$ yield \\\u20a6$12,000$ simple interest in $5$ years?",
+    "prompt": "At what rate per annum will \\₦$40,000$ yield \\₦$12,000$ simple interest in $5$ years?",
     "correctAnswer": "A",
-    "explanation": "R = (100 \u00d7 I) / (P \u00d7 T) = (100 \u00d7 12,000) / (40,000 \u00d7 5) = 6%.",
+    "explanation": "R = (100 × I) / (P × T) = (100 × 12,000) / (40,000 × 5) = 6%.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "At what rate per annum will \\\u20a6$40,000$ yield \\\u20a6$12,000$ simple interest in $5$ years?",
+      "input": "At what rate per annum will \\₦$40,000$ yield \\₦$12,000$ simple interest in $5$ years?",
       "output": "$6\\%$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -3649,18 +3649,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$5\\%$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "R = (100 \u00d7 12,000) / (40,000 \u00d7 5) = 1,200,000 / 200,000 = 6%.",
-        "rationale": "R = (100 \u00d7 12,000) / (40,000 \u00d7 5) = 1,200,000 / 200,000 = 6%.",
-        "remediation": "R = (100 \u00d7 12,000) / (40,000 \u00d7 5) = 1,200,000 / 200,000 = 6%."
+        "feedback": "R = (100 × 12,000) / (40,000 × 5) = 1,200,000 / 200,000 = 6%.",
+        "rationale": "R = (100 × 12,000) / (40,000 × 5) = 1,200,000 / 200,000 = 6%.",
+        "remediation": "R = (100 × 12,000) / (40,000 × 5) = 1,200,000 / 200,000 = 6%."
       },
       {
         "id": "C",
         "text": "$8\\%$",
         "misconceptionTag": "MIS-RATE-GUESS",
         "misconceptionId": "MIS-RATE-GUESS",
-        "feedback": "Check 40,000 \u00d7 0.06 \u00d7 5 = 12,000.",
-        "rationale": "Check 40,000 \u00d7 0.06 \u00d7 5 = 12,000.",
-        "remediation": "Check 40,000 \u00d7 0.06 \u00d7 5 = 12,000."
+        "feedback": "Check 40,000 × 0.06 × 5 = 12,000.",
+        "rationale": "Check 40,000 × 0.06 × 5 = 12,000.",
+        "remediation": "Check 40,000 × 0.06 × 5 = 12,000."
       },
       {
         "id": "D",
@@ -3683,17 +3683,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "A generator originally valued at \\\u20a6$200,000$ depreciates at $10\\%$ per annum. Calculate its book value after $2$ years.",
+    "prompt": "A generator originally valued at \\₦$200,000$ depreciates at $10\\%$ per annum. Calculate its book value after $2$ years.",
     "correctAnswer": "A",
-    "explanation": "Value = 200,000 \u00d7 (1 - 0.10)\u00b2 = 200,000 \u00d7 0.81 = \u20a6162,000.",
+    "explanation": "Value = 200,000 × (1 - 0.10)² = 200,000 × 0.81 = ₦162,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A generator originally valued at \\\u20a6$200,000$ depreciates at $10\\%$ per annum. Calculate its book value after $2$ years.",
-      "output": "\\\u20a6$162,000$",
+      "input": "A generator originally valued at \\₦$200,000$ depreciates at $10\\%$ per annum. Calculate its book value after $2$ years.",
+      "output": "\\₦$162,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -3706,34 +3706,34 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$162,000$"
+        "text": "\\₦$162,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$160,000$",
+        "text": "\\₦$160,000$",
         "misconceptionTag": "MIS-SIMPLE-DEPRECIATION",
         "misconceptionId": "MIS-SIMPLE-DEPRECIATION",
-        "feedback": "Straight-line 20% gives 160,000; reducing-balance gives 200,000 \u00d7 (0.9)\u00b2 = \u20a6162,000.",
-        "rationale": "Straight-line 20% gives 160,000; reducing-balance gives 200,000 \u00d7 (0.9)\u00b2 = \u20a6162,000.",
-        "remediation": "Straight-line 20% gives 160,000; reducing-balance gives 200,000 \u00d7 (0.9)\u00b2 = \u20a6162,000."
+        "feedback": "Straight-line 20% gives 160,000; reducing-balance gives 200,000 × (0.9)² = ₦162,000.",
+        "rationale": "Straight-line 20% gives 160,000; reducing-balance gives 200,000 × (0.9)² = ₦162,000.",
+        "remediation": "Straight-line 20% gives 160,000; reducing-balance gives 200,000 × (0.9)² = ₦162,000."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$180,000$",
+        "text": "\\₦$180,000$",
         "misconceptionTag": "MIS-ONE-YEAR",
         "misconceptionId": "MIS-ONE-YEAR",
-        "feedback": "\u20a6180,000 is value after 1 year.",
-        "rationale": "\u20a6180,000 is value after 1 year.",
-        "remediation": "\u20a6180,000 is value after 1 year."
+        "feedback": "₦180,000 is value after 1 year.",
+        "rationale": "₦180,000 is value after 1 year.",
+        "remediation": "₦180,000 is value after 1 year."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$38,000$",
+        "text": "\\₦$38,000$",
         "misconceptionTag": "MIS-DEPRECIATION-TOTAL",
         "misconceptionId": "MIS-DEPRECIATION-TOTAL",
-        "feedback": "\u20a638,000 is total depreciation; value remaining is \u20a6162,000.",
-        "rationale": "\u20a638,000 is total depreciation; value remaining is \u20a6162,000.",
-        "remediation": "\u20a638,000 is total depreciation; value remaining is \u20a6162,000."
+        "feedback": "₦38,000 is total depreciation; value remaining is ₦162,000.",
+        "rationale": "₦38,000 is total depreciation; value remaining is ₦162,000.",
+        "remediation": "₦38,000 is total depreciation; value remaining is ₦162,000."
       }
     ]
   },
@@ -3747,16 +3747,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "application",
     "questionType": "numeric_entry",
-    "prompt": "Calculate the simple interest on \\\u20a6$25,000$ at $8\\%$ per annum for $2$ years (numeric value in \u20a6).",
+    "prompt": "Calculate the simple interest on \\₦$25,000$ at $8\\%$ per annum for $2$ years (numeric value in ₦).",
     "correctAnswer": 4000,
-    "explanation": "I = (25,000 \u00d7 8 \u00d7 2) / 100 = \u20a64,000.",
+    "explanation": "I = (25,000 × 8 × 2) / 100 = ₦4,000.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "Calculate the simple interest on \\\u20a6$25,000$ at $8\\%$ per annum for $2$ years (numeric value in \u20a6).",
+      "input": "Calculate the simple interest on \\₦$25,000$ at $8\\%$ per annum for $2$ years (numeric value in ₦).",
       "output": "4000",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -3808,7 +3808,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Calculate Year 1 interest: I1 = P \u00d7 R / 100."
+        "text": "Calculate Year 1 interest: I1 = P × R / 100."
       },
       {
         "id": "B",
@@ -3816,7 +3816,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "Calculate Year 2 interest: I2 = P2 \u00d7 R / 100."
+        "text": "Calculate Year 2 interest: I2 = P2 × R / 100."
       },
       {
         "id": "D",
@@ -3865,16 +3865,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "error_analysis",
     "questionType": "single_choice",
-    "prompt": "A student was asked to find the simple interest on \\\u20a6$60,000$ for $8\\text{ months}$ at $5\\%$ per annum. The student computed $\\frac{60,000 \\times 5 \\times 8}{100} = 24,000$. What was the mistake?",
+    "prompt": "A student was asked to find the simple interest on \\₦$60,000$ for $8\\text{ months}$ at $5\\%$ per annum. The student computed $\\frac{60,000 \\times 5 \\times 8}{100} = 24,000$. What was the mistake?",
     "correctAnswer": "A",
-    "explanation": "Time must be in years: T = 8/12 = 2/3 years. Correct I = (60,000 \u00d7 5 \u00d7 2/3)/100 = \u20a62,000.",
+    "explanation": "Time must be in years: T = 8/12 = 2/3 years. Correct I = (60,000 × 5 × 2/3)/100 = ₦2,000.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A student was asked to find the simple interest on \\\u20a6$60,000$ for $8\\text{ months}$ at $5\\%$ per annum. The student comp",
+      "input": "A student was asked to find the simple interest on \\₦$60,000$ for $8\\text{ months}$ at $5\\%$ per annum. The student comp",
       "output": "Substituted $8$ years instead of converting months to years ($8/12 = 2/3\\text{ years}$).",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
@@ -3913,9 +3913,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "Multiplied principal and rate incorrectly.",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "60,000 \u00d7 5 = 300,000 was correct.",
-        "rationale": "60,000 \u00d7 5 = 300,000 was correct.",
-        "remediation": "60,000 \u00d7 5 = 300,000 was correct."
+        "feedback": "60,000 × 5 = 300,000 was correct.",
+        "rationale": "60,000 × 5 = 300,000 was correct.",
+        "remediation": "60,000 × 5 = 300,000 was correct."
       }
     ]
   },
@@ -3929,17 +3929,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "error_analysis",
     "questionType": "single_choice",
-    "prompt": "To find compound interest on \\\u20a6$80,000$ at $10\\%$ for 2 years, a student calculated $I = \\frac{80,000 \\times 10 \\times 2}{100} = 16,000$. Why is this incomplete?",
+    "prompt": "To find compound interest on \\₦$80,000$ at $10\\%$ for 2 years, a student calculated $I = \\frac{80,000 \\times 10 \\times 2}{100} = 16,000$. Why is this incomplete?",
     "correctAnswer": "A",
-    "explanation": "Year 1 interest is \u20a68,000. Year 2 interest is 10% of \u20a688,000 = \u20a68,800. Total CI = \u20a616,800.",
+    "explanation": "Year 1 interest is ₦8,000. Year 2 interest is 10% of ₦88,000 = ₦8,800. Total CI = ₦16,800.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "To find compound interest on \\\u20a6$80,000$ at $10\\%$ for 2 years, a student calculated $I = \\frac{80,000 \\times 10 \\times 2",
-      "output": "Used the simple interest formula, neglecting the interest earned on Year 1 interest (\\\u20a6$800$).",
+      "input": "To find compound interest on \\₦$80,000$ at $10\\%$ for 2 years, a student calculated $I = \\frac{80,000 \\times 10 \\times 2",
+      "output": "Used the simple interest formula, neglecting the interest earned on Year 1 interest (\\₦$800$).",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -3952,7 +3952,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Used the simple interest formula, neglecting the interest earned on Year 1 interest (\\\u20a6$800$)."
+        "text": "Used the simple interest formula, neglecting the interest earned on Year 1 interest (\\₦$800$)."
       },
       {
         "id": "B",
@@ -3993,17 +3993,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Calculate simple and compound interest and depreciation",
     "thinkingLevel": "challenge_transfer",
     "questionType": "single_choice",
-    "prompt": "What is the difference between Compound Interest and Simple Interest on \\\u20a6$80,000$ for $2$ years at $5\\%$ per annum?",
+    "prompt": "What is the difference between Compound Interest and Simple Interest on \\₦$80,000$ for $2$ years at $5\\%$ per annum?",
     "correctAnswer": "A",
-    "explanation": "Difference = P(R/100)\u00b2 = 80,000 \u00d7 (5/100)\u00b2 = 80,000 \u00d7 0.0025 = \u20a6200.",
+    "explanation": "Difference = P(R/100)² = 80,000 × (5/100)² = 80,000 × 0.0025 = ₦200.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "What is the difference between Compound Interest and Simple Interest on \\\u20a6$80,000$ for $2$ years at $5\\%$ per annum?",
-      "output": "\\\u20a6$200$",
+      "input": "What is the difference between Compound Interest and Simple Interest on \\₦$80,000$ for $2$ years at $5\\%$ per annum?",
+      "output": "\\₦$200$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -4016,29 +4016,29 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$200$"
+        "text": "\\₦$200$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$400$",
+        "text": "\\₦$400$",
         "misconceptionTag": "MIS-DOUBLE-DIFF",
         "misconceptionId": "MIS-DOUBLE-DIFF",
-        "feedback": "Difference is P \u00d7 (R/100)\u00b2 = 80,000 \u00d7 0.0025 = \u20a6200.",
-        "rationale": "Difference is P \u00d7 (R/100)\u00b2 = 80,000 \u00d7 0.0025 = \u20a6200.",
-        "remediation": "Difference is P \u00d7 (R/100)\u00b2 = 80,000 \u00d7 0.0025 = \u20a6200."
+        "feedback": "Difference is P × (R/100)² = 80,000 × 0.0025 = ₦200.",
+        "rationale": "Difference is P × (R/100)² = 80,000 × 0.0025 = ₦200.",
+        "remediation": "Difference is P × (R/100)² = 80,000 × 0.0025 = ₦200."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$100$",
+        "text": "\\₦$100$",
         "misconceptionTag": "MIS-HALF-DIFF",
         "misconceptionId": "MIS-HALF-DIFF",
-        "feedback": "SI = \u20a68,000; CI = 80,000(1.05)\u00b2 - 80,000 = 88,200 - 80,000 = \u20a68,200. Diff = \u20a6200.",
-        "rationale": "SI = \u20a68,000; CI = 80,000(1.05)\u00b2 - 80,000 = 88,200 - 80,000 = \u20a68,200. Diff = \u20a6200.",
-        "remediation": "SI = \u20a68,000; CI = 80,000(1.05)\u00b2 - 80,000 = 88,200 - 80,000 = \u20a68,200. Diff = \u20a6200."
+        "feedback": "SI = ₦8,000; CI = 80,000(1.05)² - 80,000 = 88,200 - 80,000 = ₦8,200. Diff = ₦200.",
+        "rationale": "SI = ₦8,000; CI = 80,000(1.05)² - 80,000 = 88,200 - 80,000 = ₦8,200. Diff = ₦200.",
+        "remediation": "SI = ₦8,000; CI = 80,000(1.05)² - 80,000 = 88,200 - 80,000 = ₦8,200. Diff = ₦200."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$0$",
+        "text": "\\₦$0$",
         "misconceptionTag": "MIS-NO-DIFF",
         "misconceptionId": "MIS-NO-DIFF",
         "feedback": "Difference between CI and SI over 2 years is non-zero.",
@@ -4059,7 +4059,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In how many years will an investment double itself at $12.5\\%$ simple interest per annum?",
     "correctAnswer": "A",
-    "explanation": "For investment to double, I = P. P = (P \u00d7 12.5 \u00d7 T)/100 => T = 100 / 12.5 = 8 years.",
+    "explanation": "For investment to double, I = P. P = (P × 12.5 × T)/100 => T = 100 / 12.5 = 8 years.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -4087,18 +4087,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$6\\text{ years}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "To double, I = P. T = (100 \u00d7 P) / (P \u00d7 12.5) = 100 / 12.5 = 8 years.",
-        "rationale": "To double, I = P. T = (100 \u00d7 P) / (P \u00d7 12.5) = 100 / 12.5 = 8 years.",
-        "remediation": "To double, I = P. T = (100 \u00d7 P) / (P \u00d7 12.5) = 100 / 12.5 = 8 years."
+        "feedback": "To double, I = P. T = (100 × P) / (P × 12.5) = 100 / 12.5 = 8 years.",
+        "rationale": "To double, I = P. T = (100 × P) / (P × 12.5) = 100 / 12.5 = 8 years.",
+        "remediation": "To double, I = P. T = (100 × P) / (P × 12.5) = 100 / 12.5 = 8 years."
       },
       {
         "id": "C",
         "text": "$10\\text{ years}$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "12.5 \u00d7 8 = 100%.",
-        "rationale": "12.5 \u00d7 8 = 100%.",
-        "remediation": "12.5 \u00d7 8 = 100%."
+        "feedback": "12.5 × 8 = 100%.",
+        "rationale": "12.5 × 8 = 100%.",
+        "remediation": "12.5 × 8 = 100%."
       },
       {
         "id": "D",
@@ -4735,9 +4735,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "There is no mistake; x = 4 is the exact solution.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "Testing x=4: 2(3(4)-4) = 2(8) = 16 \u2260 20.",
-        "rationale": "Testing x=4: 2(3(4)-4) = 2(8) = 16 \u2260 20.",
-        "remediation": "Testing x=4: 2(3(4)-4) = 2(8) = 16 \u2260 20."
+        "feedback": "Testing x=4: 2(3(4)-4) = 2(8) = 16 ≠ 20.",
+        "rationale": "Testing x=4: 2(3(4)-4) = 2(8) = 16 ≠ 20.",
+        "remediation": "Testing x=4: 2(3(4)-4) = 2(8) = 16 ≠ 20."
       }
     ]
   },
@@ -4815,17 +4815,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Solve linear equations in one variable and word problems",
     "thinkingLevel": "challenge_transfer",
     "questionType": "single_choice",
-    "prompt": "A man invested a total of \\\u20a6$500,000$ in two schemes. Scheme A pays $6\\%$ per annum and Scheme B pays $8\\%$ per annum. If his total annual interest is \\\u20a6$36,000$, how much was invested in Scheme B?",
+    "prompt": "A man invested a total of \\₦$500,000$ in two schemes. Scheme A pays $6\\%$ per annum and Scheme B pays $8\\%$ per annum. If his total annual interest is \\₦$36,000$, how much was invested in Scheme B?",
     "correctAnswer": "A",
-    "explanation": "0.06(500k - x) + 0.08x = 36k => 30k + 0.02x = 36k => 0.02x = 6k => x = \u20a6300,000.",
+    "explanation": "0.06(500k - x) + 0.08x = 36k => 30k + 0.02x = 36k => 0.02x = 6k => x = ₦300,000.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "A man invested a total of \\\u20a6$500,000$ in two schemes. Scheme A pays $6\\%$ per annum and Scheme B pays $8\\%$ per annum. I",
-      "output": "\\\u20a6$300,000$",
+      "input": "A man invested a total of \\₦$500,000$ in two schemes. Scheme A pays $6\\%$ per annum and Scheme B pays $8\\%$ per annum. I",
+      "output": "\\₦$300,000$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -4838,29 +4838,29 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$300,000$"
+        "text": "\\₦$300,000$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$200,000$",
+        "text": "\\₦$200,000$",
         "misconceptionTag": "MIS-SCHEME-A",
         "misconceptionId": "MIS-SCHEME-A",
-        "feedback": "\u20a6200,000 was invested in Scheme A (0.06 \u00d7 200,000 = 12,000).",
-        "rationale": "\u20a6200,000 was invested in Scheme A (0.06 \u00d7 200,000 = 12,000).",
-        "remediation": "\u20a6200,000 was invested in Scheme A (0.06 \u00d7 200,000 = 12,000)."
+        "feedback": "₦200,000 was invested in Scheme A (0.06 × 200,000 = 12,000).",
+        "rationale": "₦200,000 was invested in Scheme A (0.06 × 200,000 = 12,000).",
+        "remediation": "₦200,000 was invested in Scheme A (0.06 × 200,000 = 12,000)."
       },
       {
         "id": "C",
-        "text": "\\\u20a6$250,000$",
+        "text": "\\₦$250,000$",
         "misconceptionTag": "MIS-EQUAL-SPLIT",
         "misconceptionId": "MIS-EQUAL-SPLIT",
-        "feedback": "0.07 \u00d7 500,000 = 35,000 \u2260 36,000.",
-        "rationale": "0.07 \u00d7 500,000 = 35,000 \u2260 36,000.",
-        "remediation": "0.07 \u00d7 500,000 = 35,000 \u2260 36,000."
+        "feedback": "0.07 × 500,000 = 35,000 ≠ 36,000.",
+        "rationale": "0.07 × 500,000 = 35,000 ≠ 36,000.",
+        "remediation": "0.07 × 500,000 = 35,000 ≠ 36,000."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$350,000$",
+        "text": "\\₦$350,000$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
         "feedback": "0.06(500,000 - x) + 0.08x = 36,000 => 30,000 + 0.02x = 36,000 => x = 300,000.",
@@ -5731,9 +5731,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$k > 4$",
         "misconceptionTag": "MIS-DISCRIM-SIGN",
         "misconceptionId": "MIS-DISCRIM-SIGN",
-        "feedback": "Distinct real roots require b\u00b2 - 4ac > 0 => 16 - 4k > 0 => -4k > -16 => k < 4.",
-        "rationale": "Distinct real roots require b\u00b2 - 4ac > 0 => 16 - 4k > 0 => -4k > -16 => k < 4.",
-        "remediation": "Distinct real roots require b\u00b2 - 4ac > 0 => 16 - 4k > 0 => -4k > -16 => k < 4."
+        "feedback": "Distinct real roots require b² - 4ac > 0 => 16 - 4k > 0 => -4k > -16 => k < 4.",
+        "rationale": "Distinct real roots require b² - 4ac > 0 => 16 - 4k > 0 => -4k > -16 => k < 4.",
+        "remediation": "Distinct real roots require b² - 4ac > 0 => 16 - 4k > 0 => -4k > -16 => k < 4."
       },
       {
         "id": "C",
@@ -5795,18 +5795,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = 6, y = 4$",
         "misconceptionTag": "MIS-SUM-CHECK-ONLY",
         "misconceptionId": "MIS-SUM-CHECK-ONLY",
-        "feedback": "6 + 4 = 10, but 6 - 4 = 2 \u2260 4.",
-        "rationale": "6 + 4 = 10, but 6 - 4 = 2 \u2260 4.",
-        "remediation": "6 + 4 = 10, but 6 - 4 = 2 \u2260 4."
+        "feedback": "6 + 4 = 10, but 6 - 4 = 2 ≠ 4.",
+        "rationale": "6 + 4 = 10, but 6 - 4 = 2 ≠ 4.",
+        "remediation": "6 + 4 = 10, but 6 - 4 = 2 ≠ 4."
       },
       {
         "id": "C",
         "text": "$x = 8, y = 2$",
         "misconceptionTag": "MIS-DIFF-CHECK-ONLY",
         "misconceptionId": "MIS-DIFF-CHECK-ONLY",
-        "feedback": "8 - 2 = 6 \u2260 4.",
-        "rationale": "8 - 2 = 6 \u2260 4.",
-        "remediation": "8 - 2 = 6 \u2260 4."
+        "feedback": "8 - 2 = 6 ≠ 4.",
+        "rationale": "8 - 2 = 6 ≠ 4.",
+        "remediation": "8 - 2 = 6 ≠ 4."
       },
       {
         "id": "D",
@@ -5895,7 +5895,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "If $P$ varies inversely as the square of $Q$, which equation models this relationship?",
     "correctAnswer": "A",
-    "explanation": "Inverse variation with the square of Q means P is proportional to 1/Q\u00b2, giving P = k / Q\u00b2.",
+    "explanation": "Inverse variation with the square of Q means P is proportional to 1/Q², giving P = k / Q².",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -5923,9 +5923,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$P = k Q^2$",
         "misconceptionTag": "MIS-DIRECT-CONFUSION",
         "misconceptionId": "MIS-DIRECT-CONFUSION",
-        "feedback": "Direct variation with square is P = kQ\u00b2; inverse has Q\u00b2 in the denominator.",
-        "rationale": "Direct variation with square is P = kQ\u00b2; inverse has Q\u00b2 in the denominator.",
-        "remediation": "Direct variation with square is P = kQ\u00b2; inverse has Q\u00b2 in the denominator."
+        "feedback": "Direct variation with square is P = kQ²; inverse has Q² in the denominator.",
+        "rationale": "Direct variation with square is P = kQ²; inverse has Q² in the denominator.",
+        "remediation": "Direct variation with square is P = kQ²; inverse has Q² in the denominator."
       },
       {
         "id": "C",
@@ -5941,9 +5941,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$P = k \\sqrt{Q}$",
         "misconceptionTag": "MIS-ROOT-CONFUSION",
         "misconceptionId": "MIS-ROOT-CONFUSION",
-        "feedback": "Square is Q\u00b2, not square root.",
-        "rationale": "Square is Q\u00b2, not square root.",
-        "remediation": "Square is Q\u00b2, not square root."
+        "feedback": "Square is Q², not square root.",
+        "rationale": "Square is Q², not square root.",
+        "remediation": "Square is Q², not square root."
       }
     ]
   },
@@ -5967,7 +5967,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
       "input": "True or False: If two lines have equations $2x + 3y = 6$ and $4x + 6y = 15$, the system has no solution.",
-      "output": "True: The coefficients are proportional (2/4 = 3/6 = 1/2) but constants differ (6/15 \u2260 1/2), representing parallel lines that never intersect.",
+      "output": "True: The coefficients are proportional (2/4 = 3/6 = 1/2) but constants differ (6/15 ≠ 1/2), representing parallel lines that never intersect.",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -5980,7 +5980,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "True: The coefficients are proportional (2/4 = 3/6 = 1/2) but constants differ (6/15 \u2260 1/2), representing parallel lines that never intersect."
+        "text": "True: The coefficients are proportional (2/4 = 3/6 = 1/2) but constants differ (6/15 ≠ 1/2), representing parallel lines that never intersect."
       },
       {
         "id": "B",
@@ -5996,9 +5996,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "False: The lines are identical, so there are infinitely many solutions.",
         "misconceptionTag": "MIS-COINCIDENT-CONFUSION",
         "misconceptionId": "MIS-COINCIDENT-CONFUSION",
-        "feedback": "The constants are 6 and 15, 6/15 = 2/5 \u2260 1/2, so the lines are parallel, not coincident.",
-        "rationale": "The constants are 6 and 15, 6/15 = 2/5 \u2260 1/2, so the lines are parallel, not coincident.",
-        "remediation": "The constants are 6 and 15, 6/15 = 2/5 \u2260 1/2, so the lines are parallel, not coincident."
+        "feedback": "The constants are 6 and 15, 6/15 = 2/5 ≠ 1/2, so the lines are parallel, not coincident.",
+        "rationale": "The constants are 6 and 15, 6/15 = 2/5 ≠ 1/2, so the lines are parallel, not coincident.",
+        "remediation": "The constants are 6 and 15, 6/15 = 2/5 ≠ 1/2, so the lines are parallel, not coincident."
       },
       {
         "id": "D",
@@ -6051,27 +6051,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = 3, y = 2$",
         "misconceptionTag": "MIS-COORDINATE-SWAP",
         "misconceptionId": "MIS-COORDINATE-SWAP",
-        "feedback": "3(3) - 2(2) = 5 \u2260 0.",
-        "rationale": "3(3) - 2(2) = 5 \u2260 0.",
-        "remediation": "3(3) - 2(2) = 5 \u2260 0."
+        "feedback": "3(3) - 2(2) = 5 ≠ 0.",
+        "rationale": "3(3) - 2(2) = 5 ≠ 0.",
+        "remediation": "3(3) - 2(2) = 5 ≠ 0."
       },
       {
         "id": "C",
         "text": "$x = 4, y = 6$",
         "misconceptionTag": "MIS-SCALE-SLIP",
         "misconceptionId": "MIS-SCALE-SLIP",
-        "feedback": "2(4) + 3(6) = 26 \u2260 13.",
-        "rationale": "2(4) + 3(6) = 26 \u2260 13.",
-        "remediation": "2(4) + 3(6) = 26 \u2260 13."
+        "feedback": "2(4) + 3(6) = 26 ≠ 13.",
+        "rationale": "2(4) + 3(6) = 26 ≠ 13.",
+        "remediation": "2(4) + 3(6) = 26 ≠ 13."
       },
       {
         "id": "D",
         "text": "$x = 1, y = 1.5$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "2(1) + 3(1.5) = 6.5 \u2260 13.",
-        "rationale": "2(1) + 3(1.5) = 6.5 \u2260 13.",
-        "remediation": "2(1) + 3(1.5) = 6.5 \u2260 13."
+        "feedback": "2(1) + 3(1.5) = 6.5 ≠ 13.",
+        "rationale": "2(1) + 3(1.5) = 6.5 ≠ 13.",
+        "remediation": "2(1) + 3(1.5) = 6.5 ≠ 13."
       }
     ]
   },
@@ -6085,17 +6085,17 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "objective": "Solve simultaneous linear equations and variation problems",
     "thinkingLevel": "application",
     "questionType": "single_choice",
-    "prompt": "The cost of $3$ pens and $2$ exercise books is \\\u20a6$750$. The cost of $2$ pens and $4$ exercise books is \\\u20a6$900$. What is the cost of one exercise book?",
+    "prompt": "The cost of $3$ pens and $2$ exercise books is \\₦$750$. The cost of $2$ pens and $4$ exercise books is \\₦$900$. What is the cost of one exercise book?",
     "correctAnswer": "A",
-    "explanation": "Let p = pen, b = book: 3p + 2b = 750 and p + 2b = 450. Subtracting gives 2p = 300 => p = \u20a6150. Then 150 + 2b = 450 => 2b = 300 => b = \u20a6150.",
+    "explanation": "Let p = pen, b = book: 3p + 2b = 750 and p + 2b = 450. Subtracting gives 2p = 300 => p = ₦150. Then 150 + 2b = 450 => 2b = 300 => b = ₦150.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
     "softwareVerified": true,
     "verificationEvidence": {
       "tool": "DoublePass_SymEngine_v2",
-      "input": "The cost of $3$ pens and $2$ exercise books is \\\u20a6$750$. The cost of $2$ pens and $4$ exercise books is \\\u20a6$900$. What is ",
-      "output": "\\\u20a6$150$",
+      "input": "The cost of $3$ pens and $2$ exercise books is \\₦$750$. The cost of $2$ pens and $4$ exercise books is \\₦$900$. What is ",
+      "output": "\\₦$150$",
       "verifiedAt": "2026-11-06T09:00:00.000Z",
       "independentAgreement": true
     },
@@ -6108,11 +6108,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "\\\u20a6$150$"
+        "text": "\\₦$150$"
       },
       {
         "id": "B",
-        "text": "\\\u20a6$120$",
+        "text": "\\₦$120$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
         "feedback": "Let p = pen, b = book. 3p + 2b = 750, 2p + 4b = 900. Solving gives b = 150.",
@@ -6121,16 +6121,16 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "\\\u20a6$180$",
+        "text": "\\₦$180$",
         "misconceptionTag": "MIS-PEN-PRICE",
         "misconceptionId": "MIS-PEN-PRICE",
-        "feedback": "\u20a6180 is the cost of a pen: 3(150) + 2(150) = 750 => p = 150? Wait: 3p + 2b = 750 => 6p + 4b = 1500; (6p+4b)-(2p+4b) = 4p = 600 => p = 150. Then 2b = 750 - 450 = 300 => b = 150.",
-        "rationale": "\u20a6180 is the cost of a pen: 3(150) + 2(150) = 750 => p = 150? Wait: 3p + 2b = 750 => 6p + 4b = 1500; (6p+4b)-(2p+4b) = 4p = 600 => p = 150. Then 2b = 750 - 450 = 300 => b = 150.",
-        "remediation": "\u20a6180 is the cost of a pen: 3(150) + 2(150) = 750 => p = 150? Wait: 3p + 2b = 750 => 6p + 4b = 1500; (6p+4b)-(2p+4b) = 4p = 600 => p = 150. Then 2b = 750 - 450 = 300 => b = 150."
+        "feedback": "₦180 is the cost of a pen: 3(150) + 2(150) = 750 => p = 150? Wait: 3p + 2b = 750 => 6p + 4b = 1500; (6p+4b)-(2p+4b) = 4p = 600 => p = 150. Then 2b = 750 - 450 = 300 => b = 150.",
+        "rationale": "₦180 is the cost of a pen: 3(150) + 2(150) = 750 => p = 150? Wait: 3p + 2b = 750 => 6p + 4b = 1500; (6p+4b)-(2p+4b) = 4p = 600 => p = 150. Then 2b = 750 - 450 = 300 => b = 150.",
+        "remediation": "₦180 is the cost of a pen: 3(150) + 2(150) = 750 => p = 150? Wait: 3p + 2b = 750 => 6p + 4b = 1500; (6p+4b)-(2p+4b) = 4p = 600 => p = 150. Then 2b = 750 - 450 = 300 => b = 150."
       },
       {
         "id": "D",
-        "text": "\\\u20a6$200$",
+        "text": "\\₦$200$",
         "misconceptionTag": "MIS-SCALE-SLIP",
         "misconceptionId": "MIS-SCALE-SLIP",
         "feedback": "p = 150, b = 150.",
@@ -6361,9 +6361,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "Multiplied 5 by 5 incorrectly.",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "5 \u00d7 5 = 25 is correct arithmetic for wrong formula.",
-        "rationale": "5 \u00d7 5 = 25 is correct arithmetic for wrong formula.",
-        "remediation": "5 \u00d7 5 = 25 is correct arithmetic for wrong formula."
+        "feedback": "5 × 5 = 25 is correct arithmetic for wrong formula.",
+        "rationale": "5 × 5 = 25 is correct arithmetic for wrong formula.",
+        "remediation": "5 × 5 = 25 is correct arithmetic for wrong formula."
       },
       {
         "id": "C",
@@ -6489,27 +6489,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "\\frac{3}{5}",
         "misconceptionTag": "MIS-TEST-SLIP",
         "misconceptionId": "MIS-TEST-SLIP",
-        "feedback": "3 / (5 + 1) = 3/6 = 1/2, but (3 - 1)/5 = 2/5 \u2260 1/3.",
-        "rationale": "3 / (5 + 1) = 3/6 = 1/2, but (3 - 1)/5 = 2/5 \u2260 1/3.",
-        "remediation": "3 / (5 + 1) = 3/6 = 1/2, but (3 - 1)/5 = 2/5 \u2260 1/3."
+        "feedback": "3 / (5 + 1) = 3/6 = 1/2, but (3 - 1)/5 = 2/5 ≠ 1/3.",
+        "rationale": "3 / (5 + 1) = 3/6 = 1/2, but (3 - 1)/5 = 2/5 ≠ 1/3.",
+        "remediation": "3 / (5 + 1) = 3/6 = 1/2, but (3 - 1)/5 = 2/5 ≠ 1/3."
       },
       {
         "id": "C",
         "text": "\\frac{4}{7}",
         "misconceptionTag": "MIS-TEST-SLIP",
         "misconceptionId": "MIS-TEST-SLIP",
-        "feedback": "4 / (7 + 1) = 4/8 = 1/2, but (4 - 1)/7 = 3/7 \u2260 1/3.",
-        "rationale": "4 / (7 + 1) = 4/8 = 1/2, but (4 - 1)/7 = 3/7 \u2260 1/3.",
-        "remediation": "4 / (7 + 1) = 4/8 = 1/2, but (4 - 1)/7 = 3/7 \u2260 1/3."
+        "feedback": "4 / (7 + 1) = 4/8 = 1/2, but (4 - 1)/7 = 3/7 ≠ 1/3.",
+        "rationale": "4 / (7 + 1) = 4/8 = 1/2, but (4 - 1)/7 = 3/7 ≠ 1/3.",
+        "remediation": "4 / (7 + 1) = 4/8 = 1/2, but (4 - 1)/7 = 3/7 ≠ 1/3."
       },
       {
         "id": "D",
         "text": "\\frac{3}{7}",
         "misconceptionTag": "MIS-DENOM-SLIP",
         "misconceptionId": "MIS-DENOM-SLIP",
-        "feedback": "3 / (7 + 1) = 3/8 \u2260 1/2.",
-        "rationale": "3 / (7 + 1) = 3/8 \u2260 1/2.",
-        "remediation": "3 / (7 + 1) = 3/8 \u2260 1/2."
+        "feedback": "3 / (7 + 1) = 3/8 ≠ 1/2.",
+        "rationale": "3 / (7 + 1) = 3/8 ≠ 1/2.",
+        "remediation": "3 / (7 + 1) = 3/8 ≠ 1/2."
       }
     ]
   },
@@ -6525,7 +6525,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The electrical resistance $R$ of a wire varies directly as its length $L$ and inversely as the square of its diameter $D$. If $L$ is doubled and $D$ is halved, by what factor does $R$ change?",
     "correctAnswer": "A",
-    "explanation": "R = k L / D\u00b2. New R' = k (2L) / (D/2)\u00b2 = 2kL / (D\u00b2/4) = 8 (kL / D\u00b2) = 8R. R increases by a factor of 8.",
+    "explanation": "R = k L / D². New R' = k (2L) / (D/2)² = 2kL / (D²/4) = 8 (kL / D²) = 8R. R increases by a factor of 8.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -6553,9 +6553,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "\\text{Increases by a factor of } 4",
         "misconceptionTag": "MIS-FORGOT-SQUARE-HALF",
         "misconceptionId": "MIS-FORGOT-SQUARE-HALF",
-        "feedback": "Halving D means D\u00b2 becomes (1/2)\u00b2 = 1/4 in the denominator, multiplying R by 4; doubling L multiplies by 2; 2 * 4 = 8.",
-        "rationale": "Halving D means D\u00b2 becomes (1/2)\u00b2 = 1/4 in the denominator, multiplying R by 4; doubling L multiplies by 2; 2 * 4 = 8.",
-        "remediation": "Halving D means D\u00b2 becomes (1/2)\u00b2 = 1/4 in the denominator, multiplying R by 4; doubling L multiplies by 2; 2 * 4 = 8."
+        "feedback": "Halving D means D² becomes (1/2)² = 1/4 in the denominator, multiplying R by 4; doubling L multiplies by 2; 2 * 4 = 8.",
+        "rationale": "Halving D means D² becomes (1/2)² = 1/4 in the denominator, multiplying R by 4; doubling L multiplies by 2; 2 * 4 = 8.",
+        "remediation": "Halving D means D² becomes (1/2)² = 1/4 in the denominator, multiplying R by 4; doubling L multiplies by 2; 2 * 4 = 8."
       },
       {
         "id": "C",
@@ -6571,9 +6571,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "\\text{Remains unchanged}",
         "misconceptionTag": "MIS-CANCELLATION-ERROR",
         "misconceptionId": "MIS-CANCELLATION-ERROR",
-        "feedback": "2 / (1/2)\u00b2 = 2 / (1/4) = 8, not 1.",
-        "rationale": "2 / (1/2)\u00b2 = 2 / (1/4) = 8, not 1.",
-        "remediation": "2 / (1/2)\u00b2 = 2 / (1/4) = 8, not 1."
+        "feedback": "2 / (1/2)² = 2 / (1/4) = 8, not 1.",
+        "rationale": "2 / (1/2)² = 2 / (1/4) = 8, not 1.",
+        "remediation": "2 / (1/2)² = 2 / (1/4) = 8, not 1."
       }
     ]
   },
@@ -6626,18 +6626,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = 1 \\text{ or } x = 6$",
         "misconceptionTag": "MIS-FACTORS-OF-6",
         "misconceptionId": "MIS-FACTORS-OF-6",
-        "feedback": "(1)(6) = 6, but 1 + 6 = 7 \u2260 5.",
-        "rationale": "(1)(6) = 6, but 1 + 6 = 7 \u2260 5.",
-        "remediation": "(1)(6) = 6, but 1 + 6 = 7 \u2260 5."
+        "feedback": "(1)(6) = 6, but 1 + 6 = 7 ≠ 5.",
+        "rationale": "(1)(6) = 6, but 1 + 6 = 7 ≠ 5.",
+        "remediation": "(1)(6) = 6, but 1 + 6 = 7 ≠ 5."
       },
       {
         "id": "D",
         "text": "$x = -1 \\text{ or } x = 6$",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "(-1)(6) = -6 \u2260 +6.",
-        "rationale": "(-1)(6) = -6 \u2260 +6.",
-        "remediation": "(-1)(6) = -6 \u2260 +6."
+        "feedback": "(-1)(6) = -6 ≠ +6.",
+        "rationale": "(-1)(6) = -6 ≠ +6.",
+        "remediation": "(-1)(6) = -6 ≠ +6."
       }
     ]
   },
@@ -6653,7 +6653,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Factorize completely: $$2x^2 + 7x + 3$$",
     "correctAnswer": "A",
-    "explanation": "Product ac = 2 * 3 = 6. Factors summing to 7 are 6 and 1: 2x\u00b2 + 6x + x + 3 = 2x(x + 3) + 1(x + 3) = (2x + 1)(x + 3).",
+    "explanation": "Product ac = 2 * 3 = 6. Factors summing to 7 are 6 and 1: 2x² + 6x + x + 3 = 2x(x + 3) + 1(x + 3) = (2x + 1)(x + 3).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -6681,9 +6681,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$(2x + 3)(x + 1)$",
         "misconceptionTag": "MIS-EXPANSION-CHECK",
         "misconceptionId": "MIS-EXPANSION-CHECK",
-        "feedback": "(2x+3)(x+1) = 2x\u00b2 + 5x + 3 \u2260 2x\u00b2 + 7x + 3.",
-        "rationale": "(2x+3)(x+1) = 2x\u00b2 + 5x + 3 \u2260 2x\u00b2 + 7x + 3.",
-        "remediation": "(2x+3)(x+1) = 2x\u00b2 + 5x + 3 \u2260 2x\u00b2 + 7x + 3."
+        "feedback": "(2x+3)(x+1) = 2x² + 5x + 3 ≠ 2x² + 7x + 3.",
+        "rationale": "(2x+3)(x+1) = 2x² + 5x + 3 ≠ 2x² + 7x + 3.",
+        "remediation": "(2x+3)(x+1) = 2x² + 5x + 3 ≠ 2x² + 7x + 3."
       },
       {
         "id": "C",
@@ -6699,9 +6699,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$(x + 1)(x + 6)$",
         "misconceptionTag": "MIS-LEADING-COEFF",
         "misconceptionId": "MIS-LEADING-COEFF",
-        "feedback": "Leading coefficient must be 2x\u00b2.",
-        "rationale": "Leading coefficient must be 2x\u00b2.",
-        "remediation": "Leading coefficient must be 2x\u00b2."
+        "feedback": "Leading coefficient must be 2x².",
+        "rationale": "Leading coefficient must be 2x².",
+        "remediation": "Leading coefficient must be 2x²."
       }
     ]
   },
@@ -6845,7 +6845,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Solve the quadratic equation: $$3x^2 - 10x - 8 = 0$$",
     "correctAnswer": "A",
-    "explanation": "ac = 3 * (-8) = -24. Numbers summing to -10 are -12 and +2. 3x\u00b2 - 12x + 2x - 8 = 3x(x - 4) + 2(x - 4) = (3x + 2)(x - 4) = 0. x = 4 or x = -2/3.",
+    "explanation": "ac = 3 * (-8) = -24. Numbers summing to -10 are -12 and +2. 3x² - 12x + 2x - 8 = 3x(x - 4) + 2(x - 4) = (3x + 2)(x - 4) = 0. x = 4 or x = -2/3.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -6882,9 +6882,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = 2 \\text{ or } x = -\\frac{4}{3}$",
         "misconceptionTag": "MIS-FACTOR-SLIP",
         "misconceptionId": "MIS-FACTOR-SLIP",
-        "feedback": "3(2)\u00b2 - 10(2) - 8 = 12 - 20 - 8 = -16 \u2260 0.",
-        "rationale": "3(2)\u00b2 - 10(2) - 8 = 12 - 20 - 8 = -16 \u2260 0.",
-        "remediation": "3(2)\u00b2 - 10(2) - 8 = 12 - 20 - 8 = -16 \u2260 0."
+        "feedback": "3(2)² - 10(2) - 8 = 12 - 20 - 8 = -16 ≠ 0.",
+        "rationale": "3(2)² - 10(2) - 8 = 12 - 20 - 8 = -16 ≠ 0.",
+        "remediation": "3(2)² - 10(2) - 8 = 12 - 20 - 8 = -16 ≠ 0."
       },
       {
         "id": "D",
@@ -6909,7 +6909,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The product of two consecutive positive integers is $72$. Find the smaller integer.",
     "correctAnswer": "A",
-    "explanation": "n(n + 1) = 72 => n\u00b2 + n - 72 = 0 => (n + 9)(n - 8) = 0. Since n > 0, n = 8.",
+    "explanation": "n(n + 1) = 72 => n² + n - 72 = 0 => (n + 9)(n - 8) = 0. Since n > 0, n = 8.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -6937,27 +6937,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "9",
         "misconceptionTag": "MIS-LARGER-INTEGER",
         "misconceptionId": "MIS-LARGER-INTEGER",
-        "feedback": "9 is the larger integer (8 \u00d7 9 = 72).",
-        "rationale": "9 is the larger integer (8 \u00d7 9 = 72).",
-        "remediation": "9 is the larger integer (8 \u00d7 9 = 72)."
+        "feedback": "9 is the larger integer (8 × 9 = 72).",
+        "rationale": "9 is the larger integer (8 × 9 = 72).",
+        "remediation": "9 is the larger integer (8 × 9 = 72)."
       },
       {
         "id": "C",
         "text": "6",
         "misconceptionTag": "MIS-FACTOR-GUESS",
         "misconceptionId": "MIS-FACTOR-GUESS",
-        "feedback": "6 \u00d7 7 = 42 \u2260 72.",
-        "rationale": "6 \u00d7 7 = 42 \u2260 72.",
-        "remediation": "6 \u00d7 7 = 42 \u2260 72."
+        "feedback": "6 × 7 = 42 ≠ 72.",
+        "rationale": "6 × 7 = 42 ≠ 72.",
+        "remediation": "6 × 7 = 42 ≠ 72."
       },
       {
         "id": "D",
         "text": "7",
         "misconceptionTag": "MIS-FACTOR-SLIP",
         "misconceptionId": "MIS-FACTOR-SLIP",
-        "feedback": "7 \u00d7 8 = 56 \u2260 72.",
-        "rationale": "7 \u00d7 8 = 56 \u2260 72.",
-        "remediation": "7 \u00d7 8 = 56 \u2260 72."
+        "feedback": "7 × 8 = 56 ≠ 72.",
+        "rationale": "7 × 8 = 56 ≠ 72.",
+        "remediation": "7 × 8 = 56 ≠ 72."
       }
     ]
   },
@@ -7001,27 +7001,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = 4$ only",
         "misconceptionTag": "MIS-LOST-NEGATIVE-ROOT",
         "misconceptionId": "MIS-LOST-NEGATIVE-ROOT",
-        "feedback": "Squaring -4 also gives +16: (-4)\u00b2 = 16, so -4 is also a root.",
-        "rationale": "Squaring -4 also gives +16: (-4)\u00b2 = 16, so -4 is also a root.",
-        "remediation": "Squaring -4 also gives +16: (-4)\u00b2 = 16, so -4 is also a root."
+        "feedback": "Squaring -4 also gives +16: (-4)² = 16, so -4 is also a root.",
+        "rationale": "Squaring -4 also gives +16: (-4)² = 16, so -4 is also a root.",
+        "remediation": "Squaring -4 also gives +16: (-4)² = 16, so -4 is also a root."
       },
       {
         "id": "C",
         "text": "$x = 8 \\text{ or } x = -8$",
         "misconceptionTag": "MIS-HALF-SLIP",
         "misconceptionId": "MIS-HALF-SLIP",
-        "feedback": "8\u00b2 = 64 \u2260 16; square root of 16 is 4.",
-        "rationale": "8\u00b2 = 64 \u2260 16; square root of 16 is 4.",
-        "remediation": "8\u00b2 = 64 \u2260 16; square root of 16 is 4."
+        "feedback": "8² = 64 ≠ 16; square root of 16 is 4.",
+        "rationale": "8² = 64 ≠ 16; square root of 16 is 4.",
+        "remediation": "8² = 64 ≠ 16; square root of 16 is 4."
       },
       {
         "id": "D",
         "text": "$x = 16 \\text{ or } x = 0$",
         "misconceptionTag": "MIS-FACTOR-CONFUSION",
         "misconceptionId": "MIS-FACTOR-CONFUSION",
-        "feedback": "x\u00b2 - 16 = (x - 4)(x + 4) = 0.",
-        "rationale": "x\u00b2 - 16 = (x - 4)(x + 4) = 0.",
-        "remediation": "x\u00b2 - 16 = (x - 4)(x + 4) = 0."
+        "feedback": "x² - 16 = (x - 4)(x + 4) = 0.",
+        "rationale": "x² - 16 = (x - 4)(x + 4) = 0.",
+        "remediation": "x² - 16 = (x - 4)(x + 4) = 0."
       }
     ]
   },
@@ -7037,7 +7037,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "numeric_entry",
     "prompt": "If $x = 3$ is a root of $x^2 - kx + 15 = 0$, calculate the value of $k$.",
     "correctAnswer": 8,
-    "explanation": "Substitute x = 3: 3\u00b2 - 3k + 15 = 0 => 9 + 15 = 3k => 3k = 24 => k = 8.",
+    "explanation": "Substitute x = 3: 3² - 3k + 15 = 0 => 9 + 15 = 3k => 3k = 24 => k = 8.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7096,11 +7096,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Find two numbers with product 2 \u00d7 (-3) = -6 and sum +5 (which are +6 and -1)."
+        "text": "Find two numbers with product 2 × (-3) = -6 and sum +5 (which are +6 and -1)."
       },
       {
         "id": "B",
-        "text": "Split the middle term: 2x\u00b2 + 6x - x - 3 = 0."
+        "text": "Split the middle term: 2x² + 6x - x - 3 = 0."
       },
       {
         "id": "C",
@@ -7124,7 +7124,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "symbolic_entry",
     "prompt": "Factorize the difference of two squares: $4x^2 - 9$.",
     "correctAnswer": "(2x - 3)*(2x + 3)",
-    "explanation": "(2x)\u00b2 - 3\u00b2 = (2x - 3)(2x + 3).",
+    "explanation": "(2x)² - 3² = (2x - 3)(2x + 3).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7155,7 +7155,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student solved $x^2 = 7x$ by dividing both sides by $x$ to get $x = 7$. What error was committed?",
     "correctAnswer": "A",
-    "explanation": "Dividing by x assumes x \u2260 0, losing the root x = 0. The full solution set is x = 0 or x = 7.",
+    "explanation": "Dividing by x assumes x ≠ 0, losing the root x = 0. The full solution set is x = 0 or x = 7.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -7183,9 +7183,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "7 is not a valid root.",
         "misconceptionTag": "MIS-ROOT-VALIDITY",
         "misconceptionId": "MIS-ROOT-VALIDITY",
-        "feedback": "7\u00b2 = 49 and 7(7) = 49, so 7 is a valid root.",
-        "rationale": "7\u00b2 = 49 and 7(7) = 49, so 7 is a valid root.",
-        "remediation": "7\u00b2 = 49 and 7(7) = 49, so 7 is a valid root."
+        "feedback": "7² = 49 and 7(7) = 49, so 7 is a valid root.",
+        "rationale": "7² = 49 and 7(7) = 49, so 7 is a valid root.",
+        "remediation": "7² = 49 and 7(7) = 49, so 7 is a valid root."
       },
       {
         "id": "C",
@@ -7247,9 +7247,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "Should be (x + 4)(x + 2).",
         "misconceptionTag": "MIS-ALL-PLUS",
         "misconceptionId": "MIS-ALL-PLUS",
-        "feedback": "(x+4)(x+2) = x\u00b2 + 6x + 8.",
-        "rationale": "(x+4)(x+2) = x\u00b2 + 6x + 8.",
-        "remediation": "(x+4)(x+2) = x\u00b2 + 6x + 8."
+        "feedback": "(x+4)(x+2) = x² + 6x + 8.",
+        "rationale": "(x+4)(x+2) = x² + 6x + 8.",
+        "remediation": "(x+4)(x+2) = x² + 6x + 8."
       },
       {
         "id": "C",
@@ -7265,9 +7265,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "There is no error.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "Expanding (x-4)(x-2) = x\u00b2 - 6x + 8 \u2260 x\u00b2 - 2x - 8.",
-        "rationale": "Expanding (x-4)(x-2) = x\u00b2 - 6x + 8 \u2260 x\u00b2 - 2x - 8.",
-        "remediation": "Expanding (x-4)(x-2) = x\u00b2 - 6x + 8 \u2260 x\u00b2 - 2x - 8."
+        "feedback": "Expanding (x-4)(x-2) = x² - 6x + 8 ≠ x² - 2x - 8.",
+        "rationale": "Expanding (x-4)(x-2) = x² - 6x + 8 ≠ x² - 2x - 8.",
+        "remediation": "Expanding (x-4)(x-2) = x² - 6x + 8 ≠ x² - 2x - 8."
       }
     ]
   },
@@ -7320,9 +7320,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = 7 \\text{ or } x = -5$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "(x - 2)\u00b2 = 9 => x - 2 = \u00b13 => x = 2 \u00b1 3.",
-        "rationale": "(x - 2)\u00b2 = 9 => x - 2 = \u00b13 => x = 2 \u00b1 3.",
-        "remediation": "(x - 2)\u00b2 = 9 => x - 2 = \u00b13 => x = 2 \u00b1 3."
+        "feedback": "(x - 2)² = 9 => x - 2 = ±3 => x = 2 ± 3.",
+        "rationale": "(x - 2)² = 9 => x - 2 = ±3 => x = 2 ± 3.",
+        "remediation": "(x - 2)² = 9 => x - 2 = ±3 => x = 2 ± 3."
       },
       {
         "id": "D",
@@ -7347,7 +7347,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The hypotenuse of a right-angled triangle is $10\\text{ cm}$. One leg is $2\\text{ cm}$ longer than the other. Find the length of the shorter leg.",
     "correctAnswer": "A",
-    "explanation": "x\u00b2 + (x + 2)\u00b2 = 10\u00b2 => x\u00b2 + x\u00b2 + 4x + 4 = 100 => 2x\u00b2 + 4x - 96 = 0 => x\u00b2 + 2x - 48 = 0 => (x + 8)(x - 6) = 0 => x = 6 cm.",
+    "explanation": "x² + (x + 2)² = 10² => x² + x² + 4x + 4 = 100 => 2x² + 4x - 96 = 0 => x² + 2x - 48 = 0 => (x + 8)(x - 6) = 0 => x = 6 cm.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -7375,27 +7375,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "8\\text{ cm}",
         "misconceptionTag": "MIS-LONGER-LEG",
         "misconceptionId": "MIS-LONGER-LEG",
-        "feedback": "8 cm is the longer leg (6\u00b2 + 8\u00b2 = 36 + 64 = 100 = 10\u00b2).",
-        "rationale": "8 cm is the longer leg (6\u00b2 + 8\u00b2 = 36 + 64 = 100 = 10\u00b2).",
-        "remediation": "8 cm is the longer leg (6\u00b2 + 8\u00b2 = 36 + 64 = 100 = 10\u00b2)."
+        "feedback": "8 cm is the longer leg (6² + 8² = 36 + 64 = 100 = 10²).",
+        "rationale": "8 cm is the longer leg (6² + 8² = 36 + 64 = 100 = 10²).",
+        "remediation": "8 cm is the longer leg (6² + 8² = 36 + 64 = 100 = 10²)."
       },
       {
         "id": "C",
         "text": "5\\text{ cm}",
         "misconceptionTag": "MIS-GUESS-SLIP",
         "misconceptionId": "MIS-GUESS-SLIP",
-        "feedback": "5\u00b2 + 7\u00b2 = 25 + 49 = 74 \u2260 100.",
-        "rationale": "5\u00b2 + 7\u00b2 = 25 + 49 = 74 \u2260 100.",
-        "remediation": "5\u00b2 + 7\u00b2 = 25 + 49 = 74 \u2260 100."
+        "feedback": "5² + 7² = 25 + 49 = 74 ≠ 100.",
+        "rationale": "5² + 7² = 25 + 49 = 74 ≠ 100.",
+        "remediation": "5² + 7² = 25 + 49 = 74 ≠ 100."
       },
       {
         "id": "D",
         "text": "4\\text{ cm}",
         "misconceptionTag": "MIS-GUESS-SLIP",
         "misconceptionId": "MIS-GUESS-SLIP",
-        "feedback": "4\u00b2 + 6\u00b2 = 16 + 36 = 52 \u2260 100.",
-        "rationale": "4\u00b2 + 6\u00b2 = 16 + 36 = 52 \u2260 100.",
-        "remediation": "4\u00b2 + 6\u00b2 = 16 + 36 = 52 \u2260 100."
+        "feedback": "4² + 6² = 16 + 36 = 52 ≠ 100.",
+        "rationale": "4² + 6² = 16 + 36 = 52 ≠ 100.",
+        "remediation": "4² + 6² = 16 + 36 = 52 ≠ 100."
       }
     ]
   },
@@ -7411,7 +7411,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Which formula correctly gives the roots of $ax^2 + bx + c = 0$ ($a \\ne 0$)?",
     "correctAnswer": "A",
-    "explanation": "Standard quadratic formula: x = (-b \u00b1 \u221a(b\u00b2 - 4ac)) / (2a).",
+    "explanation": "Standard quadratic formula: x = (-b ± √(b² - 4ac)) / (2a).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7475,7 +7475,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Calculate the discriminant $\\Delta = b^2 - 4ac$ for $2x^2 - 4x + 3 = 0$ and state the nature of its roots.",
     "correctAnswer": "A",
-    "explanation": "b\u00b2 - 4ac = (-4)\u00b2 - 4(2)(3) = 16 - 24 = -8 < 0 => no real roots.",
+    "explanation": "b² - 4ac = (-4)² - 4(2)(3) = 16 - 24 = -8 < 0 => no real roots.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7503,27 +7503,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\Delta = 8 > 0$; two real distinct roots.",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "(-4)\u00b2 - 4(2)(3) = 16 - 24 = -8.",
-        "rationale": "(-4)\u00b2 - 4(2)(3) = 16 - 24 = -8.",
-        "remediation": "(-4)\u00b2 - 4(2)(3) = 16 - 24 = -8."
+        "feedback": "(-4)² - 4(2)(3) = 16 - 24 = -8.",
+        "rationale": "(-4)² - 4(2)(3) = 16 - 24 = -8.",
+        "remediation": "(-4)² - 4(2)(3) = 16 - 24 = -8."
       },
       {
         "id": "C",
         "text": "$\\Delta = 0$; two equal real roots.",
         "misconceptionTag": "MIS-DISCRIM-SLIP",
         "misconceptionId": "MIS-DISCRIM-SLIP",
-        "feedback": "16 - 24 = -8 \u2260 0.",
-        "rationale": "16 - 24 = -8 \u2260 0.",
-        "remediation": "16 - 24 = -8 \u2260 0."
+        "feedback": "16 - 24 = -8 ≠ 0.",
+        "rationale": "16 - 24 = -8 ≠ 0.",
+        "remediation": "16 - 24 = -8 ≠ 0."
       },
       {
         "id": "D",
         "text": "$\\Delta = 40$; irrational roots.",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "(-4)\u00b2 = 16, 4(2)(3) = 24 => 16 - 24 = -8.",
-        "rationale": "(-4)\u00b2 = 16, 4(2)(3) = 24 => 16 - 24 = -8.",
-        "remediation": "(-4)\u00b2 = 16, 4(2)(3) = 24 => 16 - 24 = -8."
+        "feedback": "(-4)² = 16, 4(2)(3) = 24 => 16 - 24 = -8.",
+        "rationale": "(-4)² = 16, 4(2)(3) = 24 => 16 - 24 = -8.",
+        "remediation": "(-4)² = 16, 4(2)(3) = 24 => 16 - 24 = -8."
       }
     ]
   },
@@ -7539,7 +7539,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "What constant must be added to $x^2 + 8x$ to make it a perfect square trinomial?",
     "correctAnswer": "A",
-    "explanation": "(b/2)\u00b2 = (8/2)\u00b2 = 4\u00b2 = 16.",
+    "explanation": "(b/2)² = (8/2)² = 4² = 16.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7567,9 +7567,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$64$",
         "misconceptionTag": "MIS-SQUARE-DIRECT",
         "misconceptionId": "MIS-SQUARE-DIRECT",
-        "feedback": "(8/2)\u00b2 = 4\u00b2 = 16, not 8\u00b2.",
-        "rationale": "(8/2)\u00b2 = 4\u00b2 = 16, not 8\u00b2.",
-        "remediation": "(8/2)\u00b2 = 4\u00b2 = 16, not 8\u00b2."
+        "feedback": "(8/2)² = 4² = 16, not 8².",
+        "rationale": "(8/2)² = 4² = 16, not 8².",
+        "remediation": "(8/2)² = 4² = 16, not 8²."
       },
       {
         "id": "C",
@@ -7603,7 +7603,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: If the discriminant $b^2 - 4ac = 0$, the quadratic equation has exactly one repeated real root.",
     "correctAnswer": "A",
-    "explanation": "When \u0394 = 0, x = -b / (2a) is a double root.",
+    "explanation": "When Δ = 0, x = -b / (2a) is a double root.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7631,27 +7631,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "False: It has no real solutions.",
         "misconceptionTag": "MIS-DISCRIM-CONFUSION",
         "misconceptionId": "MIS-DISCRIM-CONFUSION",
-        "feedback": "\u0394 < 0 gives no real solutions; \u0394 = 0 gives one repeated root.",
-        "rationale": "\u0394 < 0 gives no real solutions; \u0394 = 0 gives one repeated root.",
-        "remediation": "\u0394 < 0 gives no real solutions; \u0394 = 0 gives one repeated root."
+        "feedback": "Δ < 0 gives no real solutions; Δ = 0 gives one repeated root.",
+        "rationale": "Δ < 0 gives no real solutions; Δ = 0 gives one repeated root.",
+        "remediation": "Δ < 0 gives no real solutions; Δ = 0 gives one repeated root."
       },
       {
         "id": "C",
         "text": "False: It has two distinct rational roots.",
         "misconceptionTag": "MIS-ROOT-NATURE",
         "misconceptionId": "MIS-ROOT-NATURE",
-        "feedback": "\u0394 > 0 and perfect square gives distinct rational roots.",
-        "rationale": "\u0394 > 0 and perfect square gives distinct rational roots.",
-        "remediation": "\u0394 > 0 and perfect square gives distinct rational roots."
+        "feedback": "Δ > 0 and perfect square gives distinct rational roots.",
+        "rationale": "Δ > 0 and perfect square gives distinct rational roots.",
+        "remediation": "Δ > 0 and perfect square gives distinct rational roots."
       },
       {
         "id": "D",
         "text": "True: But only if a = 1.",
         "misconceptionTag": "MIS-RESTRICTION",
         "misconceptionId": "MIS-RESTRICTION",
-        "feedback": "Holds for all quadratic equations with \u0394 = 0.",
-        "rationale": "Holds for all quadratic equations with \u0394 = 0.",
-        "remediation": "Holds for all quadratic equations with \u0394 = 0."
+        "feedback": "Holds for all quadratic equations with Δ = 0.",
+        "rationale": "Holds for all quadratic equations with Δ = 0.",
+        "remediation": "Holds for all quadratic equations with Δ = 0."
       }
     ]
   },
@@ -7667,7 +7667,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Solve $2x^2 + 3x - 1 = 0$ using the quadratic formula.",
     "correctAnswer": "A",
-    "explanation": "x = (-3 \u00b1 \u221a(9 - 4(2)(-1))) / 4 = (-3 \u00b1 \u221a17) / 4.",
+    "explanation": "x = (-3 ± √(9 - 4(2)(-1))) / 4 = (-3 ± √17) / 4.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7713,9 +7713,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = \\frac{-3 \\pm \\sqrt{7}}{4}$",
         "misconceptionTag": "MIS-DISCRIM-SLIP",
         "misconceptionId": "MIS-DISCRIM-SLIP",
-        "feedback": "3\u00b2 - 4(2)(-1) = 9 + 8 = 17, not 7.",
-        "rationale": "3\u00b2 - 4(2)(-1) = 9 + 8 = 17, not 7.",
-        "remediation": "3\u00b2 - 4(2)(-1) = 9 + 8 = 17, not 7."
+        "feedback": "3² - 4(2)(-1) = 9 + 8 = 17, not 7.",
+        "rationale": "3² - 4(2)(-1) = 9 + 8 = 17, not 7.",
+        "remediation": "3² - 4(2)(-1) = 9 + 8 = 17, not 7."
       }
     ]
   },
@@ -7731,7 +7731,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Solve $x^2 - 6x + 7 = 0$ by completing the square, expressing the answer in surd form.",
     "correctAnswer": "A",
-    "explanation": "x\u00b2 - 6x + 9 = 9 - 7 = 2 => (x - 3)\u00b2 = 2 => x = 3 \u00b1 \u221a2.",
+    "explanation": "x² - 6x + 9 = 9 - 7 = 2 => (x - 3)² = 2 => x = 3 ± √2.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7759,18 +7759,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$3 \\pm \\sqrt{7}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "(x - 3)\u00b2 - 9 + 7 = 0 => (x - 3)\u00b2 = 2 => x = 3 \u00b1 \u221a2.",
-        "rationale": "(x - 3)\u00b2 - 9 + 7 = 0 => (x - 3)\u00b2 = 2 => x = 3 \u00b1 \u221a2.",
-        "remediation": "(x - 3)\u00b2 - 9 + 7 = 0 => (x - 3)\u00b2 = 2 => x = 3 \u00b1 \u221a2."
+        "feedback": "(x - 3)² - 9 + 7 = 0 => (x - 3)² = 2 => x = 3 ± √2.",
+        "rationale": "(x - 3)² - 9 + 7 = 0 => (x - 3)² = 2 => x = 3 ± √2.",
+        "remediation": "(x - 3)² - 9 + 7 = 0 => (x - 3)² = 2 => x = 3 ± √2."
       },
       {
         "id": "C",
         "text": "$-3 \\pm \\sqrt{2}$",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "(x - 3)\u00b2 gives center at +3.",
-        "rationale": "(x - 3)\u00b2 gives center at +3.",
-        "remediation": "(x - 3)\u00b2 gives center at +3."
+        "feedback": "(x - 3)² gives center at +3.",
+        "rationale": "(x - 3)² gives center at +3.",
+        "remediation": "(x - 3)² gives center at +3."
       },
       {
         "id": "D",
@@ -7795,7 +7795,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Express $x^2 - 10x + 29$ in completed square form $(x - p)^2 + q$.",
     "correctAnswer": "A",
-    "explanation": "(x - 5)\u00b2 - 25 + 29 = (x - 5)\u00b2 + 4.",
+    "explanation": "(x - 5)² - 25 + 29 = (x - 5)² + 4.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7859,7 +7859,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "numeric_entry",
     "prompt": "Calculate the discriminant of $x^2 - 12x + 36 = 0$.",
     "correctAnswer": 0,
-    "explanation": "b\u00b2 - 4ac = (-12)\u00b2 - 4(1)(36) = 144 - 144 = 0.",
+    "explanation": "b² - 4ac = (-12)² - 4(1)(36) = 144 - 144 = 0.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -7918,7 +7918,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Divide through by a so the coefficient of x\u00b2 is 1."
+        "text": "Divide through by a so the coefficient of x² is 1."
       },
       {
         "id": "B",
@@ -7926,11 +7926,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "Add (b / 2a)\u00b2 to both sides."
+        "text": "Add (b / 2a)² to both sides."
       },
       {
         "id": "D",
-        "text": "Factor left side as (x + b/2a)\u00b2 and take square roots."
+        "text": "Factor left side as (x + b/2a)² and take square roots."
       }
     ]
   },
@@ -7946,7 +7946,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "symbolic_entry",
     "prompt": "Write the algebraic expression for the discriminant of a quadratic equation in terms of $a$, $b$, and $c$.",
     "correctAnswer": "b^2 - 4*a*c",
-    "explanation": "Discriminant = b\u00b2 - 4ac.",
+    "explanation": "Discriminant = b² - 4ac.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8041,7 +8041,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student claims $x^2 + 4 = 0$ has real roots $x = \\pm 2$. Why is this wrong?",
     "correctAnswer": "A",
-    "explanation": "x\u00b2 = -4 has no real solutions (roots are imaginary \u00b12i).",
+    "explanation": "x² = -4 has no real solutions (roots are imaginary ±2i).",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -8066,21 +8066,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "x\u00b2 = 4 has roots \u00b12, so x\u00b2 + 4 must have roots \u00b14.",
+        "text": "x² = 4 has roots ±2, so x² + 4 must have roots ±4.",
         "misconceptionTag": "MIS-OP-CONFUSION",
         "misconceptionId": "MIS-OP-CONFUSION",
-        "feedback": "x\u00b2 + 4 = 0 => x\u00b2 = -4.",
-        "rationale": "x\u00b2 + 4 = 0 => x\u00b2 = -4.",
-        "remediation": "x\u00b2 + 4 = 0 => x\u00b2 = -4."
+        "feedback": "x² + 4 = 0 => x² = -4.",
+        "rationale": "x² + 4 = 0 => x² = -4.",
+        "remediation": "x² + 4 = 0 => x² = -4."
       },
       {
         "id": "C",
-        "text": "The roots are \u00b116.",
+        "text": "The roots are ±16.",
         "misconceptionTag": "MIS-SQUARE-CONFUSION",
         "misconceptionId": "MIS-SQUARE-CONFUSION",
-        "feedback": "Roots are complex \u00b12i.",
-        "rationale": "Roots are complex \u00b12i.",
-        "remediation": "Roots are complex \u00b12i."
+        "feedback": "Roots are complex ±2i.",
+        "rationale": "Roots are complex ±2i.",
+        "remediation": "Roots are complex ±2i."
       },
       {
         "id": "D",
@@ -8105,7 +8105,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "For what values of $k$ does $x^2 + kx + 9 = 0$ have equal real roots?",
     "correctAnswer": "A",
-    "explanation": "\u0394 = k\u00b2 - 4(1)(9) = k\u00b2 - 36 = 0 => k\u00b2 = 36 => k = \u00b16.",
+    "explanation": "Δ = k² - 4(1)(9) = k² - 36 = 0 => k² = 36 => k = ±6.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -8133,27 +8133,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$k = 6 \\text{ only}$",
         "misconceptionTag": "MIS-NEGATIVE-ROOT-LOSS",
         "misconceptionId": "MIS-NEGATIVE-ROOT-LOSS",
-        "feedback": "(-6)\u00b2 = 36, so k = -6 also gives \u0394 = 0.",
-        "rationale": "(-6)\u00b2 = 36, so k = -6 also gives \u0394 = 0.",
-        "remediation": "(-6)\u00b2 = 36, so k = -6 also gives \u0394 = 0."
+        "feedback": "(-6)² = 36, so k = -6 also gives Δ = 0.",
+        "rationale": "(-6)² = 36, so k = -6 also gives Δ = 0.",
+        "remediation": "(-6)² = 36, so k = -6 also gives Δ = 0."
       },
       {
         "id": "C",
         "text": "$k = \\pm 3$",
         "misconceptionTag": "MIS-HALF-SLIP",
         "misconceptionId": "MIS-HALF-SLIP",
-        "feedback": "k\u00b2 - 36 = 0 => k = \u00b16.",
-        "rationale": "k\u00b2 - 36 = 0 => k = \u00b16.",
-        "remediation": "k\u00b2 - 36 = 0 => k = \u00b16."
+        "feedback": "k² - 36 = 0 => k = ±6.",
+        "rationale": "k² - 36 = 0 => k = ±6.",
+        "remediation": "k² - 36 = 0 => k = ±6."
       },
       {
         "id": "D",
         "text": "$k = 0$",
         "misconceptionTag": "MIS-ZERO-SLIP",
         "misconceptionId": "MIS-ZERO-SLIP",
-        "feedback": "If k=0, x\u00b2 + 9 = 0 has no real roots.",
-        "rationale": "If k=0, x\u00b2 + 9 = 0 has no real roots.",
-        "remediation": "If k=0, x\u00b2 + 9 = 0 has no real roots."
+        "feedback": "If k=0, x² + 9 = 0 has no real roots.",
+        "rationale": "If k=0, x² + 9 = 0 has no real roots.",
+        "remediation": "If k=0, x² + 9 = 0 has no real roots."
       }
     ]
   },
@@ -8169,7 +8169,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Solve the quartic equation using quadratic substitution $u = x^2$: $$x^4 - 5x^2 + 4 = 0$$",
     "correctAnswer": "A",
-    "explanation": "u\u00b2 - 5u + 4 = 0 => (u - 1)(u - 4) = 0 => u = 1 or 4 => x = \u00b11, \u00b12.",
+    "explanation": "u² - 5u + 4 = 0 => (u - 1)(u - 4) = 0 => u = 1 or 4 => x = ±1, ±2.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -8197,27 +8197,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$x = 1, 4$",
         "misconceptionTag": "MIS-U-VALUES",
         "misconceptionId": "MIS-U-VALUES",
-        "feedback": "u = 1 and u = 4; taking square roots gives x = \u00b11 and x = \u00b12.",
-        "rationale": "u = 1 and u = 4; taking square roots gives x = \u00b11 and x = \u00b12.",
-        "remediation": "u = 1 and u = 4; taking square roots gives x = \u00b11 and x = \u00b12."
+        "feedback": "u = 1 and u = 4; taking square roots gives x = ±1 and x = ±2.",
+        "rationale": "u = 1 and u = 4; taking square roots gives x = ±1 and x = ±2.",
+        "remediation": "u = 1 and u = 4; taking square roots gives x = ±1 and x = ±2."
       },
       {
         "id": "C",
         "text": "$x = \\pm 1, \\pm 4$",
         "misconceptionTag": "MIS-SQUARE-ROOT-SLIP",
         "misconceptionId": "MIS-SQUARE-ROOT-SLIP",
-        "feedback": "\u221a4 = 2, not 4.",
-        "rationale": "\u221a4 = 2, not 4.",
-        "remediation": "\u221a4 = 2, not 4."
+        "feedback": "√4 = 2, not 4.",
+        "rationale": "√4 = 2, not 4.",
+        "remediation": "√4 = 2, not 4."
       },
       {
         "id": "D",
         "text": "$x = 1, 2$",
         "misconceptionTag": "MIS-NEGATIVE-ROOT-LOSS",
         "misconceptionId": "MIS-NEGATIVE-ROOT-LOSS",
-        "feedback": "Quadratic square roots have \u00b1 signs.",
-        "rationale": "Quadratic square roots have \u00b1 signs.",
-        "remediation": "Quadratic square roots have \u00b1 signs."
+        "feedback": "Quadratic square roots have ± signs.",
+        "rationale": "Quadratic square roots have ± signs.",
+        "remediation": "Quadratic square roots have ± signs."
       }
     ]
   },
@@ -8233,7 +8233,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Find the points of intersection between the line $y = x + 1$ and the parabola $y = x^2 - 1$.",
     "correctAnswer": "A",
-    "explanation": "x\u00b2 - 1 = x + 1 => x\u00b2 - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2 (y = 3), x = -1 (y = 0).",
+    "explanation": "x² - 1 = x + 1 => x² - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2 (y = 3), x = -1 (y = 0).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8261,18 +8261,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$(1, 2) \\text{ and } (-2, -1)$",
         "misconceptionTag": "MIS-ROOT-SLIP",
         "misconceptionId": "MIS-ROOT-SLIP",
-        "feedback": "x\u00b2 - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2, -1. Points: (2, 3), (-1, 0).",
-        "rationale": "x\u00b2 - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2, -1. Points: (2, 3), (-1, 0).",
-        "remediation": "x\u00b2 - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2, -1. Points: (2, 3), (-1, 0)."
+        "feedback": "x² - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2, -1. Points: (2, 3), (-1, 0).",
+        "rationale": "x² - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2, -1. Points: (2, 3), (-1, 0).",
+        "remediation": "x² - x - 2 = 0 => (x - 2)(x + 1) = 0 => x = 2, -1. Points: (2, 3), (-1, 0)."
       },
       {
         "id": "C",
         "text": "$(3, 4) \\text{ and } (0, 1)$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Check 2\u00b2 - 1 = 3 and (-1)\u00b2 - 1 = 0.",
-        "rationale": "Check 2\u00b2 - 1 = 3 and (-1)\u00b2 - 1 = 0.",
-        "remediation": "Check 2\u00b2 - 1 = 3 and (-1)\u00b2 - 1 = 0."
+        "feedback": "Check 2² - 1 = 3 and (-1)² - 1 = 0.",
+        "rationale": "Check 2² - 1 = 3 and (-1)² - 1 = 0.",
+        "remediation": "Check 2² - 1 = 3 and (-1)² - 1 = 0."
       },
       {
         "id": "D",
@@ -8361,7 +8361,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "When solving $y = mx + c$ and $x^2 + y^2 = r^2$, what does a discriminant $\\Delta = 0$ of the resulting quadratic indicate?",
     "correctAnswer": "A",
-    "explanation": "\u0394 = 0 indicates a single repeated root, which geometrically means tangency.",
+    "explanation": "Δ = 0 indicates a single repeated root, which geometrically means tangency.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8398,18 +8398,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "The line does not touch or intersect the circle.",
         "misconceptionTag": "MIS-DISCRIM-CONFUSION",
         "misconceptionId": "MIS-DISCRIM-CONFUSION",
-        "feedback": "\u0394 < 0 means no intersection.",
-        "rationale": "\u0394 < 0 means no intersection.",
-        "remediation": "\u0394 < 0 means no intersection."
+        "feedback": "Δ < 0 means no intersection.",
+        "rationale": "Δ < 0 means no intersection.",
+        "remediation": "Δ < 0 means no intersection."
       },
       {
         "id": "D",
         "text": "The line is perpendicular to the y-axis.",
         "misconceptionTag": "MIS-ORIENTATION-CONFUSION",
         "misconceptionId": "MIS-ORIENTATION-CONFUSION",
-        "feedback": "\u0394 = 0 indicates tangency regardless of orientation.",
-        "rationale": "\u0394 = 0 indicates tangency regardless of orientation.",
-        "remediation": "\u0394 = 0 indicates tangency regardless of orientation."
+        "feedback": "Δ = 0 indicates tangency regardless of orientation.",
+        "rationale": "Δ = 0 indicates tangency regardless of orientation.",
+        "remediation": "Δ = 0 indicates tangency regardless of orientation."
       }
     ]
   },
@@ -8425,7 +8425,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: If $x + y = 5$ and $xy = 6$, the values of $x$ and $y$ are the roots of $t^2 - 5t + 6 = 0$.",
     "correctAnswer": "A",
-    "explanation": "t\u00b2 - (x+y)t + xy = 0 => t\u00b2 - 5t + 6 = 0 => (t - 2)(t - 3) = 0.",
+    "explanation": "t² - (x+y)t + xy = 0 => t² - 5t + 6 = 0 => (t - 2)(t - 3) = 0.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8450,12 +8450,12 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "False: The quadratic equation is t\u00b2 + 5t + 6 = 0.",
+        "text": "False: The quadratic equation is t² + 5t + 6 = 0.",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "Sum of roots has -S, so t\u00b2 - 5t + 6 = 0.",
-        "rationale": "Sum of roots has -S, so t\u00b2 - 5t + 6 = 0.",
-        "remediation": "Sum of roots has -S, so t\u00b2 - 5t + 6 = 0."
+        "feedback": "Sum of roots has -S, so t² - 5t + 6 = 0.",
+        "rationale": "Sum of roots has -S, so t² - 5t + 6 = 0.",
+        "remediation": "Sum of roots has -S, so t² - 5t + 6 = 0."
       },
       {
         "id": "C",
@@ -8489,7 +8489,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Solve simultaneously: $$x + y = 7 \\quad \\text{and} \\quad xy = 12$$",
     "correctAnswer": "A",
-    "explanation": "t\u00b2 - 7t + 12 = 0 => (t - 3)(t - 4) = 0 => {x, y} = {3, 4}.",
+    "explanation": "t² - 7t + 12 = 0 => (t - 3)(t - 4) = 0 => {x, y} = {3, 4}.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8517,27 +8517,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\{x=2, y=6\\}$",
         "misconceptionTag": "MIS-FACTOR-PAIR",
         "misconceptionId": "MIS-FACTOR-PAIR",
-        "feedback": "2 \u00d7 6 = 12 but 2 + 6 = 8 \u2260 7.",
-        "rationale": "2 \u00d7 6 = 12 but 2 + 6 = 8 \u2260 7.",
-        "remediation": "2 \u00d7 6 = 12 but 2 + 6 = 8 \u2260 7."
+        "feedback": "2 × 6 = 12 but 2 + 6 = 8 ≠ 7.",
+        "rationale": "2 × 6 = 12 but 2 + 6 = 8 ≠ 7.",
+        "remediation": "2 × 6 = 12 but 2 + 6 = 8 ≠ 7."
       },
       {
         "id": "C",
         "text": "$\\{x=1, y=12\\}$",
         "misconceptionTag": "MIS-FACTOR-PAIR",
         "misconceptionId": "MIS-FACTOR-PAIR",
-        "feedback": "1 + 12 = 13 \u2260 7.",
-        "rationale": "1 + 12 = 13 \u2260 7.",
-        "remediation": "1 + 12 = 13 \u2260 7."
+        "feedback": "1 + 12 = 13 ≠ 7.",
+        "rationale": "1 + 12 = 13 ≠ 7.",
+        "remediation": "1 + 12 = 13 ≠ 7."
       },
       {
         "id": "D",
         "text": "$\\{x=-3, y=-4\\}$",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "-3 + (-4) = -7 \u2260 +7.",
-        "rationale": "-3 + (-4) = -7 \u2260 +7.",
-        "remediation": "-3 + (-4) = -7 \u2260 +7."
+        "feedback": "-3 + (-4) = -7 ≠ +7.",
+        "rationale": "-3 + (-4) = -7 ≠ +7.",
+        "remediation": "-3 + (-4) = -7 ≠ +7."
       }
     ]
   },
@@ -8553,7 +8553,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Solve the system: $$x - y = 1 \\quad \\text{and} \\quad x^2 + y^2 = 25$$",
     "correctAnswer": "A",
-    "explanation": "y\u00b2 + (y+1)\u00b2 = 25 => 2y\u00b2 + 2y - 24 = 0 => y = 3 (x = 4), y = -4 (x = -3).",
+    "explanation": "y² + (y+1)² = 25 => 2y² + 2y - 24 = 0 => y = 3 (x = 4), y = -4 (x = -3).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8581,18 +8581,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$(5, 4) \\text{ and } (-4, -5)$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "(y + 1)\u00b2 + y\u00b2 = 25 => 2y\u00b2 + 2y - 24 = 0 => y\u00b2 + y - 12 = 0 => y = 3, -4. x = 4, -3.",
-        "rationale": "(y + 1)\u00b2 + y\u00b2 = 25 => 2y\u00b2 + 2y - 24 = 0 => y\u00b2 + y - 12 = 0 => y = 3, -4. x = 4, -3.",
-        "remediation": "(y + 1)\u00b2 + y\u00b2 = 25 => 2y\u00b2 + 2y - 24 = 0 => y\u00b2 + y - 12 = 0 => y = 3, -4. x = 4, -3."
+        "feedback": "(y + 1)² + y² = 25 => 2y² + 2y - 24 = 0 => y² + y - 12 = 0 => y = 3, -4. x = 4, -3.",
+        "rationale": "(y + 1)² + y² = 25 => 2y² + 2y - 24 = 0 => y² + y - 12 = 0 => y = 3, -4. x = 4, -3.",
+        "remediation": "(y + 1)² + y² = 25 => 2y² + 2y - 24 = 0 => y² + y - 12 = 0 => y = 3, -4. x = 4, -3."
       },
       {
         "id": "C",
         "text": "$(3, 2) \\text{ and } (-2, -3)$",
         "misconceptionTag": "MIS-FACTOR-SLIP",
         "misconceptionId": "MIS-FACTOR-SLIP",
-        "feedback": "4\u00b2 + 3\u00b2 = 25 and (-3)\u00b2 + (-4)\u00b2 = 25.",
-        "rationale": "4\u00b2 + 3\u00b2 = 25 and (-3)\u00b2 + (-4)\u00b2 = 25.",
-        "remediation": "4\u00b2 + 3\u00b2 = 25 and (-3)\u00b2 + (-4)\u00b2 = 25."
+        "feedback": "4² + 3² = 25 and (-3)² + (-4)² = 25.",
+        "rationale": "4² + 3² = 25 and (-3)² + (-4)² = 25.",
+        "remediation": "4² + 3² = 25 and (-3)² + (-4)² = 25."
       },
       {
         "id": "D",
@@ -8617,7 +8617,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Find the points where the line $y = 3x$ intersects the circle $x^2 + y^2 = 40$.",
     "correctAnswer": "A",
-    "explanation": "x\u00b2 + (3x)\u00b2 = 40 => 10x\u00b2 = 40 => x\u00b2 = 4 => x = \u00b12, y = \u00b16.",
+    "explanation": "x² + (3x)² = 40 => 10x² = 40 => x² = 4 => x = ±2, y = ±6.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8654,18 +8654,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$(1, 3) \\text{ and } (-1, -3)$",
         "misconceptionTag": "MIS-SCALE-SLIP",
         "misconceptionId": "MIS-SCALE-SLIP",
-        "feedback": "x\u00b2 + 9x\u00b2 = 10x\u00b2 = 40 => x\u00b2 = 4 => x = \u00b12.",
-        "rationale": "x\u00b2 + 9x\u00b2 = 10x\u00b2 = 40 => x\u00b2 = 4 => x = \u00b12.",
-        "remediation": "x\u00b2 + 9x\u00b2 = 10x\u00b2 = 40 => x\u00b2 = 4 => x = \u00b12."
+        "feedback": "x² + 9x² = 10x² = 40 => x² = 4 => x = ±2.",
+        "rationale": "x² + 9x² = 10x² = 40 => x² = 4 => x = ±2.",
+        "remediation": "x² + 9x² = 10x² = 40 => x² = 4 => x = ±2."
       },
       {
         "id": "D",
         "text": "$(4, 12) \\text{ and } (-4, -12)$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "10x\u00b2 = 40 => x\u00b2 = 4 => x = \u00b12, y = \u00b16.",
-        "rationale": "10x\u00b2 = 40 => x\u00b2 = 4 => x = \u00b12, y = \u00b16.",
-        "remediation": "10x\u00b2 = 40 => x\u00b2 = 4 => x = \u00b12, y = \u00b16."
+        "feedback": "10x² = 40 => x² = 4 => x = ±2, y = ±6.",
+        "rationale": "10x² = 40 => x² = 4 => x = ±2, y = ±6.",
+        "remediation": "10x² = 40 => x² = 4 => x = ±2, y = ±6."
       }
     ]
   },
@@ -8681,7 +8681,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "numeric_entry",
     "prompt": "The sum of two positive numbers is $10$ and their product is $21$. Find the larger number.",
     "correctAnswer": 7,
-    "explanation": "t\u00b2 - 10t + 21 = 0 => (t - 3)(t - 7) = 0. Numbers are 3 and 7. Larger is 7.",
+    "explanation": "t² - 10t + 21 = 0 => (t - 3)(t - 7) = 0. Numbers are 3 and 7. Larger is 7.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8740,11 +8740,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Equate the two expressions for y: x\u00b2 - 4 = 2x - 1."
+        "text": "Equate the two expressions for y: x² - 4 = 2x - 1."
       },
       {
         "id": "B",
-        "text": "Rearrange into standard quadratic form: x\u00b2 - 2x - 3 = 0."
+        "text": "Rearrange into standard quadratic form: x² - 2x - 3 = 0."
       },
       {
         "id": "C",
@@ -8768,7 +8768,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "symbolic_entry",
     "prompt": "If $y = 2x + 1$, expand $y^2$ in terms of $x$.",
     "correctAnswer": "4*x^2 + 4*x + 1",
-    "explanation": "(2x + 1)\u00b2 = 4x\u00b2 + 4x + 1.",
+    "explanation": "(2x + 1)² = 4x² + 4x + 1.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -8799,7 +8799,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "To solve $x + y = 5$ and $x^2 + y^2 = 13$, a student squared the first equation as $x^2 + y^2 = 25$. What error did the student commit?",
     "correctAnswer": "A",
-    "explanation": "(x + y)\u00b2 = x\u00b2 + 2xy + y\u00b2 = 25. The student forgot +2xy.",
+    "explanation": "(x + y)² = x² + 2xy + y² = 25. The student forgot +2xy.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -8827,9 +8827,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "Squared 5 incorrectly.",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "5\u00b2 = 25 was correct.",
-        "rationale": "5\u00b2 = 25 was correct.",
-        "remediation": "5\u00b2 = 25 was correct."
+        "feedback": "5² = 25 was correct.",
+        "rationale": "5² = 25 was correct.",
+        "remediation": "5² = 25 was correct."
       },
       {
         "id": "C",
@@ -8845,9 +8845,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "There is no error.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "(x+y)\u00b2 = x\u00b2 + 2xy + y\u00b2 is a fundamental identity.",
-        "rationale": "(x+y)\u00b2 = x\u00b2 + 2xy + y\u00b2 is a fundamental identity.",
-        "remediation": "(x+y)\u00b2 = x\u00b2 + 2xy + y\u00b2 is a fundamental identity."
+        "feedback": "(x+y)² = x² + 2xy + y² is a fundamental identity.",
+        "rationale": "(x+y)² = x² + 2xy + y² is a fundamental identity.",
+        "remediation": "(x+y)² = x² + 2xy + y² is a fundamental identity."
       }
     ]
   },
@@ -8927,7 +8927,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The perimeter of a rectangular field is $28\\text{ m}$ and its diagonal is $10\\text{ m}$. Find the dimensions of the field.",
     "correctAnswer": "A",
-    "explanation": "L + W = 14 and L\u00b2 + W\u00b2 = 100. (L+W)\u00b2 = 196 => 100 + 2LW = 196 => 2LW = 96 => LW = 48. Dimensions: 6 m by 8 m.",
+    "explanation": "L + W = 14 and L² + W² = 100. (L+W)² = 196 => 100 + 2LW = 196 => 2LW = 96 => LW = 48. Dimensions: 6 m by 8 m.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -8955,27 +8955,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$5\\text{ m} \\text{ by } 9\\text{ m}$",
         "misconceptionTag": "MIS-DIAGONAL-SLIP",
         "misconceptionId": "MIS-DIAGONAL-SLIP",
-        "feedback": "5\u00b2 + 9\u00b2 = 25 + 81 = 106 \u2260 100.",
-        "rationale": "5\u00b2 + 9\u00b2 = 25 + 81 = 106 \u2260 100.",
-        "remediation": "5\u00b2 + 9\u00b2 = 25 + 81 = 106 \u2260 100."
+        "feedback": "5² + 9² = 25 + 81 = 106 ≠ 100.",
+        "rationale": "5² + 9² = 25 + 81 = 106 ≠ 100.",
+        "remediation": "5² + 9² = 25 + 81 = 106 ≠ 100."
       },
       {
         "id": "C",
         "text": "$4\\text{ m} \\text{ by } 10\\text{ m}$",
         "misconceptionTag": "MIS-PERIMETER-SLIP",
         "misconceptionId": "MIS-PERIMETER-SLIP",
-        "feedback": "2(4 + 10) = 28, but 4\u00b2 + 10\u00b2 = 116 \u2260 100.",
-        "rationale": "2(4 + 10) = 28, but 4\u00b2 + 10\u00b2 = 116 \u2260 100.",
-        "remediation": "2(4 + 10) = 28, but 4\u00b2 + 10\u00b2 = 116 \u2260 100."
+        "feedback": "2(4 + 10) = 28, but 4² + 10² = 116 ≠ 100.",
+        "rationale": "2(4 + 10) = 28, but 4² + 10² = 116 ≠ 100.",
+        "remediation": "2(4 + 10) = 28, but 4² + 10² = 116 ≠ 100."
       },
       {
         "id": "D",
         "text": "$7\\text{ m} \\text{ by } 7\\text{ m}$",
         "misconceptionTag": "MIS-SQUARE-ASSUMPTION",
         "misconceptionId": "MIS-SQUARE-ASSUMPTION",
-        "feedback": "7\u00b2 + 7\u00b2 = 98 \u2260 100.",
-        "rationale": "7\u00b2 + 7\u00b2 = 98 \u2260 100.",
-        "remediation": "7\u00b2 + 7\u00b2 = 98 \u2260 100."
+        "feedback": "7² + 7² = 98 ≠ 100.",
+        "rationale": "7² + 7² = 98 ≠ 100.",
+        "remediation": "7² + 7² = 98 ≠ 100."
       }
     ]
   },
@@ -8991,7 +8991,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Find the values of $m$ for which the line $y = mx + 2$ is tangent to the curve $y = x^2 + 6$.",
     "correctAnswer": "A",
-    "explanation": "x\u00b2 - mx + 4 = 0 => \u0394 = m\u00b2 - 16 = 0 => m = \u00b14.",
+    "explanation": "x² - mx + 4 = 0 => Δ = m² - 16 = 0 => m = ±4.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -9019,27 +9019,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$m = \\pm 2$",
         "misconceptionTag": "MIS-HALF-SLIP",
         "misconceptionId": "MIS-HALF-SLIP",
-        "feedback": "x\u00b2 - mx + 4 = 0. Tangency requires \u0394 = m\u00b2 - 4(1)(4) = m\u00b2 - 16 = 0 => m = \u00b14.",
-        "rationale": "x\u00b2 - mx + 4 = 0. Tangency requires \u0394 = m\u00b2 - 4(1)(4) = m\u00b2 - 16 = 0 => m = \u00b14.",
-        "remediation": "x\u00b2 - mx + 4 = 0. Tangency requires \u0394 = m\u00b2 - 4(1)(4) = m\u00b2 - 16 = 0 => m = \u00b14."
+        "feedback": "x² - mx + 4 = 0. Tangency requires Δ = m² - 4(1)(4) = m² - 16 = 0 => m = ±4.",
+        "rationale": "x² - mx + 4 = 0. Tangency requires Δ = m² - 4(1)(4) = m² - 16 = 0 => m = ±4.",
+        "remediation": "x² - mx + 4 = 0. Tangency requires Δ = m² - 4(1)(4) = m² - 16 = 0 => m = ±4."
       },
       {
         "id": "C",
         "text": "$m = 4 \\text{ only}$",
         "misconceptionTag": "MIS-NEGATIVE-ROOT-LOSS",
         "misconceptionId": "MIS-NEGATIVE-ROOT-LOSS",
-        "feedback": "m = -4 also gives m\u00b2 = 16.",
-        "rationale": "m = -4 also gives m\u00b2 = 16.",
-        "remediation": "m = -4 also gives m\u00b2 = 16."
+        "feedback": "m = -4 also gives m² = 16.",
+        "rationale": "m = -4 also gives m² = 16.",
+        "remediation": "m = -4 also gives m² = 16."
       },
       {
         "id": "D",
         "text": "$m = \\pm 8$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "m\u00b2 = 16 => m = \u00b14.",
-        "rationale": "m\u00b2 = 16 => m = \u00b14.",
-        "remediation": "m\u00b2 = 16 => m = \u00b14."
+        "feedback": "m² = 16 => m = ±4.",
+        "rationale": "m² = 16 => m = ±4.",
+        "remediation": "m² = 16 => m = ±4."
       }
     ]
   },
@@ -9055,7 +9055,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "What is the sum of the interior angles of a polygon with $n$ sides?",
     "correctAnswer": "A",
-    "explanation": "Sum of interior angles = (n - 2) \u00d7 180\u00b0.",
+    "explanation": "Sum of interior angles = (n - 2) × 180°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9092,18 +9092,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$(n + 2) \\times 180^\\circ$",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "Formula is (n - 2) * 180\u00b0.",
-        "rationale": "Formula is (n - 2) * 180\u00b0.",
-        "remediation": "Formula is (n - 2) * 180\u00b0."
+        "feedback": "Formula is (n - 2) * 180°.",
+        "rationale": "Formula is (n - 2) * 180°.",
+        "remediation": "Formula is (n - 2) * 180°."
       },
       {
         "id": "D",
         "text": "$\\frac{360^\\circ}{n}$",
         "misconceptionTag": "MIS-EXTERIOR-CONFUSION",
         "misconceptionId": "MIS-EXTERIOR-CONFUSION",
-        "feedback": "360\u00b0/n is the exterior angle of a regular polygon.",
-        "rationale": "360\u00b0/n is the exterior angle of a regular polygon.",
-        "remediation": "360\u00b0/n is the exterior angle of a regular polygon."
+        "feedback": "360°/n is the exterior angle of a regular polygon.",
+        "rationale": "360°/n is the exterior angle of a regular polygon.",
+        "remediation": "360°/n is the exterior angle of a regular polygon."
       }
     ]
   },
@@ -9119,7 +9119,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Calculate the sum of the interior angles of a regular hexagon ($n = 6$).",
     "correctAnswer": "A",
-    "explanation": "(6 - 2) \u00d7 180\u00b0 = 4 \u00d7 180\u00b0 = 720\u00b0.",
+    "explanation": "(6 - 2) × 180° = 4 × 180° = 720°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9147,27 +9147,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$540^\\circ$",
         "misconceptionTag": "MIS-PENTAGON-SUM",
         "misconceptionId": "MIS-PENTAGON-SUM",
-        "feedback": "540\u00b0 is the sum for a pentagon (n = 5).",
-        "rationale": "540\u00b0 is the sum for a pentagon (n = 5).",
-        "remediation": "540\u00b0 is the sum for a pentagon (n = 5)."
+        "feedback": "540° is the sum for a pentagon (n = 5).",
+        "rationale": "540° is the sum for a pentagon (n = 5).",
+        "remediation": "540° is the sum for a pentagon (n = 5)."
       },
       {
         "id": "C",
         "text": "$1080^\\circ$",
         "misconceptionTag": "MIS-OCTAGON-SUM",
         "misconceptionId": "MIS-OCTAGON-SUM",
-        "feedback": "1080\u00b0 is the sum for an octagon (n = 8).",
-        "rationale": "1080\u00b0 is the sum for an octagon (n = 8).",
-        "remediation": "1080\u00b0 is the sum for an octagon (n = 8)."
+        "feedback": "1080° is the sum for an octagon (n = 8).",
+        "rationale": "1080° is the sum for an octagon (n = 8).",
+        "remediation": "1080° is the sum for an octagon (n = 8)."
       },
       {
         "id": "D",
         "text": "$360^\\circ$",
         "misconceptionTag": "MIS-QUAD-SUM",
         "misconceptionId": "MIS-QUAD-SUM",
-        "feedback": "360\u00b0 is the sum for a quadrilateral or exterior angles.",
-        "rationale": "360\u00b0 is the sum for a quadrilateral or exterior angles.",
-        "remediation": "360\u00b0 is the sum for a quadrilateral or exterior angles."
+        "feedback": "360° is the sum for a quadrilateral or exterior angles.",
+        "rationale": "360° is the sum for a quadrilateral or exterior angles.",
+        "remediation": "360° is the sum for a quadrilateral or exterior angles."
       }
     ]
   },
@@ -9183,7 +9183,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "What is the sum of the exterior angles of ANY convex polygon?",
     "correctAnswer": "A",
-    "explanation": "The sum of exterior angles of any convex polygon is always 360\u00b0.",
+    "explanation": "The sum of exterior angles of any convex polygon is always 360°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9211,9 +9211,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$180^\\circ$",
         "misconceptionTag": "MIS-TRIANGLE-SUM",
         "misconceptionId": "MIS-TRIANGLE-SUM",
-        "feedback": "180\u00b0 is the interior angle sum of a triangle.",
-        "rationale": "180\u00b0 is the interior angle sum of a triangle.",
-        "remediation": "180\u00b0 is the interior angle sum of a triangle."
+        "feedback": "180° is the interior angle sum of a triangle.",
+        "rationale": "180° is the interior angle sum of a triangle.",
+        "remediation": "180° is the interior angle sum of a triangle."
       },
       {
         "id": "C",
@@ -9229,9 +9229,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$n \\times 360^\\circ$",
         "misconceptionTag": "MIS-MULT-CONFUSION",
         "misconceptionId": "MIS-MULT-CONFUSION",
-        "feedback": "Exterior angles always sum to 360\u00b0 regardless of n.",
-        "rationale": "Exterior angles always sum to 360\u00b0 regardless of n.",
-        "remediation": "Exterior angles always sum to 360\u00b0 regardless of n."
+        "feedback": "Exterior angles always sum to 360° regardless of n.",
+        "rationale": "Exterior angles always sum to 360° regardless of n.",
+        "remediation": "Exterior angles always sum to 360° regardless of n."
       }
     ]
   },
@@ -9272,7 +9272,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "False: The exterior angle equals 180\u00b0 minus all interior angles.",
+        "text": "False: The exterior angle equals 180° minus all interior angles.",
         "misconceptionTag": "MIS-GEOM-RULES",
         "misconceptionId": "MIS-GEOM-RULES",
         "feedback": "It is supplementary to its adjacent interior angle.",
@@ -9311,7 +9311,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Each interior angle of a regular polygon is $140^\\circ$. How many sides does the polygon have?",
     "correctAnswer": "A",
-    "explanation": "Exterior angle = 180\u00b0 - 140\u00b0 = 40\u00b0. Number of sides n = 360\u00b0 / 40\u00b0 = 9 sides.",
+    "explanation": "Exterior angle = 180° - 140° = 40°. Number of sides n = 360° / 40° = 9 sides.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9339,27 +9339,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "8",
         "misconceptionTag": "MIS-OCTAGON-SLIP",
         "misconceptionId": "MIS-OCTAGON-SLIP",
-        "feedback": "Exterior angle = 180\u00b0 - 140\u00b0 = 40\u00b0. n = 360\u00b0 / 40\u00b0 = 9 sides.",
-        "rationale": "Exterior angle = 180\u00b0 - 140\u00b0 = 40\u00b0. n = 360\u00b0 / 40\u00b0 = 9 sides.",
-        "remediation": "Exterior angle = 180\u00b0 - 140\u00b0 = 40\u00b0. n = 360\u00b0 / 40\u00b0 = 9 sides."
+        "feedback": "Exterior angle = 180° - 140° = 40°. n = 360° / 40° = 9 sides.",
+        "rationale": "Exterior angle = 180° - 140° = 40°. n = 360° / 40° = 9 sides.",
+        "remediation": "Exterior angle = 180° - 140° = 40°. n = 360° / 40° = 9 sides."
       },
       {
         "id": "C",
         "text": "10",
         "misconceptionTag": "MIS-DECAGON-SLIP",
         "misconceptionId": "MIS-DECAGON-SLIP",
-        "feedback": "Decagon interior angle is 144\u00b0.",
-        "rationale": "Decagon interior angle is 144\u00b0.",
-        "remediation": "Decagon interior angle is 144\u00b0."
+        "feedback": "Decagon interior angle is 144°.",
+        "rationale": "Decagon interior angle is 144°.",
+        "remediation": "Decagon interior angle is 144°."
       },
       {
         "id": "D",
         "text": "12",
         "misconceptionTag": "MIS-DODECAGON-SLIP",
         "misconceptionId": "MIS-DODECAGON-SLIP",
-        "feedback": "Dodecagon interior angle is 150\u00b0.",
-        "rationale": "Dodecagon interior angle is 150\u00b0.",
-        "remediation": "Dodecagon interior angle is 150\u00b0."
+        "feedback": "Dodecagon interior angle is 150°.",
+        "rationale": "Dodecagon interior angle is 150°.",
+        "remediation": "Dodecagon interior angle is 150°."
       }
     ]
   },
@@ -9375,7 +9375,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In $\\triangle ABC$, the angles are $x^\\circ, (2x)^\\circ,$ and $(3x)^\\circ$. Calculate the measure of the largest angle.",
     "correctAnswer": "A",
-    "explanation": "x + 2x + 3x = 6x = 180\u00b0 => x = 30\u00b0. Largest angle = 3(30\u00b0) = 90\u00b0.",
+    "explanation": "x + 2x + 3x = 6x = 180° => x = 30°. Largest angle = 3(30°) = 90°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9403,27 +9403,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$60^\\circ$",
         "misconceptionTag": "MIS-MIDDLE-ANGLE",
         "misconceptionId": "MIS-MIDDLE-ANGLE",
-        "feedback": "60\u00b0 is the middle angle 2x (where x = 30\u00b0).",
-        "rationale": "60\u00b0 is the middle angle 2x (where x = 30\u00b0).",
-        "remediation": "60\u00b0 is the middle angle 2x (where x = 30\u00b0)."
+        "feedback": "60° is the middle angle 2x (where x = 30°).",
+        "rationale": "60° is the middle angle 2x (where x = 30°).",
+        "remediation": "60° is the middle angle 2x (where x = 30°)."
       },
       {
         "id": "C",
         "text": "$30^\\circ$",
         "misconceptionTag": "MIS-SMALLEST-ANGLE",
         "misconceptionId": "MIS-SMALLEST-ANGLE",
-        "feedback": "30\u00b0 is the smallest angle x.",
-        "rationale": "30\u00b0 is the smallest angle x.",
-        "remediation": "30\u00b0 is the smallest angle x."
+        "feedback": "30° is the smallest angle x.",
+        "rationale": "30° is the smallest angle x.",
+        "remediation": "30° is the smallest angle x."
       },
       {
         "id": "D",
         "text": "$120^\\circ$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "x + 2x + 3x = 6x = 180\u00b0 => x = 30\u00b0. Largest = 3(30\u00b0) = 90\u00b0.",
-        "rationale": "x + 2x + 3x = 6x = 180\u00b0 => x = 30\u00b0. Largest = 3(30\u00b0) = 90\u00b0.",
-        "remediation": "x + 2x + 3x = 6x = 180\u00b0 => x = 30\u00b0. Largest = 3(30\u00b0) = 90\u00b0."
+        "feedback": "x + 2x + 3x = 6x = 180° => x = 30°. Largest = 3(30°) = 90°.",
+        "rationale": "x + 2x + 3x = 6x = 180° => x = 30°. Largest = 3(30°) = 90°.",
+        "remediation": "x + 2x + 3x = 6x = 180° => x = 30°. Largest = 3(30°) = 90°."
       }
     ]
   },
@@ -9439,7 +9439,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In an isosceles triangle, the vertex angle is $40^\\circ$. What is the measure of each base angle?",
     "correctAnswer": "A",
-    "explanation": "(180\u00b0 - 40\u00b0) / 2 = 140\u00b0 / 2 = 70\u00b0.",
+    "explanation": "(180° - 40°) / 2 = 140° / 2 = 70°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9467,18 +9467,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$50^\\circ$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "(180\u00b0 - 40\u00b0) / 2 = 140\u00b0 / 2 = 70\u00b0.",
-        "rationale": "(180\u00b0 - 40\u00b0) / 2 = 140\u00b0 / 2 = 70\u00b0.",
-        "remediation": "(180\u00b0 - 40\u00b0) / 2 = 140\u00b0 / 2 = 70\u00b0."
+        "feedback": "(180° - 40°) / 2 = 140° / 2 = 70°.",
+        "rationale": "(180° - 40°) / 2 = 140° / 2 = 70°.",
+        "remediation": "(180° - 40°) / 2 = 140° / 2 = 70°."
       },
       {
         "id": "C",
         "text": "$60^\\circ$",
         "misconceptionTag": "MIS-EQUILATERAL-GUESS",
         "misconceptionId": "MIS-EQUILATERAL-GUESS",
-        "feedback": "60\u00b0 is for equilateral triangles.",
-        "rationale": "60\u00b0 is for equilateral triangles.",
-        "remediation": "60\u00b0 is for equilateral triangles."
+        "feedback": "60° is for equilateral triangles.",
+        "rationale": "60° is for equilateral triangles.",
+        "remediation": "60° is for equilateral triangles."
       },
       {
         "id": "D",
@@ -9503,7 +9503,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "numeric_entry",
     "prompt": "Calculate the interior angle of a regular octagon ($n = 8$) in degrees.",
     "correctAnswer": 135,
-    "explanation": "(8 - 2) \u00d7 180\u00b0 / 8 = 1080\u00b0 / 8 = 135\u00b0.",
+    "explanation": "(8 - 2) × 180° / 8 = 1080° / 8 = 135°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9562,15 +9562,15 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Calculate the exterior angle: E = 180\u00b0 - I."
+        "text": "Calculate the exterior angle: E = 180° - I."
       },
       {
         "id": "B",
-        "text": "Use the total exterior angle sum: n \u00d7 E = 360\u00b0."
+        "text": "Use the total exterior angle sum: n × E = 360°."
       },
       {
         "id": "C",
-        "text": "Divide 360\u00b0 by the exterior angle: n = 360\u00b0 / E."
+        "text": "Divide 360° by the exterior angle: n = 360° / E."
       },
       {
         "id": "D",
@@ -9621,7 +9621,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student calculates the sum of interior angles of a pentagon ($n = 5$) as $5 \\times 180^\\circ = 900^\\circ$. What error was committed?",
     "correctAnswer": "A",
-    "explanation": "Formula is (n - 2) \u00d7 180\u00b0 = (5 - 2) \u00d7 180\u00b0 = 540\u00b0.",
+    "explanation": "Formula is (n - 2) × 180° = (5 - 2) × 180° = 540°.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -9646,21 +9646,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Used 180\u00b0 instead of 360\u00b0.",
+        "text": "Used 180° instead of 360°.",
         "misconceptionTag": "MIS-CONST-CONFUSION",
         "misconceptionId": "MIS-CONST-CONFUSION",
-        "feedback": "180\u00b0 is the angle sum of a triangle.",
-        "rationale": "180\u00b0 is the angle sum of a triangle.",
-        "remediation": "180\u00b0 is the angle sum of a triangle."
+        "feedback": "180° is the angle sum of a triangle.",
+        "rationale": "180° is the angle sum of a triangle.",
+        "remediation": "180° is the angle sum of a triangle."
       },
       {
         "id": "C",
         "text": "Multiplied 5 by 180 incorrectly.",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "5 \u00d7 180 = 900 is correct arithmetic, but wrong formula.",
-        "rationale": "5 \u00d7 180 = 900 is correct arithmetic, but wrong formula.",
-        "remediation": "5 \u00d7 180 = 900 is correct arithmetic, but wrong formula."
+        "feedback": "5 × 180 = 900 is correct arithmetic, but wrong formula.",
+        "rationale": "5 × 180 = 900 is correct arithmetic, but wrong formula.",
+        "remediation": "5 × 180 = 900 is correct arithmetic, but wrong formula."
       },
       {
         "id": "D",
@@ -9685,7 +9685,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student stated that since a triangle has angle sum $180^\\circ$, a quadrilateral has angle sum $180^\\circ \\times 4 = 720^\\circ$. What was the misconception?",
     "correctAnswer": "A",
-    "explanation": "A quadrilateral is formed of 2 triangles: 2 \u00d7 180\u00b0 = 360\u00b0.",
+    "explanation": "A quadrilateral is formed of 2 triangles: 2 × 180° = 360°.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -9719,21 +9719,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "The angle sum of any shape is 180\u00b0.",
+        "text": "The angle sum of any shape is 180°.",
         "misconceptionTag": "MIS-INVARIANCE",
         "misconceptionId": "MIS-INVARIANCE",
-        "feedback": "Only triangles have 180\u00b0.",
-        "rationale": "Only triangles have 180\u00b0.",
-        "remediation": "Only triangles have 180\u00b0."
+        "feedback": "Only triangles have 180°.",
+        "rationale": "Only triangles have 180°.",
+        "remediation": "Only triangles have 180°."
       },
       {
         "id": "D",
         "text": "There is no error.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "(4 - 2) \u00d7 180\u00b0 = 360\u00b0.",
-        "rationale": "(4 - 2) \u00d7 180\u00b0 = 360\u00b0.",
-        "remediation": "(4 - 2) \u00d7 180\u00b0 = 360\u00b0."
+        "feedback": "(4 - 2) × 180° = 360°.",
+        "rationale": "(4 - 2) × 180° = 360°.",
+        "remediation": "(4 - 2) × 180° = 360°."
       }
     ]
   },
@@ -9749,7 +9749,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The interior angles of a pentagon are $x^\\circ, 2x^\\circ, 3x^\\circ, 4x^\\circ,$ and $5x^\\circ$. Calculate the largest angle.",
     "correctAnswer": "A",
-    "explanation": "x + 2x + 3x + 4x + 5x = 15x = 540\u00b0 => x = 36\u00b0. Largest = 5 \u00d7 36\u00b0 = 180\u00b0.",
+    "explanation": "x + 2x + 3x + 4x + 5x = 15x = 540° => x = 36°. Largest = 5 × 36° = 180°.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -9777,27 +9777,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$150^\\circ$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Sum = 15x = 540\u00b0 => x = 36\u00b0. Largest = 5(36\u00b0) = 180\u00b0.",
-        "rationale": "Sum = 15x = 540\u00b0 => x = 36\u00b0. Largest = 5(36\u00b0) = 180\u00b0.",
-        "remediation": "Sum = 15x = 540\u00b0 => x = 36\u00b0. Largest = 5(36\u00b0) = 180\u00b0."
+        "feedback": "Sum = 15x = 540° => x = 36°. Largest = 5(36°) = 180°.",
+        "rationale": "Sum = 15x = 540° => x = 36°. Largest = 5(36°) = 180°.",
+        "remediation": "Sum = 15x = 540° => x = 36°. Largest = 5(36°) = 180°."
       },
       {
         "id": "C",
         "text": "$144^\\circ$",
         "misconceptionTag": "MIS-4X-VALUE",
         "misconceptionId": "MIS-4X-VALUE",
-        "feedback": "4x = 4(36\u00b0) = 144\u00b0.",
-        "rationale": "4x = 4(36\u00b0) = 144\u00b0.",
-        "remediation": "4x = 4(36\u00b0) = 144\u00b0."
+        "feedback": "4x = 4(36°) = 144°.",
+        "rationale": "4x = 4(36°) = 144°.",
+        "remediation": "4x = 4(36°) = 144°."
       },
       {
         "id": "D",
         "text": "$108^\\circ$",
         "misconceptionTag": "MIS-REGULAR-PENTAGON",
         "misconceptionId": "MIS-REGULAR-PENTAGON",
-        "feedback": "108\u00b0 is the angle of a regular pentagon.",
-        "rationale": "108\u00b0 is the angle of a regular pentagon.",
-        "remediation": "108\u00b0 is the angle of a regular pentagon."
+        "feedback": "108° is the angle of a regular pentagon.",
+        "rationale": "108° is the angle of a regular pentagon.",
+        "remediation": "108° is the angle of a regular pentagon."
       }
     ]
   },
@@ -9813,7 +9813,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A polygon has $20$ diagonals. How many sides does the polygon have?",
     "correctAnswer": "A",
-    "explanation": "n(n - 3) / 2 = 20 => n\u00b2 - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8 sides.",
+    "explanation": "n(n - 3) / 2 = 20 => n² - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8 sides.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -9841,9 +9841,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "10",
         "misconceptionTag": "MIS-DECAGON-SLIP",
         "misconceptionId": "MIS-DECAGON-SLIP",
-        "feedback": "Diagonals = n(n - 3) / 2 = 20 => n(n - 3) = 40 => n\u00b2 - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8.",
-        "rationale": "Diagonals = n(n - 3) / 2 = 20 => n(n - 3) = 40 => n\u00b2 - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8.",
-        "remediation": "Diagonals = n(n - 3) / 2 = 20 => n(n - 3) = 40 => n\u00b2 - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8."
+        "feedback": "Diagonals = n(n - 3) / 2 = 20 => n(n - 3) = 40 => n² - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8.",
+        "rationale": "Diagonals = n(n - 3) / 2 = 20 => n(n - 3) = 40 => n² - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8.",
+        "remediation": "Diagonals = n(n - 3) / 2 = 20 => n(n - 3) = 40 => n² - 3n - 40 = 0 => (n - 8)(n + 5) = 0 => n = 8."
       },
       {
         "id": "C",
@@ -9877,7 +9877,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In a circle with centre $O$, an arc subtends an angle of $130^\\circ$ at the centre. What angle does it subtend at the circumference?",
     "correctAnswer": "A",
-    "explanation": "Angle at circumference = 130\u00b0 / 2 = 65\u00b0.",
+    "explanation": "Angle at circumference = 130° / 2 = 65°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9941,7 +9941,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "What is the angle subtended by a diameter at any point on the circumference of a circle?",
     "correctAnswer": "A",
-    "explanation": "Thales' theorem: Angle in a semicircle is 90\u00b0.",
+    "explanation": "Thales' theorem: Angle in a semicircle is 90°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -9969,27 +9969,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$180^\\circ$",
         "misconceptionTag": "MIS-CENTRE-ANGLE",
         "misconceptionId": "MIS-CENTRE-ANGLE",
-        "feedback": "180\u00b0 is the angle at the centre subtended by a diameter.",
-        "rationale": "180\u00b0 is the angle at the centre subtended by a diameter.",
-        "remediation": "180\u00b0 is the angle at the centre subtended by a diameter."
+        "feedback": "180° is the angle at the centre subtended by a diameter.",
+        "rationale": "180° is the angle at the centre subtended by a diameter.",
+        "remediation": "180° is the angle at the centre subtended by a diameter."
       },
       {
         "id": "C",
         "text": "$45^\\circ$",
         "misconceptionTag": "MIS-HALF-SLIP",
         "misconceptionId": "MIS-HALF-SLIP",
-        "feedback": "Half of 180\u00b0 is 90\u00b0, not 45\u00b0.",
-        "rationale": "Half of 180\u00b0 is 90\u00b0, not 45\u00b0.",
-        "remediation": "Half of 180\u00b0 is 90\u00b0, not 45\u00b0."
+        "feedback": "Half of 180° is 90°, not 45°.",
+        "rationale": "Half of 180° is 90°, not 45°.",
+        "remediation": "Half of 180° is 90°, not 45°."
       },
       {
         "id": "D",
         "text": "$60^\\circ$",
         "misconceptionTag": "MIS-EQUILATERAL-GUESS",
         "misconceptionId": "MIS-EQUILATERAL-GUESS",
-        "feedback": "Angle in a semicircle is always 90\u00b0.",
-        "rationale": "Angle in a semicircle is always 90\u00b0.",
-        "remediation": "Angle in a semicircle is always 90\u00b0."
+        "feedback": "Angle in a semicircle is always 90°.",
+        "rationale": "Angle in a semicircle is always 90°.",
+        "remediation": "Angle in a semicircle is always 90°."
       }
     ]
   },
@@ -10005,7 +10005,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In a cyclic quadrilateral $ABCD$, what is the sum of opposite interior angles $\\angle A + \\angle C$?",
     "correctAnswer": "A",
-    "explanation": "Opposite angles of a cyclic quadrilateral are supplementary (sum to 180\u00b0).",
+    "explanation": "Opposite angles of a cyclic quadrilateral are supplementary (sum to 180°).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10033,27 +10033,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$360^\\circ$",
         "misconceptionTag": "MIS-TOTAL-SUM",
         "misconceptionId": "MIS-TOTAL-SUM",
-        "feedback": "360\u00b0 is the sum of all 4 angles.",
-        "rationale": "360\u00b0 is the sum of all 4 angles.",
-        "remediation": "360\u00b0 is the sum of all 4 angles."
+        "feedback": "360° is the sum of all 4 angles.",
+        "rationale": "360° is the sum of all 4 angles.",
+        "remediation": "360° is the sum of all 4 angles."
       },
       {
         "id": "C",
         "text": "$90^\\circ$",
         "misconceptionTag": "MIS-COMPLEMENTARY",
         "misconceptionId": "MIS-COMPLEMENTARY",
-        "feedback": "Opposite angles are supplementary (180\u00b0).",
-        "rationale": "Opposite angles are supplementary (180\u00b0).",
-        "remediation": "Opposite angles are supplementary (180\u00b0)."
+        "feedback": "Opposite angles are supplementary (180°).",
+        "rationale": "Opposite angles are supplementary (180°).",
+        "remediation": "Opposite angles are supplementary (180°)."
       },
       {
         "id": "D",
         "text": "$270^\\circ$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Opposite angles sum to 180\u00b0.",
-        "rationale": "Opposite angles sum to 180\u00b0.",
-        "remediation": "Opposite angles sum to 180\u00b0."
+        "feedback": "Opposite angles sum to 180°.",
+        "rationale": "Opposite angles sum to 180°.",
+        "remediation": "Opposite angles sum to 180°."
       }
     ]
   },
@@ -10103,7 +10103,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "False: Their sum is 180\u00b0.",
+        "text": "False: Their sum is 180°.",
         "misconceptionTag": "MIS-SUPPLEMENTARY",
         "misconceptionId": "MIS-SUPPLEMENTARY",
         "feedback": "Angles in the same segment are equal.",
@@ -10133,7 +10133,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In cyclic quadrilateral $ABCD$, $\\angle B = 104^\\circ$. What is the measure of the opposite angle $\\angle D$?",
     "correctAnswer": "A",
-    "explanation": "Opposite angles sum to 180\u00b0: \u2220D = 180\u00b0 - 104\u00b0 = 76\u00b0.",
+    "explanation": "Opposite angles sum to 180°: ∠D = 180° - 104° = 76°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10161,27 +10161,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$104^\\circ$",
         "misconceptionTag": "MIS-EQUAL-SLIP",
         "misconceptionId": "MIS-EQUAL-SLIP",
-        "feedback": "Opposite angles sum to 180\u00b0, they are not equal unless 90\u00b0.",
-        "rationale": "Opposite angles sum to 180\u00b0, they are not equal unless 90\u00b0.",
-        "remediation": "Opposite angles sum to 180\u00b0, they are not equal unless 90\u00b0."
+        "feedback": "Opposite angles sum to 180°, they are not equal unless 90°.",
+        "rationale": "Opposite angles sum to 180°, they are not equal unless 90°.",
+        "remediation": "Opposite angles sum to 180°, they are not equal unless 90°."
       },
       {
         "id": "C",
         "text": "$86^\\circ$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "180\u00b0 - 104\u00b0 = 76\u00b0.",
-        "rationale": "180\u00b0 - 104\u00b0 = 76\u00b0.",
-        "remediation": "180\u00b0 - 104\u00b0 = 76\u00b0."
+        "feedback": "180° - 104° = 76°.",
+        "rationale": "180° - 104° = 76°.",
+        "remediation": "180° - 104° = 76°."
       },
       {
         "id": "D",
         "text": "$90^\\circ$",
         "misconceptionTag": "MIS-RIGHT-ANGLE-GUESS",
         "misconceptionId": "MIS-RIGHT-ANGLE-GUESS",
-        "feedback": "180\u00b0 - 104\u00b0 = 76\u00b0.",
-        "rationale": "180\u00b0 - 104\u00b0 = 76\u00b0.",
-        "remediation": "180\u00b0 - 104\u00b0 = 76\u00b0."
+        "feedback": "180° - 104° = 76°.",
+        "rationale": "180° - 104° = 76°.",
+        "remediation": "180° - 104° = 76°."
       }
     ]
   },
@@ -10197,7 +10197,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "$A, B, C$ are points on a circle with centre $O$. If $\\angle ABC = 55^\\circ$, calculate the reflex angle $\\angle AOC$.",
     "correctAnswer": "A",
-    "explanation": "Angle AOC (minor) = 2 \u00d7 55\u00b0 = 110\u00b0. Reflex angle AOC = 360\u00b0 - 110\u00b0 = 250\u00b0.",
+    "explanation": "Angle AOC (minor) = 2 × 55° = 110°. Reflex angle AOC = 360° - 110° = 250°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10225,27 +10225,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$110^\\circ$",
         "misconceptionTag": "MIS-OBTUSE-ANGLE",
         "misconceptionId": "MIS-OBTUSE-ANGLE",
-        "feedback": "110\u00b0 is the non-reflex angle AOC; reflex angle = 360\u00b0 - 110\u00b0 = 250\u00b0.",
-        "rationale": "110\u00b0 is the non-reflex angle AOC; reflex angle = 360\u00b0 - 110\u00b0 = 250\u00b0.",
-        "remediation": "110\u00b0 is the non-reflex angle AOC; reflex angle = 360\u00b0 - 110\u00b0 = 250\u00b0."
+        "feedback": "110° is the non-reflex angle AOC; reflex angle = 360° - 110° = 250°.",
+        "rationale": "110° is the non-reflex angle AOC; reflex angle = 360° - 110° = 250°.",
+        "remediation": "110° is the non-reflex angle AOC; reflex angle = 360° - 110° = 250°."
       },
       {
         "id": "C",
         "text": "$220^\\circ$",
         "misconceptionTag": "MIS-DOUBLE-SLIP",
         "misconceptionId": "MIS-DOUBLE-SLIP",
-        "feedback": "360\u00b0 - 110\u00b0 = 250\u00b0.",
-        "rationale": "360\u00b0 - 110\u00b0 = 250\u00b0.",
-        "remediation": "360\u00b0 - 110\u00b0 = 250\u00b0."
+        "feedback": "360° - 110° = 250°.",
+        "rationale": "360° - 110° = 250°.",
+        "remediation": "360° - 110° = 250°."
       },
       {
         "id": "D",
         "text": "$125^\\circ$",
         "misconceptionTag": "MIS-SUPPLEMENTARY",
         "misconceptionId": "MIS-SUPPLEMENTARY",
-        "feedback": "Reflex angle is 250\u00b0.",
-        "rationale": "Reflex angle is 250\u00b0.",
-        "remediation": "Reflex angle is 250\u00b0."
+        "feedback": "Reflex angle is 250°.",
+        "rationale": "Reflex angle is 250°.",
+        "remediation": "Reflex angle is 250°."
       }
     ]
   },
@@ -10261,7 +10261,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A tangent $PT$ touches a circle at $T$. If $O$ is the centre, what is the angle between radius $OT$ and tangent $PT$?",
     "correctAnswer": "A",
-    "explanation": "The radius to a tangent at the point of contact is perpendicular (90\u00b0).",
+    "explanation": "The radius to a tangent at the point of contact is perpendicular (90°).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10298,18 +10298,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$60^\\circ$",
         "misconceptionTag": "MIS-TRIANGLE-GUESS",
         "misconceptionId": "MIS-TRIANGLE-GUESS",
-        "feedback": "Tangent-radius angle is always 90\u00b0.",
-        "rationale": "Tangent-radius angle is always 90\u00b0.",
-        "remediation": "Tangent-radius angle is always 90\u00b0."
+        "feedback": "Tangent-radius angle is always 90°.",
+        "rationale": "Tangent-radius angle is always 90°.",
+        "remediation": "Tangent-radius angle is always 90°."
       },
       {
         "id": "D",
         "text": "$180^\\circ$",
         "misconceptionTag": "MIS-LINE-CONFUSION",
         "misconceptionId": "MIS-LINE-CONFUSION",
-        "feedback": "Angle between tangent and radius is 90\u00b0.",
-        "rationale": "Angle between tangent and radius is 90\u00b0.",
-        "remediation": "Angle between tangent and radius is 90\u00b0."
+        "feedback": "Angle between tangent and radius is 90°.",
+        "rationale": "Angle between tangent and radius is 90°.",
+        "remediation": "Angle between tangent and radius is 90°."
       }
     ]
   },
@@ -10388,15 +10388,15 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Use the theorem: angle at centre = 2 \u00d7 angle at circumference."
+        "text": "Use the theorem: angle at centre = 2 × angle at circumference."
       },
       {
         "id": "C",
-        "text": "Recognize that the two angles at the centre form a full turn (360\u00b0)."
+        "text": "Recognize that the two angles at the centre form a full turn (360°)."
       },
       {
         "id": "D",
-        "text": "Divide 360\u00b0 by 2 to conclude that opposite angles sum to 180\u00b0."
+        "text": "Divide 360° by 2 to conclude that opposite angles sum to 180°."
       }
     ]
   },
@@ -10443,7 +10443,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student stated that adjacent angles in a cyclic quadrilateral are supplementary. What is the misconception?",
     "correctAnswer": "A",
-    "explanation": "Opposite angles sum to 180\u00b0 in a cyclic quad, not adjacent angles.",
+    "explanation": "Opposite angles sum to 180° in a cyclic quad, not adjacent angles.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -10468,7 +10468,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "All 4 angles must be equal to 90\u00b0.",
+        "text": "All 4 angles must be equal to 90°.",
         "misconceptionTag": "MIS-RECTANGLE-CONFUSION",
         "misconceptionId": "MIS-RECTANGLE-CONFUSION",
         "feedback": "Cyclic quads can have any shape if vertices lie on circle.",
@@ -10477,21 +10477,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "Adjacent angles sum to 360\u00b0.",
+        "text": "Adjacent angles sum to 360°.",
         "misconceptionTag": "MIS-TOTAL-CONFUSION",
         "misconceptionId": "MIS-TOTAL-CONFUSION",
-        "feedback": "Sum of all 4 is 360\u00b0.",
-        "rationale": "Sum of all 4 is 360\u00b0.",
-        "remediation": "Sum of all 4 is 360\u00b0."
+        "feedback": "Sum of all 4 is 360°.",
+        "rationale": "Sum of all 4 is 360°.",
+        "remediation": "Sum of all 4 is 360°."
       },
       {
         "id": "D",
         "text": "There is no error.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "Opposite angles sum to 180\u00b0, not adjacent.",
-        "rationale": "Opposite angles sum to 180\u00b0, not adjacent.",
-        "remediation": "Opposite angles sum to 180\u00b0, not adjacent."
+        "feedback": "Opposite angles sum to 180°, not adjacent.",
+        "rationale": "Opposite angles sum to 180°, not adjacent.",
+        "remediation": "Opposite angles sum to 180°, not adjacent."
       }
     ]
   },
@@ -10535,9 +10535,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "The vertex must be on the circumference.",
         "misconceptionTag": "MIS-LOCATION-CONFUSION",
         "misconceptionId": "MIS-LOCATION-CONFUSION",
-        "feedback": "Circumference angle is \u03b8, centre angle is 2\u03b8.",
-        "rationale": "Circumference angle is \u03b8, centre angle is 2\u03b8.",
-        "remediation": "Circumference angle is \u03b8, centre angle is 2\u03b8."
+        "feedback": "Circumference angle is θ, centre angle is 2θ.",
+        "rationale": "Circumference angle is θ, centre angle is 2θ.",
+        "remediation": "Circumference angle is θ, centre angle is 2θ."
       },
       {
         "id": "C",
@@ -10571,7 +10571,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "$TA$ is a tangent to a circle at $A$, and $AB$ is a chord. If $\\angle TAB = 62^\\circ$, find the angle in the alternate segment subtended by chord $AB$.",
     "correctAnswer": "A",
-    "explanation": "Alternate Segment Theorem: Angle between tangent and chord equals angle in alternate segment = 62\u00b0.",
+    "explanation": "Alternate Segment Theorem: Angle between tangent and chord equals angle in alternate segment = 62°.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -10617,9 +10617,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$31^\\circ$",
         "misconceptionTag": "MIS-HALF-SLIP",
         "misconceptionId": "MIS-HALF-SLIP",
-        "feedback": "Angle is 62\u00b0.",
-        "rationale": "Angle is 62\u00b0.",
-        "remediation": "Angle is 62\u00b0."
+        "feedback": "Angle is 62°.",
+        "rationale": "Angle is 62°.",
+        "remediation": "Angle is 62°."
       }
     ]
   },
@@ -10635,7 +10635,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In cyclic quad $ABCD$, side $AB$ is extended to $E$. If $\\angle CBE = 78^\\circ$, find the interior opposite angle $\\angle ADC$.",
     "correctAnswer": "A",
-    "explanation": "The exterior angle of a cyclic quadrilateral equals the interior opposite angle: \u2220ADC = 78\u00b0.",
+    "explanation": "The exterior angle of a cyclic quadrilateral equals the interior opposite angle: ∠ADC = 78°.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -10672,18 +10672,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$156^\\circ$",
         "misconceptionTag": "MIS-DOUBLE-SLIP",
         "misconceptionId": "MIS-DOUBLE-SLIP",
-        "feedback": "Angles are equal: \u2220ADC = \u2220CBE = 78\u00b0.",
-        "rationale": "Angles are equal: \u2220ADC = \u2220CBE = 78\u00b0.",
-        "remediation": "Angles are equal: \u2220ADC = \u2220CBE = 78\u00b0."
+        "feedback": "Angles are equal: ∠ADC = ∠CBE = 78°.",
+        "rationale": "Angles are equal: ∠ADC = ∠CBE = 78°.",
+        "remediation": "Angles are equal: ∠ADC = ∠CBE = 78°."
       },
       {
         "id": "D",
         "text": "$90^\\circ$",
         "misconceptionTag": "MIS-RIGHT-ANGLE-GUESS",
         "misconceptionId": "MIS-RIGHT-ANGLE-GUESS",
-        "feedback": "\u2220ADC = 78\u00b0.",
-        "rationale": "\u2220ADC = 78\u00b0.",
-        "remediation": "\u2220ADC = 78\u00b0."
+        "feedback": "∠ADC = 78°.",
+        "rationale": "∠ADC = 78°.",
+        "remediation": "∠ADC = 78°."
       }
     ]
   },
@@ -10699,7 +10699,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In a right-angled triangle, which ratio defines $\\cos \\theta$?",
     "correctAnswer": "A",
-    "explanation": "SOHCAHTOA: cos \u03b8 = Adjacent / Hypotenuse.",
+    "explanation": "SOHCAHTOA: cos θ = Adjacent / Hypotenuse.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10763,7 +10763,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "If $\\sin \\theta = \\frac{3}{5}$ and $\\theta$ is acute, what is the value of $\\cos \\theta$?",
     "correctAnswer": "A",
-    "explanation": "By Pythagoras: Adjacent = \u221a(5\u00b2 - 3\u00b2) = 4 => cos \u03b8 = 4/5.",
+    "explanation": "By Pythagoras: Adjacent = √(5² - 3²) = 4 => cos θ = 4/5.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10791,27 +10791,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\frac{2}{5}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "cos \u03b8 = \u221a(1 - 9/25) = \u221a(16/25) = 4/5.",
-        "rationale": "cos \u03b8 = \u221a(1 - 9/25) = \u221a(16/25) = 4/5.",
-        "remediation": "cos \u03b8 = \u221a(1 - 9/25) = \u221a(16/25) = 4/5."
+        "feedback": "cos θ = √(1 - 9/25) = √(16/25) = 4/5.",
+        "rationale": "cos θ = √(1 - 9/25) = √(16/25) = 4/5.",
+        "remediation": "cos θ = √(1 - 9/25) = √(16/25) = 4/5."
       },
       {
         "id": "C",
         "text": "$\\frac{3}{4}$",
         "misconceptionTag": "MIS-TANGENT-SLIP",
         "misconceptionId": "MIS-TANGENT-SLIP",
-        "feedback": "3/4 is tan \u03b8, not cos \u03b8.",
-        "rationale": "3/4 is tan \u03b8, not cos \u03b8.",
-        "remediation": "3/4 is tan \u03b8, not cos \u03b8."
+        "feedback": "3/4 is tan θ, not cos θ.",
+        "rationale": "3/4 is tan θ, not cos θ.",
+        "remediation": "3/4 is tan θ, not cos θ."
       },
       {
         "id": "D",
         "text": "$\\frac{5}{3}$",
         "misconceptionTag": "MIS-RECIPROCAL-SLIP",
         "misconceptionId": "MIS-RECIPROCAL-SLIP",
-        "feedback": "cos \u03b8 <= 1.",
-        "rationale": "cos \u03b8 <= 1.",
-        "remediation": "cos \u03b8 <= 1."
+        "feedback": "cos θ <= 1.",
+        "rationale": "cos θ <= 1.",
+        "remediation": "cos θ <= 1."
       }
     ]
   },
@@ -10827,7 +10827,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "What is the exact value of $\\sin 30^\\circ + \\cos 60^\\circ$?",
     "correctAnswer": "A",
-    "explanation": "sin 30\u00b0 = 1/2 and cos 60\u00b0 = 1/2 => 1/2 + 1/2 = 1.",
+    "explanation": "sin 30° = 1/2 and cos 60° = 1/2 => 1/2 + 1/2 = 1.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10855,9 +10855,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\frac{\\sqrt{3}}{2}$",
         "misconceptionTag": "MIS-COS-SLIP",
         "misconceptionId": "MIS-COS-SLIP",
-        "feedback": "sin 30\u00b0 = 1/2, cos 60\u00b0 = 1/2. Sum = 1.",
-        "rationale": "sin 30\u00b0 = 1/2, cos 60\u00b0 = 1/2. Sum = 1.",
-        "remediation": "sin 30\u00b0 = 1/2, cos 60\u00b0 = 1/2. Sum = 1."
+        "feedback": "sin 30° = 1/2, cos 60° = 1/2. Sum = 1.",
+        "rationale": "sin 30° = 1/2, cos 60° = 1/2. Sum = 1.",
+        "remediation": "sin 30° = 1/2, cos 60° = 1/2. Sum = 1."
       },
       {
         "id": "C",
@@ -10873,9 +10873,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\sqrt{3}$",
         "misconceptionTag": "MIS-TAN-SLIP",
         "misconceptionId": "MIS-TAN-SLIP",
-        "feedback": "sin 30\u00b0 + cos 60\u00b0 = 0.5 + 0.5 = 1.",
-        "rationale": "sin 30\u00b0 + cos 60\u00b0 = 0.5 + 0.5 = 1.",
-        "remediation": "sin 30\u00b0 + cos 60\u00b0 = 0.5 + 0.5 = 1."
+        "feedback": "sin 30° + cos 60° = 0.5 + 0.5 = 1.",
+        "rationale": "sin 30° + cos 60° = 0.5 + 0.5 = 1.",
+        "remediation": "sin 30° + cos 60° = 0.5 + 0.5 = 1."
       }
     ]
   },
@@ -10891,7 +10891,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: For any acute angle $\\theta$, $\\sin^2 \\theta + \\cos^2 \\theta = 1$.",
     "correctAnswer": "A",
-    "explanation": "(Opp/Hyp)\u00b2 + (Adj/Hyp)\u00b2 = (Opp\u00b2 + Adj\u00b2) / Hyp\u00b2 = Hyp\u00b2 / Hyp\u00b2 = 1.",
+    "explanation": "(Opp/Hyp)² + (Adj/Hyp)² = (Opp² + Adj²) / Hyp² = Hyp² / Hyp² = 1.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10916,7 +10916,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "False: Holds only when \u03b8 = 45\u00b0.",
+        "text": "False: Holds only when θ = 45°.",
         "misconceptionTag": "MIS-RESTRICTION",
         "misconceptionId": "MIS-RESTRICTION",
         "feedback": "Holds for all real angles.",
@@ -10925,12 +10925,12 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "False: The sum equals tan\u00b2 \u03b8.",
+        "text": "False: The sum equals tan² θ.",
         "misconceptionTag": "MIS-IDENTITY-CONFUSION",
         "misconceptionId": "MIS-IDENTITY-CONFUSION",
-        "feedback": "sin\u00b2 \u03b8 + cos\u00b2 \u03b8 = 1 is the fundamental identity.",
-        "rationale": "sin\u00b2 \u03b8 + cos\u00b2 \u03b8 = 1 is the fundamental identity.",
-        "remediation": "sin\u00b2 \u03b8 + cos\u00b2 \u03b8 = 1 is the fundamental identity."
+        "feedback": "sin² θ + cos² θ = 1 is the fundamental identity.",
+        "rationale": "sin² θ + cos² θ = 1 is the fundamental identity.",
+        "remediation": "sin² θ + cos² θ = 1 is the fundamental identity."
       },
       {
         "id": "D",
@@ -10955,7 +10955,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A ladder $10\\text{ m}$ long leans against a vertical wall, making an angle of $60^\\circ$ with the ground. How high up the wall does it reach?",
     "correctAnswer": "A",
-    "explanation": "Height = 10 \u00d7 sin 60\u00b0 = 10 \u00d7 (\u221a3/2) = 5\u221a3 \u2248 8.66 m.",
+    "explanation": "Height = 10 × sin 60° = 10 × (√3/2) = 5√3 ≈ 8.66 m.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -10983,9 +10983,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$5\\text{ m}$",
         "misconceptionTag": "MIS-COS-SLIP",
         "misconceptionId": "MIS-COS-SLIP",
-        "feedback": "5 m is the distance from the base: 10 cos 60\u00b0 = 5 m.",
-        "rationale": "5 m is the distance from the base: 10 cos 60\u00b0 = 5 m.",
-        "remediation": "5 m is the distance from the base: 10 cos 60\u00b0 = 5 m."
+        "feedback": "5 m is the distance from the base: 10 cos 60° = 5 m.",
+        "rationale": "5 m is the distance from the base: 10 cos 60° = 5 m.",
+        "remediation": "5 m is the distance from the base: 10 cos 60° = 5 m."
       },
       {
         "id": "C",
@@ -11001,9 +11001,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$7.5\\text{ m}$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "Height = 10 sin 60\u00b0 = 5\u221a3 m.",
-        "rationale": "Height = 10 sin 60\u00b0 = 5\u221a3 m.",
-        "remediation": "Height = 10 sin 60\u00b0 = 5\u221a3 m."
+        "feedback": "Height = 10 sin 60° = 5√3 m.",
+        "rationale": "Height = 10 sin 60° = 5√3 m.",
+        "remediation": "Height = 10 sin 60° = 5√3 m."
       }
     ]
   },
@@ -11019,7 +11019,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A right triangle has a base of $8\\text{ cm}$ and hypotenuse of $17\\text{ cm}$. Find its perpendicular height.",
     "correctAnswer": "A",
-    "explanation": "Height = \u221a(17\u00b2 - 8\u00b2) = \u221a(289 - 64) = \u221a225 = 15 cm.",
+    "explanation": "Height = √(17² - 8²) = √(289 - 64) = √225 = 15 cm.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11047,9 +11047,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$13\\text{ cm}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "h = \u221a(17\u00b2 - 8\u00b2) = \u221a(289 - 64) = \u221a225 = 15 cm.",
-        "rationale": "h = \u221a(17\u00b2 - 8\u00b2) = \u221a(289 - 64) = \u221a225 = 15 cm.",
-        "remediation": "h = \u221a(17\u00b2 - 8\u00b2) = \u221a(289 - 64) = \u221a225 = 15 cm."
+        "feedback": "h = √(17² - 8²) = √(289 - 64) = √225 = 15 cm.",
+        "rationale": "h = √(17² - 8²) = √(289 - 64) = √225 = 15 cm.",
+        "remediation": "h = √(17² - 8²) = √(289 - 64) = √225 = 15 cm."
       },
       {
         "id": "C",
@@ -11083,7 +11083,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Find the acute angle $\\theta$ such that $\\tan \\theta = 1$.",
     "correctAnswer": "A",
-    "explanation": "tan 45\u00b0 = 1.",
+    "explanation": "tan 45° = 1.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11111,27 +11111,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$30^\\circ$",
         "misconceptionTag": "MIS-SPECIAL-ANGLE",
         "misconceptionId": "MIS-SPECIAL-ANGLE",
-        "feedback": "tan 30\u00b0 = 1/\u221a3.",
-        "rationale": "tan 30\u00b0 = 1/\u221a3.",
-        "remediation": "tan 30\u00b0 = 1/\u221a3."
+        "feedback": "tan 30° = 1/√3.",
+        "rationale": "tan 30° = 1/√3.",
+        "remediation": "tan 30° = 1/√3."
       },
       {
         "id": "C",
         "text": "$60^\\circ$",
         "misconceptionTag": "MIS-SPECIAL-ANGLE",
         "misconceptionId": "MIS-SPECIAL-ANGLE",
-        "feedback": "tan 60\u00b0 = \u221a3.",
-        "rationale": "tan 60\u00b0 = \u221a3.",
-        "remediation": "tan 60\u00b0 = \u221a3."
+        "feedback": "tan 60° = √3.",
+        "rationale": "tan 60° = √3.",
+        "remediation": "tan 60° = √3."
       },
       {
         "id": "D",
         "text": "$90^\\circ$",
         "misconceptionTag": "MIS-UNDEFINED-SLIP",
         "misconceptionId": "MIS-UNDEFINED-SLIP",
-        "feedback": "tan 90\u00b0 is undefined.",
-        "rationale": "tan 90\u00b0 is undefined.",
-        "remediation": "tan 90\u00b0 is undefined."
+        "feedback": "tan 90° is undefined.",
+        "rationale": "tan 90° is undefined.",
+        "remediation": "tan 90° is undefined."
       }
     ]
   },
@@ -11147,7 +11147,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "numeric_entry",
     "prompt": "Calculate the value of $2 \\cos 60^\\circ$.",
     "correctAnswer": 1,
-    "explanation": "cos 60\u00b0 = 0.5 => 2 \u00d7 0.5 = 1.",
+    "explanation": "cos 60° = 0.5 => 2 × 0.5 = 1.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11206,11 +11206,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Identify opposite side and adjacent side relative to \u03b8."
+        "text": "Identify opposite side and adjacent side relative to θ."
       },
       {
         "id": "B",
-        "text": "Write the tangent ratio: tan \u03b8 = Opposite / Adjacent."
+        "text": "Write the tangent ratio: tan θ = Opposite / Adjacent."
       },
       {
         "id": "C",
@@ -11218,7 +11218,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "D",
-        "text": "Take the inverse tangent: \u03b8 = arctan(quotient)."
+        "text": "Take the inverse tangent: θ = arctan(quotient)."
       }
     ]
   },
@@ -11234,7 +11234,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "symbolic_entry",
     "prompt": "Write the fundamental trigonometric identity in terms of $\\sin(\\theta)$ and $\\cos(\\theta)$.",
     "correctAnswer": "sin(theta)^2 + cos(theta)^2 = 1",
-    "explanation": "sin\u00b2(\u03b8) + cos\u00b2(\u03b8) = 1.",
+    "explanation": "sin²(θ) + cos²(θ) = 1.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11265,7 +11265,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student calculated $\\cos \\theta = \\frac{13}{12}$ for a triangle. Why is this answer impossible?",
     "correctAnswer": "A",
-    "explanation": "Hypotenuse > Adjacent in any real right triangle, so cos \u03b8 <= 1.",
+    "explanation": "Hypotenuse > Adjacent in any real right triangle, so cos θ <= 1.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -11290,7 +11290,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "cos \u03b8 must always be negative.",
+        "text": "cos θ must always be negative.",
         "misconceptionTag": "MIS-SIGN-CONFUSION",
         "misconceptionId": "MIS-SIGN-CONFUSION",
         "feedback": "Acute angle cos is positive in (0, 1].",
@@ -11299,7 +11299,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "cos \u03b8 must be an integer.",
+        "text": "cos θ must be an integer.",
         "misconceptionTag": "MIS-INTEGER-CONFUSION",
         "misconceptionId": "MIS-INTEGER-CONFUSION",
         "feedback": "Ratios are typically fractions.",
@@ -11311,9 +11311,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "There is no error.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "|cos \u03b8| <= 1 for all real angles.",
-        "rationale": "|cos \u03b8| <= 1 for all real angles.",
-        "remediation": "|cos \u03b8| <= 1 for all real angles."
+        "feedback": "|cos θ| <= 1 for all real angles.",
+        "rationale": "|cos θ| <= 1 for all real angles.",
+        "remediation": "|cos θ| <= 1 for all real angles."
       }
     ]
   },
@@ -11329,7 +11329,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "To find height $h$ with base $10$ and angle $30^\\circ$, a student used $\\sin 30^\\circ = \\frac{h}{10}$. What was the mistake?",
     "correctAnswer": "A",
-    "explanation": "Base is adjacent to 30\u00b0, so tan 30\u00b0 = h / 10 => h = 10 tan 30\u00b0.",
+    "explanation": "Base is adjacent to 30°, so tan 30° = h / 10 => h = 10 tan 30°.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -11354,12 +11354,12 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Used 30\u00b0 instead of 60\u00b0.",
+        "text": "Used 30° instead of 60°.",
         "misconceptionTag": "MIS-ANGLE-SWAP",
         "misconceptionId": "MIS-ANGLE-SWAP",
-        "feedback": "The angle was given as 30\u00b0.",
-        "rationale": "The angle was given as 30\u00b0.",
-        "remediation": "The angle was given as 30\u00b0."
+        "feedback": "The angle was given as 30°.",
+        "rationale": "The angle was given as 30°.",
+        "remediation": "The angle was given as 30°."
       },
       {
         "id": "C",
@@ -11375,9 +11375,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "There is no error.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "tan 30\u00b0 = h / 10 should be used.",
-        "rationale": "tan 30\u00b0 = h / 10 should be used.",
-        "remediation": "tan 30\u00b0 = h / 10 should be used."
+        "feedback": "tan 30° = h / 10 should be used.",
+        "rationale": "tan 30° = h / 10 should be used.",
+        "remediation": "tan 30° = h / 10 should be used."
       }
     ]
   },
@@ -11393,7 +11393,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "From a point on horizontal ground $20\\text{ m}$ from the base of a vertical tower, the angle of elevation of the top is $30^\\circ$. Find the height of the tower.",
     "correctAnswer": "A",
-    "explanation": "tan 30\u00b0 = h / 20 => h = 20 \u00d7 (1/\u221a3) = 20\u221a3 / 3 \u2248 11.55 m.",
+    "explanation": "tan 30° = h / 20 => h = 20 × (1/√3) = 20√3 / 3 ≈ 11.55 m.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -11421,27 +11421,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$10\\text{ m}$",
         "misconceptionTag": "MIS-SIN-SLIP",
         "misconceptionId": "MIS-SIN-SLIP",
-        "feedback": "20 sin 30\u00b0 = 10 m, but ground distance is adjacent (use tan).",
-        "rationale": "20 sin 30\u00b0 = 10 m, but ground distance is adjacent (use tan).",
-        "remediation": "20 sin 30\u00b0 = 10 m, but ground distance is adjacent (use tan)."
+        "feedback": "20 sin 30° = 10 m, but ground distance is adjacent (use tan).",
+        "rationale": "20 sin 30° = 10 m, but ground distance is adjacent (use tan).",
+        "remediation": "20 sin 30° = 10 m, but ground distance is adjacent (use tan)."
       },
       {
         "id": "C",
         "text": "$20\\sqrt{3}\\text{ m}$",
         "misconceptionTag": "MIS-RECIPROCAL-SLIP",
         "misconceptionId": "MIS-RECIPROCAL-SLIP",
-        "feedback": "20 / tan 30\u00b0 = 20\u221a3, should multiply by tan 30\u00b0.",
-        "rationale": "20 / tan 30\u00b0 = 20\u221a3, should multiply by tan 30\u00b0.",
-        "remediation": "20 / tan 30\u00b0 = 20\u221a3, should multiply by tan 30\u00b0."
+        "feedback": "20 / tan 30° = 20√3, should multiply by tan 30°.",
+        "rationale": "20 / tan 30° = 20√3, should multiply by tan 30°.",
+        "remediation": "20 / tan 30° = 20√3, should multiply by tan 30°."
       },
       {
         "id": "D",
         "text": "$15\\text{ m}$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "Height = 20 tan 30\u00b0 = 20/\u221a3 = 20\u221a3 / 3 m.",
-        "rationale": "Height = 20 tan 30\u00b0 = 20/\u221a3 = 20\u221a3 / 3 m.",
-        "remediation": "Height = 20 tan 30\u00b0 = 20/\u221a3 = 20\u221a3 / 3 m."
+        "feedback": "Height = 20 tan 30° = 20/√3 = 20√3 / 3 m.",
+        "rationale": "Height = 20 tan 30° = 20/√3 = 20√3 / 3 m.",
+        "remediation": "Height = 20 tan 30° = 20/√3 = 20√3 / 3 m."
       }
     ]
   },
@@ -11457,7 +11457,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A flagpole stands on top of a building $15\\text{ m}$ high. From a point on the ground, the angle of elevation of the bottom of the pole is $30^\\circ$ and the top of the pole is $45^\\circ$. Find the length of the flagpole.",
     "correctAnswer": "A",
-    "explanation": "Distance d = 15 / tan 30\u00b0 = 15\u221a3. Total height H = d tan 45\u00b0 = 15\u221a3. Pole = 15\u221a3 - 15 = 15(\u221a3 - 1) m.",
+    "explanation": "Distance d = 15 / tan 30° = 15√3. Total height H = d tan 45° = 15√3. Pole = 15√3 - 15 = 15(√3 - 1) m.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -11494,18 +11494,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$5\\sqrt{3}\\text{ m}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Ground distance = 15 / tan 30\u00b0 = 15\u221a3. Total height = 15\u221a3 tan 45\u00b0 = 15\u221a3. Pole = 15(\u221a3 - 1).",
-        "rationale": "Ground distance = 15 / tan 30\u00b0 = 15\u221a3. Total height = 15\u221a3 tan 45\u00b0 = 15\u221a3. Pole = 15(\u221a3 - 1).",
-        "remediation": "Ground distance = 15 / tan 30\u00b0 = 15\u221a3. Total height = 15\u221a3 tan 45\u00b0 = 15\u221a3. Pole = 15(\u221a3 - 1)."
+        "feedback": "Ground distance = 15 / tan 30° = 15√3. Total height = 15√3 tan 45° = 15√3. Pole = 15(√3 - 1).",
+        "rationale": "Ground distance = 15 / tan 30° = 15√3. Total height = 15√3 tan 45° = 15√3. Pole = 15(√3 - 1).",
+        "remediation": "Ground distance = 15 / tan 30° = 15√3. Total height = 15√3 tan 45° = 15√3. Pole = 15(√3 - 1)."
       },
       {
         "id": "D",
         "text": "$12\\text{ m}$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "15(1.732 - 1) = 15 \u00d7 0.732 \u2248 10.98 m.",
-        "rationale": "15(1.732 - 1) = 15 \u00d7 0.732 \u2248 10.98 m.",
-        "remediation": "15(1.732 - 1) = 15 \u00d7 0.732 \u2248 10.98 m."
+        "feedback": "15(1.732 - 1) = 15 × 0.732 ≈ 10.98 m.",
+        "rationale": "15(1.732 - 1) = 15 × 0.732 ≈ 10.98 m.",
+        "remediation": "15(1.732 - 1) = 15 × 0.732 ≈ 10.98 m."
       }
     ]
   },
@@ -11585,7 +11585,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Which formula correctly gives side $a$ using the Cosine Rule?",
     "correctAnswer": "A",
-    "explanation": "Cosine rule: a\u00b2 = b\u00b2 + c\u00b2 - 2bc cos A.",
+    "explanation": "Cosine rule: a² = b² + c² - 2bc cos A.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11713,7 +11713,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: The Cosine Rule can be used to find any angle of a triangle when all three sides are known.",
     "correctAnswer": "A",
-    "explanation": "cos A = (b\u00b2 + c\u00b2 - a\u00b2) / (2bc) solves SSS triangles.",
+    "explanation": "cos A = (b² + c² - a²) / (2bc) solves SSS triangles.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11750,9 +11750,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "False: Holds only for acute triangles.",
         "misconceptionTag": "MIS-OBTUSE-RESTRICTION",
         "misconceptionId": "MIS-OBTUSE-RESTRICTION",
-        "feedback": "Cosine handles obtuse angles naturally (cos > 90\u00b0 is negative).",
-        "rationale": "Cosine handles obtuse angles naturally (cos > 90\u00b0 is negative).",
-        "remediation": "Cosine handles obtuse angles naturally (cos > 90\u00b0 is negative)."
+        "feedback": "Cosine handles obtuse angles naturally (cos > 90° is negative).",
+        "rationale": "Cosine handles obtuse angles naturally (cos > 90° is negative).",
+        "remediation": "Cosine handles obtuse angles naturally (cos > 90° is negative)."
       },
       {
         "id": "D",
@@ -11777,7 +11777,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In $\\triangle ABC$, $a = 6\\text{ cm}, b = 8\\text{ cm},$ and $\\angle C = 30^\\circ$. Calculate the area of the triangle.",
     "correctAnswer": "A",
-    "explanation": "Area = (1/2) \u00d7 6 \u00d7 8 \u00d7 sin 30\u00b0 = 24 \u00d7 0.5 = 12 cm\u00b2.",
+    "explanation": "Area = (1/2) × 6 × 8 × sin 30° = 24 × 0.5 = 12 cm².",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11805,27 +11805,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$24\\text{ cm}^2$",
         "misconceptionTag": "MIS-HALF-OMIT",
         "misconceptionId": "MIS-HALF-OMIT",
-        "feedback": "Forgot 1/2: 6 \u00d7 8 \u00d7 0.5 = 24, with 1/2 gives 12 cm\u00b2.",
-        "rationale": "Forgot 1/2: 6 \u00d7 8 \u00d7 0.5 = 24, with 1/2 gives 12 cm\u00b2.",
-        "remediation": "Forgot 1/2: 6 \u00d7 8 \u00d7 0.5 = 24, with 1/2 gives 12 cm\u00b2."
+        "feedback": "Forgot 1/2: 6 × 8 × 0.5 = 24, with 1/2 gives 12 cm².",
+        "rationale": "Forgot 1/2: 6 × 8 × 0.5 = 24, with 1/2 gives 12 cm².",
+        "remediation": "Forgot 1/2: 6 × 8 × 0.5 = 24, with 1/2 gives 12 cm²."
       },
       {
         "id": "C",
         "text": "$16\\text{ cm}^2$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "(1/2)(6)(8) sin 30\u00b0 = 24 \u00d7 0.5 = 12 cm\u00b2.",
-        "rationale": "(1/2)(6)(8) sin 30\u00b0 = 24 \u00d7 0.5 = 12 cm\u00b2.",
-        "remediation": "(1/2)(6)(8) sin 30\u00b0 = 24 \u00d7 0.5 = 12 cm\u00b2."
+        "feedback": "(1/2)(6)(8) sin 30° = 24 × 0.5 = 12 cm².",
+        "rationale": "(1/2)(6)(8) sin 30° = 24 × 0.5 = 12 cm².",
+        "remediation": "(1/2)(6)(8) sin 30° = 24 × 0.5 = 12 cm²."
       },
       {
         "id": "D",
         "text": "$48\\text{ cm}^2$",
         "misconceptionTag": "MIS-SIN-OMIT",
         "misconceptionId": "MIS-SIN-OMIT",
-        "feedback": "Forgot sin 30\u00b0.",
-        "rationale": "Forgot sin 30\u00b0.",
-        "remediation": "Forgot sin 30\u00b0."
+        "feedback": "Forgot sin 30°.",
+        "rationale": "Forgot sin 30°.",
+        "remediation": "Forgot sin 30°."
       }
     ]
   },
@@ -11841,7 +11841,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In $\\triangle ABC$, $b = 5\\text{ cm}, c = 7\\text{ cm},$ and $\\angle A = 60^\\circ$. Calculate side $a$.",
     "correctAnswer": "A",
-    "explanation": "a\u00b2 = 5\u00b2 + 7\u00b2 - 2(5)(7) cos 60\u00b0 = 25 + 49 - 35 = 39 => a = \u221a39 \u2248 6.24 cm.",
+    "explanation": "a² = 5² + 7² - 2(5)(7) cos 60° = 25 + 49 - 35 = 39 => a = √39 ≈ 6.24 cm.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11869,18 +11869,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\sqrt{74}\\text{ cm}$",
         "misconceptionTag": "MIS-COS-TERM-OMIT",
         "misconceptionId": "MIS-COS-TERM-OMIT",
-        "feedback": "5\u00b2 + 7\u00b2 = 74; forgot -2bc cos A = -35.",
-        "rationale": "5\u00b2 + 7\u00b2 = 74; forgot -2bc cos A = -35.",
-        "remediation": "5\u00b2 + 7\u00b2 = 74; forgot -2bc cos A = -35."
+        "feedback": "5² + 7² = 74; forgot -2bc cos A = -35.",
+        "rationale": "5² + 7² = 74; forgot -2bc cos A = -35.",
+        "remediation": "5² + 7² = 74; forgot -2bc cos A = -35."
       },
       {
         "id": "C",
         "text": "$6\\text{ cm}$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "a\u00b2 = 25 + 49 - 2(5)(7)(0.5) = 74 - 35 = 39 => a = \u221a39 cm.",
-        "rationale": "a\u00b2 = 25 + 49 - 2(5)(7)(0.5) = 74 - 35 = 39 => a = \u221a39 cm.",
-        "remediation": "a\u00b2 = 25 + 49 - 2(5)(7)(0.5) = 74 - 35 = 39 => a = \u221a39 cm."
+        "feedback": "a² = 25 + 49 - 2(5)(7)(0.5) = 74 - 35 = 39 => a = √39 cm.",
+        "rationale": "a² = 25 + 49 - 2(5)(7)(0.5) = 74 - 35 = 39 => a = √39 cm.",
+        "remediation": "a² = 25 + 49 - 2(5)(7)(0.5) = 74 - 35 = 39 => a = √39 cm."
       },
       {
         "id": "D",
@@ -11905,7 +11905,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In $\\triangle ABC$, $a = 10\\text{ cm}, \\angle A = 30^\\circ,$ and $\\angle B = 45^\\circ$. Calculate side $b$.",
     "correctAnswer": "A",
-    "explanation": "b / sin 45\u00b0 = 10 / sin 30\u00b0 => b = 10 \u00d7 (\u221a2/2) / (1/2) = 10\u221a2 \u2248 14.14 cm.",
+    "explanation": "b / sin 45° = 10 / sin 30° => b = 10 × (√2/2) / (1/2) = 10√2 ≈ 14.14 cm.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -11933,27 +11933,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$10\\text{ cm}$",
         "misconceptionTag": "MIS-EQUAL-SLIP",
         "misconceptionId": "MIS-EQUAL-SLIP",
-        "feedback": "b = a sin B / sin A = 10(\u221a2/2) / (1/2) = 10\u221a2 cm.",
-        "rationale": "b = a sin B / sin A = 10(\u221a2/2) / (1/2) = 10\u221a2 cm.",
-        "remediation": "b = a sin B / sin A = 10(\u221a2/2) / (1/2) = 10\u221a2 cm."
+        "feedback": "b = a sin B / sin A = 10(√2/2) / (1/2) = 10√2 cm.",
+        "rationale": "b = a sin B / sin A = 10(√2/2) / (1/2) = 10√2 cm.",
+        "remediation": "b = a sin B / sin A = 10(√2/2) / (1/2) = 10√2 cm."
       },
       {
         "id": "C",
         "text": "$20\\text{ cm}$",
         "misconceptionTag": "MIS-SCALE-SLIP",
         "misconceptionId": "MIS-SCALE-SLIP",
-        "feedback": "10\u221a2 \u2248 14.14 cm.",
-        "rationale": "10\u221a2 \u2248 14.14 cm.",
-        "remediation": "10\u221a2 \u2248 14.14 cm."
+        "feedback": "10√2 ≈ 14.14 cm.",
+        "rationale": "10√2 ≈ 14.14 cm.",
+        "remediation": "10√2 ≈ 14.14 cm."
       },
       {
         "id": "D",
         "text": "$5\\sqrt{2}\\text{ cm}$",
         "misconceptionTag": "MIS-HALF-SLIP",
         "misconceptionId": "MIS-HALF-SLIP",
-        "feedback": "Dividing by 1/2 multiplies by 2: (5\u221a2) \u00d7 2 = 10\u221a2.",
-        "rationale": "Dividing by 1/2 multiplies by 2: (5\u221a2) \u00d7 2 = 10\u221a2.",
-        "remediation": "Dividing by 1/2 multiplies by 2: (5\u221a2) \u00d7 2 = 10\u221a2."
+        "feedback": "Dividing by 1/2 multiplies by 2: (5√2) × 2 = 10√2.",
+        "rationale": "Dividing by 1/2 multiplies by 2: (5√2) × 2 = 10√2.",
+        "remediation": "Dividing by 1/2 multiplies by 2: (5√2) × 2 = 10√2."
       }
     ]
   },
@@ -11969,7 +11969,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "numeric_entry",
     "prompt": "Calculate the area of a triangle with sides $10\\text{ cm}$ and $12\\text{ cm}$ enclosing an angle of $30^\\circ$ (in $\\text{cm}^2$).",
     "correctAnswer": 30,
-    "explanation": "Area = (1/2) \u00d7 10 \u00d7 12 \u00d7 sin 30\u00b0 = 60 \u00d7 0.5 = 30 cm\u00b2.",
+    "explanation": "Area = (1/2) × 10 × 12 × sin 30° = 60 × 0.5 = 30 cm².",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12032,7 +12032,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "State formula: a\u00b2 = b\u00b2 + c\u00b2 - 2bc cos A."
+        "text": "State formula: a² = b² + c² - 2bc cos A."
       },
       {
         "id": "C",
@@ -12056,7 +12056,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "symbolic_entry",
     "prompt": "Write the formula for $\\cos A$ in terms of sides $a, b,$ and $c$.",
     "correctAnswer": "(b^2 + c^2 - a^2)/(2*b*c)",
-    "explanation": "cos A = (b\u00b2 + c\u00b2 - a\u00b2) / (2bc).",
+    "explanation": "cos A = (b² + c² - a²) / (2bc).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12112,21 +12112,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Subtracted instead of adding 4\u00b2 + 5\u00b2.",
+        "text": "Subtracted instead of adding 4² + 5².",
         "misconceptionTag": "MIS-SIGN-SLIP",
         "misconceptionId": "MIS-SIGN-SLIP",
-        "feedback": "4\u00b2 + 5\u00b2 = 41 was correct.",
-        "rationale": "4\u00b2 + 5\u00b2 = 41 was correct.",
-        "remediation": "4\u00b2 + 5\u00b2 = 41 was correct."
+        "feedback": "4² + 5² = 41 was correct.",
+        "rationale": "4² + 5² = 41 was correct.",
+        "remediation": "4² + 5² = 41 was correct."
       },
       {
         "id": "C",
-        "text": "cos 60\u00b0 should be \u221a3/2.",
+        "text": "cos 60° should be √3/2.",
         "misconceptionTag": "MIS-COS-VALUE",
         "misconceptionId": "MIS-COS-VALUE",
-        "feedback": "cos 60\u00b0 is 1/2.",
-        "rationale": "cos 60\u00b0 is 1/2.",
-        "remediation": "cos 60\u00b0 is 1/2."
+        "feedback": "cos 60° is 1/2.",
+        "rationale": "cos 60° is 1/2.",
+        "remediation": "cos 60° is 1/2."
       },
       {
         "id": "D",
@@ -12215,7 +12215,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A triangle has sides $5\\text{ cm}, 6\\text{ cm},$ and $7\\text{ cm}$. Find the cosine of the largest angle.",
     "correctAnswer": "A",
-    "explanation": "Longest side is 7 cm. cos C = (5\u00b2 + 6\u00b2 - 7\u00b2) / (2 \u00d7 5 \u00d7 6) = (25 + 36 - 49) / 60 = 12 / 60 = 1/5 = 0.2.",
+    "explanation": "Longest side is 7 cm. cos C = (5² + 6² - 7²) / (2 × 5 × 6) = (25 + 36 - 49) / 60 = 12 / 60 = 1/5 = 0.2.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -12243,9 +12243,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\frac{19}{35}$",
         "misconceptionTag": "MIS-ANGLE-SWAP",
         "misconceptionId": "MIS-ANGLE-SWAP",
-        "feedback": "Largest angle is opposite longest side (7 cm): cos C = (5\u00b2 + 6\u00b2 - 7\u00b2) / (2 \u00d7 5 \u00d7 6) = 12 / 60 = 1/5.",
-        "rationale": "Largest angle is opposite longest side (7 cm): cos C = (5\u00b2 + 6\u00b2 - 7\u00b2) / (2 \u00d7 5 \u00d7 6) = 12 / 60 = 1/5.",
-        "remediation": "Largest angle is opposite longest side (7 cm): cos C = (5\u00b2 + 6\u00b2 - 7\u00b2) / (2 \u00d7 5 \u00d7 6) = 12 / 60 = 1/5."
+        "feedback": "Largest angle is opposite longest side (7 cm): cos C = (5² + 6² - 7²) / (2 × 5 × 6) = 12 / 60 = 1/5.",
+        "rationale": "Largest angle is opposite longest side (7 cm): cos C = (5² + 6² - 7²) / (2 × 5 × 6) = 12 / 60 = 1/5.",
+        "remediation": "Largest angle is opposite longest side (7 cm): cos C = (5² + 6² - 7²) / (2 × 5 × 6) = 12 / 60 = 1/5."
       },
       {
         "id": "C",
@@ -12279,7 +12279,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Two ships leave port at the same time. Ship A sails on bearing $040^\\circ$ at $15\\text{ km/h}$, and Ship B sails on bearing $100^\\circ$ at $20\\text{ km/h}$. How far apart are they after $2\\text{ hours}$?",
     "correctAnswer": "A",
-    "explanation": "Distances are 30 km and 40 km. Angle = 100\u00b0 - 40\u00b0 = 60\u00b0. d\u00b2 = 30\u00b2 + 40\u00b2 - 2(30)(40) cos 60\u00b0 = 2500 - 1200 = 1300 => d = \u221a1300 = 10\u221a13 \u2248 36.06 km.",
+    "explanation": "Distances are 30 km and 40 km. Angle = 100° - 40° = 60°. d² = 30² + 40² - 2(30)(40) cos 60° = 2500 - 1200 = 1300 => d = √1300 = 10√13 ≈ 36.06 km.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -12316,18 +12316,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$50\\text{ km}$",
         "misconceptionTag": "MIS-PYTHAG-ASSUMPTION",
         "misconceptionId": "MIS-PYTHAG-ASSUMPTION",
-        "feedback": "Angle between them is 100\u00b0 - 40\u00b0 = 60\u00b0, not 90\u00b0.",
-        "rationale": "Angle between them is 100\u00b0 - 40\u00b0 = 60\u00b0, not 90\u00b0.",
-        "remediation": "Angle between them is 100\u00b0 - 40\u00b0 = 60\u00b0, not 90\u00b0."
+        "feedback": "Angle between them is 100° - 40° = 60°, not 90°.",
+        "rationale": "Angle between them is 100° - 40° = 60°, not 90°.",
+        "remediation": "Angle between them is 100° - 40° = 60°, not 90°."
       },
       {
         "id": "D",
         "text": "$25\\text{ km}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "d\u00b2 = 30\u00b2 + 40\u00b2 - 2(30)(40) cos 60\u00b0 = 900 + 1600 - 1200 = 1300 => d = 10\u221a13 \u2248 36.06 km.",
-        "rationale": "d\u00b2 = 30\u00b2 + 40\u00b2 - 2(30)(40) cos 60\u00b0 = 900 + 1600 - 1200 = 1300 => d = 10\u221a13 \u2248 36.06 km.",
-        "remediation": "d\u00b2 = 30\u00b2 + 40\u00b2 - 2(30)(40) cos 60\u00b0 = 900 + 1600 - 1200 = 1300 => d = 10\u221a13 \u2248 36.06 km."
+        "feedback": "d² = 30² + 40² - 2(30)(40) cos 60° = 900 + 1600 - 1200 = 1300 => d = 10√13 ≈ 36.06 km.",
+        "rationale": "d² = 30² + 40² - 2(30)(40) cos 60° = 900 + 1600 - 1200 = 1300 => d = 10√13 ≈ 36.06 km.",
+        "remediation": "d² = 30² + 40² - 2(30)(40) cos 60° = 900 + 1600 - 1200 = 1300 => d = 10√13 ≈ 36.06 km."
       }
     ]
   },
@@ -12380,9 +12380,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "Clockwise or counter-clockwise depending on quadrant.",
         "misconceptionTag": "MIS-COMPASS-BEARING",
         "misconceptionId": "MIS-COMPASS-BEARING",
-        "feedback": "That describes compass bearings (e.g. N30\u00b0E), not 3-figure bearings.",
-        "rationale": "That describes compass bearings (e.g. N30\u00b0E), not 3-figure bearings.",
-        "remediation": "That describes compass bearings (e.g. N30\u00b0E), not 3-figure bearings."
+        "feedback": "That describes compass bearings (e.g. N30°E), not 3-figure bearings.",
+        "rationale": "That describes compass bearings (e.g. N30°E), not 3-figure bearings.",
+        "remediation": "That describes compass bearings (e.g. N30°E), not 3-figure bearings."
       },
       {
         "id": "D",
@@ -12407,7 +12407,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "If the bearing of point $B$ from point $A$ is $065^\\circ$, what is the back bearing of $A$ from $B$?",
     "correctAnswer": "A",
-    "explanation": "Since 065\u00b0 < 180\u00b0, Back Bearing = 65\u00b0 + 180\u00b0 = 245\u00b0.",
+    "explanation": "Since 065° < 180°, Back Bearing = 65° + 180° = 245°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12435,9 +12435,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$115^\\circ$",
         "misconceptionTag": "MIS-SUPPLEMENTARY",
         "misconceptionId": "MIS-SUPPLEMENTARY",
-        "feedback": "Back bearing rule for \u03b8 < 180\u00b0 is \u03b8 + 180\u00b0: 65\u00b0 + 180\u00b0 = 245\u00b0.",
-        "rationale": "Back bearing rule for \u03b8 < 180\u00b0 is \u03b8 + 180\u00b0: 65\u00b0 + 180\u00b0 = 245\u00b0.",
-        "remediation": "Back bearing rule for \u03b8 < 180\u00b0 is \u03b8 + 180\u00b0: 65\u00b0 + 180\u00b0 = 245\u00b0."
+        "feedback": "Back bearing rule for θ < 180° is θ + 180°: 65° + 180° = 245°.",
+        "rationale": "Back bearing rule for θ < 180° is θ + 180°: 65° + 180° = 245°.",
+        "remediation": "Back bearing rule for θ < 180° is θ + 180°: 65° + 180° = 245°."
       },
       {
         "id": "C",
@@ -12453,9 +12453,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$065^\\circ$",
         "misconceptionTag": "MIS-EQUAL-BEARING",
         "misconceptionId": "MIS-EQUAL-BEARING",
-        "feedback": "Back bearing is in the opposite direction (differing by 180\u00b0).",
-        "rationale": "Back bearing is in the opposite direction (differing by 180\u00b0).",
-        "remediation": "Back bearing is in the opposite direction (differing by 180\u00b0)."
+        "feedback": "Back bearing is in the opposite direction (differing by 180°).",
+        "rationale": "Back bearing is in the opposite direction (differing by 180°).",
+        "remediation": "Back bearing is in the opposite direction (differing by 180°)."
       }
     ]
   },
@@ -12496,7 +12496,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "They add up to 90\u00b0.",
+        "text": "They add up to 90°.",
         "misconceptionTag": "MIS-COMPLEMENTARY",
         "misconceptionId": "MIS-COMPLEMENTARY",
         "feedback": "They are equal alternate interior angles.",
@@ -12505,7 +12505,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "They add up to 180\u00b0.",
+        "text": "They add up to 180°.",
         "misconceptionTag": "MIS-SUPPLEMENTARY",
         "misconceptionId": "MIS-SUPPLEMENTARY",
         "feedback": "Horizontal lines are parallel, so angles are equal.",
@@ -12535,7 +12535,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "true_false_justification",
     "prompt": "True or False: The three-figure bearing of due South-West is $225^\\circ$.",
     "correctAnswer": "A",
-    "explanation": "SW is 180\u00b0 + 45\u00b0 = 225\u00b0.",
+    "explanation": "SW is 180° + 45° = 225°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12560,21 +12560,21 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "False: South-West is 135\u00b0.",
+        "text": "False: South-West is 135°.",
         "misconceptionTag": "MIS-SE-CONFUSION",
         "misconceptionId": "MIS-SE-CONFUSION",
-        "feedback": "135\u00b0 is South-East.",
-        "rationale": "135\u00b0 is South-East.",
-        "remediation": "135\u00b0 is South-East."
+        "feedback": "135° is South-East.",
+        "rationale": "135° is South-East.",
+        "remediation": "135° is South-East."
       },
       {
         "id": "C",
-        "text": "False: South-West is 315\u00b0.",
+        "text": "False: South-West is 315°.",
         "misconceptionTag": "MIS-NW-CONFUSION",
         "misconceptionId": "MIS-NW-CONFUSION",
-        "feedback": "315\u00b0 is North-West.",
-        "rationale": "315\u00b0 is North-West.",
-        "remediation": "315\u00b0 is North-West."
+        "feedback": "315° is North-West.",
+        "rationale": "315° is North-West.",
+        "remediation": "315° is North-West."
       },
       {
         "id": "D",
@@ -12599,7 +12599,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A ship sails $12\\text{ km}$ due North, then $16\\text{ km}$ due East. What is the straight-line distance from the starting point?",
     "correctAnswer": "A",
-    "explanation": "d = \u221a(12\u00b2 + 16\u00b2) = \u221a(144 + 256) = \u221a400 = 20 km.",
+    "explanation": "d = √(12² + 16²) = √(144 + 256) = √400 = 20 km.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12627,18 +12627,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$28\\text{ km}$",
         "misconceptionTag": "MIS-LINEAR-SUM",
         "misconceptionId": "MIS-LINEAR-SUM",
-        "feedback": "12 + 16 = 28 is distance walked; straight line is \u221a(12\u00b2 + 16\u00b2) = 20 km.",
-        "rationale": "12 + 16 = 28 is distance walked; straight line is \u221a(12\u00b2 + 16\u00b2) = 20 km.",
-        "remediation": "12 + 16 = 28 is distance walked; straight line is \u221a(12\u00b2 + 16\u00b2) = 20 km."
+        "feedback": "12 + 16 = 28 is distance walked; straight line is √(12² + 16²) = 20 km.",
+        "rationale": "12 + 16 = 28 is distance walked; straight line is √(12² + 16²) = 20 km.",
+        "remediation": "12 + 16 = 28 is distance walked; straight line is √(12² + 16²) = 20 km."
       },
       {
         "id": "C",
         "text": "$24\\text{ km}$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "\u221a(144 + 256) = \u221a400 = 20 km.",
-        "rationale": "\u221a(144 + 256) = \u221a400 = 20 km.",
-        "remediation": "\u221a(144 + 256) = \u221a400 = 20 km."
+        "feedback": "√(144 + 256) = √400 = 20 km.",
+        "rationale": "√(144 + 256) = √400 = 20 km.",
+        "remediation": "√(144 + 256) = √400 = 20 km."
       },
       {
         "id": "D",
@@ -12663,7 +12663,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The bearing of town $Y$ from town $X$ is $130^\\circ$. What is the bearing of $X$ from $Y$?",
     "correctAnswer": "A",
-    "explanation": "130\u00b0 + 180\u00b0 = 310\u00b0.",
+    "explanation": "130° + 180° = 310°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12691,27 +12691,27 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$050^\\circ$",
         "misconceptionTag": "MIS-SUPPLEMENTARY",
         "misconceptionId": "MIS-SUPPLEMENTARY",
-        "feedback": "Back bearing is 130\u00b0 + 180\u00b0 = 310\u00b0.",
-        "rationale": "Back bearing is 130\u00b0 + 180\u00b0 = 310\u00b0.",
-        "remediation": "Back bearing is 130\u00b0 + 180\u00b0 = 310\u00b0."
+        "feedback": "Back bearing is 130° + 180° = 310°.",
+        "rationale": "Back bearing is 130° + 180° = 310°.",
+        "remediation": "Back bearing is 130° + 180° = 310°."
       },
       {
         "id": "C",
         "text": "$230^\\circ$",
         "misconceptionTag": "MIS-ADD-100",
         "misconceptionId": "MIS-ADD-100",
-        "feedback": "Add 180\u00b0, not 100\u00b0.",
-        "rationale": "Add 180\u00b0, not 100\u00b0.",
-        "remediation": "Add 180\u00b0, not 100\u00b0."
+        "feedback": "Add 180°, not 100°.",
+        "rationale": "Add 180°, not 100°.",
+        "remediation": "Add 180°, not 100°."
       },
       {
         "id": "D",
         "text": "$320^\\circ$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "130 + 180 = 310\u00b0.",
-        "rationale": "130 + 180 = 310\u00b0.",
-        "remediation": "130 + 180 = 310\u00b0."
+        "feedback": "130 + 180 = 310°.",
+        "rationale": "130 + 180 = 310°.",
+        "remediation": "130 + 180 = 310°."
       }
     ]
   },
@@ -12727,7 +12727,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "From the top of a cliff $50\\text{ m}$ high, the angle of depression of a boat on the water is $30^\\circ$. How far is the boat from the base of the cliff?",
     "correctAnswer": "A",
-    "explanation": "tan 30\u00b0 = 50 / d => d = 50 / tan 30\u00b0 = 50 / (1/\u221a3) = 50\u221a3 \u2248 86.6 m.",
+    "explanation": "tan 30° = 50 / d => d = 50 / tan 30° = 50 / (1/√3) = 50√3 ≈ 86.6 m.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12755,9 +12755,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$25\\text{ m}$",
         "misconceptionTag": "MIS-SIN-CONFUSION",
         "misconceptionId": "MIS-SIN-CONFUSION",
-        "feedback": "50 sin 30\u00b0 = 25 m is half height; distance d = 50 / tan 30\u00b0 = 50\u221a3 m.",
-        "rationale": "50 sin 30\u00b0 = 25 m is half height; distance d = 50 / tan 30\u00b0 = 50\u221a3 m.",
-        "remediation": "50 sin 30\u00b0 = 25 m is half height; distance d = 50 / tan 30\u00b0 = 50\u221a3 m."
+        "feedback": "50 sin 30° = 25 m is half height; distance d = 50 / tan 30° = 50√3 m.",
+        "rationale": "50 sin 30° = 25 m is half height; distance d = 50 / tan 30° = 50√3 m.",
+        "remediation": "50 sin 30° = 25 m is half height; distance d = 50 / tan 30° = 50√3 m."
       },
       {
         "id": "C",
@@ -12773,9 +12773,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$50\\text{ m}$",
         "misconceptionTag": "MIS-EQUAL-SLIP",
         "misconceptionId": "MIS-EQUAL-SLIP",
-        "feedback": "Angle is 30\u00b0, not 45\u00b0.",
-        "rationale": "Angle is 30\u00b0, not 45\u00b0.",
-        "remediation": "Angle is 30\u00b0, not 45\u00b0."
+        "feedback": "Angle is 30°, not 45°.",
+        "rationale": "Angle is 30°, not 45°.",
+        "remediation": "Angle is 30°, not 45°."
       }
     ]
   },
@@ -12791,7 +12791,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "numeric_entry",
     "prompt": "Find the back bearing of $040^\\circ$ in degrees.",
     "correctAnswer": 220,
-    "explanation": "40 + 180 = 220\u00b0.",
+    "explanation": "40 + 180 = 220°.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -12973,7 +12973,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "To find the back bearing of $210^\\circ$, a student added $180^\\circ$ to get $390^\\circ$. What should the student have done?",
     "correctAnswer": "A",
-    "explanation": "When \u03b8 >= 180\u00b0, subtract 180\u00b0: 210\u00b0 - 180\u00b0 = 030\u00b0.",
+    "explanation": "When θ >= 180°, subtract 180°: 210° - 180° = 030°.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -12998,30 +12998,30 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Subtracted 90\u00b0.",
+        "text": "Subtracted 90°.",
         "misconceptionTag": "MIS-90-SUB",
         "misconceptionId": "MIS-90-SUB",
-        "feedback": "Must add or subtract 180\u00b0.",
-        "rationale": "Must add or subtract 180\u00b0.",
-        "remediation": "Must add or subtract 180\u00b0."
+        "feedback": "Must add or subtract 180°.",
+        "rationale": "Must add or subtract 180°.",
+        "remediation": "Must add or subtract 180°."
       },
       {
         "id": "C",
-        "text": "Added 360\u00b0.",
+        "text": "Added 360°.",
         "misconceptionTag": "MIS-FULL-CIRCLE",
         "misconceptionId": "MIS-FULL-CIRCLE",
-        "feedback": "Bearings remain in [000\u00b0, 360\u00b0).",
-        "rationale": "Bearings remain in [000\u00b0, 360\u00b0).",
-        "remediation": "Bearings remain in [000\u00b0, 360\u00b0)."
+        "feedback": "Bearings remain in [000°, 360°).",
+        "rationale": "Bearings remain in [000°, 360°).",
+        "remediation": "Bearings remain in [000°, 360°)."
       },
       {
         "id": "D",
         "text": "There is no error.",
         "misconceptionTag": "MIS-NO-ERROR-CLAIM",
         "misconceptionId": "MIS-NO-ERROR-CLAIM",
-        "feedback": "390\u00b0 is outside the valid range [000\u00b0, 360\u00b0).",
-        "rationale": "390\u00b0 is outside the valid range [000\u00b0, 360\u00b0).",
-        "remediation": "390\u00b0 is outside the valid range [000\u00b0, 360\u00b0)."
+        "feedback": "390° is outside the valid range [000°, 360°).",
+        "rationale": "390° is outside the valid range [000°, 360°).",
+        "remediation": "390° is outside the valid range [000°, 360°)."
       }
     ]
   },
@@ -13037,7 +13037,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A hunter walks $6\\text{ km}$ on a bearing of $060^\\circ$ and then $8\\text{ km}$ on a bearing of $150^\\circ$. What is his straight-line distance from the starting point?",
     "correctAnswer": "A",
-    "explanation": "Interior angle = 180\u00b0 - 150\u00b0 + 60\u00b0 = 90\u00b0. d = \u221a(6\u00b2 + 8\u00b2) = \u221a100 = 10 km.",
+    "explanation": "Interior angle = 180° - 150° + 60° = 90°. d = √(6² + 8²) = √100 = 10 km.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -13065,9 +13065,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$14\\text{ km}$",
         "misconceptionTag": "MIS-LINEAR-SUM",
         "misconceptionId": "MIS-LINEAR-SUM",
-        "feedback": "6 + 8 = 14 km is path length; triangle has angle 180\u00b0 - (150\u00b0 - 60\u00b0) = 90\u00b0 => \u221a(6\u00b2 + 8\u00b2) = 10 km.",
-        "rationale": "6 + 8 = 14 km is path length; triangle has angle 180\u00b0 - (150\u00b0 - 60\u00b0) = 90\u00b0 => \u221a(6\u00b2 + 8\u00b2) = 10 km.",
-        "remediation": "6 + 8 = 14 km is path length; triangle has angle 180\u00b0 - (150\u00b0 - 60\u00b0) = 90\u00b0 => \u221a(6\u00b2 + 8\u00b2) = 10 km."
+        "feedback": "6 + 8 = 14 km is path length; triangle has angle 180° - (150° - 60°) = 90° => √(6² + 8²) = 10 km.",
+        "rationale": "6 + 8 = 14 km is path length; triangle has angle 180° - (150° - 60°) = 90° => √(6² + 8²) = 10 km.",
+        "remediation": "6 + 8 = 14 km is path length; triangle has angle 180° - (150° - 60°) = 90° => √(6² + 8²) = 10 km."
       },
       {
         "id": "C",
@@ -13101,7 +13101,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Two observation posts $A$ and $B$ are $100\\text{ m}$ apart on an East-West line. The bearing of a fire $F$ from $A$ is $030^\\circ$ and from $B$ (due East of $A$) is $330^\\circ$. How far is the fire from line $AB$?",
     "correctAnswer": "A",
-    "explanation": "Base angles inside triangle are 90\u00b0 - 30\u00b0 = 60\u00b0 each (equilateral triangle). Height = 50 tan 60\u00b0 = 50\u221a3 \u2248 86.6 m.",
+    "explanation": "Base angles inside triangle are 90° - 30° = 60° each (equilateral triangle). Height = 50 tan 60° = 50√3 ≈ 86.6 m.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -13138,18 +13138,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$100\\text{ m}$",
         "misconceptionTag": "MIS-EQUAL-SLIP",
         "misconceptionId": "MIS-EQUAL-SLIP",
-        "feedback": "Height = 50 tan 60\u00b0 = 50\u221a3 m.",
-        "rationale": "Height = 50 tan 60\u00b0 = 50\u221a3 m.",
-        "remediation": "Height = 50 tan 60\u00b0 = 50\u221a3 m."
+        "feedback": "Height = 50 tan 60° = 50√3 m.",
+        "rationale": "Height = 50 tan 60° = 50√3 m.",
+        "remediation": "Height = 50 tan 60° = 50√3 m."
       },
       {
         "id": "D",
         "text": "$75\\text{ m}$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "50 \u00d7 1.732 \u2248 86.6 m.",
-        "rationale": "50 \u00d7 1.732 \u2248 86.6 m.",
-        "remediation": "50 \u00d7 1.732 \u2248 86.6 m."
+        "feedback": "50 × 1.732 ≈ 86.6 m.",
+        "rationale": "50 × 1.732 ≈ 86.6 m.",
+        "remediation": "50 × 1.732 ≈ 86.6 m."
       }
     ]
   },
@@ -13165,7 +13165,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Which formula correctly gives the estimated mean $\\bar{x}$ of a grouped frequency distribution?",
     "correctAnswer": "A",
-    "explanation": "Grouped mean: x\u0304 = (\u2211 fx) / (\u2211 f).",
+    "explanation": "Grouped mean: x̄ = (∑ fx) / (∑ f).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -13211,9 +13211,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\bar{x} = \\sum f x$",
         "misconceptionTag": "MIS-DENOM-DROP",
         "misconceptionId": "MIS-DENOM-DROP",
-        "feedback": "Must divide by total frequency \u2211f.",
-        "rationale": "Must divide by total frequency \u2211f.",
-        "remediation": "Must divide by total frequency \u2211f."
+        "feedback": "Must divide by total frequency ∑f.",
+        "rationale": "Must divide by total frequency ∑f.",
+        "remediation": "Must divide by total frequency ∑f."
       }
     ]
   },
@@ -13549,7 +13549,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "If $\\sum fx = 750$ and $\\sum f = 25$, calculate the estimated mean $\\bar{x}$.",
     "correctAnswer": "A",
-    "explanation": "x\u0304 = 750 / 25 = 30.",
+    "explanation": "x̄ = 750 / 25 = 30.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -13586,18 +13586,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$35$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "30 \u00d7 25 = 750.",
-        "rationale": "30 \u00d7 25 = 750.",
-        "remediation": "30 \u00d7 25 = 750."
+        "feedback": "30 × 25 = 750.",
+        "rationale": "30 × 25 = 750.",
+        "remediation": "30 × 25 = 750."
       },
       {
         "id": "D",
         "text": "$20$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "x\u0304 = 30.",
-        "rationale": "x\u0304 = 30.",
-        "remediation": "x\u0304 = 30."
+        "feedback": "x̄ = 30.",
+        "rationale": "x̄ = 30.",
+        "remediation": "x̄ = 30."
       }
     ]
   },
@@ -13680,11 +13680,11 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "C",
-        "text": "Sum the fx column to obtain \u2211 fx, and sum frequencies for \u2211 f."
+        "text": "Sum the fx column to obtain ∑ fx, and sum frequencies for ∑ f."
       },
       {
         "id": "D",
-        "text": "Divide \u2211 fx by \u2211 f to obtain the mean."
+        "text": "Divide ∑ fx by ∑ f to obtain the mean."
       }
     ]
   },
@@ -13731,7 +13731,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "A student calculates the mean of a grouped table by adding midpoints $x$ and dividing by the number of classes. What was the error?",
     "correctAnswer": "A",
-    "explanation": "Frequency weighting \u2211 fx / \u2211 f is strictly required for grouped data.",
+    "explanation": "Frequency weighting ∑ fx / ∑ f is strictly required for grouped data.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -13887,9 +13887,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "4",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Midpoints: 3, 8, 13. \u2211 fx = 2(3) + 8k + 5(13) = 6 + 8k + 65 = 71 + 8k. \u2211 f = 7 + k. (71 + 8k)/(7 + k) = 9.5 => 71 + 8k = 66.5 + 9.5k => 1.5k = 4.5 => k = 3.",
-        "rationale": "Midpoints: 3, 8, 13. \u2211 fx = 2(3) + 8k + 5(13) = 6 + 8k + 65 = 71 + 8k. \u2211 f = 7 + k. (71 + 8k)/(7 + k) = 9.5 => 71 + 8k = 66.5 + 9.5k => 1.5k = 4.5 => k = 3.",
-        "remediation": "Midpoints: 3, 8, 13. \u2211 fx = 2(3) + 8k + 5(13) = 6 + 8k + 65 = 71 + 8k. \u2211 f = 7 + k. (71 + 8k)/(7 + k) = 9.5 => 71 + 8k = 66.5 + 9.5k => 1.5k = 4.5 => k = 3."
+        "feedback": "Midpoints: 3, 8, 13. ∑ fx = 2(3) + 8k + 5(13) = 6 + 8k + 65 = 71 + 8k. ∑ f = 7 + k. (71 + 8k)/(7 + k) = 9.5 => 71 + 8k = 66.5 + 9.5k => 1.5k = 4.5 => k = 3.",
+        "rationale": "Midpoints: 3, 8, 13. ∑ fx = 2(3) + 8k + 5(13) = 6 + 8k + 65 = 71 + 8k. ∑ f = 7 + k. (71 + 8k)/(7 + k) = 9.5 => 71 + 8k = 66.5 + 9.5k => 1.5k = 4.5 => k = 3.",
+        "remediation": "Midpoints: 3, 8, 13. ∑ fx = 2(3) + 8k + 5(13) = 6 + 8k + 65 = 71 + 8k. ∑ f = 7 + k. (71 + 8k)/(7 + k) = 9.5 => 71 + 8k = 66.5 + 9.5k => 1.5k = 4.5 => k = 3."
       },
       {
         "id": "C",
@@ -13923,7 +13923,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "Using an assumed mean $A = 25$ and coded deviations $d = \\frac{x - 25}{10}$, a student computes $\\sum f = 50$ and $\\sum fd = 15$. Find the actual mean $\\bar{x}$.",
     "correctAnswer": "A",
-    "explanation": "x\u0304 = A + c(\u2211 fd / \u2211 f) = 25 + 10(15 / 50) = 25 + 3 = 28.",
+    "explanation": "x̄ = A + c(∑ fd / ∑ f) = 25 + 10(15 / 50) = 25 + 3 = 28.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -13951,9 +13951,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$26.5$",
         "misconceptionTag": "MIS-SCALE-OMIT",
         "misconceptionId": "MIS-SCALE-OMIT",
-        "feedback": "Forgot to multiply by class width 10: 25 + (15/50) = 25.3, with \u00d710 gives 25 + 3 = 28.",
-        "rationale": "Forgot to multiply by class width 10: 25 + (15/50) = 25.3, with \u00d710 gives 25 + 3 = 28.",
-        "remediation": "Forgot to multiply by class width 10: 25 + (15/50) = 25.3, with \u00d710 gives 25 + 3 = 28."
+        "feedback": "Forgot to multiply by class width 10: 25 + (15/50) = 25.3, with ×10 gives 25 + 3 = 28.",
+        "rationale": "Forgot to multiply by class width 10: 25 + (15/50) = 25.3, with ×10 gives 25 + 3 = 28.",
+        "remediation": "Forgot to multiply by class width 10: 25 + (15/50) = 25.3, with ×10 gives 25 + 3 = 28."
       },
       {
         "id": "C",
@@ -13969,9 +13969,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$30$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "x\u0304 = A + c(\u2211 fd / \u2211 f) = 25 + 10(15/50) = 25 + 3 = 28.",
-        "rationale": "x\u0304 = A + c(\u2211 fd / \u2211 f) = 25 + 10(15/50) = 25 + 3 = 28.",
-        "remediation": "x\u0304 = A + c(\u2211 fd / \u2211 f) = 25 + 10(15/50) = 25 + 3 = 28."
+        "feedback": "x̄ = A + c(∑ fd / ∑ f) = 25 + 10(15/50) = 25 + 3 = 28.",
+        "rationale": "x̄ = A + c(∑ fd / ∑ f) = 25 + 10(15/50) = 25 + 3 = 28.",
+        "remediation": "x̄ = A + c(∑ fd / ∑ f) = 25 + 10(15/50) = 25 + 3 = 28."
       }
     ]
   },
@@ -14307,7 +14307,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "For an examination cohort of $200$ candidates, at what cumulative frequency is the 80th percentile read?",
     "correctAnswer": "A",
-    "explanation": "80th percentile CF = 0.80 \u00d7 200 = 160.",
+    "explanation": "80th percentile CF = 0.80 × 200 = 160.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -14335,9 +14335,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$80$",
         "misconceptionTag": "MIS-PERCENTILE-VALUE",
         "misconceptionId": "MIS-PERCENTILE-VALUE",
-        "feedback": "80% of 200 = 0.80 \u00d7 200 = 160.",
-        "rationale": "80% of 200 = 0.80 \u00d7 200 = 160.",
-        "remediation": "80% of 200 = 0.80 \u00d7 200 = 160."
+        "feedback": "80% of 200 = 0.80 × 200 = 160.",
+        "rationale": "80% of 200 = 0.80 × 200 = 160.",
+        "remediation": "80% of 200 = 0.80 × 200 = 160."
       },
       {
         "id": "C",
@@ -14494,7 +14494,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "options": [
       {
         "id": "A",
-        "text": "Calculate the total frequency N = \u2211 f."
+        "text": "Calculate the total frequency N = ∑ f."
       },
       {
         "id": "B",
@@ -14745,7 +14745,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "The pass mark for an exam is set such that the top $15\\%$ of candidates receive distinctions. In a cohort of $400$ candidates, at what cumulative frequency should the distinction cutoff be read from the Ogive?",
     "correctAnswer": "A",
-    "explanation": "Top 15% means bottom 85% are below cutoff: 0.85 \u00d7 400 = 340.",
+    "explanation": "Top 15% means bottom 85% are below cutoff: 0.85 × 400 = 340.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",
@@ -14773,18 +14773,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$60$",
         "misconceptionTag": "MIS-BOTTOM-PERCENT",
         "misconceptionId": "MIS-BOTTOM-PERCENT",
-        "feedback": "60 is the bottom 15% (0.15 \u00d7 400).",
-        "rationale": "60 is the bottom 15% (0.15 \u00d7 400).",
-        "remediation": "60 is the bottom 15% (0.15 \u00d7 400)."
+        "feedback": "60 is the bottom 15% (0.15 × 400).",
+        "rationale": "60 is the bottom 15% (0.15 × 400).",
+        "remediation": "60 is the bottom 15% (0.15 × 400)."
       },
       {
         "id": "C",
         "text": "$320$",
         "misconceptionTag": "MIS-ARITH-SLIP",
         "misconceptionId": "MIS-ARITH-SLIP",
-        "feedback": "Top 15% means 85% score below: 0.85 \u00d7 400 = 340.",
-        "rationale": "Top 15% means 85% score below: 0.85 \u00d7 400 = 340.",
-        "remediation": "Top 15% means 85% score below: 0.85 \u00d7 400 = 340."
+        "feedback": "Top 15% means 85% score below: 0.85 × 400 = 340.",
+        "rationale": "Top 15% means 85% score below: 0.85 × 400 = 340.",
+        "remediation": "Top 15% means 85% score below: 0.85 × 400 = 340."
       },
       {
         "id": "D",
@@ -14809,7 +14809,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "If $A$ and $B$ are mutually exclusive events, which rule gives $P(A \\cup B)$?",
     "correctAnswer": "A",
-    "explanation": "Mutually exclusive events cannot happen together: P(A \u222a B) = P(A) + P(B).",
+    "explanation": "Mutually exclusive events cannot happen together: P(A ∪ B) = P(A) + P(B).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -14846,9 +14846,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$P(A) + P(B) - P(A \\cap B)$",
         "misconceptionTag": "MIS-GENERAL-RULE",
         "misconceptionId": "MIS-GENERAL-RULE",
-        "feedback": "For mutually exclusive events, P(A \u2229 B) = 0, simplifying to P(A) + P(B).",
-        "rationale": "For mutually exclusive events, P(A \u2229 B) = 0, simplifying to P(A) + P(B).",
-        "remediation": "For mutually exclusive events, P(A \u2229 B) = 0, simplifying to P(A) + P(B)."
+        "feedback": "For mutually exclusive events, P(A ∩ B) = 0, simplifying to P(A) + P(B).",
+        "rationale": "For mutually exclusive events, P(A ∩ B) = 0, simplifying to P(A) + P(B).",
+        "remediation": "For mutually exclusive events, P(A ∩ B) = 0, simplifying to P(A) + P(B)."
       },
       {
         "id": "D",
@@ -14937,7 +14937,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "If two events $A$ and $B$ are independent, how is $P(A \\cap B)$ calculated?",
     "correctAnswer": "A",
-    "explanation": "Independent events: P(A and B) = P(A) \u00d7 P(B).",
+    "explanation": "Independent events: P(A and B) = P(A) × P(B).",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -15193,7 +15193,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "If $P(A) = 0.4, P(B) = 0.5,$ and $A$ and $B$ are independent, find $P(A \\cup B)$.",
     "correctAnswer": "A",
-    "explanation": "P(A \u2229 B) = 0.4 \u00d7 0.5 = 0.2. P(A \u222a B) = 0.4 + 0.5 - 0.2 = 0.7.",
+    "explanation": "P(A ∩ B) = 0.4 × 0.5 = 0.2. P(A ∪ B) = 0.4 + 0.5 - 0.2 = 0.7.",
     "difficulty": "estimated",
     "difficultyScore": 2,
     "reviewStatus": "needs_teacher_review",
@@ -15221,18 +15221,18 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$0.9$",
         "misconceptionTag": "MIS-EXCLUSIVE-ASSUMPTION",
         "misconceptionId": "MIS-EXCLUSIVE-ASSUMPTION",
-        "feedback": "P(A \u222a B) = P(A) + P(B) - P(A \u2229 B) = 0.4 + 0.5 - 0.2 = 0.7.",
-        "rationale": "P(A \u222a B) = P(A) + P(B) - P(A \u2229 B) = 0.4 + 0.5 - 0.2 = 0.7.",
-        "remediation": "P(A \u222a B) = P(A) + P(B) - P(A \u2229 B) = 0.4 + 0.5 - 0.2 = 0.7."
+        "feedback": "P(A ∪ B) = P(A) + P(B) - P(A ∩ B) = 0.4 + 0.5 - 0.2 = 0.7.",
+        "rationale": "P(A ∪ B) = P(A) + P(B) - P(A ∩ B) = 0.4 + 0.5 - 0.2 = 0.7.",
+        "remediation": "P(A ∪ B) = P(A) + P(B) - P(A ∩ B) = 0.4 + 0.5 - 0.2 = 0.7."
       },
       {
         "id": "C",
         "text": "$0.2$",
         "misconceptionTag": "MIS-INTERSECTION-ONLY",
         "misconceptionId": "MIS-INTERSECTION-ONLY",
-        "feedback": "0.2 is P(A \u2229 B), not union.",
-        "rationale": "0.2 is P(A \u2229 B), not union.",
-        "remediation": "0.2 is P(A \u2229 B), not union."
+        "feedback": "0.2 is P(A ∩ B), not union.",
+        "rationale": "0.2 is P(A ∩ B), not union.",
+        "remediation": "0.2 is P(A ∩ B), not union."
       },
       {
         "id": "D",
@@ -15375,7 +15375,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "To find the probability of drawing a King or a Heart from a deck of 52 cards, a student computed $\\frac{4}{52} + \\frac{13}{52} = \\frac{17}{52}$. What error was committed?",
     "correctAnswer": "A",
-    "explanation": "King and Heart are not mutually exclusive. P(K \u222a H) = 4/52 + 13/52 - 1/52 = 16/52 = 4/13.",
+    "explanation": "King and Heart are not mutually exclusive. P(K ∪ H) = 4/52 + 13/52 - 1/52 = 16/52 = 4/13.",
     "difficulty": "estimated",
     "difficultyScore": 3,
     "reviewStatus": "needs_teacher_review",
@@ -15540,9 +15540,9 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
         "text": "$\\frac{1}{2}$",
         "misconceptionTag": "MIS-ROUGH-GUESS",
         "misconceptionId": "MIS-ROUGH-GUESS",
-        "feedback": "P(both red) = 5/8 \u00d7 4/7 = 20/56. P(both white) = 3/8 \u00d7 2/7 = 6/56. Sum = 26/56 = 13/28.",
-        "rationale": "P(both red) = 5/8 \u00d7 4/7 = 20/56. P(both white) = 3/8 \u00d7 2/7 = 6/56. Sum = 26/56 = 13/28.",
-        "remediation": "P(both red) = 5/8 \u00d7 4/7 = 20/56. P(both white) = 3/8 \u00d7 2/7 = 6/56. Sum = 26/56 = 13/28."
+        "feedback": "P(both red) = 5/8 × 4/7 = 20/56. P(both white) = 3/8 × 2/7 = 6/56. Sum = 26/56 = 13/28.",
+        "rationale": "P(both red) = 5/8 × 4/7 = 20/56. P(both white) = 3/8 × 2/7 = 6/56. Sum = 26/56 = 13/28.",
+        "remediation": "P(both red) = 5/8 × 4/7 = 20/56. P(both white) = 3/8 × 2/7 = 6/56. Sum = 26/56 = 13/28."
       },
       {
         "id": "D",
@@ -15567,7 +15567,7 @@ export const WAEC_MATH_BANK: AssessmentItem[] = [
     "questionType": "single_choice",
     "prompt": "In a class of $40$ students, $25$ study Physics, $20$ study Chemistry, and $10$ study both. If a student is chosen at random, find the probability that the student studies NEITHER subject.",
     "correctAnswer": "A",
-    "explanation": "n(P \u222a C) = 25 + 20 - 10 = 35. Neither = 40 - 35 = 5. P = 5/40 = 1/8.",
+    "explanation": "n(P ∪ C) = 25 + 20 - 10 = 35. Neither = 40 - 35 = 5. P = 5/40 = 1/8.",
     "difficulty": "estimated",
     "difficultyScore": 4,
     "reviewStatus": "needs_teacher_review",

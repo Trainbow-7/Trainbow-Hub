@@ -21,17 +21,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -73,15 +84,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -226,17 +251,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -277,15 +314,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -326,15 +378,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -494,15 +561,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -544,15 +626,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -593,15 +690,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -701,17 +813,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -753,15 +876,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -906,17 +1043,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -957,15 +1106,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1006,15 +1170,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1174,15 +1353,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1224,15 +1418,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1273,15 +1482,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1381,17 +1605,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1433,15 +1668,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1586,17 +1835,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1637,15 +1898,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1686,15 +1962,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1854,15 +2145,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1904,15 +2210,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -1953,15 +2274,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2061,17 +2397,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2113,15 +2460,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2266,17 +2627,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2317,15 +2690,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2366,15 +2754,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2534,15 +2937,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2584,15 +3002,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2633,15 +3066,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2741,17 +3189,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2793,15 +3252,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2946,17 +3419,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -2997,15 +3482,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3046,15 +3546,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3214,15 +3729,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3264,15 +3794,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3313,15 +3858,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3421,17 +3981,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3473,15 +4044,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3626,17 +4211,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3677,15 +4274,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3726,15 +4338,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3894,15 +4521,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3944,15 +4586,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -3993,15 +4650,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4101,17 +4773,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4153,15 +4836,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4306,17 +5003,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4357,15 +5066,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4406,15 +5130,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4574,15 +5313,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4624,15 +5378,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4673,15 +5442,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4781,17 +5565,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4833,15 +5628,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -4986,17 +5795,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5037,15 +5858,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5086,15 +5922,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5254,15 +6105,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5304,15 +6170,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5353,15 +6234,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5461,17 +6357,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5513,15 +6420,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5666,17 +6587,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5717,15 +6650,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5766,15 +6714,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5934,15 +6897,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -5984,15 +6962,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6033,15 +7026,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6141,17 +7149,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6193,15 +7212,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6346,17 +7379,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6397,15 +7442,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6446,15 +7506,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6614,15 +7689,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6664,15 +7754,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6713,15 +7818,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6821,17 +7941,28 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
         "id": "B",
         "text": "Intermediate units and signs may be ignored until the final numerical answer.",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Sign accuracy at every step is required in marking schemes."
+        "feedback": "Sign accuracy at every step is required in marking schemes.",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Sign accuracy at every step is required in marking schemes.",
+        "remediation": "Sign accuracy at every step is required in marking schemes."
       },
       {
         "id": "C",
         "text": "Approximations should be made at every intermediate stage of working.",
         "misconceptionId": "misc-premature-rounding",
-        "feedback": "Premature rounding causes severe inaccuracy in final answers."
+        "feedback": "Premature rounding causes severe inaccuracy in final answers.",
+        "misconceptionTag": "misc-premature-rounding",
+        "rationale": "Premature rounding causes severe inaccuracy in final answers.",
+        "remediation": "Premature rounding causes severe inaccuracy in final answers."
       },
       {
         "id": "D",
-        "text": "None of the above rules apply to this topic."
+        "text": "None of the above rules apply to this topic.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -6873,15 +8004,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "Guess and test whole numbers arbitrarily without writing an algebraic formula.",
-        "feedback": "Heuristic guessing forfeits method marks (M1)."
+        "feedback": "Heuristic guessing forfeits method marks (M1).",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "rationale": "Heuristic guessing forfeits method marks (M1).",
+        "remediation": "Heuristic guessing forfeits method marks (M1)."
       },
       {
         "id": "C",
-        "text": "Assume all parameters are equal to save time on examination scripts."
+        "text": "Assume all parameters are equal to save time on examination scripts.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       },
       {
         "id": "D",
-        "text": "Always divide by zero if terms are unknown."
+        "text": "Always divide by zero if terms are unknown.",
+        "misconceptionTag": "MIS-CONCEPTUAL-CONFUSION",
+        "misconceptionId": "MIS-CONCEPTUAL-CONFUSION",
+        "feedback": "Review working: conceptual confusion is a common slip.",
+        "rationale": "Review working: conceptual confusion is a common slip.",
+        "remediation": "Review working: conceptual confusion is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -7026,17 +8171,29 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       {
         "id": "B",
         "text": "x = 8",
-        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
+        "feedback": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "rationale": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7.",
+        "remediation": "Check subtraction: 28 - 7 = 21, then 21 / 3 = 7."
       },
       {
         "id": "C",
         "text": "x = 11",
         "misconceptionId": "misc-sign-error",
-        "feedback": "Did you add 7 to 28 instead of subtracting it?"
+        "feedback": "Did you add 7 to 28 instead of subtracting it?",
+        "misconceptionTag": "misc-sign-error",
+        "rationale": "Did you add 7 to 28 instead of subtracting it?",
+        "remediation": "Did you add 7 to 28 instead of subtracting it?"
       },
       {
         "id": "D",
-        "text": "x = 5"
+        "text": "x = 5",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -7077,15 +8234,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "10"
+        "text": "10",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "C",
-        "text": "6"
+        "text": "6",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       },
       {
         "id": "D",
-        "text": "12"
+        "text": "12",
+        "misconceptionTag": "MIS-CALCULATION-SLIP",
+        "misconceptionId": "MIS-CALCULATION-SLIP",
+        "feedback": "Review working: calculation slip is a common slip.",
+        "rationale": "Review working: calculation slip is a common slip.",
+        "remediation": "Review working: calculation slip is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -7126,15 +8298,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "68%"
+        "text": "68%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "C",
-        "text": "75%"
+        "text": "75%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       },
       {
         "id": "D",
-        "text": "70%"
+        "text": "70%",
+        "misconceptionTag": "MIS-PERCENTAGE-CALCULATION",
+        "misconceptionId": "MIS-PERCENTAGE-CALCULATION",
+        "feedback": "Review working: percentage calculation is a common slip.",
+        "rationale": "Review working: percentage calculation is a common slip.",
+        "remediation": "Review working: percentage calculation is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -7294,15 +8481,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "4 squared is 8, not 16."
+        "text": "4 squared is 8, not 16.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       },
       {
         "id": "C",
-        "text": "The sign should be negative: x² - 16."
+        "text": "The sign should be negative: x² - 16.",
+        "misconceptionTag": "MIS-SIGN-ERROR",
+        "misconceptionId": "MIS-SIGN-ERROR",
+        "feedback": "Review working: sign error is a common slip.",
+        "rationale": "Review working: sign error is a common slip.",
+        "remediation": "Review working: sign error is a common slip."
       },
       {
         "id": "D",
-        "text": "Brackets can only be squared if x is an integer."
+        "text": "Brackets can only be squared if x is an integer.",
+        "misconceptionTag": "MIS-EXPONENT-INDEX-RULE",
+        "misconceptionId": "MIS-EXPONENT-INDEX-RULE",
+        "feedback": "Review working: exponent index rule is a common slip.",
+        "rationale": "Review working: exponent index rule is a common slip.",
+        "remediation": "Review working: exponent index rule is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -7344,15 +8546,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "Line 2: Adding 10 to 14 was computed incorrectly."
+        "text": "Line 2: Adding 10 to 14 was computed incorrectly.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "C",
-        "text": "Line 3: 24 divided by -2 is +12, not -12."
+        "text": "Line 3: 24 divided by -2 is +12, not -12.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       },
       {
         "id": "D",
-        "text": "There is no error; the solution is completely correct."
+        "text": "There is no error; the solution is completely correct.",
+        "misconceptionTag": "MIS-WORKED-ERROR-UNNOTICED",
+        "misconceptionId": "MIS-WORKED-ERROR-UNNOTICED",
+        "feedback": "Review working: worked error unnoticed is a common slip.",
+        "rationale": "Review working: worked error unnoticed is a common slip.",
+        "remediation": "Review working: worked error unnoticed is a common slip."
       }
     ],
     "correctAnswer": "A",
@@ -7393,15 +8610,30 @@ export const JAMB_MATH_BANK: AssessmentItem[] = [
       },
       {
         "id": "B",
-        "text": "48"
+        "text": "48",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "C",
-        "text": "72"
+        "text": "72",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       },
       {
         "id": "D",
-        "text": "54"
+        "text": "54",
+        "misconceptionTag": "MIS-MULTI-STEP-OVERSIGHT",
+        "misconceptionId": "MIS-MULTI-STEP-OVERSIGHT",
+        "feedback": "Review working: multi step oversight is a common slip.",
+        "rationale": "Review working: multi step oversight is a common slip.",
+        "remediation": "Review working: multi step oversight is a common slip."
       }
     ],
     "correctAnswer": "A",
