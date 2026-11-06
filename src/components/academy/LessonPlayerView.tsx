@@ -15,6 +15,7 @@ import { LessonNotesRenderer } from "@/components/academy/LessonNotesRenderer";
 import { ScrollableTabs } from "@/components/ui/responsive/ScrollableTabs";
 import { BottomSheet } from "@/components/ui/responsive/BottomSheet";
 import { getWeakAreaByCode } from "@/lib/data/english-deficiency-map";
+import { AssessmentPlayer } from "@/components/assessment/AssessmentPlayer";
 
 interface LessonPayload {
   success: boolean;
@@ -81,6 +82,7 @@ interface LessonPayload {
   progress: {
     isEnrolled: boolean;
     isCompleted: boolean;
+    isMastered?: boolean;
     completedLessonIds: string[];
     progressPercentage: number;
     totalLessons: number;
@@ -108,6 +110,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
   const [selectedAnswers, setSelectedAnswers] = React.useState<Record<string, string>>({});
   const [quizSubmitted, setQuizSubmitted] = React.useState(false);
   const [isCompletedLocal, setIsCompletedLocal] = React.useState(false);
+  const [isMasteredLocal, setIsMasteredLocal] = React.useState(false);
   const [isMarkingComplete, setIsMarkingComplete] = React.useState(false);
 
   const syllabusContainerRef = React.useRef<HTMLDivElement | null>(null);
@@ -130,6 +133,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
       if (json.success) {
         setData(json);
         setIsCompletedLocal(json.progress.isCompleted);
+        setIsMasteredLocal(Boolean(json.progress.isMastered));
       } else {
         setError((json as any).error || "Failed to load lesson");
       }
@@ -270,11 +274,10 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                     ref={isActive ? activeLessonRef : null}
                     href={`/courses/${course.slug}/lessons/${les.slug || les.id}`}
                     onClick={() => setSyllabusSheetOpen(false)}
-                    className={`block p-2.5 transition-colors ${
-                      isActive
+                    className={`block p-2.5 transition-colors ${isActive
                         ? "bg-brand-blue-50 text-brand-blue-700 font-medium border-l-4 border-brand-blue-600"
                         : "hover:bg-neutral-slate-50 text-neutral-slate-700"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2 truncate">
@@ -325,7 +328,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             onClick={() => setSyllabusSheetOpen(true)}
             className="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-neutral-slate-200 text-neutral-slate-700 hover:bg-neutral-slate-100 shadow-xs min-h-[36px]"
           >
-            
+
             <span>Syllabus ({progress.progressPercentage}%)</span>
           </button>
         </div>
@@ -341,6 +344,11 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
                 <span className="text-xs text-neutral-slate-500">{lesson.moduleTitle}</span>
                 {lesson.isFreePreview && (
                   <Badge variant="tutor" className="text-[10px]">Free Preview</Badge>
+                )}
+                {isMasteredLocal && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-status-green-100 text-status-green-800 border border-status-green-200">
+                    ★ Concept Mastered
+                  </span>
                 )}
                 {(() => {
                   const weakCode = (lesson as any).weakAreaCodes?.[0];
@@ -490,157 +498,24 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
             {activeTab === "quiz" && (
               <div className="rounded-xl border border-neutral-slate-200 bg-white p-5 sm:p-8 space-y-6">
                 <div>
-                  <h3 className="font-heading font-bold text-base text-neutral-slate-900">
-                    {lesson.quiz?.title || "Checkpoint Quiz"}
+                  <h3 className="font-heading font-bold text-base sm:text-lg text-neutral-slate-900">
+                    Checkpoint Assessment: {lesson.title}
                   </h3>
                   <p className="text-xs text-neutral-slate-500">
-                    Test your understanding of this topic before proceeding.
+                    Prove your mathematical understanding of this syllabus topic.
                   </p>
                 </div>
 
-                <div className="space-y-6">
-                  {(lesson.quiz?.questions || []).map((q, idx) => {
-                    const selected = selectedAnswers[q.id];
-                    const isGraded = quizSubmitted;
-                    const isCorrect = selected === q.correctOptionId;
-
-                    return (
-                      <div key={q.id} className="p-4 rounded-xl border border-neutral-slate-200 space-y-3">
-                        <span className="text-xs font-bold text-brand-blue-600">Question {idx + 1}</span>
-                        <p className="text-sm font-medium text-neutral-slate-900">
-                          <InlineMathText text={q.prompt} />
-                        </p>
-
-                        <div className="space-y-2 pt-2">
-                          {q.options.map((opt) => {
-                            const isOptSelected = selected === opt.id;
-                            let btnStyle = "border-neutral-slate-200 hover:border-brand-blue-300";
-                            if (isOptSelected) btnStyle = "border-brand-blue-600 bg-brand-blue-50 text-brand-blue-900";
-                            if (isGraded && opt.id === q.correctOptionId) {
-                              btnStyle = "border-status-green-600 bg-status-green-50 text-status-green-900 font-semibold";
-                            } else if (isGraded && isOptSelected && !isCorrect) {
-                              btnStyle = "border-status-red-600 bg-status-red-50 text-status-red-900";
-                            }
-
-                            return (
-                              <button
-                                key={opt.id}
-                                type="button"
-                                onClick={() => !quizSubmitted && setSelectedAnswers((prev) => ({ ...prev, [q.id]: opt.id }))}
-                                className={`w-full text-left p-3 rounded-lg border text-xs flex items-center justify-between transition-colors ${btnStyle}`}
-                              >
-                                <span className="flex items-center gap-2">
-                                  <span className="font-bold">{opt.id}.</span>
-                                  <InlineMathText text={opt.text} />
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-
-                        {isGraded && (
-                          <div className={`p-3 rounded-lg text-xs leading-relaxed ${isCorrect ? "bg-status-green-50 text-status-green-900 border border-status-green-200" : "bg-status-red-50 text-status-red-900 border border-status-red-200"}`}>
-                            <span className="font-bold block mb-1">
-                              {isCorrect ? "Correct!" : "Explanation:"}
-                            </span>
-                            <InlineMathText text={q.explanation} />
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {!quizSubmitted ? (
-                  <Button
-                    size="sm"
-                    variant="primary"
-                    onClick={handleGradeQuiz}
-                    disabled={Object.keys(selectedAnswers).length === 0}
-                  >
-                    Submit Answers
-                  </Button>
-                ) : (
-                  <div className="space-y-4 pt-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => {
-                        setQuizSubmitted(false);
-                        setSelectedAnswers({});
-                      }}
-                    >
-                      Retake Quiz
-                    </Button>
-
-                    {/* Next Best Lesson Recommendation & AI Helper */}
-                    {(() => {
-                      const questions = lesson.quiz?.questions || [];
-                      const correctCount = questions.filter(
-                        (q) => selectedAnswers[q.id]?.toUpperCase() === q.correctOptionId.toUpperCase()
-                      ).length;
-                      const totalCount = questions.length;
-                      const allCorrect = totalCount > 0 && correctCount === totalCount;
-
-                      return (
-                        <div className="p-4 rounded-xl border border-neutral-slate-200 bg-neutral-slate-50 space-y-3 mt-4">
-                          <div className="flex items-center justify-between">
-                            <span className="font-heading font-bold text-sm text-neutral-slate-900">
-                              Checkpoint Result: {correctCount} / {totalCount} ({Math.round((correctCount / (totalCount || 1)) * 100)}%)
-                            </span>
-                            {allCorrect ? (
-                              <span className="text-xs text-status-green-700 font-bold">Concept Mastered</span>
-                            ) : (
-                              <span className="text-xs text-amber-700 font-semibold">Review Recommended</span>
-                            )}
-                          </div>
-
-                          <div className="pt-2 border-t border-neutral-slate-200 space-y-2">
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-slate-500">
-                              Next Best Lesson
-                            </span>
-                            {navigation.nextLesson ? (
-                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-white rounded-lg border border-neutral-slate-200">
-                                <div>
-                                  <h4 className="font-heading font-bold text-xs sm:text-sm text-neutral-slate-900">
-                                    {navigation.nextLesson.title}
-                                  </h4>
-                                  <p className="text-[11px] text-neutral-slate-500">
-                                    {allCorrect
-                                      ? "You demonstrated strong mastery on this checkpoint. Proceed to the next lesson."
-                                      : "Continue through your curriculum path to reinforce and apply these skills."}
-                                  </p>
-                                </div>
-                                <Link
-                                  href={`/courses/${course.slug}/lessons/${navigation.nextLesson.slug || navigation.nextLesson.id}`}
-                                  className="shrink-0"
-                                >
-                                  <Button size="sm" variant="primary">
-                                    Continue →
-                                  </Button>
-                                </Link>
-                              </div>
-                            ) : (
-                              <p className="text-xs text-neutral-slate-600">
-                                You have completed all lessons in this course! Check your progress on the Academy dashboard.
-                              </p>
-                            )}
-                          </div>
-
-                          <div className="pt-1 flex items-center justify-between text-xs text-neutral-slate-500 flex-wrap gap-2">
-                            <span>Questions about this lesson or checkpoint?</span>
-                            <Link
-                              href={`/ai?q=${encodeURIComponent(`Help me understand: ${lesson.title}`)}`}
-                              className="text-brand-blue-600 hover:underline font-medium"
-                            >
-                              Ask the study helper →
-                            </Link>
-                          </div>
-                        </div>
-                      );
-                    })()}
-                  </div>
-                )}
+                <AssessmentPlayer
+                  courseSlug={course.slug}
+                  lessonId={lesson.id}
+                  initialMode="practice"
+                  onMasteryChange={(isMastered) => {
+                    if (isMastered) {
+                      setIsMasteredLocal(true);
+                    }
+                  }}
+                />
               </div>
             )}
 

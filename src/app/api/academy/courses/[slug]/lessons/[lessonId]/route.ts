@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import { ALL_COURSES } from "@/lib/data/seed-data";
 import { getLessonById } from "@/lib/data/academy-content";
 import { getCourseLessonList } from "@/lib/academy/engine";
+import { assessmentDb } from "@/lib/assessment/db";
 
 export async function GET(
   req: NextRequest,
@@ -122,12 +123,16 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
       };
     }
 
-    // Get user's enrollment and progress
+    // Get user's enrollment, progress, and objective mastery
     const enrollment = await db.findEnrollment(userId, slug);
     const isCompleted =
       enrollment?.completedLessonIds.includes(foundLesson.id) ||
       enrollment?.completedLessonIds.includes(foundLesson.slug || "") ||
       false;
+    const masteredLessons = assessmentDb.getMasteredLessons(userId, slug);
+    const isMastered =
+      masteredLessons.includes(foundLesson.id) ||
+      (foundLesson.slug ? masteredLessons.includes(foundLesson.slug) : false);
 
     // Get next and previous lesson pointers
     const allLessons = getCourseLessonList(slug);
@@ -180,7 +185,7 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
             }
           }
         }
-      } catch {}
+      } catch { }
 
       const fallbackVideo = {
         id: `lv-${foundLesson.id}-primary`,
@@ -228,6 +233,17 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
       },
       lesson: {
         ...lesson,
+        quiz: lesson.quiz ? {
+          id: lesson.quiz.id,
+          title: lesson.quiz.title,
+          passPercentage: lesson.quiz.passPercentage,
+          questions: (lesson.quiz.questions || []).map((q: any) => ({
+            id: q.id,
+            prompt: q.prompt,
+            options: q.options,
+            topic: q.topic,
+          })),
+        } : null,
         weakAreaCodes: (foundLesson as any).weakAreaCodes || (lesson as any).weakAreaCodes || [],
       },
       video: {
@@ -240,7 +256,9 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
       progress: {
         isEnrolled: !!enrollment,
         isCompleted,
+        isMastered,
         completedLessonIds: enrollment?.completedLessonIds || [],
+        masteredLessonIds: masteredLessons,
         progressPercentage: enrollment?.progressPercentage || 0,
         totalLessons: allLessons.length,
       },

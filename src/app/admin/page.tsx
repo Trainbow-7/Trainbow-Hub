@@ -871,7 +871,7 @@ export default function AdminPortalPage() {
             </div>
 
             {/* Quick Action Matrix */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div
                 onClick={() => setActiveTab("tutors")}
                 className="bg-white p-5 rounded-2xl border border-neutral-slate-200 hover:border-purple-300 transition-all cursor-pointer shadow-xs group"
@@ -919,6 +919,23 @@ export default function AdminPortalPage() {
                   <ChevronRightIcon className="h-4 w-4" />
                 </div>
               </div>
+
+              <Link
+                href="/admin/quizzes"
+                className="bg-white p-5 rounded-2xl border border-neutral-slate-200 hover:border-blue-400 transition-all cursor-pointer shadow-xs group block"
+              >
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold mb-3 group-hover:scale-105 transition-transform text-base">
+                  ★
+                </div>
+                <h3 className="text-sm font-bold text-neutral-slate-900">Mathematics Quiz Quality</h3>
+                <p className="text-xs text-neutral-slate-600 mt-1">
+                  Teacher review gate for 994 banked questions, misconception distractor audits &amp; curriculum coverage.
+                </p>
+                <div className="mt-3 text-xs font-bold text-blue-700 flex items-center gap-1">
+                  <span>Open Review Queue</span>
+                  <ChevronRightIcon className="h-4 w-4" />
+                </div>
+              </Link>
             </div>
           </div>
         )}

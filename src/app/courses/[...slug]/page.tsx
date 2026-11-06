@@ -4,6 +4,7 @@ import { ALL_COURSES } from "@/lib/data/seed-data";
 import { CourseDetailView } from "@/components/academy/CourseDetailView";
 import { LessonPlayerView } from "@/components/academy/LessonPlayerView";
 import { CourseDiagnosticView } from "@/components/academy/CourseDiagnosticView";
+import { CourseAssessmentView } from "@/components/academy/CourseAssessmentView";
 
 export function generateStaticParams() {
   const params: { slug: string[] }[] = [];
@@ -103,6 +104,30 @@ export default function CoursesCatchAllPage({ params }: CoursesCatchAllProps) {
       notFound();
     }
     return <CourseDiagnosticView course={course} />;
+  }
+
+  // 2b. Two segments: /courses/[courseSlug]/final-assessment
+  if (parts.length === 2 && parts[1] === "final-assessment") {
+    const courseSlug = parts[0];
+    const course = ALL_COURSES.find((c) => c.slug === courseSlug);
+    if (!course) {
+      notFound();
+    }
+    return <CourseAssessmentView course={course} type="final_assessment" />;
+  }
+
+  // 2c. Four segments: /courses/[courseSlug]/modules/[moduleId]/test
+  if (parts.length === 4 && parts[1] === "modules" && parts[3] === "test") {
+    const [courseSlug, , moduleId] = parts;
+    const course = ALL_COURSES.find((c) => c.slug === courseSlug);
+    if (!course) {
+      notFound();
+    }
+    const modExists = course.syllabus.some((m) => m.id === moduleId);
+    if (!modExists) {
+      notFound();
+    }
+    return <CourseAssessmentView course={course} type="module_test" moduleId={moduleId} />;
   }
 
   // 3. Three segments: /courses/[courseSlug]/lessons/[lessonSlug]

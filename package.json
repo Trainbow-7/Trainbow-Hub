@@ -24,7 +24,11 @@
     "seed:syllabi": "tsx scripts/seed-syllabi.ts",
     "videos:attach": "tsx scripts/attach-videos.ts",
     "videos:discover": "tsx scripts/discover-videos.ts",
-    "videos:verify-playback": "tsx scripts/verify-playback.ts"
+    "videos:verify-playback": "tsx scripts/verify-playback.ts",
+    "quizzes:blueprint": "tsx scripts/quizzes-blueprint.ts",
+    "quizzes:generate": "tsx scripts/quizzes-generate.ts",
+    "quizzes:verify": "tsx scripts/quizzes-verify.ts",
+    "quizzes:report": "tsx scripts/quizzes-report.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",

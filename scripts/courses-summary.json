@@ -1,0 +1,1245 @@
+[
+  {
+    "courseSlug": "waec-ssce-mathematics-mastery",
+    "title": "WAEC & SSCE Comprehensive Mathematics Mastery",
+    "level": "WAEC Prep (SS 1-3)",
+    "examBody": "WAEC",
+    "modules": [
+      {
+        "id": "waec-m1",
+        "title": "Module 1: Number & Numeration",
+        "lessons": [
+          {
+            "id": "l1",
+            "slug": "fractions-decimals-operations",
+            "title": "Fractions & Decimals Operations",
+            "topicId": "top-waec-num-01",
+            "objectives": [
+              "Perform four operations on fractions and decimals",
+              "Apply BODMAS / PEMDAS order of operations",
+              "Convert fractions to recurring and terminating decimals"
+            ],
+            "keyPoints": [
+              "Always find the lowest common denominator for fraction addition/subtraction",
+              "In division, invert the divisor and multiply",
+              "Align decimal points strictly for vertical operations"
+            ]
+          },
+          {
+            "id": "l2",
+            "slug": "percentages-and-percentage-change",
+            "title": "Percentages & Percentage Change",
+            "topicId": "top-waec-num-02",
+            "objectives": [
+              "Calculate percentage increase and decrease",
+              "Evaluate percentage error = |error| / actual x 100%"
+            ],
+            "keyPoints": [
+              "Percentage change is always divided by the original value",
+              "Percentage error uses absolute error over true value"
+            ]
+          },
+          {
+            "id": "l3",
+            "slug": "ratio-and-proportional-sharing",
+            "title": "Ratio & Proportional Sharing",
+            "topicId": "top-waec-num-03",
+            "objectives": [
+              "Express quantities in simplified ratio form",
+              "Divide quantities into multi-part ratios"
+            ],
+            "keyPoints": [
+              "Sum the parts of the ratio first to find value per single share",
+              "Verify the sum of allocated shares equals the original total"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "waec-m2",
+        "title": "Module 2: Commercial Arithmetic",
+        "lessons": [
+          {
+            "id": "l4",
+            "slug": "profit-loss-percentage-margins",
+            "title": "Profit, Loss & Percentage Margins",
+            "topicId": "top-waec-com-01",
+            "objectives": [
+              "Determine cost price and selling price given profit percentage",
+              "Distinguish margin on selling price from markup on cost price"
+            ],
+            "keyPoints": [
+              "Profit % = (Profit / Cost Price) * 100",
+              "Margin % = (Profit / Selling Price) * 100"
+            ]
+          },
+          {
+            "id": "l5",
+            "slug": "simple-compound-interest-calculations",
+            "title": "Simple & Compound Interest Calculations",
+            "topicId": "top-waec-com-02",
+            "objectives": [
+              "Calculate simple interest and principal",
+              "Apply compound interest formula across multiple compounding periods"
+            ],
+            "keyPoints": [
+              "Simple interest grows linearly with time",
+              "Compound interest adds accumulated interest into the principal for subsequent cycles"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "waec-m3",
+        "title": "Module 3: Algebraic Processes",
+        "lessons": [
+          {
+            "id": "l6",
+            "slug": "linear-equations-word-problems",
+            "title": "Linear Equations & Word Problems",
+            "topicId": "top-waec-alg-01",
+            "objectives": [
+              "Formulate equations from real-world descriptions",
+              "Solve linear equations with brackets and fractions"
+            ],
+            "keyPoints": [
+              "Define variables clearly at the start of working",
+              "Clear fractions by multiplying all terms by the LCM of denominators"
+            ]
+          },
+          {
+            "id": "l7",
+            "slug": "linear-inequalities-number-lines",
+            "title": "Linear Inequalities & Number Line Graphs",
+            "topicId": "top-waec-alg-02",
+            "objectives": [
+              "Solve multi-step linear inequalities",
+              "Represent closed and open interval solutions on a number line"
+            ],
+            "keyPoints": [
+              "Reverse the inequality sign whenever multiplying or dividing by a negative number",
+              "Filled dot represents <= or >=; open circle represents < or >"
+            ]
+          },
+          {
+            "id": "l8",
+            "slug": "simultaneous-equations-variation",
+            "title": "Simultaneous Equations & Direct/Inverse Variation",
+            "topicId": "top-waec-alg-03",
+            "objectives": [
+              "Solve 2-variable linear systems algebraically",
+              "Determine constant of proportionality k and form variation equations"
+            ],
+            "keyPoints": [
+              "Elimination is faster when variable coefficients match or have opposite signs",
+              "Direct variation: y = kx; Inverse variation: y = k/x"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "waec-m4",
+        "title": "Module 4: Quadratic Equations & Functions",
+        "lessons": [
+          {
+            "id": "l9",
+            "slug": "quadratic-factorization-methods",
+            "title": "Quadratic Equations by Factorization",
+            "topicId": "top-waec-quad-01",
+            "objectives": [
+              "Identify two factors multiplying to ac and summing to b",
+              "Solve quadratic equations using the null factor law"
+            ],
+            "keyPoints": [
+              "Ensure the equation equals 0 before applying factorization",
+              "Product ac and sum b determine the split of the middle term"
+            ]
+          },
+          {
+            "id": "l10",
+            "slug": "quadratic-formula-completing-square",
+            "title": "The Quadratic Formula & Completing the Square",
+            "topicId": "top-waec-quad-02",
+            "objectives": [
+              "Complete the square for monic and non-monic quadratics",
+              "Substitute into the quadratic formula accurately"
+            ],
+            "keyPoints": [
+              "Discriminant b^2 - 4ac dictates real, equal, or no real roots",
+              "When b is negative, -b becomes positive"
+            ]
+          },
+          {
+            "id": "l11",
+            "slug": "simultaneous-linear-quadratic-systems",
+            "title": "Simultaneous Linear & Quadratic Systems",
+            "topicId": "top-waec-quad-03",
+            "objectives": [
+              "Isolate a linear variable and substitute into the quadratic expression",
+              "Pair corresponding x and y values accurately"
+            ],
+            "keyPoints": [
+              "Linear-quadratic systems typically produce two coordinate pairs (x1, y1) and (x2, y2)",
+              "Substitute back into the linear equation to avoid ambiguous signs"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "waec-m5",
+        "title": "Module 5: Geometry & Circle Theorems",
+        "lessons": [
+          {
+            "id": "l12",
+            "slug": "angles-lines-polygons",
+            "title": "Angles on Lines, Triangles & Polygons",
+            "topicId": "top-waec-geo-01",
+            "objectives": [
+              "Calculate interior and exterior angles of regular polygons",
+              "Apply parallel line angle rules (alternate, corresponding, interior)"
+            ],
+            "keyPoints": [
+              "Sum of exterior angles of any convex polygon is always 360 degrees",
+              "Each exterior angle of a regular n-gon is 360 / n"
+            ]
+          },
+          {
+            "id": "l13",
+            "slug": "circle-theorems-subtended-angles",
+            "title": "Circle Theorems: Subtended Angles & Cyclic Quads",
+            "topicId": "top-waec-geo-02",
+            "objectives": [
+              "Apply angle at centre = 2 x angle at circumference",
+              "Use angles in same segment are equal",
+              "Prove and apply cyclic quadrilateral theorems"
+            ],
+            "keyPoints": [
+              "Angle in a semicircle is always a right angle (90 degrees)",
+              "Opposite angles of a cyclic quadrilateral are supplementary (sum to 180 degrees)"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "waec-m6",
+        "title": "Module 6: Trigonometry & Bearings",
+        "lessons": [
+          {
+            "id": "l14",
+            "slug": "right-triangle-trig-sohcahtoa",
+            "title": "Right-Angled Trigonometry (SOHCAHTOA)",
+            "topicId": "top-waec-trig-01",
+            "objectives": [
+              "Identify opposite, adjacent, and hypotenuse relative to target angle",
+              "Calculate unknown side lengths and angles using trigonometric ratios"
+            ],
+            "keyPoints": [
+              "$\\sin\\theta = \\frac{\\text{Opposite}}{\\text{Hypotenuse}}$, $\\cos\\theta = \\frac{\\text{Adjacent}}{\\text{Hypotenuse}}$, $\\tan\\theta = \\frac{\\text{Opposite}}{\\text{Adjacent}}$",
+              "Use inverse trig functions ($\\sin^{-1}$, $\\cos^{-1}$, $\\tan^{-1}$) when solving for angles"
+            ]
+          },
+          {
+            "id": "l15",
+            "slug": "sine-cosine-rules-scalene-triangles",
+            "title": "Sine & Cosine Rules for Scalene Triangles",
+            "topicId": "top-waec-trig-02",
+            "objectives": [
+              "Apply Sine rule when given a matching side-angle pair",
+              "Apply Cosine rule for SAS or SSS triangle problems"
+            ],
+            "keyPoints": [
+              "Cosine rule: isolate $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$ when given three sides",
+              "Area of triangle = $\\frac{1}{2}ab\\sin C$"
+            ]
+          },
+          {
+            "id": "l16",
+            "slug": "bearings-angles-elevation-depression",
+            "title": "Three-Figure Bearings & Angles of Elevation/Depression",
+            "topicId": "top-waec-trig-03",
+            "objectives": [
+              "Draw clear bearing diagrams with North arrows at every station",
+              "Calculate reverse bearings (back-bearings) by adding or subtracting 180 degrees"
+            ],
+            "keyPoints": [
+              "Bearings are measured clockwise from North and written with 3 digits (e.g., 045 deg)",
+              "Angle of elevation equals angle of depression between two observer stations"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "waec-m7",
+        "title": "Module 7: Statistics & Probability",
+        "lessons": [
+          {
+            "id": "l17",
+            "slug": "grouped-data-mean-median-mode",
+            "title": "Grouped Frequency Distributions: Mean & Modal Class",
+            "topicId": "top-waec-stat-01",
+            "objectives": [
+              "Construct grouped frequency distribution tables",
+              "Calculate mean using assumed mean or direct formula"
+            ],
+            "keyPoints": [
+              "Class mark x is the average of lower and upper class limits",
+              "Modal class has the highest single frequency count"
+            ]
+          },
+          {
+            "id": "l18",
+            "slug": "cumulative-frequency-ogives",
+            "title": "Cumulative Frequency Curves & Percentiles",
+            "topicId": "top-waec-stat-02",
+            "objectives": [
+              "Plot smooth cumulative frequency curves (ogives)",
+              "Estimate median, lower quartile Q1, upper quartile Q3, and interquartile range"
+            ],
+            "keyPoints": [
+              "Always plot cumulative frequency at the UPPER class boundaries, not class midpoints",
+              "Interquartile range IQR = Q3 - Q1"
+            ]
+          },
+          {
+            "id": "l19",
+            "slug": "probability-rules-tree-diagrams",
+            "title": "Probability Rules & Tree Diagrams",
+            "topicId": "top-waec-stat-03",
+            "objectives": [
+              "Calculate theoretical probabilities 0 <= P(E) <= 1",
+              "Draw and evaluate probability tree diagrams with and without replacement"
+            ],
+            "keyPoints": [
+              "Multiply probabilities along tree branches (AND rule)",
+              "Add probabilities across separate branches (OR rule)"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "courseSlug": "jamb-utme-speed-mathematics",
+    "title": "JAMB UTME Speed & Strategy Mathematics",
+    "level": "JAMB UTME Prep",
+    "examBody": "JAMB",
+    "modules": [
+      {
+        "id": "jamb-m1",
+        "title": "Module 1: CBT Time Management & Quick-Elimination Rules",
+        "lessons": [
+          {
+            "id": "jamb-l1",
+            "slug": "cbt-time-management-pacing",
+            "title": "CBT Time Management & Frequency Distribution",
+            "topicId": "top-jamb-strat-01",
+            "objectives": [
+              "Allocate time per question band (Round 1 fast solve, Round 2 calculation)",
+              "Identify high-frequency calculus and algebra clusters in past exams"
+            ],
+            "keyPoints": [
+              "Never spend more than 90 seconds on a single question on the first pass",
+              "Mark flagged questions and return after clearing straightforward algebra items"
+            ]
+          },
+          {
+            "id": "jamb-l2",
+            "slug": "option-elimination-tactics",
+            "title": "Option Elimination via Parity & Back-Substitution",
+            "topicId": "top-jamb-strat-02",
+            "objectives": [
+              "Eliminate at least two incorrect options before computing full algebra",
+              "Use unit digit and sign parity checks on polynomial expansion answers"
+            ],
+            "keyPoints": [
+              "Plugging in simple test values (x = 0 or 1) eliminates 2 out of 4 options in seconds",
+              "Examine constant terms to instantly weed out wrong signs"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jamb-m2",
+        "title": "Module 2: Surds, Indices & Logarithms Shortcuts",
+        "lessons": [
+          {
+            "id": "jamb-l3",
+            "slug": "surd-rationalization-shortcuts",
+            "title": "Surd Rationalization & Conjugate Multiplication",
+            "topicId": "top-jamb-surds-01",
+            "objectives": [
+              "Rationalize binomial surd denominators without hesitation",
+              "Simplify compound surds and extract perfect square factors"
+            ],
+            "keyPoints": [
+              "Conjugate of a + sqrt(b) is a - sqrt(b)",
+              "Multiply numerator and denominator simultaneously to preserve equality"
+            ]
+          },
+          {
+            "id": "jamb-l4",
+            "slug": "logarithm-identities-change-of-base",
+            "title": "Logarithmic Identities & Base Transformations",
+            "topicId": "top-jamb-logs-01",
+            "objectives": [
+              "Convert non-standard base logarithms to common or natural bases",
+              "Solve logarithmic equations with multiple unknown base subscripts"
+            ],
+            "keyPoints": [
+              "log(xy) = log x + log y; log(x/y) = log x - log y; log(x^n) = n log x",
+              "Arguments of logarithms must always be strictly greater than zero"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jamb-m3",
+        "title": "Module 3: Matrices & Determinants for UTME",
+        "lessons": [
+          {
+            "id": "jamb-l5",
+            "slug": "matrix-determinants-and-inverses",
+            "title": "2x2 Matrix Determinants & Inverse Matrices",
+            "topicId": "top-jamb-mat-01",
+            "objectives": [
+              "Calculate 2x2 and 3x3 matrix determinants",
+              "Determine values of k for which a matrix is singular (det = 0)"
+            ],
+            "keyPoints": [
+              "A matrix has no inverse if and only if its determinant is 0 (singular matrix)",
+              "Inverse of [[a, b], [c, d]] is 1/(ad - bc) * [[d, -b], [-c, a]]"
+            ]
+          },
+          {
+            "id": "jamb-l6",
+            "slug": "cramers-rule-linear-systems",
+            "title": "Cramer's Rule for Solving UTME Linear Systems",
+            "topicId": "top-jamb-mat-02",
+            "objectives": [
+              "Apply Cramer's determinant rule to solve simultaneous equations",
+              "Recognize when systems have unique, infinite, or no solutions"
+            ],
+            "keyPoints": [
+              "Dx is obtained by replacing column 1 of coefficient matrix with constant column",
+              "If D = 0 and Dx != 0, the system has no solutions"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jamb-m4",
+        "title": "Module 4: Differential & Integral Calculus",
+        "lessons": [
+          {
+            "id": "jamb-l7",
+            "slug": "rapid-derivative-rules",
+            "title": "Rapid Derivative Rules: Power, Product & Chain",
+            "topicId": "top-jamb-calc-01",
+            "objectives": [
+              "Differentiate polynomials, rational powers, and trigonometric expressions",
+              "Compute rate of change and acceleration problems from displacement functions"
+            ],
+            "keyPoints": [
+              "Power rule: multiply by exponent and reduce exponent by 1",
+              "Velocity v = ds/dt; Acceleration a = dv/dt = d^2s/dt^2"
+            ]
+          },
+          {
+            "id": "jamb-l8",
+            "slug": "tangents-normals-turning-points",
+            "title": "Tangents, Normals & Turning Points",
+            "topicId": "top-jamb-calc-02",
+            "objectives": [
+              "Find gradient of tangent at specified point x = x0",
+              "Determine nature of stationary points using second derivative d^2y/dx^2"
+            ],
+            "keyPoints": [
+              "Normal gradient m_normal = -1 / m_tangent",
+              "d^2y/dx^2 > 0 indicates a local minimum; < 0 indicates a local maximum"
+            ]
+          },
+          {
+            "id": "jamb-l9",
+            "slug": "definite-integrals-area-under-curves",
+            "title": "Definite Integrals & Area Under Curves",
+            "topicId": "top-jamb-calc-03",
+            "objectives": [
+              "Integrate polynomial terms: integral x^n dx = x^(n+1)/(n+1) + C",
+              "Evaluate definite integrals between boundaries a and b without constant C"
+            ],
+            "keyPoints": [
+              "Definite integral between limits a and b is F(b) - F(a)",
+              "Area below the x-axis produces a negative integral value; take absolute value for geometric area"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jamb-m5",
+        "title": "Module 5: Coordinate Geometry & Straight Lines",
+        "lessons": [
+          {
+            "id": "jamb-l10",
+            "slug": "perpendicular-parallel-line-conditions",
+            "title": "Parallel & Perpendicular Line Conditions",
+            "topicId": "top-jamb-coord-01",
+            "objectives": [
+              "Convert general line equations Ax + By + C = 0 into slope-intercept form y = mx + c",
+              "Find equation of perpendicular bisector between two coordinates"
+            ],
+            "keyPoints": [
+              "Slope m = (y2 - y1) / (x2 - x1)",
+              "Negative reciprocal slope for perpendicularity: m2 = -1 / m1"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "jamb-m6",
+        "title": "Module 6: Permutations, Combinations & Probability",
+        "lessons": [
+          {
+            "id": "jamb-l11",
+            "slug": "permutations-vs-combinations-selection",
+            "title": "Permutations (nPr) vs Combinations (nCr)",
+            "topicId": "top-jamb-perm-01",
+            "objectives": [
+              "Calculate nPr = n! / (n - r)! and nCr = n! / (r!(n - r)!)",
+              "Solve word problems involving word anagrams with repeated letters"
+            ],
+            "keyPoints": [
+              "If arrangement order matters (ranks, words, positions), use Permutation",
+              "If grouping order does not matter (committees, handshakes, card hands), use Combination"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "courseSlug": "jss3-basic-mathematics-bece-prep",
+    "title": "JSS 3 Basic Mathematics & BECE Exam Prep",
+    "level": "JSS 1-3",
+    "examBody": "NECO/BECE",
+    "modules": [
+      {
+        "id": "bece-m1",
+        "title": "Module 1: Number Sense & Everyday Arithmetic",
+        "lessons": [
+          {
+            "id": "bece-l1",
+            "slug": "directed-numbers-and-integers",
+            "title": "Directed Numbers & Adding/Subtracting Integers",
+            "topicId": "top-bece-num-01",
+            "objectives": [
+              "Add, subtract, multiply, and divide positive and negative numbers",
+              "Avoid double-negative errors in basic arithmetic"
+            ],
+            "keyPoints": [
+              "Subtracting a negative number is equivalent to adding a positive: -(-b) = +b",
+              "Multiplying two negative numbers produces a positive result"
+            ]
+          },
+          {
+            "id": "bece-l2",
+            "slug": "fractions-decimals-significant-figures",
+            "title": "Fractions, Decimals & Significant Figures",
+            "topicId": "top-bece-num-02",
+            "objectives": [
+              "Simplify fractions to lowest terms",
+              "Round numbers to 1, 2, or 3 significant figures"
+            ],
+            "keyPoints": [
+              "Leading zeros are never significant (e.g. 0.0042 has 2 significant figures)",
+              "Zeros between non-zero digits are always significant"
+            ]
+          },
+          {
+            "id": "bece-l3",
+            "slug": "simple-interest-and-discounts",
+            "title": "Simple Interest, Discounts & Everyday Money",
+            "topicId": "top-bece-num-03",
+            "objectives": [
+              "Calculate simple interest earned or paid on loans",
+              "Determine cash discount and hire purchase total payments"
+            ],
+            "keyPoints": [
+              "Time T must always be expressed in years",
+              "Total amount A = Principal P + Interest I"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bece-m2",
+        "title": "Module 2: Basic Algebra & Linear Equations",
+        "lessons": [
+          {
+            "id": "bece-l4",
+            "slug": "expanding-brackets-collecting-terms",
+            "title": "Expanding Brackets & Collecting Like Terms",
+            "topicId": "top-bece-alg-01",
+            "objectives": [
+              "Expand single brackets using distributive property",
+              "Expand double brackets using FOIL / grid methods"
+            ],
+            "keyPoints": [
+              "Sign rule: -a(b - c) = -ab + ac (carefully observe the negative bracket expansion)",
+              "Only like terms with identical variable powers can be added together"
+            ]
+          },
+          {
+            "id": "bece-l5",
+            "slug": "simple-linear-equations-fractions",
+            "title": "Simple Linear Equations with Fractions",
+            "topicId": "top-bece-alg-02",
+            "objectives": [
+              "Cross-multiply fractional equations accurately",
+              "Group variable terms on the left and constant numbers on the right"
+            ],
+            "keyPoints": [
+              "Multiply both sides by common denominator to eliminate all fractions immediately",
+              "Check your answer by substituting back into original equation"
+            ]
+          },
+          {
+            "id": "bece-l6",
+            "slug": "algebraic-factorization-grouping",
+            "title": "Algebraic Factorization by Grouping",
+            "topicId": "top-bece-alg-03",
+            "objectives": [
+              "Extract highest common factor (HCF) from algebraic expressions",
+              "Factorize expressions like ax + ay + bx + by = (a + b)(x + y)"
+            ],
+            "keyPoints": [
+              "Group into two pairs that share common factors",
+              "Verify the bracket contents are identical after first round of factoring"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bece-m3",
+        "title": "Module 3: Geometry & Pythagoras' Theorem",
+        "lessons": [
+          {
+            "id": "bece-l7",
+            "slug": "angles-on-lines-and-triangles",
+            "title": "Angles on Lines, Vertically Opposite & Triangles",
+            "topicId": "top-bece-geo-01",
+            "objectives": [
+              "Find missing angles on straight lines and intersections",
+              "Apply exterior angle of a triangle equals sum of two opposite interior angles"
+            ],
+            "keyPoints": [
+              "Vertically opposite angles are equal",
+              "Base angles of an isosceles triangle are equal"
+            ]
+          },
+          {
+            "id": "bece-l8",
+            "slug": "pythagoras-theorem-calculations",
+            "title": "Pythagoras' Theorem in Right Triangles",
+            "topicId": "top-bece-geo-02",
+            "objectives": [
+              "State Pythagoras' theorem for right-angled triangles",
+              "Compute unknown side lengths to 1 or 2 decimal places"
+            ],
+            "keyPoints": [
+              "Hypotenuse is always the longest side, opposite the 90 degree right angle",
+              "To find a shorter side: a^2 = c^2 - b^2"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bece-m4",
+        "title": "Module 4: Mensuration & Shapes",
+        "lessons": [
+          {
+            "id": "bece-l9",
+            "slug": "perimeter-and-area-parallelograms-trapezia",
+            "title": "Perimeter & Area of Parallelograms and Trapezia",
+            "topicId": "top-bece-mens-01",
+            "objectives": [
+              "Calculate area of parallelograms using perpendicular height",
+              "Calculate area of trapezia given two parallel sides a and b"
+            ],
+            "keyPoints": [
+              "Height must be strictly perpendicular to the base, not the slanted side length",
+              "Express units in cm^2 or m^2 consistently"
+            ]
+          },
+          {
+            "id": "bece-l10",
+            "slug": "cylinder-volume-surface-area",
+            "title": "Volume and Surface Area of Cylinders",
+            "topicId": "top-bece-mens-02",
+            "objectives": [
+              "Calculate cylinder volume using radius and height",
+              "Evaluate curved surface area 2 * pi * r * h for open and closed cans"
+            ],
+            "keyPoints": [
+              "Check whether the problem specifies a closed cylinder (2 circular ends) or open (1 end)",
+              "Use pi = 22/7 or 3.142 as instructed by question"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bece-m5",
+        "title": "Module 5: Basic Statistics & Probability",
+        "lessons": [
+          {
+            "id": "bece-l11",
+            "slug": "ungrouped-mean-median-mode",
+            "title": "Mean, Median & Mode of Ungrouped Data",
+            "topicId": "top-bece-stat-01",
+            "objectives": [
+              "Calculate arithmetic mean = sum(x) / N",
+              "Find median by sorting data in ascending order first"
+            ],
+            "keyPoints": [
+              "Mode is the value appearing with the highest frequency",
+              "If N is even, median is the average of the two middle values"
+            ]
+          },
+          {
+            "id": "bece-l12",
+            "slug": "pie-charts-and-bar-charts",
+            "title": "Constructing and Interpreting Pie Charts & Bar Charts",
+            "topicId": "top-bece-stat-02",
+            "objectives": [
+              "Calculate sector angles for pie chart construction",
+              "Read frequencies from bar charts and histogram bars"
+            ],
+            "keyPoints": [
+              "Sum of all sector angles in a pie chart must equal 360 degrees exactly",
+              "Leave equal gaps between bars in a bar chart to distinguish from continuous histograms"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "courseSlug": "ss2-algebra-and-trigonometry-deep-dive",
+    "title": "Senior Secondary Algebra & Trigonometry Deep Dive",
+    "level": "SS 2",
+    "examBody": "NERDC / WAEC",
+    "modules": [
+      {
+        "id": "ss2-m1",
+        "title": "Module 1: Sequences & Series (AP & GP)",
+        "lessons": [
+          {
+            "id": "ss2-l1",
+            "slug": "arithmetic-progressions-nth-term-sum",
+            "title": "Arithmetic Progressions (AP): nth Term & Sum",
+            "topicId": "top-ss2-seq-01",
+            "objectives": [
+              "Formulate equations for first term a and common difference d",
+              "Calculate sum of arithmetic series across real-world finance contexts"
+            ],
+            "keyPoints": [
+              "Common difference d = T2 - T1 = T3 - T2",
+              "When last term l is known: Sn = n/2(a + l)"
+            ]
+          },
+          {
+            "id": "ss2-l2",
+            "slug": "geometric-progressions-growth",
+            "title": "Geometric Progressions (GP): nth Term & Sum",
+            "topicId": "top-ss2-seq-02",
+            "objectives": [
+              "Determine common ratio r = T2 / T1",
+              "Apply GP models to population growth and compound financial assets"
+            ],
+            "keyPoints": [
+              "When |r| < 1, use Sn = a(1 - r^n) / (1 - r)",
+              "When |r| > 1, use Sn = a(r^n - 1) / (r - 1)"
+            ]
+          },
+          {
+            "id": "ss2-l3",
+            "slug": "sum-to-infinity-geometric-series",
+            "title": "Sum to Infinity of Convergent Geometric Series",
+            "topicId": "top-ss2-seq-03",
+            "objectives": [
+              "State the necessary condition for a GP to converge",
+              "Express recurring decimals as rational fractions using sum to infinity"
+            ],
+            "keyPoints": [
+              "A geometric series only has a sum to infinity if -1 < r < 1",
+              "If r >= 1 or r <= -1, the series diverges and has no finite sum to infinity"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ss2-m2",
+        "title": "Module 2: Quadratic Equations & Nature of Roots",
+        "lessons": [
+          {
+            "id": "ss2-l4",
+            "slug": "completing-the-square-vertex-form",
+            "title": "Completing the Square and Expressing in Vertex Form",
+            "topicId": "top-ss2-quad-01",
+            "objectives": [
+              "Complete the square when coefficient of x^2 is greater than 1",
+              "Determine coordinates of vertex and state line of symmetry x = h"
+            ],
+            "keyPoints": [
+              "Divide by a first when factoring non-monic quadratics",
+              "Vertex gives minimum point if a > 0; maximum point if a < 0"
+            ]
+          },
+          {
+            "id": "ss2-l5",
+            "slug": "discriminant-analysis-nature-of-roots",
+            "title": "Discriminant Analysis & Nature of Roots",
+            "topicId": "top-ss2-quad-02",
+            "objectives": [
+              "Calculate discriminant value without solving equation completely",
+              "Find range of values of constant k for which equation has real roots"
+            ],
+            "keyPoints": [
+              "For real roots: b^2 - 4ac >= 0",
+              "For equal / repeated roots (tangent to x-axis): b^2 - 4ac = 0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ss2-m3",
+        "title": "Module 3: Trigonometric Ratios & Graphs",
+        "lessons": [
+          {
+            "id": "ss2-l6",
+            "slug": "trig-ratios-four-quadrants-cast",
+            "title": "Trigonometric Ratios in All Four Quadrants (CAST Rule)",
+            "topicId": "top-ss2-trig-01",
+            "objectives": [
+              "Identify reference acute angle $\\alpha$ for any given angle $\\theta$",
+              "Apply the CAST diagram (Quadrant 1: All, Quadrant 2: Sin, Quadrant 3: Tan, Quadrant 4: Cos)"
+            ],
+            "keyPoints": [
+              "Quadrant 2: $\\theta = 180^\\circ - \\alpha$; Quadrant 3: $\\theta = 180^\\circ + \\alpha$; Quadrant 4: $\\theta = 360^\\circ - \\alpha$",
+              "$\\cos(180^\\circ - \\theta) = -\\cos\\theta$; $\\sin(180^\\circ - \\theta) = \\sin\\theta$"
+            ]
+          },
+          {
+            "id": "ss2-l7",
+            "slug": "trigonometric-graphs-amplitude-period",
+            "title": "Graphing y = a sin(bx) and y = a cos(bx)",
+            "topicId": "top-ss2-trig-02",
+            "objectives": [
+              "Plot trigonometric waves from 0 to 360 degrees",
+              "State amplitude and period of transformed trigonometric functions"
+            ],
+            "keyPoints": [
+              "Amplitude is half the vertical distance between maximum and minimum values",
+              "Period of sin(bx) or cos(bx) is 360 / b degrees"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ss2-m4",
+        "title": "Module 4: Sine/Cosine Rules & Three-Figure Bearings",
+        "lessons": [
+          {
+            "id": "ss2-l8",
+            "slug": "sine-and-cosine-rules-advanced",
+            "title": "Advanced Sine and Cosine Rules for Scalene Triangles",
+            "topicId": "top-ss2-trig-03",
+            "objectives": [
+              "Select correct trigonometric rule based on given side/angle configuration",
+              "Resolve ambiguous case of Sine rule when given SSA"
+            ],
+            "keyPoints": [
+              "Use Cosine rule when two sides and the included angle (SAS) are known",
+              "Remember cos(obtuse angle) is negative: a^2 = b^2 + c^2 - 2bc(-cos(180 - A))"
+            ]
+          },
+          {
+            "id": "ss2-l9",
+            "slug": "three-figure-bearings-and-elevation",
+            "title": "Three-Figure Bearings & Practical Surveying",
+            "topicId": "top-ss2-trig-04",
+            "objectives": [
+              "Draw multi-station bearing diagrams with accurate North reference lines",
+              "Combine bearings with Cosine rule to calculate direct straight-line distance back to start"
+            ],
+            "keyPoints": [
+              "Always draw a cross with a North arrow at EVERY landmark mentioned in the question",
+              "Internal angles can be calculated using alternate interior angles between parallel North lines"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "courseSlug": "primary6-quantitative-reasoning-common-entrance",
+    "title": "Primary 6 Quantitative Reasoning & Mathematics",
+    "level": "Primary 1-6",
+    "examBody": "NERDC / NECO (NCEE)",
+    "modules": [
+      {
+        "id": "pri6-m1",
+        "title": "Module 1: Numbers, Place Value & Large Operations",
+        "lessons": [
+          {
+            "id": "pri6-l1",
+            "slug": "place-value-millions-roman-numerals",
+            "title": "Place Value up to Millions & Roman Numerals to M",
+            "topicId": "top-pri6-num-01",
+            "objectives": [
+              "Identify place values (Units, Tens, Hundreds, Thousands, Millions)",
+              "Convert numbers between Arabic numerals and Roman numerals"
+            ],
+            "keyPoints": [
+              "Roman numerals: I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000",
+              "A smaller numeral before a larger one means subtraction: IV = 4, IX = 9, XC = 90"
+            ]
+          },
+          {
+            "id": "pri6-l2",
+            "slug": "multiplication-long-division-algorithms",
+            "title": "Multiplication & Long Division Word Problems",
+            "topicId": "top-pri6-num-02",
+            "objectives": [
+              "Multiply 3-digit numbers by 2-digit numbers",
+              "Perform long division step by step (Divide, Multiply, Subtract, Bring down)"
+            ],
+            "keyPoints": [
+              "Remember DMSB: Divide, Multiply, Subtract, Bring down",
+              "Double-check remainders are smaller than the divisor"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pri6-m2",
+        "title": "Module 2: Fractions, Decimals & Percentages",
+        "lessons": [
+          {
+            "id": "pri6-l3",
+            "slug": "proper-improper-fractions-operations",
+            "title": "Fractions: Proper, Improper & Mixed Operations",
+            "topicId": "top-pri6-frac-01",
+            "objectives": [
+              "Convert mixed numbers to improper fractions and vice versa",
+              "Apply common denominators to add and subtract fractions"
+            ],
+            "keyPoints": [
+              "To convert 2 3/4 to improper: (2 * 4 + 3) / 4 = 11/4",
+              "In division: Keep the first fraction, Change division to multiplication, Flip the second fraction (KCF)"
+            ]
+          },
+          {
+            "id": "pri6-l4",
+            "slug": "percentages-and-ratio-sharing-pri6",
+            "title": "Percentages of Quantities & Ratio Sharing",
+            "topicId": "top-pri6-frac-02",
+            "objectives": [
+              "Calculate percentage of items (e.g. 15% of ₦2,000)",
+              "Share quantities in ratios like 2 : 3 : 5"
+            ],
+            "keyPoints": [
+              "15% means 15 out of 100: 15/100 * 2000 = ₦300",
+              "Total parts = sum of ratio terms"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pri6-m3",
+        "title": "Module 3: Money, Everyday Business & Measurements",
+        "lessons": [
+          {
+            "id": "pri6-l5",
+            "slug": "cost-price-selling-price-profit-loss",
+            "title": "Cost Price, Selling Price, Profit & Loss",
+            "topicId": "top-pri6-money-01",
+            "objectives": [
+              "Calculate profit and loss in Naira and Kobo",
+              "Determine selling price given profit percentage"
+            ],
+            "keyPoints": [
+              "Selling Price = Cost Price + Profit",
+              "Selling Price = Cost Price - Loss"
+            ]
+          },
+          {
+            "id": "pri6-l6",
+            "slug": "perimeter-and-area-squares-rectangles",
+            "title": "Perimeter & Area of Squares and Rectangles",
+            "topicId": "top-pri6-mens-01",
+            "objectives": [
+              "Calculate perimeter as distance around the boundary",
+              "Compute area of rectangles and composite L-shaped figures"
+            ],
+            "keyPoints": [
+              "Perimeter is measured in linear units (cm, m); Area is measured in square units (cm^2, m^2)",
+              "Split composite L-shapes into two distinct rectangles to calculate area"
+            ]
+          },
+          {
+            "id": "pri6-l7",
+            "slug": "volume-and-capacity-cubes-cuboids",
+            "title": "Volume and Capacity of Cubes & Rectangular Boxes",
+            "topicId": "top-pri6-mens-02",
+            "objectives": [
+              "Calculate volume of cubes (s^3) and cuboids (L * B * H)",
+              "Convert 1,000 cm^3 to 1 litre of liquid capacity"
+            ],
+            "keyPoints": [
+              "Volume is measured in cubic units (cm^3 or m^3)",
+              "1 litre = 1,000 cm^3 = 1,000 millilitres (ml)"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pri6-m4",
+        "title": "Module 4: Quantitative Aptitude & Diagram Logic",
+        "lessons": [
+          {
+            "id": "pri6-l8",
+            "slug": "number-pattern-sequences",
+            "title": "Finding the Next Term in Number Pattern Sequences",
+            "topicId": "top-pri6-qa-01",
+            "objectives": [
+              "Identify constant differences between sequence terms",
+              "Spot geometric doubling and alternating rule progressions"
+            ],
+            "keyPoints": [
+              "Look at differences between consecutive terms: +2, +4, +6, +8...",
+              "Check if numbers are squares (1, 4, 9, 16, 25) or cubes"
+            ]
+          },
+          {
+            "id": "pri6-l9",
+            "slug": "box-and-triangle-quantitative-puzzles",
+            "title": "Solving Box, Circle & Triangle Quantitative Puzzles",
+            "topicId": "top-pri6-qa-02",
+            "objectives": [
+              "Test sample diagrams with four basic operations (+, -, *, /)",
+              "Apply discovered operational rules to solve missing numbers"
+            ],
+            "keyPoints": [
+              "Always test your hypothesis on BOTH provided sample diagrams before solving the question",
+              "Common sample rules include: (Top * Bottom) / Left = Centre, or (A + B) * (C - D)"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "courseSlug": "cambridge-igcse-extended-mathematics",
+    "title": "Cambridge IGCSE Extended Mathematics Complete Guide",
+    "level": "Cambridge IGCSE",
+    "examBody": "CAMBRIDGE",
+    "modules": [
+      {
+        "id": "igcse-m1",
+        "title": "Module 1: Number, Standard Form & Bounds",
+        "lessons": [
+          {
+            "id": "igcse-l1",
+            "slug": "indices-standard-form-scientific-notation",
+            "title": "Indices, Fractional Powers & Standard Form",
+            "topicId": "top-igcse-num-01",
+            "objectives": [
+              "Simplify expressions involving fractional and negative powers",
+              "Express numbers in standard form where 1 <= A < 10"
+            ],
+            "keyPoints": [
+              "x^(-n) = 1 / x^n; x^(1/2) = sqrt(x)",
+              "Standard form coefficient A must be strictly between 1 and 10"
+            ]
+          },
+          {
+            "id": "igcse-l2",
+            "slug": "upper-lower-bounds-error-intervals",
+            "title": "Upper and Lower Bounds & Error Intervals",
+            "topicId": "top-igcse-num-02",
+            "objectives": [
+              "Determine upper and lower limits of rounded values",
+              "Calculate maximum and minimum possible values of expressions like a / b"
+            ],
+            "keyPoints": [
+              "To maximize a quotient a / b: use Maximum(a) / Minimum(b)",
+              "To minimize a quotient a / b: use Minimum(a) / Maximum(b)"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "igcse-m2",
+        "title": "Module 2: Functions & Advanced Algebra",
+        "lessons": [
+          {
+            "id": "igcse-l3",
+            "slug": "function-notation-evaluations",
+            "title": "Function Notation: Evaluating f(x) and g(x)",
+            "topicId": "top-igcse-func-01",
+            "objectives": [
+              "Evaluate function outputs for numerical and algebraic inputs",
+              "Solve equations in function notation f(x) = 0"
+            ],
+            "keyPoints": [
+              "f(3) means replace every x in the formula with 3",
+              "f(x) = 3 means set the entire expression equal to 3 and solve for x"
+            ]
+          },
+          {
+            "id": "igcse-l4",
+            "slug": "composite-and-inverse-functions",
+            "title": "Composite Functions fg(x) and Inverse Functions f^-1(x)",
+            "topicId": "top-igcse-func-02",
+            "objectives": [
+              "Form composite functions fg(x) and gf(x)",
+              "Find inverse function by setting y = f(x), swapping variables and making y the subject"
+            ],
+            "keyPoints": [
+              "In fg(x), the inner function g(x) is evaluated first and substituted into f",
+              "The graph of an inverse function f^-1(x) is the reflection of f(x) in the line y = x"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "igcse-m3",
+        "title": "Module 3: Coordinate Geometry & Tangents to Curves",
+        "lessons": [
+          {
+            "id": "igcse-l5",
+            "slug": "tangents-and-gradients-of-curves",
+            "title": "Drawing Tangents to Estimate Gradients of Curves",
+            "topicId": "top-igcse-curve-01",
+            "objectives": [
+              "Draw accurate tangents at specified point x = x0",
+              "Calculate gradient = rise / run from the drawn tangent line"
+            ],
+            "keyPoints": [
+              "The tangent line touches the curve at exactly one point without crossing through it",
+              "Select two points far apart on the tangent line to minimize gradient measurement error"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "igcse-m4",
+        "title": "Module 4: 3D Trigonometry & Bearings",
+        "lessons": [
+          {
+            "id": "igcse-l6",
+            "slug": "3d-trigonometry-angles-between-lines-planes",
+            "title": "3D Trigonometry: Angles Between Lines & Planes",
+            "topicId": "top-igcse-trig-01",
+            "objectives": [
+              "Calculate lengths of space diagonals across cuboids using 3D Pythagoras d^2 = l^2 + w^2 + h^2",
+              "Identify and calculate angle between a slant edge and base plane"
+            ],
+            "keyPoints": [
+              "Project the line onto the plane to locate the right angle on the base",
+              "Redraw the vertical cross-sectional triangle as a clean 2D sketch before calculating"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "igcse-m5",
+        "title": "Module 5: Vectors & Geometric Proofs",
+        "lessons": [
+          {
+            "id": "igcse-l7",
+            "slug": "column-vectors-magnitude-parallelism",
+            "title": "Column Vectors, Magnitude & Vector Algebra",
+            "topicId": "top-igcse-vec-01",
+            "objectives": [
+              "Add, subtract, and multiply vectors by scalars",
+              "Calculate vector magnitude |v| = sqrt(x^2 + y^2)"
+            ],
+            "keyPoints": [
+              "Vector AB = OB - OA (Position vector of B minus position vector of A)",
+              "Two vectors are parallel if one is a scalar multiple of the other: v = k * u"
+            ]
+          },
+          {
+            "id": "igcse-l8",
+            "slug": "vector-geometry-collinearity-proofs",
+            "title": "Vector Geometry & Collinearity Proofs",
+            "topicId": "top-igcse-vec-02",
+            "objectives": [
+              "Express geometric paths in terms of given basis vectors a and b",
+              "Prove points A, B, and C are collinear by showing AB = k * BC and sharing point B"
+            ],
+            "keyPoints": [
+              "To prove points A, B, C are collinear: show AB = k * BC and state that B is a common point",
+              "Divide ratio segments: if P divides AB in ratio 2:3, then AP = 2/5 AB"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "igcse-m6",
+        "title": "Module 6: Transformations & Matrices",
+        "lessons": [
+          {
+            "id": "igcse-l9",
+            "slug": "transformations-reflections-rotations-enlargements",
+            "title": "Reflections, Rotations & Negative Scale Factor Enlargements",
+            "topicId": "top-igcse-trans-01",
+            "objectives": [
+              "Enlarge shapes with negative fractional scale factors through a given centre",
+              "Fully describe transformations without combining multiple operations"
+            ],
+            "keyPoints": [
+              "A negative scale factor enlargement inverts the shape through the centre of enlargement",
+              "Cambridge marks will award zero marks if more than one transformation type is named"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "igcse-m7",
+        "title": "Module 7: Extended Statistics & Probability",
+        "lessons": [
+          {
+            "id": "igcse-l10",
+            "slug": "cumulative-frequency-medians-iqr",
+            "title": "Cumulative Frequency Curves, Median & IQR",
+            "topicId": "top-igcse-stat-01",
+            "objectives": [
+              "Plot smooth cumulative frequency curves at upper class boundaries",
+              "Read median, lower quartile Q1, upper quartile Q3, and interquartile range"
+            ],
+            "keyPoints": [
+              "Interquartile range IQR = Q3 - Q1",
+              "Construct box-and-whisker plots from the 5-figure summary"
+            ]
+          },
+          {
+            "id": "igcse-l11",
+            "slug": "probability-tree-diagrams-without-replacement",
+            "title": "Probability Tree Diagrams Without Replacement",
+            "topicId": "top-igcse-prob-01",
+            "objectives": [
+              "Construct probability trees for selections without replacement",
+              "Compute conditional probabilities P(A and B) = P(A) * P(B|A)"
+            ],
+            "keyPoints": [
+              "When an item is not replaced, both the numerator and the denominator decrease by 1",
+              "Verify branch probabilities from any single vertex sum to 1"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
