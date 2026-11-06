@@ -85,6 +85,61 @@ export default function AboutPage() {
           </StaggerItem>
         </Stagger>
 
+        {/* Founder Profile — About Mr Oyedeji S.T. */}
+        <Reveal>
+          <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-10 space-y-5 text-left shadow-sm">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-brand-blue-600 block mb-1">
+                Leadership &amp; Vision
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-neutral-slate-900">
+                About Mr Oyedeji S.T.
+              </h2>
+              <p className="text-sm sm:text-base font-semibold text-neutral-slate-700 mt-1">
+                Educator. Learning Innovator. Founder of Trainbow Hub.
+              </p>
+            </div>
+
+            <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
+              Mr Oyedeji S.T. is a Nigerian educator with over 15 years of teaching experience and a B.Sc. in Mathematics Education from the University of Lagos. He is a TRCN-certified teacher with a passion for making quality education more accessible, engaging and effective.
+            </p>
+
+            <div className="space-y-2">
+              <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
+                As the founder of <strong className="font-semibold text-neutral-slate-900">Trainbow Hub</strong>, he is building a modern learning ecosystem that gives every student four ways to grow:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-neutral-slate-700 pl-1">
+                <li>
+                  <strong className="font-semibold text-neutral-slate-900">Academy</strong>: Structured lessons, quizzes and examination-focused learning resources aligned with WAEC, NECO, UTME and Cambridge standards.
+                </li>
+                <li>
+                  <strong className="font-semibold text-neutral-slate-900">AI</strong>: Intelligent, instant study assistance that helps learners understand difficult concepts, practise and learn at their own pace.
+                </li>
+                <li>
+                  <strong className="font-semibold text-neutral-slate-900">Tutors</strong>: Access to personalised academic support through tutor matching.
+                </li>
+                <li>
+                  <strong className="font-semibold text-neutral-slate-900">Music</strong>: Opportunities to explore music theory and develop practical instrumental skills.
+                </li>
+              </ul>
+            </div>
+
+            <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
+              Driven by the belief that every learner deserves the opportunity to excel, he combines years of classroom experience with educational technology to make learning more accessible, personalised and rewarding.
+            </p>
+
+            <div className="pt-4 border-t border-neutral-slate-100 space-y-3">
+              <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
+                <strong className="font-semibold text-neutral-slate-900">A Message to Parents</strong>: Your child&apos;s potential deserves the right environment to flourish. At Trainbow Hub, we bring quality teaching, smart learning technology and personalised support together to help your child learn better, grow in confidence and achieve more.
+              </p>
+
+              <p className="text-sm sm:text-base font-bold text-neutral-slate-900 leading-relaxed">
+                Give your child a better way to learn. Welcome to Trainbow Hub.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
         {/* Safeguarding & Child Protection Commitment */}
         <Reveal>
           <div className="rounded-lg border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-6 text-left">

@@ -22,31 +22,31 @@ export interface InstructorProfile {
  */
 export const PRIMARY_INSTRUCTOR: InstructorProfile = {
   id: "inst-mr-oyedeji-st",
-  name: "Mr Oyedeji S.T",
+  name: "Mr Oyedeji S.T.",
   slug: "mr-oyedeji-st",
-  title: "Senior Mathematics Lecturer & WAEC Chief Examiner Consultant, Director",
-  role: "Director of Academic Curriculum & Chief Examiner Consultant",
+  title: "Educator. Learning Innovator. Founder of Trainbow Hub.",
+  role: "Founder & Director of Trainbow Hub",
   avatarText: "OS",
   avatarUrl: "/images/instructors/mr-oyedeji-st.jpg",
   shortBio:
-    "Senior Mathematics Lecturer, veteran WAEC Chief Examiner Consultant, and Academic Director at Trainbow Hub with over two decades of experience training top distinctions across Nigeria and West Africa.",
+    "Educator, Learning Innovator, and Founder of Trainbow Hub with over 15 years of teaching experience and a B.Sc. in Mathematics Education from the University of Lagos.",
   bio:
-    "Mr. Oyedeji S.T is a distinguished Nigerian educator, Senior Mathematics Lecturer, and longtime Chief Examiner Consultant to West African examination bodies. With over 22 years in senior secondary, Cambridge International, and university-preparatory mathematics, he has personally trained more than 18,000 students to secure straight A's in WASSCE, UTME, and IGCSE. As Director at Trainbow Hub, Mr Oyedeji oversees the instructional design, curriculum alignment, step-by-step marking schemes, and examiner-vetted video masterclasses across all secondary departments.",
+    "Mr Oyedeji S.T. is a Nigerian educator with over 15 years of teaching experience and a B.Sc. in Mathematics Education from the University of Lagos. He is a TRCN-certified teacher with a passion for making quality education more accessible, engaging and effective.\n\nAs the founder of Trainbow Hub, he is building a modern learning ecosystem that gives every student four ways to grow:\n\n• Academy: Structured lessons, quizzes and examination-focused learning resources aligned with WAEC, NECO, UTME and Cambridge standards.\n• AI: Intelligent, instant study assistance that helps learners understand difficult concepts, practise and learn at their own pace.\n• Tutors: Access to personalised academic support through tutor matching.\n• Music: Opportunities to explore music theory and develop practical instrumental skills.\n\nDriven by the belief that every learner deserves the opportunity to excel, he combines years of classroom experience with educational technology to make learning more accessible, personalised and rewarding.\n\nA Message to Parents: Your child's potential deserves the right environment to flourish. At Trainbow Hub, we bring quality teaching, smart learning technology and personalised support together to help your child learn better, grow in confidence and achieve more.\n\nGive your child a better way to learn. Welcome to Trainbow Hub.",
   qualifications: [
-    "M.Sc. Mathematics & Educational Measurement",
-    "B.Sc. (Ed) Mathematics — First Class Honours",
-    "Fellow, Mathematical Association of Nigeria (FMAN)",
-    "Certified Cambridge International Assessment Specialist (0580/0607)",
+    "B.Sc. in Mathematics Education — University of Lagos",
+    "TRCN-Certified Teacher (Teachers Registration Council of Nigeria)",
+    "Educational Technology & Curriculum Innovation Specialist",
+    "Cambridge & West African Examination Preparation Lead",
   ],
   examinerCredentials: [
-    "Chief Examiner Consultant, WAEC / WASSCE Mathematics & Further Mathematics",
-    "Technical Item Moderator, JAMB UTME National Question Bank",
-    "Senior Consultant, National Examination Council (NECO)",
-    "Advisor, Lagos State Junior Secondary BECE Mathematics Curriculum Review Board",
+    "Over 15 Years of Classroom and Examination Preparation Experience",
+    "Curriculum Alignment Specialist for WAEC, NECO, UTME and Cambridge Standards",
+    "Founder & Lead Educational Innovator, Trainbow Hub",
+    "Director of Tutor Verification & Quality Safeguarding",
   ],
   totalStudentsTrained: 18500,
   distinctionRate: "94.8%",
-  yearsOfExperience: 22,
+  yearsOfExperience: 15,
   contactEmail: "oyedeji.st@trainbowhub.com",
 };
 

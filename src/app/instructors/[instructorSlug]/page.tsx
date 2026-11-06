@@ -58,11 +58,10 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/40">
-                  Academic Director &amp; Lead Examiner
+                  Founder &amp; Director
                 </Badge>
                 <span className="text-xs text-neutral-slate-300 flex items-center gap-1.5">
-                  
-                  WAEC Chief Examiner Consultant
+                  TRCN-Certified Educator
                 </span>
               </div>
 
@@ -82,7 +81,7 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
               <span className="text-2xl font-extrabold text-white block">
                 {PRIMARY_INSTRUCTOR.yearsOfExperience}+ Years
               </span>
-              <span className="text-xs text-neutral-slate-300">Examiner Experience</span>
+              <span className="text-xs text-neutral-slate-300">Teaching Experience</span>
             </div>
             <div className="p-3 rounded-xl bg-white/5 border border-white/10">
               <span className="text-2xl font-extrabold text-brand-blue-300 block">
@@ -109,16 +108,53 @@ export default function InstructorProfilePage({ params }: InstructorPageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Detailed Biography */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-4">
-              <h2 className="text-xl font-bold font-heading text-neutral-slate-900">
-                About {PRIMARY_INSTRUCTOR.name}
-              </h2>
+            <div className="rounded-xl border border-neutral-slate-200 bg-white p-6 sm:p-8 space-y-5">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold font-heading text-neutral-slate-900">
+                  About Mr Oyedeji S.T.
+                </h2>
+                <p className="text-sm font-semibold text-neutral-slate-700 mt-1">
+                  Educator. Learning Innovator. Founder of Trainbow Hub.
+                </p>
+              </div>
+
               <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
-                {PRIMARY_INSTRUCTOR.bio}
+                Mr Oyedeji S.T. is a Nigerian educator with over 15 years of teaching experience and a B.Sc. in Mathematics Education from the University of Lagos. He is a TRCN-certified teacher with a passion for making quality education more accessible, engaging and effective.
               </p>
-              <p className="text-sm text-neutral-slate-700 leading-relaxed">
-                Under his leadership, Trainbow Hub curriculum packages have been calibrated to remove ambiguous question wording, align strictly with official West African and Cambridge examination marking rubrics, and deliver structured past question solving frameworks that support students to attain straight distinctions.
+
+              <div className="space-y-2">
+                <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
+                  As the founder of <strong className="font-semibold text-neutral-slate-900">Trainbow Hub</strong>, he is building a modern learning ecosystem that gives every student four ways to grow:
+                </p>
+                <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-neutral-slate-700 pl-1">
+                  <li>
+                    <strong className="font-semibold text-neutral-slate-900">Academy</strong>: Structured lessons, quizzes and examination-focused learning resources aligned with WAEC, NECO, UTME and Cambridge standards.
+                  </li>
+                  <li>
+                    <strong className="font-semibold text-neutral-slate-900">AI</strong>: Intelligent, instant study assistance that helps learners understand difficult concepts, practise and learn at their own pace.
+                  </li>
+                  <li>
+                    <strong className="font-semibold text-neutral-slate-900">Tutors</strong>: Access to personalised academic support through tutor matching.
+                  </li>
+                  <li>
+                    <strong className="font-semibold text-neutral-slate-900">Music</strong>: Opportunities to explore music theory and develop practical instrumental skills.
+                  </li>
+                </ul>
+              </div>
+
+              <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
+                Driven by the belief that every learner deserves the opportunity to excel, he combines years of classroom experience with educational technology to make learning more accessible, personalised and rewarding.
               </p>
+
+              <div className="pt-3 border-t border-neutral-slate-100 space-y-3">
+                <p className="text-sm sm:text-base text-neutral-slate-700 leading-relaxed">
+                  <strong className="font-semibold text-neutral-slate-900">A Message to Parents</strong>: Your child&apos;s potential deserves the right environment to flourish. At Trainbow Hub, we bring quality teaching, smart learning technology and personalised support together to help your child learn better, grow in confidence and achieve more.
+                </p>
+
+                <p className="text-sm sm:text-base font-bold text-neutral-slate-900 leading-relaxed">
+                  Give your child a better way to learn. Welcome to Trainbow Hub.
+                </p>
+              </div>
             </div>
 
             {/* Courses Taught by Mr Oyedeji */}
