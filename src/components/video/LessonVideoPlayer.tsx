@@ -708,6 +708,7 @@ export function LessonVideoPlayer({
                         sizes="64px"
                         className="object-cover"
                         loading="lazy"
+                        unoptimized
                       />
                     ) : (
                       <PlayIcon className="w-4 h-4 text-neutral-400" />
