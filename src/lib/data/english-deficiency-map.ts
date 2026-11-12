@@ -446,7 +446,12 @@ export const ENGLISH_WEAK_AREAS: WeakAreaRecord[] = [
   },
 ];
 
+import { getMathWeakAreaByCode } from "./mathematics-deficiency-map";
+
 export function getWeakAreaByCode(code: string): WeakAreaRecord | undefined {
+  if (code && code.startsWith("WA-MTH-")) {
+    return getMathWeakAreaByCode(code);
+  }
   return ENGLISH_WEAK_AREAS.find((w) => w.code === code);
 }
 

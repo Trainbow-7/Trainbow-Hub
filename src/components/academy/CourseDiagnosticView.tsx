@@ -49,8 +49,12 @@ export function CourseDiagnosticView({ course }: CourseDiagnosticViewProps) {
     let correct = 0;
     const missedCodes = new Set<string>();
     const recLessonSlugs = new Set<string>();
+    const lessonToWeakAreaMap = new Map<string, string>();
 
     for (const q of questions) {
+      if (q.recommendedLessonSlug && q.weakAreaCode) {
+        lessonToWeakAreaMap.set(q.recommendedLessonSlug, q.weakAreaCode);
+      }
       const isCorrect = selectedAnswers[q.id]?.toUpperCase() === q.correctOptionId.toUpperCase();
       if (isCorrect) {
         correct++;
@@ -77,7 +81,7 @@ export function CourseDiagnosticView({ course }: CourseDiagnosticViewProps) {
     for (const slug of recLessonSlugs) {
       const match = allCourseLessons.find((l) => (l as any).slug === slug || l.id === slug);
       if (match) {
-        const waCode = (match as any).weakAreaCodes?.[0];
+        const waCode = (match as any).weakAreaCodes?.[0] || lessonToWeakAreaMap.get(slug);
         const wa = waCode ? getWeakAreaByCode(waCode) : null;
         recs.push({
           slug: (match as any).slug || match.id,
@@ -92,7 +96,7 @@ export function CourseDiagnosticView({ course }: CourseDiagnosticViewProps) {
       for (const l of allCourseLessons) {
         const lSlug = (l as any).slug || l.id;
         if (!recs.some((r) => r.slug === lSlug)) {
-          const waCode = (l as any).weakAreaCodes?.[0];
+          const waCode = (l as any).weakAreaCodes?.[0] || lessonToWeakAreaMap.get(lSlug);
           const wa = waCode ? getWeakAreaByCode(waCode) : null;
           recs.push({
             slug: lSlug,
@@ -140,7 +144,7 @@ export function CourseDiagnosticView({ course }: CourseDiagnosticViewProps) {
           <div className="rounded-2xl bg-brand-navy-900 text-white p-6 sm:p-10 border border-brand-navy-800 shadow-sm space-y-3">
             <div className="flex items-center gap-2 flex-wrap">
               <Badge variant="brand" className="bg-brand-blue-600/30 text-brand-blue-200 border-brand-blue-500/30">
-                Diagnostic Assessment
+                {course.subjectName || (course.subjectSlug === "mathematics" ? "Mathematics" : "Academic")} Diagnostic Assessment
               </Badge>
               <span className="text-xs text-neutral-slate-300">{course.level}</span>
             </div>

@@ -796,9 +796,26 @@ export const ENGLISH_DIAGNOSTICS: Record<string, CourseDiagnostic> = {
   },
 };
 
+import { MATHEMATICS_DIAGNOSTICS, getMathematicsDiagnostic } from "./mathematics-diagnostics";
+
 export function getCourseDiagnostic(courseSlug: string): CourseDiagnostic | undefined {
+  if (MATHEMATICS_DIAGNOSTICS[courseSlug]) {
+    return MATHEMATICS_DIAGNOSTICS[courseSlug];
+  }
+
   if (ENGLISH_DIAGNOSTICS[courseSlug]) {
     return ENGLISH_DIAGNOSTICS[courseSlug];
+  }
+
+  // Mathematics fallback check
+  if (
+    courseSlug.includes("mathematics") ||
+    courseSlug.includes("math") ||
+    courseSlug.includes("algebra") ||
+    courseSlug.includes("trigonometry") ||
+    courseSlug.includes("quantitative")
+  ) {
+    return getMathematicsDiagnostic(courseSlug);
   }
 
   // Fallback diagnostic mapped from the closest level diagnostic
