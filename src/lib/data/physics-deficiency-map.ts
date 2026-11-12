@@ -521,3 +521,4 @@ export function listPriorityPhysicsWeakAreas(): WeakAreaRecord[] {
 export function listPhysicsWeakAreasBySkill(skill: PhysicsSkillArea): WeakAreaRecord[] {
   return PHYSICS_WEAK_AREAS.filter((wa) => (wa.skillArea as any) === skill);
 }
+

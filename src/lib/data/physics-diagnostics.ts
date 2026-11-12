@@ -600,3 +600,4 @@ export function getPhysicsDiagnostic(courseSlug: string): CourseDiagnostic | und
   }
   return PHYSICS_DIAGNOSTICS["physics-ss3-electricity-magnetism-modern"];
 }
+

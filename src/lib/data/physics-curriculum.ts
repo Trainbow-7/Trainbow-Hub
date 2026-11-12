@@ -127,10 +127,10 @@ export function getPhysicsLessonBySlug(courseSlug: string, lessonSlug: string): 
   const course = getPhysicsCourseBySlug(courseSlug);
   if (!course) return undefined;
 
-  for (const module of course.modules) {
-    const lesson = module.lessons.find((l) => l.slug === lessonSlug || l.id === lessonSlug);
+  for (const courseModule of course.modules) {
+    const lesson = courseModule.lessons.find((l) => l.slug === lessonSlug || l.id === lessonSlug);
     if (lesson) {
-      return { course, module, lesson };
+      return { course, module: courseModule, lesson };
     }
   }
   return undefined;

@@ -147,3 +147,4 @@ To further strengthen this deficiency map:
 2. Confirm standardized physical constants conventions:
    - $g = 9.8\text{ m/s}^2$ vs $10.0\text{ m/s}^2$ (WAEC generally specifies $g = 9.8\text{ or }10\text{ m/s}^2$ on the front cover of Paper 2; JAMB uses $g = 10\text{ m/s}^2$).
    - Universal constants: $c = 3.0 \times 10^8\text{ m/s}$, $e = 1.6 \times 10^{-19}\text{ C}$, $h = 6.63 \times 10^{-34}\text{ J}\cdot\text{s}$, $\epsilon_0 = 8.85 \times 10^{-12}\text{ F/m}$.
+
