@@ -69,8 +69,21 @@ export function buildLessonSearchQueries(options: {
     title.toLowerCase().includes("essay") ||
     title.toLowerCase().includes("comprehension");
 
+  const isPhysics =
+    subject?.toLowerCase().includes("physics") ||
+    courseTitle?.toLowerCase().includes("physics");
+
   // Clean title
   const cleanTitle = title.replace(/\([^)]*\)/g, "").trim();
+
+  if (isPhysics) {
+    const q1 = `${cleanTitle} Physics senior secondary tutorial`;
+    const q2 = `${cleanTitle} ${curriculum} Physics lesson`;
+    const q3 = moduleTitle
+      ? `${cleanTitle} ${moduleTitle.replace(/^Module \d+:\s*/, "")} Physics`
+      : `${cleanTitle} physics worked examples`;
+    return [q1, q2, q3];
+  }
 
   if (isEnglish) {
     const q1 = `${cleanTitle} English lesson`;

@@ -1,6 +1,6 @@
 {
-  "quotaUsedToday": 0,
-  "lastRunDate": "2026-11-05",
+  "quotaUsedToday": 2000,
+  "lastRunDate": "2026-11-12",
   "items": {
     "waec-ssce-mathematics-mastery:fractions-decimals-operations": {
       "videoId": "Vb5c7ay0ziU",
@@ -785,6 +785,146 @@
       "channelName": "Smile and Learn - English",
       "durationSeconds": 242,
       "verifiedAt": "2026-11-05T13:45:25.207Z",
+      "status": "APPROVED"
+    },
+    "physics-ss1-measurement-motion-forces:fundamental-derived-quantities-si-units": {
+      "videoId": "8rZRYPoerPw",
+      "title": "SI Base Units and Derived Units - Physics and Chemistry",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:25.745Z",
+      "status": "APPROVED"
+    },
+    "physics-ss1-measurement-motion-forces:vernier-calipers-micrometer-screw-gauge": {
+      "videoId": "npPjzJ8oKc4",
+      "title": "Reading a Vernier Caliper",
+      "channelName": "Jacob Sichamba Online Math",
+      "verifiedAt": "2026-11-12T13:42:26.822Z",
+      "status": "APPROVED"
+    },
+    "physics-ss1-measurement-motion-forces:dimensional-analysis-and-physical-homogeneity": {
+      "videoId": "iXfCIDmulwo",
+      "title": "Dimensioning of Physical Quantities #jonahemmanuel #dimensioning",
+      "channelName": "Excellence Academy",
+      "verifiedAt": "2026-11-12T13:42:28.088Z",
+      "status": "APPROVED"
+    },
+    "physics-ss1-measurement-motion-forces:rectilinear-motion-equations-uniform-acceleration": {
+      "videoId": "-Z3jIEKWMfk",
+      "title": "Motion 1 (Physics JAMB and PUTME class 1)",
+      "channelName": "Excellence Academy",
+      "verifiedAt": "2026-11-12T13:42:29.293Z",
+      "status": "APPROVED"
+    },
+    "physics-ss1-measurement-motion-forces:velocity-time-graphs-gradient-area-analysis": {
+      "videoId": "OyPuEj4fz7A",
+      "title": "Velocity time graph",
+      "channelName": "Jacob Sichamba Online Math",
+      "verifiedAt": "2026-11-12T13:42:30.463Z",
+      "status": "APPROVED"
+    },
+    "physics-ss1-measurement-motion-forces:vectors-scalars-component-resolution": {
+      "videoId": "dC4cudpxVQw",
+      "title": "How To Find The Components of a Vector Given Magnitude and Direction",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:31.971Z",
+      "status": "APPROVED"
+    },
+    "physics-ss1-measurement-motion-forces:principle-of-moments-and-center-of-gravity": {
+      "videoId": "AT3BQosJpS4",
+      "title": "Principles of Moments and Moment of a Force: Meaning, Clockwise & Anticlockwise Moment, Equilibrium.",
+      "channelName": "Excellence Academy",
+      "verifiedAt": "2026-11-12T13:42:33.333Z",
+      "status": "APPROVED"
+    },
+    "physics-ss2-energy-heat-waves-light:thermal-expansion-linear-superficial-cubic": {
+      "videoId": "QQyimsA40gg",
+      "title": "THERMAL EXPANSION & THERMAL EXPANSIVITY (LINEAR, AREA  and VOLUME EXPANSIVITY) JAMB AND WAEC PHYSICS",
+      "channelName": "Excellence Academy",
+      "verifiedAt": "2026-11-12T13:42:34.437Z",
+      "status": "APPROVED"
+    },
+    "physics-ss2-energy-heat-waves-light:specific-heat-capacity-method-of-mixtures": {
+      "videoId": "dxtz2POUTJE",
+      "title": "Latent Heat of Fusion and Vaporization, Specific Heat Capacity & Calorimetry - Physics",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:35.545Z",
+      "status": "APPROVED"
+    },
+    "physics-ss3-electricity-magnetism-modern:emf-internal-resistance-terminal-pd": {
+      "videoId": "R1QN_0fcZ_8",
+      "title": "Internal Resistance of a Battery, EMF, Cell Terminal Voltage, Physics Problems",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:36.679Z",
+      "status": "APPROVED"
+    },
+    "physics-ss3-electricity-magnetism-modern:radioactive-decay-half-life-nuclear-reactions": {
+      "videoId": "wvgT52mwM3Y",
+      "title": "GCSE Physics - Radioactive Decay & Half-life | How to Calculate Activity & Half-life (2027/28 exams)",
+      "channelName": "Cognito",
+      "verifiedAt": "2026-11-12T13:42:37.826Z",
+      "status": "APPROVED"
+    },
+    "waec-neco-ssce-physics-mastery:projectile-motion-time-of-flight-range-calculations": {
+      "videoId": "r32wJJhjfZ4",
+      "title": "PROJECTILE MOTION (physics) (WAEC , JAMB , PUTME class ) #excellentlinkacademy",
+      "channelName": "Excellent Link Academy",
+      "verifiedAt": "2026-11-12T13:42:38.872Z",
+      "status": "APPROVED"
+    },
+    "jamb-utme-physics-complete:cbt-time-management-proportional-reasoning": {
+      "videoId": "FbvsBnk2Btw",
+      "title": "CONCEPT OF RATIO",
+      "channelName": "Dass TV",
+      "verifiedAt": "2026-11-12T13:42:40.067Z",
+      "status": "APPROVED"
+    },
+    "physics-numericals-bootcamp:formula-rearrangement-powers-roots-reciprocals": {
+      "videoId": "WcTgavYLxsg",
+      "title": "Laws of Indices | Learn Maths | Graze Education",
+      "channelName": "Graze Education",
+      "verifiedAt": "2026-11-12T13:42:41.156Z",
+      "status": "APPROVED"
+    },
+    "graphs-diagrams-practical-physics:waec-graph-plotting-rules-scales-gradients": {
+      "videoId": "tZFRwl07S_4",
+      "title": "Graph. How to plot a graph in Physics. Neco 2023.",
+      "channelName": "VINDAL'S ACADEMY ",
+      "verifiedAt": "2026-11-12T13:42:42.287Z",
+      "status": "APPROVED"
+    },
+    "mechanics-deep-dive:friction-inclined-plane-normal-reaction": {
+      "videoId": "ufgY237M5KQ",
+      "title": "Introduction to Inclined Planes",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:43.366Z",
+      "status": "APPROVED"
+    },
+    "heat-and-thermal-physics:latent-heat-fusion-vaporisation-ice-water-steam": {
+      "videoId": "DWiCaDPM7Hk",
+      "title": "Second Law of Thermodynamics - Heat Energy, Entropy & Spontaneous Processes",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:44.666Z",
+      "status": "APPROVED"
+    },
+    "waves-sound-light-optics:snells-law-refractive-index-total-internal-reflection": {
+      "videoId": "5bkiQob8ikc",
+      "title": "Total Internal Reflection of Light and Critical Angle of Refraction Physics",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:45.850Z",
+      "status": "APPROVED"
+    },
+    "electricity-magnetism-deep-dive:transformers-turns-ratios-power-efficiency-ac": {
+      "videoId": "UchitHGF4n8",
+      "title": "How does a Transformer work  - Working Principle electrical engineering",
+      "channelName": "The Engineering Mindset",
+      "verifiedAt": "2026-11-12T13:42:47.064Z",
+      "status": "APPROVED"
+    },
+    "atomic-nuclear-physics-essentials:photoelectric-effect-work-function-einstein-equation": {
+      "videoId": "-LECEvusk8E",
+      "title": "Photoelectric Effect, Work Function, Threshold Frequency, Wavelength, Speed & Kinetic Energy, Electr",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-12T13:42:48.208Z",
       "status": "APPROVED"
     }
   }

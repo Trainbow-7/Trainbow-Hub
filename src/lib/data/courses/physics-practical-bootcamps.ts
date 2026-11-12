@@ -1,0 +1,365 @@
+/**
+ * Trainbow HUB: Physics Practical & Numericals Bootcamps
+ * 1. Physics Numericals Bootcamp: Formulas, Units and Problem Solving
+ * 2. Graphs, Diagrams and Practical Physics
+ */
+
+import { PhysicsCourseData } from "../physics-curriculum";
+
+export const PRACTICAL_BOOTCAMP_PHYSICS_COURSES: PhysicsCourseData[] = [
+  // ==========================================================================
+  // COURSE 6: Physics Numericals Bootcamp: Formulas, Units and Problem Solving
+  // ==========================================================================
+  {
+    id: "crs-phy-bootcamp",
+    slug: "physics-numericals-bootcamp",
+    title: "Physics Numericals Bootcamp: Formulas, Units and Problem Solving",
+    subtitle: "Systematic multi-step problem solving, formula rearrangement, algebraic substitution, and dimensional checks",
+    subject: "Physics",
+    subjectSlug: "physics",
+    track: "skills-bootcamp",
+    level: "SS 1-3",
+    examBody: "WAEC & JAMB",
+    instructorName: "Trainbow HUB Academy",
+    instructorTitle: "Senior Physics Educator & Examiner",
+    priceMinorUnits: 2000000,
+    currency: "NGN",
+    shortDescription: "End mathematical anxiety in Physics with intensive multi-step calculation frameworks, unit conversions, and formula rearrangements.",
+    description: "Designed for learners who understand physics concepts verbally but struggle with calculations, equations, and algebra. This bootcamp trains step-by-step formula selection, isolating the subject of complex relations, managing metric conversions without slips, and checking final answers for sensible physical magnitudes.",
+    learningOutcomes: [
+      "Rearrange complex physics formulas with powers, roots, and fractions with 100% algebraic accuracy",
+      "Convert compound units (grams to kilograms, cubic centimeters to cubic meters, hours to seconds) effortlessly",
+      "Structure multi-step solutions to secure maximum method marks in WAEC and NECO Paper 2",
+      "Apply mental estimation checks to detect and correct calculation errors before submitting",
+    ],
+    prerequisites: ["Basic Secondary School Algebra"],
+    tags: ["Bootcamp", "Numericals", "Formulas", "Algebra", "Problem Solving", "Physics"],
+    syllabusAlignment: {
+      source: "WAEC & JAMB General Physics Calculation Rubrics",
+      year: "2024",
+      lastAlignedAt: "2026-11-01",
+      needsVerification: true,
+    },
+    relatedCourseSlugs: [
+      "physics-ss1-measurement-motion-forces",
+      "mechanics-deep-dive",
+      "waec-neco-ssce-physics-mastery",
+    ],
+    modules: [
+      {
+        id: "mod-phy-btc-1",
+        title: "Module 1: Formula Rearrangement & Subject Isolation",
+        description: "Master isolating variables from square roots, powers, and reciprocal equations.",
+        sortOrder: 1,
+        lessons: [
+          {
+            id: "les-phy-btc-1-1",
+            slug: "formula-rearrangement-powers-roots-reciprocals",
+            title: "Rearranging Physics Formulas Involving Powers, Roots and Reciprocals",
+            sortOrder: 1,
+            durationMinutes: 45,
+            isFreePreview: true,
+            reviewStatus: "needs_teacher_review",
+            topicId: "top-phy-formula-manipulation",
+            weakAreaCodes: ["WA-PHY-MCH-01"],
+            summary: "Learn foolproof algebraic techniques to make any variable the subject of formula without losing roots or misplacing terms.",
+            objectives: [
+              "Isolate variables inside square roots (e.g. $T = 2\\pi\\sqrt{l/g}$ for $l$ and $g$)",
+              "Solve reciprocal formulas without inverted sum errors (e.g. $\\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2}$)",
+              "Rearrange equations with squares and cross-multiplication systematically",
+            ],
+            keyPoints: [
+              "When isolating a term inside a square root: isolate the root first, then square BOTH entire sides.",
+              "For $T = 2\\pi \\sqrt{\\frac{l}{g}}$: divide by $2\\pi \\implies \\frac{T}{2\\pi} = \\sqrt{\\frac{l}{g}} \\implies \\frac{T^2}{4\\pi^2} = \\frac{l}{g} \\implies g = \\frac{4\\pi^2 l}{T^2}$.",
+              "In reciprocal formulas $\\frac{1}{R_p} = \\frac{1}{R_1} + \\frac{1}{R_2}$: add fractions with common denominator first before inverting: $R_p = \\frac{R_1 R_2}{R_1 + R_2}$.",
+              "Never invert terms individually: $\\frac{1}{A} + \\frac{1}{B} = \\frac{1}{C}$ does NOT mean $A + B = C$!",
+            ],
+            formulas: [
+              {
+                name: "Simple Pendulum Subject of Formula",
+                expression: "g = \\frac{4\\pi^2 l}{T^2}",
+                variables: [
+                  { symbol: "g", meaning: "Acceleration due to gravity", unit: "m/s²" },
+                  { symbol: "l", meaning: "Length of pendulum", unit: "m" },
+                  { symbol: "T", meaning: "Period of oscillation", unit: "s" },
+                ],
+              },
+            ],
+            commonMistakes: {
+              mistake: "Squaring before dividing by $2\\pi$ and forgetting to square the $2\\pi$.",
+              wrongExample: "Writing $T^2 = 2\\pi \\frac{l}{g}$ instead of $T^2 = 4\\pi^2 \\frac{l}{g}$.",
+              correctedExample: "Always square the entire side: $(2\\pi)^2 = 4\\pi^2$.",
+              explanation: "The coefficient $2\\pi$ is also affected by the squaring operation.",
+            },
+            workedExamples: [
+              {
+                context: "Calculating gravity from pendulum data",
+                question: "In a laboratory experiment, a simple pendulum of length $l = 0.90\\text{ m}$ has a period $T = 1.90\\text{ s}$. Make $g$ the subject of $T = 2\\pi\\sqrt{l/g}$ and calculate $g$ (take $\\pi = 3.142$).",
+                stepByStepSolution: [
+                  "1. Rearrange for $g$: $T = 2\\pi \\sqrt{\\frac{l}{g}} \\implies \\frac{T^2}{4\\pi^2} = \\frac{l}{g} \\implies g = \\frac{4\\pi^2 l}{T^2}$.",
+                  "2. Substitute values: $g = \\frac{4(3.142)^2 \\times 0.90}{(1.90)^2}$.",
+                  "3. Evaluate: $4(9.872) \\times 0.90 = 35.539$.",
+                  "4. Denominator: $(1.90)^2 = 3.61$.",
+                  "5. Divide: $g = \\frac{35.539}{3.61} \\approx 9.84\\text{ m/s}^2$.",
+                ],
+                finalAnswer: "$9.84\\text{ m/s}^2$",
+                ruleExplanation: "This formula rearrangement is tested annually in WAEC Physics Practical Paper 3.",
+              },
+            ],
+            checkpoint: {
+              id: "chk-phy-btc-1-1",
+              title: "Checkpoint: Formula Rearrangement",
+              passPercentage: 60,
+              verificationMethod: "REASONING_DUAL_PASS_VERIFIED",
+              questions: [
+                {
+                  id: "q_phy_btc_1_1_1",
+                  prompt: "Given $v^2 = u^2 + 2as$, what is the correct expression for acceleration $a$?",
+                  options: [
+                    { id: "A", text: "$a = \\frac{v^2 - u^2}{2s}$" },
+                    { id: "B", text: "$a = \\frac{v^2 + u^2}{2s}$" },
+                    { id: "C", text: "$a = \\frac{v - u}{2s}$" },
+                    { id: "D", text: "$a = \\frac{v^2}{2s} - u$" },
+                  ],
+                  correctOptionId: "A",
+                  explanation: "$v^2 - u^2 = 2as \\implies a = \\frac{v^2 - u^2}{2s}$.",
+                  topic: "Linear Formula Rearrangement",
+                  weakAreaCode: "WA-PHY-MCH-01",
+                },
+                {
+                  id: "q_phy_btc_1_1_2",
+                  prompt: "If $\\frac{1}{f} = \\frac{1}{u} + \\frac{1}{v}$, which expression correctly gives image distance $v$?",
+                  options: [
+                    { id: "A", text: "$v = f - u$" },
+                    { id: "B", text: "$v = \\frac{u - f}{u f}$" },
+                    { id: "C", text: "$v = \\frac{u f}{u - f}$" },
+                    { id: "D", text: "$v = \\frac{u + f}{u f}$" },
+                  ],
+                  correctOptionId: "C",
+                  explanation: "$\\frac{1}{v} = \\frac{1}{f} - \\frac{1}{u} = \\frac{u - f}{u f} \\implies v = \\frac{u f}{u - f}$.",
+                  topic: "Reciprocal Lens Formula Rearrangement",
+                  weakAreaCode: "WA-PHY-OPT-03",
+                },
+                {
+                  id: "q_phy_btc_1_1_3",
+                  prompt: "Make $r$ the subject of $F = \\frac{k q_1 q_2}{r^2}$:",
+                  options: [
+                    { id: "A", text: "$r = \\frac{k q_1 q_2}{F}$" },
+                    { id: "B", text: "$r = \\sqrt{\\frac{k q_1 q_2}{F}}$" },
+                    { id: "C", text: "$r = \\left(\\frac{k q_1 q_2}{F}\\right)^2$" },
+                    { id: "D", text: "$r = \\frac{F}{k q_1 q_2}$" },
+                  ],
+                  correctOptionId: "B",
+                  explanation: "$r^2 = \\frac{k q_1 q_2}{F} \\implies r = \\sqrt{\\frac{k q_1 q_2}{F}}$.",
+                  topic: "Inverse Square Subject Isolation",
+                  weakAreaCode: "WA-PHY-ELC-01",
+                },
+                {
+                  id: "q_phy_btc_1_1_4",
+                  prompt: "Given kinetic energy $E_k = \\frac{1}{2}mv^2$, what is velocity $v$?",
+                  options: [
+                    { id: "A", text: "$v = \\sqrt{\\frac{2E_k}{m}}$" },
+                    { id: "B", text: "$v = \\frac{2E_k}{m}$" },
+                    { id: "C", text: "$v = \\sqrt{\\frac{E_k}{2m}}$" },
+                    { id: "D", text: "$v = \\left(\\frac{2E_k}{m}\\right)^2$" },
+                  ],
+                  correctOptionId: "A",
+                  explanation: "$v^2 = \\frac{2E_k}{m} \\implies v = \\sqrt{\\frac{2E_k}{m}}$.",
+                  topic: "Energy Velocity Subject",
+                  weakAreaCode: "WA-PHY-MCH-07",
+                },
+                {
+                  id: "q_phy_btc_1_1_5",
+                  prompt: "In $P = I^2 R$, making current $I$ the subject yields:",
+                  options: [
+                    { id: "A", text: "$I = \\frac{P}{R}$" },
+                    { id: "B", text: "$I = \\sqrt{\\frac{P}{R}}$" },
+                    { id: "C", text: "$I = \\sqrt{PR}$" },
+                    { id: "D", text: "$I = \\left(\\frac{P}{R}\\right)^2$" },
+                  ],
+                  correctOptionId: "B",
+                  explanation: "$I^2 = \\frac{P}{R} \\implies I = \\sqrt{\\frac{P}{R}}$.",
+                  topic: "Electrical Power Subject",
+                  weakAreaCode: "WA-PHY-ELC-04",
+                },
+              ],
+            },
+            examTip: "Never substitute numbers first into a complicated formula. Rearrange the algebra symbolically first, check the isolated variable, and then substitute values. This avoids messy rounding errors.",
+          },
+        ],
+      },
+    ],
+  },
+
+  // ==========================================================================
+  // COURSE 7: Graphs, Diagrams and Practical Physics
+  // ==========================================================================
+  {
+    id: "crs-phy-practical",
+    slug: "graphs-diagrams-practical-physics",
+    title: "Graphs, Diagrams and Practical Physics",
+    subtitle: "WAEC Paper 3 practical mechanics, optics, and electricity experiments, error control, and plotting mastery",
+    subject: "Physics",
+    subjectSlug: "physics",
+    track: "practical-mastery",
+    level: "SS 1-3",
+    examBody: "WAEC & NECO",
+    instructorName: "Trainbow HUB Academy",
+    instructorTitle: "Senior Physics Educator & Practical Examiner",
+    priceMinorUnits: 2500000,
+    currency: "NGN",
+    shortDescription: "Secure full marks on WAEC Physics Paper 3 (Practical) with foolproof graph plotting, gradient triangles, and apparatus setup.",
+    description: "Designed specifically to master the 50 marks available in WAEC and NECO Physics Paper 3. Learn how to choose standard 1, 2, or 5 multiples for scale, plot points with neat crosses (×), draw lines of best fit that balance points equally, construct large gradient triangles spanning at least 50% of the line, and state genuine physical precautions.",
+    learningOutcomes: [
+      "Select compliant scales on standard 2cm grid graph sheets avoiding awkward multiples (3, 7, 9)",
+      "Draw accurate lines of best fit with balanced scatters and deduce intercepts on both axes",
+      "Construct large slope triangles meeting WAEC mark scheme criteria ($\Delta x, \Delta y > 5\\text{ cm}$)",
+      "State examiner-accepted precautions for optics (dark room, parallax), electricity (open key, zero error), and mechanics",
+    ],
+    prerequisites: ["Senior Secondary Physics Coursework"],
+    tags: ["Practical", "Paper 3", "Graphs", "Apparatus", "Precautions", "WAEC", "NECO"],
+    syllabusAlignment: {
+      source: "WAEC Physics Practical Examination Scheme of Work",
+      year: "2024",
+      lastAlignedAt: "2026-11-01",
+      needsVerification: true,
+    },
+    relatedCourseSlugs: [
+      "waec-neco-ssce-physics-mastery",
+      "physics-numericals-bootcamp",
+    ],
+    modules: [
+      {
+        id: "mod-phy-prc-1",
+        title: "Module 1: WAEC Graph Plotting & Slope Deduction",
+        description: "Scale selection, point plotting, line of best fit, and gradient calculation.",
+        sortOrder: 1,
+        lessons: [
+          {
+            id: "les-phy-prc-1-1",
+            slug: "waec-graph-plotting-rules-scales-gradients",
+            title: "WAEC Graph Plotting Rules: Scale Selection, Best-Fit Lines and Large Gradient Triangles",
+            sortOrder: 1,
+            durationMinutes: 45,
+            isFreePreview: true,
+            reviewStatus: "needs_teacher_review",
+            topicId: "top-phy-graph-rules",
+            weakAreaCodes: ["WA-PHY-PRC-02"],
+            summary: "Learn the official WAEC marking rubric for Paper 3 graphical work to avoid losing 8 to 12 marks on plotting errors.",
+            objectives: [
+              "Choose standard scales that cover at least 60% of the graph grid in both directions",
+              "Plot points with distinct small crosses (×) or circled dots (⊙)",
+              "Draw a single, thin, continuous straight line of best fit and construct a slope triangle spanning > 50% of the line",
+            ],
+            keyPoints: [
+              "WAEC Scale Rule: Choose simple scales using multiples of 1, 2, or 5 (e.g. $2\\text{ cm} = 0.1, 0.2, 0.5, 1, 2, 5, 10$). Never use 3, 7, or 9.",
+              "Graph Coverage: The plotted points must span more than half of the grid in both horizontal and vertical directions.",
+              "Points Plotting: Use a sharp pencil to draw a tiny cross (×) or a fine dot enclosed by a circle (⊙). Never use thick blots.",
+              "Line of Best Fit: The line must pass through as many points as possible with roughly equal numbers of scattered points above and below.",
+              "Slope Triangle: Construct a large right-angled triangle whose hypotenuse covers at least half the length of your drawn line.",
+            ],
+            commonMistakes: {
+              mistake: "Constructing a tiny slope triangle covering only two adjacent points.",
+              wrongExample: "Using two plotted experimental points $0.5\\text{ cm}$ apart to calculate the gradient.",
+              correctedExample: "Draw a large triangle across opposite ends of the line of best fit, using coordinates on the line rather than raw data points.",
+              explanation: "WAEC mark schemes penalize small slope triangles and award zero for slopes calculated from unaligned raw table points.",
+            },
+            workedExamples: [
+              {
+                context: "Calculating gradient from a best-fit line",
+                question: "On a graph of $T^2\\text{ (s}^2)$ against $l\\text{ (m)}$, a candidate draws a large slope triangle with vertices $(x_1, y_1) = (0.20, 0.80)$ and $(x_2, y_2) = (0.90, 3.60)$. Calculate the gradient $S$ and deduce $g = 4\\pi^2 / S$.",
+                stepByStepSolution: [
+                  "1. Calculate vertical difference: $\\Delta y = y_2 - y_1 = 3.60 - 0.80 = 2.80\\text{ s}^2$.",
+                  "2. Calculate horizontal difference: $\\Delta x = x_2 - x_1 = 0.90 - 0.20 = 0.70\\text{ m}$.",
+                  "3. Slope: $S = \\frac{\\Delta y}{\\Delta x} = \\frac{2.80}{0.70} = 4.00\\text{ s}^2/\\text{m}$.",
+                  "4. Calculate $g$: $g = \\frac{4\\pi^2}{S} = \\frac{4(3.142)^2}{4.00} = (3.142)^2 \\approx 9.87\\text{ m/s}^2$.",
+                ],
+                finalAnswer: "Slope $S = 4.00\\text{ s}^2/\\text{m}$; Deduced gravity $g = 9.87\\text{ m/s}^2$.",
+                ruleExplanation: "Coordinates read from the line of best fit yielded an accurate determination of acceleration due to gravity.",
+              },
+            ],
+            checkpoint: {
+              id: "chk-phy-prc-1-1",
+              title: "Checkpoint: Paper 3 Graph Rules",
+              passPercentage: 60,
+              verificationMethod: "REASONING_DUAL_PASS_VERIFIED",
+              questions: [
+                {
+                  id: "q_phy_prc_1_1_1",
+                  prompt: "Which of the following scale choices violates standard WAEC practical exam rules?",
+                  options: [
+                    { id: "A", text: "$2\\text{ cm} = 1.0\\text{ unit}$" },
+                    { id: "B", text: "$2\\text{ cm} = 2.0\\text{ units}$" },
+                    { id: "C", text: "$2\\text{ cm} = 3.0\\text{ units}$" },
+                    { id: "D", text: "$2\\text{ cm} = 5.0\\text{ units}$" },
+                  ],
+                  correctOptionId: "C",
+                  explanation: "WAEC explicitly penalizes non-standard scales like multiples of 3, 7, 9 because subdivisions are difficult to read accurately.",
+                  topic: "WAEC Compliant Scales",
+                  weakAreaCode: "WA-PHY-PRC-02",
+                },
+                {
+                  id: "q_phy_prc_1_1_2",
+                  prompt: "What is the minimum recommended coverage for plotted points on a WAEC practical graph?",
+                  options: [
+                    { id: "A", text: "At least 25% of the grid" },
+                    { id: "B", text: "At least 50% of the grid" },
+                    { id: "C", text: "At least 80% of the grid" },
+                    { id: "D", text: "100% of the grid exactly" },
+                  ],
+                  correctOptionId: "B",
+                  explanation: "WAEC requires points to span more than half of each axis to qualify for full scale marks.",
+                  topic: "Graph Grid Coverage",
+                  weakAreaCode: "WA-PHY-PRC-02",
+                },
+                {
+                  id: "q_phy_prc_1_1_3",
+                  prompt: "When reading coordinates for a slope triangle, candidates must select:",
+                  options: [
+                    { id: "A", text: "Any two points from the raw observation table" },
+                    { id: "B", text: "Two widely spaced points on the drawn line of best fit" },
+                    { id: "C", text: "The first and last plotted points only" },
+                    { id: "D", text: "The origin and the highest plotted point" },
+                  ],
+                  correctOptionId: "B",
+                  explanation: "Gradients must be computed from coordinates lying on the fitted line, not from raw experimental data points.",
+                  topic: "Slope Reading Criteria",
+                  weakAreaCode: "WA-PHY-PRC-02",
+                },
+                {
+                  id: "q_phy_prc_1_1_4",
+                  prompt: "Which of the following is an acceptable precaution in an optical pins refraction experiment?",
+                  options: [
+                    { id: "A", text: "Ensuring pins are placed very close together" },
+                    { id: "B", text: "Avoiding parallax error by viewing the feet of the optical pins with one eye closed" },
+                    { id: "C", text: "Heating the glass prism before taking readings" },
+                    { id: "D", text: "Using a thick pencil to draw broad boundary lines" },
+                  ],
+                  correctOptionId: "B",
+                  explanation: "Viewing vertical pins at their bases with one eye closed eliminates parallax error.",
+                  topic: "Optics Precautions",
+                  weakAreaCode: "WA-PHY-PRC-02",
+                },
+                {
+                  id: "q_phy_prc_1_1_5",
+                  prompt: "In an electrical circuit experiment, what is the standard precaution to prevent battery rundown and heating?",
+                  options: [
+                    { id: "A", text: "Keeping the key closed throughout the experiment" },
+                    { id: "B", text: "Removing the key when readings are not being taken" },
+                    { id: "C", text: "Using thin, uninsulated connecting wires" },
+                    { id: "D", text: "Replacing the ammeter with a voltmeter" },
+                  ],
+                  correctOptionId: "B",
+                  explanation: "Opening the switch prevents cell polarization, resistance increase from heating, and battery drain.",
+                  topic: "Electricity Precautions",
+                  weakAreaCode: "WA-PHY-PRC-02",
+                },
+              ],
+            },
+            examTip: "Always write your title in capital letters at the top of the graph page (e.g. 'GRAPH OF T² AGAINST L') and state units on both axes.",
+          },
+        ],
+      },
+    ],
+  },
+];

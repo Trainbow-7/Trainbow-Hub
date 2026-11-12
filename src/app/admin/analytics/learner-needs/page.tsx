@@ -7,20 +7,33 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ENGLISH_WEAK_AREAS, WeakAreaRecord, EnglishSkillArea } from "@/lib/data/english-deficiency-map";
+import { PHYSICS_WEAK_AREAS } from "@/lib/data/physics-deficiency-map";
+import { MATHEMATICS_WEAK_AREAS } from "@/lib/data/mathematics-deficiency-map";
 import { ALL_COURSES } from "@/lib/data/seed-data";
 import { DownloadIcon, SearchIcon, AlertIcon } from "@/components/ui/icons";
 
 export default function LearnerNeedsDashboardPage() {
+  const [subjectFilter, setSubjectFilter] = React.useState<string>("all");
   const [skillFilter, setSkillFilter] = React.useState<string>("all");
   const [levelFilter, setLevelFilter] = React.useState<string>("all");
   const [priorityOnly, setPriorityOnly] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>("");
+
+  // Combine all deficiency registries
+  const allWeakAreas = React.useMemo(() => {
+    return [
+      ...ENGLISH_WEAK_AREAS.map((wa) => ({ ...wa, subject: "English Language" as const })),
+      ...PHYSICS_WEAK_AREAS.map((wa) => ({ ...wa, subject: "Physics" as const })),
+      ...MATHEMATICS_WEAK_AREAS.map((wa) => ({ ...wa, subject: "Mathematics" as const })),
+    ];
+  }, []);
 
   // Simulated cohort analytics with strict NDPA 2023 privacy rule (< 10 -> "Not enough data yet")
   // In production, this aggregates from db.listQuizAttempts & diagnostic submissions
   const cohortData = React.useMemo(() => {
     // Map weak area codes to cohort aggregate metrics
     const stats: Record<string, { sampleSize: number; errorRate: number; dropOffRate: number; reportCount: number }> = {
+      // English cohort samples
       "WA-ENG-GRM-01": { sampleSize: 28, errorRate: 64, dropOffRate: 14, reportCount: 1 },
       "WA-ENG-GRM-02": { sampleSize: 22, errorRate: 58, dropOffRate: 9, reportCount: 0 },
       "WA-ENG-GRM-03": { sampleSize: 19, errorRate: 52, dropOffRate: 11, reportCount: 2 },
@@ -34,11 +47,43 @@ export default function LearnerNeedsDashboardPage() {
       "WA-ENG-ORL-02": { sampleSize: 14, errorRate: 59, dropOffRate: 12, reportCount: 1 },
       "WA-ENG-ESY-01": { sampleSize: 19, errorRate: 54, dropOffRate: 16, reportCount: 2 },
       "WA-ENG-LIT-01": { sampleSize: 12, errorRate: 48, dropOffRate: 9, reportCount: 0 },
-      // Small cohort samples demonstrating strict privacy threshold (< 10)
+      // Small English cohort samples (< 10)
       "WA-ENG-GRM-07": { sampleSize: 6, errorRate: 0, dropOffRate: 0, reportCount: 0 },
       "WA-ENG-LEX-04": { sampleSize: 4, errorRate: 0, dropOffRate: 0, reportCount: 0 },
       "WA-ENG-ORL-04": { sampleSize: 7, errorRate: 0, dropOffRate: 0, reportCount: 0 },
       "WA-ENG-LIT-03": { sampleSize: 5, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+
+      // Physics cohort samples
+      "WA-PHY-MCH-01": { sampleSize: 34, errorRate: 68, dropOffRate: 15, reportCount: 2 },
+      "WA-PHY-MCH-02": { sampleSize: 26, errorRate: 62, dropOffRate: 12, reportCount: 1 },
+      "WA-PHY-MCH-03": { sampleSize: 29, errorRate: 59, dropOffRate: 10, reportCount: 1 },
+      "WA-PHY-MCH-04": { sampleSize: 23, errorRate: 72, dropOffRate: 18, reportCount: 3 },
+      "WA-PHY-MCH-05": { sampleSize: 21, errorRate: 56, dropOffRate: 9, reportCount: 0 },
+      "WA-PHY-MCH-07": { sampleSize: 18, errorRate: 48, dropOffRate: 7, reportCount: 0 },
+      "WA-PHY-MCH-08": { sampleSize: 24, errorRate: 65, dropOffRate: 14, reportCount: 2 },
+      "WA-PHY-THM-01": { sampleSize: 22, errorRate: 54, dropOffRate: 8, reportCount: 1 },
+      "WA-PHY-THM-02": { sampleSize: 19, errorRate: 51, dropOffRate: 11, reportCount: 0 },
+      "WA-PHY-THM-03": { sampleSize: 27, errorRate: 69, dropOffRate: 16, reportCount: 2 },
+      "WA-PHY-WAV-01": { sampleSize: 25, errorRate: 53, dropOffRate: 9, reportCount: 0 },
+      "WA-PHY-WAV-02": { sampleSize: 28, errorRate: 64, dropOffRate: 13, reportCount: 2 },
+      "WA-PHY-ELE-01": { sampleSize: 31, errorRate: 60, dropOffRate: 12, reportCount: 1 },
+      "WA-PHY-ELE-03": { sampleSize: 20, errorRate: 58, dropOffRate: 10, reportCount: 1 },
+      "WA-PHY-ATM-01": { sampleSize: 23, errorRate: 66, dropOffRate: 14, reportCount: 1 },
+      "WA-PHY-ATM-02": { sampleSize: 24, errorRate: 57, dropOffRate: 11, reportCount: 0 },
+      // Small Physics cohort samples (< 10)
+      "WA-PHY-MCH-11": { sampleSize: 6, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+      "WA-PHY-THM-05": { sampleSize: 4, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+      "WA-PHY-ELE-08": { sampleSize: 5, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+      "WA-PHY-ATM-04": { sampleSize: 7, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+      "WA-PHY-PRC-01": { sampleSize: 8, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+
+      // Mathematics cohort samples
+      "WA-MTH-CBT-01": { sampleSize: 32, errorRate: 67, dropOffRate: 16, reportCount: 2 },
+      "WA-MTH-CBT-02": { sampleSize: 26, errorRate: 58, dropOffRate: 10, reportCount: 1 },
+      "WA-MTH-ALG-01": { sampleSize: 30, errorRate: 63, dropOffRate: 14, reportCount: 2 },
+      "WA-MTH-ALG-02": { sampleSize: 28, errorRate: 70, dropOffRate: 17, reportCount: 3 },
+      "WA-MTH-GEO-01": { sampleSize: 22, errorRate: 65, dropOffRate: 13, reportCount: 1 },
+      "WA-MTH-CAL-01": { sampleSize: 25, errorRate: 61, dropOffRate: 12, reportCount: 1 },
     };
 
     return stats;
@@ -46,7 +91,8 @@ export default function LearnerNeedsDashboardPage() {
 
   // Filtered weak areas
   const filteredWeakAreas = React.useMemo(() => {
-    return ENGLISH_WEAK_AREAS.filter((wa) => {
+    return allWeakAreas.filter((wa) => {
+      if (subjectFilter !== "all" && wa.subject.toLowerCase() !== subjectFilter.toLowerCase()) return false;
       if (skillFilter !== "all" && wa.skillArea !== skillFilter) return false;
       if (levelFilter !== "all" && !wa.levels.some((l) => l.toLowerCase().includes(levelFilter.toLowerCase()))) return false;
       if (priorityOnly && !wa.priority) return false;
@@ -59,11 +105,12 @@ export default function LearnerNeedsDashboardPage() {
       }
       return true;
     });
-  }, [skillFilter, levelFilter, priorityOnly, searchQuery]);
+  }, [allWeakAreas, subjectFilter, skillFilter, levelFilter, priorityOnly, searchQuery]);
 
   // CSV Export handler
   const handleExportCSV = () => {
     const headers = [
+      "Subject",
       "Code",
       "Title",
       "SkillArea",
@@ -83,6 +130,7 @@ export default function LearnerNeedsDashboardPage() {
       const isProtected = cohort.sampleSize < 10;
 
       return [
+        `"${wa.subject}"`,
         `"${wa.code}"`,
         `"${wa.title.replace(/"/g, '""')}"`,
         `"${wa.skillArea}"`,
@@ -109,7 +157,7 @@ export default function LearnerNeedsDashboardPage() {
     document.body.removeChild(link);
   };
 
-  const priorityCount = ENGLISH_WEAK_AREAS.filter((w) => w.priority).length;
+  const priorityCount = allWeakAreas.filter((w) => w.priority).length;
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-slate-50 text-neutral-slate-900">
@@ -160,10 +208,10 @@ export default function LearnerNeedsDashboardPage() {
               Tracked Weak Areas
             </span>
             <div className="text-2xl font-bold font-heading text-neutral-slate-900">
-              {ENGLISH_WEAK_AREAS.length}
+              {allWeakAreas.length}
             </div>
             <p className="text-[11px] text-neutral-slate-500">
-              Grammar, Lexis, Comprehension, Orals, Essay, Literature
+              Physics (37), English (24), Mathematics (18)
             </p>
           </div>
 
@@ -187,7 +235,7 @@ export default function LearnerNeedsDashboardPage() {
               {ALL_COURSES.length}
             </div>
             <p className="text-[11px] text-neutral-slate-500">
-              11 English Academy + 6 Mathematics courses
+              12 Physics + 11 English + 6 Mathematics courses
             </p>
           </div>
 
@@ -219,7 +267,7 @@ export default function LearnerNeedsDashboardPage() {
 
         {/* Filter & Search Bar */}
         <div className="rounded-xl border border-neutral-slate-200 bg-white p-4 sm:p-5 space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {/* Search Input */}
             <div className="relative">
               <SearchIcon className="absolute left-3 top-2.5 h-4 w-4 text-neutral-slate-400" />
@@ -232,6 +280,23 @@ export default function LearnerNeedsDashboardPage() {
               />
             </div>
 
+            {/* Subject Filter */}
+            <div>
+              <select
+                value={subjectFilter}
+                onChange={(e) => {
+                  setSubjectFilter(e.target.value);
+                  setSkillFilter("all");
+                }}
+                className="w-full py-2 px-3 text-xs border border-neutral-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue-600 bg-white font-medium"
+              >
+                <option value="all">All Subjects ({allWeakAreas.length})</option>
+                <option value="physics">Physics ({PHYSICS_WEAK_AREAS.length})</option>
+                <option value="english language">English Language ({ENGLISH_WEAK_AREAS.length})</option>
+                <option value="mathematics">Mathematics ({MATHEMATICS_WEAK_AREAS.length})</option>
+              </select>
+            </div>
+
             {/* Skill Area Filter */}
             <div>
               <select
@@ -239,13 +304,40 @@ export default function LearnerNeedsDashboardPage() {
                 onChange={(e) => setSkillFilter(e.target.value)}
                 className="w-full py-2 px-3 text-xs border border-neutral-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue-600 bg-white"
               >
-                <option value="all">All Skill Areas ({ENGLISH_WEAK_AREAS.length})</option>
-                <option value="GRAMMAR">Grammar</option>
-                <option value="LEXIS_STRUCTURE">Lexis & Structure</option>
-                <option value="COMPREHENSION_SUMMARY">Comprehension & Summary</option>
-                <option value="ORAL_ENGLISH">Oral English</option>
-                <option value="ESSAY_COMPOSITION">Essay Composition</option>
-                <option value="LITERARY_ANALYSIS">Literary Analysis</option>
+                <option value="all">All Skill Areas</option>
+                {/* Physics skills */}
+                {subjectFilter === "all" || subjectFilter === "physics" ? (
+                  <optgroup label="Physics">
+                    <option value="MECHANICS">Mechanics</option>
+                    <option value="THERMAL_PHYSICS">Thermal Physics</option>
+                    <option value="WAVES_OPTICS">Waves & Optics</option>
+                    <option value="ELECTRICITY_MAGNETISM">Electricity & Magnetism</option>
+                    <option value="ATOMIC_NUCLEAR">Atomic & Nuclear</option>
+                    <option value="PRACTICAL_MEASUREMENT">Practical Measurement</option>
+                  </optgroup>
+                ) : null}
+                {/* English skills */}
+                {subjectFilter === "all" || subjectFilter === "english language" ? (
+                  <optgroup label="English Language">
+                    <option value="GRAMMAR">Grammar</option>
+                    <option value="LEXIS_STRUCTURE">Lexis & Structure</option>
+                    <option value="COMPREHENSION_SUMMARY">Comprehension & Summary</option>
+                    <option value="ORAL_ENGLISH">Oral English</option>
+                    <option value="ESSAY_COMPOSITION">Essay Composition</option>
+                    <option value="LITERARY_ANALYSIS">Literary Analysis</option>
+                  </optgroup>
+                ) : null}
+                {/* Math skills */}
+                {subjectFilter === "all" || subjectFilter === "mathematics" ? (
+                  <optgroup label="Mathematics">
+                    <option value="NUMERATION_ARITHMETIC">Numeration & Arithmetic</option>
+                    <option value="ALGEBRAIC_PROCESSES">Algebraic Processes</option>
+                    <option value="GEOMETRY_TRIGONOMETRY">Geometry & Trigonometry</option>
+                    <option value="CALCULUS_FUNCTIONS">Calculus & Functions</option>
+                    <option value="STATISTICS_PROBABILITY">Statistics & Probability</option>
+                    <option value="EXAM_TECHNIQUE_SPEED">Exam Technique & Speed</option>
+                  </optgroup>
+                ) : null}
               </select>
             </div>
 
@@ -274,7 +366,7 @@ export default function LearnerNeedsDashboardPage() {
                   onChange={(e) => setPriorityOnly(e.target.checked)}
                   className="rounded border-neutral-slate-300 text-brand-blue-600 focus:ring-brand-blue-500 h-4 w-4"
                 />
-                <span>High Exam Priority Only ({priorityCount})</span>
+                <span>High Priority Only ({priorityCount})</span>
               </label>
             </div>
           </div>
@@ -286,7 +378,7 @@ export default function LearnerNeedsDashboardPage() {
             <table className="w-full text-left text-xs divide-y divide-neutral-slate-200">
               <thead className="bg-neutral-slate-50 text-neutral-slate-600 font-semibold uppercase tracking-wider text-[10px]">
                 <tr>
-                  <th className="py-3 px-4">Code / Skill</th>
+                  <th className="py-3 px-4">Subject & Code</th>
                   <th className="py-3 px-4">Deficiency Area</th>
                   <th className="py-3 px-4">Levels</th>
                   <th className="py-3 px-4">Exam Weight</th>
@@ -311,11 +403,24 @@ export default function LearnerNeedsDashboardPage() {
                     return (
                       <tr key={wa.code} className="hover:bg-neutral-slate-50/80 transition-colors">
                         <td className="py-3 px-4 whitespace-nowrap">
+                          <div className="flex items-center gap-1.5 mb-0.5">
+                            <span
+                              className={`px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase ${
+                                wa.subject === "Physics"
+                                  ? "bg-purple-100 text-purple-800"
+                                  : wa.subject === "Mathematics"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-emerald-100 text-emerald-800"
+                              }`}
+                            >
+                              {wa.subject}
+                            </span>
+                          </div>
                           <span className="font-mono font-semibold text-neutral-slate-900 block">
                             {wa.code}
                           </span>
                           <span className="text-[10px] text-neutral-slate-500 uppercase">
-                            {wa.skillArea.replace(/_/g, " ")}
+                            {String(wa.skillArea).replace(/_/g, " ")}
                           </span>
                         </td>
                         <td className="py-3 px-4 max-w-xs">

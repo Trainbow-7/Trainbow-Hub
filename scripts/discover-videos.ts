@@ -16,12 +16,36 @@ import * as path from "path";
 import https from "https";
 import { COURSES_DATA } from "../src/lib/data/curricula";
 import { ENGLISH_COURSES_DATA } from "../src/lib/data/english-curriculum";
+import { PHYSICS_COURSES_DATA } from "../src/lib/data/physics-curriculum";
 import { TRUSTED_CHANNELS_ALLOWLIST } from "../src/lib/video/trusted-channels";
 import { fetchYouTubeVideoDetails, searchYouTubeVideos } from "../src/lib/video/youtube-client";
 
 const CACHE_FILE = path.join(process.cwd(), "content", "video-discovery-cache.json");
 const DAILY_QUOTA_LIMIT = 10000;
 let quotaUsed = 0;
+
+function loadEnvLocal() {
+  const envPath = path.join(process.cwd(), ".env.local");
+  if (fs.existsSync(envPath)) {
+    const raw = fs.readFileSync(envPath, "utf8");
+    for (const line of raw.split("\n")) {
+      const trimmed = line.trim();
+      if (trimmed && !trimmed.startsWith("#")) {
+        const eqIdx = trimmed.indexOf("=");
+        if (eqIdx !== -1) {
+          const key = trimmed.slice(0, eqIdx).trim();
+          let val = trimmed.slice(eqIdx + 1).trim();
+          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+            val = val.slice(1, -1);
+          }
+          if (!process.env[key]) {
+            process.env[key] = val;
+          }
+        }
+      }
+    }
+  }
+}
 
 interface DiscoveryCache {
   quotaUsedToday: number;
@@ -104,6 +128,7 @@ export function searchYouTubeWeb(query: string): Promise<string[]> {
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function main() {
+  loadEnvLocal();
   console.log("================================================================================");
   console.log("TRAINBOW HUB: Educational Video Discovery & Verification Pipeline");
   console.log("================================================================================");
@@ -134,13 +159,16 @@ async function main() {
     coursesToProcess = ENGLISH_COURSES_DATA;
   } else if (subjectArg === "math" || subjectArg === "mathematics") {
     coursesToProcess = COURSES_DATA;
+  } else if (subjectArg === "physics") {
+    coursesToProcess = PHYSICS_COURSES_DATA;
   } else {
-    coursesToProcess = [...COURSES_DATA, ...ENGLISH_COURSES_DATA];
+    coursesToProcess = [...COURSES_DATA, ...ENGLISH_COURSES_DATA, ...PHYSICS_COURSES_DATA];
   }
 
   for (const course of coursesToProcess) {
     console.log(`Processing Course: ${course.title} (${course.slug})...`);
     const isEnglish = (course as any).subjectSlug === "english-language" || course.subject === "English Language";
+    const isPhysics = (course as any).subjectSlug === "physics" || course.subject === "Physics" || (course as any).slug?.startsWith("physics-") || (course as any).slug?.includes("physics");
 
     for (const mod of course.modules) {
       for (const les of mod.lessons) {
@@ -175,6 +203,8 @@ async function main() {
           quotaUsed += 100; // Search cost
           const qText = isEnglish
             ? `${les.title} ${course.level} English lesson`
+            : isPhysics
+            ? `${les.title} Physics senior secondary lesson`
             : `${les.title} ${course.examBody || ""} Mathematics`;
           const results = await searchYouTubeVideos(qText, apiKey, 5);
           for (const item of results) {
@@ -195,6 +225,14 @@ async function main() {
                 `Learn English with Emma ${les.title}`,
                 `Oxford Online English ${les.title}`,
                 `English with Lucy ${les.title}`,
+              ]
+            : isPhysics
+            ? [
+                `The Organic Chemistry Tutor Physics ${les.title}`,
+                `Michel van Biezen Physics ${les.title}`,
+                `Flipping Physics ${les.title}`,
+                `Khan Academy Physics ${les.title}`,
+                `CrashCourse Physics ${les.title}`,
               ]
             : [
                 `The Organic Chemistry Tutor ${les.title}`,

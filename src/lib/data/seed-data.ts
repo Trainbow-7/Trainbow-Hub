@@ -1,5 +1,6 @@
 import { COURSES_DATA } from "./curricula";
 import { ENGLISH_COURSES_DATA } from "./english-curriculum";
+import { PHYSICS_COURSES_DATA } from "./physics-curriculum";
 export interface SubjectItem {
   id: string;
   name: string;
@@ -125,7 +126,7 @@ export const SEED_SUBJECTS: SubjectItem[] = [
     levels: ["SS 1-3", "WAEC Prep", "JAMB UTME Prep"],
     description: "Mechanics, thermal energy, optics, wave motion, electromagnetism, and atomic physics.",
     accentColor: "border-sky-600",
-    courseCount: 2,
+    courseCount: 12,
     tutorCount: 4,
   },
   {
@@ -312,8 +313,65 @@ export const SEED_ENGLISH_COURSES: CourseItem[] = ENGLISH_COURSES_DATA.map((c) =
   };
 });
 
+// -----------------------------------------------------------------------------
+// 12 PHYSICS COURSES
+// -----------------------------------------------------------------------------
+export const SEED_PHYSICS_COURSES: CourseItem[] = PHYSICS_COURSES_DATA.map((c) => {
+  const allLessons = c.modules.flatMap((m) => m.lessons);
+  const lessonCount = allLessons.length;
+  const totalMinutes = allLessons.reduce((sum, l) => sum + (l.durationMinutes || 0), 0);
+  const durationHours = Math.round(totalMinutes / 60);
+
+  return {
+    id: c.id,
+    slug: c.slug,
+    title: c.title,
+    subjectSlug: "physics",
+    subjectName: "Physics",
+    level: c.level,
+    instructorName: c.instructorName || "Trainbow HUB Academy",
+    instructorTitle: c.instructorTitle || "Senior Physics Faculty",
+    instructorAvatar: "TH",
+    priceMinorUnits: c.priceMinorUnits || 0,
+    currency: c.currency || "NGN",
+    rating: 0,
+    reviewCount: 0,
+    lessonCount,
+    durationHours,
+    shortDescription: c.shortDescription || c.description,
+    fullDescription: c.description,
+    syllabus: c.modules.map((m) => ({
+      id: m.id,
+      title: m.title,
+      description: m.description,
+      lessons: m.lessons.map((l) => ({
+        id: l.id,
+        slug: l.slug,
+        title: l.title,
+        durationMinutes: l.durationMinutes,
+        isFreePreview: l.isFreePreview,
+        topicId: l.topicId,
+        order: l.sortOrder,
+        summary: l.summary,
+        objectives: l.objectives,
+        keyPoints: l.keyPoints,
+        reviewStatus: l.reviewStatus,
+        videoId: l.videoId,
+        weakAreaCodes: l.weakAreaCodes,
+        examTip: l.examTip,
+      })),
+    })),
+    learningOutcomes: c.learningOutcomes,
+    prerequisites: c.prerequisites,
+  };
+});
+
 // All courses combined across subjects
-export const ALL_COURSES: CourseItem[] = [...SEED_COURSES, ...SEED_ENGLISH_COURSES];
+export const ALL_COURSES: CourseItem[] = [
+  ...SEED_COURSES,
+  ...SEED_ENGLISH_COURSES,
+  ...SEED_PHYSICS_COURSES,
+];
 
 export function getAllCourses(): CourseItem[] {
   return ALL_COURSES;
@@ -327,11 +385,14 @@ export function getCoursesBySubject(subjectSlug: string): CourseItem[] {
   if (subjectSlug === "english" || subjectSlug === "english-language") {
     return SEED_ENGLISH_COURSES;
   }
+  if (subjectSlug === "physics") {
+    return SEED_PHYSICS_COURSES;
+  }
   return SEED_COURSES.filter((c) => c.subjectSlug === subjectSlug);
 }
 
 // -----------------------------------------------------------------------------
-// 12 VETTED NIGERIAN TUTORS
+// 12 EXPERIENCED NIGERIAN TUTORS
 // -----------------------------------------------------------------------------
 export const SEED_TUTORS: TutorItem[] = [
   {
@@ -691,7 +752,7 @@ export const SEED_FAQS: FAQItem[] = [
     id: "faq-2",
     category: "Tutors & Booking",
     question: "How does tutor matching work, and why is there no public marketplace?",
-    answer: "To guarantee reliable availability and trust, Trainbow HUB uses a concierge matching model instead of a public directory. Every tutor request is reviewed directly by Mr Oyedeji S.T, Director of Trainbow HUB. The Director personally selects an experienced, background-vetted tutor from our private roster who is available right now, and sends you a tailored proposal for your approval.",
+    answer: "To guarantee reliable availability and trust, Trainbow HUB uses a concierge matching model instead of a public directory. Every tutor request is reviewed directly by Mr Oyedeji S.T, Director of Trainbow HUB. The Director personally selects an experienced, background-vetted tutor from our tutor community who is available right now, and sends you a tailored proposal for your approval.",
   },
   {
     id: "faq-3",
@@ -715,7 +776,7 @@ export const SEED_FAQS: FAQItem[] = [
     id: "faq-6",
     category: "Tutors & Booking",
     question: "What happens if I need to cancel, reschedule, or decline a tutor match?",
-    answer: "When Mr Oyedeji S.T sends you a tutor proposal, you can accept or decline with your feedback. If declined, the Director immediately matches you with an alternative tutor from the private roster. For confirmed sessions, cancellations made more than 24 hours in advance receive a 100% refund. If a tutor cancels, the learner always receives a 100% refund.",
+    answer: "When Mr Oyedeji S.T sends you a tutor proposal, you can accept or decline with your feedback. If declined, the Director immediately matches you with an alternative tutor from our verified educators. For confirmed sessions, cancellations made more than 24 hours in advance receive a 100% refund. If a tutor cancels, the learner always receives a 100% refund.",
   },
   {
     id: "faq-7",

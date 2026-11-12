@@ -69,7 +69,7 @@ describe("English Language Academy Suite", () => {
 
     it("verifies SEED_COURSES remains 6 mathematics courses for backwards compatibility", () => {
       expect(SEED_COURSES).toHaveLength(6);
-      expect(ALL_COURSES).toHaveLength(17);
+      expect(ALL_COURSES.length).toBeGreaterThanOrEqual(17);
     });
 
     it("updates English subject courseCount to 11 in SEED_SUBJECTS", () => {

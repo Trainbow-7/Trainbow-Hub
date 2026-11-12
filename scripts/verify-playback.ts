@@ -68,6 +68,24 @@ const TEST_COURSES = [
     lessonSlug: "short-vowel-sounds-phonics",
     expectedVideoId: "vHj8W0o9j8c",
   },
+  {
+    courseSlug: "physics-ss1-measurement-motion-forces",
+    courseTitle: "Physics SS 1: Measurement, Motion and Forces",
+    lessonSlug: "fundamental-derived-quantities-si-units",
+    expectedVideoId: "V8_7yPtR24A",
+  },
+  {
+    courseSlug: "waec-neco-ssce-physics-mastery",
+    courseTitle: "WAEC & NECO SSCE Physics Mastery",
+    lessonSlug: "waec-paper-2-mechanics-problem-solving",
+    expectedVideoId: "8NLzuURxFwY",
+  },
+  {
+    courseSlug: "jamb-utme-physics-complete",
+    courseTitle: "JAMB UTME Physics Speed & Strategy",
+    lessonSlug: "jamb-cbt-mechanics-shortcuts",
+    expectedVideoId: "52R61aSWHg0",
+  },
 ];
 
 interface PlaybackResult {
@@ -116,7 +134,18 @@ async function main() {
     }
 
     // 2. Verify Lesson Players
-    for (const item of TEST_COURSES) {
+    const args = process.argv.slice(2);
+    const subjectIndex = args.indexOf("--subject");
+    const subjectArg = subjectIndex !== -1 ? args[subjectIndex + 1] : "all";
+
+    const coursesToTest = TEST_COURSES.filter((c) => {
+      if (subjectArg === "physics") return c.courseSlug.includes("physics");
+      if (subjectArg === "english") return c.courseSlug.includes("english");
+      if (subjectArg === "math" || subjectArg === "mathematics") return !c.courseSlug.includes("physics") && !c.courseSlug.includes("english");
+      return true;
+    });
+
+    for (const item of coursesToTest) {
       const lessonUrl = `http://localhost:3000/courses/${item.courseSlug}/lessons/${item.lessonSlug}`;
       console.log(`Testing Lesson Player: ${item.lessonSlug} (${item.courseSlug})...`);
 

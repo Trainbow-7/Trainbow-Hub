@@ -55,8 +55,26 @@ export const TRUSTED_CHANNELS_ALLOWLIST: ChannelEntry[] = [
   {
     channelId: "UCtG2Y3-q3aCgB4D4R9bHj1A",
     name: "Don't Memorise",
-    notes: "Bite-sized, animated visual conceptual explanations in middle- and high-school mathematics and biology.",
-    subjects: ["Mathematics", "Biology", "Geometry"],
+    notes: "Bite-sized, animated visual conceptual explanations in middle- and high-school mathematics, physics, and biology.",
+    subjects: ["Mathematics", "Physics", "Biology", "Geometry"],
+  },
+  {
+    channelId: "UCiGxYawhEp4Q-CvTm545QRg",
+    name: "Michel van Biezen (ilectureonline)",
+    notes: "Over 8,000 clear, white-board style physics and engineering lectures covering kinematics, dynamics, thermodynamics, optics, and electromagnetism.",
+    subjects: ["Physics", "Mechanics", "Thermodynamics", "Electromagnetism"],
+  },
+  {
+    channelId: "UCy0OB6_q1gGvU_2kC8f1xLg",
+    name: "Flipping Physics",
+    notes: "High-school and AP/SSCE level conceptual physics demonstrations, problem-solving techniques, and visual experiments.",
+    subjects: ["Physics", "Mechanics", "Waves", "Circuits"],
+  },
+  {
+    channelId: "UCZzatyx-xC-Dl_VVUVHYDYw",
+    name: "Physics Online",
+    notes: "Comprehensive tutorials and exam walkthroughs for A-level, IGCSE, and senior secondary physics students.",
+    subjects: ["Physics", "Atomic Physics", "Optics", "Practical Skills"],
   },
   {
     channelId: "UCHaHD477h-FeBbVh9Sh7syA",

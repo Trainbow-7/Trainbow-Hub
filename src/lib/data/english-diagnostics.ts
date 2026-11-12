@@ -797,14 +797,34 @@ export const ENGLISH_DIAGNOSTICS: Record<string, CourseDiagnostic> = {
 };
 
 import { MATHEMATICS_DIAGNOSTICS, getMathematicsDiagnostic } from "./mathematics-diagnostics";
+import { PHYSICS_DIAGNOSTICS, getPhysicsDiagnostic } from "./physics-diagnostics";
 
 export function getCourseDiagnostic(courseSlug: string): CourseDiagnostic | undefined {
+  if (PHYSICS_DIAGNOSTICS[courseSlug]) {
+    return PHYSICS_DIAGNOSTICS[courseSlug];
+  }
+
   if (MATHEMATICS_DIAGNOSTICS[courseSlug]) {
     return MATHEMATICS_DIAGNOSTICS[courseSlug];
   }
 
   if (ENGLISH_DIAGNOSTICS[courseSlug]) {
     return ENGLISH_DIAGNOSTICS[courseSlug];
+  }
+
+  // Physics fallback check
+  if (
+    courseSlug.includes("physics") ||
+    courseSlug.includes("mechanics") ||
+    courseSlug.includes("thermal") ||
+    courseSlug.includes("heat") ||
+    courseSlug.includes("waves") ||
+    courseSlug.includes("optics") ||
+    courseSlug.includes("electricity") ||
+    courseSlug.includes("magnetism") ||
+    courseSlug.includes("nuclear")
+  ) {
+    return getPhysicsDiagnostic(courseSlug);
   }
 
   // Mathematics fallback check

@@ -150,7 +150,7 @@ export default function SubjectDetailPage({ params }: SubjectPageProps) {
                 No self-paced courses available yet for {subject.name}
               </h3>
               <p className="text-sm text-neutral-slate-600 max-w-md mx-auto">
-                Looking for instruction in {subject.name}? Request a vetted Nigerian tutor for tailored one-on-one virtual or in-person lessons.
+                No courses for this subject yet. Tell us what you need and our Director will match you with an available tutor.
               </p>
               <div className="pt-2">
                 <Link href="/request-tutor">
