@@ -103,7 +103,33 @@ function normalizeUnescapedMath(input: string): string {
     s.replace(/\b(cm|m|mm|km)\^([23])\b/g, (_match, u, p) => `$\\text{${u}}^${p}$`)
   );
 
-  // 8. Standalone Greek words: theta, tetha -> \theta; alpha -> \alpha; beta -> \beta; gamma -> \gamma; etc.
+  // 8. Auto-wrap unwrapped raw LaTeX commands: \frac, \sqrt, \pmatrix, \mathbf, etc.
+  text = applyRuleToNonMath(text, (s) => {
+    // If string has LaTeX commands but no $ delimiters
+    if (/\\(?:frac|sqrt|mathbf|pmatrix|begin|pm|times|div|cdot|circ|degree|approx|le|ge|int|sum)\b/.test(s)) {
+      // If the segment is mostly mathematical (e.g. no long English prose sentences)
+      if (!/[a-zA-Z]{5,}\s+[a-zA-Z]{5,}\s+[a-zA-Z]{5,}/.test(s)) {
+        return `$${s.trim()}$`;
+      }
+      // Otherwise wrap individual fraction or sqrt commands
+      return s
+        .replace(/(-?\d*\\frac\{[^}]+\}\{[^}]+\})/g, "$$$1$")
+        .replace(/(\\sqrt\{[^}]+\})/g, "$$$1$");
+    }
+    return s;
+  });
+
+  // 9. Compound algebraic powers like 24x(3x^2 - 5)^3 or (x - 3)^2 + 4
+  text = applyRuleToNonMath(text, (s) => {
+    if (/\^/.test(s) && !/[a-zA-Z]{5,}\s+[a-zA-Z]{5,}/.test(s)) {
+      if (/^[0-9a-zA-Z\s\(\)\+\-\*\/\^\\_]+$/.test(s.trim())) {
+        return `$${s.trim()}$`;
+      }
+    }
+    return s;
+  });
+
+  // 10. Standalone Greek words: theta, tetha -> \theta; alpha -> \alpha; beta -> \beta; gamma -> \gamma; etc.
   text = applyRuleToNonMath(text, (s) => s.replace(/\b(theta|tetha)\b/gi, () => "$\\theta$"));
   text = applyRuleToNonMath(text, (s) => s.replace(/\balpha\b/gi, () => "$\\alpha$"));
   text = applyRuleToNonMath(text, (s) => s.replace(/\bbeta\b/gi, () => "$\\beta$"));
@@ -112,7 +138,7 @@ function normalizeUnescapedMath(input: string): string {
   text = applyRuleToNonMath(text, (s) => s.replace(/\bphi\b/gi, () => "$\\phi$"));
   text = applyRuleToNonMath(text, (s) => s.replace(/\bomega\b/gi, () => "$\\omega$"));
 
-  // 9. Scale factors & powers: k^2, r^3, x^2
+  // 11. Scale factors & powers: k^2, r^3, x^2
   text = applyRuleToNonMath(text, (s) =>
     s.replace(/\b([a-zA-Z])\^([0-9n\-]+)\b/g, (_match, v, p) => `$${v}^${p}$`)
   );

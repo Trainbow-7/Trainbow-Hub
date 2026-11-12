@@ -361,3 +361,4 @@ export const MATHEMATICS_WEAK_AREAS: WeakAreaRecord[] = [
 export function getMathWeakAreaByCode(code: string): WeakAreaRecord | undefined {
   return MATHEMATICS_WEAK_AREAS.find((wa) => wa.code === code);
 }
+

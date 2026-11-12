@@ -21,7 +21,7 @@ export function CourseDiagnosticView({ course }: CourseDiagnosticViewProps) {
   const [selectedAnswers, setSelectedAnswers] = React.useState<Record<string, string>>({});
   const [submitted, setSubmitted] = React.useState(false);
 
-  const questions: DiagnosticQuestion[] = diagnostic?.questions || [];
+  const questions: DiagnosticQuestion[] = React.useMemo(() => diagnostic?.questions || [], [diagnostic]);
 
   const handleSelectOption = (questionId: string, optionId: string) => {
     if (submitted) return;
