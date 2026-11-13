@@ -59,6 +59,7 @@ export const DEEP_DIVE_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-mch-1-1",
             slug: "friction-inclined-plane-normal-reaction",
+            videoId: "ufgY237M5KQ",
             title: "Friction on Horizontal and Inclined Planes: Normal Reaction and Angle of Repose",
             sortOrder: 1,
             durationMinutes: 50,
@@ -247,6 +248,7 @@ export const DEEP_DIVE_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-heat-1-1",
             slug: "latent-heat-fusion-vaporisation-ice-water-steam",
+            videoId: "DWiCaDPM7Hk",
             title: "Specific Latent Heat of Fusion and Vaporisation: The Complete Ice-to-Steam Path",
             sortOrder: 1,
             durationMinutes: 50,
@@ -430,6 +432,7 @@ export const DEEP_DIVE_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-wav-1-1",
             slug: "snells-law-refractive-index-total-internal-reflection",
+            videoId: "5bkiQob8ikc",
             title: "Snell's Law, Refractive Index and Total Internal Reflection",
             sortOrder: 1,
             durationMinutes: 45,
@@ -622,6 +625,7 @@ export const DEEP_DIVE_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-elc-1-1",
             slug: "transformers-turns-ratios-power-efficiency-ac",
+            videoId: "UchitHGF4n8",
             title: "Transformers: Turns Ratio, Current Inversion, Power Losses and Efficiency",
             sortOrder: 1,
             durationMinutes: 50,
@@ -815,6 +819,7 @@ export const DEEP_DIVE_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-mod-1-1",
             slug: "photoelectric-effect-work-function-einstein-equation",
+            videoId: "-LECEvusk8E",
             title: "The Photoelectric Effect: Work Function, Threshold Frequency and Stopping Potential",
             sortOrder: 1,
             durationMinutes: 50,

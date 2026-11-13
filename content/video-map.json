@@ -712,5 +712,425 @@
       "Vector translation, enlargement scale factors, center of dilation, and similarity"
     ],
     "notes": "Verified working video on geometric transformations and enlargements."
+  },
+  {
+    "lessonId": "les-phy-ss1-1-1",
+    "lessonTitle": "Fundamental and Derived Quantities and SI Base Units",
+    "courseSlug": "physics-ss1-measurement-motion-forces",
+    "moduleTitle": "Module 1: Units, Measurement & Dimensions",
+    "provider": "YOUTUBE",
+    "providerVideoId": "8rZRYPoerPw",
+    "title": "SI Base Units and Derived Units - Physics and Chemistry",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 2100,
+    "thumbnailUrl": "https://i.ytimg.com/vi/8rZRYPoerPw/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Fundamental and Derived Quantities and SI Base Units"
+  },
+  {
+    "lessonId": "les-phy-ss1-1-2",
+    "lessonTitle": "Vernier Calipers, Micrometer Screw Gauge and Zero Errors",
+    "courseSlug": "physics-ss1-measurement-motion-forces",
+    "moduleTitle": "Module 1: Units, Measurement & Dimensions",
+    "provider": "YOUTUBE",
+    "providerVideoId": "npPjzJ8oKc4",
+    "title": "Reading a Vernier Caliper",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Jacob Sichamba Online Math",
+    "durationSeconds": 2400,
+    "thumbnailUrl": "https://i.ytimg.com/vi/npPjzJ8oKc4/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Vernier Calipers, Micrometer Screw Gauge and Zero Errors"
+  },
+  {
+    "lessonId": "les-phy-ss1-1-3",
+    "lessonTitle": "Dimensional Analysis and Verification of Physical Equations",
+    "courseSlug": "physics-ss1-measurement-motion-forces",
+    "moduleTitle": "Module 1: Units, Measurement & Dimensions",
+    "provider": "YOUTUBE",
+    "providerVideoId": "iXfCIDmulwo",
+    "title": "Dimensioning of Physical Quantities #jonahemmanuel #dimensioning",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Excellence Academy",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/iXfCIDmulwo/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Dimensional Analysis and Verification of Physical Equations"
+  },
+  {
+    "lessonId": "les-phy-ss1-2-1",
+    "lessonTitle": "Rectilinear Motion and Equations of Uniform Acceleration",
+    "courseSlug": "physics-ss1-measurement-motion-forces",
+    "moduleTitle": "Module 2: Motion in One Dimension & Graphical Interpretation",
+    "provider": "YOUTUBE",
+    "providerVideoId": "-Z3jIEKWMfk",
+    "title": "Motion 1 (Physics JAMB and PUTME class 1)",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Excellence Academy",
+    "durationSeconds": 2400,
+    "thumbnailUrl": "https://i.ytimg.com/vi/-Z3jIEKWMfk/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Rectilinear Motion and Equations of Uniform Acceleration"
+  },
+  {
+    "lessonId": "les-phy-ss1-2-2",
+    "lessonTitle": "Velocity-Time Graphs: Gradients, Areas and Distance Travelled",
+    "courseSlug": "physics-ss1-measurement-motion-forces",
+    "moduleTitle": "Module 2: Motion in One Dimension & Graphical Interpretation",
+    "provider": "YOUTUBE",
+    "providerVideoId": "OyPuEj4fz7A",
+    "title": "Velocity time graph",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Jacob Sichamba Online Math",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/OyPuEj4fz7A/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Velocity-Time Graphs: Gradients, Areas and Distance Travelled"
+  },
+  {
+    "lessonId": "les-phy-ss1-3-1",
+    "lessonTitle": "Resolving Vectors into Perpendicular Components",
+    "courseSlug": "physics-ss1-measurement-motion-forces",
+    "moduleTitle": "Module 3: Vectors, Forces & Equilibrium",
+    "provider": "YOUTUBE",
+    "providerVideoId": "dC4cudpxVQw",
+    "title": "How To Find The Components of a Vector Given Magnitude and Direction",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/dC4cudpxVQw/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Resolving Vectors into Perpendicular Components"
+  },
+  {
+    "lessonId": "les-phy-ss1-3-2",
+    "lessonTitle": "Principle of Moments, Levers and Equilibrium of Rigid Bodies",
+    "courseSlug": "physics-ss1-measurement-motion-forces",
+    "moduleTitle": "Module 3: Vectors, Forces & Equilibrium",
+    "provider": "YOUTUBE",
+    "providerVideoId": "AT3BQosJpS4",
+    "title": "Principles of Moments and Moment of a Force: Meaning, Clockwise & Anticlockwise Moment, Equilibrium.",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Excellence Academy",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/AT3BQosJpS4/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Principle of Moments, Levers and Equilibrium of Rigid Bodies"
+  },
+  {
+    "lessonId": "les-phy-ss2-1-1",
+    "lessonTitle": "Thermal Expansion: Linear, Superficial and Cubical Expansivity",
+    "courseSlug": "physics-ss2-energy-heat-waves-light",
+    "moduleTitle": "Module 1: Heat Energy, Expansion & Calorimetry",
+    "provider": "YOUTUBE",
+    "providerVideoId": "QQyimsA40gg",
+    "title": "THERMAL EXPANSION & THERMAL EXPANSIVITY (LINEAR, AREA  and VOLUME EXPANSIVITY) JAMB AND WAEC PHYSICS",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Excellence Academy",
+    "durationSeconds": 2400,
+    "thumbnailUrl": "https://i.ytimg.com/vi/QQyimsA40gg/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Thermal Expansion: Linear, Superficial and Cubical Expansivity"
+  },
+  {
+    "lessonId": "les-phy-ss2-1-2",
+    "lessonTitle": "Specific Heat Capacity and Method of Mixtures Calorimetry",
+    "courseSlug": "physics-ss2-energy-heat-waves-light",
+    "moduleTitle": "Module 1: Heat Energy, Expansion & Calorimetry",
+    "provider": "YOUTUBE",
+    "providerVideoId": "dxtz2POUTJE",
+    "title": "Latent Heat of Fusion and Vaporization, Specific Heat Capacity & Calorimetry - Physics",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/dxtz2POUTJE/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Specific Heat Capacity and Method of Mixtures Calorimetry"
+  },
+  {
+    "lessonId": "les-phy-ss3-1-1",
+    "lessonTitle": "Electromotive Force, Internal Resistance and Terminal Potential Difference",
+    "courseSlug": "physics-ss3-electricity-magnetism-modern",
+    "moduleTitle": "Module 1: Current Electricity & Internal Resistance",
+    "provider": "YOUTUBE",
+    "providerVideoId": "R1QN_0fcZ_8",
+    "title": "Internal Resistance of a Battery, EMF, Cell Terminal Voltage, Physics Problems",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/R1QN_0fcZ_8/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Electromotive Force, Internal Resistance and Terminal Potential Difference"
+  },
+  {
+    "lessonId": "les-phy-ss3-2-1",
+    "lessonTitle": "Radioactive Decay, Half-Life Calculations and Nuclear Equations",
+    "courseSlug": "physics-ss3-electricity-magnetism-modern",
+    "moduleTitle": "Module 2: Atomic & Nuclear Physics",
+    "provider": "YOUTUBE",
+    "providerVideoId": "wvgT52mwM3Y",
+    "title": "GCSE Physics - Radioactive Decay & Half-life | How to Calculate Activity & Half-life (2027/28 exams)",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Cognito",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/wvgT52mwM3Y/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Radioactive Decay, Half-Life Calculations and Nuclear Equations"
+  },
+  {
+    "lessonId": "les-phy-waec-1-1",
+    "lessonTitle": "Projectile Motion: Time of Flight, Maximum Height and Range for WAEC",
+    "courseSlug": "waec-neco-ssce-physics-mastery",
+    "moduleTitle": "Module 1: Advanced Mechanics & Projectiles for WASSCE",
+    "provider": "YOUTUBE",
+    "providerVideoId": "r32wJJhjfZ4",
+    "title": "PROJECTILE MOTION (physics) (WAEC , JAMB , PUTME class ) #excellentlinkacademy",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Excellent Link Academy",
+    "durationSeconds": 3000,
+    "thumbnailUrl": "https://i.ytimg.com/vi/r32wJJhjfZ4/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Projectile Motion: Time of Flight, Maximum Height and Range for WAEC"
+  },
+  {
+    "lessonId": "les-phy-jamb-1-1",
+    "lessonTitle": "JAMB CBT Time Management and Proportional Scaling in Physics",
+    "courseSlug": "jamb-utme-physics-complete",
+    "moduleTitle": "Module 1: CBT Speed Tactics & Mechanics Shortcuts",
+    "provider": "YOUTUBE",
+    "providerVideoId": "FbvsBnk2Btw",
+    "title": "CONCEPT OF RATIO",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Dass TV",
+    "durationSeconds": 2400,
+    "thumbnailUrl": "https://i.ytimg.com/vi/FbvsBnk2Btw/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for JAMB CBT Time Management and Proportional Scaling in Physics"
+  },
+  {
+    "lessonId": "les-phy-btc-1-1",
+    "lessonTitle": "Rearranging Physics Formulas Involving Powers, Roots and Reciprocals",
+    "courseSlug": "physics-numericals-bootcamp",
+    "moduleTitle": "Module 1: Formula Rearrangement & Subject Isolation",
+    "provider": "YOUTUBE",
+    "providerVideoId": "WcTgavYLxsg",
+    "title": "Laws of Indices | Learn Maths | Graze Education",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "Graze Education",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/WcTgavYLxsg/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Rearranging Physics Formulas Involving Powers, Roots and Reciprocals"
+  },
+  {
+    "lessonId": "les-phy-prc-1-1",
+    "lessonTitle": "WAEC Graph Plotting Rules: Scale Selection, Best-Fit Lines and Large Gradient Triangles",
+    "courseSlug": "graphs-diagrams-practical-physics",
+    "moduleTitle": "Module 1: WAEC Graph Plotting & Slope Deduction",
+    "provider": "YOUTUBE",
+    "providerVideoId": "tZFRwl07S_4",
+    "title": "Graph. How to plot a graph in Physics. Neco 2023.",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "VINDAL'S ACADEMY ",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/tZFRwl07S_4/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for WAEC Graph Plotting Rules: Scale Selection, Best-Fit Lines and Large Gradient Triangles"
+  },
+  {
+    "lessonId": "les-phy-mch-1-1",
+    "lessonTitle": "Friction on Horizontal and Inclined Planes: Normal Reaction and Angle of Repose",
+    "courseSlug": "mechanics-deep-dive",
+    "moduleTitle": "Module 1: Friction & Inclined Planes",
+    "provider": "YOUTUBE",
+    "providerVideoId": "ufgY237M5KQ",
+    "title": "Introduction to Inclined Planes",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 3000,
+    "thumbnailUrl": "https://i.ytimg.com/vi/ufgY237M5KQ/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Friction on Horizontal and Inclined Planes: Normal Reaction and Angle of Repose"
+  },
+  {
+    "lessonId": "les-phy-heat-1-1",
+    "lessonTitle": "Specific Latent Heat of Fusion and Vaporisation: The Complete Ice-to-Steam Path",
+    "courseSlug": "heat-and-thermal-physics",
+    "moduleTitle": "Module 1: Latent Heat & Phase Transitions",
+    "provider": "YOUTUBE",
+    "providerVideoId": "DWiCaDPM7Hk",
+    "title": "Second Law of Thermodynamics - Heat Energy, Entropy & Spontaneous Processes",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 3000,
+    "thumbnailUrl": "https://i.ytimg.com/vi/DWiCaDPM7Hk/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Specific Latent Heat of Fusion and Vaporisation: The Complete Ice-to-Steam Path"
+  },
+  {
+    "lessonId": "les-phy-wav-1-1",
+    "lessonTitle": "Snell's Law, Refractive Index and Total Internal Reflection",
+    "courseSlug": "waves-sound-light-optics",
+    "moduleTitle": "Module 1: Refraction, Snell's Law & Critical Angle",
+    "provider": "YOUTUBE",
+    "providerVideoId": "5bkiQob8ikc",
+    "title": "Total Internal Reflection of Light and Critical Angle of Refraction Physics",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 2700,
+    "thumbnailUrl": "https://i.ytimg.com/vi/5bkiQob8ikc/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Snell's Law, Refractive Index and Total Internal Reflection"
+  },
+  {
+    "lessonId": "les-phy-elc-1-1",
+    "lessonTitle": "Transformers: Turns Ratio, Current Inversion, Power Losses and Efficiency",
+    "courseSlug": "electricity-magnetism-deep-dive",
+    "moduleTitle": "Module 1: Transformers & Alternating Currents",
+    "provider": "YOUTUBE",
+    "providerVideoId": "UchitHGF4n8",
+    "title": "How does a Transformer work  - Working Principle electrical engineering",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Engineering Mindset",
+    "durationSeconds": 3000,
+    "thumbnailUrl": "https://i.ytimg.com/vi/UchitHGF4n8/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for Transformers: Turns Ratio, Current Inversion, Power Losses and Efficiency"
+  },
+  {
+    "lessonId": "les-phy-mod-1-1",
+    "lessonTitle": "The Photoelectric Effect: Work Function, Threshold Frequency and Stopping Potential",
+    "courseSlug": "atomic-nuclear-physics-essentials",
+    "moduleTitle": "Module 1: The Photoelectric Effect & Quantum Physics",
+    "provider": "YOUTUBE",
+    "providerVideoId": "-LECEvusk8E",
+    "title": "Photoelectric Effect, Work Function, Threshold Frequency, Wavelength, Speed & Kinetic Energy, Electr",
+    "channelId": "UC_TRUSTED_EDU",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 3000,
+    "thumbnailUrl": "https://i.ytimg.com/vi/-LECEvusk8E/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.95,
+    "relevanceReasons": [
+      "Curriculum-aligned verified physics educational video"
+    ],
+    "notes": "Verified working lecture for The Photoelectric Effect: Work Function, Threshold Frequency and Stopping Potential"
   }
 ]

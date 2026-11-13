@@ -393,4 +393,43 @@ describe("Physics Academy Suite", () => {
       }
     });
   });
+
+  // --------------------------------------------------------------------------
+  // 7. Verified Video Integration & Coverage
+  // --------------------------------------------------------------------------
+  describe("7. Verified Video Integration & Coverage", () => {
+    it("ensures every Physics lesson has a verified YouTube videoId attached", () => {
+      const allLessons = listAllPhysicsLessons();
+      expect(allLessons.length).toBeGreaterThan(0);
+
+      for (const { courseSlug, lesson } of allLessons) {
+        expect(
+          lesson.videoId,
+          `Expected lesson '${lesson.slug}' in course '${courseSlug}' to have a verified videoId`
+        ).toBeDefined();
+        expect(lesson.videoId).toMatch(/^[a-zA-Z0-9_-]{11}$/);
+      }
+    });
+
+    it("ensures all physics lessons are registered in content/video-map.json with APPROVED status", () => {
+      const videoMapPath = path.join(process.cwd(), "content", "video-map.json");
+      expect(fs.existsSync(videoMapPath)).toBe(true);
+
+      const videoMap = JSON.parse(fs.readFileSync(videoMapPath, "utf8"));
+      const allLessons = listAllPhysicsLessons();
+
+      for (const { courseSlug, lesson } of allLessons) {
+        const found = videoMap.find(
+          (v: any) => v.courseSlug === courseSlug && (v.lessonId === lesson.id || v.providerVideoId === lesson.videoId)
+        );
+        expect(
+          found,
+          `Expected videoMap entry for lesson '${lesson.id}' in '${courseSlug}'`
+        ).toBeDefined();
+        expect(found.status).toBe("APPROVED");
+        expect(found.embeddable).toBe(true);
+        expect(found.provider).toBe("YOUTUBE");
+      }
+    });
+  });
 });

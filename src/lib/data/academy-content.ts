@@ -32,6 +32,7 @@ export interface DetailedLesson {
   moduleTitle: string;
   durationMinutes: number;
   isFreePreview: boolean;
+  videoId?: string;
   videoTitle: string;
   videoThumbnail: string;
   keyObjectives: string[];

@@ -68,6 +68,7 @@ export async function GET(
         isFreePreview: foundLesson.isFreePreview,
         videoTitle: `${course.title} — ${foundLesson.title}`,
         videoThumbnail: `/images/lessons/${foundLesson.id}.jpg`,
+        videoId: foundLesson.videoId,
         keyObjectives: foundLesson.objectives || [
           `Master core principles of ${foundLesson.title}`,
           "Apply standard mathematical methods systematically",
@@ -164,8 +165,9 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
       (v) => v.status === "APPROVED" && (v.courseSlug === slug || !v.courseSlug)
     );
 
-    // Fallback: If DB query returned no approved record but curriculum lesson has verified videoId
-    if (approvedVideos.length === 0 && foundLesson.videoId) {
+    // Fallback: If DB query returned no approved record, check curriculum videoId or discovery cache
+    if (approvedVideos.length === 0) {
+      let resolvedVideoId = foundLesson.videoId;
       let cachedMeta: any = null;
       try {
         const cachePath = path.join(process.cwd(), "content", "video-discovery-cache.json");
@@ -176,9 +178,17 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
           const key = `${slug}:${foundLesson.slug || foundLesson.id}`;
           if (items[key]) {
             cachedMeta = items[key];
-          } else {
+            if (!resolvedVideoId && cachedMeta.videoId) {
+              resolvedVideoId = cachedMeta.videoId;
+            }
+          } else if (foundLesson.slug && items[foundLesson.slug]) {
+            cachedMeta = items[foundLesson.slug];
+            if (!resolvedVideoId && cachedMeta.videoId) {
+              resolvedVideoId = cachedMeta.videoId;
+            }
+          } else if (resolvedVideoId) {
             for (const entry of Object.values(items) as any[]) {
-              if (entry.videoId === foundLesson.videoId) {
+              if (entry.videoId === resolvedVideoId) {
                 cachedMeta = entry;
                 break;
               }
@@ -187,28 +197,30 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
         }
       } catch { }
 
-      const fallbackVideo = {
-        id: `lv-${foundLesson.id}-primary`,
-        lessonId: foundLesson.id,
-        courseSlug: slug,
-        provider: "YOUTUBE" as const,
-        providerVideoId: foundLesson.videoId,
-        title: cachedMeta?.title || `${course.title} — ${foundLesson.title}`,
-        channelId: cachedMeta?.channelId || "UC_TRUSTED_EDU",
-        channelName: cachedMeta?.channelName || "Trainbow Verified Educational Partner",
-        durationSeconds: cachedMeta?.durationSeconds || (foundLesson.durationMinutes || 30) * 60,
-        language: "en",
-        thumbnailUrl: `https://i.ytimg.com/vi/${foundLesson.videoId}/hqdefault.jpg`,
-        embeddable: true,
-        status: "APPROVED" as const,
-        relevanceScore: 0.95,
-        relevanceReasons: ["Curriculum-aligned verified video"],
-        isPrimary: true,
-        failureCount: 0,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-      approvedVideos.push(fallbackVideo);
+      if (resolvedVideoId) {
+        const fallbackVideo = {
+          id: `lv-${foundLesson.id}-primary`,
+          lessonId: foundLesson.id,
+          courseSlug: slug,
+          provider: "YOUTUBE" as const,
+          providerVideoId: resolvedVideoId,
+          title: cachedMeta?.title || `${course.title} — ${foundLesson.title}`,
+          channelId: cachedMeta?.channelId || "UC_TRUSTED_EDU",
+          channelName: cachedMeta?.channelName || "Trainbow Verified Educational Partner",
+          durationSeconds: cachedMeta?.durationSeconds || (foundLesson.durationMinutes || 30) * 60,
+          language: "en",
+          thumbnailUrl: `https://i.ytimg.com/vi/${resolvedVideoId}/hqdefault.jpg`,
+          embeddable: true,
+          status: "APPROVED" as const,
+          relevanceScore: 0.95,
+          relevanceReasons: ["Curriculum-aligned verified video"],
+          isPrimary: true,
+          failureCount: 0,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+        approvedVideos.push(fallbackVideo);
+      }
     }
 
     const primaryVideo = approvedVideos.find((v) => v.isPrimary) || approvedVideos[0] || null;
@@ -231,8 +243,9 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
         instructorName: course.instructorName,
         syllabus: course.syllabus,
       },
-      lesson: {
+      lesson: lesson ? {
         ...lesson,
+        videoId: (foundLesson as any).videoId || (lesson as any).videoId || primaryVideo?.providerVideoId,
         quiz: lesson.quiz ? {
           id: lesson.quiz.id,
           title: lesson.quiz.title,
@@ -245,7 +258,7 @@ ${(foundLesson.keyPoints || []).map((p: any, idx: number) => `${idx + 1}. ${p}`)
           })),
         } : null,
         weakAreaCodes: (foundLesson as any).weakAreaCodes || (lesson as any).weakAreaCodes || [],
-      },
+      } : null,
       video: {
         hasVideo: !!primaryVideo,
         primary: primaryVideo,

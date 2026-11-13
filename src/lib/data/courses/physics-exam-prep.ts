@@ -56,6 +56,7 @@ export const EXAM_PREP_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-waec-1-1",
             slug: "projectile-motion-time-of-flight-range-calculations",
+            videoId: "r32wJJhjfZ4",
             title: "Projectile Motion: Time of Flight, Maximum Height and Range for WAEC",
             sortOrder: 1,
             durationMinutes: 50,
@@ -258,6 +259,7 @@ export const EXAM_PREP_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-jamb-1-1",
             slug: "cbt-time-management-proportional-reasoning",
+            videoId: "FbvsBnk2Btw",
             title: "JAMB CBT Time Management and Proportional Scaling in Physics",
             sortOrder: 1,
             durationMinutes: 40,

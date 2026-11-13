@@ -55,6 +55,7 @@ export const PRACTICAL_BOOTCAMP_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-btc-1-1",
             slug: "formula-rearrangement-powers-roots-reciprocals",
+            videoId: "WcTgavYLxsg",
             title: "Rearranging Physics Formulas Involving Powers, Roots and Reciprocals",
             sortOrder: 1,
             durationMinutes: 45,
@@ -238,6 +239,7 @@ export const PRACTICAL_BOOTCAMP_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-prc-1-1",
             slug: "waec-graph-plotting-rules-scales-gradients",
+            videoId: "tZFRwl07S_4",
             title: "WAEC Graph Plotting Rules: Scale Selection, Best-Fit Lines and Large Gradient Triangles",
             sortOrder: 1,
             durationMinutes: 45,

@@ -55,6 +55,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss1-1-1",
             slug: "fundamental-derived-quantities-si-units",
+            videoId: "8rZRYPoerPw",
             title: "Fundamental and Derived Quantities and SI Base Units",
             sortOrder: 1,
             durationMinutes: 35,
@@ -197,6 +198,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss1-1-2",
             slug: "vernier-calipers-micrometer-screw-gauge",
+            videoId: "npPjzJ8oKc4",
             title: "Vernier Calipers, Micrometer Screw Gauge and Zero Errors",
             sortOrder: 2,
             durationMinutes: 40,
@@ -318,6 +320,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss1-1-3",
             slug: "dimensional-analysis-and-physical-homogeneity",
+            videoId: "iXfCIDmulwo",
             title: "Dimensional Analysis and Verification of Physical Equations",
             sortOrder: 3,
             durationMinutes: 45,
@@ -450,6 +453,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss1-2-1",
             slug: "rectilinear-motion-equations-uniform-acceleration",
+            videoId: "-Z3jIEKWMfk",
             title: "Rectilinear Motion and Equations of Uniform Acceleration",
             sortOrder: 1,
             durationMinutes: 40,
@@ -603,6 +607,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss1-2-2",
             slug: "velocity-time-graphs-gradient-area-analysis",
+            videoId: "OyPuEj4fz7A",
             title: "Velocity-Time Graphs: Gradients, Areas and Distance Travelled",
             sortOrder: 2,
             durationMinutes: 45,
@@ -734,6 +739,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss1-3-1",
             slug: "vectors-scalars-component-resolution",
+            videoId: "dC4cudpxVQw",
             title: "Resolving Vectors into Perpendicular Components",
             sortOrder: 1,
             durationMinutes: 45,
@@ -875,6 +881,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss1-3-2",
             slug: "principle-of-moments-and-center-of-gravity",
+            videoId: "AT3BQosJpS4",
             title: "Principle of Moments, Levers and Equilibrium of Rigid Bodies",
             sortOrder: 2,
             durationMinutes: 45,
@@ -1052,6 +1059,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss2-1-1",
             slug: "thermal-expansion-linear-superficial-cubic",
+            videoId: "QQyimsA40gg",
             title: "Thermal Expansion: Linear, Superficial and Cubical Expansivity",
             sortOrder: 1,
             durationMinutes: 40,
@@ -1195,6 +1203,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss2-1-2",
             slug: "specific-heat-capacity-method-of-mixtures",
+            videoId: "dxtz2POUTJE",
             title: "Specific Heat Capacity and Method of Mixtures Calorimetry",
             sortOrder: 2,
             durationMinutes: 45,
@@ -1370,6 +1379,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss3-1-1",
             slug: "emf-internal-resistance-terminal-pd",
+            videoId: "R1QN_0fcZ_8",
             title: "Electromotive Force, Internal Resistance and Terminal Potential Difference",
             sortOrder: 1,
             durationMinutes: 45,
@@ -1524,6 +1534,7 @@ export const SENIOR_SECONDARY_PHYSICS_COURSES: PhysicsCourseData[] = [
           {
             id: "les-phy-ss3-2-1",
             slug: "radioactive-decay-half-life-nuclear-reactions",
+            videoId: "wvgT52mwM3Y",
             title: "Radioactive Decay, Half-Life Calculations and Nuclear Equations",
             sortOrder: 1,
             durationMinutes: 45,
