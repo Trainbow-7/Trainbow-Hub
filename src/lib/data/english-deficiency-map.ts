@@ -448,6 +448,7 @@ export const ENGLISH_WEAK_AREAS: WeakAreaRecord[] = [
 
 import { getMathWeakAreaByCode } from "./mathematics-deficiency-map";
 import { getPhysicsWeakAreaByCode } from "./physics-deficiency-map";
+import { getChemistryWeakAreaByCode } from "./chemistry-deficiency-map";
 
 export function getWeakAreaByCode(code: string): WeakAreaRecord | undefined {
   if (code && code.startsWith("WA-MTH-")) {
@@ -455,6 +456,9 @@ export function getWeakAreaByCode(code: string): WeakAreaRecord | undefined {
   }
   if (code && code.startsWith("WA-PHY-")) {
     return getPhysicsWeakAreaByCode(code);
+  }
+  if (code && code.startsWith("WA-CHM-")) {
+    return getChemistryWeakAreaByCode(code) as unknown as WeakAreaRecord;
   }
   return ENGLISH_WEAK_AREAS.find((w) => w.code === code);
 }

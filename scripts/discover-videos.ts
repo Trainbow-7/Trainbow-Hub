@@ -17,6 +17,7 @@ import https from "https";
 import { COURSES_DATA } from "../src/lib/data/curricula";
 import { ENGLISH_COURSES_DATA } from "../src/lib/data/english-curriculum";
 import { PHYSICS_COURSES_DATA } from "../src/lib/data/physics-curriculum";
+import { CHEMISTRY_COURSES_DATA } from "../src/lib/data/chemistry-curriculum";
 import { TRUSTED_CHANNELS_ALLOWLIST } from "../src/lib/video/trusted-channels";
 import { fetchYouTubeVideoDetails, searchYouTubeVideos } from "../src/lib/video/youtube-client";
 
@@ -161,14 +162,17 @@ async function main() {
     coursesToProcess = COURSES_DATA;
   } else if (subjectArg === "physics") {
     coursesToProcess = PHYSICS_COURSES_DATA;
+  } else if (subjectArg === "chemistry") {
+    coursesToProcess = CHEMISTRY_COURSES_DATA;
   } else {
-    coursesToProcess = [...COURSES_DATA, ...ENGLISH_COURSES_DATA, ...PHYSICS_COURSES_DATA];
+    coursesToProcess = [...COURSES_DATA, ...ENGLISH_COURSES_DATA, ...PHYSICS_COURSES_DATA, ...CHEMISTRY_COURSES_DATA];
   }
 
   for (const course of coursesToProcess) {
     console.log(`Processing Course: ${course.title} (${course.slug})...`);
     const isEnglish = (course as any).subjectSlug === "english-language" || course.subject === "English Language";
     const isPhysics = (course as any).subjectSlug === "physics" || course.subject === "Physics" || (course as any).slug?.startsWith("physics-") || (course as any).slug?.includes("physics");
+    const isChemistry = (course as any).subjectSlug === "chemistry" || course.subject === "Chemistry" || (course as any).slug?.startsWith("chemistry-") || (course as any).slug?.includes("chemistry") || (course as any).slug?.includes("stoichiometry") || (course as any).slug?.includes("volumetric") || (course as any).slug?.includes("organic") || (course as any).slug?.includes("inorganic") || (course as any).slug?.includes("acid");
 
     for (const mod of course.modules) {
       for (const les of mod.lessons) {
@@ -199,15 +203,21 @@ async function main() {
         let foundTitle = "";
         let foundAuthor = "";
 
+        const HAZARDOUS_TERMS = ["bomb", "explosive", "illegal", "drug", "dangerous experiment", "firework", "prank", "for entertainment", "tnt", "nitroglycerin"];
+
         if (apiKey && quotaUsed + 100 <= DAILY_QUOTA_LIMIT) {
           quotaUsed += 100; // Search cost
           const qText = isEnglish
             ? `${les.title} ${course.level} English lesson`
             : isPhysics
             ? `${les.title} Physics senior secondary lesson`
+            : isChemistry
+            ? `${les.title} Chemistry senior secondary lesson`
             : `${les.title} ${course.examBody || ""} Mathematics`;
           const results = await searchYouTubeVideos(qText, apiKey, 5);
           for (const item of results) {
+            const hasHazard = HAZARDOUS_TERMS.some((term) => item.title.toLowerCase().includes(term));
+            if (hasHazard) continue;
             if ((videoUsage[item.videoId] || 0) < 3) {
               foundId = item.videoId;
               foundTitle = item.title;
@@ -234,6 +244,14 @@ async function main() {
                 `Khan Academy Physics ${les.title}`,
                 `CrashCourse Physics ${les.title}`,
               ]
+            : isChemistry
+            ? [
+                `The Organic Chemistry Tutor ${les.title}`,
+                `Tyler DeWitt ${les.title}`,
+                `Cognito Chemistry ${les.title}`,
+                `FuseSchool Chemistry ${les.title}`,
+                `Khan Academy Chemistry ${les.title}`,
+              ]
             : [
                 `The Organic Chemistry Tutor ${les.title}`,
                 `Corbettmaths ${les.title}`,
@@ -246,6 +264,9 @@ async function main() {
               if ((videoUsage[cid] || 0) >= 3) continue;
               const oembed = await checkOembed(cid);
               if (oembed.ok) {
+                const titleLower = (oembed.title || "").toLowerCase();
+                const hasHazard = HAZARDOUS_TERMS.some((term) => titleLower.includes(term));
+                if (hasHazard) continue;
                 foundId = cid;
                 foundTitle = oembed.title || les.title;
                 foundAuthor = oembed.author || "Trusted Channel";

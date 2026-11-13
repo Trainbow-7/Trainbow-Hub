@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ENGLISH_WEAK_AREAS, WeakAreaRecord, EnglishSkillArea } from "@/lib/data/english-deficiency-map";
 import { PHYSICS_WEAK_AREAS } from "@/lib/data/physics-deficiency-map";
+import { CHEMISTRY_WEAK_AREAS } from "@/lib/data/chemistry-deficiency-map";
 import { MATHEMATICS_WEAK_AREAS } from "@/lib/data/mathematics-deficiency-map";
 import { ALL_COURSES } from "@/lib/data/seed-data";
 import { DownloadIcon, SearchIcon, AlertIcon } from "@/components/ui/icons";
@@ -22,8 +23,9 @@ export default function LearnerNeedsDashboardPage() {
   // Combine all deficiency registries
   const allWeakAreas = React.useMemo(() => {
     return [
-      ...ENGLISH_WEAK_AREAS.map((wa) => ({ ...wa, subject: "English Language" as const })),
+      ...CHEMISTRY_WEAK_AREAS.map((wa) => ({ ...wa, subject: "Chemistry" as const })),
       ...PHYSICS_WEAK_AREAS.map((wa) => ({ ...wa, subject: "Physics" as const })),
+      ...ENGLISH_WEAK_AREAS.map((wa) => ({ ...wa, subject: "English Language" as const })),
       ...MATHEMATICS_WEAK_AREAS.map((wa) => ({ ...wa, subject: "Mathematics" as const })),
     ];
   }, []);
@@ -76,6 +78,26 @@ export default function LearnerNeedsDashboardPage() {
       "WA-PHY-ELE-08": { sampleSize: 5, errorRate: 0, dropOffRate: 0, reportCount: 0 },
       "WA-PHY-ATM-04": { sampleSize: 7, errorRate: 0, dropOffRate: 0, reportCount: 0 },
       "WA-PHY-PRC-01": { sampleSize: 8, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+
+      // Chemistry cohort samples
+      "WA-CHM-STO-01": { sampleSize: 31, errorRate: 66, dropOffRate: 15, reportCount: 2 },
+      "WA-CHM-STO-03": { sampleSize: 28, errorRate: 61, dropOffRate: 12, reportCount: 1 },
+      "WA-CHM-ATM-01": { sampleSize: 25, errorRate: 55, dropOffRate: 9, reportCount: 1 },
+      "WA-CHM-ATM-02": { sampleSize: 22, errorRate: 58, dropOffRate: 10, reportCount: 0 },
+      "WA-CHM-ATM-03": { sampleSize: 26, errorRate: 62, dropOffRate: 11, reportCount: 1 },
+      "WA-CHM-ATM-04": { sampleSize: 20, errorRate: 53, dropOffRate: 8, reportCount: 0 },
+      "WA-CHM-INO-01": { sampleSize: 29, errorRate: 64, dropOffRate: 14, reportCount: 2 },
+      "WA-CHM-INO-02": { sampleSize: 24, errorRate: 59, dropOffRate: 10, reportCount: 1 },
+      "WA-CHM-ORG-01": { sampleSize: 27, errorRate: 70, dropOffRate: 18, reportCount: 3 },
+      "WA-CHM-ORG-02": { sampleSize: 23, errorRate: 65, dropOffRate: 13, reportCount: 1 },
+      "WA-CHM-ELC-01": { sampleSize: 33, errorRate: 68, dropOffRate: 16, reportCount: 2 },
+      "WA-CHM-ELC-02": { sampleSize: 29, errorRate: 63, dropOffRate: 14, reportCount: 2 },
+      "WA-CHM-PRC-01": { sampleSize: 24, errorRate: 59, dropOffRate: 11, reportCount: 1 },
+      "WA-CHM-PRC-02": { sampleSize: 21, errorRate: 54, dropOffRate: 9, reportCount: 0 },
+      // Small Chemistry cohort samples (< 10) strictly tested under NDPA 2023 threshold
+      "WA-CHM-ORG-04": { sampleSize: 5, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+      "WA-CHM-PRC-04": { sampleSize: 6, errorRate: 0, dropOffRate: 0, reportCount: 0 },
+      "WA-CHM-INO-05": { sampleSize: 7, errorRate: 0, dropOffRate: 0, reportCount: 0 },
 
       // Mathematics cohort samples
       "WA-MTH-CBT-01": { sampleSize: 32, errorRate: 67, dropOffRate: 16, reportCount: 2 },
@@ -211,7 +233,7 @@ export default function LearnerNeedsDashboardPage() {
               {allWeakAreas.length}
             </div>
             <p className="text-[11px] text-neutral-slate-500">
-              Physics (37), English (24), Mathematics (18)
+              Chemistry ({CHEMISTRY_WEAK_AREAS.length}), Physics (37), English (24), Mathematics (18)
             </p>
           </div>
 
@@ -235,7 +257,7 @@ export default function LearnerNeedsDashboardPage() {
               {ALL_COURSES.length}
             </div>
             <p className="text-[11px] text-neutral-slate-500">
-              12 Physics + 11 English + 6 Mathematics courses
+              12 Chemistry + 12 Physics + 11 English + 6 Mathematics courses
             </p>
           </div>
 
@@ -291,6 +313,7 @@ export default function LearnerNeedsDashboardPage() {
                 className="w-full py-2 px-3 text-xs border border-neutral-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue-600 bg-white font-medium"
               >
                 <option value="all">All Subjects ({allWeakAreas.length})</option>
+                <option value="chemistry">Chemistry ({CHEMISTRY_WEAK_AREAS.length})</option>
                 <option value="physics">Physics ({PHYSICS_WEAK_AREAS.length})</option>
                 <option value="english language">English Language ({ENGLISH_WEAK_AREAS.length})</option>
                 <option value="mathematics">Mathematics ({MATHEMATICS_WEAK_AREAS.length})</option>
@@ -305,6 +328,18 @@ export default function LearnerNeedsDashboardPage() {
                 className="w-full py-2 px-3 text-xs border border-neutral-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue-600 bg-white"
               >
                 <option value="all">All Skill Areas</option>
+                {/* Chemistry skills */}
+                {subjectFilter === "all" || subjectFilter === "chemistry" ? (
+                  <optgroup label="Chemistry">
+                    <option value="STOICHIOMETRY_EQUATIONS">Stoichiometry & Equations</option>
+                    <option value="ATOMIC_PERIODICITY">Atomic Structure & Periodicity</option>
+                    <option value="PHYSICAL_CHEMISTRY">Physical Chemistry</option>
+                    <option value="INORGANIC_CHEMISTRY">Inorganic Chemistry</option>
+                    <option value="ORGANIC_CHEMISTRY">Organic Chemistry</option>
+                    <option value="ELECTROCHEMISTRY_REDOX">Electrochemistry & Redox</option>
+                    <option value="ANALYTICAL_PRACTICAL">Analytical & Practical Chemistry</option>
+                  </optgroup>
+                ) : null}
                 {/* Physics skills */}
                 {subjectFilter === "all" || subjectFilter === "physics" ? (
                   <optgroup label="Physics">

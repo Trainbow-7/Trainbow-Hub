@@ -99,3 +99,4 @@ for (const [slug, vid] of lessonVideoMap.entries()) {
 
 fs.writeFileSync(videoMapPath, JSON.stringify(videoMap, null, 2), "utf8");
 console.log(`✓ Updated content/video-map.json (${addedToMap} new records added, total ${videoMap.length})`);
+

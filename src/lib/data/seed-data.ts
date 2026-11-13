@@ -1,6 +1,7 @@
 import { COURSES_DATA } from "./curricula";
 import { ENGLISH_COURSES_DATA } from "./english-curriculum";
 import { PHYSICS_COURSES_DATA } from "./physics-curriculum";
+import { CHEMISTRY_COURSES_DATA } from "./chemistry-curriculum";
 export interface SubjectItem {
   id: string;
   name: string;
@@ -139,7 +140,7 @@ export const SEED_SUBJECTS: SubjectItem[] = [
     levels: ["SS 1-3", "WAEC Prep", "JAMB UTME Prep"],
     description: "Inorganic compounds, organic chemistry, periodic trends, stoichiometry, and volumetric analysis.",
     accentColor: "border-emerald-600",
-    courseCount: 2,
+    courseCount: 12,
     tutorCount: 4,
   },
   {
@@ -366,11 +367,65 @@ export const SEED_PHYSICS_COURSES: CourseItem[] = PHYSICS_COURSES_DATA.map((c) =
   };
 });
 
+// -----------------------------------------------------------------------------
+// 12 CHEMISTRY COURSES
+// -----------------------------------------------------------------------------
+export const SEED_CHEMISTRY_COURSES: CourseItem[] = CHEMISTRY_COURSES_DATA.map((c) => {
+  const allLessons = c.modules.flatMap((m) => m.lessons);
+  const lessonCount = allLessons.length;
+  const totalMinutes = allLessons.reduce((sum, l) => sum + (l.durationMinutes || 0), 0);
+  const durationHours = Math.round(totalMinutes / 60);
+
+  return {
+    id: c.id,
+    slug: c.slug,
+    title: c.title,
+    subjectSlug: "chemistry",
+    subjectName: "Chemistry",
+    level: c.level,
+    instructorName: c.instructorName || "Trainbow HUB Academy",
+    instructorTitle: c.instructorTitle || "Senior Chemistry Faculty",
+    instructorAvatar: "TH",
+    priceMinorUnits: c.priceMinorUnits || 0,
+    currency: c.currency || "NGN",
+    rating: 0,
+    reviewCount: 0,
+    lessonCount,
+    durationHours,
+    shortDescription: c.shortDescription || c.description,
+    fullDescription: c.description,
+    syllabus: c.modules.map((m) => ({
+      id: m.id,
+      title: m.title,
+      description: m.description,
+      lessons: m.lessons.map((l) => ({
+        id: l.id,
+        slug: l.slug,
+        title: l.title,
+        durationMinutes: l.durationMinutes,
+        isFreePreview: l.isFreePreview,
+        topicId: l.topicId,
+        order: l.sortOrder,
+        summary: l.summary,
+        objectives: l.objectives,
+        keyPoints: l.keyPoints,
+        reviewStatus: l.reviewStatus,
+        videoId: l.videoId,
+        weakAreaCodes: l.weakAreaCodes,
+        examTip: l.examTip,
+      })),
+    })),
+    learningOutcomes: c.learningOutcomes,
+    prerequisites: c.prerequisites,
+  };
+});
+
 // All courses combined across subjects
 export const ALL_COURSES: CourseItem[] = [
   ...SEED_COURSES,
   ...SEED_ENGLISH_COURSES,
   ...SEED_PHYSICS_COURSES,
+  ...SEED_CHEMISTRY_COURSES,
 ];
 
 export function getAllCourses(): CourseItem[] {
@@ -387,6 +442,9 @@ export function getCoursesBySubject(subjectSlug: string): CourseItem[] {
   }
   if (subjectSlug === "physics") {
     return SEED_PHYSICS_COURSES;
+  }
+  if (subjectSlug === "chemistry") {
+    return SEED_CHEMISTRY_COURSES;
   }
   return SEED_COURSES.filter((c) => c.subjectSlug === subjectSlug);
 }

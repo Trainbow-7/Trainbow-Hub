@@ -1,6 +1,7 @@
 import { COURSES_DATA } from "./curricula";
 import { ENGLISH_COURSES_DATA } from "./english-curriculum";
 import { PHYSICS_COURSES_DATA } from "./physics-curriculum";
+import { CHEMISTRY_COURSES_DATA } from "./chemistry-curriculum";
 
 export interface QuizQuestion {
   id: string;
@@ -699,6 +700,163 @@ ${examTipSection}
                         { id: "A", text: (les.keyPoints && les.keyPoints[0]) || "Accurate physical application" },
                         { id: "B", text: "Ignoring units in calculation" },
                         { id: "C", text: "Using wrong sign conventions" },
+                        { id: "D", text: "None of the above" },
+                      ],
+                      correctOptionId: "A",
+                      explanation: `Standard exam guidelines require: ${(les.keyPoints && les.keyPoints[0]) || "systematic application of core rules"}.`,
+                      topic: les.title,
+                    },
+                  ],
+                },
+          };
+        }
+      }
+    }
+  }
+
+  // 5. Search across CHEMISTRY_COURSES_DATA
+  for (const course of CHEMISTRY_COURSES_DATA) {
+    if (courseSlug && course.slug !== courseSlug) continue;
+    for (const mod of course.modules) {
+      for (const les of mod.lessons) {
+        if (les.id === lessonId || les.slug === lessonId) {
+          const formulasSection = (les as any).formulas && (les as any).formulas.length > 0
+            ? `
+### Key Chemical Formulas & Calculations
+${(les as any).formulas.map((f: any) => `
+- **${f.name}:** $${f.expression}$
+${(f.variables || []).map((v: any) => `  - $${v.symbol}$: ${v.meaning} (${v.unit})`).join("\n")}
+`).join("\n")}
+`
+            : "";
+
+          const constantsSection = (les as any).constantsTable && (les as any).constantsTable.length > 0
+            ? `
+### Official Examination Constants & Relative Atomic Masses Table
+| Constant / Element | Symbol | Standard Exam Value | Unit / Note |
+| :--- | :--- | :--- | :--- |
+${(les as any).constantsTable.map((c: any) => `| ${c.name} | $${c.symbol}$ | $${c.value}$ | ${c.unit} (${c.examConvention || "Standard"}) |`).join("\n")}
+`
+            : "";
+
+          const safetyNoteSection = les.safetyNote
+            ? `
+> [!IMPORTANT]
+> **Safety First:** ${les.safetyNote} Always follow laboratory precautions under qualified teacher supervision.
+`
+            : "";
+
+          const commonMistakesSection = les.commonMistakes
+            ? `
+### Common Examination Pitfall & Error Correction
+- **Common Mistake:** ${les.commonMistakes.mistake}
+- **Incorrect Working:** *${les.commonMistakes.wrongExample}*
+- **Corrected Working:** **${les.commonMistakes.correctedExample}**
+- **Examiner's Rule:** ${les.commonMistakes.explanation}
+`
+            : "";
+
+          const workedExamplesSection = les.workedExamples && les.workedExamples.length > 0
+            ? `
+### Original Worked Examples & Examiner Analysis
+${les.workedExamples.map((ex, i) => `
+#### Example ${i + 1}: ${ex.context}
+**Question:** ${ex.question}
+
+**Step-by-Step Analysis:**
+${ex.stepByStepSolution.map((s, idx) => `${idx + 1}. ${s}`).join("\n")}
+
+**Correct Answer:** **${ex.finalAnswer}**
+*Examiner Marking Rule:* ${ex.ruleExplanation}
+`).join("\n")}
+`
+            : "";
+
+          const examTipSection = les.examTip
+            ? `
+### Examiner's Tip for WAEC, NECO & JAMB
+> ${les.examTip}
+`
+            : "";
+
+          const markdownNotes = les.markdownNotes || `
+# ${les.title}
+
+Welcome to this lesson in **${course.title}** (${course.level}).
+
+---
+
+${safetyNoteSection}
+
+## Overview & Chemical Principles
+${les.summary}
+
+### Key Learning Objectives
+${(les.objectives || []).map((o) => `- ${o}`).join("\n")}
+
+### Essential Concepts & Chemical Laws
+${(les.keyPoints || []).map((p, idx) => `${idx + 1}. ${p}`).join("\n")}
+
+${formulasSection}
+
+${constantsSection}
+
+${commonMistakesSection}
+
+${workedExamplesSection}
+
+${examTipSection}
+`;
+
+          return {
+            id: les.id,
+            courseSlug: course.slug,
+            title: les.title,
+            moduleTitle: mod.title,
+            durationMinutes: les.durationMinutes,
+            isFreePreview: les.isFreePreview,
+            videoTitle: `${course.title} — ${les.title}`,
+            videoThumbnail: `/images/lessons/${les.id}.jpg`,
+            keyObjectives: les.objectives && les.objectives.length > 0 ? les.objectives : [
+              `Master core principles of ${les.title}`,
+              "Apply standard chemical laws and formulas accurately",
+              "Demonstrate mastery in curriculum exam questions",
+            ],
+            markdownNotes,
+            worksheets: [
+              {
+                title: `${les.title} Practice Sheet (PDF)`,
+                filename: `${les.slug}_worksheet.pdf`,
+                size: "410 KB",
+                type: "PDF Document",
+              },
+            ],
+            quiz: les.checkpoint
+              ? {
+                  id: les.checkpoint.id,
+                  title: les.checkpoint.title,
+                  passPercentage: les.checkpoint.passPercentage || 60,
+                  questions: les.checkpoint.questions.map((q) => ({
+                    id: q.id,
+                    prompt: q.prompt,
+                    options: q.options,
+                    correctOptionId: q.correctOptionId,
+                    explanation: q.explanation,
+                    topic: q.topic || les.title,
+                  })),
+                }
+              : {
+                  id: `quiz-${les.id}`,
+                  title: `Practice Checkpoint: ${les.title}`,
+                  passPercentage: 60,
+                  questions: [
+                    {
+                      id: `q_${les.id}_1`,
+                      prompt: `Which of the following best reflects the key principle of ${les.title}?`,
+                      options: [
+                        { id: "A", text: (les.keyPoints && les.keyPoints[0]) || "Accurate chemical application" },
+                        { id: "B", text: "Ignoring valency in formula writing" },
+                        { id: "C", text: "Unbalanced chemical equations" },
                         { id: "D", text: "None of the above" },
                       ],
                       correctOptionId: "A",

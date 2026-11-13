@@ -798,8 +798,13 @@ export const ENGLISH_DIAGNOSTICS: Record<string, CourseDiagnostic> = {
 
 import { MATHEMATICS_DIAGNOSTICS, getMathematicsDiagnostic } from "./mathematics-diagnostics";
 import { PHYSICS_DIAGNOSTICS, getPhysicsDiagnostic } from "./physics-diagnostics";
+import { CHEMISTRY_DIAGNOSTICS, getChemistryDiagnostic } from "./chemistry-diagnostics";
 
 export function getCourseDiagnostic(courseSlug: string): CourseDiagnostic | undefined {
+  if (CHEMISTRY_DIAGNOSTICS[courseSlug]) {
+    return CHEMISTRY_DIAGNOSTICS[courseSlug];
+  }
+
   if (PHYSICS_DIAGNOSTICS[courseSlug]) {
     return PHYSICS_DIAGNOSTICS[courseSlug];
   }
@@ -810,6 +815,18 @@ export function getCourseDiagnostic(courseSlug: string): CourseDiagnostic | unde
 
   if (ENGLISH_DIAGNOSTICS[courseSlug]) {
     return ENGLISH_DIAGNOSTICS[courseSlug];
+  }
+
+  // Chemistry fallback check
+  if (
+    courseSlug.includes("chemistry") ||
+    courseSlug.includes("stoichiometry") ||
+    courseSlug.includes("volumetric") ||
+    courseSlug.includes("organic") ||
+    courseSlug.includes("inorganic") ||
+    courseSlug.includes("acids")
+  ) {
+    return getChemistryDiagnostic(courseSlug);
   }
 
   // Physics fallback check

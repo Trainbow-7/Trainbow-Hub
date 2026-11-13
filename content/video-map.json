@@ -289,7 +289,7 @@
     "isPrimary": true,
     "relevanceScore": 0.95,
     "relevanceReasons": [
-      "Interior angles sum to 180°, exterior angle theorem, and congruence"
+      "Interior angles sum to 180\u00b0, exterior angle theorem, and congruence"
     ],
     "notes": "Verified working lecture on triangle geometry and formal proofs."
   },
@@ -1132,5 +1132,488 @@
       "Curriculum-aligned verified physics educational video"
     ],
     "notes": "Verified working lecture for The Photoelectric Effect: Work Function, Threshold Frequency and Stopping Potential"
+  },
+  {
+    "lessonId": "particulate-nature-of-matter-states-and-kinetic-theory",
+    "lessonTitle": "GCSE Physics - Particle Theory & States of Matter | Solids, Liquids & Gases (2027/28 exams)",
+    "courseSlug": "chemistry-ss1-matter-atomic-structure-periodic-table",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "zjkBMk5d3tM",
+    "title": "GCSE Physics - Particle Theory & States of Matter | Solids, Liquids & Gases (2027/28 exams)",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Cognito",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/zjkBMk5d3tM/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'GCSE Physics - Particle Theory & States of Matter | Solids, Liquids & Gases (2027/28 exams)' by Cognito"
+  },
+  {
+    "lessonId": "subatomic-particles-isotopes-and-relative-atomic-mass",
+    "lessonTitle": "GCSE Chemistry - Elements, Isotopes & Relative Atomic Mass (2027/28 exams)",
+    "courseSlug": "chemistry-ss1-matter-atomic-structure-periodic-table",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "-FBk8cNvJds",
+    "title": "GCSE Chemistry - Elements, Isotopes & Relative Atomic Mass (2027/28 exams)",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Cognito",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/-FBk8cNvJds/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'GCSE Chemistry - Elements, Isotopes & Relative Atomic Mass (2027/28 exams)' by Cognito"
+  },
+  {
+    "lessonId": "electronic-configurations-in-spdf-orbitals-and-rules",
+    "lessonTitle": "Quantum Numbers, Atomic Orbitals, and Electron Configurations",
+    "courseSlug": "chemistry-ss1-matter-atomic-structure-periodic-table",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "Aoi4j8es4gQ",
+    "title": "Quantum Numbers, Atomic Orbitals, and Electron Configurations",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Professor Dave Explains",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/Aoi4j8es4gQ/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Quantum Numbers, Atomic Orbitals, and Electron Configurations' by Professor Dave Explains"
+  },
+  {
+    "lessonId": "periodic-trends-atomic-radii-ionization-energy-electronegativity",
+    "lessonTitle": "The Periodic Table: Atomic Radius, Ionization Energy, and Electronegativity",
+    "courseSlug": "chemistry-ss1-matter-atomic-structure-periodic-table",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "hePb00CqvP0",
+    "title": "The Periodic Table: Atomic Radius, Ionization Energy, and Electronegativity",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Professor Dave Explains",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/hePb00CqvP0/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'The Periodic Table: Atomic Radius, Ionization Energy, and Electronegativity' by Professor Dave Explains"
+  },
+  {
+    "lessonId": "electrovalent-covalent-and-coordinate-bonding",
+    "lessonTitle": "Chemical Bonding (JAMB and PUTME Chemistry): Meaning and Types with Examples.  #excellenceacademy",
+    "courseSlug": "chemistry-ss1-matter-atomic-structure-periodic-table",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "2fznwgHrWN8",
+    "title": "Chemical Bonding (JAMB and PUTME Chemistry): Meaning and Types with Examples.  #excellenceacademy",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Excellence Academy",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/2fznwgHrWN8/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Chemical Bonding (JAMB and PUTME Chemistry): Meaning and Types with Examples.  #excellenceacademy' by Excellence Academy"
+  },
+  {
+    "lessonId": "chemical-formulas-valency-rules-and-iupac-nomenclature",
+    "lessonTitle": "Writing Chemical Formulas For Ionic Compounds",
+    "courseSlug": "chemistry-ss1-matter-atomic-structure-periodic-table",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "GJ4Mds0CWLE",
+    "title": "Writing Chemical Formulas For Ionic Compounds",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/GJ4Mds0CWLE/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Writing Chemical Formulas For Ionic Compounds' by The Organic Chemistry Tutor"
+  },
+  {
+    "lessonId": "the-mole-concept-molar-mass-and-avogadro-calculations",
+    "lessonTitle": "Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction",
+    "courseSlug": "chemistry-ss2-bonding-stoichiometry-acids-bases-salts",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "74-X94OP2XI",
+    "title": "Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/74-X94OP2XI/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction' by The Organic Chemistry Tutor"
+  },
+  {
+    "lessonId": "gas-laws-boyle-charles-general-gas-equation",
+    "lessonTitle": "Gas Laws-Boyle's-Charles's-Gay Lussac's",
+    "courseSlug": "chemistry-ss2-bonding-stoichiometry-acids-bases-salts",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "Hd7OoTLBZDA",
+    "title": "Gas Laws-Boyle's-Charles's-Gay Lussac's",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "MooMooMath and Science",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/Hd7OoTLBZDA/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Gas Laws-Boyle's-Charles's-Gay Lussac's' by MooMooMath and Science"
+  },
+  {
+    "lessonId": "acids-bases-ph-scale-and-neutralization",
+    "lessonTitle": "GCSE Chemistry - Acids & Bases - pH | Features | Neutralisation Reactions (2027/28 exams)",
+    "courseSlug": "chemistry-ss2-bonding-stoichiometry-acids-bases-salts",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "Yrf3Z_TQu_k",
+    "title": "GCSE Chemistry - Acids & Bases - pH | Features | Neutralisation Reactions (2027/28 exams)",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Cognito",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/Yrf3Z_TQu_k/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'GCSE Chemistry - Acids & Bases - pH | Features | Neutralisation Reactions (2027/28 exams)' by Cognito"
+  },
+  {
+    "lessonId": "preparation-of-soluble-and-insoluble-salts",
+    "lessonTitle": "Solubility Rules | Acids, Bases & Alkali's | Chemistry | FuseSchool",
+    "courseSlug": "chemistry-ss2-bonding-stoichiometry-acids-bases-salts",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "Z8f-rVdnEBs",
+    "title": "Solubility Rules | Acids, Bases & Alkali's | Chemistry | FuseSchool",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "FuseSchool - Global Education",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/Z8f-rVdnEBs/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Solubility Rules | Acids, Bases & Alkali's | Chemistry | FuseSchool' by FuseSchool - Global Education"
+  },
+  {
+    "lessonId": "water-hardness-temporary-permanent-and-treatment",
+    "lessonTitle": "Hard Water & Soft water | How to identify | Causes | Types of Hardness | Removal Methods | Effects",
+    "courseSlug": "chemistry-ss2-bonding-stoichiometry-acids-bases-salts",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "SdQy2WP5pfw",
+    "title": "Hard Water & Soft water | How to identify | Causes | Types of Hardness | Removal Methods | Effects",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Afzaal Chemist",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/SdQy2WP5pfw/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Hard Water & Soft water | How to identify | Causes | Types of Hardness | Removal Methods | Effects' by Afzaal Chemist"
+  },
+  {
+    "lessonId": "allotropes-of-sulphur-and-the-contact-process",
+    "lessonTitle": "The Contact Process | Production of Sulfuric Acid",
+    "courseSlug": "chemistry-ss2-bonding-stoichiometry-acids-bases-salts",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "nsDxG3CEyxU",
+    "title": "The Contact Process | Production of Sulfuric Acid",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Dark MoleX",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/nsDxG3CEyxU/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'The Contact Process | Production of Sulfuric Acid' by Dark MoleX"
+  },
+  {
+    "lessonId": "redox-reactions-oxidation-numbers-half-equations",
+    "lessonTitle": "GCSE Chemistry - Redox Reactions - Displacement Reactions | Ionic Equations | Half Equations",
+    "courseSlug": "chemistry-ss3-electrochemistry-rates-equilibrium-organic",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "QlG9Kt-9yTI",
+    "title": "GCSE Chemistry - Redox Reactions - Displacement Reactions | Ionic Equations | Half Equations",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Cognito",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/QlG9Kt-9yTI/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'GCSE Chemistry - Redox Reactions - Displacement Reactions | Ionic Equations | Half Equations' by Cognito"
+  },
+  {
+    "lessonId": "electrolysis-preferential-discharge-faradays-laws",
+    "lessonTitle": "What Is Electrolysis | Reactions | Chemistry | FuseSchool",
+    "courseSlug": "chemistry-ss3-electrochemistry-rates-equilibrium-organic",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "7uIIq_Ofzgw",
+    "title": "What Is Electrolysis | Reactions | Chemistry | FuseSchool",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "FuseSchool - Global Education",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/7uIIq_Ofzgw/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'What Is Electrolysis | Reactions | Chemistry | FuseSchool' by FuseSchool - Global Education"
+  },
+  {
+    "lessonId": "waec-stoichiometric-mole-calculations-and-yields",
+    "lessonTitle": "JAMB/WAEC Chemistry 2027 EP 114 - Stoichiometry + Free JAMB/WAEC Questions & Answers",
+    "courseSlug": "waec-neco-ssce-chemistry-mastery",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "8oIhMEUk9qc",
+    "title": "JAMB/WAEC Chemistry 2027 EP 114 - Stoichiometry + Free JAMB/WAEC Questions & Answers",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "O3SCHOOLS",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/8oIhMEUk9qc/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'JAMB/WAEC Chemistry 2027 EP 114 - Stoichiometry + Free JAMB/WAEC Questions & Answers' by O3SCHOOLS"
+  },
+  {
+    "lessonId": "jamb-rapid-mole-concept-and-gas-volume-shortcuts",
+    "lessonTitle": "Five Memory Tricks for Electrolysis! #GCSE #Science #Chemistry #Electrolysis",
+    "courseSlug": "jamb-utme-chemistry-complete",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "Ca_ySrUAPXI",
+    "title": "Five Memory Tricks for Electrolysis! #GCSE #Science #Chemistry #Electrolysis",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Flash Revision Lab",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/Ca_ySrUAPXI/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Five Memory Tricks for Electrolysis! #GCSE #Science #Chemistry #Electrolysis' by Flash Revision Lab"
+  },
+  {
+    "lessonId": "molar-mass-and-gram-mole-conversions-bootcamp",
+    "lessonTitle": "Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction",
+    "courseSlug": "stoichiometry-mole-concept-bootcamp",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "74-X94OP2XI",
+    "title": "Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/74-X94OP2XI/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction' by The Organic Chemistry Tutor"
+  },
+  {
+    "lessonId": "burette-pipette-handling-and-meniscus-reading",
+    "lessonTitle": "Titration Method | Step-By-Step #experiment #chemistry",
+    "courseSlug": "volumetric-analysis-practical-chemistry",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "RnTC7WqpoGM",
+    "title": "Titration Method | Step-By-Step #experiment #chemistry",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "The Elkchemist",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/RnTC7WqpoGM/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Titration Method | Step-By-Step #experiment #chemistry' by The Elkchemist"
+  },
+  {
+    "lessonId": "carbon-tetravalency-sp3-sp2-sp-hybridization",
+    "lessonTitle": "Hybridization in organic chemistry | Shape | Bond angle | Bond length | Sp3, Sp2 & Sp",
+    "courseSlug": "organic-chemistry-made-clear",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "tssfo-KG7s4",
+    "title": "Hybridization in organic chemistry | Shape | Bond angle | Bond length | Sp3, Sp2 & Sp",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "DELZY Academy ",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/tssfo-KG7s4/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Hybridization in organic chemistry | Shape | Bond angle | Bond length | Sp3, Sp2 & Sp' by DELZY Academy "
+  },
+  {
+    "lessonId": "alkali-and-alkaline-earth-metals-trends",
+    "lessonTitle": "GCSE Chemistry - Group 1 Elements - Alkali Metals | Properties | Reactivity (2027/28 exams)",
+    "courseSlug": "inorganic-chemistry-periodic-trends-metals-nonmetals",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "TGZs93DzMDY",
+    "title": "GCSE Chemistry - Group 1 Elements - Alkali Metals | Properties | Reactivity (2027/28 exams)",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "Cognito",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/TGZs93DzMDY/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'GCSE Chemistry - Group 1 Elements - Alkali Metals | Properties | Reactivity (2027/28 exams)' by Cognito"
+  },
+  {
+    "lessonId": "acid-base-theories-arrhenius-bronsted-lewis",
+    "lessonTitle": "Conjugate Acid Base Pairs, Arrhenius, Bronsted Lowry and Lewis Definition - Chemistry",
+    "courseSlug": "acids-bases-salts-ph",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "OP6RKqSp1Xw",
+    "title": "Conjugate Acid Base Pairs, Arrhenius, Bronsted Lowry and Lewis Definition - Chemistry",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/OP6RKqSp1Xw/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Conjugate Acid Base Pairs, Arrhenius, Bronsted Lowry and Lewis Definition - Chemistry' by The Organic Chemistry Tutor"
+  },
+  {
+    "lessonId": "systematic-oxidation-number-rules-and-tracking",
+    "lessonTitle": "How To Calculate Oxidation Numbers - Basic Introduction",
+    "courseSlug": "electrochemistry-redox-deep-dive",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "j0hI-a6EWWo",
+    "title": "How To Calculate Oxidation Numbers - Basic Introduction",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "The Organic Chemistry Tutor",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/j0hI-a6EWWo/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'How To Calculate Oxidation Numbers - Basic Introduction' by The Organic Chemistry Tutor"
+  },
+  {
+    "lessonId": "valencies-and-polyatomic-radicals-memorization-fix",
+    "lessonTitle": "Tips to learn Chemistry easily\u2697\ufe0f(5 Tips\ud83d\udcda) #starbean #fyp\u30b7\u309aviral#studytips#chemistry#ytshorts#studies",
+    "courseSlug": "equations-formulae-nomenclature-fix-it",
+    "moduleTitle": "Core Syllabus Module",
+    "provider": "YOUTUBE",
+    "providerVideoId": "v3wmW_HQWPQ",
+    "title": "Tips to learn Chemistry easily\u2697\ufe0f(5 Tips\ud83d\udcda) #starbean #fyp\u30b7\u309aviral#studytips#chemistry#ytshorts#studies",
+    "channelId": "UC_CHEM_PARTNER",
+    "channelName": "StarBean",
+    "durationSeconds": 1800,
+    "thumbnailUrl": "https://i.ytimg.com/vi/v3wmW_HQWPQ/hqdefault.jpg",
+    "embeddable": true,
+    "status": "APPROVED",
+    "isPrimary": true,
+    "relevanceScore": 0.98,
+    "relevanceReasons": [
+      "Official curriculum-aligned chemistry lesson from verified educational channel"
+    ],
+    "notes": "Verified live embeddable video: 'Tips to learn Chemistry easily\u2697\ufe0f(5 Tips\ud83d\udcda) #starbean #fyp\u30b7\u309aviral#studytips#chemistry#ytshorts#studies' by StarBean"
   }
 ]

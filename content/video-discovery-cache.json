@@ -1,6 +1,6 @@
 {
-  "quotaUsedToday": 2000,
-  "lastRunDate": "2026-11-12",
+  "quotaUsedToday": 2300,
+  "lastRunDate": "2026-11-13",
   "items": {
     "waec-ssce-mathematics-mastery:fractions-decimals-operations": {
       "videoId": "Vb5c7ay0ziU",
@@ -925,6 +925,167 @@
       "title": "Photoelectric Effect, Work Function, Threshold Frequency, Wavelength, Speed & Kinetic Energy, Electr",
       "channelName": "The Organic Chemistry Tutor",
       "verifiedAt": "2026-11-12T13:42:48.208Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss1-matter-atomic-structure-periodic-table:particulate-nature-of-matter-states-and-kinetic-theory": {
+      "videoId": "zjkBMk5d3tM",
+      "title": "GCSE Physics - Particle Theory & States of Matter | Solids, Liquids & Gases (2027/28 exams)",
+      "channelName": "Cognito",
+      "verifiedAt": "2026-11-13T15:48:33.865Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss1-matter-atomic-structure-periodic-table:subatomic-particles-isotopes-and-relative-atomic-mass": {
+      "videoId": "-FBk8cNvJds",
+      "title": "GCSE Chemistry - Elements, Isotopes & Relative Atomic Mass (2027/28 exams)",
+      "channelName": "Cognito",
+      "verifiedAt": "2026-11-13T15:48:43.839Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss1-matter-atomic-structure-periodic-table:electronic-configurations-in-spdf-orbitals-and-rules": {
+      "videoId": "Aoi4j8es4gQ",
+      "title": "Quantum Numbers, Atomic Orbitals, and Electron Configurations",
+      "channelName": "Professor Dave Explains",
+      "verifiedAt": "2026-11-13T15:48:52.807Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss1-matter-atomic-structure-periodic-table:periodic-trends-atomic-radii-ionization-energy-electronegativity": {
+      "videoId": "hePb00CqvP0",
+      "title": "The Periodic Table: Atomic Radius, Ionization Energy, and Electronegativity",
+      "channelName": "Professor Dave Explains",
+      "verifiedAt": "2026-11-13T15:49:03.932Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss1-matter-atomic-structure-periodic-table:electrovalent-covalent-and-coordinate-bonding": {
+      "videoId": "2fznwgHrWN8",
+      "title": "Chemical Bonding (JAMB and PUTME Chemistry): Meaning and Types with Examples.  #excellenceacademy",
+      "channelName": "Excellence Academy",
+      "verifiedAt": "2026-11-13T15:49:08.960Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss1-matter-atomic-structure-periodic-table:chemical-formulas-valency-rules-and-iupac-nomenclature": {
+      "videoId": "GJ4Mds0CWLE",
+      "title": "Writing Chemical Formulas For Ionic Compounds",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-13T15:49:19.310Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss2-bonding-stoichiometry-acids-bases-salts:the-mole-concept-molar-mass-and-avogadro-calculations": {
+      "videoId": "74-X94OP2XI",
+      "title": "Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-13T15:49:29.392Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss2-bonding-stoichiometry-acids-bases-salts:gas-laws-boyle-charles-general-gas-equation": {
+      "videoId": "Hd7OoTLBZDA",
+      "title": "Gas Laws-Boyle's-Charles's-Gay Lussac's",
+      "channelName": "MooMooMath and Science",
+      "verifiedAt": "2026-11-13T15:49:38.274Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss2-bonding-stoichiometry-acids-bases-salts:acids-bases-ph-scale-and-neutralization": {
+      "videoId": "Yrf3Z_TQu_k",
+      "title": "GCSE Chemistry - Acids & Bases - pH | Features | Neutralisation Reactions (2027/28 exams)",
+      "channelName": "Cognito",
+      "verifiedAt": "2026-11-13T15:49:46.736Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss2-bonding-stoichiometry-acids-bases-salts:preparation-of-soluble-and-insoluble-salts": {
+      "videoId": "Z8f-rVdnEBs",
+      "title": "Solubility Rules | Acids, Bases & Alkali's | Chemistry | FuseSchool",
+      "channelName": "FuseSchool - Global Education",
+      "verifiedAt": "2026-11-13T15:49:55.025Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss2-bonding-stoichiometry-acids-bases-salts:water-hardness-temporary-permanent-and-treatment": {
+      "videoId": "SdQy2WP5pfw",
+      "title": "Hard Water & Soft water | How to identify | Causes | Types of Hardness | Removal Methods | Effects",
+      "channelName": "Afzaal Chemist",
+      "verifiedAt": "2026-11-13T15:50:03.895Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss2-bonding-stoichiometry-acids-bases-salts:allotropes-of-sulphur-and-the-contact-process": {
+      "videoId": "nsDxG3CEyxU",
+      "title": "The Contact Process | Production of Sulfuric Acid",
+      "channelName": "Dark MoleX",
+      "verifiedAt": "2026-11-13T15:50:13.966Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss3-electrochemistry-rates-equilibrium-organic:redox-reactions-oxidation-numbers-half-equations": {
+      "videoId": "QlG9Kt-9yTI",
+      "title": "GCSE Chemistry - Redox Reactions - Displacement Reactions | Ionic Equations | Half Equations",
+      "channelName": "Cognito",
+      "verifiedAt": "2026-11-13T15:50:22.587Z",
+      "status": "APPROVED"
+    },
+    "chemistry-ss3-electrochemistry-rates-equilibrium-organic:electrolysis-preferential-discharge-faradays-laws": {
+      "videoId": "7uIIq_Ofzgw",
+      "title": "What Is Electrolysis | Reactions | Chemistry | FuseSchool",
+      "channelName": "FuseSchool - Global Education",
+      "verifiedAt": "2026-11-13T15:50:36.077Z",
+      "status": "APPROVED"
+    },
+    "waec-neco-ssce-chemistry-mastery:waec-stoichiometric-mole-calculations-and-yields": {
+      "videoId": "8oIhMEUk9qc",
+      "title": "JAMB/WAEC Chemistry 2027 EP 114 - Stoichiometry + Free JAMB/WAEC Questions & Answers",
+      "channelName": "O3SCHOOLS",
+      "verifiedAt": "2026-11-13T15:50:46.814Z",
+      "status": "APPROVED"
+    },
+    "jamb-utme-chemistry-complete:jamb-rapid-mole-concept-and-gas-volume-shortcuts": {
+      "videoId": "Ca_ySrUAPXI",
+      "title": "Five Memory Tricks for Electrolysis! #GCSE #Science #Chemistry #Electrolysis",
+      "channelName": "Flash Revision Lab",
+      "verifiedAt": "2026-11-13T15:50:50.343Z",
+      "status": "APPROVED"
+    },
+    "stoichiometry-mole-concept-bootcamp:molar-mass-and-gram-mole-conversions-bootcamp": {
+      "videoId": "74-X94OP2XI",
+      "title": "Avogadro's Number, The Mole, Grams, Atoms, Molar Mass Calculations - Introduction",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-13T15:50:54.380Z",
+      "status": "APPROVED"
+    },
+    "volumetric-analysis-practical-chemistry:burette-pipette-handling-and-meniscus-reading": {
+      "videoId": "RnTC7WqpoGM",
+      "title": "Titration Method | Step-By-Step #experiment #chemistry",
+      "channelName": "The Elkchemist",
+      "verifiedAt": "2026-11-13T15:50:56.807Z",
+      "status": "APPROVED"
+    },
+    "organic-chemistry-made-clear:carbon-tetravalency-sp3-sp2-sp-hybridization": {
+      "videoId": "tssfo-KG7s4",
+      "title": "Hybridization in organic chemistry | Shape | Bond angle | Bond length | Sp3, Sp2 & Sp",
+      "channelName": "DELZY Academy ",
+      "verifiedAt": "2026-11-13T15:51:03.721Z",
+      "status": "APPROVED"
+    },
+    "inorganic-chemistry-periodic-trends-metals-nonmetals:alkali-and-alkaline-earth-metals-trends": {
+      "videoId": "TGZs93DzMDY",
+      "title": "GCSE Chemistry - Group 1 Elements - Alkali Metals | Properties | Reactivity (2027/28 exams)",
+      "channelName": "Cognito",
+      "verifiedAt": "2026-11-13T15:51:08.517Z",
+      "status": "APPROVED"
+    },
+    "acids-bases-salts-ph:acid-base-theories-arrhenius-bronsted-lewis": {
+      "videoId": "OP6RKqSp1Xw",
+      "title": "Conjugate Acid Base Pairs, Arrhenius, Bronsted Lowry and Lewis Definition - Chemistry",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-13T15:51:16.276Z",
+      "status": "APPROVED"
+    },
+    "electrochemistry-redox-deep-dive:systematic-oxidation-number-rules-and-tracking": {
+      "videoId": "j0hI-a6EWWo",
+      "title": "How To Calculate Oxidation Numbers - Basic Introduction",
+      "channelName": "The Organic Chemistry Tutor",
+      "verifiedAt": "2026-11-13T15:51:25.154Z",
+      "status": "APPROVED"
+    },
+    "equations-formulae-nomenclature-fix-it:valencies-and-polyatomic-radicals-memorization-fix": {
+      "videoId": "v3wmW_HQWPQ",
+      "title": "Tips to learn Chemistry easily⚗️(5 Tips📚) #starbean #fypシ゚viral#studytips#chemistry#ytshorts#studies",
+      "channelName": "StarBean",
+      "verifiedAt": "2026-11-13T15:51:27.518Z",
       "status": "APPROVED"
     }
   }

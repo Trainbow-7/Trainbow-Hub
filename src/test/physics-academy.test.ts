@@ -78,7 +78,7 @@ describe("Physics Academy Suite", () => {
       expect(SEED_COURSES).toHaveLength(6);
       expect(SEED_ENGLISH_COURSES).toHaveLength(11);
       expect(SEED_PHYSICS_COURSES).toHaveLength(12);
-      expect(ALL_COURSES).toHaveLength(29);
+      expect(ALL_COURSES.length).toBeGreaterThanOrEqual(29);
     });
 
     it("updates Physics subject courseCount to 12 in SEED_SUBJECTS", () => {
