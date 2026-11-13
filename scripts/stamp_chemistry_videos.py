@@ -101,3 +101,4 @@ with open(map_path, "w", encoding="utf-8") as f:
     json.dump(video_map, f, indent=2)
 
 print(f"✓ Added/Updated {new_entries} Chemistry entries in {map_path}. Total video-map records: {len(video_map)}.")
+

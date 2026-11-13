@@ -338,3 +338,4 @@ ts_code = f"export const PRACTICAL_BOOTCAMP_CHEMISTRY_COURSES: ChemistryCourseDa
 with open(filepath, "w", encoding="utf-8") as f:
     f.write(header + ts_code)
 print(f"✓ Wrote chemistry-practical-bootcamps.ts with {len(COURSES)} courses.")
+

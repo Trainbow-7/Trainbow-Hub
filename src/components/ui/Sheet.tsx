@@ -81,7 +81,12 @@ export function Sheet({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 bg-white pb-[max(1.5rem,env(safe-area-inset-bottom))]">{children}</div>
+        <div
+          data-lenis-prevent
+          className="flex-1 overflow-y-auto p-6 bg-white pb-[max(1.5rem,env(safe-area-inset-bottom))]"
+        >
+          {children}
+        </div>
       </div>
     </div>,
     document.body

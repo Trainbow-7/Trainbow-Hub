@@ -12,4 +12,6 @@ export * from "./PageTransition";
 export * from "./Carousel";
 export * from "./ActiveIndicator";
 export * from "./StepTransition";
+export { motion, AnimatePresence } from "framer-motion";
+export { SmoothScrollProvider, useLenis } from "@/components/providers/SmoothScrollProvider";
 export { MOTION_TOKENS, VARIANTS, getMotionPreference } from "@/lib/motion";

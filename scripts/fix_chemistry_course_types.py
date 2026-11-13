@@ -65,3 +65,4 @@ for item in files_info:
         f.write(new_content)
 
     print(f"✓ Fixed course types in {path}")
+

@@ -445,3 +445,4 @@ export function listPriorityChemistryWeakAreas(): WeakAreaRecord[] {
 export function listChemistryWeakAreasBySkill(skill: ChemistrySkillArea): WeakAreaRecord[] {
   return CHEMISTRY_WEAK_AREAS.filter((wa) => (wa.skillArea as any) === skill);
 }
+

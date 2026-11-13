@@ -607,3 +607,4 @@ with open("src/lib/data/chemistry-diagnostics.ts", "w", encoding="utf-8") as f:
     f.write("\n".join(out))
 
 print(f"✓ Generated src/lib/data/chemistry-diagnostics.ts with {len(courses_data)} course diagnostics.")
+

@@ -118,3 +118,4 @@ Every course, module, lesson, question, and diagnostic item in the Trainbow HUB 
   - Faraday constant $F = 96,500\text{ C/mol}$
   - Relative atomic masses are explicitly stated in each lesson constants table (e.g. $\text{H}=1, \text{C}=12, \text{N}=14, \text{O}=16, \text{Na}=23, \text{Mg}=24, \text{Al}=27, \text{S}=32, \text{Cl}=35.5, \text{K}=39, \text{Ca}=40, \text{Fe}=56, \text{Cu}=64, \text{Zn}=65, \text{Ag}=108$).
 - **Safety First:** Practical lessons carry a prominent warning that chemical experiments must only be performed under supervision in a certified secondary laboratory. Videos depicting hazardous, explosive, or non-educational demonstrations are strictly prohibited by allowlist and blocklist rules.
+

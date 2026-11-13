@@ -192,7 +192,7 @@ export function InlineMathText({ text, className, autoFormatUnescaped = true }: 
                 key={idx}
                 className={cn(
                   "inline-math-item inline-block",
-                  isDisplay ? "my-1 block text-center" : "mx-0.5 align-baseline"
+                  isDisplay ? "my-1 block text-center max-w-full overflow-x-auto overflow-y-hidden" : "mx-0.5 align-baseline"
                 )}
                 dangerouslySetInnerHTML={{ __html: html }}
               />

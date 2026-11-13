@@ -138,7 +138,10 @@ export function BottomSheet({
         )}
 
         {/* Content */}
-        <div className="overflow-y-auto overscroll-contain px-5 py-4 flex-1">
+        <div
+          data-lenis-prevent
+          className="overflow-y-auto overscroll-contain px-5 py-4 flex-1"
+        >
           {children}
         </div>
       </div>

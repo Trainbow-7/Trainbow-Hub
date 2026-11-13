@@ -409,7 +409,7 @@ export default function LearnerNeedsDashboardPage() {
 
         {/* Deficiency Table */}
         <div className="rounded-xl border border-neutral-slate-200 bg-white overflow-hidden shadow-2xs">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto touch-pan-x overscroll-x-contain">
             <table className="w-full text-left text-xs divide-y divide-neutral-slate-200">
               <thead className="bg-neutral-slate-50 text-neutral-slate-600 font-semibold uppercase tracking-wider text-[10px]">
                 <tr>
@@ -441,7 +441,9 @@ export default function LearnerNeedsDashboardPage() {
                           <div className="flex items-center gap-1.5 mb-0.5">
                             <span
                               className={`px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase ${
-                                wa.subject === "Physics"
+                                wa.subject === "Chemistry"
+                                  ? "bg-teal-100 text-teal-800"
+                                  : wa.subject === "Physics"
                                   ? "bg-purple-100 text-purple-800"
                                   : wa.subject === "Mathematics"
                                   ? "bg-blue-100 text-blue-800"

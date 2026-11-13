@@ -325,7 +325,7 @@ export function Navbar() {
             <div className="lg:hidden flex items-center">
               <Link
                 href="/register"
-                className="whitespace-nowrap font-semibold text-xs px-3 min-h-[36px] inline-flex items-center justify-center rounded-control bg-[#2563EB] text-white shadow-sm"
+                className="whitespace-nowrap font-semibold text-xs px-3 min-h-[44px] inline-flex items-center justify-center rounded-control bg-[#2563EB] text-white shadow-sm"
               >
                 Get started
               </Link>

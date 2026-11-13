@@ -256,6 +256,7 @@ export function LessonPlayerView({ courseSlug, lessonSlug }: LessonPlayerViewPro
       {/* Scrollable Module & Lesson List */}
       <div
         ref={syllabusContainerRef}
+        data-lenis-prevent
         className="space-y-3 max-h-[500px] lg:max-h-[600px] overflow-y-auto pr-1 text-xs"
       >
         {course.syllabus.map((mod) => (
